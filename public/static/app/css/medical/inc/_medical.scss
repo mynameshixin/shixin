@@ -1,0 +1,68 @@
+body {
+  background: $color-bg;
+}
+
+.medical-header {
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.medical-main {
+  position: relative;
+  overflow: hidden;
+  margin-top: $margin-m;
+  background-color: $color-f;
+  text-align: center;
+  .icon-place{
+    display: block;
+    margin-left:$margin-m;
+    position:relative;
+    top: 50%;
+    margin-top: -9px;
+    vertical-align:middle;
+  }
+  .icon-sev{
+    width:19px;
+    height:18px;
+    background:url('../../images/medical/icon-medical.png') no-repeat;
+    background-size:19px 18px;
+  }
+  .medical-service{
+    height: 44px;
+    line-height: 44px;
+    border-top: 1px solid $color-border;
+  }
+  .sev-text{
+    margin-left:$margin-s + $margin-m;
+  }
+
+
+}
+.medical-nav {
+  position:relative;
+  height: 38px;
+  line-height:40px;
+  border: 1px solid $color-border;
+
+  a{
+    color: $color-sub;
+    padding-left: 19px + $margin-s + $margin-m*2;
+    .icon-next{
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      margin-top: -7px;
+    }
+  }
+
+}
+.medical-foot{
+  color: $color-tips;
+  text-align:center;
+  padding-top: 18px;
+}

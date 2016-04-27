@@ -1,0 +1,10 @@
+.env
+/docs
+/.idea
+composer.lock
+/storage/debugbar
+.project
+.dump.rdb
+/public/uploads
+/nbproject
+vendor

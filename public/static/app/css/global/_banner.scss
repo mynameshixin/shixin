@@ -1,0 +1,55 @@
+﻿.uec-banner {
+  position:relative;
+  height:184px;
+  overflow:hidden;
+  .header-banner {
+    li {
+      position:relative;
+      float:left;
+      display:block;
+      width:100%;
+    }
+    img {
+      display:block;
+      width:100%;
+    }
+  }
+  .header-line {
+    position:absolute;
+    right:-3+$margin-m;
+    bottom:0;
+    li {
+      float:left;
+      width:24px;
+      height:16px;
+      margin:0 3px 0 2px;
+      @include transition(all, .5s, ease-in-out);
+      &.active {
+        .line-bar {
+          margin-top:0;
+          @include opacity(1);
+        }
+        .line-bg {
+          height:12px;
+          background:$color-f;
+        }
+      }
+    }
+    i {
+      display:block;
+      width:100%;
+      @include transition(all, .5s, ease-in-out);
+    }
+    .line-bar {
+      height:2px;
+      margin-top:4px;
+      background:$color-f;
+      @include opacity(.7);
+    }
+    .line-bg {
+      height:12px;
+      margin-top:2px;
+      @include opacity(.7);
+    }
+  }
+}

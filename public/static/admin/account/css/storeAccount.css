@@ -1,0 +1,16 @@
+
+.tree-folder, .tree-file{
+    width: 0px;
+}
+.tree-node{
+    height: 35px;
+    padding-top: 8px;
+}
+.tree-node-selected {
+    background: #dde1e6;
+    color: #000000;
+}
+
+.menu-btn{
+    margin-left : 10px;
+}

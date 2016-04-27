@@ -1,0 +1,197 @@
+@charset "UTF-8";
+img {
+  max-width:100%;
+}
+.yiban-uec {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  &.yiban-header {
+    top:$height-header
+  }
+}
+.avatar-s {
+  width:$avatar-s;
+  height:$avatar-s;
+}
+.avatar-m {
+  width:$avatar-m;
+  height:$avatar-m;
+}
+.txt-key {
+  color:$color-key;
+}
+.txt-price {
+  color:$color-theme;
+}
+.txt-mark {
+  color:$color-mark;
+}
+.txt-tips {
+  color:$color-tips;
+}
+
+/*animate*/
+.shake-animate {
+  /*动画完成一个周期花费时间*/
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  -o-animation-duration:1s;
+  animation-duration:1s;
+  /*动画循环次数 infinite：无限循环*/
+  -webkit-animation-iteration-count:1;
+  -moz-animation-iteration-count:1;
+  -o-animation-iteration-count:1;
+  animation-iteration-count:1;
+  /*动画播放起始时间*/
+  -webkit-animation-delay:0;
+  -moz-animation-delay:0;
+  -o-animation-delay:0;
+  animation-delay:0;
+  
+  -webkit-animation-fill-mode:none;
+  -moz-animation-fill-mode:none;
+  -o-animation-fill-mode:none;
+  animation-fill-mode:none;
+}
+.shakeOut {
+  -webkit-animation-name:shakeOut;
+  -moz-animation-name:shakeOut;
+  -o-animation-name:shakeOut;
+  animation-name:shakeOut;
+}
+.shakeIn {
+  -webkit-animation-name:shakeIn;
+  -moz-animation-name:shakeIn;
+  -o-animation-name:shakeIn;
+  animation-name:shakeIn;
+}
+.scalePoint {
+  -webkit-animation-name:scalePoint;
+  -moz-animation-name:scalePoint;
+  -o-animation-name:scalePoint;
+  animation-name:scalePoint;
+}
+
+/*title*/
+.uec-title, .uec-subtitle {
+  line-height:56px;
+  font-size:$f-title;
+  border-bottom:solid 1px $color-border;
+  text-indent:$margin-m;
+  color:$color-title;
+}
+.uec-subtitle {
+  line-height:30px;
+  font-size:$f-theme;
+  color:$color-sub;
+}
+
+/*pull updata*/
+.pullDownLabel, .pullUpLabel {
+  line-height:$height-input+20;
+  color:$color-updata;
+  text-align:center;
+  .pullPoint {
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:$color-tips;
+    border-radius:$radius-round;
+    margin:0 1px 2px;
+    @include animation(.8s, ease-in-out, infinite, 0, both);
+  }
+  .pullTxt {
+    padding-left:5px;
+  }
+  .active-1 {
+    /*动画播放起始时间*/
+    -webkit-animation-delay:-0.32s;
+    animation-delay:-0.32s;
+  }
+  .active-2 {
+    /*动画播放起始时间*/
+    -webkit-animation-delay:-0.16s;
+    animation-delay:-0.16s;
+  }
+}
+.pullUpLabel {
+  line-height:61px;
+}
+
+.btn {
+  display:block;
+  margin:10px 15%;
+  line-height:$height-header;
+  font-size:15px;
+  color:$color-f;
+  background:$color-theme;
+  text-align:center;
+  border-radius:$radius;
+}
+.btn-cancel {
+  color:$color-theme;
+  background:$color-f;
+  border:solid 1px $color-theme;
+}
+
+.uec-publish {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  border-top:solid 1px $color-border;
+  background:rgba(255,255,255,.85);
+  .btn-publish {
+    display:block;
+    margin:10px 15%;
+    line-height:$height-header;
+    font-size:15px;
+    color:$color-f;
+    background:$color-theme;
+    text-align:center;
+    border-radius:$radius;
+  }
+}
+
+/*layer*/
+.pop-layer {
+  width:100%;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:100%;
+  z-index:100;
+  background:$color-bg;
+  @include transition(.3s, all, ease-in-out);
+  #layer-scroll {
+    width:100%;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0
+  }
+  .scroll-bar {
+    height:100%;
+  }
+  &.active {
+    left:0;
+  }
+}
+.pop-alert {
+  width:60%;
+  position:absolute;
+  left:50%;
+  bottom:20%;
+  margin-left:-25%;
+  line-height:50px;
+  text-align:center;
+  color:$color-f;
+  background:rgba(0,0,0,.7);
+  border-radius:$radius;
+  z-index:200;
+}

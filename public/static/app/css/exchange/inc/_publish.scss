@@ -1,0 +1,119 @@
+@charset "UTF-8";
+.publish-container {
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:10;
+  background:$color-bg;
+  .publish-img {
+    padding:$margin-m $padding-m;
+    background:#ccc;
+    &.active {
+      background:$color-f;
+    }
+    li {
+      float:left;
+      width:33.333%;
+      overflow:hidden;
+      a {
+        display:block;
+        height:100%;
+        margin:0 $margin-s;
+      }
+      img {
+        display:block;
+        width:100%;
+        height:90px;
+      }
+      .upload-btn {
+        font-size:60px;
+        height:92px;
+        background:#f3f3f3;
+        border:solid 1px #dcdddf;
+        text-align:center;
+      }
+    }
+    .line-horizontal, .line-vertical {
+      display:block;
+      width:44px;
+      height:2px;
+      margin:0 auto;
+      margin-top:46px;
+      background:#dcdddf;
+    }
+    .line-vertical {
+      transform:rotate(90deg);
+      margin-top:-2px;
+    }
+    .it {
+      width:100%;
+      height:90px;
+      .icon-camera {
+        display:block;
+        width:100%;
+        height:100%;
+      }
+    }
+  }
+  .publish-title {
+    padding:0 $margin-m;
+    font-size:13px;
+    border-top:solid 1px $color-border;
+    border-bottom:solid 1px $color-border;
+    margin-top:-1px;
+    background:$color-f;
+    .title-name {
+      float:left;
+      width:33.125%;
+      line-height:49px;
+      color:$color-tips;
+      i {
+        font-size:13px;
+      }
+      .txt-mark {
+        position:relative;
+        top:-4px;
+      }
+    }
+    .title-content {
+      float:right;
+      width:66.875%;
+      input {
+        display:block;
+        width:100%;
+        line-height:49px;
+        border:none;
+        outline:none;
+        font-size:13px;
+        color:$color-title;
+        text-align:right
+      }
+      textarea {
+        display:block;
+        width:100%;
+        min-height:83px;
+        line-height:20px;
+        padding-top:$margin-m;
+        color:$color-title;
+        border:none;
+        outline:none;
+        resize:none;
+        text-align:right
+      }
+    }
+    .txt-tips {
+      padding-bottom:8px;
+      font-size:9px;
+      text-align:right;
+    }
+  }
+  .publish-tips {
+    line-height:15px;
+    padding:$margin-m;
+    font-size:10px;
+    color:$color-tips;
+    text-align:center;
+  }
+}

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.yiban-uec {
+  background:$color-bg
+}
+.exchange-detail {
+  li {
+    padding:$padding-m $padding-l 0;
+    margin-bottom:$margin-m;
+    background:$color-f
+  }
+  .exchange-title {
+    padding-top:10px;
+    .title-title {
+      line-height:21px;
+      font-size:14px;
+      color:$color-title
+    }
+    .title-content {
+      line-height:35px;
+    }
+    .price {
+      float:left;
+      font-size:16px;
+      color:$color-theme
+    }
+    .time {
+      float:right;
+      font-size:10px;
+      color:$color-tips
+    }
+  }
+  .exchange-contact {
+    padding-bottom:8px;
+    fonxt-size:14px;
+    span {
+      float:left;
+    }
+    .avatar {
+      border-radius:$radius-round;
+      overflow:hidden;
+      margin-top:3px
+    }
+    .name {
+      line-height:42px;
+      padding-left:$padding-m + 1
+    }
+    .contact {
+      line-height:21px;
+      padding-left:$padding-m * 2;
+      p:first-child {
+        color:#3883d0
+      }
+      p:last-child {
+        color:$color-tips
+      }
+    }
+  }
+  .title {
+    padding-bottom:$padding-s
+  }
+  .content {
+    line-height:21px;
+    padding-bottom:50px;
+    color:$color-tips
+  }
+}
+.btn-contact {
+  display:block;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:10;
+  opacity:0;
+}
