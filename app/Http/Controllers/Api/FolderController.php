@@ -205,6 +205,7 @@ class FolderController extends BaseController
     {
 
         $params = Input::all();
+        $params = fparam($params);
         $rules = array(
             'access_token'=>'required',
             'name' => 'required',
