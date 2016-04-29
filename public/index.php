@@ -20,7 +20,7 @@
 | loading any of our classes later on. It feels nice to relax.
 |
 */
-
+require 'function.php';
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
