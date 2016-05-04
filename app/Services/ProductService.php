@@ -490,10 +490,10 @@ class ProductService extends ApiService
         $row = $row->toArray();
         $row['source'] = isset(self::$sources[$row['source']]) ? self::$sources[$row['source']] : '';
         if (!empty($row['image_ids'])) {
-            $fileNames = Images::where('name', '>', '0')->lists('name', 'id')->toArray();
             $image_ids = explode(',', $row['image_ids']);
             foreach ($image_ids as $imageId) {
                 $image_o = LibUtil::getPicUrl($imageId, 3);
+                $fileNames = Images::where('id', $imageId)->lists('name', 'id')->toArray();
                 if (!empty($image_o)) {
                     $row['images'][] = [
                         'image_id'=>$imageId,
