@@ -8,7 +8,7 @@
 namespace App\Services\Admin;
 
 use App\Lib\LibUtil;
-use App\Lib\ResizeImage;
+use App\Lib\ProportionImage;
 use App\Models\Images;
 use App\Services\ApiService;
 use Illuminate\Support\Facades\Log;
@@ -133,29 +133,19 @@ class ImageService extends ApiService
     }
 
     /**
-     *  生成缩率图
+     *  生成等比例缩略图
      * @param $file
      * @param $path
      * @param $imageId
      * @param $rules 生成图片规则
-     *  $rules = array(
-     *      array('w' => 640, 'h' => 240, 'name' => '_b', 'isCut' => '1'),
-     *      array('w' => 320, 'h' => 320, 'name' => '_m', 'isCut' => '1'),
-     *      array('w' => 240, 'h' => 240, 'name' => '_s', 'isCut' => '1'),
-     *     );
      * @return resizeimage
      */
     function creatThumbPi($file, $path, $imageId,array $rules) {
-        $picArr['file'] = $file;
-        $picArr['path'] = $path;
-        $picArr['arr']  = $rules;
-        if ($picArr ['arr']) {
-            foreach ( $picArr ['arr'] as $val ) {
-                $val ['name'] =$imageId.$val ['name'] . '.jpg';
-                $t = new ResizeImage ( $file, $val ['w'], $val ['h'], $val ['isCut'], $path . $val ['name'] );
-            }
-        }
-        return $t;
+        $maxwidth = '420';//生成的图的最大宽度
+        $maxheight = '500';//生成的图的最大宽度
+        $t = new ProportionImage ( $file, $maxwidth,$maxheight, $path .$imageId. '_m');
+
+        //return $t;
     }
 
     function extend($file_name){

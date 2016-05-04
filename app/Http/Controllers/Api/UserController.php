@@ -85,8 +85,8 @@ class UserController extends BaseController
      *
      * @return Response
      */
-    public function index()
-    {   $params = Input::all();
+    public function index(){   
+        $params = Input::all();
         $keyword = Input::get('keyword');
         $num  = Input::get('num',20);
         $params['current_uid'] = self::$user_id;
