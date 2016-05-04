@@ -8,3 +8,4 @@ composer.lock
 /public/uploads
 /nbproject
 vendor
+README.md
