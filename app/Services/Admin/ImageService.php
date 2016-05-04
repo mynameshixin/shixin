@@ -143,7 +143,7 @@ class ImageService extends ApiService
     function creatThumbPi($file, $path, $imageId,array $rules) {
         $maxwidth = '420';//生成的图的最大宽度
         $maxheight = '500';//生成的图的最大宽度
-        $t = new ProportionImage ( $file, $maxwidth,$maxheight, $path .$imageId. '_m');
+        $t = new ProportionImage ( $file, $maxwidth,$maxheight, $path .$imageId. '_m.jpg');
 
         //return $t;
     }
