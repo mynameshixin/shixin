@@ -399,7 +399,7 @@ class ProductService extends ApiService
             $commentArr = CommentService::getInstance()->getCommentFirst($good_ids);
             $folder_ids = array_column($outDate['list'], 'folder_id');
             $folderArr = Folder::whereIn('id', $folder_ids)->lists('name', 'id')->toArray();
-            $fileNames = Images::where('name', '>', '0')->lists('name', 'id')->toArray();
+            
             foreach ($outDate['list'] as &$row) {
                 $row['folder_name'] = isset($folderArr[$row['folder_id']]) ? $folderArr[$row['folder_id']] : '';
                 $row['source'] = isset(self::$sources[$row['source']]) ? self::$sources[$row['source']] : '';
@@ -407,6 +407,8 @@ class ProductService extends ApiService
                 if (!empty($row['image_ids'])) {
                     $image_ids = explode(',', $row['image_ids']);
                     foreach ($image_ids as $imageId) {
+                        //var_dump($imageId);
+                        $fileNames = Images::where('id', $imageId)->lists('name', 'id')->toArray();
                         $image_o = LibUtil::getPicUrl($imageId, 3);
                         if (!empty($image_o)) {
                             $row['images'][] = [
