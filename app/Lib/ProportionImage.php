@@ -46,12 +46,11 @@ class ProportionImage {
 	  $pic_height = $this->height;
 	  $maxwidth = $this->resize_width;
 	  $maxheight = $this->resize_height;
-	  $m = $this->im;
+	  $im = $this->im;
 	  $filetype = $this->type;
 	  $dstimg = $this->dstimg;
-
 	  if(($maxwidth && $pic_width > $maxwidth) || ($maxheight && $pic_height > $maxheight)){
-
+	  	   $resizewidth_tag = $resizeheight_tag = false;
 		   if($maxwidth && $pic_width>$maxwidth){
 			    $widthratio = $maxwidth/$pic_width;
 			    $resizewidth_tag = true;
@@ -62,18 +61,15 @@ class ProportionImage {
 		   }
 		 
 		   if($resizewidth_tag && $resizeheight_tag){
-			    if($widthratio < $heightratio)
-			     $ratio = $widthratio;
-			    else
-			     $ratio = $heightratio;
+		   	    $ratio = $widthratio < $heightratio?$widthratio:$heightratio;
 		   }
 		 
 		   if($resizewidth_tag && !$resizeheight_tag) $ratio = $widthratio;
 		   if($resizeheight_tag && !$resizewidth_tag) $ratio = $heightratio;
-		 
+		 		
 		   $newwidth = $pic_width * $ratio;
 		   $newheight = $pic_height * $ratio;
-		 
+		   
 		   if(function_exists("imagecopyresampled")){
 		      $newim = imagecreatetruecolor($newwidth,$newheight);//PHP系统函数
 		      imagecopyresampled($newim,$im,0,0,0,0,$newwidth,$newheight,$pic_width,$pic_height);//PHP系统函数
@@ -81,13 +77,12 @@ class ProportionImage {
 		      $newim = imagecreate($newwidth,$newheight);
 		      imagecopyresized($newim,$im,0,0,0,0,$newwidth,$newheight,$pic_width,$pic_height);
 		   }
-
 		   imagejpeg($newim,$dstimg);
 		   imagedestroy($newim);
 
-	  	}else{
+	  }else{
 		   imagejpeg($im,$dstimg);
-  		}
+  	  }
 	}
 	//初始化图象
 	function initi_img()
