@@ -200,7 +200,8 @@ class ProductService extends ApiService
             if ($good['kind']==2 && $good['image_ids']!=$data['image_ids']){
                 $images_arr = explode(',',$data['image_ids']);
                 $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
-                if (!isset($entry['title']) && empty($entry['title']))$fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
+                //if (!isset($entry['title']) && empty($entry['title'])) $fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
+		$fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
                 $entry['title']= $fileNames[$image_id];
                 $entry['title']= pathinfo($entry['title'],PATHINFO_FILENAME);
             }
