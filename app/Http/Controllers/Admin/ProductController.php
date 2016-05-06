@@ -39,6 +39,7 @@ class ProductController extends ApiController
     {
         $data = Input::all();
         $user = Auth::user();
+
         $userArr['']= '全部';
         $userArr[$user->id] = '自己发布的';
         $kinds =  self::$kinds;

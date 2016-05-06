@@ -29,7 +29,7 @@ class ProportionImage {
 		$this->resize_width = $maxwidth;
 		$this->resize_height = $maxheight;
 		//图片的类型
-		$this->type = strtolower(substr(strrchr($this->srcimg,"."),1));
+		$this->type = exif_imagetype($this->srcimg);
 		//初始化图象
 		$this->initi_img();
 		//目标图象地址
@@ -87,15 +87,16 @@ class ProportionImage {
 	//初始化图象
 	function initi_img()
 	{
-		if($this->type=="jpg")
-		{
-			$this->im = imagecreatefromjpeg($this->srcimg);
-		}
-		if($this->type=="gif")
+		if($this->type=="1")
 		{
 			$this->im = imagecreatefromgif($this->srcimg);
 		}
-		if($this->type=="png")
+		if($this->type=="2")
+		{
+			$this->im = imagecreatefromjpeg($this->srcimg);
+		}
+
+		if($this->type=="3")
 		{
 			$this->im = imagecreatefrompng($this->srcimg);
 		}
