@@ -8,7 +8,6 @@
 
 	function fstr($str){
 		$str =  htmlspecialchars(trim($str));
-		if(!get_magic_quotes_gpc()) $str = addslashes($str);
 		return $str;
 	}
 

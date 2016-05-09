@@ -17,7 +17,7 @@ class UserReg
     private $redisNameSpace = 'user:';
     private $alias_key = ':tokenAlias';//alias关系redis前缀
 
-    private $exptime = 31536000;//session过期时间  默认1年
+    private $exptime = 604800;//session过期时间  默认7天
 
     private $redisDb = 'session';
 

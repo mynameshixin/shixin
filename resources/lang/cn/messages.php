@@ -1,6 +1,6 @@
 <?php 
 return array(
-		'access_token' 			=> '您的帐号已在其他地方登入,若不是您本人操作,您的密码可能泄露,建议重置密码或联系客服。',
+		'access_token' 			=> '您的帐号登陆已过期，请重新登录！',
 		'mobile_error'         => '手机号码格式错误。',
         'invited_reg'          =>'被好友邀请注册成功',
         'invite_reg'          =>'好友邀请注册成功',

@@ -124,6 +124,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'category'=> 'CategoryController',
         'version' => 'VersionController',
         'share' => 'ShareController',
+        'location'=> 'LocationController',
     ]);
 
     Route::resources([

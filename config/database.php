@@ -122,7 +122,7 @@ return [
             'password' => env('REDIS_PASSWORD', ''),
         ],
         'session' => array (
-            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'host' => env('REDIS_HOST', '139.196.168.201'),
             'port' => 6379,
             'database' => 1,
             'password' => env('REDIS_PASSWORD', ''),
