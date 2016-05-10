@@ -66,14 +66,14 @@ class ImageService extends ApiService
             $fileName = $imageId . '_o.jpg'; // renameing image
             $ext = self::extend($entry['name']);
 
-            if($ext=="jpg")
+            if($ext=="2")
             {
                 move_uploaded_file($tmp_name, $destinationPath . $fileName);
-            }elseif($ext=="gif")
+            }elseif($ext=="1")
             {
                 $im = imagecreatefromgif($tmp_name);
                 ImageJpeg ($im, $destinationPath . $fileName);
-            }elseif($ext=="png")
+            }elseif($ext=="3")
             {
                 $im = imagecreatefrompng($tmp_name);
                 ImageJpeg ($im, $destinationPath . $fileName);
@@ -149,9 +149,10 @@ class ImageService extends ApiService
     }
 
     function extend($file_name){
-        $extend = pathinfo($file_name);
-        $extend = strtolower($extend["extension"]);
-        return $extend;
+        if(function_exists('exif_imagetype')){
+            return exif_imagetype($file_name);
+        }
+        
     }
 
 
