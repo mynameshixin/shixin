@@ -64,7 +64,7 @@ class ImageService extends ApiService
             $destinationPath = $image_dir . LibUtil::getFacePath($imageId);
             LibUtil::make_dir($destinationPath);
             $fileName = $imageId . '_o.jpg'; // renameing image
-            $ext = self::extend($entry['name']);
+            $ext = self::extend($tmp_name);
 
             if($ext=="2")
             {
