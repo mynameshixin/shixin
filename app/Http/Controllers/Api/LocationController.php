@@ -13,13 +13,41 @@ use DB;
 
 class LocationController extends BaseController{
 
-	
-   	//传入token uid 获取location location_x location_y
+
+	/**
+     * 获取地理位置
+     * @SWG\Api(
+     *   path="/location",
+     *   @SWG\Operations(
+     *     @SWG\Operation(
+     *       method="GET",
+     *       summary="获取地理位置",
+     *       @SWG\Parameters(
+     *         @SWG\Parameter(
+     *           name="uid",
+     *           description="用户id",
+     *           paramType="query",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *         @SWG\Parameter(
+     *           name="token",
+     *           description="token",
+     *           paramType="query",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *       )
+     *     )
+     *   )
+     * )
+     * @return Response
+     */
     public function postIndex(){
     	$data = Input::all();
     	$data = fparam($data);
         $rules = array (
-            'uid' =>'required|integer',
+            'uid' =>'required|exists:users,id',
             'token' =>'required|min:5|max:50',
         );
         //请求参数验证
@@ -31,16 +59,65 @@ class LocationController extends BaseController{
         
     }
 
-    //token uid location location_x location_y插入用户定位信息
+    /**
+     * 地理位置入库
+     * @SWG\Api(
+     *   path="/location/afferent",
+     *   @SWG\Operations(
+     *     @SWG\Operation(
+     *       method="POST",
+     *       summary="获取地理位置",
+     *       @SWG\Parameters(
+     *         @SWG\Parameter(
+     *           name="uid",
+     *           description="用户id",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *         @SWG\Parameter(
+     *           name="token",
+     *           description="token",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *         @SWG\Parameter(
+     *           name="location",
+     *           description="位置描述",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *         @SWG\Parameter(
+     *           name="location_x",
+     *           description="位置x坐标",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *         @SWG\Parameter(
+     *           name="location_y",
+     *           description="位置y坐标",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *       )
+     *     )
+     *   )
+     * )
+     * @return Response
+     */
     public function postAfferent(){
     	$data = Input::all();
     	$data = fparam($data);
         $rules = array (
-            'uid' =>'required|integer',
+            'uid' =>'required|exists:users,id',
             'token' =>'required|min:5|max:50',
             'location' =>'required|max:30',
-            'location_x' =>'required|numeric',
-            'location_y' =>'required|numeric',
+            'location_x' =>'required',
+            'location_y' =>'required',
         );
         //请求参数验证
         parent::validator($data, $rules);
