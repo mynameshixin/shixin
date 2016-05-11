@@ -99,7 +99,7 @@ class FolderController extends BaseController
             'user_id.required'=>'用户uid不存在',
             'access_token.required'=>'令牌token 5-50位',
         ];
-        parent::validator($param,$rules,$messages);
+        parent::validator($params,$rules,$messages);
         $num = isset($params['num']) ? $params['num'] : 10;
         if (isset($data['user_id']) && $data['user_id']!=self::$user_id) {
             $params['private'] = 0;
