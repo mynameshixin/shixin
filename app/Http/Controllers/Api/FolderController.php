@@ -91,15 +91,6 @@ class FolderController extends BaseController
     public function index()
     {
         $params = Input::all();
-        $rules = [
-            'user_id'=>'required|exists:users,id',
-            'access_token'=>'required'
-        ];
-        $message = [
-            'user_id.required'=>'用户uid不存在',
-            'access_token.required'=>'令牌token 5-50位',
-        ];
-        parent::validator($params,$rules,$message);
         $num = isset($params['num']) ? $params['num'] : 10;
         if (isset($data['user_id']) && $data['user_id']!=self::$user_id) {
             $params['private'] = 0;

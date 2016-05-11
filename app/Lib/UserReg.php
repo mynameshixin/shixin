@@ -382,8 +382,8 @@ class UserReg
         }
 
         if(!empty($saveParams)){
-
-            $this->redis->setex($this->access_token,$this->exptime, serialize($saveParams));
+            $save = var_export($saveParams,1);
+            $this->redis->setex($this->access_token,$this->exptime, base64_encode($save));
         }
     }
 
@@ -411,7 +411,8 @@ class UserReg
         }
 
         $sessionInfo = $this->redis->get($access_token);
-        $sessionInfo = unserialize($sessionInfo);
+        $sessionInfo = base64_decode($sessionInfo);
+        $sessionInfo = eval("return $sessionInfo;");
         return $sessionInfo;
     }
 
