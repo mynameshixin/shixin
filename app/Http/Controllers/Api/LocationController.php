@@ -20,7 +20,7 @@ class LocationController extends BaseController{
      *   path="/location",
      *   @SWG\Operations(
      *     @SWG\Operation(
-     *       method="GET",
+     *       method="POST",
      *       summary="获取地理位置",
      *       @SWG\Parameters(
      *         @SWG\Parameter(

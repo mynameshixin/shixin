@@ -147,11 +147,20 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
 });
 
 
+//webadmin管理
+Route::group(['namespace' => 'Webadmin', 'prefix' => 'webadmin'], function () {
 
+    Route::group(['middleware' => 'webauth'],function(){
+        //登陆后控制
+        Route::controllers([
+            'home'=>'HomeController',
+        ]);
+    });
+    
+    //login登陆
+    Route::resources([
+        '/'=> 'WebadminController',
 
+    ]);
 
-
-
-
-
-
+});
