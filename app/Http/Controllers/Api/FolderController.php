@@ -96,6 +96,7 @@ class FolderController extends BaseController
             $params['private'] = 0;
         }
         $params['current_uid'] = self::$user_id;
+        $params['user_id'] = self::$user_id;
 
 
         $outData = FolderService::getInstance()->getFolders($params,$num);
