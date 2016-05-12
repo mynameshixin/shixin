@@ -7,6 +7,6 @@ composer.lock
 .dump.rdb
 /public/uploads
 /nbproject
-/config
+config
 vendor
 README.md
