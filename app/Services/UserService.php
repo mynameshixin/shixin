@@ -127,6 +127,7 @@ class UserService extends ApiService
 
     public function getUserArr($userIds)
     {
+        // $users = User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->select('id', 'username', 'nick','gender','auth_avatar','wechat')->get()->toArray();
         $users = User::whereIn('id', $userIds)->select('id', 'username', 'nick','gender','auth_avatar','wechat')->get()->toArray();
         $userArr = [];
         if ($users) {
@@ -214,7 +215,7 @@ class UserService extends ApiService
     }
 
     public function getSearchCount ($keyword) {
-        return User::where('username', "like" , "%{$keyword}%")->whereOr('nick', "like" , "%{$keyword}%")->count();
+        return User::where('username', "like" , "%{$keyword}%")->whereOr('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->count();
     }
 
     public function getAdminIds () {

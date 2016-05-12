@@ -96,7 +96,7 @@ class FolderService extends ApiService
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
        //去除count图片为0的
-       $rows = $rows->where('count','>',0);
+       if (!isset($params['user_id'])) $rows = $rows->where('count','>',0);
        if (isset($params['keyword']) && !empty($params['keyword'])) {
 
            $keyword = fparam(urldecode($params['keyword']));
