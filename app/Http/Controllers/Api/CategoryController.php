@@ -119,7 +119,7 @@ use Illuminate\Support\Facades\Input;
                      'name' => $row['name'],
                      'img' => '',
                  ];
-                 if($row['image_id'])$entry['img'] = LibUtil::getPicUrl($row['image_id'],3);
+                 if($row['image_id'])$entry['img'] = LibUtil::getPicUrl($row['image_id'],1);
                  $list[] = $entry;
              }
          }

@@ -95,10 +95,11 @@ class FolderService extends ApiService
        if (isset($params['private'])) $cond['private'] = $params['private'];
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
-
+       //去除count图片为0的
+       $rows = $rows->where('count','>',0);
        if (isset($params['keyword']) && !empty($params['keyword'])) {
 
-           $keyword = urldecode($params['keyword']);
+           $keyword = fparam(urldecode($params['keyword']));
 
            //模糊查询
            $rows = $rows->where(function ($rows) use ($keyword) {
@@ -167,11 +168,12 @@ class FolderService extends ApiService
 
                $list[] = $entry;
            }
-
+           //排序
            $case = array_map(function($lists) use ($list){
               return $lists['count'];
            }, $list);
            array_multisort($case, SORT_NUMERIC, SORT_DESC,$list);
+
            $data['list'] = $list;
 
        }
