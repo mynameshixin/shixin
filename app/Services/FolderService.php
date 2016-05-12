@@ -91,7 +91,7 @@ class FolderService extends ApiService
    public function getFolders($params,$num){
         
        $rows = new Folder;
-       //if (isset($params['user_id'])) $cond['user_id'] = $params['user_id'];
+       if (isset($params['user_id'])) $cond['user_id'] = $params['user_id'];
        if (isset($params['private'])) $cond['private'] = $params['private'];
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
