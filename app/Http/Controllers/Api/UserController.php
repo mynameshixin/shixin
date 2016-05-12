@@ -87,7 +87,9 @@ class UserController extends BaseController
      */
     public function index(){   
         $params = Input::all();
+        $params = fparam($params);
         $keyword = Input::get('keyword');
+        $keyword = fparam($keyword);
         $num  = Input::get('num',20);
         $params['current_uid'] = self::$user_id;
 //        if (!empty($keyword)) {

@@ -169,7 +169,7 @@ class UserService extends ApiService
 
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = $params['keyword'];
-            $rows = User::where('username', "like" , "%{$keyword}%")->whereOr('nick', "like" , "%{$keyword}%")->paginate($num);
+            $rows = User::where('username', "like" , "%{$keyword}%")->whereOr('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->paginate($num);
             //$rows = User::where('username', "like" , "%{$keyword}%")->paginate($num);
         }else{
             $rows = User::paginate($num);
