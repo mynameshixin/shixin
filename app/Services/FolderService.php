@@ -89,8 +89,9 @@ class FolderService extends ApiService
    }
 
    public function getFolders($params,$num){
+        
        $rows = new Folder;
-       if (isset($params['user_id'])) $cond['user_id'] = $params['user_id'];
+       //if (isset($params['user_id'])) $cond['user_id'] = $params['user_id'];
        if (isset($params['private'])) $cond['private'] = $params['private'];
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
@@ -98,6 +99,7 @@ class FolderService extends ApiService
        if (isset($params['keyword']) && !empty($params['keyword'])) {
 
            $keyword = urldecode($params['keyword']);
+
            //模糊查询
            $rows = $rows->where(function ($rows) use ($keyword) {
 
@@ -106,6 +108,7 @@ class FolderService extends ApiService
 
            });
        }
+
        if (isset($params['ids']) && !empty($params['ids'])) {
            //模糊查询
            $rows = $rows->whereIn('id',$params['ids'] );
@@ -115,9 +118,11 @@ class FolderService extends ApiService
        } else {
            $rows = $rows->orderBy('sort', 'asc');
        }
+
        $rows = $rows->orderBy('id', 'desc');
        $rows = $rows->paginate($num);
        $data = LibUtil::pageFomate ($rows);
+       
        if (!empty($data['list'])){
            $userIds = array_column($data['list'],'user_id');
            $userArr = UserService::getInstance()->getUserArr($userIds);
