@@ -50,7 +50,7 @@ class HomeController extends BaseController
                 $entry = [
                     'id'=>$row['id'],
                     'folder_id' => isset($row['folder_id']) ? $row['folder_id'] : 0,
-                    'img' => !empty($row['image_id']) ?  LibUtil::getPicUrl($row['image_id'],3) : '',
+                    'img' => !empty($row['image_id']) ?  LibUtil::getPicUrl($row['image_id'],1) : '',
                     'title' => $row['title'],
                 ];
                 if (isset($folders[$row['folder_id']])) {

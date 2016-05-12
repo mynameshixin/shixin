@@ -167,7 +167,13 @@ class FolderService extends ApiService
 
                $list[] = $entry;
            }
+
+           $case = array_map(function($lists) use ($list){
+              return $lists['count'];
+           }, $list);
+           array_multisort($case, SORT_NUMERIC, SORT_DESC,$list);
            $data['list'] = $list;
+
        }
        return $data;
    }
