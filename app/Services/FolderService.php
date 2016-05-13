@@ -96,7 +96,7 @@ class FolderService extends ApiService
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
        //去除count图片为0的
-       if (!isset($params['user_id'])) $rows = $rows->where('count','>',0);
+       //if (!isset($params['user_id'])) $rows = $rows->where('count','>',0);
        if (isset($params['keyword']) && !empty($params['keyword'])) {
 
            $keyword = fparam(urldecode($params['keyword']));
@@ -120,10 +120,10 @@ class FolderService extends ApiService
            $rows = $rows->orderBy('sort', 'asc');
        }
 
-       $rows = $rows->orderBy('id', 'desc');
+       $rows = $rows->orderBy('count', 'desc');
        $rows = $rows->paginate($num);
        $data = LibUtil::pageFomate ($rows);
-       
+       dd($data['list']);
        if (!empty($data['list'])){
            $userIds = array_column($data['list'],'user_id');
            $userArr = UserService::getInstance()->getUserArr($userIds);
