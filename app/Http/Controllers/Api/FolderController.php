@@ -217,10 +217,10 @@ class FolderController extends BaseController
         $user_id = self::$user_id;
         $private = isset($params['private']) ? $params['private'] : 0;
         if ($private >0) {
-            $num = Folder::where('user_id',self::$user_id)->where('private','>',0)->count();
+            /*$num = Folder::where('user_id',self::$user_id)->where('private','>',0)->count();
             if ($num>=2) {
                 return response()->forApi(array(), 1001, '最多只能创建2个隐私文件夹');
-            }
+            }*/
             $params['password'] = isset($params['password']) ? $params['password'] : '';
             if ($private==2 && !isset($params['password'])) {
                 return response()->forApi(array(), 1001, '秘密不能为空');
