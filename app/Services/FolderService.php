@@ -123,7 +123,6 @@ class FolderService extends ApiService
        $rows = $rows->orderBy('count', 'desc');
        $rows = $rows->paginate($num);
        $data = LibUtil::pageFomate ($rows);
-       dd($data['list']);
        if (!empty($data['list'])){
            $userIds = array_column($data['list'],'user_id');
            $userArr = UserService::getInstance()->getUserArr($userIds);
@@ -169,10 +168,10 @@ class FolderService extends ApiService
                $list[] = $entry;
            }
            //排序
-           $case = array_map(function($lists) use ($list){
+          /* $case = array_map(function($lists) use ($list){
               return $lists['count'];
            }, $list);
-           array_multisort($case, SORT_NUMERIC, SORT_DESC,$list);
+           array_multisort($case, SORT_NUMERIC, SORT_DESC,$list);*/
 
            $data['list'] = $list;
 
