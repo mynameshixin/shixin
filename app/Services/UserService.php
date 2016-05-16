@@ -215,6 +215,7 @@ class UserService extends ApiService
     }
 
     public function getSearchCount ($keyword) {
+        $keyword = fparam($keyword);
         return User::where('username', "like" , "%{$keyword}%")->whereOr('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->count();
     }
 
