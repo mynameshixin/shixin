@@ -266,28 +266,31 @@ class ProductService extends ApiService
             $outDate_self = LibUtil::pageFomate($rows);
         }
         $outDate_self = !empty($outDate_self)?$outDate_self:[];
+        $count_self = isset($outDate_self['list'])?count($outDate_self['list']):0;
 
         $rows = FolderGood::where('kind', $kind);
         $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
         if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids)->where('folder_goods.user_id','!=',$self_id);
         }else{
-            $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids) {
+            $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids,$self_id) {
                 $rows = $rows->whereIn('folder_goods.user_id',$user_ids)
                     ->orwhereIn('folder_goods.folder_id',$folder_ids)->where('folder_goods.user_id','!=',$self_id);
             });
         }        
         $rows = $rows->where('folders.private',0);
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
-        $rows = $rows->paginate(8);
+        $rows = $rows->paginate($num-$count_self);
         $outDate = LibUtil::pageFomate($rows);
+        $count = count($outDate['list']);
 
         //融合
         if(!empty($outDate_self) && isset($outDate_self['list'])){
             $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);
+            $outDate['per_page']  = $count_self+$count;
         }
         
-
+        dd($outDate);
        
 
         if (!empty($outDate['list'])) {
