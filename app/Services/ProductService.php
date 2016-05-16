@@ -290,7 +290,6 @@ class ProductService extends ApiService
             $outDate['per_page']  = $count_self+$count;
         }
         
-        dd($outDate);
        
 
         if (!empty($outDate['list'])) {
