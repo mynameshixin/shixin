@@ -203,10 +203,10 @@ class HomeController extends BaseController
 //        if(empty($user_ids2)){
 //            $user_ids = UserService::getInstance()->getAdminIds();
 //        }
-       // if (isset($rs['user_id']) && !empty($rs['user_id']))    $user_ids[] = $rs['user_id'];
+       if (isset($rs['user_id']) && !empty($rs['user_id']))    $user_ids[] = $rs['user_id'];
 
         $user_ids = array_unique($user_ids);
-        //$folder_ids = Folder::whereIn('user_id',$user_ids)->lists('id')->toArray();
+        $folder_ids = Folder::whereIn('user_id',$user_ids)->lists('id')->toArray();
         if(isset($folder_ids1) && !empty($folder_ids1)) $folder_ids = array_merge($folder_ids,$folder_ids1);
         $folder_ids = array_unique($folder_ids);
 

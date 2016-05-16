@@ -257,7 +257,7 @@ class ProductService extends ApiService
         $user_ids = array_unique($user_ids);
         $self_id  = !empty($self_id)?$self_id:0;
         //加入$self_id
-        if(!empty($self_id)){
+        /*if(!empty($self_id)){
             $rows = FolderGood::where('kind', $kind);
             $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
             $rows = $rows->where('folder_goods.user_id',$self_id);     
@@ -266,31 +266,38 @@ class ProductService extends ApiService
             $outDate_self = LibUtil::pageFomate($rows);
         }
         $outDate_self = !empty($outDate_self)?$outDate_self:[];
-        $count_self = isset($outDate_self['list'])?count($outDate_self['list']):0;
+        $count_self = isset($outDate_self['list'])?count($outDate_self['list']):0;*/
 
         $rows = FolderGood::where('kind', $kind);
         $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
         if (empty($folder_ids)) {
-            $rows = $rows->whereIn('folder_goods.user_id',$user_ids)->where('folder_goods.user_id','!=',$self_id);
+            $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
             $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids,$self_id) {
                 $rows = $rows->whereIn('folder_goods.user_id',$user_ids)
-                    ->orwhereIn('folder_goods.folder_id',$folder_ids)->where('folder_goods.user_id','!=',$self_id);
+                    ->orwhereIn('folder_goods.folder_id',$folder_ids);
             });
         }        
-        $rows = $rows->where('folders.private',0);
+        // $rows = $rows->where('folders.private',0);
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
-        $rows = $rows->paginate($num-$count_self);
+        $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
-        $count = count($outDate['list']);
-
+        
+        
         //融合
-        if(!empty($outDate_self) && isset($outDate_self['list'])){
+       /* if(!empty($outDate_self) && isset($outDate_self['list'])){
             $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);
             $outDate['per_page']  = $count_self+$count;
+        }*/
+        $count = 0;
+        foreach ($outDate['list'] as $key => $value) {
+            if($value['private'] == 1 && $self_id != $value['user_id']){
+                unset($outDate['list'][$key]);
+                $count++;
+            }
+            
         }
-        
-       
+        $outDate['per_page'] = $num-$count;
 
         if (!empty($outDate['list'])) {
             $params['ids'] = $product_ids = array_column($outDate['list'], 'good_id');
