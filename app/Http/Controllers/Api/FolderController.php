@@ -92,7 +92,8 @@ class FolderController extends BaseController
     {
         $params = Input::all();
         $num = isset($params['num']) ? $params['num'] : 10;
-        if (isset($data['user_id']) && $data['user_id']!=self::$user_id) {
+
+        if (isset($params['user_id']) && $params['user_id']!=self::$user_id) {
             $params['private'] = 0;
         }
         $params['current_uid'] = self::$user_id;
