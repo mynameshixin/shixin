@@ -251,25 +251,45 @@ class ProductService extends ApiService
         return $outDate;
     }
 
-    public  function getProductsByFids ($folder_ids,$user_ids,$params,$num) {
+
+    public  function getProductsByFids ($folder_ids,$user_ids,$params,$num,$self_id){
         $kind = isset($params['kind']) ? $params['kind'] : 1;
         $user_ids = array_unique($user_ids);
+        $self_id  = !empty($self_id)?$self_id:0;
+        //加入$self_id
+        if(!empty($self_id)){
+            $rows = FolderGood::where('kind', $kind);
+            $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
+            $rows = $rows->where('folder_goods.user_id',$self_id);     
+            $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
+            $rows = $rows->paginate(2);
+            $outDate_self = LibUtil::pageFomate($rows);
+        }
+        $outDate_self = !empty($outDate_self)?$outDate_self:[];
+
         $rows = FolderGood::where('kind', $kind);
+        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
         if (empty($folder_ids)) {
-            $rows = $rows->whereIn('user_id',$user_ids);
+            $rows = $rows->whereIn('folder_goods.user_id',$user_ids)->where('folder_goods.user_id','!=',$self_id);
         }else{
             $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids) {
-                $rows = $rows->whereIn('user_id',$user_ids)
-                    ->orwhereIn('folder_id',$folder_ids);
-
+                $rows = $rows->whereIn('folder_goods.user_id',$user_ids)
+                    ->orwhereIn('folder_goods.folder_id',$folder_ids)->where('folder_goods.user_id','!=',$self_id);
             });
-        }
-        //$rows = $rows->select('id','good_id','user_id')->groupBy('good_id')->orderBy('id','desc');
-        $rows = $rows->select('id','good_id','user_id','folder_id','created_at')->orderBy('id','desc');
-        //echo $rows->toSql();
-       // exit();
-        $rows = $rows->paginate($num);
+        }        
+        $rows = $rows->where('folders.private',0);
+        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
+        $rows = $rows->paginate(8);
         $outDate = LibUtil::pageFomate($rows);
+
+        //融合
+        if(!empty($outDate_self) && isset($outDate_self['list'])){
+            $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);
+        }
+        
+
+       
+
         if (!empty($outDate['list'])) {
             $params['ids'] = $product_ids = array_column($outDate['list'], 'good_id');
             //$params['sort'] = 2;

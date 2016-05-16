@@ -324,7 +324,7 @@ class FolderService extends ApiService
     }
 
     public function getSearchCount ($keyword) {
-        return Folder::where('name', "like" , "%{$keyword}%")->count();
+        return Folder::where('name', "like" , "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%")->count();
     }
 
     public function delFolder($id)
