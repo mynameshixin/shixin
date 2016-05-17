@@ -473,7 +473,7 @@ class UserController extends BaseController
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['user_id'] = $userId;
         $data['self'] = 1;
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId,$userId);
         //$rs = ProductService::getInstance()->getUserProducts ($userId,$data,$num);
         return response()->forApi($rs);
     }
