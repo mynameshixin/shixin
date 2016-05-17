@@ -351,77 +351,82 @@ class ProductService extends ApiService
      * @param int $last_id
      * @param int $num
      */
-    public function getProductList($params, $num = 10)
+    public function getProductList($params, $num = 10,$self_id)
     {
-        $condtion = ['is_delete' => 0,'status'=>1];
+        $condtion = ['goods.is_delete' => 0,'goods.status'=>1];
 //        if (!isset($data['self']) || empty($data['self'])) {
 //            $condtion['status'] = 1;
 //        }
         if (isset($params['category_id'])) {
-            $condtion['category_id'] = $params['category_id'];
+            $condtion['goods.category_id'] = $params['category_id'];
             //更新分类检索次数
             CategoryService::getInstance()->updateCategoryHot($params['category_id']);
         }
-        if (isset($params['is_delete'])) $condtion['is_delete'] = $params['is_delete'];
-        if (isset($params['kind'])) $condtion['kind'] = $params['kind'];
-        if (isset($params['user_id'])) $condtion['user_id'] = $params['user_id'];
+        if (isset($params['is_delete'])) $condtion['goods.is_delete'] = $params['is_delete'];
+        if (isset($params['kind'])) $condtion['goods.kind'] = $params['kind'];
+        if (isset($params['user_id'])) $condtion['goods.user_id'] = $params['user_id'];
         if (isset($params['folder_id'])) {
             if ($params['folder_id'] > 0) {
                 $params['ids'] = self::getFolderGoodIds($params['folder_id']);
             }
             if (empty($params['ids'])) {
-                $condtion['folder_id'] = $params['folder_id'];
+                $condtion['goods.folder_id'] = $params['folder_id'];
             }
 
 
         }
         if (isset($params['folder_ids'])) {
             if(isset($params['good_id'])){
-                $params['ids'] = FolderGood::where('good_id','<>',$params['good_id'])->whereIn('folder_id',$params['folder_ids'])->lists('good_id')->toArray();
+                $params['ids'] = FolderGood::where('goods.good_id','<>',$params['good_id'])->whereIn('goods.folder_id',$params['folder_ids'])->lists('good_id')->toArray();
             }else{
-                $params['ids'] = FolderGood::whereIn('folder_id',$params['folder_ids'])->lists('good_id')->toArray();
+                $params['ids'] = FolderGood::whereIn('goods.folder_id',$params['folder_ids'])->lists('goods.good_id')->toArray();
             }
 
 
         }
 
-        if (isset($params['is_recommend'])) $condtion['is_recommend'] = $params['is_recommend'];
+        if (isset($params['is_recommend'])) $condtion['goods.is_recommend'] = $params['is_recommend'];
 
         $rows = Product::where($condtion);
         if (isset($params['ids']) ) {
-            $rows = $rows->whereIn('id', $params['ids']);
+            $rows = $rows->whereIn('goods.id', $params['ids']);
         }
         if (isset($params['user_ids']) ) {
-            $rows = $rows->whereIn('user_id', $params['user_ids']);
+            $rows = $rows->whereIn('goods.user_id', $params['user_ids']);
         }
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = urldecode($params['keyword']);
             //模糊查询
             $rows = $rows->where(function ($rows) use ($keyword) {
 
-                $rows = $rows->where('title', "like", "%{$keyword}%")
-                    ->orwhere('tags', "like", "%{$keyword}%");
+                $rows = $rows->where('goods.title', "like", "%{$keyword}%")
+                    ->orwhere('goods.tags', "like", "%{$keyword}%");
 
             });
         }
-        $rows = $rows->select('id', 'user_id', 'kind', 'price', 'folder_id', 'reserve_price', 'image_ids', 'title', 'tags', 'category_id', 'description', 'source', 'is_recommend', 'collection_count', 'praise_count', 'boo_count', 'detail_url', 'created_at');
+        $rows = $rows->select('goods.id', 'goods.user_id', 'goods.kind', 'goods.price', 'goods.folder_id', 'goods.reserve_price', 'goods.image_ids', 'goods.title', 'goods.tags', 'goods.category_id', 'goods.description', 'goods.source', 'goods.is_recommend', 'goods.collection_count', 'goods.praise_count', 'goods.boo_count', 'goods.detail_url', 'goods.created_at');
         if (isset($params['sort']) && $params['sort'] == 1) {
-            $rows = $rows->orderBy('collection_count', 'desc');
+            $rows = $rows->orderBy('goods.collection_count', 'desc');
         } elseif (isset($params['sort']) && $params['sort'] == 2) {
-            $rows = $rows->orderBy('praise_count', 'desc');
+            $rows = $rows->orderBy('goods.praise_count', 'desc');
         } elseif(isset($params['sort']) && $params['sort'] == 0) {
-            $rows = $rows->orderBy('sort', 'asc')->orderBy('is_recommend', 'asc');
+            $rows = $rows->orderBy('goods.sort', 'asc')->orderBy('goods.is_recommend', 'asc');
         }
 //        if (isset($params['folder_id'])){
 //            $rows = $rows->orderBy('updated_at', 'desc');
 //        }else{
 //            $rows = $rows->orderBy('id', 'desc');
 //        }
-        $rows = $rows->orderBy('updated_at', 'desc');
+        $rows = $rows->orderBy('goods.updated_at', 'desc');
+
+        if($self_id!=$params['user_id']){
+            $rows = $rows->leftJoin('folders','goods.folder_id','=','folders.id')->where('folders.private',0);
+        }else{
+            $rows = $rows->leftJoin('folders','goods.folder_id','=','folders.id');
+        }
 
         $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
-
         if (!empty($outDate['list'])) {
             $user_ids = array_column($outDate['list'], 'user_id');
             $userArr = UserService::getInstance()->getUserArr($user_ids);

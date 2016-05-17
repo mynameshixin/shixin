@@ -189,7 +189,13 @@ class UserController extends BaseController
                 $folder_ids = CollectionFolder::where('user_id',$id)->lists('folder_id')->toArray();
                 $folder_ids = array_unique($folder_ids);
                 $user['collection_folder_num'] = count($folder_ids);
-                $user['good_num'] = Product::where('user_id',$id)->count();
+
+                if($id!= $userId){
+                    $user['good_num'] = Product::where('goods.user_id',$id)->leftJoin('folders','goods.folder_id','=','folders.id')->where('folders.private',0)->count();
+                }else{
+                    $user['good_num'] = Product::where('goods.user_id',$id)->leftJoin('folders','goods.folder_id','=','folders.id')->count();
+                    // $user['good_num'] = Product::where('goods.user_id',$id)->count();
+                }
                 $user['praise_num'] = GoodAction::where(['user_id'=>$id,'action'=>1])->count();
 
 
