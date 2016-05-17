@@ -150,12 +150,14 @@ class ProductController extends BaseController
                 }
             }
         }
-        $access_token = Input::get('access_token');
-        $rs = parent::validateAcessToken($access_token);
-        $self_id = isset($rs['user_id'])?$rs['user_id']:0;
+        $userId = 0;
+        if (isset($data['access_token']) && $data['access_token']) {
+            $rs = parent::getToken($data['access_token']);
+            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+        }
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId);
         return response()->forApi($rs);
     }
     /**
@@ -324,7 +326,12 @@ class ProductController extends BaseController
         $num = isset($data['num']) ? $data['num'] : 10;
         $data['is_recommend'] = 1;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
-        $rs = ProductService::getInstance()->getProductList ($data,$num);
+        $userId = 0;
+        if (isset($data['access_token']) && $data['access_token']) {
+            $rs = parent::getToken($data['access_token']);
+            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+        }
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$user_id);
         return response()->forApi($rs);
 
     }
@@ -389,7 +396,13 @@ class ProductController extends BaseController
         $good = Product::find($data['good_id']);
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['folder_ids'] = FolderGood::where('good_id',$good['folder_id'])->lists('folder_id')->toArray();
-        $rs = ProductService::getInstance()->getProductList ($data,$num);
+
+        $userId = 0;
+        if (isset($data['access_token']) && $data['access_token']) {
+            $rs = parent::getToken($data['access_token']);
+            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+        }
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId);
         return response()->forApi($rs);
     }
     /**

@@ -351,7 +351,7 @@ class ProductService extends ApiService
      * @param int $last_id
      * @param int $num
      */
-    public function getProductList($params, $num = 10,$self_id)
+    public function getProductList($params, $num = 10,$self_id = 0)
     {
         $condtion = ['goods.is_delete' => 0,'goods.status'=>1];
 //        if (!isset($data['self']) || empty($data['self'])) {
