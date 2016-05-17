@@ -330,7 +330,7 @@ class FolderService extends ApiService
 
     public function delFolder($id)
     {
-        Product::where('folder_id',$id)->update(['is_delete'=>1,'folder_id'=>0,'is_recommend'=>0]);
+        Product::where('folder_id',$id)->delete();
         FolderGood::where('folder_id',$id)->delete();
         CollectionFolder::where('folder_id',$id)->delete();
         Folder::where('id',$id)->delete();

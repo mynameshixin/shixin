@@ -298,6 +298,138 @@ class FolderController extends BaseController
      *
      *
      * @SWG\Api(
+     *   path="/folder/description",
+     *   @SWG\Operations(
+     *     @SWG\Operation(
+     *       method="POST",
+     *       summary="修改文件夹描述",
+     *       notes="Returns special list",
+     *       @SWG\Parameters(
+     *         @SWG\Parameter(
+     *           name="access_token",
+     *           description="登录返回token",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *        @SWG\Parameter(
+     *           name="folder_id",
+     *           description="文件夹id",
+     *           paramType="form",
+     *           required=true,
+     *           type="integer"
+     *         ),
+     *        @SWG\Parameter(
+     *           name="description",
+     *           description="描述内容",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *       )
+     *     )
+     *   )
+     * )
+     *
+     * @return Response
+     */
+    public function postDescription(){
+        $data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'access_token' => 'required',
+            'folder_id' => 'required|exists:folders,id',
+            'description' => 'required|max:200',
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $vendorData = parent::validateAcessToken($data['access_token']);
+        $userId = $vendorData['user_id'];
+        $folder = Folder::find($data['folder_id']);
+        $folder_id = $data['folder_id'];
+        if (empty($folder) || self::$user_id != $folder->user_id) {
+            return response()->forApi(array(), 1001, '文件夹不存在或无权限修改');
+        }
+        $entry = array();
+        if (isset($data['description'])) $entry['description'] = $data['description'];
+        if (!empty($entry)) {
+            Folder::where('id', '=', $folder_id)->update($entry);
+        }
+        return response()->forApi(['status' => 1]);
+
+    }
+
+    /**
+     *
+     *
+     * @SWG\Api(
+     *   path="/folder/private",
+     *   @SWG\Operations(
+     *     @SWG\Operation(
+     *       method="POST",
+     *       summary="修改文件夹是否隐私",
+     *       notes="Returns special list",
+     *       @SWG\Parameters(
+     *         @SWG\Parameter(
+     *           name="access_token",
+     *           description="登录返回token",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *        @SWG\Parameter(
+     *           name="folder_id",
+     *           description="文件夹id",
+     *           paramType="form",
+     *           required=true,
+     *           type="integer"
+     *         ),
+     *        @SWG\Parameter(
+     *           name="private",
+     *           description="私有值",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *       )
+     *     )
+     *   )
+     * )
+     *
+     * @return Response
+     */
+    public function postPrivate(){
+        $data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'access_token' => 'required',
+            'folder_id' => 'required|exists:folders,id',
+            'private' => 'required|in:0,1',
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $vendorData = parent::validateAcessToken($data['access_token']);
+        $userId = $vendorData['user_id'];
+        $folder = Folder::find($data['folder_id']);
+        $folder_id = $data['folder_id'];
+        if (empty($folder) || self::$user_id != $folder->user_id) {
+            return response()->forApi(array(), 1001, '文件夹不存在或无权限修改');
+        }
+        $entry = array();
+        if (isset($data['private'])) $entry['private'] = $data['private'];
+        if (!empty($entry)) {
+            Folder::where('id', '=', $folder_id)->update($entry);
+        }
+        return response()->forApi(['status' => 1]);
+
+    }
+
+    /**
+     *
+     *
+     * @SWG\Api(
      *   path="/folder/avatar",
      *   @SWG\Operations(
      *     @SWG\Operation(
@@ -346,7 +478,7 @@ class FolderController extends BaseController
         $data = Input::all();
         $rules = array(
             'access_token' => 'required',
-            'folder_id' => 'required',
+            'folder_id' => 'required|exists:folders,id',
             'image' => 'image',
             'image_id' => 'exists:images,id'
         );
