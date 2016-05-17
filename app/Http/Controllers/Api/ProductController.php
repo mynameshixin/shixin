@@ -135,29 +135,32 @@ class ProductController extends BaseController
             'folder_id' => 'exists:folders,id',
             'user_id' => 'exists:users,id',
         );
-
+        $self_id = 0;
         //请求参数验证
         parent::validator($data, $rules);
         if (isset($data['folder_id']) && $data['folder_id']) {
             $folder = Folder::find($data['folder_id'])->toArray();
+            if($folder){
+                $data['user_id'] = $folder['user_id'];
+                $self_id = $folder['user_id'];
+            }
             $data['password'] = isset($data['password']) ? $data['password'] : '';
             if ($folder['private']>0 && $folder['password']!=$data['password']) {
                 $access_token = Input::get('access_token');
                 $rs = parent::validateAcessToken($access_token);
-                $self_id = $rs['user_id'];
                 if ($rs['user_id'] !=$folder['user_id']){
                     return response()->forApi(array(), 1001, '无权限查看该文件夹');
                 }
             }
         }
-        $userId = 0;
+        
         if (isset($data['access_token']) && $data['access_token']) {
             $rs = parent::getToken($data['access_token']);
-            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+            $self_id = isset($rs['user_id']) ? $rs['user_id'] : 0;
         }
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id);
         return response()->forApi($rs);
     }
     /**
