@@ -135,6 +135,7 @@ class FolderService extends ApiService
                $entry = [
                    'id'=>$val['id'],
                    'name'=>$val['name'],
+                   'description'=>$val['description'],
                    'tags'=>$val['tags'],
                    'count'=>$val['count'],
                    'collection_count'=>$val['collection_count'],
