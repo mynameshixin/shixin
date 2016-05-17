@@ -135,13 +135,14 @@ class ProductController extends BaseController
             'folder_id' => 'exists:folders,id',
             'user_id' => 'exists:users,id',
         );
-        $self_id = 0;
+        $self_id = $uid = 0;
+        $uid = isset($data['user_id'])?$data['user_id']:0;
         //请求参数验证
         parent::validator($data, $rules);
         if (isset($data['folder_id']) && $data['folder_id']) {
             $folder = Folder::find($data['folder_id'])->toArray();
             if($folder){
-                $data['user_id'] = $folder['user_id'];
+                $uid = $folder['user_id'];
                 $self_id = $folder['user_id'];
             }
             $data['password'] = isset($data['password']) ? $data['password'] : '';
@@ -158,9 +159,10 @@ class ProductController extends BaseController
             $rs = parent::getToken($data['access_token']);
             $self_id = isset($rs['user_id']) ? $rs['user_id'] : 0;
         }
+
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id,$uid);
         return response()->forApi($rs);
     }
     /**
@@ -329,12 +331,12 @@ class ProductController extends BaseController
         $num = isset($data['num']) ? $data['num'] : 10;
         $data['is_recommend'] = 1;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
-        $userId = 0;
+        $self_id = 0;
         if (isset($data['access_token']) && $data['access_token']) {
             $rs = parent::getToken($data['access_token']);
-            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+            $self_id = isset($rs['user_id']) ? $rs['user_id'] : 0;
         }
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$user_id);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id);
         return response()->forApi($rs);
 
     }
@@ -400,12 +402,12 @@ class ProductController extends BaseController
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['folder_ids'] = FolderGood::where('good_id',$good['folder_id'])->lists('folder_id')->toArray();
 
-        $userId = 0;
+        $self_id = 0;
         if (isset($data['access_token']) && $data['access_token']) {
             $rs = parent::getToken($data['access_token']);
-            $userId = isset($rs['user_id']) ? $rs['user_id'] : 0;
+            $self_id = isset($rs['user_id']) ? $rs['user_id'] : 0;
         }
-        $rs = ProductService::getInstance()->getProductList ($data,$num,$userId);
+        $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id);
         return response()->forApi($rs);
     }
     /**

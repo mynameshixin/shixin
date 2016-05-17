@@ -351,7 +351,7 @@ class ProductService extends ApiService
      * @param int $last_id
      * @param int $num
      */
-    public function getProductList($params, $num = 10,$self_id = 0)
+    public function getProductList($params, $num = 10,$self_id = 0,$uid=0)
     {
         $condtion = ['goods.is_delete' => 0,'goods.status'=>1];
 //        if (!isset($data['self']) || empty($data['self'])) {
@@ -419,7 +419,7 @@ class ProductService extends ApiService
 //        }
         $rows = $rows->orderBy('goods.updated_at', 'desc');
 
-        if($self_id!=$params['user_id']){
+        if($self_id!=$uid){
             $rows = $rows->leftJoin('folders','goods.folder_id','=','folders.id')->where('folders.private',0);
         }else{
             $rows = $rows->leftJoin('folders','goods.folder_id','=','folders.id');
