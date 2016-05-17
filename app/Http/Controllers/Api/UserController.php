@@ -180,9 +180,10 @@ class UserController extends BaseController
                 ];
             if ($id!=$userId) {
                 $user['is_follow'] = UserService::getInstance()->isFollow($userId,$user['id']);
-                $user['folder_num'] = Folder::where('user_id',$id)->count();
-            }else{
                 $user['folder_num'] = Folder::where(['user_id'=>$id,'private'=>0])->count();
+            }else{
+                $user['folder_num'] = Folder::where('user_id',$id)->count();
+
             }
 
                 $folder_ids = CollectionFolder::where('user_id',$id)->lists('folder_id')->toArray();
