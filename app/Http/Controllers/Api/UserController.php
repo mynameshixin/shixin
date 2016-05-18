@@ -160,11 +160,27 @@ class UserController extends BaseController
             if (empty($user['pic_o']) && !empty($user['auth_avatar'])) {
                 $user['pic_o'] = $user['pic_b'] = $user['pic_m'] = $user['auth_avatar'];
             }
-                $user = [
+            $rolename = '家具迷';
+            switch ($user['role']) {
+                case 1:
+                    $rolename = '设计师';
+                    break; 
+                case 2:
+                    $rolename = '家居迷';
+                    break;
+                case 3:
+                    $rolename = '商家';
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            $user = [
                     'id' => $user['id'],
                     'nick' => $user['nick'],
                     'username' => $user['username'],
                     'signature' => $user['signature'],
+                    'rolename' => $rolename,
                     'wechat'=>$user['wechat'],
                     'mobile'=>$user['mobile'],
                     'location'=>$user['location'],
@@ -204,6 +220,70 @@ class UserController extends BaseController
             return response()->forApi(array(), 1001, 'user  is not exit');
         }
 
+    }
+
+    /**
+     *
+     *
+     * @SWG\Api(
+     *   path="/user/rolename",
+     *   @SWG\Operations(
+     *     @SWG\Operation(
+     *       method="POST",
+     *       summary="用户修改角色",
+     *       notes="Returns special list",
+     *       @SWG\Parameters(
+     *         @SWG\Parameter(
+     *           name="access_token",
+     *           description="登录返回token",
+     *           paramType="form",
+     *           required=true,
+     *           type="string"
+     *         ),
+     *       @SWG\Parameter(
+     *           name="user_id",
+     *           description="用户id",
+     *           paramType="form",
+     *           required=true,
+     *           type="file"
+     *         ),
+     *       @SWG\Parameter(
+     *           name="role",
+     *           description="角色id",
+     *           paramType="form",
+     *           required=true,
+     *           type="file"
+     *         ),
+     *       )
+     *     )
+     *   )
+     * )
+     *
+     * @return Response
+     */
+    public function postRolename()
+    {
+
+        $data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'access_token' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'role' => 'required|in:1,2,3'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $vendorData = parent::validateAcessToken($data['access_token']);
+        $userId = $vendorData['user_id'];
+        $role = $data['role'];
+        if($userId != $data['user_id']){
+            return response()->forApi(array(), 1001, '无权限修改用户信息');
+        }
+        $entry  = ['role'=>$role];
+        $res = User::where('id',$userId)->update($entry);
+        if($res) return response()->forApi(['status'=>1]);
+        return response()->forApi(['status'=>0]);
+        
     }
 
     /**
