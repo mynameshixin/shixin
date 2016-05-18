@@ -681,7 +681,10 @@ class ProductController extends BaseController
         $host = parse_url($url);
         if(!empty($host['host']) && in_array($host['host'],$fancy)){
             $res = FancyService::getInstance()->getItemDetail($url);
-            return $res;
+            if($res){
+                return response()->forApi(['x_item'=>$res], 200);
+            }
+            return response()->forApi(array(), 1001, ' 商品信息采集失败！');
         }
 
         $params = LibUtil::getKeyValue($url);
