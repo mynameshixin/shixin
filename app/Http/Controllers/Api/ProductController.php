@@ -14,6 +14,7 @@ use App\Models\FolderGood;
 use App\Models\GoodAction;
 use App\Models\Product;
 use App\Services\TaoBaoService;
+use App\Services\FancyService;
 use Illuminate\Support\Facades\Input;
 use App\Services\ProductService;
 use App\Models\Shop;
@@ -675,9 +676,13 @@ class ProductController extends BaseController
         parent::validator($data, $rules);
         $url = $data['url'];
 
-        $fancy = ['fancy.com','www.fancy.com','m.fancy.com'];
+        $fancy = ['m.fancy.com'];
 
         $host = parse_url($url);
+        if(!empty($host['host']) && in_array($host['host'],$fancy)){
+            $res = FancyService::getInstance()->getItemDetail($url);
+            return $res;
+        }
 
         $params = LibUtil::getKeyValue($url);
         $id = isset($params['id']) ? $params['id'] : 0;
