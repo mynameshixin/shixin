@@ -22,15 +22,24 @@ class FancyService extends ApiService
         $tmp = $res = [];
         $response = $this->curl($url);
         if(!empty($response)){
+
             $preg ="/<span class=\"figure-img\"><img src=\".+\" style=\"background-image:url\(\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\)\"><\/span>/is";
             preg_match($preg,$response,$arr);
             $imageurl = isset($arr[0])?$arr[0]:'';
             preg_match("/\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)/is",$imageurl,$pic_url);
             $pic_url  = $pic_url[0]?'https:'.$pic_url[0]:'';
-            preg_match("/<figcaption>(.*?)<\/figcaption>/is",$response,$title);
-            $title = isset($title[1])?$title[1]:'';
-            preg_match("/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is",$response,$price);
+
+            preg_match("/<figcaption>(.*?)<\/figcaption>/is",$response,$o_title);
+            $o_title = isset($o_title[1])?$o_title[1]:'';
+            $o_t2 = str_replace('\n','',$o_title);
+            $o_t3 = str_replace('\t','',$o_t2);
+            $title = trim($o_t3);
+
+            preg_match("/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is",$response,$o_price);
+            $o_price = isset($o_price[1])?$o_price[1]:'';
+            preg_match("/\d+/is",$o_price,$price);
             $price = isset($price[1])?$price[1]:'';
+
             $tmp = [
                 'pic_url'=>$pic_url,
                 'price' => $price,
