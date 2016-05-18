@@ -132,15 +132,21 @@ class LocationController extends BaseController{
         ];
         //请求参数验证
         parent::validator($data, $rules,$message);
-        parent::validateAcessToken($data['access_token']);
+        $vendorData = parent::validateAcessToken($data['access_token']);
+        $userId = $vendorData['user_id'];
+        if($userId != $data['user_id']){
+            return response()->forApi(array(), 1001, '无权限修改用户信息');
+        }
+        
         $updateData  = [
         	'location'=>$data['location'],
         	'location_x'=>$data['location_x'],
         	'location_y'=>$data['location_y']
         ];
-        $user = DB::table('users')->where('id',$data['user_id'])->update($updateData);
-        if($user) return response(['data'=>$user,'code'=>200,'message'=>'更新定位成功']);
-        return response(['code'=>1001,'message'=>'更新定位失败']);
+        
+        $res = DB::table('users')->where('id',$data['user_id'])->update($updateData);
+        if($res) return response()->forApi(['status'=>1]);
+        return response()->forApi(['status'=>0]);
     }
 
 }

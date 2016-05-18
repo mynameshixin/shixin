@@ -674,6 +674,11 @@ class ProductController extends BaseController
         //请求参数验证
         parent::validator($data, $rules);
         $url = $data['url'];
+
+        $fancy = ['fancy.com','www.fancy.com','m.fancy.com'];
+
+        $host = parse_url($url);
+
         $params = LibUtil::getKeyValue($url);
         $id = isset($params['id']) ? $params['id'] : 0;
         $outdata = TaoBaoService::getInstance()->getItemDetail ($id);
