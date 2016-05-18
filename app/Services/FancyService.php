@@ -37,8 +37,9 @@ class FancyService extends ApiService
 
             preg_match("/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is",$response,$o_price);
             $o_price = isset($o_price[1])?$o_price[1]:'';
+
             preg_match("/\d+/is",$o_price,$price);
-            $price = isset($price[1])?$price[1]:'';
+            $price = isset($price[0])?$price[0]:'';
 
             $tmp = [
                 'pic_url'=>$pic_url,
