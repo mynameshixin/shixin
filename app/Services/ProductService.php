@@ -32,6 +32,7 @@ class ProductService extends ApiService
 
     public function delFolderProduct($good_id,$folder_id){
         $rs  = FolderGood::where(['good_id'=>$good_id,'folder_id'=>$folder_id])->delete();
+        Product::where(['id'=>$good_id,'folder_id'=>$folder_id])->delete();
         FolderService::getInstance()->updateFolderCount ($folder_id);
         return true;
 
@@ -400,7 +401,7 @@ class ProductService extends ApiService
             $rows = $rows->where(function ($rows) use ($keyword) {
 
                 $rows = $rows->where('goods.title', "like", "%{$keyword}%")
-                    ->orwhere('goods.tags', "like", "%{$keyword}%");
+                    ->orWhere('goods.tags', "like", "%{$keyword}%");
 
             });
         }
