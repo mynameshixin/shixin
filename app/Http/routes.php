@@ -10,8 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//web
+Route::get('/', 'Web\HomeController@index');
 
-Route::get('/', ['uses'=>'\App\Http\Controllers\HomeController@index']);
+
+
+
 Route::get('/home', ['uses'=>'\App\Http\Controllers\HomeController@index']);
 //图片base64格式上传
 Route::get('/file/base64/upload/demo', ['uses'=>'\App\Http\Controllers\FileController@base64UploadDemoView']);

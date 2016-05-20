@@ -10,7 +10,7 @@
         "latrell/swagger": "^1.0",
         "dingo/api": "^0.10.0",
         "tymon/jwt-auth": "^0.5.5",
-        "predis/predis": "^1.0",
+        "predis/predis": "1.0.*",
         "jpush/jpush": "v3.2.4",
         "socialiteproviders/weibo": "^1.0",
         "socialiteproviders/weixin": "^1.0",

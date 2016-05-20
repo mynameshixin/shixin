@@ -180,7 +180,6 @@ class HomeController extends BaseController
     public function getGoods()
     {
         $data = Input::all();
-
         $rules = array(
             'kind' => 'in:1,2',
         );

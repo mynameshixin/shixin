@@ -1,0 +1,15 @@
+<head>
+	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>{{$title}}</title>
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/font-awesome.min.css">
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="{{asset('public/web')}}/css/font-awesome-ie7.min.css">
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/index.css">
+	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
+
+</head>
