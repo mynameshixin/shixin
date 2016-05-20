@@ -59,31 +59,31 @@
 <div id="person">
     <ul>
         <li>
-           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/photo.jpg')}}"></a></div>
+           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/p1.jpeg')}}"></a></div>
            <h2 class="usename">下雨天</h2>
            <p><span><i class="fa fa-star-o"></i></span><span>91924</span></p>
            <p><span>擅长领域：</span><span>家居</span></p>
         </li>
         <li>
-           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/photo.jpg')}}"></a></div>
+           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/p2.jpeg')}}"></a></div>
            <h2 class="usename">下雨天</h2>
            <p><span><i class="fa fa-star-o"></i></span><span>91924</span></p>
            <p><span>擅长领域：</span><span>家居</span></p>
         </li>
         <li>
-           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/photo.jpg')}}"></a></div>
+           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/p3.jpeg')}}"></a></div>
            <h2 class="usename">下雨天</h2>
            <p><span><i class="fa fa-star-o"></i></span><span>91924</span></p>
            <p><span>擅长领域：</span><span>家居</span></p>
         </li>
         <li>
-           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/photo.jpg')}}"></a></div>
+           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/p4.png')}}"></a></div>
            <h2 class="usename">下雨天</h2>
            <p><span><i class="fa fa-star-o"></i></span><span>91924</span></p>
            <p><span>擅长领域：</span><span>家居</span></p>
         </li>
         <li>
-           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/photo.jpg')}}"></a></div>
+           <div class="photo"><a href=""><img src="{{ asset('/static/web/images/index-img/p5.jpeg')}}"></a></div>
            <h2 class="usename">下雨天</h2>
            <p><span><i class="fa fa-star-o"></i></span><span>91924</span></p>
            <p><span>擅长领域：</span><span>家居</span></p>

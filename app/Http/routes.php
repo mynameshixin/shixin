@@ -10,8 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/', ['uses'=>'\App\Http\Controllers\HomeController@index']);
 //web
-Route::get('/', 'Web\HomeController@index');
+Route::group(['namespace' => 'Web', 'prefix' => 'web'], function () {
+    Route::get('/', 'HomeController@index');
+
+});
 
 
 
