@@ -335,7 +335,7 @@
 
 </body>
 <script type="text/javascript">
-	postUrl = "{{url('web/goods')}}"
+	postUrl = "{{url('dtjweb/goods')}}"
 	postData = {'num':10}
 	user_id = "{{$user_id}}"
 	if(user_id != 0){
