@@ -18,8 +18,10 @@ class HomeController extends CmController{
 	public function getIndex(){
 
 		$user_id = !empty(session('user_id'))?session('user_id'):0;
+		$goods = $this->postGoods();
 		$data = [
-			'user_id'=>$user_id
+			'user_id'=>$user_id,
+			'goods'=>$goods['data']['list']
 		];
 		return view('web.home.index',$data);
 	}
@@ -35,7 +37,7 @@ class HomeController extends CmController{
         //请求参数验证
         parent::validator($data, $rules);
         
-        $num = isset($data['num']) ? $data['num'] : 10;
+        $num = isset($data['num']) ? $data['num'] : 9;
         $user_ids = $folder_ids = [];
         $user_id = isset($data['user_id']) && !empty($data['user_id'])?$data['user_id']:0;
         if (isset($user_id) && !empty($user_id)){

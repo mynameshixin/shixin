@@ -4,7 +4,7 @@ $(function (){
   $main = $('#main')
   $window = $(window)
   $document = $(document)
-  $page = 0
+  $page = 1
   options = {
     autoResize: true, // This will auto-update the layout when the browser window is resized.
     container: $main, // Optional, used for some extra CSS styling
@@ -83,10 +83,10 @@ $(function (){
 		  				$value = $firstTen[index]
 					    $(".index_item_price",$value).html('￥'+list[index].price)
 					    $(".index_item_intro",$value).html(list[index].description);
-					    $(".index_item_intro",$value).attr('title',list[index].folder_name)
+					    $(".index_item_intro",$value).attr('title',list[index].description)
 
-					    $(".index_item_rel a",$value).eq(0).html(list[index].price)
-					    $(".index_item_rel a",$value).eq(1).html(list[index].praise_count)
+					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
+					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).attr('href',list[index].detail_url)
 
 					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
