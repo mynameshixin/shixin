@@ -30,12 +30,12 @@ $(function (){
    * When scrolled all the way to the bottom, add more tiles
    */
   function onScroll() {
-  	postData.page = ++$page
+  	
     var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
         closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
 
     if (closeToBottom) {
-    	
+    	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
 		  		$('#load').show()
