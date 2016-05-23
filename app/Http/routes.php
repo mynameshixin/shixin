@@ -14,7 +14,10 @@
 Route::get('/', ['uses'=>'\App\Http\Controllers\HomeController@index']);
 //web
 Route::group(['namespace' => 'Web', 'prefix' => 'web'], function () {
-    Route::get('/', 'HomeController@index');
+    Route::controllers([
+        '/'=>'HomeController',
+
+    ]);
 
 });
 

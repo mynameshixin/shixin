@@ -4,8 +4,8 @@
 <body>
 	@include('web.common.banner')
 	<div class="container">
-		<div class="w1248 clearfix">
-			<div class="index_con">
+		<div class="w1248 clearfix" id="main" role="main">
+			<div class="index_con" id="tiles">
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_user">
@@ -328,21 +328,20 @@
 						</div>
 					</div>
 			    </div>
-			    
 			</div>
 		</div>
 	</div>
+	<h1 id='load' style="text-align: center;line-height: 40px; height:40px;color:#999; font-size: 20px; margin-bottom: 30px;display: none">正在加载中。。。</h1>
+
 </body>
 <script type="text/javascript">
-		$(function() {
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-		     });
-		});
-	</script>
+	postUrl = "{{url('web/goods')}}"
+	postData = {'num':10}
+	user_id = "{{$user_id}}"
+	if(user_id != 0){
+		postData.user_id = user_id
+	}
+</script>
+<script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>
+<script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 </html>

@@ -208,7 +208,6 @@ class HomeController extends BaseController
         $folder_ids = Folder::whereIn('user_id',$user_ids)->lists('id')->toArray();
         if(isset($folder_ids1) && !empty($folder_ids1)) $folder_ids = array_merge($folder_ids,$folder_ids1);
         $folder_ids = array_unique($folder_ids);
-
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
         return response()->forApi($rs);

@@ -16,19 +16,18 @@ $(function(){
             'left':mleft
           })
         })
-          
-	$(window).scroll(function(event) {
+	$(window).bind('scroll',function(event) {
 		var x = document.body.scrollLeft; 
-          if (x>0) {
-              $('.headercontainer').css({
-                'left':-x
-              })
-            }else{
-              var mleft = $('.container').css('marginLeft')
-              $('.headercontainer').css({
-                'left':mleft
-              });
-      	};
+        if (x>0) {
+            $('.headercontainer').css({
+              'left':-x
+            })
+          }else{
+            var mleft = $('.container').css('marginLeft')
+            $('.headercontainer').css({
+              'left':mleft
+            });
+      	 };
 	});
   $('.header_add_clicka').click(function(){
     $('.header_add_clicka').removeClass('header_add_clicka_on');
