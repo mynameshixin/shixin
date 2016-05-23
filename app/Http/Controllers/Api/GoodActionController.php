@@ -12,6 +12,7 @@ use App\Models\Folder;
 use App\Models\GoodAction;
 use App\Services\FolderService;
 use App\Services\FollowService;
+use App\Services\CollectionService;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
@@ -214,6 +215,7 @@ class GoodActionController extends BaseController
             return response()->forApi(array(), 1001, '文件夹不存在或无权限操作');
         }
         ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
+        CollectionService::getInstance()->delCollection($rs['user_id'],$data['good_id'],$data['folder_id']);
         return response()->forApi(['status'=>1]);
 
     }
