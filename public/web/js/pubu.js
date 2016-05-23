@@ -93,7 +93,7 @@ $(function (){
 					    $(".index_item_authname",$value).html(list[index].user.nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
 
-					   $(".index_item_imgwrap img",$value).attr('src',list[index].images.img_m)
+					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   
 		  			})
 		  			$('#load').hide()

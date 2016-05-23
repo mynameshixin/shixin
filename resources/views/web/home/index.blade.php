@@ -72,7 +72,7 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap"></a>
-							<img src="{{$v['images']['img_m']}}">
+							<img src="{{$v['images'][0]['img_m']}}">
 							<div class="index_item_price">￥{{$v['price']}}</div>
 						</div>
 						<div class="index_item_info">
