@@ -89,10 +89,6 @@
 <script type="text/javascript">
 	postUrl = "{{url('dtjweb/goods')}}"
 	postData = {'num':9}
-	user_id = "{{$user_id}}"
-	if(user_id != 0){
-		postData.user_id = user_id
-	}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>
 <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
