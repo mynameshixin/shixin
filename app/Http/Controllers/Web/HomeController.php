@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Services\ProductService;
 use App\Services\UserService;
 use App\Services\FolderService;
-use App\Websupply\UserWebSupply;
+use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebSupply;
 use App\Models\Folder;
 use App\Models\Follow;
@@ -22,15 +22,15 @@ class HomeController extends CmController{
 
 		$user_id = !empty(session('user_id'))?session('user_id'):0;
 		$user_id = '486';
-		if(!empty($user_id)) $user_info = UserWebSupply::user_info($user_id);
+		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
 		
 		if(isset($user_info) && !empty($user_info)){
-			$user_info['count'] = UserWebSupply::get_count(['collection_count','folder_count','follow_count'],$user_id);
+			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','follow_count'],$user_id);
 		}
 
 		$recommend = FolderWebSupply::get_recommend();
 		foreach ($recommend as $key => $value) {
-			$recommend[$key]['user'] = UserWebSupply::user_info($value['user_id']);
+			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 			$recommend[$key]['is_collection'] = $collection_folder;
 		}
