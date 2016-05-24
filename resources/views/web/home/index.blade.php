@@ -13,7 +13,7 @@
 								<div class="index_item_uava">
 									<a href="javascript:;" target="_blank"><img src="{{$user_info['pic_m']}}" alt=""></a>
 								</div>
-								<div class="index_item_uname"><a href="javascript:;" target="_blank">{{$user_info['nick']}}</a></div>
+								<div class="index_item_uname"><a href="javascript:;" target="_blank"><?php echo mb_substr($user_info['nick'], 0,6,'utf-8') ?></a></div>
 							</div>
 							<div class="index_item_umdl clearfix">
 								<div class="index_item_umcon">
@@ -21,7 +21,7 @@
 									<p class="index_item_umitem">采集</p>
 								</div>
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">{{$user_info['count']['collection_count']}}</p>
+									<p class="index_item_umnum">{{$user_info['count']['follow_count']}}</p>
 									<p class="index_item_umitem">文件夹</p>
 								</div>
 								<div class="index_item_umcon" style="border-right: 0px;">
@@ -39,7 +39,7 @@
 										<a href="javascript:;" target="_blank"><img src="{{$re['user']['pic_m']}}" alt=""></a>
 									</div>
 									<div class="index_item_ubfinfo">
-										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank">{{$re['name']}}</a></p>
+										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank"><?php echo mb_substr($re['name'], 0,9,'utf-8') ?></a></p>
 										<p class="index_item_ubffow">{{$re['count']}}文件&nbsp;&nbsp;{{$re['collection_count']}}关注</p>
 									</div>
 									<a href="javascript:;" class="index_item_ubfatten"><?php echo !empty($re['is_collection'])?'已关注':'关注'; ?></a>
