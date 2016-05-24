@@ -9,7 +9,7 @@ use App\Services\ProductService;
 use App\Services\UserService;
 use App\Services\FolderService;
 use App\Websupply\UserWebsupply;
-use App\Websupply\FolderWebSupply;
+use App\Websupply\FolderWebsupply;
 use App\Models\Folder;
 use App\Models\Follow;
 use Cache;
@@ -28,7 +28,7 @@ class HomeController extends CmController{
 			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','follow_count'],$user_id);
 		}
 
-		$recommend = FolderWebSupply::get_recommend();
+		$recommend = FolderWebsupply::get_recommend();
 		foreach ($recommend as $key => $value) {
 			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
