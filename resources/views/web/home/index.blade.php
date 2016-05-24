@@ -11,21 +11,21 @@
 						<div class="index_item_user">
 							<div class="index_item_utop clearfix">
 								<div class="index_item_uava">
-									<a href="javascript:;" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
+									<a href="javascript:;" target="_blank"><img src="{{$user_info['pic_m']}}" alt=""></a>
 								</div>
-								<div class="index_item_uname"><a href="javascript:;" target="_blank">世界有你</a></div>
+								<div class="index_item_uname"><a href="javascript:;" target="_blank">{{$user_info['nick']}}</a></div>
 							</div>
 							<div class="index_item_umdl clearfix">
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">1288</p>
+									<p class="index_item_umnum">{{$user_info['count']['collection_count']}}</p>
 									<p class="index_item_umitem">采集</p>
 								</div>
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">99</p>
+									<p class="index_item_umnum">{{$user_info['count']['collection_count']}}</p>
 									<p class="index_item_umitem">文件夹</p>
 								</div>
 								<div class="index_item_umcon" style="border-right: 0px;">
-									<p class="index_item_umnum">288</p>
+									<p class="index_item_umnum">{{$user_info['count']['follow_count']}}</p>
 									<p class="index_item_umitem">粉丝</p>
 								</div>
 							</div>
@@ -33,36 +33,18 @@
 								<div class="index_item_ubrec">
 									推荐文件夹 <a href="javascript:;" class="index_item_ubrecmore">查看更多</a>
 								</div>
+							<?php foreach ($recommend as $key => $re):?>
 								<div class="index_item_ubfold clearfix">
 									<div class="index_item_ubfava">
-										<a href="javascript:;" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
+										<a href="javascript:;" target="_blank"><img src="{{$re['user']['pic_m']}}" alt=""></a>
 									</div>
 									<div class="index_item_ubfinfo">
-										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank">花瓣</a></p>
-										<p class="index_item_ubffow">99文件&nbsp;&nbsp;20关注</p>
+										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank">{{$re['name']}}</a></p>
+										<p class="index_item_ubffow">{{$re['count']}}文件&nbsp;&nbsp;{{$re['collection_count']}}关注</p>
 									</div>
-									<a href="javascript:;" class="index_item_ubfatten">关注</a>
+									<a href="javascript:;" class="index_item_ubfatten"><?php echo !empty($re['is_collection'])?'已关注':'关注'; ?></a>
 								</div>
-								<div class="index_item_ubfold clearfix">
-									<div class="index_item_ubfava">
-										<a href="javascript:;" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-									</div>
-									<div class="index_item_ubfinfo">
-										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank">艺匠</a></p>
-										<p class="index_item_ubffow">99文件&nbsp;&nbsp;20关注</p>
-									</div>
-									<a href="javascript:;" class="index_item_ubfatten">关注</a>
-								</div>
-								<div class="index_item_ubfold clearfix">
-									<div class="index_item_ubfava">
-										<a href="javascript:;" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-									</div>
-									<div class="index_item_ubfinfo">
-										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank">极客公园</a></p>
-										<p class="index_item_ubffow">99文件&nbsp;&nbsp;20关注</p>
-									</div>
-									<a href="javascript:;" class="index_item_ubfatten">关注</a>
-								</div>
+							<?php endforeach; ?>
 							</div>
 						</div>
 					</div>

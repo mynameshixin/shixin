@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use App\Lib\UserReg as Registrar ;
+use DB;
 
 class CmController extends Controller {
     use Helpers;
@@ -93,6 +94,9 @@ class CmController extends Controller {
         exit ();
     }
 
+    public function userInfo($user_id){
+       return DB::table('users')->where(['id'=>$user_id])->select()->first();
+    }
 
 
 }
