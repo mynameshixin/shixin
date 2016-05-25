@@ -189,7 +189,7 @@ class HomeController extends BaseController
         $access_token = Input::get('access_token');
         $rs = parent::getToken($access_token);
         $user_ids = $self_id = [];
-        $num = isset($data['num']) ? $data['num'] : 20;
+        $num = isset($data['num']) ? $data['num'] : 10;
         $folder_ids = [];
         if (isset($rs['user_id'])){
             $self_id = $rs['user_id'];

@@ -63,7 +63,7 @@
 								<div class="index_item_rel clearfix">
 									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
-									<a href="{{$v['detail_url']}}" class="index_item_b"></a>
+									<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
 								</div>
 							</div>
 							<div class="index_item_bottom clearfix">
@@ -87,9 +87,10 @@
 
 </body>
 <script type="text/javascript">
-	postUrl = "{{url('dtjweb/goods')}}"
+	postUrl = "{{url('webd/home/goods')}}"
 	postData = {'num':9}
 </script>
+
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>
 <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 </html>

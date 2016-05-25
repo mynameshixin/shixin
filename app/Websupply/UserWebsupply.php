@@ -21,6 +21,9 @@ class UserWebsupply extends CmWebsupply{
 	                    $user['pic_m'] = $user['auth_avatar'];
 	                    unset($user['auth_avatar']);
 	                }
+	                if(empty($user['pic_m']) && empty($user['auth_avatar'])){
+	                	$user['pic_m'] = url('uploads/sundry/blogo.jpg');
+	                }
 	                $userArr[$user['id']] = $user;
 				}
 			}
@@ -32,6 +35,9 @@ class UserWebsupply extends CmWebsupply{
 	                if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
 	                    $user['pic_m'] = $user['auth_avatar'];
 	                    unset($user['auth_avatar']);
+	                }
+	                if(empty($user['pic_m']) && empty($user['auth_avatar'])){
+	                	$user['pic_m'] = url('uploads/sundry/blogo.jpg');
 	                }
 	            $userArr = $user;
 			}
@@ -50,6 +56,11 @@ class UserWebsupply extends CmWebsupply{
 		return $count;
 
 	}
+
+	//获取用户
+	public static function getAdminIds () {
+        return DB::table('role_user')->whereIn('role_id',[1,2])->lists('user_id');
+    }
 
 
 }

@@ -6,15 +6,46 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
-use App\Lib\UserReg as Registrar ;
+use Illuminate\Support\Facades\Crypt;
+use App\Lib\UserReg as Registrar;
 use DB;
+use Cache;
 
 class CmController extends Controller {
     use Helpers;
 
     const PAGE_SIZE = 15;
     const DATELINE = 20;
+    public $user_id=0;
 
+    public function __construct(){
+        if(isset($_COOKIE['user_id']) && !empty($_COOKIE['user_id'])) {
+            if($user_id = self::get_user_cache($_COOKIE['user_id'])){
+                $this->user_id = $user_id;
+            }
+        }  
+    }
+
+    // Cache::store('redis')->put('bar', json_encode($cachedata), 1);
+    
+    public function set_user_cache($str){
+        $arr = explode('_',$str);
+        $id = Crypt::decrypt($arr[1]);
+        return Cache::store('redis')->put($id, $arr[1], 60*24*7);
+    }
+
+    public function get_user_cache($str){
+        $arr = explode('_',$str);
+        $id = Crypt::decrypt($arr[1]);
+        $data = Cache::store('redis')->get($id);
+        if($data) return Crypt::decrypt($data);
+    }
+
+    public function crypt_cookie($key,$id){
+        $data = md5(uniqid().time()).'_'.Crypt::encrypt($id);
+        setcookie($key,$data,time()+315360000,'/webd');
+        self::set_user_cache($data);
+    }   
 
     /**
      * 验证封装类

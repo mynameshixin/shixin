@@ -12,14 +12,14 @@
 */
 
 Route::get('/', ['uses'=>'\App\Http\Controllers\HomeController@index']);
-//web
-Route::group(['namespace' => 'Web', 'prefix' => 'dtjweb'], function () {
+//web index
+Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
     Route::controllers([
-        '/'=>'HomeController',
-
+        'home'=>'HomeController',
+        'pics'=>'PicsController'
     ]);
-
 });
+
 
 
 
