@@ -27,7 +27,6 @@ class HomeController extends CmController{
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 			$recommend[$key]['is_collection'] = $collection_folder;
 		}
-		dd($recommend);
 		$goods = $this->postGoods();
 		$data = [
 			'user_id'=>$user_id,

@@ -18,7 +18,6 @@ class PicsController extends CmController{
 		
 		$user_id = $this->user_id; 
 		$cate = DB::select('select * from categories where length(name) < 9 and hot = 2 order by recommend desc limit 30');
-		dd($cate);
 		$goods = $this->postGoods();
 		$data = [
 			'user_id'=>$user_id,
