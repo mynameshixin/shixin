@@ -17,7 +17,7 @@ class PicsController extends CmController{
 	public function getIndex(){
 		
 		$user_id = $this->user_id; 
-		$cate = DB::table('categories')->where('length(name)','<',9)->where('hot',2)->orderBy('recommend','desc')->take(30)->get();
+		$cate = DB::select('select * from categories where length(name) < 9 and hot = 2 order by recommend desc limit 30');
 		$goods = $this->postGoods();
 		$data = [
 			'user_id'=>$user_id,

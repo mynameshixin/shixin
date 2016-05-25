@@ -98,7 +98,6 @@ $(function (){
 		  			})
 		  			$('#load').hide()
 		  			$tiles.append($firstTen)
-		  			$("body").css('background','#d0d0d0')
 		  			applyLayout();
 		  		}
 		  	}

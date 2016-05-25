@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('web.common.head',['title'=>'堆图家图集页'])
-<body style="background: #d0d0d0">
+<body>
 	@include('web.common.banner')
-	<div class="container nolog_container">
+	<div class="container nolog_container"  style="background: #d0d0d0">
 		@include('web.common.ologin')
 		<div class="w1248 clearfix">
 			<div class="nolog_allcat clearfix">
