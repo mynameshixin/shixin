@@ -28,7 +28,7 @@
 				<div class="nolog_allcateach nolog_allcateach3">
 					<ul class="nolog_catul">
 						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [12,13,14,15,16])):?>
+							<?php if(in_array($key, [12,13,14,15,16,17])):?>
 								<li><a href="">{{$v['name']}}</a></li>
 							<?php endif;?>
 						<?php endforeach; ?>
@@ -37,7 +37,7 @@
 				<div class="nolog_allcateach nolog_allcateach4">
 					<ul class="nolog_catul">
 						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [17,18,19,20,21])):?>
+							<?php if(in_array($key, [18,19,20,21,22,23])):?>
 								<li><a href="">{{$v['name']}}</a></li>
 							<?php endif;?>
 						<?php endforeach; ?>
@@ -46,7 +46,7 @@
 				<div class="nolog_allcateach nolog_allcateach5 mrightzero">
 					<ul class="nolog_catul">
 						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [22,23,24,25,26])):?>
+							<?php if(in_array($key, [24,25,26,27,28,29])):?>
 								<li><a href="">{{$v['name']}}</a></li>
 							<?php endif;?>
 						<?php endforeach; ?>

@@ -36,7 +36,7 @@
 							<?php foreach ($recommend as $key => $re):?>
 								<div class="index_item_ubfold clearfix">
 									<div class="index_item_ubfava">
-										<a href="javascript:;" target="_blank"><img src="{{$re['user']['pic_m']}}" alt=""></a>
+										<a href="javascript:;" target="_blank"><img src="{{$re['img_url']}}" alt=""></a>
 									</div>
 									<div class="index_item_ubfinfo">
 										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank"><?php echo mb_substr($re['name'], 0,9,'utf-8') ?></a></p>
