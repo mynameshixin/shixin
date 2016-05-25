@@ -81,7 +81,7 @@ $(function (){
 										+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
 									+'</div>'
 								+'</div>'
-								$value.append($str)
+								$($value).append($str)
 
 					    	}
 					    	
