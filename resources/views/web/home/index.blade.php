@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('web.common.head',['title'=>'堆图家首页'])
-<body>
+<body style="background: #d0d0d0">
 	@include('web.common.banner')
 	<div class="container">
 		<div class="w1248 clearfix" id="main" role="main">

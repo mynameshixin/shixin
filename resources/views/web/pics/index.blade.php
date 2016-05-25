@@ -1,90 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('web.common.head',['title'=>'堆图家图集页'])
-<body>
+<body style="background: #d0d0d0">
 	@include('web.common.banner')
 	<div class="container nolog_container">
-		<div class="nolog_adv_wrap" style="background: url({{asset('web')}}/images/nolog_bg.jpg)">
-			<div class="w1248 clearfix">
-				<div class="nolog_title">
-					<p class="nolog_headline">链接全球家居商品，家居图片</p>
-					<p class="nolog_subhead">集分享，交友为一体的家居互联网交流分享平台</p>
-				</div>
-				<div class="nolog_loginway">
-					<div class="nolog_waywrap">
-						<div class="nolog_waya nolog_wwchat"></div>
-						<div class="nolog_waya nolog_wqq"></div>
-					</div>
-					<p class="nolog_waytips">——  用以上社交账号直接登录  ——</p>
-				</div>
-			</div>
-		</div>
-		<div class="nolog_adv_wrapscroll">
-			<div class="nolog_adv_scroll"></div>
-			<div class="w1248 clearfix">
-				<div class="nolog_title">
-					<p class="nolog_headline">链接全球家居商品，家居图片</p>
-					<p class="nolog_subhead">集分享，交友为一体的家居互联网交流分享平台</p>
-				</div>
-				<div class="nolog_loginway">
-					<span class="nolog_waytips">用社交账号直接登录：</span>
-					<div class="nolog_waywrap">
-						<div class="nolog_waya nolog_wwchat"></div>
-						<div class="nolog_waya nolog_wqq"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+		@include('web.common.ologin')
 		<div class="w1248 clearfix">
 			<div class="nolog_allcat clearfix">
 				<div class="nolog_allcateach nolog_allcateach1">
 					<ul class="nolog_catul">
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate as $key => $v):?>
+							<?php if(in_array($key, [0,1,2,3,4,5])):?>
+								<li><a href="">{{$v['name']}}</a></li>
+							<?php endif;?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach2">
 					<ul class="nolog_catul">
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate as $key => $v):?>
+							<?php if(in_array($key, [6,7,8,9,10,11])):?>
+								<li><a href="">{{$v['name']}}</a></li>
+							<?php endif;?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach3">
 					<ul class="nolog_catul">
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate as $key => $v):?>
+							<?php if(in_array($key, [12,13,14,15,16])):?>
+								<li><a href="">{{$v['name']}}</a></li>
+							<?php endif;?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach4">
 					<ul class="nolog_catul">
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate as $key => $v):?>
+							<?php if(in_array($key, [17,18,19,20,21])):?>
+								<li><a href="">{{$v['name']}}</a></li>
+							<?php endif;?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach5 mrightzero">
 					<ul class="nolog_catul">
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
-						<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate as $key => $v):?>
+							<?php if(in_array($key, [22,23,24,25,26])):?>
+								<li><a href="">{{$v['name']}}</a></li>
+							<?php endif;?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>
