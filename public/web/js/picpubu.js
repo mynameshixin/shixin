@@ -71,6 +71,7 @@ $(function (){
 							    $(".comment .index_item_talkname",$value).html(list[index].comment.user.username)
 							    $(".comment .index_item_authto",$value).html(list[index].comment.content)
 					    	}else{
+					    		$('.comment',$value).remove()
 					    		$str = '<div class="index_item_bottom clearfix comment">'
 									+'<a href="javascript:;" class="index_item_authava" target="_blank">'
 										+'<img src="'+list[index].comment.user.pic_m+'" alt="">'
@@ -80,7 +81,7 @@ $(function (){
 										+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
 									+'</div>'
 								+'</div>'
-								$value.append(JQuery($str))
+								$value.append($str)
 
 					    	}
 					    	
