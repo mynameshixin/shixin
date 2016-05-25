@@ -63,27 +63,20 @@ $(function (){
 					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
 					    $(".index_item_authname",$value).html(list[index].user.nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
+					    $('.comment',$value).remove()
 
 					    if(list[index].comment != undefined){
 					    	
-					    	if($('.comment',$value).length>0){
-					    		$(".comment img",$value).attr('src',list[index].comment.user.pic_m)
-							    $(".comment .index_item_talkname",$value).html(list[index].comment.user.username)
-							    $(".comment .index_item_authto",$value).html(list[index].comment.content)
-					    	}else{
-					    		$('.comment',$value).remove()
-					    		$str = '<div class="index_item_bottom clearfix comment">'
-									+'<a href="javascript:;" class="index_item_authava" target="_blank">'
-										+'<img src="'+list[index].comment.user.pic_m+'" alt="">'
-									+'</a>'
-									+'<div class="index_item_authinfo index_item_authtalk">'
-										+'<a href="javascript:;" class="index_item_talkname">'+list[index].comment.user.username+'：</a>'
-										+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
-									+'</div>'
+				    		$str = '<div class="index_item_bottom clearfix comment">'
+								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
+									+'<img src="'+list[index].comment.user.pic_m+'" alt="">'
+								+'</a>'
+								+'<div class="index_item_authinfo index_item_authtalk">'
+									+'<a href="javascript:;" class="index_item_talkname">'+list[index].comment.user.username+'：</a>'
+									+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
 								+'</div>'
-								$($value).append($str)
-
-					    	}
+							+'</div>'
+							$($value).append($str)
 					    	
 					    }
 					    
