@@ -96,7 +96,6 @@
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap"></a>
 							<img src="{{$v['images'][0]['img_m']}}">
-							<div class="index_item_price">￥{{$v['price']}}</div>
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
@@ -118,7 +117,7 @@
 								</div>
 							</div>
 							<?php if(isset($v['comment']) && !empty($v['comment'])): ?>
-								<div class="index_item_bottom clearfix">
+								<div class="index_item_bottom clearfix comment">
 									<a href="javascript:;" class="index_item_authava" target="_blank">
 										<img src="<?php echo $v['comment']['user']['pic_m']; ?>" alt="">
 									</a>
@@ -141,7 +140,7 @@
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/pics/goods')}}"
-	postData = {'num':9}
+	postData = {'num':10}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/picpubu.js"></script>
 <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>

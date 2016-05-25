@@ -9,7 +9,6 @@ use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
 use DB;
-use Crypt;
 
 
 class PicsController extends CmController{
@@ -56,6 +55,10 @@ class PicsController extends CmController{
         return response()->forApi($rs);
 
 
+	}
+
+	public function getSet(){
+		self::crypt_cookie('user_id',486);
 	}
 
 

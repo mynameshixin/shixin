@@ -49,36 +49,7 @@ $(function (){
 		  			var str = ''
 		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
-		      		$firstTen = $items.slice(1, 10).clone();
-		      		/*'<div class="index_item">'
-			    	+'<div class="index_item_wrap">'
-						+'<div class="index_item_imgwrap">'
-							+'<a class="index_item_blurwrap"></a>'
-							+'<img src="http://www.duitujia.com/web/images/temp/10.png">'
-							+'<div class="index_item_price">￥980</div>'
-						+'</div>'
-						+'<div class="index_item_info">'
-							+'<div class="index_item_top">'
-								+'<div class="index_item_intro" title="简洁实用的衣柜">简洁实用</div>'
-								+'<div class="index_item_rel clearfix">'
-									+'<a href="javascript:;" class="index_item_l">82</a>'
-									+'<a href="javascript:;" class="index_item_c">90</a>'
-									+'<a href="javascript:;" class="index_item_b"></a>'
-								+'</div>'
-							+'</div>'
-							+'<div class="index_item_bottom clearfix">'
-								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
-									+'<img src="http://www.duitujia.com/web/images/temp_avatar.JPG" alt="">'
-								+'</a>'
-								+'<div class="index_item_authinfo">'
-									+'<a href="javascript:;" class="index_item_authname">叶子</a>'
-									+'<span class="index_item_authto">采集到</span>'
-									+'<p class="index_item_authtopart"><a href="javascript:;" target="_blank">搭配</a></p>'
-								+'</div>'
-							+'</div>'
-						+'</div>'
-					+'</div>'
-				   +'</div>'*/
+		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
 					    $(".index_item_price",$value).html('￥'+list[index].price)
@@ -92,6 +63,29 @@ $(function (){
 					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
 					    $(".index_item_authname",$value).html(list[index].user.nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
+
+					    if(list[index].comment != 0){
+					    	
+					    	if($('.comment',$value).length>0){
+					    		$(".comment img",$value).attr('src',list[index].comment.user.pic_m)
+							    $(".comment .index_item_talkname",$value).html(list[index].comment.user.username)
+							    $(".comment .index_item_authto",$value).html(list[index].comment.content)
+					    	}else{
+					    		$str = '<div class="index_item_bottom clearfix comment">'
+									+'<a href="javascript:;" class="index_item_authava" target="_blank">'
+										+'<img src="'+list[index].comment.user.pic_m+'" alt="">'
+									+'</a>'
+									+'<div class="index_item_authinfo index_item_authtalk">'
+										+'<a href="javascript:;" class="index_item_talkname">'+list[index].comment.user.username+'：</a>'
+										+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
+									+'</div>'
+								+'</div>'
+								$value.append(JQuery($str))
+
+					    	}
+					    	
+					    }
+					    
 
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   

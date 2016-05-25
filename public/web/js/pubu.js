@@ -49,7 +49,7 @@ $(function (){
 		  			var str = ''
 		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
-		      		$firstTen = $items.slice(1, 10).clone();
+		      		$firstTen = $items.slice(1, list.length+1).clone();
 		      		/*'<div class="index_item">'
 			    	+'<div class="index_item_wrap">'
 						+'<div class="index_item_imgwrap">'
