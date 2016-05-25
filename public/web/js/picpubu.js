@@ -64,7 +64,7 @@ $(function (){
 					    $(".index_item_authname",$value).html(list[index].user.nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
 
-					    if(list[index].comment != 0){
+					    if(list[index].comment != undefined){
 					    	
 					    	if($('.comment',$value).length>0){
 					    		$(".comment img",$value).attr('src',list[index].comment.user.pic_m)
