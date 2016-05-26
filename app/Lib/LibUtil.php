@@ -8,7 +8,7 @@
 namespace App\Lib;
 
 class LibUtil {
-    public $host = 'http://www.duitujia.com/';
+    public static $host = 'http://www.duitujia.com/';
     public static function pageFomate ($data) {
        $data = is_object($data) ? $data->toArray()  : $data;
 
@@ -34,9 +34,9 @@ class LibUtil {
 
         //检查图片是否存在，不存在返回空
         if ($kind==2) {
-            $path = $this->host. $dir .'/web/'.$value;
+            $path = self::$host. $dir .'/web/'.$value;
         }else{
-            $path = $this->host.$dir . $value;
+            $path = self::$host.$dir . $value;
         }
 
         $url = \url($path);
@@ -77,10 +77,10 @@ class LibUtil {
             $dir = 'uploads/images/';
         }
         $path = LibUtil::getFacePath($imageId);
-        $base =  $path. '/';
+
         $pic = $imageId.LibUtil::getPicName($kind).'.jpg' ;
         //检查图片是否存在，不存在返回空
-        $basepath = $this->host.$dir.$path;
+        $basepath = self::$host.$dir.$path;
         $url = \url($basepath.$pic);
         return $url;
         /*$file_url = public_path($basepath.$pic);
@@ -102,7 +102,7 @@ class LibUtil {
         $base = $path . '/';
         $pic = $imageId . LibUtil::getPicName($kind) . '.jpg';
         //检查图片是否存在，不存在返回空
-        $basepath = $this->host.$dir.$path;
+        $basepath = self::$host.$dir.$path;
         $url = \url($basepath . $pic);
         return $url;
         /*$file_url = public_path($basepath . $pic);

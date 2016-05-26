@@ -9,47 +9,52 @@
 			<div class="nolog_allcat clearfix">
 				<div class="nolog_allcateach nolog_allcateach1">
 					<ul class="nolog_catul">
-						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [0,1,2,3,4,5])):?>
-								<li><a href="">{{$v['name']}}</a></li>
-							<?php endif;?>
-						<?php endforeach; ?>
+						<li><a href="">沙发</a></li>
+						<li><a href="">椅子</a></li>
+						<li><a href="">书柜</a></li>
+						<li><a href="">茶几</a></li>
+						<li><a href="">鞋柜</a></li>
+						<li><a href="">床品</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach2">
 					<ul class="nolog_catul">
-						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [6,7,8,9,10,11])):?>
-								<li><a href="">{{$v['name']}}</a></li>
-							<?php endif;?>
-						<?php endforeach; ?>
+						<li><a href="">壁灯</a></li>
+						<li><a href="">香薰</a></li>
+						<li><a href="">枕头</a></li>
+						<li><a href="">地毯</a></li>
+						<li><a href="">花瓶</a></li>
+						<li><a href="">花盆</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach3">
 					<ul class="nolog_catul">
-						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [12,13,14,15,16,17])):?>
-								<li><a href="">{{$v['name']}}</a></li>
-							<?php endif;?>
-						<?php endforeach; ?>
+						<li><a href="">现代</a></li>
+						<li><a href="">中式</a></li>
+						<li><a href="">日式</a></li>
+						<li><a href="">美式</a></li>
+						<li><a href="">北欧</a></li>
+						<li><a href="">田园</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach4">
 					<ul class="nolog_catul">
-						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [18,19,20,21,22,23])):?>
-								<li><a href="">{{$v['name']}}</a></li>
-							<?php endif;?>
-						<?php endforeach; ?>
+						<li><a href="">客厅</a></li>
+						<li><a href="">玄关</a></li>
+						<li><a href="">厨房</a></li>
+						<li><a href="">卧室</a></li>
+						<li><a href="">书房</a></li>
+						<li><a href="">阳台</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach5 mrightzero">
 					<ul class="nolog_catul">
-						<?php foreach ($cate as $key => $v):?>
-							<?php if(in_array($key, [24,25,26,27,28,29])):?>
-								<li><a href="">{{$v['name']}}</a></li>
-							<?php endif;?>
-						<?php endforeach; ?>
+						<li><a href="">红调</a></li>
+						<li><a href="">绿调</a></li>
+						<li><a href="">蓝调</a></li>
+						<li><a href="">黑色</a></li>
+						<li><a href="">白调</a></li>
+						<li><a href="">灰调</a></li>
 					</ul>
 				</div>
 			</div>

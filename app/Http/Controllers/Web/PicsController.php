@@ -17,14 +17,12 @@ class PicsController extends CmController{
 	public function getIndex(){
 		
 		$user_id = $this->user_id; 
-		$cate = DB::select('select * from categories where length(name) < 9 and hot = 2 order by recommend desc limit 30');
+		//$cate = DB::select('select * from categories where length(name) < 9 and hot = 2 order by recommend desc limit 11');
 		$goods = $this->postGoods();
 		$data = [
 			'user_id'=>$user_id,
 			'goods'=>$goods['data']['list'],
-			'cate'=>$cate
 		];
-		// dd($data);
 		return view('web.pics.index',$data);
 
 	}

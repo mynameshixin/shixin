@@ -14,6 +14,7 @@ class HomeController extends CmController{
 
 	// 首页展示
 	public function getIndex(){
+		
 		$user_id = $this->user_id;
 		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
 
@@ -28,6 +29,7 @@ class HomeController extends CmController{
 			$recommend[$key]['is_collection'] = $collection_folder;
 		}
 		$goods = $this->postGoods();
+		// dd($goods);
 		$data = [
 			'user_id'=>$user_id,
 			'goods'=>$goods['data']['list'],

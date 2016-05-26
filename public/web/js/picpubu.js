@@ -5,6 +5,7 @@ $(function (){
   $window = $(window)
   $document = $(document)
   $page = 1
+  $f = 1
   options = {
     autoResize: true, // This will auto-update the layout when the browser window is resized.
     container: $main, // Optional, used for some extra CSS styling
@@ -34,10 +35,11 @@ $(function (){
     var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
         closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
 
-    if (closeToBottom) {
+    if (closeToBottom && $f) {
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
+		  		$f = 0
 		  		$('#load').show()
 		  	},
 		  	'url':postUrl,
@@ -85,6 +87,7 @@ $(function (){
 					   
 		  			})
 		  			$('#load').hide()
+		  			$f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();
 		  		}
