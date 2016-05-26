@@ -5,6 +5,7 @@ $(function (){
   $window = $(window)
   $document = $(document)
   $page = 1
+  var f = 1
   options = {
     autoResize: true, // This will auto-update the layout when the browser window is resized.
     container: $main, // Optional, used for some extra CSS styling
@@ -24,6 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
+      f = 1
     });
   }
   /**
@@ -97,6 +99,7 @@ $(function (){
 					   
 		  			})
 		  			$('#load').hide()
+		  			f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();
 		  		}
