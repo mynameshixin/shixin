@@ -20,21 +20,21 @@
 .index_item_imgwrap img{width: 100%;border-radius: 6px 6px 0px 0px;}
 .index_item_price{position: absolute;width: 84px;height: 38px;background: #fff;opacity: 0.75;bottom: 0px;right: 0px;text-align: center;font:normal 14px/38px "Microsoft YaHei";color: #4a4a4a;}
 
-.index_item_intro{font:normal 14px/22px "Microsoft YaHei";color: #b27e67;margin:12px 12px 0px 12px;max-height: 44px;overflow: hidden;}
-.index_item_rel{margin:5px 12px;}
+.index_item_intro{font:normal 14px/22px "Microsoft YaHei";color: #b27e67;margin:5px 12px 0px 12px;max-height: 44px;overflow: hidden;}
+.index_item_rel{margin:10px 12px;}
 .index_item_rel a{font:normal 15px/22px "Microsoft YaHei";color: #7d7d7d;display: inline-block;float: left;}
 .index_item_l{background: url(../images/dtj_icon.png) -9px -212px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_c{background: url(../images/dtj_icon.png) -9px -249px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_b{background: url(../images/dtj_icon.png) -9px -284px no-repeat;padding-left: 24px;height: 22px;float: right;width: 0px;}
 .index_item_bottom{border-top: 1px solid #e3e3e3;padding:12px;}
-.index_item_authava{width: 46px;height: 46px;border-radius: 50%;float: left;}
-.index_item_authava img{width: 46px;height: 46px;border-radius: 50%;}
+.index_item_authava{width: 40px;height: 40px;border-radius: 50%;float: left;}
+.index_item_authava img{width: 40px;height: 40px;border-radius: 50%;}
 .index_item_authinfo{float: left;margin-left: 10px;width: 156px;}
-.index_item_authname,.index_item_authto{font:normal 14px/22px "Microsoft YaHei";color: #969696;display: inline-block;}
+.index_item_authname,.index_item_authto{font:normal 13px/22px "Microsoft YaHei";color: #969696;display: inline-block;}
 .index_item_talkname{font:normal 14px/22px "Microsoft YaHei";color: #b27e67;display: inline-block;}
 .index_item_authto{padding-left: 8px;}
 .index_item_authtopart{font:normal 16px/20px "Microsoft YaHei";color: #333;}
-.index_item_authtopart a{color: #333;}
+.index_item_authtopart a{color: #333; font-size: 14px;}
 
 .index_item_utop{padding:4px 12px;border-bottom: 1px solid #e3e3e3;}
 .index_item_uava{width: 72px;height: 72px;border-radius: 50%;float: left;}
