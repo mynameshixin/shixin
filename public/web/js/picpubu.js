@@ -25,6 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
+      f = 1
     });
   }
   /**
@@ -46,7 +47,7 @@ $(function (){
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
-		  		f = 0
+		  		
 		  		if(json.code==200 && json.data.list!=0){
 		  			var str = ''
 		  			var list  = json.data.list
@@ -86,10 +87,11 @@ $(function (){
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   
 		  			})
-		  			$('#load').hide()	
+		  			$('#load').hide()
+		  			f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();
-		  			f = 1
+		  			
 		  		}
 		  	}
 		  })      
