@@ -16,7 +16,8 @@ Route::get('/', ['uses'=>'\App\Http\Controllers\HomeController@index']);
 Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
     Route::controllers([
         'home'=>'HomeController',
-        'pics'=>'PicsController'
+        'pics'=>'PicsController',
+        'find'=>'FindController',
     ]);
 });
 

@@ -79,12 +79,16 @@ class LibUtil {
         $base =  $path. '/';
         $pic = $imageId.LibUtil::getPicName($kind).'.jpg' ;
         //检查图片是否存在，不存在返回空
-        $basepath =$dir.$path;
+        $basepath = 'http://www.duitujia.com/'.$dir.$path;
         $url = \url($basepath.$pic);
-        $file_url = public_path($basepath.$pic);
-        if(file_exists($file_url)){
+        $open = @fopen($url, 'rb');
+        if($open){
             return $url;
         }
+        /*$file_url = public_path($basepath.$pic);
+        if(file_exists($file_url)){
+            return $url;
+        }*/
 
         return '';
     }
