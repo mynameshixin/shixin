@@ -81,10 +81,7 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = 'http://www.duitujia.com/'.$dir.$path;
         $url = \url($basepath.$pic);
-        $open = @fopen($url, 'rb');
-        if($open){
-            return $url;
-        }
+        return $url;
         /*$file_url = public_path($basepath.$pic);
         if(file_exists($file_url)){
             return $url;
