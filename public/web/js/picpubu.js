@@ -5,7 +5,7 @@ $(function (){
   $window = $(window)
   $document = $(document)
   $page = 1
-  $f = 1
+  var f = 1
   options = {
     autoResize: true, // This will auto-update the layout when the browser window is resized.
     container: $main, // Optional, used for some extra CSS styling
@@ -35,11 +35,10 @@ $(function (){
     var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
         closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
 
-    if (closeToBottom && $f) {
+    if (closeToBottom && f==1) {
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
-		  		$f = 0
 		  		$('#load').show()
 		  	},
 		  	'url':postUrl,
@@ -47,6 +46,7 @@ $(function (){
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
+		  		f = 0
 		  		if(json.code==200 && json.data.list!=0){
 		  			var str = ''
 		  			var list  = json.data.list
@@ -86,10 +86,10 @@ $(function (){
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   
 		  			})
-		  			$('#load').hide()
-		  			$f = 0
+		  			$('#load').hide()	
 		  			$tiles.append($firstTen)
 		  			applyLayout();
+		  			f = 1
 		  		}
 		  	}
 		  })      
