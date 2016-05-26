@@ -8,7 +8,7 @@
 namespace App\Lib;
 
 class LibUtil {
-
+    public $host = 'http://www.duitujia.com/';
     public static function pageFomate ($data) {
        $data = is_object($data) ? $data->toArray()  : $data;
 
@@ -29,22 +29,23 @@ class LibUtil {
     public static function getColumnPic($value,$kind=1)
     {
         if (empty($value)) return '';
-        $dir = '/uploads/images/columns/';
+        $dir = 'uploads/images/columns/';
 
 
         //检查图片是否存在，不存在返回空
         if ($kind==2) {
-            $path = $dir .'/web/'.$value;
+            $path = $this->host. $dir .'/web/'.$value;
         }else{
-            $path = $dir . $value;
+            $path = $this->host.$dir . $value;
         }
 
         $url = \url($path);
-        $file_url = public_path($path);
+        return $url;
+        /*$file_url = public_path($path);
         if (file_exists($file_url)) {
             return $url;
         }
-        return '';
+        return '';*/
     }
 
     /**
@@ -79,15 +80,14 @@ class LibUtil {
         $base =  $path. '/';
         $pic = $imageId.LibUtil::getPicName($kind).'.jpg' ;
         //检查图片是否存在，不存在返回空
-        $basepath = 'http://www.duitujia.com/'.$dir.$path;
+        $basepath = $this->host.$dir.$path;
         $url = \url($basepath.$pic);
         return $url;
         /*$file_url = public_path($basepath.$pic);
         if(file_exists($file_url)){
             return $url;
-        }*/
-
-        return '';
+        }
+        return '';*/
     }
     public static function getUserAvatar($imageId, $kind = 0, $dir = '')
     {
@@ -102,15 +102,15 @@ class LibUtil {
         $base = $path . '/';
         $pic = $imageId . LibUtil::getPicName($kind) . '.jpg';
         //检查图片是否存在，不存在返回空
-        $basepath = $dir . $path;
+        $basepath = $this->host.$dir.$path;
         $url = \url($basepath . $pic);
-        $file_url = public_path($basepath . $pic);
+        return $url;
+        /*$file_url = public_path($basepath . $pic);
         if (file_exists($file_url)) {
             $url = $url. '?' . time();
             return $url;
         }
-
-        return '';
+        return '';*/
     }
     //创建文件夹
     public static function make_dir($folder) {
