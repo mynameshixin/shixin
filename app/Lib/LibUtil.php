@@ -35,17 +35,19 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         if ($kind==2) {
             $path = self::$host. $dir .'/web/'.$value;
+            $path2 = $dir .'/web/'.$value;
         }else{
             $path = self::$host.$dir . $value;
+            $path2 = $dir . $value;
         }
 
         $url = \url($path);
-        return $url;
-        /*$file_url = public_path($path);
+        
+        $file_url = public_path($path2);
         if (file_exists($file_url)) {
             return $url;
         }
-        return '';*/
+        return $url;
     }
 
     /**
@@ -82,12 +84,12 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = self::$host.$dir.$path;
         $url = \url($basepath.$pic);
-        return $url;
-        /*$file_url = public_path($basepath.$pic);
+        
+        $file_url = public_path($dir.$path.$pic);
         if(file_exists($file_url)){
             return $url;
         }
-        return '';*/
+        return $url;
     }
     public static function getUserAvatar($imageId, $kind = 0, $dir = '')
     {
@@ -104,13 +106,13 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = self::$host.$dir.$path;
         $url = \url($basepath . $pic);
-        return $url;
-        /*$file_url = public_path($basepath . $pic);
+        
+        $file_url = public_path($dir.$path . $pic);
         if (file_exists($file_url)) {
             $url = $url. '?' . time();
             return $url;
         }
-        return '';*/
+        return $url;
     }
     //创建文件夹
     public static function make_dir($folder) {

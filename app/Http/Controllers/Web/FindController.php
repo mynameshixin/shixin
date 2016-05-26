@@ -7,12 +7,18 @@ use Illuminate\Support\Facades\Input;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use App\Websupply\CateWebsupply;
 use DB;
 
 class FindController extends CmController{
 
 	public function getIndex(){
-		return view('web.find.index');
+		$cate = CateWebsupply::getCate(11);
+		$data = [
+			'cate'=>$cate
+		];
+
+		return view('web.find.index',$data);
 	}
 
 

@@ -9,52 +9,14 @@
 			<div class="find_cater_wrap">
 				<div class="find_cater clearfix">
 					<ul class="find_cat_list">
-						<li class="find_cat_listli">
-							<img src="public/images/cat/1.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/2.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/3.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/4.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/5.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
+						<?php foreach ($cate as $key => $v) :?>
+							<li class="find_cat_listli">
+								<img src="{{$v['imageurl']}}" alt="">
+								<a href="javascript:;" target="_blank">{{$v['name']}}</a>
+							</li>
+						<?php endforeach; ?>
 						<li class="find_cat_listli mrightzero">
-							<img src="public/images/cat/6.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/7.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/8.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/9.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/10.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli">
-							<img src="public/images/cat/11.png" alt="">
-							<a href="javascript:;" target="_blank">台灯</a>
-						</li>
-						<li class="find_cat_listli mrightzero">
-							<img src="public/images/cat/12.png" alt="">
+							<img src="{{url('web')}}/public/images/cat/12.png" alt="">
 							<a href="javascript:;" target="_blank" class="find_cat_more">查看全部</a>
 						</li>
 					</ul>
