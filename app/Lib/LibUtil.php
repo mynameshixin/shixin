@@ -112,7 +112,7 @@ class LibUtil {
             $url = $url. '?' . time();
             return $url;
         }
-        return $url;
+        return '';
     }
     //创建文件夹
     public static function make_dir($folder) {
