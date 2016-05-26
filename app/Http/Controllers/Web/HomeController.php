@@ -34,7 +34,6 @@ class HomeController extends CmController{
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'recommend'=>!empty($recommend)?$recommend:[]
 		];
-		dd($data);
 		return view('web.home.index',$data);
 	}
 
