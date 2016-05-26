@@ -17,7 +17,7 @@ class ProductWebsupply extends CmWebsupply{
         $self_id  = !empty($self_id)?$self_id:0;
 
         $rows = DB::table('folder_goods')->where('kind', $kind);
-        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
+        $rows = $rows->leftJoin('folders','folder_goods.folder_id','=','folders.id');
         if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
@@ -27,7 +27,7 @@ class ProductWebsupply extends CmWebsupply{
             });
         }        
 
-        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
+        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc');
         $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
 
@@ -51,7 +51,7 @@ class ProductWebsupply extends CmWebsupply{
                 if (isset($list[$v['good_id']])) {
                     $good = $list[$v['good_id']];
                     if (isset($userArr[$v['user_id']])) $good['user'] = $userArr[$v['user_id']] ;
- 
+                    $good['folder_name'] = $v['name'];
                     $good['folder_id'] = $v['folder_id'];
                     $good['created_at'] = $v['created_at'];
                     $arr[] =$good;
@@ -85,7 +85,7 @@ class ProductWebsupply extends CmWebsupply{
             $commentArr = CommentWebsupply::getCommentFirst($product_ids);
             
             foreach ($rows as $row) {
-                $row['folder_name'] = isset($folderArr[$row['folder_id']]) ? $folderArr[$row['folder_id']] : '';
+                //$row['folder_name'] = isset($folderArr[$row['folder_id']]) ? $folderArr[$row['folder_id']] : '';
                 $row['source'] = isset(self::$sources[$row['source']]) ? self::$sources[$row['source']] : '';
                 if (isset($commentArr[$row['id']])) $row['comment'] = $commentArr[$row['id']];
                 if (!empty($row['image_ids'])) {
