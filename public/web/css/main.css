@@ -1,4 +1,4 @@
-html,body {background:#f2f1f1;height:100%;}
+html,body {background:#f2f1f1;height:auto;margin:0px;padding:0px;}
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td
 {margin:0;padding:0;list-style: none;}
@@ -13,7 +13,7 @@ th, td{vertical-align:top;}
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .clearfix{*+height:1%;}
 /*body样式*/
-body{background: #f0f0f0;padding-top: 1px;}
+body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 /*头部样式*/
 .header{
 	width: 100%;height: 74px;
@@ -95,5 +95,44 @@ body{background: #f0f0f0;padding-top: 1px;}
 .header_add_fold_wrap{width: 50px;height: 50px;border-radius: 4px;float: right;margin-right: 30px;}
 .header_add_fold_wrap img{width: 100%;height: 100%;border-radius: 4px;}
 .header_add_more{text-align: center;height: 45px;font:normal 15px/45px "Microsoft YaHei";color: #7d7d7d;display: inline-block;width: 100%;float: left;}
+
+
+.nolog_header{
+	width: 100%;height: 74px;
+	position:fixed;
+	-webkit-transition:opacity 1s ease;
+	transition:opacity 1s ease;
+	z-index: 10000;
+	margin-top: -1px;
+}
+.nolog_index_container{margin-top: -1px;}
+.nolog_index_banner{height: 600px;}
+.header_search_indexnolog{background: rgba(0,0,0,.15);width: 663px;height: 42px;border: 1px solid rgba(255,255,255,.8);border-radius: 5px;float: left;margin:13px 0px 0px 15px;padding:0px 10px;color: #fff;}
+.nolog_header .header_logo{width: 74px;background: url(../images/nolog_logo.png) 0px 25px no-repeat;}
+.nolog_header .header_item{color: #fff;height: 38px;padding:0px;line-height: 38px;margin:16px 15px 0px 15px;}
+.nolog_header .header_item_on{border-bottom: 1px solid #fff;}
+.nolog_header .header_add_btn{width: 28px;height: 28px;background: #e7e6e6;border-radius: 50%;color: #333;border:1px solid #e15335;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:21px 0px 0px 15px;position: relative;cursor: pointer;}
+.nolog_header .nolog_land_btn,.nolog_header .nolog_login_btn{float: right;}
+.nolog_header .nolog_login_btn{background: rgba(225,83,53,.8);}
+.nolog_header .nolog_land_btn{background: none;border:1px solid #fff;}
+
+.setting_coneachtit span{width: 176px;display: inline-block;float: left;}
+.setting_coneach_little{float: left;font:normal 13px/51px "Microsoft YaHei";color: #504e4e;}
+.setting_coneach_little .setting_coneach_conrava{width: 40px;height: 40px;border-radius: 50%;margin: 2px 0px 0px 0px;}
+.setting_coneach_little .setting_coneach_conrava img{width: 100%;height: 100%;border-radius: 50%;}
+.nolog_index_conapp_phone{width: 309px;height: 629px;background: url(../images/phone.png);margin:74px 0px 0px 172px;float: left;}
+.nolog_index_conapp_phone img{width: 270px;height: 476px;margin:76px 0px 0px 20px;}
+.nolog_index_conapp_right{float: left;}
+.nolog_app_log{margin: 74px 0px 0px 88px;}
+.nolog_app_font{font:normal 60px/60px "Microsoft YaHei";color: #fff;margin:20px 0px 0px 92px;}
+.nolog_app_wrap{float: left;}
+.nolog_app_code{margin:26px 0px 0px 88px;}
+.nolog_app_wrap{margin-right: 45px;}
+.nolog_app_wrap p{font:bold 16px/22px "Microsoft YaHei";color: #fff;margin-top: 14px;}
+.nolog_app_qqwc{margin:21px 0px 0px 90px;}
+
+
+
+
 
 

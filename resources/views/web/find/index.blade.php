@@ -10,13 +10,13 @@
 				<div class="find_cater clearfix">
 					<ul class="find_cat_list">
 						<?php foreach ($cate as $key => $v) :?>
-							<li class="find_cat_listli">
-								<img src="{{$v['imageurl']}}" alt="">
+							<li class="find_cat_listli <?php echo $key==5?'mrightzero':''; ?>">
+								<img src="{{$v['img']}}" alt="">
 								<a href="javascript:;" target="_blank">{{$v['name']}}</a>
 							</li>
 						<?php endforeach; ?>
 						<li class="find_cat_listli mrightzero">
-							<img src="{{url('web')}}/public/images/cat/12.png" alt="">
+							<img src="{{url()}}/uploads/sundry/12.png" alt="">
 							<a href="javascript:;" target="_blank" class="find_cat_more">查看全部</a>
 						</li>
 					</ul>
@@ -24,110 +24,28 @@
 				<div class="find_cater_all slideup clearfix">
 					<div class="find_cater_tril"></div>
 					<div class="find_cater_aeach_wrap clearfix">
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
+					<?php foreach ($cate_all as $key => $value) :?>
+						<?php if(in_array($key,[0,1,2])): ?>
+						<ul class="find_cater_aeach <?php echo $key==2?'mrightzero':''; ?>" >
+							<p class="find_cater_label">{{$value['name']}}</p>
+							<?php foreach ($value['children'] as $k => $v): ?>
+								<li><a href="javascript:;">{{$v['name']}}</a></li>
+							<?php endforeach; ?>
 						</ul>
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-						</ul>
-						<ul class="find_cater_aeach mrightzero">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-						</ul>
+						<?php endif; ?>
+					<?php endforeach; ?>
 					</div>
 					<div class="find_cater_aeach_wrap clearfix">
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
+						<?php foreach ($cate_all as $key => $value) :?>
+						<?php if(in_array($key,[3,4,5])): ?>
+						<ul class="find_cater_aeach <?php echo $key==5?'mrightzero':''; ?>">
+							<p class="find_cater_label">{{$value['name']}}</p>
+							<?php foreach ($value['children'] as $k => $v): ?>
+								<li><a href="javascript:;">{{$v['name']}}</a></li>
+							<?php endforeach; ?>
 						</ul>
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-						</ul>
-						<ul class="find_cater_aeach mrightzero">
-							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">沙发</a></li>
-						</ul>
+						<?php endif; ?>
+					<?php endforeach; ?>
 					</div>
 				</div>
 			</div>
@@ -136,441 +54,61 @@
 			<p class="find_title">文件夹推荐</p>
 			<div class="find_cater clearfix">
 				<ul class="find_fold_list clearfix">
-					<li class="find_fold_li">
+				<?php foreach ($recommend as $key => $v):?>
+					<li class="find_fold_li <?php echo $key==4?'mrightzero':'';?>">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
+								<a href="#" target="_blank"><img src="{{$v['user']['pic_m']}}" alt=""></a>
 							</div>
 							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
+								<a href="#" target="_blank" class="find_fold_name">{{$v['name']}}</a>
+								<a href="#" target="_blank" class="find_fold_authnme">{{$v['user']['nick']}}</a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<img src="public/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
+							<img src="{{$v['img_url']}}" alt="">
+							<div class="find_fold_catflw">{{$v['count']}}文件&nbsp;&nbsp;{{$v['collection_count']}}关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
+								<img src="<?php  echo isset($v['goods'][0]['image_url'])?$v['goods'][0]['image_url']:url().'/uploads/sundry/blogo.jpg';?>" alt="">
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
+								<img src="<?php  echo isset($v['goods'][1]['image_url'])?$v['goods'][1]['image_url']:url().'/uploads/sundry/blogo.jpg';?>" alt="">
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
+								<img src="<?php  echo isset($v['goods'][2]['image_url'])?$v['goods'][2]['image_url']:url().'/uploads/sundry/blogo.jpg';?>" alt="">
 							</div>
+							
 						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+</span>关注</a>
+						<a href="javascript:;" class="find_fold_authflw"><?php echo !empty($v['is_collection'])?'已关注':"<span>+</span>关注"; ?></a>
 					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="public/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+</span>关注</a>
-					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="public/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+</span>关注</a>
-					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="public/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+</span>关注</a>
-					</li>
-					<li class="find_fold_li mrightzero">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="public/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="public/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+</span>关注</a>
-					</li>
+				<?php endforeach; ?>
 				</ul>
 			</div>
 			<p class="find_title">商品推荐</p>
-			<div class="index_con">
-				<div class="index_item">
-					<div class="index_item_wrap">
-						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/2.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div class="w1248 clearfix" id="main" role="main">
+				<div class="index_con" id="tiles">
+					
 				</div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/3.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/4.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/5.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/6.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/7.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/8.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/9.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_d"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="public/images/temp/10.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="public/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
 			</div>
+			<h1 id='load' style="text-align: center;line-height: 40px; height:40px;color:#999; font-size: 20px; margin-bottom: 30px;display: none">正在加载中。。。</h1>
 		</div>
 	</div>
 	<a href="javascript:;" class="back_to_top">^</a>
 </body>
 <script type="text/javascript">
+	postUrl = "{{url('webd/home/goods')}}"
+	postData = {'num':10}
+</script>
+<script type="text/javascript" src="{{asset('web')}}/js/otherpubu.js"></script>
+<script type="text/javascript">
 		$(function() {
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-		     });
+
 		    $('.back_to_top').click(function(){
 		    	$("html,body").animate({scrollTop: 0},600);
 		    })

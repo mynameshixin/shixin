@@ -13,9 +13,22 @@ use DB;
 class FindController extends CmController{
 
 	public function getIndex(){
-		$cate = CateWebsupply::getCate(11);
+		$user_id = $this->user_id;
+		$cate = CateWebsupply::getRecommend(11);
+		$cate_all = CateWebsupply::getTree(6);
+		// dd($cate_all);
+
+		$recommend = FolderWebsupply::get_recommend(5,3);
+		foreach ($recommend as $key => $value) {
+			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);
+			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
+			$recommend[$key]['is_collection'] = $collection_folder;
+		}
+
 		$data = [
-			'cate'=>$cate
+			'cate'=>$cate,
+			'cate_all'=>$cate_all,
+			'recommend'=>$recommend
 		];
 
 		return view('web.find.index',$data);

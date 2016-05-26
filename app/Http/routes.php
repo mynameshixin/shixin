@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'home'=>'HomeController',
         'pics'=>'PicsController',
         'find'=>'FindController',
+        'app'=>'AppController',
     ]);
 });
 
