@@ -8,5 +8,6 @@ composer.lock
 /public/uploads
 /nbproject
 config
+app/Lib/LibUtil.php
 vendor
 README.md
