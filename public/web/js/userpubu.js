@@ -40,7 +40,7 @@ $(function (){
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
-		  		// $('#load').show()
+		  		$('#load').show()
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
@@ -86,7 +86,7 @@ $(function (){
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   
 		  			})
-		  			// $('#load').hide()
+		  			$('#load').hide()
 		  			f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();

@@ -13,7 +13,7 @@
 						</div>
 						<div class="perhome_perdes">
 							<div class="perhome_pername">
-								{{empty($user_info['nick'])?$user_info['nick']:$user_info['username']}}
+								{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}
 							</div>
 							<div class="perhome_perwechat">
 								微信号：{{empty(trim($user_info['wechat']))?'木有填写':$user_info['wechat']}}

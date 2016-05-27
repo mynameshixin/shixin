@@ -10,7 +10,7 @@
 			<div class="index_con  perhome_wrap">
 				<ul class="find_fold_list clearfix">
 					<?php foreach ($user_fans as $key => $value) :?>
-					<li class="find_user_li <?php echo ($key%5==0)?'mrightzero':''; ?>">
+					<li class="find_user_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>">
 						<div class="find_user_info">
 							<a href="javascript:;" class="find_user_name">{{empty($value['nick'])?$value['username']:$value['nick']}}</a>
 							<a href="javascript:;" class="find_user_rela">{{$value['count']['fans_count']}}粉丝 {{$value['count']['follow_count']}}关注{{$value['id']}}</a>

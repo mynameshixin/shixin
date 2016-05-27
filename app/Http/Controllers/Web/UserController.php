@@ -101,7 +101,7 @@ class UserController extends CmController{
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
 		$user_fans = UserWebsupply::get_user_fans($this->other_id);
-		sort($user_fans);
+		
 		// dd($user_fans);
 		$data = [
 			'user_info'=>$user_info,
@@ -114,24 +114,39 @@ class UserController extends CmController{
 
 
 
-
-
-
-	// 用户关注
+	// 用户关注的人
 	public function getFollow(){
-		/*if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
+		if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
 
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
-
+		$user_follow = UserWebsupply::get_user_follow($this->other_id);
+		// dd($user_follow);
 		$data = [
 			'user_info'=>$user_info,
 			'type'=>5,
-			'user_id'=>$this->other_id
+			'user_id'=>$this->other_id,
+			'user_follow'=>$user_follow
 		];
-		return view('web.user.follow',$data);*/
+		return view('web.user.follow',$data);
 	}
 
+	// 用户关注的文件夹
+	public function getFollowfolder(){
+		if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
+
+		if(isset($user_info) && !empty($user_info)){
+			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
+		}
+		$user_follow_folder = UserWebsupply::get_follow_folder($this->other_id);
+		$data = [
+			'user_info'=>$user_info,
+			'type'=>5,
+			'user_id'=>$this->other_id,
+			'user_follow_folder'=>$user_follow_folder
+		];
+		return view('web.user.follow_folder',$data);
+	}
 
 }

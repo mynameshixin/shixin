@@ -43,6 +43,7 @@
 			</div>
 		</div>
 	</div>
+	<h1 id='load' style="text-align: center;line-height: 40px; height:40px;color:#999; font-size: 20px; margin-bottom: 30px;display: none">正在加载中。。。</h1>
 </body>
 <script type="text/javascript">
 	postUrl = '{{url("webd/user/goods?oid={$user_id}")}}'

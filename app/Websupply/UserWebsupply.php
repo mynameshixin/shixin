@@ -108,13 +108,29 @@ class UserWebsupply extends CmWebsupply{
     }
 
 
-    public static function get_user_fans($user_id){
-    	$user_fans = DB::table('user_follow')->where('userid_follow',$user_id)->get();
-
+    public static function get_user_fans($user_id,$num = 15){
+    	$user_fans = DB::table('user_follow')->where('userid_follow',$user_id)->take($num)->get();
     	$user_ids = [];
     	$user_ids = array_map(function($v){
     		return $v['user_id'];
     	},$user_fans);
+    	$user_info = self::user_info($user_ids);
+
+    	foreach ($user_info as $key => $value) {
+    		$user_info[$key]['count'] = self::get_count(['fans_count','follow_count'],$value['id']);
+    		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
+    	}
+    	sort($user_info);
+    	return $user_info;
+    }
+
+    public static function get_user_follow($user_id,$num = 15){
+    	$user_follow = DB::table('user_follow')->where('user_id',$user_id)->take($num)->get();
+    	
+    	$user_ids = [];
+    	$user_ids = array_map(function($v){
+    		return $v['userid_follow'];
+    	},$user_follow);
     	
     	$user_info = self::user_info($user_ids);
 
@@ -122,8 +138,30 @@ class UserWebsupply extends CmWebsupply{
     		$user_info[$key]['count'] = self::get_count(['fans_count','follow_count'],$value['id']);
     		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
     	}
+    	sort($user_info);
     	return $user_info;
     }
 
+    public static function get_follow_folder($user_id,$num = 15,$gnum = 3){
+    	$user_follow_folder = DB::table('collection_folder as cf')->leftJoin('folders as f','cf.folder_id','=','f.id')->leftJoin('users as u','f.user_id','=','u.id')->where('cf.user_id',$user_id)->take($num)->get();
+    	
+
+    	foreach ($user_follow_folder as $key => $value) {
+    		$imageId = $value['image_id'];
+    		$id = $value['folder_id'];
+    		$user_follow_folder[$key]['user'] = self::user_info($value['user_id']);
+    		$user_follow_folder[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
+
+		 	$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+	 		foreach ($goods as $k => $v) {
+	 			if(strpos($v['image_ids'],',') == 0){
+	 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+	 			}
+	 		}
+		 	$user_follow_folder[$key]['folder_goods'] = $goods;		 	
+    	}
+    	// dd($user_follow_folder);
+    	return $user_follow_folder;
+    }
 
 }
