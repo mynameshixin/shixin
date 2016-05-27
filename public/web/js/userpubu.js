@@ -67,7 +67,6 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)
 
-
 					    $('.comment',$value).remove()
 					    if(list[index].comment != 0){
 					    	var c = list[index].comment
