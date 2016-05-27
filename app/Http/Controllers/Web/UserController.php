@@ -80,7 +80,7 @@ class UserController extends CmController{
 			'user_like'=>$user_like['data']['list'],
 			'user_id'=>$this->other_id
 		];
-		return view('web.user.praise',$data);
+		return view('web.user.pub',$data);
 	}
 
 

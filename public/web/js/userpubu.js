@@ -55,7 +55,11 @@ $(function (){
 		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
-					    $(".index_item_price",$value).html('￥'+list[index].price)
+		  				$('.index_item_price',$value).remove()
+		  				if(list[index].price!=0){
+		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
+		  				}
+					    
 					    $(".index_item_intro",$value).html(list[index].description);
 					    $(".index_item_intro",$value).attr('title',list[index].description)
 
