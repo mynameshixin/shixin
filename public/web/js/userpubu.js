@@ -69,7 +69,6 @@ $(function (){
 
 
 					    $('.comment',$value).remove()
-
 					    if(list[index].comment != 0){
 					    	var c = list[index].comment
 					    	var good_id = list[index].id
