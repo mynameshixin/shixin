@@ -40,15 +40,15 @@ $(function (){
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
-		  		$('#load').show()
+		  		// $('#load').show()
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
-		  		
-		  		if(json.code==200 && json!=0){
+
+		  		if(json.code==200 && json.data.list!=0){
 		  			var str = ''
 		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
@@ -63,22 +63,19 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)
 
-					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
-					    user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
-					    $(".index_item_authname",$value).html(user_nick)
-					    $(".index_item_authname",$value).html(list[index].user.nick)
-					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
+
 					    $('.comment',$value).remove()
 
-					    if(list[index].comment != undefined){
-					    	user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
+					    if(list[index].comment != 0){
+					    	comment = (list[index].comment)[list[index].good_id]
+					    	user_nick = (comment.user.nick!=0)?comment.user.nick:comment.user.username
 				    		$str = '<div class="index_item_bottom clearfix comment">'
 								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
-									+'<img src="'+list[index].comment.user.pic_m+'" alt="">'
+									+'<img src="'+comment.user.pic_m+'" alt="">'
 								+'</a>'
 								+'<div class="index_item_authinfo index_item_authtalk">'
 									+'<a href="javascript:;" class="index_item_talkname">'+user_nick+'：</a>'
-									+'<span class="index_item_authto">'+list[index].comment.content+'</span>'
+									+'<span class="index_item_authto">'+comment.content+'</span>'
 								+'</div>'
 							+'</div>'
 							$($value).append($str)
@@ -89,7 +86,7 @@ $(function (){
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   
 		  			})
-		  			$('#load').hide()
+		  			// $('#load').hide()
 		  			f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();

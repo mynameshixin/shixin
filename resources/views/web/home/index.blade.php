@@ -21,11 +21,11 @@
 									<p class="index_item_umitem">采集</p>
 								</div>
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">{{$user_info['count']['follow_count']}}</p>
+									<p class="index_item_umnum">{{$user_info['count']['folder_count']}}</p>
 									<p class="index_item_umitem">文件夹</p>
 								</div>
 								<div class="index_item_umcon" style="border-right: 0px;">
-									<p class="index_item_umnum">{{$user_info['count']['follow_count']}}</p>
+									<p class="index_item_umnum">{{$user_info['count']['fans_count']}}</p>
 									<p class="index_item_umitem">粉丝</p>
 								</div>
 							</div>
@@ -54,7 +54,7 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap"></a>
-							<img src="{{$v['images'][0]['img_m']}}">
+							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}">
 							<div class="index_item_price">￥{{$v['price']}}</div>
 						</div>
 						<div class="index_item_info">
@@ -88,7 +88,7 @@
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/home/goods')}}"
-	postData = {'num':9}
+	postData = {'num':10}
 </script>
 
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>

@@ -19,7 +19,7 @@ class HomeController extends CmController{
 		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
 
 		if(isset($user_info) && !empty($user_info)){
-			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','follow_count'],$user_id);
+			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','fans_count'],$user_id);
 		}
 
 		$recommend = FolderWebsupply::get_recommend();
@@ -50,6 +50,7 @@ class HomeController extends CmController{
         $data['kind'] = 1;
         
         $num = isset($data['num']) ? $data['num'] : 12;
+        $data['page'] = isset($data['page'])?$data['page']:1;
         $user_ids = $folder_ids = [];
         $user_id = $this->user_id;
         if (isset($user_id) && !empty($user_id)){

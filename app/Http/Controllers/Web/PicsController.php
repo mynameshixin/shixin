@@ -33,8 +33,8 @@ class PicsController extends CmController{
 		$data = Input::all();
 		$data = fparam($data);
         $data['kind'] = 2 ;
-        
-        $num = isset($data['num']) ? $data['num'] : 10;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $num = isset($data['num']) ? $data['num'] : 12;
         $user_ids = $folder_ids = [];
         $user_id = $this->user_id;
         if (isset($user_id) && !empty($user_id)){
@@ -60,7 +60,9 @@ class PicsController extends CmController{
 		self::crypt_cookie('user_id',486);
 	}
 
-
+	public function show($id){
+		return view('web.pics.show');
+	}
 
 
 

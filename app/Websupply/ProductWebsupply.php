@@ -28,26 +28,27 @@ class ProductWebsupply extends CmWebsupply{
         }        
 
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc');
-        $rows = $rows->paginate($num);
-        $outDate = LibUtil::pageFomate($rows);
+        // $rows = $rows->paginate($num);
+        $skip = ($params['page']-1)*10;
 
-        $count = 0;
-        foreach ($outDate['list'] as $key => $value) {
+        $rows = $rows->skip($skip)->take($num)->get();
+        // $outDate = LibUtil::pageFomate($rows);
+
+        foreach ($rows as $key => $value) {
             if($value['private'] == 1 && $self_id != $value['user_id']){
-                unset($outDate['list'][$key]);
-                $count++;
+                unset($rows[$key]);
             }
             
         }
-        $outDate['per_page'] = $num-$count;
 
-        if (!empty($outDate['list'])) {
-            $params['ids'] = $product_ids = array_column($outDate['list'], 'good_id');
+        $outDate = [];
+        if (!empty($rows)) {
+            $params['ids'] = $product_ids = array_column($rows, 'good_id');
             $list = self::getProductListByIds($product_ids, $params,false);
-            $user_ids = array_column($outDate['list'], 'user_id');
+            $user_ids = array_column($rows, 'user_id');
             $userArr = UserWebsupply::user_info($user_ids);
             $arr = [];
-            foreach ($outDate['list'] as $v) {
+            foreach ($rows  as $v) {
                 if (isset($list[$v['good_id']])) {
                     $good = $list[$v['good_id']];
                     if (isset($userArr[$v['user_id']])) $good['user'] = $userArr[$v['user_id']] ;
@@ -59,6 +60,7 @@ class ProductWebsupply extends CmWebsupply{
             }
             $outDate['list'] = $arr;
         }
+
         return $outDate;
 	}
 

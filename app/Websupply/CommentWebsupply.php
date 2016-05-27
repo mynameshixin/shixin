@@ -8,7 +8,12 @@ use DB;
 class CommentWebsupply {
 	public static function getCommentFirst($good_ids)
     {
-        $rows = DB::table('comments')->whereIn('good_id', $good_ids)->groupBy('good_id')->orderBy('id', 'desc')->get();
+        if(is_array($good_ids)){
+            $rows = DB::table('comments')->whereIn('good_id', $good_ids)->groupBy('good_id')->orderBy('id', 'desc')->get();
+        }else{
+            $rows = DB::table('comments')->where('good_id', $good_ids)->groupBy('good_id')->orderBy('id', 'desc')->get();
+        }
+        
 
         $list = [];
         if (!empty($rows)) {

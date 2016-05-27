@@ -19,6 +19,11 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'pics'=>'PicsController',
         'find'=>'FindController',
         'app'=>'AppController',
+        'user'=>'UserController'
+    ]);
+    Route::resources([
+        'pic'=>'PicsController',
+        
     ]);
 });
 

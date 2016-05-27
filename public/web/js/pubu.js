@@ -92,7 +92,8 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(2).attr('href',list[index].detail_url)
 
 					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
-					    $(".index_item_authname",$value).html(list[index].user.nick)
+					    user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
+					    $(".index_item_authname",$value).html(user_nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
 
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
