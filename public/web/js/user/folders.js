@@ -4,64 +4,63 @@ $(function (){
    */
   $window = $(window)
   $document = $(document)
-  $page = 1
-  var f=1
-  function onScroll() {
-  	
-    var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
-
-    if (closeToBottom && f==1) {
-
-    	postData.page = ++$page
+  $page0 = 1
+  $page1 = 1
+  
+  function onMore() {
+  		private = $(this).attr('private')
+  		if(private == 1){
+  			postData.page = ++$page1
+  		}else{
+  			postData.page = ++$page0
+  		}
+    	postData.private = private
+    	obj = $(this)
     	$.ajax({
 		  	'beforeSend':function(){
-		  		$('#load').show()
+		  		obj.html('请等待。。。')
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
-		  		
-		  		if(json.code==200 && json.data!=undefined){
+		  		ul = '#ul'+private
+		  		if(json.code==200 && json.data.list!=0){
 		  			f = 0
-		  			data = json.data
+		  			data = json.data.list
 
-		  			$lis = $('.find_user_li','#ul').slice(0,data.length).clone()
+		  			$lis = $('.find_fold_li',ul).slice(0,data.length).clone()
 
 					$.each($lis,function(index,v){
-						pic = data[index].pic_m==0?defaultpic:data[index].pic_m
-						gpic_1 = data[index].folders[0].img_url
-						gpic_2 = data[index].folders[1].img_url
-						gpic_3 = data[index].folders[2].img_url
-						gpic_4 = data[index].folders[3].img_url
 
-						username = data[index].nick==''?data[index].username:data[index].nick
-						$('.find_user_name',$lis[index]).html(username)
-						$('.find_user_rela',$lis[index]).html(data[index].count.fans_count+'粉丝 '+data[index].count.follow_count+'关注')
-						$('.find_user_img img',$lis[index]).attr('src',pic)
+						gpic_1 = data[index].goods[0] != undefined?data[index].goods[0].image_url:defaultPic
+						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
+						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
 
-						$('.find_user_limg li',$lis[index]).eq(0).find('img').attr('src',gpic_1)
-						$('.find_user_limg li',$lis[index]).eq(1).find('img').attr('src',gpic_2)
-						$('.find_user_limg li',$lis[index]).eq(2).find('img').attr('src',gpic_3)
-						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4)
+						$('.find_fold_name',$lis[index]).html(data[index].name)
+						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
+						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
+
+						$('.find_fold_liwrap img',$lis[index]).eq(0).attr('src',gpic_1)
+						$('.find_fold_liwrap img',$lis[index]).eq(1).attr('src',gpic_2)
+						$('.find_fold_liwrap img',$lis[index]).eq(2).attr('src',gpic_3)
+
 					})
-					$('#ul').append($lis)
-					$('#load').hide()
-					f = 1
+					
+					$(ul).append($lis)
+					obj.html('查看更多。。。')
 					
 		  		}else{
-		  			f = 0
-		  			$('#load').html('全部加载完成。。。')
+		  			obj.html('没有更多。。。')
 		  		}
 
 		  	}
 		  })      
     }
-  };
 
 
   // Capture scroll event.
-  $window.bind('scroll', onScroll);
+  $('#more').bind('click', onMore);
+  $('#more1').bind('click', onMore);
 });

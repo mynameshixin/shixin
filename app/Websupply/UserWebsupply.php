@@ -72,7 +72,7 @@ class UserWebsupply extends CmWebsupply{
     	$params['kind'] = isset($params['kind'])?$params['kind']:1;
     	switch ($params['kind']) {
     		case '1':
-    			$rows =  DB::table('good_action')->leftJoin('goods','good_action.good_id','=','goods.id')->where(['good_action.user_id'=>$user_id,'good_action.action'=>1]);
+    			$rows =  DB::table('good_action')->join('goods','good_action.good_id','=','goods.id')->where(['good_action.user_id'=>$user_id,'good_action.action'=>1]);
   				$good_id = 'good_id';
     			break;
     		
@@ -94,17 +94,15 @@ class UserWebsupply extends CmWebsupply{
 		            foreach ($image_ids as $imageId) {
 		                    $rows[$key]['images'][] = [
 		                        'image_id'=>$imageId,
-		                        'img_m' => LibUtil::getPicUrl($imageId, 1),
+		                        'img_m' => !empty(LibUtil::getPicUrl($imageId, 1))?LibUtil::getPicUrl($imageId, 1):self::$defaultPic,
 		                    ];
 		             }
 		        }
 		        $rows[$key]['comment'] = CommentWebsupply::getCommentFirst($v[$good_id]);
 	       	}
         }
-        $outDate = [];
-        $outDate['list'] = $rows;
-        // dd($outDate);
-    	return $outDate;
+
+    	return $rows;
     }
 
 
@@ -140,25 +138,31 @@ class UserWebsupply extends CmWebsupply{
     	return $user_info;
     }
 
-    public static function get_follow_folder($user_id,$num = 15,$gnum = 3){
-    	$user_follow_folder = DB::table('collection_folder as cf')->leftJoin('folders as f','cf.folder_id','=','f.id')->leftJoin('users as u','f.user_id','=','u.id')->where('cf.user_id',$user_id)->take($num)->get();
+    public static function get_follow_folder($user_id,$data,$num = 15,$gnum = 3){
+
+    	$page = isset($data['page'])?$data['page']:1;
+    	$skip = ($page-1)*$num;
+    	$num = isset($data['num'])?$data['num']:$num;
+    	$user_follow_folder = DB::table('collection_folder as cf')->join('folders as f','cf.folder_id','=','f.id')->join('users as u','f.user_id','=','u.id')->where('cf.user_id',$user_id)->groupBy('folder_id')->skip($skip)->take($num)->get();
     	
 
     	foreach ($user_follow_folder as $key => $value) {
     		$imageId = $value['image_id'];
     		$id = $value['folder_id'];
+    		$img_url = LibUtil::getPicUrl($imageId, 1);
     		$user_follow_folder[$key]['user'] = self::user_info($value['user_id']);
-    		$user_follow_folder[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
+    		$user_follow_folder[$key]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 
 		 	$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
 	 		foreach ($goods as $k => $v) {
 	 			if(strpos($v['image_ids'],',') == 0){
-	 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+	 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
 	 			}
 	 		}
 		 	$user_follow_folder[$key]['folder_goods'] = $goods;		 	
     	}
-    	// dd($user_follow_folder);
+
+
     	return $user_follow_folder;
     }
 

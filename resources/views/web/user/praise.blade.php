@@ -49,6 +49,7 @@
 </body>
 <script type="text/javascript">
 	postUrl = '{{url("webd/user/goods?oid={$user_id}")}}'
+	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 	postData = {'num':10}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/userpubu.js"></script>

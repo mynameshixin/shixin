@@ -47,7 +47,7 @@ $(function (){
 		  	'data':postData,
 		  	'success':function(json){
 		  		
-		  		if(json.code==200 && json!=0){
+		  		if(json.code==200 && json.data.list!=0){
 		  			f = 0
 		  			var str = ''
 		  			var list  = json.data.list
@@ -94,6 +94,9 @@ $(function (){
 		  			applyLayout();
 		  			f = 1
 		  			
+		  		}else{
+		  			f = 0
+		  			$('#load').html('全部加载完成。。。')
 		  		}
 		  	}
 		  })      

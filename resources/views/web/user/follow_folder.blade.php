@@ -11,7 +11,7 @@
 				<a href='{{url("webd/user/followfolder?oid={$user_id}")}}' class="search_btn_rround search_btn_select">文件夹</a>
 			</div>
 			<div class="find_cater perhome_follow_wrap clearfix">
-				<ul class="find_fold_list clearfix">
+				<ul class="find_fold_list clearfix" id="ul">
 					<?php foreach ($user_follow_folder as $key => $value) :?>
 					<li class="find_fold_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>">
 						<div class="find_fold_info clearfix">
@@ -25,7 +25,7 @@
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<img src="{{$value['img_url']}}" alt="">
+							<img src="{{$value['img_url']}}" alt="" onload="rect(this)">
 							<div class="find_fold_catflw">{{$value['count']}}文件&nbsp;&nbsp;{{$value['collection_count']}}关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
@@ -51,4 +51,10 @@
 	</div>
 	<h1 id='load' style="text-align: center;line-height: 40px; height:40px;color:#999; font-size: 20px; margin-bottom: 30px;display: none">正在加载中。。。</h1>
 </body>
+<script type="text/javascript">
+	postUrl = '{{url("webd/user/followfolder?oid={$user_id}")}}'
+	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
+	postData = {'num':15}
+</script>
+<script type="text/javascript" src="{{asset('web')}}/js/user/followfolder.js"></script>
 </html>

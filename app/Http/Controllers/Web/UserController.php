@@ -32,7 +32,8 @@ class UserController extends CmController{
 		if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
-			$folders = $this->postFolders();
+			$folders = $this->postFolders(0);
+			$folders_private = $this->postFolders(1);
 			/*foreach ($folders as $key => $value) {
 				$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 				$folders[$key]['is_collection'] = $collection_folder;
@@ -41,7 +42,8 @@ class UserController extends CmController{
 
 		$data = [
 			'user_info'=>$user_info,
-			'folders'=>$folders['data'],
+			'folders'=>$folders['data']['list'],
+			'folders_private'=>$folders_private['data']['list'],
 			'type'=>1,
 			'user_id'=>$this->other_id
 		];
@@ -55,7 +57,7 @@ class UserController extends CmController{
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
-		$user_like = $this->postGoods();
+		$user_like = $this->postGoods(1);
 		// dd($user_like);
 		$data = [
 			'user_info'=>$user_info,
@@ -91,16 +93,19 @@ class UserController extends CmController{
         $num = isset($data['num']) ? $data['num'] : 10;
         $data['page'] = isset($data['page'])?$data['page']:1;
         $rs = UserWebsupply::get_user_lp($this->other_id,$num,$data);
-        return response()->forApi($rs);
+        $list['list'] = $rs;
+        return response()->forApi($list);
 	}
 
-	public function postFolders(){
+	public function postFolders($private = 0){
 		$data = Input::all();
 		$data = fparam($data);
         $num = isset($data['num']) ? $data['num'] : 10;
         $data['page'] = isset($data['page'])?$data['page']:1;
+        $data['private'] = isset($data['private'])?$data['private']:$private;
         $rs = FolderWebsupply::get_user_index_folder($this->other_id,$num,3,$data);
-        return response()->forApi($rs);
+        $list['list'] = $rs;
+        return response()->forApi($list);
 	}
 
 	public function postFanfollow($kind = 1){
@@ -110,7 +115,18 @@ class UserController extends CmController{
         $num = isset($data['num']) ? $data['num'] : 15;
         $data['page'] = isset($data['page'])?$data['page']:1;
         $rs = UserWebsupply::get_user_fansfollow($this->other_id,$num,$data);
-        return response()->forApi($rs);
+        $list['list'] = $rs;
+        return response()->forApi($list);
+	}
+
+	public function postFollowfolder(){
+		$data = Input::all();
+		$data = fparam($data);
+        $num = isset($data['num']) ? $data['num'] : 15;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $rs = UserWebsupply::get_follow_folder($this->other_id,$data);
+        $list['list'] = $rs;
+        return response()->forApi($list);
 	}
 
 	//用户粉丝
@@ -125,7 +141,7 @@ class UserController extends CmController{
 			'user_info'=>$user_info,
 			'type'=>4,
 			'user_id'=>$this->other_id,
-			'user_fans'=>$user_fans['data']
+			'user_fans'=>$user_fans['data']['list']
 		];
 		return view('web.user.fans',$data);
 	}
@@ -145,7 +161,7 @@ class UserController extends CmController{
 			'user_info'=>$user_info,
 			'type'=>5,
 			'user_id'=>$this->other_id,
-			'user_follow'=>$user_follow['data']
+			'user_follow'=>$user_follow['data']['list']
 		];
 		return view('web.user.follow',$data);
 	}
@@ -157,12 +173,12 @@ class UserController extends CmController{
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
-		$user_follow_folder = UserWebsupply::get_follow_folder($this->other_id);
+		$user_follow_folder = $this->postFollowfolder();
 		$data = [
 			'user_info'=>$user_info,
 			'type'=>5,
 			'user_id'=>$this->other_id,
-			'user_follow_folder'=>$user_follow_folder
+			'user_follow_folder'=>$user_follow_folder['data']['list']
 		];
 		return view('web.user.follow_folder',$data);
 	}

@@ -1,10 +1,10 @@
 <div class="header">
 		<div class="headercontainer w1248 clearfix">
-			<a href="javascript:;" class="header_logo">堆图家</a>
-			<a href="javascript:;" class="header_item">首页</a>
-			<a href="javascript:;" class="header_item">图集</a>
-			<a href="javascript:;" class="header_item">发现</a>
-			<a href="javascript:;" class="header_item">APP</a>
+			<a href="{{url('webd/home')}}" class="header_logo">堆图家</a>
+			<a href="{{url('webd/home')}}" class="header_item">首页</a>
+			<a href="{{url('webd/pics')}}" class="header_item">图集</a>
+			<a href="{{url('webd/find')}}" class="header_item">发现</a>
+			<a href="{{url('webd/app')}}" class="header_item">APP</a>
 			<div href="javascript:;" class="header_add_btn">
 				+
 				<div class="header_add_item">

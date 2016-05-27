@@ -80,10 +80,10 @@
 	border-radius: 6px;
 	margin:0px 15px 15px 0px;
 }
-.find_fold_imgwrap{position: relative;width: 223px;height: 147px;margin:0px 0px 0px 7px;cursor: pointer;}
+.find_fold_imgwrap{position: relative;width: 223px;height: 147px;margin:0px 0px 0px 7px;cursor: pointer; overflow: hidden;}
 .find_fold_imgblur{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;}
 .find_fold_imgblur:hover{background: #fff;opacity: 0.1;}
-.find_fold_imgwrap img{width: 100%;height: 100%;}
+.find_fold_imgwrap img{}
 .find_fold_catname{position: absolute;font:normal 26px/26px "Microsoft YaHei";color: #fff;top: 15px;left: 10px;z-index: 1;}
 .find_fold_catflw{padding:0px 10px;font:bold 14px/26px "Microsoft YaHei";color: #fff;position: absolute;bottom: 0px;left: 1px;z-index: 2;background: #000;opacity: 0.5;}
 .find_fold_limg{padding:3px 0px 0px 7px;}

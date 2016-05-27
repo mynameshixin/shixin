@@ -103,6 +103,9 @@ $(function (){
 		  			$tiles.append($firstTen)
 		  			applyLayout();
 		  			f = 1
+		  		}else{
+		  			f = 0
+		  			$('#load').html('全部加载完成。。。')
 		  		}
 		  	}
 		  })      

@@ -28,24 +28,23 @@ $(function (){
 		  			f = 0
 		  			data = json.data.list
 
-		  			$lis = $('.find_user_li','#ul').slice(0,data.length).clone()
+		  			$lis = $('.find_fold_li','#ul').slice(0,data.length).clone()
 
 					$.each($lis,function(index,v){
-						pic = data[index].pic_m==0?defaultpic:data[index].pic_m
-						gpic_1 = data[index].folders[0].img_url
-						gpic_2 = data[index].folders[1].img_url
-						gpic_3 = data[index].folders[2].img_url
-						gpic_4 = data[index].folders[3].img_url
 
+						gpic_1 = data[index].folder_goods[0] != undefined?data[index].folder_goods[0].image_url:defaultPic
+						gpic_2 = data[index].folder_goods[1] != undefined?data[index].folder_goods[1].image_url:defaultPic
+						gpic_3 = data[index].folder_goods[2] != undefined?data[index].folder_goods[2].image_url:defaultPic
+						$('.find_fold_name',$lis[index]).html(data[index].name)
 						username = data[index].nick==''?data[index].username:data[index].nick
-						$('.find_user_name',$lis[index]).html(username)
-						$('.find_user_rela',$lis[index]).html(data[index].count.fans_count+'粉丝 '+data[index].count.follow_count+'关注')
-						$('.find_user_img img',$lis[index]).attr('src',pic)
+						$('.find_fold_authnme',$lis[index]).html(username)
 
-						$('.find_user_limg li',$lis[index]).eq(0).find('img').attr('src',gpic_1)
-						$('.find_user_limg li',$lis[index]).eq(1).find('img').attr('src',gpic_2)
-						$('.find_user_limg li',$lis[index]).eq(2).find('img').attr('src',gpic_3)
-						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4)
+						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
+						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
+
+						$('.find_fold_liwrap',$lis[index]).eq(0).find('img').attr('src',gpic_1)
+						$('.find_fold_liwrap',$lis[index]).eq(1).find('img').attr('src',gpic_2)
+						$('.find_fold_liwrap',$lis[index]).eq(2).find('img').attr('src',gpic_3)
 					})
 					$('#ul').append($lis)
 					$('#load').hide()

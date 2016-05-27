@@ -62,9 +62,12 @@ class FolderWebsupply extends CmWebsupply {
 	public static function get_user_index_folder($user_id,$fnum = 10,$gnum = 0,$data){
 		$page = isset($data['page'])?$data['page']:1;
     	$skip = ($page-1)*$fnum;
-		$folders = DB::table('folders')->where([
-				'user_id'=>$user_id
-				])->orderBy('folders.updated_at','desc')->skip($skip)->take($fnum)->get();
+    	$arr = [
+    		'user_id'=>$user_id,
+    		'private'=>$data['private']
+    	];
+    	
+		$folders = DB::table('folders')->where($arr)->orderBy('folders.updated_at','desc')->skip($skip)->take($fnum)->get();
 
 		foreach ($folders as $i => $value) {
 			$imageId = $value['image_id'];

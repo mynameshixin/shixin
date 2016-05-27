@@ -13,5 +13,14 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.imagesloaded.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.wookmark.js"></script>
 	<script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
-
+	<script type="text/javascript">
+		function rect(obj){
+			marginLeft = ($(obj).parent().width()-$(obj).width())/2
+			marginTop = ($(obj).parent().height()-$(obj).height())/2
+			$(obj).css({
+				'margin-left':marginLeft,
+				'margin-top':marginTop
+			})
+		}
+	</script>
 </head>

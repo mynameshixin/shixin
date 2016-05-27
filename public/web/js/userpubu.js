@@ -71,7 +71,10 @@ $(function (){
 					    $('.comment',$value).remove()
 
 					    if(list[index].comment != 0){
-					    	comment = (list[index].comment)[list[index].good_id]
+					    	var c = list[index].comment
+					    	var good_id = list[index].id
+					    	var comment = c[good_id]
+					    	
 					    	user_nick = (comment.user.nick!=0)?comment.user.nick:comment.user.username
 				    		$str = '<div class="index_item_bottom clearfix comment">'
 								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
@@ -86,8 +89,8 @@ $(function (){
 					    	
 					    }
 					    
-
-					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
+					    pic = list[index].images!=undefined?list[index].images[0].img_m:defaultPic
+					    $(".index_item_imgwrap img",$value).attr('src',pic)
 					   
 		  			})
 		  			$('#load').hide()
@@ -95,6 +98,9 @@ $(function (){
 		  			$tiles.append($firstTen)
 		  			applyLayout();
 		  			f = 1
+		  		}else{
+		  			f = 0
+		  			$('#load').html('全部加载完成。。。')
 		  		}
 		  	}
 		  })      
