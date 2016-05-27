@@ -18,7 +18,7 @@ class UserController extends CmController{
 	public function __construct(){
 		parent::__construct();
 		$getdata = fparam(Input::all());
-		if(empty($this->user_id)) die('no access!');
+		// if(empty($this->user_id)) die('no access!');
 		if(isset($getdata['oid']) && !empty($getdata['oid'])){
 			$this->other_id = $getdata['oid'];
 		}else{
@@ -32,16 +32,16 @@ class UserController extends CmController{
 		if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
-			$folders = FolderWebsupply::get_user_folder($this->other_id,'all',3);
+			$folders = $this->postFolders();
 			/*foreach ($folders as $key => $value) {
 				$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 				$folders[$key]['is_collection'] = $collection_folder;
 			}*/
 		}
-		// dd($folders);
+
 		$data = [
 			'user_info'=>$user_info,
-			'folders'=>$folders,
+			'folders'=>$folders['data'],
 			'type'=>1,
 			'user_id'=>$this->other_id
 		];
@@ -94,20 +94,38 @@ class UserController extends CmController{
         return response()->forApi($rs);
 	}
 
+	public function postFolders(){
+		$data = Input::all();
+		$data = fparam($data);
+        $num = isset($data['num']) ? $data['num'] : 10;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $rs = FolderWebsupply::get_user_index_folder($this->other_id,$num,3,$data);
+        return response()->forApi($rs);
+	}
+
+	public function postFanfollow($kind = 1){
+		$data = Input::all();
+		$data = fparam($data);
+        $data['kind'] = isset($data['kind'])?$data['kind']:$kind;
+        $num = isset($data['num']) ? $data['num'] : 15;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $rs = UserWebsupply::get_user_fansfollow($this->other_id,$num,$data);
+        return response()->forApi($rs);
+	}
+
 	//用户粉丝
 	public function getFans(){
 		if(!empty($this->other_id)) $user_info = UserWebsupply::user_info($this->other_id);
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
-		$user_fans = UserWebsupply::get_user_fans($this->other_id);
-		
+		$user_fans = $this->postFanfollow(1);
 		// dd($user_fans);
 		$data = [
 			'user_info'=>$user_info,
 			'type'=>4,
 			'user_id'=>$this->other_id,
-			'user_fans'=>$user_fans
+			'user_fans'=>$user_fans['data']
 		];
 		return view('web.user.fans',$data);
 	}
@@ -121,13 +139,13 @@ class UserController extends CmController{
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
 		}
-		$user_follow = UserWebsupply::get_user_follow($this->other_id);
+		$user_follow = $this->postFanfollow(2);
 		// dd($user_follow);
 		$data = [
 			'user_info'=>$user_info,
 			'type'=>5,
 			'user_id'=>$this->other_id,
-			'user_follow'=>$user_follow
+			'user_follow'=>$user_follow['data']
 		];
 		return view('web.user.follow',$data);
 	}

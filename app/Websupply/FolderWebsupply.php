@@ -29,34 +29,60 @@ class FolderWebsupply extends CmWebsupply {
 		 return $folders;
 	}	
 
-	//获取用户自己的所有文件夹 含文件夹图片
+	//获取用户文件夹 含文件夹图片
 	public static function get_user_folder($user_id,$fnum = 4,$gnum = 0){
-		if($fnum='all'){
-			$folders = DB::table('folders')->where([
-				'user_id'=>$user_id
-				])->orderBy('folders.updated_at','desc')->get();
-		}else{
-		 	$folders = DB::table('folders')->where([
+
+		$folders = DB::table('folders')->where([
 				'user_id'=>$user_id
 				])->orderBy('folders.updated_at','desc')->take($fnum)->get();
-		}
 
-		 
-		 foreach ($folders as $key => $value) {
-		 	$imageId = $value['image_id'];
-		 	$folders[$key]['img_url'] = LibUtil::getPicUrl($value['image_id'], 1);
-		 	$id = $value['id'];
-		 	if(!empty($gnum)){
+		for ($i=0; $i < $fnum; $i++) { 
+			$imageId = isset($folders[$i]['image_id'])?$folders[$i]['image_id']:0;
+			$img_url = LibUtil::getPicUrl($imageId, 1);
+			$folders[$i]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
+			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
+			if(!empty($gnum) && !empty($id)){
 		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
 			 		foreach ($goods as $k => $v) {
 			 			if(strpos($v['image_ids'],',') == 0){
-			 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+			 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
 			 			}
 			 		}
-		 		$folders[$key]['goods'] = $goods;		 	
-			 	$folders[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
+		 		$folders[$i]['goods'] = $goods;		 	
+			 	$folders[$i]['img_url'] = LibUtil::getPicUrl($imageId, 1);
 			}
-		 }
+
+
+		}
+
+		return $folders;
+	}	
+
+	//获取用户首页的文件夹 含文件夹图片
+	public static function get_user_index_folder($user_id,$fnum = 10,$gnum = 0,$data){
+		$page = isset($data['page'])?$data['page']:1;
+    	$skip = ($page-1)*$fnum;
+		$folders = DB::table('folders')->where([
+				'user_id'=>$user_id
+				])->orderBy('folders.updated_at','desc')->skip($skip)->take($fnum)->get();
+
+		foreach ($folders as $i => $value) {
+			$imageId = $value['image_id'];
+			$img_url = LibUtil::getPicUrl($imageId, 1);
+			$folders[$i]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
+			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
+			if(!empty($gnum) && !empty($id)){
+		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+			 		foreach ($goods as $k => $v) {
+			 			if(strpos($v['image_ids'],',') == 0){
+			 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+			 			}
+			 		}
+		 		$folders[$i]['goods'] = $goods;		 	
+			 	$folders[$i]['img_url'] = LibUtil::getPicUrl($imageId, 1);
+			}
+		}
+	
 		return $folders;
 	}	
 

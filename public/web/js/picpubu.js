@@ -25,7 +25,6 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
-      f = 1
     });
   }
   /**
@@ -49,6 +48,7 @@ $(function (){
 		  	'success':function(json){
 		  		
 		  		if(json.code==200 && json!=0){
+		  			f = 0
 		  			var str = ''
 		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
@@ -90,9 +90,9 @@ $(function (){
 					   
 		  			})
 		  			$('#load').hide()
-		  			f = 0
 		  			$tiles.append($firstTen)
 		  			applyLayout();
+		  			f = 1
 		  			
 		  		}
 		  	}

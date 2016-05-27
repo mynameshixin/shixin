@@ -106,13 +106,13 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = self::$host.$dir.$path;
         $url = \url($basepath . $pic);
-        
-        $file_url = public_path($dir.$path . $pic);
+        return $url;
+        /*$file_url = public_path($dir.$path . $pic);
         if (file_exists($file_url)) {
             $url = $url. '?' . time();
             return $url;
         }
-        return '';
+        return '';*/
     }
     //创建文件夹
     public static function make_dir($folder) {

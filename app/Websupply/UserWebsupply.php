@@ -108,32 +108,30 @@ class UserWebsupply extends CmWebsupply{
     }
 
 
-    public static function get_user_fans($user_id,$num = 15){
-    	$user_fans = DB::table('user_follow')->where('userid_follow',$user_id)->take($num)->get();
+    public static function get_user_fansfollow($user_id,$num = 15,$data){
+    	$page = isset($data['page'])?$data['page']:1;
+    	$kind = isset($data['kind'])?$data['kind']:1;
+    	$skip = ($page-1)*$num;
+    	
     	$user_ids = [];
-    	$user_ids = array_map(function($v){
-    		return $v['user_id'];
-    	},$user_fans);
-    	$user_info = self::user_info($user_ids);
-
-    	foreach ($user_info as $key => $value) {
-    		$user_info[$key]['count'] = self::get_count(['fans_count','follow_count'],$value['id']);
-    		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
+    	switch ($kind) {
+    		case '1':
+    			$user = DB::table('user_follow')->where('userid_follow',$user_id)->skip($skip)->take($num)->get();
+		    	$user_ids = array_map(function($v){
+		    		return $v['user_id'];
+		    	},$user);
+    			break;
+    		
+    		case '2':
+    			$user = DB::table('user_follow')->where('user_id',$user_id)->skip($skip)->take($num)->get();
+    			$user_ids = array_map(function($v){
+		    		return $v['userid_follow'];
+		    	},$user);
+    			break;
     	}
-    	sort($user_info);
-    	return $user_info;
-    }
-
-    public static function get_user_follow($user_id,$num = 15){
-    	$user_follow = DB::table('user_follow')->where('user_id',$user_id)->take($num)->get();
-    	
-    	$user_ids = [];
-    	$user_ids = array_map(function($v){
-    		return $v['userid_follow'];
-    	},$user_follow);
+    	;
     	
     	$user_info = self::user_info($user_ids);
-
     	foreach ($user_info as $key => $value) {
     		$user_info[$key]['count'] = self::get_count(['fans_count','follow_count'],$value['id']);
     		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
