@@ -14,7 +14,9 @@
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap"></a>
 							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}">
-							<div class="index_item_price">￥{{$v['price']}}</div>
+							<?php if(isset($v['price']) && !empty($v['price'])): ?>
+								<div class="index_item_price">￥{{$v['price']}}</div>
+							<?php endif; ?>
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
