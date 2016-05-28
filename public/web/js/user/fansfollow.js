@@ -48,20 +48,21 @@ $(function (){
 						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4)
 						r = data[index].relation
 						switch(r){
-							case '1':
-								reation='相互关注';
+							case 1:
+								reat='相互关注';
 							break;
-							case '2':
-								reation='已关注';
+							case 2:
+								reat='已关注';
 							break;
-							case '4':
-								reation='<span>+</span>关注';
+							case 4:
+								reat='<span>+</span>关注';
 							break;
 							default:
-								reation='<span>+</span>关注';
+								reat='<span>+</span>关注';
 							break;
 						}
-						$('.find_user_authflw',$lis[index]).html(reation);
+
+						$('.find_user_authflw',$lis[index]).html(reat);
 					})
 					$('#ul').append($lis)
 					$('#load').hide()

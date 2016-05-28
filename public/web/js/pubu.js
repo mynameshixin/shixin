@@ -33,9 +33,9 @@ $(function (){
   function onScroll() {
   	
     var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
+        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 10);
 
-    if (closeToBottom) {
+    if (closeToBottom && f==1) {
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){

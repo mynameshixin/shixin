@@ -214,9 +214,8 @@ class UserWebsupply extends CmWebsupply{
 
         	switch ($content) {
         		case '<span>+</span>关注':
-        		
+
         			$res = DB::table('user_follow')->insert(['user_id'=>$self_id,'userid_follow'=>$user_id,'created_at'=>$date,'updated_at'=>$date]);
-        			dd($res);
         			$relation =  $res?2:0;
         			break;
         		
