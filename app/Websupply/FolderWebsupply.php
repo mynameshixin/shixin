@@ -59,7 +59,7 @@ class FolderWebsupply extends CmWebsupply {
 	}	
 
 	//获取用户首页的文件夹 含文件夹图片
-	public static function get_user_index_folder($user_id,$fnum = 10,$gnum = 0,$data){
+	public static function get_user_index_folder($user_id,$fnum = 10,$gnum = 0,$data,$self_id){
 		$page = isset($data['page'])?$data['page']:1;
     	$skip = ($page-1)*$fnum;
     	$arr = [
@@ -74,6 +74,8 @@ class FolderWebsupply extends CmWebsupply {
 			$img_url = LibUtil::getPicUrl($imageId, 1);
 			$folders[$i]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
+			$follow = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$id])->first();
+			$folders[$i]['is_follow'] = !empty($follow)?1:0;
 			if(!empty($gnum) && !empty($id)){
 		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
 			 		foreach ($goods as $k => $v) {

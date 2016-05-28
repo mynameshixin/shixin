@@ -27,6 +27,7 @@ class FindController extends CmController{
 
 		$data = [
 			'cate'=>$cate,
+			'self_info'=>$this->self_info,
 			'cate_all'=>$cate_all,
 			'recommend'=>$recommend
 		];

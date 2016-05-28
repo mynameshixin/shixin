@@ -32,6 +32,7 @@ class HomeController extends CmController{
 		// dd($goods);
 		$data = [
 			'user_id'=>$user_id,
+			'self_info'=>$this->self_info,
 			'goods'=>$goods['data']['list'],
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'recommend'=>!empty($recommend)?$recommend:[]

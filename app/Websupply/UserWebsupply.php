@@ -106,7 +106,7 @@ class UserWebsupply extends CmWebsupply{
     }
 
 
-    public static function get_user_fansfollow($user_id,$num = 15,$data){
+    public static function get_user_fansfollow($user_id,$num = 15,$data,$self_id){
     	$page = isset($data['page'])?$data['page']:1;
     	$kind = isset($data['kind'])?$data['kind']:1;
     	$skip = ($page-1)*$num;
@@ -131,6 +131,21 @@ class UserWebsupply extends CmWebsupply{
     	
     	$user_info = self::user_info($user_ids);
     	foreach ($user_info as $key => $value) {
+    		$id  = $value['id'];
+    		$follow = DB::table('user_follow')->where(['userid_follow'=>$id,'user_id'=>$self_id])->first();
+    		$fans = DB::table('user_follow')->where(['user_id'=>$id,'userid_follow'=>$self_id])->first();
+    		//$relation 1 相互关注 2 已关注 3被关注 4未关注
+    		$relation = 4;
+    		if($follow && $fans){
+    			$relation = 1;
+    		}elseif($follow && !$fans){
+    			$relation = 2;
+    		}elseif(!$follow && $fans){
+    			$relation = 3;
+    		}else{
+    			$relation = 4;
+    		}
+    		$user_info[$key]['relation'] = $relation;
     		$user_info[$key]['count'] = self::get_count(['fans_count','follow_count'],$value['id']);
     		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
     	}
@@ -138,7 +153,7 @@ class UserWebsupply extends CmWebsupply{
     	return $user_info;
     }
 
-    public static function get_follow_folder($user_id,$data,$num = 15,$gnum = 3){
+    public static function get_follow_folder($user_id,$data,$self_id,$num = 15,$gnum = 3){
 
     	$page = isset($data['page'])?$data['page']:1;
     	$skip = ($page-1)*$num;
@@ -149,6 +164,8 @@ class UserWebsupply extends CmWebsupply{
     	foreach ($user_follow_folder as $key => $value) {
     		$imageId = $value['image_id'];
     		$id = $value['folder_id'];
+    		$follow = DB::table('collection_folder')->where(['folder_id'=>$id,'user_id'=>$self_id])->first();
+    		$user_follow_folder[$key]['is_follow'] = !empty($follow)?1:0;
     		$img_url = LibUtil::getPicUrl($imageId, 1);
     		$user_follow_folder[$key]['user'] = self::user_info($value['user_id']);
     		$user_follow_folder[$key]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
@@ -164,6 +181,63 @@ class UserWebsupply extends CmWebsupply{
 
 
     	return $user_follow_folder;
+    }
+
+    public static function get_relation($self_id,$folder_id,$user_id,$content){
+    	//$relation 1 相互关注 2 已关注 3被关注 4未关注 5 编辑
+    	$date = date("Y-m-d H:i:s");
+    	if(!empty($folder_id) && !empty($content) && !empty($self_id)){
+    		$relation = 0;
+        	switch ($content) {
+        		
+        		case '<span>+</span>特别关注':
+        			$relation = 10;
+        			$res = DB::table('collection_folder')->insert(['user_id'=>$self_id,'folder_id'=>$folder_id,'created_at'=>$date,'updated_at'=>$date]);
+        			$relation =  $res?2:0;
+        			break;
+        		
+        		case '已关注':
+        			$res = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$folder_id])->delete();
+        			$relation =  $res?4:0;
+        			break;
+
+        		case '编辑':
+        			$relation =  5;
+        			break;
+        	}
+        	return ['relation'=>$relation];
+        	
+        }
+
+        if(!empty($self_id) && !empty($content) && !empty($user_id)){
+        	$relation = 0;
+
+        	switch ($content) {
+        		case '<span>+</span>关注':
+        		
+        			$res = DB::table('user_follow')->insert(['user_id'=>$self_id,'userid_follow'=>$user_id,'created_at'=>$date,'updated_at'=>$date]);
+        			dd($res);
+        			$relation =  $res?2:0;
+        			break;
+        		
+        		case '已关注':
+        			$res = DB::table('user_follow')->where(['user_id'=>$self_id,'userid_follow'=>$user_id])->delete();
+        			$relation =  $res?4:0;
+        			break;
+
+        		case '相互关注':
+        			$res = DB::table('user_follow')->where(['user_id'=>$self_id,'userid_follow'=>$user_id])->delete();
+        			$relation =  $res?4:0;
+        			break;
+
+        		case '编辑':
+        			$relation =  5;
+        			break;
+
+        	}
+        	return ['relation'=>$relation];
+        }
+
     }
 
 }

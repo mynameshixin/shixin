@@ -13,7 +13,11 @@ use DB;
 class AppController extends CmController{
 
 	public function getIndex(){
-		return view('web.app.index');
+		$data = [
+			'self_info'=>$this->self_info,
+		];
+		
+		return view('web.app.index',$data);
 	}
 
 

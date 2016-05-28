@@ -85,10 +85,10 @@
 				</div>
 			</div>
 			<div href="javascript:;" class="header_rel">
-				<a href="#"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
+				<a href="#"><img src="{{$self_info['pic_m']}}" alt=""></a>
 				<var class="header_tril"></var>
 				<div class="header_moreinfo">
-					<a href="javascript:;" target="_blank" class="header_more_item header_more_1">我的花瓣</a>
+					<a href="{{url('webd/user')}}" target="_blank" class="header_more_item header_more_1">我的花瓣</a>
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_2">私信</a>
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_3">我的关注</a>
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_4">堆图家认证</a>

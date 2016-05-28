@@ -17,10 +17,10 @@ class PicsController extends CmController{
 	public function getIndex(){
 		
 		$user_id = $this->user_id; 
-		//$cate = DB::select('select * from categories where length(name) < 9 and hot = 2 order by recommend desc limit 11');
 		$goods = $this->postGoods();
 		$data = [
 			'user_id'=>$user_id,
+			'self_info'=>$this->self_info,
 			'goods'=>$goods['data']['list'],
 		];
 		return view('web.pics.index',$data);
@@ -57,7 +57,7 @@ class PicsController extends CmController{
 	}
 
 	public function getSet(){
-		self::crypt_cookie('user_id',486);
+		self::crypt_cookie('user_id',5);
 	}
 
 	public function show($id){

@@ -36,7 +36,7 @@ $(function (){
 						gpic_2 = data[index].folders[1].img_url
 						gpic_3 = data[index].folders[2].img_url
 						gpic_4 = data[index].folders[3].img_url
-
+						$($lis[index]).attr('user_id',data[index].id)
 						username = data[index].nick==''?data[index].username:data[index].nick
 						$('.find_user_name',$lis[index]).html(username)
 						$('.find_user_rela',$lis[index]).html(data[index].count.fans_count+'粉丝 '+data[index].count.follow_count+'关注')
@@ -46,6 +46,22 @@ $(function (){
 						$('.find_user_limg li',$lis[index]).eq(1).find('img').attr('src',gpic_2)
 						$('.find_user_limg li',$lis[index]).eq(2).find('img').attr('src',gpic_3)
 						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4)
+						r = data[index].relation
+						switch(r){
+							case '1':
+								reation='相互关注';
+							break;
+							case '2':
+								reation='已关注';
+							break;
+							case '4':
+								reation='<span>+</span>关注';
+							break;
+							default:
+								reation='<span>+</span>关注';
+							break;
+						}
+						$('.find_user_authflw',$lis[index]).html(reation);
 					})
 					$('#ul').append($lis)
 					$('#load').hide()

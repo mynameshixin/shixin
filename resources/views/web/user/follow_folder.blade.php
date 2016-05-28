@@ -13,7 +13,7 @@
 			<div class="find_cater perhome_follow_wrap clearfix">
 				<ul class="find_fold_list clearfix" id="ul">
 					<?php foreach ($user_follow_folder as $key => $value) :?>
-					<li class="find_fold_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>">
+					<li class="find_fold_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>" folder_id="{{$value['folder_id']}}">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
 								<a href="#" target="_blank"><img src="{{$value['user']['pic_m'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
@@ -42,19 +42,27 @@
 								<img src="{{$value['folder_goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
 							</div>
 						</div>
-						<a href="javascript:;" class="find_fold_authflw">取消关注</a>
+						<a onclick="relation(this)" class="find_fold_authflw">
+							<?php 
+								if($user_id == $self_id){
+									echo "已关注";
+								}else{
+									echo $value['is_follow']?"已关注":"<span>+</span>特别关注";
+								}
+							?>
+						</a>
 					</li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<h1 id='load' style="text-align: center;line-height: 40px; height:40px;color:#999; font-size: 20px; margin-bottom: 30px;display: none">正在加载中。。。</h1>
+	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 </body>
 <script type="text/javascript">
 	postUrl = '{{url("webd/user/followfolder?oid={$user_id}")}}'
-	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 	postData = {'num':15}
+
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/user/followfolder.js"></script>
 </html>

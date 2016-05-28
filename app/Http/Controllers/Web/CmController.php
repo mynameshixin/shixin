@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
+use App\Websupply\UserWebsupply;
 use App\Lib\UserReg as Registrar;
 use DB;
 use Cache;
@@ -19,9 +20,12 @@ class CmController extends Controller {
     public $user_id=0;
 
     public function __construct(){
+        $user_id = self::get_user_cache($_COOKIE['user_id']);
+
         if(isset($_COOKIE['user_id']) && !empty($_COOKIE['user_id'])) {
             if($user_id = self::get_user_cache($_COOKIE['user_id'])){
                 $this->user_id = $user_id;
+                $this->self_info = UserWebsupply::user_info($user_id);
             }
         }  
     }

@@ -1,3 +1,10 @@
+<script type="text/javascript">
+	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
+	user_id = "{{$user_id}}"
+	self_id = "{{$self_id}}"
+	relationUrl = "{{url('webd/user/relation')}}"
+</script>
+<script src="{{url('web/js/user/relation.js')}}"></script>
 <div class="perhome_per_wrap">
 			<div class="w1248 w1240 clearfix">
 				<div class="perhome_perinfo_wrap clearfix">
