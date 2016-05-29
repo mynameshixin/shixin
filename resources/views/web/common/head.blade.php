@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.imagesloaded.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.wookmark.js"></script>
 	<script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 	<script type="text/javascript">
 		function rect(obj){
 			marginLeft = ($(obj).parent().width()-$(obj).width())/2

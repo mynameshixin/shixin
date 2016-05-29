@@ -46,7 +46,7 @@ $(function (){
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
-		  		if(json.code==200 && json.data.list.goods!=0){
+		  		if(json.code==200 && json.data.list.goods!=0 && json.data.list!=null){
 		  			f = 0
 		  			var $str = ''
 		  			var list  = json.data.list.goods

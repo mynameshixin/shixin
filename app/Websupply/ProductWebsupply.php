@@ -113,4 +113,29 @@ class ProductWebsupply extends CmWebsupply{
         return $list;
     }
 
+
+    public static function get_pic_detail(){
+        $goods = DB::table('goods')->where(['id'=>$id])->first();
+        if($goods){
+            $folder_id = $goods['folder_id'];
+            $goods['user'] = UserWebsupply::user_info($goods['user_id']);
+            $follow = DB::table('user_follow')->where(['userid_follow'=>$oid,'user_id'=>$self_id])->first();
+            $fans = DB::table('user_follow')->where(['user_id'=>$oid,'userid_follow'=>$self_id])->first();
+            //$relation 1 相互关注 2 已关注 3被关注 4未关注
+            $relation = 4;
+            if($follow && $fans){
+                $relation = 1;
+            }elseif($follow && !$fans){
+                $relation = 2;
+            }elseif(!$follow && $fans){
+                $relation = 3;
+            }else{
+                $relation = 4;
+            }
+            $goods['relation'] = $relation;
+            $goods['more'] = DB::table('goods')->where(['folder_id'=>$folder_id])->get();
+            $goods['comments'] = DB::table('comments')->where(['good_id'=>$id])->get();
+        }
+    }
+
 }

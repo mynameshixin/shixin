@@ -33,7 +33,7 @@ class FolderController extends CmController{
 
 	//查询文件夹对应的文件
 	public function getIndex(){
-		$folder = $this->postFolders();
+		$folder = $this->postFolders(1);
 		// dd($folder);
 		$data = [
 			'folder'=>$folder['data']['list'],
@@ -50,9 +50,12 @@ class FolderController extends CmController{
 
 	//查询文件夹被谁关注
 	public function getFans(){
-		$folder = $this->postFans();
+		$folder = $this->postFolders(2);
+		$user_fans = $this->postFans();
+		// dd($user_fans);
 		$data = [
 			'folder'=>$folder['data']['list'],
+			'user_fans'=>$user_fans['data']['list'],
 			'user_info'=>$this->user_info,
 			'self_info'=>$this->self_info,
 			'user_id'=>$this->other_id,
@@ -64,9 +67,10 @@ class FolderController extends CmController{
 	}
 
 
-	public function postFolders(){
+	public function postFolders($kind = 1){
 		$data = Input::all();
 		$data = fparam($data);
+		$data['kind'] = isset($data['kind']) ? $data['kind'] : $kind;
         $data['num'] = isset($data['num']) ? $data['num'] : 15;
         $data['page'] = isset($data['page'])?$data['page']:1;
 		$rs = FolderWebsupply::get_folder_file($this->folder_id,$this->other_id,$this->user_id,$data);

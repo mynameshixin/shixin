@@ -24,7 +24,7 @@ $(function (){
 		  	'data':postData,
 		  	'success':function(json){
 		  		
-		  		if(json.code==200 && json.data.list!=0){
+		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
 		  			f = 0
 		  			data = json.data.list
 

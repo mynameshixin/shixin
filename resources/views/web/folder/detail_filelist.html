@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>堆图家</title>
+	<link rel="stylesheet" type="text/css" href="public/css/font-awesome.min.css">
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="public/css/font-awesome-ie7.min.css">
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="public/css/main.css">
+	<link rel="stylesheet" type="text/css" href="public/css/index.css">
+	<script type="text/javascript" src="public/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="public/plugins/Masonry/masonry-docs.min.js"></script>
+	<script type="text/javascript" src="public/js/index.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="headercontainer w1248 w1240 clearfix">
+			<a href="index.html" class="header_logo"></a>
+			<a href="index.html" class="header_item header_item_on">首页</a>
+			<a href="gallery.html" class="header_item">图集</a>
+			<a href="findall.html" class="header_item">发现</a>
+			<a href="App.html" class="header_item">APP</a>
+			<div href="javascript:;" class="header_add_btn">
+				<div class="header_add_item">
+					<div class="header_add_iwrap">
+						<div class="header_add_up"></div>
+						<div class="header_add_item_awrap">
+							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a1">上传图片</a>
+							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a2">上传商品</a>
+							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a3">添加文件夹</a>
+							<a href="tools.html" target="_blank" class="header_add_item_a header_more_a4">安装堆工具</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<input type="text" class="header_search" placeholder="搜索你喜欢的">
+			<div href="javascript:;" class="header_mess">
+				 
+				<div class="header_moremess">
+					<div class="header_add_up"></div>
+					<div class="header_add_clickbtn clearfix">
+						<a href="javascript:;" class="header_add_clicka header_add_clicka_on" style="border-radius: 6px 0px 0px 0px">通知</a>
+						<a href="javascript:;" class="header_add_clicka" style="border: none;border-radius:0px 6px 0px 0px">消息</a>
+					</div>
+					<div class="header_add_con">
+						<ul class="header_add_cul">
+							<li class="clearfix">
+								<div class="header_add_mava_wrap">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</div>
+								<div class="header_add_font_wrap">
+									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
+									<p class="header_add_font_a">关注了你</p>
+								</div>
+								<!-- <div class="header_add_fold_wrap">
+									<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">	
+								</div> -->
+							</li>
+							<li class="clearfix">
+								<div class="header_add_mava_wrap">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</div>
+								<div class="header_add_font_wrap">
+									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
+									<p class="header_add_font_a">关注了你的文件夹</p>
+								</div>
+								<div class="header_add_fold_wrap">
+									<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">	
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="header_add_mava_wrap">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</div>
+								<div class="header_add_font_wrap">
+									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
+									<p class="header_add_font_a">关注了你的文件夹</p>
+								</div>
+								<div class="header_add_fold_wrap">
+									<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">	
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="header_add_mava_wrap">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</div>
+								<div class="header_add_font_wrap">
+									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
+									<p class="header_add_font_a">关注了你的文件夹</p>
+								</div>
+								<div class="header_add_fold_wrap">
+									<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">	
+								</div>
+							</li>
+						</ul>
+					</div>
+					<a href="javascript:;" class="header_add_more">查看更多</a>
+				</div>
+			</div>
+			<div href="javascript:;" class="header_rel">
+				<a href="#"><img src="public/images/temp_avatar.JPG" alt=""></a>
+				<var class="header_tril"></var>
+				<div class="header_moreinfo">
+					<a href="javascript:;" target="_blank" class="header_more_item header_more_1">我的堆图家</a>
+					<a href="javascript:;" target="_blank" class="header_more_item header_more_2">私信</a>
+					<a href="javascript:;" target="_blank" class="header_more_item header_more_3">我的关注</a>
+					<a href="javascript:;" target="_blank" class="header_more_item header_more_4">堆图家认证</a>
+					<a href="javascript:;" target="_blank" class="header_more_item header_more_5">账号设置</a>
+					<a href="javascript:;" class="header_more_item header_more_6">退出</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="perhome_per_wrap">
+			<div class="w1248 w1240 clearfix">
+				<div class="detail_perinfo_wrap clearfix">
+					<div class="perhome_perinfo clearfix">
+						<div class="detail_filetit_wrap">
+							<div class="detail_filetit">
+								椅子
+							</div>
+							<p class="detail_filedes">drfwserwer</p>
+						</div>
+						<div class="detail_fileinfo">
+							<div class="detail_fileuser">
+								<div class="detail_fuava">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</div>
+								<p class="detail_funame">小明</p>
+							</div>
+							<div class="perhome_perlike_wrap clearfix">
+								<a href="javascript:;" class="perhome_perlike_label perhome_perlike_lon">
+									<p class="perhome_perlike_num">48</p>
+									<p class="perhome_perlike_la">文件</p>
+								</a>
+								<a href="javascript:;" class="perhome_perlike_label">
+									<p class="perhome_perlike_num">21</p>
+									<p class="perhome_perlike_la">关注</p>
+								</a>
+							</div>
+							<div class="detail_filebtn_wrap clearfix">
+								<!-- <div class="detail_filebtn detail_fileball">查看全部</div> -->
+								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div>
+								<div class="detail_filebtn">
+									<div class="detail_filebtn_click detail_fileb_pr">
+										分享
+										<var class="detail_filebtril"></var>
+									</div>
+									<div class="detail_fileb_select slideup">
+										<div class="detail_fileb_selectw">
+											<span class="jiathis_style_32x32" id="own_share">
+												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="public/images/qq.png" height="18" width="15" alt="">QQ</a>
+												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="public/images/wechat.png" height="17" width="19" alt="">微信</a>
+											</span>
+											<var class="detail_fileb_setril"></var>
+										</div>
+									</div>
+								</div>
+								<!-- JiaThis Button BEGIN -->
+								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+								<!-- JiaThis Button END -->
+								<div class="detail_filebtn">
+									<div class="detail_filebtn_click detail_fileb_pr">
+										编辑
+										<var class="detail_filebtril"></var>
+									</div>
+									<div class="detail_fileb_select detail_fileb_selectt slideup">
+										<div class="detail_fileb_selectw">
+											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
+											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_sfld">编辑文件</a>
+											<var class="detail_fileb_setril"></var>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="perhome_scroll_wrap">
+			<div class="w1248 w1240 clearfix">
+				<div class="perhome_scroll_info">
+					<div class="detail_fileuser">
+						<div class="detail_fuava">
+							<img src="public/images/temp_avatar.JPG" alt="">
+						</div>
+						<p class="detail_funame">小明</p>
+					</div>
+					<div class="perhome_perlike_wrap clearfix">
+						<a href="javascript:;" class="perhome_perlike_label perhome_perlike_lon">
+							<p class="perhome_perlike_num">48</p>
+							<p class="perhome_perlike_la">文件</p>
+						</a>
+						<a href="javascript:;" class="perhome_perlike_label">
+							<p class="perhome_perlike_num">21</p>
+							<p class="perhome_perlike_la">关注</p>
+						</a>
+					</div>
+					<div class="detail_filebtn_wrap clearfix">
+								<!-- <div class="detail_filebtn detail_fileball">查看全部</div> -->
+								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div>
+								<div class="detail_filebtn">
+									<div class="detail_filebtn_click detail_fileb_pr">
+										分享
+										<var class="detail_filebtril"></var>
+									</div>
+									<div class="detail_fileb_select slideup">
+										<div class="detail_fileb_selectw">
+											<span class="jiathis_style_32x32" id="own_share">
+												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="public/images/qq.png" height="18" width="15" alt="">QQ</a>
+												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="public/images/wechat.png" height="17" width="19" alt="">微信</a>
+											</span>
+											<var class="detail_fileb_setril"></var>
+										</div>
+									</div>
+								</div>
+								<!-- JiaThis Button BEGIN -->
+								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+								<!-- JiaThis Button END -->
+								<div class="detail_filebtn">
+									<div class="detail_filebtn_click detail_fileb_pr">
+										编辑
+										<var class="detail_filebtril"></var>
+									</div>
+									<div class="detail_fileb_select detail_fileb_selectt slideup">
+										<div class="detail_fileb_selectw">
+											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
+											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_sfld">编辑文件</a>
+											<var class="detail_fileb_setril"></var>
+										</div>
+									</div>
+								</div>
+							</div>
+				</div>
+			</div>
+		</div>
+		<div class="detail_select_wrap haha">
+			<div class="detail_select_bg"></div>
+			<div class="w1248 w1240 clearfix">
+				<div class="detail_select_con">
+					<a href="javascript:;" class="detail_select_cbtn detail_select_cball">全选</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey">完成</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele">删除</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_btncopy">复制至...</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_btnmove">移动至...</a>
+				</div>
+			</div>
+		</div>
+		<div class="w1248 w1240 clearfix">
+
+			<div class="index_con  perhome_wrap">
+				<div class="index_item" style="box-shadow: none;-webkit-box-shadow: none;">
+					<li class="find_fold_li perhome_add_one perhome_add_goods" style="margin-bottom: 0px;">
+						<a href="javascript:;" class="perhome_add_btn">+</a>
+						<div class="perhome_add_des">添加文件</div>
+					</li>
+				</div>
+				
+				<div class="index_item">
+					<div class="index_item_wrap">
+						<div class="index_item_imgwrap clearfix">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/2.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/3.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/4.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/5.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/6.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/7.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/8.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/9.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			    <div class="index_item">
+			    	<div class="index_item_wrap">
+						<div class="index_item_imgwrap">
+							<a class="index_item_blurwrap"></a>
+							<img src="public/images/temp/10.png">
+							<div class="index_item_price">￥980</div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
+								<div class="index_item_rel clearfix">
+									<a href="javascript:;" class="index_item_l">82</a>
+									<a href="javascript:;" class="index_item_c">90</a>
+									<a href="javascript:;" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="javascript:;" class="index_item_authava" target="_blank">
+									<img src="public/images/temp_avatar.JPG" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="javascript:;" class="index_item_talkname">世界有你：</a>
+									<span class="index_item_authto">很漂亮很喜欢哦</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<a href="javascript:;" class="back_to_add">+</a>
+	<!-- 编辑文件弹框 -->
+	<div class="pop_editfile" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				编辑文件
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap clearfix">
+				<div class="pop_desimgwrap">
+					<div class="pop_imgwrap">
+						<img src="public/images/temp/1.png" alt="">
+					</div>
+				</div>
+				
+				<div class="pop_namewrap clearfix">
+					<div class="pop_labelwrap">
+						<span class="pop_labelname">名称</span>
+						<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
+					</div>
+					<div class="pop_foldwrap clearfix">
+						<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+						<select class="pop_iptselect" style="margin-top: 17px;">
+							<option value="">椅子</option>
+							<option value="">桌子</option>
+							<option value="">电视柜</option>
+							<option value="">沙发</option>
+							<option value="">卧室</option>
+							<option value="">卫生间</option>
+						</select>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">标签</span>
+					<select class="pop_labelselect" style="margin-right: 15px;">
+						<option value="">该采集的风格是...</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+					</select>
+					<select class="pop_labelselect">
+						<option value="">该采集的颜色是...</option>
+						<option value="">红</option>
+						<option value="">橙</option>
+						<option value="">黄</option>
+						<option value="">绿</option>
+						<option value="">青</option>
+						<option value="">蓝</option>
+						<option value="">紫</option>
+						<option value="">黑</option>
+						<option value="">白</option>
+						<option value="">灰</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">来自</span>
+					<input class="pop_iptname" placeholder="www.thden.com">
+				</div>
+			</div>
+			
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
+			</div>
+		</div>
+	</div>
+	<!-- 编辑图片弹框 -->
+	<div class="pop_editpic" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				编辑图片
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap">
+				<div class="pop_desimgwrap">
+					<div class="pop_imgwrap">
+						<img src="public/images/temp/1.png" alt="">
+					</div>
+				</div>
+				
+				<div class="pop_namewrap clearfix">
+					<div class="pop_labelwrap">
+						<span class="pop_labelname">名称</span>
+						<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
+					</div>
+					<div class="pop_foldwrap clearfix">
+						<span class="pop_labelname" style="margin-top: 17px;">移动到</span>
+						<select class="pop_iptselect" style="margin-top: 17px;">
+							<option value="">椅子</option>
+							<option value="">桌子</option>
+							<option value="">电视柜</option>
+							<option value="">沙发</option>
+							<option value="">卧室</option>
+							<option value="">卫生间</option>
+						</select>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">标签</span>
+					<select class="pop_labelselect" style="margin-right: 15px;">
+						<option value="">该采集的风格是...</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+					</select>
+					<select class="pop_labelselect">
+						<option value="">该采集的颜色是...</option>
+						<option value="">红</option>
+						<option value="">橙</option>
+						<option value="">黄</option>
+						<option value="">绿</option>
+						<option value="">青</option>
+						<option value="">蓝</option>
+						<option value="">紫</option>
+						<option value="">黑</option>
+						<option value="">白</option>
+						<option value="">灰</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">来自</span>
+					<input class="pop_iptname" placeholder="www.thden.com">
+				</div>
+			</div>
+			
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
+			</div>
+		</div>
+	</div>
+	<!-- 本地上传采集弹框 -->
+	<div class="pop_uploadfile" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				上传采集
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_upload_wrap">
+				<a class="pop_upload_a">
+					<input class="pop_upload" type="file"></input>
+					<span>请选择文件</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- 移动至弹框 -->
+	<div class="pop_movefile" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				移动至...
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">文件夹</span>
+				<div class="pop_fakeselect">
+					<span class="pop_fakedefault">请选择一个文件夹</span>
+					<div class="pop_fakeicon"></div>
+					<div class="pop_optionwrap">
+						<div class="pop_searwrap clearfix">
+							<a href="javascript:;" class="pop_searnewbtn"></a>
+							<input type="text" class="pop_sear" placeholder="Search">
+							<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball pop_searnew">新建</a>
+						</div>
+						<ul class="pop_searul">
+							<li>椅子</li>
+							<li>桌子</li>
+							<li>电视</li>
+							<li>沙发</li>
+							<li>卧室</li>
+							<li>椅子</li>
+							<li>桌子</li>
+							<li>电视</li>
+							<li>沙发</li>
+							<li>卧室</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">移动</a>
+			</div>
+		</div>
+	</div>
+	<!-- 移动提示弹框 -->
+	<div class="pop_movetips" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				提示
+				<span class="pop_close"></span>
+			</p>
+			<p class="pop_movetp"> 你还没有选择需要移动的文件  </p>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+			</div>
+		</div>
+	</div>
+	<!-- 复制至弹框 -->
+	<div class="pop_copyfile" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				复制至...
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">文件夹</span>
+				<div class="pop_fakeselect">
+					<span class="pop_fakedefault">请选择一个文件夹</span>
+					<div class="pop_fakeicon"></div>
+					<div class="pop_optionwrap">
+						<div class="pop_searwrap clearfix">
+							<a href="javascript:;" class="pop_searnewbtn"></a>
+							<input type="text" class="pop_sear" placeholder="Search">
+							<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball pop_searnew">新建</a>
+						</div>
+						<ul class="pop_searul">
+							<li>椅子</li>
+							<li>桌子</li>
+							<li>电视</li>
+							<li>沙发</li>
+							<li>卧室</li>
+							<li>椅子</li>
+							<li>桌子</li>
+							<li>电视</li>
+							<li>沙发</li>
+							<li>卧室</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">移动</a>
+			</div>
+		</div>
+	</div>
+	<!-- 复制提示弹框 -->
+	<div class="pop_copytips" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				提示
+				<span class="pop_close"></span>
+			</p>
+			<p class="pop_movetp"> 你还没有选择需要复制的文件  </p>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+			</div>
+		</div>
+	</div>
+	<!-- 普通文件夹变隐私提示弹框 -->
+	<div class="pop_privtips" style="display:none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				提示
+				<span class="pop_close"></span>
+			</p>
+			<p class="pop_movetp"> 该文件夹已变为隐私文件夹，只有你自己可见。    </p>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+			</div>
+		</div>
+	</div>
+	<!-- 文件夹没找到提示弹框 -->
+	<div class="pop_findnotips" style="display:none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				提示
+				<span class="pop_close"></span>
+			</p>
+			<p class="pop_movetp">未找到该文件夹</p>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+			</div>
+		</div>
+	</div>
+	<!-- 文件删除提示弹框 -->
+	<div class="pop_deletetips" style="display:none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				提示
+				<span class="pop_close"></span>
+			</p>
+			<p class="pop_movetp">你确定要删除该采集吗？</p>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+			</div>
+		</div>
+	</div>
+	<!-- 采集创建成功提示弹框 -->
+	<div class="pop_successtips"  style="display:none;">
+		<div class="pop_con">
+			<div class="pop_newcollect">
+				<img src="public/images/temp_avatar.JPG" alt="">
+			</div>
+			<div class="pop_newcoltip">
+				<p class="pop_colspcol">成功采集到</p>
+				<p class="pop_colspwjj"><span>椅子</span>文件夹</p>
+			</div>
+		</div>
+	</div>
+	<!-- 获取商品网址弹框 -->
+	<div class="pop_uploadgoods" style="display:none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				上传商品
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_namewrap clearfix">
+				<input class="pop_iptgoods" placeholder="粘贴商品网站">
+			</div>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsget">获取</a>
+			</div>
+		</div>
+	</div>
+	<!-- 上传图片详细弹框 -->
+	<div class="pop_goods_upload" style="display:none;">
+		<div class="pop_con clearfix">
+			<p class="pop_tit">
+				上传图片
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap">
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">名称</span>
+					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
+				</div>
+				<!-- <div class="pop_namewrap clearfix">
+					<span class="pop_labelname">价格</span>
+					<p class="pop_iptprice">￥45</p>
+				</div> -->
+				<div class="pop_goodsimgwrap clearfix">
+					<p class="pop_goodsimgtit">图片</p>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<div class="pop_good_toppne">主图</div>
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+				</div>
+				<div class="pop_desimgwrap clearfix">
+					<div class="pop_deswrap clearfix">
+						<span class="pop_labelname">评论</span>
+						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="pop_btnwrap pop_goods_share">
+				<div class="pop_col_lbtm">
+					<span class="pop_col_lbshare">
+						分享到 :
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
+						<a class="pop_col_lbswc"></a>
+						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
+					</span>
+					
+					<span class="pop_col_lbshare">
+						微信朋友圈
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
+						<a class="pop_col_lbsqq"></a>
+						<a class="jiathis_button_qzone jiathis_button"></a>
+					</span>
+					<span class="pop_col_lbshare">
+						QQ空间
+					</span>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+				</div>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
+			</div>
+		</div>
+	</div>
+	<!-- 上传商品详细弹框 -->
+	<div class="pop_pic_upload" style="display:none;">
+		<div class="pop_con clearfix">
+			<p class="pop_tit">
+				上传商品
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap">
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">名称</span>
+					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">价格</span>
+					<p class="pop_iptprice">￥45</p>
+				</div>
+				<div class="pop_goodsimgwrap clearfix">
+					<p class="pop_goodsimgtit">商品图片</p>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<div class="pop_good_toppne">主图</div>
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+				</div>
+				<div class="pop_desimgwrap clearfix">
+					<div class="pop_deswrap clearfix">
+						<span class="pop_labelname">评论</span>
+						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="pop_btnwrap pop_goods_share">
+				<div class="pop_col_lbtm">
+					<span class="pop_col_lbshare">
+						分享到 :
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
+						<a class="pop_col_lbswc"></a>
+						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
+					</span>
+					
+					<span class="pop_col_lbshare">
+						微信朋友圈
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
+						<a class="pop_col_lbsqq"></a>
+						<a class="jiathis_button_qzone jiathis_button"></a>
+					</span>
+					<span class="pop_col_lbshare">
+						QQ空间
+					</span>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+				</div>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
+			</div>
+		</div>
+	</div>
+	<!-- 上传商品弹框 -->
+	<div class="pop_goodsupload" style="display:none;">
+		<div class="pop_con">
+			<div class="pop_conabwrap">
+				<div class="pop_cona"></div>
+				<div class="pop_conb"></div>
+			</div>
+		</div>
+		
+		
+	</div>
+</body>
+<script type="text/javascript">
+		$(function() {
+			$('.perhome_add_goods').click(function(){
+				$('.pop_goodsupload').show();
+				var popconHei = $('.pop_goodsupload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_goodsupload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  	var poptopHei = $('.pop_goodsupload .pop_con').height();
+					$('.pop_con').css({
+					   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_goodsupload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_goodsupload').hide();
+			});
+			$('.pop_goodsupload .pop_con').click(function(){
+				event.stopPropagation()
+			});
+			$('.pop_cona').click(function(){
+				$('.pop_goodsupload').hide();
+				$('.pop_goods_upload').show();
+				var popconHei = $('.pop_goods_upload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_goods_upload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  var poptopHei = $('.pop_goods_upload .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_goods_upload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_goods_upload').hide();
+			});
+			$('.pop_goods_upload .pop_con').click(function(){
+				event.stopPropagation()
+			});
+			$('.pop_conb').click(function(){
+				$('.pop_goodsupload').hide();
+				$('.pop_pic_upload').show();
+				var popconHei = $('.pop_pic_upload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_pic_upload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  var poptopHei = $('.pop_pic_upload .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_pic_upload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_pic_upload').hide();
+			});
+			$('.pop_pic_upload .pop_con').click(function(){
+				event.stopPropagation()
+			});
+			$('.pop_col_r').click(function(){
+				if ($(this).hasClass('pop_col_radio_on')) {
+					$(this).removeClass('pop_col_radio_on').addClass('pop_col_radio');
+					$(this).parent('.pop_col_bwrap').find('.jiathis_button').removeClass('jiathis_button_on')
+				}else{
+					$(this).removeClass('pop_col_radio').addClass('pop_col_radio_on');
+					$(this).parent('.pop_col_bwrap').find('.jiathis_button').addClass('jiathis_button_on')
+				};
+			})
+			// 触发分享按钮开始
+			$('.detail_pop_goodsave').click(function(){
+				$('.jiathis_button_on').trigger('click')
+			})
+			// 触发分享按钮结束
+
+			//点击删除提示效果开始
+			$('.detail_select_btndele').click(function(){
+				$('.pop_deletetips').show();
+				var poptopHei = $('.pop_deletetips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_deletetips,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_deletetips').hide();
+			})
+			$('.pop_deletetips .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//点击复制至提示效果结束
+
+			//点击复制至效果开始
+			$('.detail_select_btncopy').click(function(){
+				$('.pop_copyfile').show();
+				var poptopHei = $('.pop_copyfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_copyfile,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_copyfile').hide();
+			})
+			$('.pop_copyfile .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//点击复制至效果结束
+
+			//点击复制至提示效果开始
+			$('.detail_select_btncopy').click(function(){
+				$('.pop_copytips').show();
+				var poptopHei = $('.pop_copytips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_copytips,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_copytips').hide();
+			})
+			$('.pop_copytips .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//点击复制至提示效果结束
+
+			// 下拉框效果开始
+			$('.pop_fakeselect').click(function(){
+				$('.pop_optionwrap').show();
+				var poptopHei = $('.pop_optionwrap .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_searul li').click(function(){
+				event.stopPropagation()
+				var fakeOption = $(this).html();
+				$('.pop_fakedefault').html(fakeOption);
+				$('.pop_optionwrap').hide();
+			})
+			// 下拉框效果结束
+			
+
+			//文件未找到提示效果开始
+			$('.pop_searnew').click(function(){
+				$('.pop_findnotips').show();
+				var poptopHei = $('.pop_findnotips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_findnotips,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_findnotips').hide();
+			})
+			$('.pop_findnotips .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//文件未找到提示效果结束
+
+			//点击移动至效果开始
+			$('.detail_select_btnmove').click(function(){
+				$('.pop_movefile').show();
+				var poptopHei = $('.pop_movefile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_movefile,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_movefile').hide();
+			})
+			$('.pop_movefile .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//点击移动至效果结束
+
+			//点击移动至提示效果开始
+			$('.detail_select_btnmove').click(function(){
+				$('.pop_movetips').show();
+				var poptopHei = $('.pop_movetips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_movetips,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_movetips').hide();
+			})
+			$('.pop_movetips .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			//点击移动至提示效果结束
+			$('.back_to_add').click(function(){
+				$('.pop_uploadfile').show();
+				var poptopHei = $('.pop_uploadfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_uploadfile,.pop_close').click(function(){
+				$('.pop_uploadfile').hide();
+			})
+			$('.pop_uploadfile .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			$(".pop_upload_a").on("change","input[type='file']",function(){
+			    var filePath=$(this).val();
+			    if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
+			        var arr=filePath.split('\\');
+			        var fileName=arr[arr.length-1];
+			        $(".pop_upload_a span").html(fileName);
+			    }else{
+			        $(".pop_upload_a span").html("您上传文件类型有误！");
+			        return false 
+			    }
+			})
+			$('.detail_fileb_sfld').click(function(){
+				$('.pop_editfile').show();
+				var poptopHei = $('.pop_editfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_editfile').hide();
+			})
+			// $('.detail_fileb_sfld').click(function(){
+			// 	$('.pop_editpic').show();
+			// });
+			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_editpic').hide();
+			})
+			$('.pop_con').click(function(){
+				event.stopPropagation()
+			})
+		    var $container = $('.index_con');
+		    $container.imagesLoaded(function() {
+		        $container.masonry({
+	                itemSelector: '.index_item',
+	                gutter: 15,
+	                isAnimated: true,
+	            });
+	            var text = $('.index_item_intro');
+	              str = text.html(),
+	              textLeng = 29;
+	              if(str.length > textLeng ){
+	                    text.html( str.substring(0,textLeng )+"...");
+	              }
+		     });
+		    $('.detail_fileb_simg').click(function(){
+		    	var detail_selecth = '<div class="detail_raido_wrap"></div>'
+		    	$('.index_item_imgwrap ').append(detail_selecth)
+		    	$('.detail_raido_wrap').click(function(){
+		    		if ($(this).hasClass('detail_raido_wrapred')) {
+		    			$(this).removeClass('detail_raido_wrapred').addClass('detail_raido_wrap');
+		    		}else{
+		    			$(this).removeClass('detail_raido_wrap').addClass('detail_raido_wrapred');
+		    		};
+		    	});
+		    	if (!$('.detail_select_wrap').hasClass('haha')) {
+		    		$('.detail_select_wrap').show()
+		    		$('.detail_select_wrap').slideUp(400,function(){
+		    			$('.detail_select_wrap').addClass('haha')
+		    		});
+		    		event.stopPropagation();
+		    	}else{
+		    		$('.detail_select_wrap').slideDown(400, function() {
+		    			$('.detail_select_wrap').removeClass('haha')
+		    		});
+		    	};
+		    })
+		    $('.detail_filebtn_click').click(function(){
+		    	event.stopPropagation();
+		    	if ($(this).siblings('.detail_fileb_select').hasClass('slideup')) {
+		    		$('.detail_fileb_select').addClass('slideup');
+		    		$(this).siblings('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+		    		var isOut = true;
+		    	}else{
+		    		$('.detail_fileb_select').addClass('slideup');
+		    		$(this).siblings('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+		    	};
+		    	window.document.onclick = function(){
+			    	if(isOut){
+			            $('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+			        }else{
+			        	$('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+			        }
+			    }
+		    });
+		    $(window).scroll(function(event) {
+			var scrollHei = $('body').scrollTop();
+			if (scrollHei <= 130) {
+				$('.perhome_scroll_info,.perhome_scroll_wrap').css({
+					transform:'translate(0px, -50px)',
+					transition:'transform 200ms ease'
+				});
+				$('.perhome_scroll_wrap').removeClass('shadow');
+			}else{
+				$('.perhome_scroll_wrap').addClass('shadow');
+				$('.perhome_scroll_wrap').css({
+					display:'block',
+					position: 'fixed',
+					transform:'translate(0px, -0px)',
+					transition:'transform 200ms ease'
+				});
+				$('.perhome_scroll_info').css({
+					transform:'translate(0px, -0px)',
+					transition:'transform 200ms ease'
+				})
+			};
+		});
+		    
+		});
+	</script>
+</html>

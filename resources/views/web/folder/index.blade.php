@@ -67,67 +67,152 @@
 	<div class="pop_editfile" style="display: none;">
 		<div class="pop_con">
 			<p class="pop_tit">
-				编辑文件夹
+				编辑文件
 				<span class="pop_close"></span>
 			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="北欧纯木沙发椅">
-			</div>
-			<div class="pop_desimgwrap">
-				<div class="pop_deswrap clearfix">
-					<span class="pop_labelname">描述</span>
-					<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
+			<div class="pop_conwrap clearfix">
+				<div class="pop_desimgwrap">
+					<div class="pop_imgwrap">
+						<img src="public/images/temp/1.png" alt="">
+					</div>
 				</div>
-				<div class="pop_imgwrap">
-					<img src="public/images/temp/1.png" alt="">
+				
+				<div class="pop_namewrap clearfix">
+					<div class="pop_labelwrap">
+						<span class="pop_labelname">名称</span>
+						<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
+					</div>
+					<div class="pop_foldwrap clearfix">
+						<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+						<select class="pop_iptselect" style="margin-top: 17px;">
+							<option value="">椅子</option>
+							<option value="">桌子</option>
+							<option value="">电视柜</option>
+							<option value="">沙发</option>
+							<option value="">卧室</option>
+							<option value="">卫生间</option>
+						</select>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">标签</span>
+					<select class="pop_labelselect" style="margin-right: 15px;">
+						<option value="">该采集的风格是...</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+					</select>
+					<select class="pop_labelselect">
+						<option value="">该采集的颜色是...</option>
+						<option value="">红</option>
+						<option value="">橙</option>
+						<option value="">黄</option>
+						<option value="">绿</option>
+						<option value="">青</option>
+						<option value="">蓝</option>
+						<option value="">紫</option>
+						<option value="">黑</option>
+						<option value="">白</option>
+						<option value="">灰</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">来自</span>
+					<input class="pop_iptname" placeholder="www.thden.com">
 				</div>
 			</div>
 			
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
-				<select class="pop_iptselect" style="margin-top: 17px;">
-					<option value="">椅子</option>
-					<option value="">桌子</option>
-					<option value="">电视柜</option>
-					<option value="">沙发</option>
-					<option value="">卧室</option>
-					<option value="">卫生间</option>
-				</select>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
 			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">标签</span>
-				<select class="pop_labelselect" style="margin-right: 15px;">
-					<option value="">该采集的风格是...</option>
-					<option value="">现代</option>
-					<option value="">中式</option>
-					<option value="">日式</option>
-					<option value="">新古典</option>
-					<option value="">美式</option>
-					<option value="">现代</option>
-					<option value="">中式</option>
-					<option value="">日式</option>
-					<option value="">新古典</option>
-					<option value="">美式</option>
-				</select>
-				<select class="pop_labelselect">
-					<option value="">该采集的颜色是...</option>
-					<option value="">红</option>
-					<option value="">橙</option>
-					<option value="">黄</option>
-					<option value="">绿</option>
-					<option value="">青</option>
-					<option value="">蓝</option>
-					<option value="">紫</option>
-					<option value="">黑</option>
-					<option value="">白</option>
-					<option value="">灰</option>
-				</select>
+		</div>
+	</div>
+	<!-- 编辑图片弹框 -->
+	<div class="pop_editpic" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				编辑图片
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap">
+				<div class="pop_desimgwrap">
+					<div class="pop_imgwrap">
+						<img src="public/images/temp/1.png" alt="">
+					</div>
+				</div>
+				
+				<div class="pop_namewrap clearfix">
+					<div class="pop_labelwrap">
+						<span class="pop_labelname">名称</span>
+						<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
+					</div>
+					<div class="pop_foldwrap clearfix">
+						<span class="pop_labelname" style="margin-top: 17px;">移动到</span>
+						<select class="pop_iptselect" style="margin-top: 17px;">
+							<option value="">椅子</option>
+							<option value="">桌子</option>
+							<option value="">电视柜</option>
+							<option value="">沙发</option>
+							<option value="">卧室</option>
+							<option value="">卫生间</option>
+						</select>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">标签</span>
+					<select class="pop_labelselect" style="margin-right: 15px;">
+						<option value="">该采集的风格是...</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+						<option value="">现代</option>
+						<option value="">中式</option>
+						<option value="">日式</option>
+						<option value="">新古典</option>
+						<option value="">美式</option>
+					</select>
+					<select class="pop_labelselect">
+						<option value="">该采集的颜色是...</option>
+						<option value="">红</option>
+						<option value="">橙</option>
+						<option value="">黄</option>
+						<option value="">绿</option>
+						<option value="">青</option>
+						<option value="">蓝</option>
+						<option value="">紫</option>
+						<option value="">黑</option>
+						<option value="">白</option>
+						<option value="">灰</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">来自</span>
+					<input class="pop_iptname" placeholder="www.thden.com">
+				</div>
 			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">来自</span>
-				<input class="pop_iptname" placeholder="www.thden.com">
-			</div>
+			
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
@@ -310,7 +395,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 上传商品提示弹框 -->
+	<!-- 获取商品网址弹框 -->
 	<div class="pop_uploadgoods" style="display:none;">
 		<div class="pop_con">
 			<p class="pop_tit">
@@ -326,58 +411,65 @@
 			</div>
 		</div>
 	</div>
-	<!-- 获取商品网址弹框 -->
-	<div class="pop_goodsurl" style="display:none;">
+	<!-- 上传图片详细弹框 -->
+	<div class="pop_goods_upload" style="display:none;">
 		<div class="pop_con clearfix">
 			<p class="pop_tit">
-				上传商品
+				上传图片
 				<span class="pop_close"></span>
 			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="北欧纯木沙发椅">
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">价格</span>
-				<p class="pop_iptprice">￥45</p>
-			</div>
-			<div class="pop_goodsimgwrap clearfix">
-				<p class="pop_goodsimgtit">商品图片</p>
-				<div class="pop_goodseachimg">
-					<a href="javascript:;" class="pop_gooddelete"></a>
-					<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-					<div class="pop_good_toppne">主图</div>
+			<div class="pop_conwrap">
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">名称</span>
+					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
 				</div>
-				<div class="pop_goodseachimg">
-					<a href="javascript:;" class="pop_gooddelete"></a>
-					<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
+				<!-- <div class="pop_namewrap clearfix">
+					<span class="pop_labelname">价格</span>
+					<p class="pop_iptprice">￥45</p>
+				</div> -->
+				<div class="pop_goodsimgwrap clearfix">
+					<p class="pop_goodsimgtit">图片</p>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<div class="pop_good_toppne">主图</div>
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
 				</div>
-				<div class="pop_goodseachimg">
-					<a href="javascript:;" class="pop_gooddelete"></a>
-					<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
+				<div class="pop_desimgwrap clearfix">
+					<div class="pop_deswrap clearfix">
+						<span class="pop_labelname">评论</span>
+						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
+					</div>
 				</div>
-				<div class="pop_goodseachimg">
-					<a href="javascript:;" class="pop_gooddelete"></a>
-					<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
 				</div>
 			</div>
-			<div class="pop_desimgwrap clearfix">
-				<div class="pop_deswrap clearfix">
-					<span class="pop_labelname">评论</span>
-					<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
-				</div>
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
-				<select class="pop_iptselect" style="margin-top: 17px;">
-					<option value="">椅子</option>
-					<option value="">桌子</option>
-					<option value="">电视柜</option>
-					<option value="">沙发</option>
-					<option value="">卧室</option>
-					<option value="">卫生间</option>
-				</select>
-			</div>
+			
 			<div class="pop_btnwrap pop_goods_share">
 				<div class="pop_col_lbtm">
 					<span class="pop_col_lbshare">
@@ -409,20 +501,174 @@
 			</div>
 		</div>
 	</div>
+	<!-- 上传商品详细弹框 -->
+	<div class="pop_pic_upload" style="display:none;">
+		<div class="pop_con clearfix">
+			<p class="pop_tit">
+				上传商品
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_conwrap">
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">名称</span>
+					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname">价格</span>
+					<p class="pop_iptprice">￥45</p>
+				</div>
+				<div class="pop_goodsimgwrap clearfix">
+					<p class="pop_goodsimgtit">商品图片</p>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<div class="pop_good_toppne">主图</div>
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg">
+						<a href="javascript:;" class="pop_gooddelete"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+					</div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+					<div class="pop_goodseachimg pop_goodseachadd"></div>
+				</div>
+				<div class="pop_desimgwrap clearfix">
+					<div class="pop_deswrap clearfix">
+						<span class="pop_labelname">评论</span>
+						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
+					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
+					<select class="pop_iptselect" style="margin-top: 17px;">
+						<option value="">椅子</option>
+						<option value="">桌子</option>
+						<option value="">电视柜</option>
+						<option value="">沙发</option>
+						<option value="">卧室</option>
+						<option value="">卫生间</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="pop_btnwrap pop_goods_share">
+				<div class="pop_col_lbtm">
+					<span class="pop_col_lbshare">
+						分享到 :
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
+						<a class="pop_col_lbswc"></a>
+						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
+					</span>
+					
+					<span class="pop_col_lbshare">
+						微信朋友圈
+					</span>
+					&nbsp;
+					<span class="pop_col_bwrap">
+						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
+						<a class="pop_col_lbsqq"></a>
+						<a class="jiathis_button_qzone jiathis_button"></a>
+					</span>
+					<span class="pop_col_lbshare">
+						QQ空间
+					</span>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+				</div>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
+			</div>
+		</div>
+	</div>
+	<!-- 上传商品弹框 -->
+	<div class="pop_goodsupload" style="display:none;">
+		<div class="pop_con">
+			<div class="pop_conabwrap">
+				<div class="pop_cona"></div>
+				<div class="pop_conb"></div>
+			</div>
+		</div>
+		
+		
+	</div>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 </body>
 <script type="text/javascript">
 		$(function() {
 			$('.perhome_add_goods').click(function(){
-				$('.pop_goodsurl').show();
+
+				$('.pop_goodsupload').show();
+				var popconHei = $('.pop_goodsupload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_goodsupload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  	var poptopHei = $('.pop_goodsupload .pop_con').height();
+					$('.pop_con').css({
+					   'margin-top':-(poptopHei/2)
+				})
 			});
-			$('.pop_goodsurl,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_goodsurl').hide();
+			$('.pop_goodsupload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_goodsupload').hide();
 			});
-			$('.pop_goodsurl .pop_con').click(function(){
+			$('.pop_goodsupload .pop_con').click(function(){
 				event.stopPropagation()
 			});
-
+			$('.pop_cona').click(function(){
+				$('.pop_goodsupload').hide();
+				$('.pop_goods_upload').show();
+				var popconHei = $('.pop_goods_upload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_goods_upload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  var poptopHei = $('.pop_goods_upload .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_goods_upload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_goods_upload').hide();
+			});
+			$('.pop_goods_upload .pop_con').click(function(){
+				event.stopPropagation()
+			});
+			$('.pop_conb').click(function(){
+				$('.pop_goodsupload').hide();
+				$('.pop_pic_upload').show();
+				var popconHei = $('.pop_pic_upload .pop_conwrap').height();
+			  	if (popconHei > 410) {
+				    $('.pop_pic_upload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  var poptopHei = $('.pop_pic_upload .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			});
+			$('.pop_pic_upload,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_pic_upload').hide();
+			});
+			$('.pop_pic_upload .pop_con').click(function(){
+				event.stopPropagation()
+			});
 			$('.pop_col_r').click(function(){
 				if ($(this).hasClass('pop_col_radio_on')) {
 					$(this).removeClass('pop_col_radio_on').addClass('pop_col_radio');
@@ -441,6 +687,10 @@
 			//点击删除提示效果开始
 			$('.detail_select_btndele').click(function(){
 				$('.pop_deletetips').show();
+				var poptopHei = $('.pop_deletetips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_deletetips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_deletetips').hide();
@@ -453,6 +703,10 @@
 			//点击复制至效果开始
 			$('.detail_select_btncopy').click(function(){
 				$('.pop_copyfile').show();
+				var poptopHei = $('.pop_copyfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_copyfile,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_copyfile').hide();
@@ -465,6 +719,10 @@
 			//点击复制至提示效果开始
 			$('.detail_select_btncopy').click(function(){
 				$('.pop_copytips').show();
+				var poptopHei = $('.pop_copytips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_copytips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_copytips').hide();
@@ -477,6 +735,10 @@
 			// 下拉框效果开始
 			$('.pop_fakeselect').click(function(){
 				$('.pop_optionwrap').show();
+				var poptopHei = $('.pop_optionwrap .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			});
 			$('.pop_searul li').click(function(){
 				event.stopPropagation()
@@ -490,6 +752,10 @@
 			//文件未找到提示效果开始
 			$('.pop_searnew').click(function(){
 				$('.pop_findnotips').show();
+				var poptopHei = $('.pop_findnotips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_findnotips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_findnotips').hide();
@@ -502,6 +768,10 @@
 			//点击移动至效果开始
 			$('.detail_select_btnmove').click(function(){
 				$('.pop_movefile').show();
+				var poptopHei = $('.pop_movefile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_movefile,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_movefile').hide();
@@ -514,6 +784,10 @@
 			//点击移动至提示效果开始
 			$('.detail_select_btnmove').click(function(){
 				$('.pop_movetips').show();
+				var poptopHei = $('.pop_movetips .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_movetips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_movetips').hide();
@@ -524,6 +798,10 @@
 			//点击移动至提示效果结束
 			$('.back_to_add').click(function(){
 				$('.pop_uploadfile').show();
+				var poptopHei = $('.pop_uploadfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			})
 			$('.pop_uploadfile,.pop_close').click(function(){
 				$('.pop_uploadfile').hide();
@@ -544,14 +822,37 @@
 			})
 			$('.detail_fileb_sfld').click(function(){
 				$('.pop_editfile').show();
+				var poptopHei = $('.pop_editfile .pop_con').height();
+				$('.pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
 			});
 			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_editfile').hide();
 			})
+			// $('.detail_fileb_sfld').click(function(){
+			// 	$('.pop_editpic').show();
+			// });
+			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
+				$('.pop_editpic').hide();
+			})
 			$('.pop_con').click(function(){
 				event.stopPropagation()
 			})
-		   
+		    var $container = $('.index_con');
+		    $container.imagesLoaded(function() {
+		        $container.masonry({
+	                itemSelector: '.index_item',
+	                gutter: 15,
+	                isAnimated: true,
+	            });
+	            var text = $('.index_item_intro');
+	              str = text.html(),
+	              textLeng = 29;
+	              if(str.length > textLeng ){
+	                    text.html( str.substring(0,textLeng )+"...");
+	              }
+		     });
 		    $('.detail_fileb_simg').click(function(){
 		    	var detail_selecth = '<div class="detail_raido_wrap"></div>'
 		    	$('.index_item_imgwrap ').append(detail_selecth)
@@ -592,6 +893,28 @@
 			        }
 			    }
 		    });
+		    $(window).scroll(function(event) {
+			var scrollHei = $('body').scrollTop();
+			if (scrollHei <= 130) {
+				$('.perhome_scroll_info,.perhome_scroll_wrap').css({
+					transform:'translate(0px, -50px)',
+					transition:'transform 200ms ease'
+				});
+				$('.perhome_scroll_wrap').removeClass('shadow');
+			}else{
+				$('.perhome_scroll_wrap').addClass('shadow');
+				$('.perhome_scroll_wrap').css({
+					display:'block',
+					position: 'fixed',
+					transform:'translate(0px, -0px)',
+					transition:'transform 200ms ease'
+				});
+				$('.perhome_scroll_info').css({
+					transform:'translate(0px, -0px)',
+					transition:'transform 200ms ease'
+				})
+			};
+		});
 		    
 		});
 	</script>

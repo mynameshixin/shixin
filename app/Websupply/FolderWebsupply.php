@@ -105,16 +105,17 @@ class FolderWebsupply extends CmWebsupply {
 			$img_url = LibUtil::getPicUrl($imageId, 1);
 			$folder['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 			$id = $folder['id'];
-		 	$goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
-
-			foreach ($goods as $k => $v) {
-				$commentArr = CommentWebsupply::getCommentFirst($v['id']);
-				$goods[$k]['comment'] = $commentArr;
-	 			if(strpos($v['image_ids'],',') == 0){
-	 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
-	 			}
-			 }
-	 		$folder['goods'] = $goods;
+			if($data['kind'] == 1){
+			 	$goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
+				foreach ($goods as $k => $v) {
+					$commentArr = CommentWebsupply::getCommentFirst($v['id']);
+					$goods[$k]['comment'] = $commentArr;
+		 			if(strpos($v['image_ids'],',') == 0){
+		 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+		 			}
+				 }
+		 		$folder['goods'] = $goods;
+		 	}
 	 		$folder['fans_count'] = DB::table('collection_folder')->where('folder_id',$folder_id)->count();
 		}
 		
@@ -122,32 +123,37 @@ class FolderWebsupply extends CmWebsupply {
 	}
 
 	//通过文件夹id获取粉丝人
-	public static function get_folder_fans($folder_id,$other_id,$user_id,$data){
+	public static function get_folder_fans($folder_id,$other_id,$self_id,$data){
 		$page = isset($data['page'])?$data['page']:1;
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;
-		$condition =['id'=>$folder_id,'user_id'=>$other_id];
-		if($other_id!=$user_id) $condition['private'] = 0;
-		$folder = DB::table('folders')->where($condition)->first();
-		if($folder){
-			$imageId = $folder['image_id'];
-			$img_url = LibUtil::getPicUrl($imageId, 1);
-			$folder['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
-			$id = $folder['id'];
-		 	$goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
+		$condition =['folder_id'=>$folder_id];
+		$user_info = DB::table('collection_folder')->where($condition)->get();
 
-			foreach ($goods as $k => $v) {
-				$commentArr = CommentWebsupply::getCommentFirst($v['id']);
-				$goods[$k]['comment'] = $commentArr;
-	 			if(strpos($v['image_ids'],',') == 0){
-	 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
-	 			}
-			 }
-	 		$folder['goods'] = $goods;
-	 		$folder['fans_count'] = DB::table('collection_folder')->where('folder_id',$folder_id)->count();
+		if($user_info){
+			foreach ($user_info as $key => $value) {
+				$id  = $value['user_id'];
+				$follow = DB::table('user_follow')->where(['userid_follow'=>$id,'user_id'=>$self_id])->first();
+	    		$fans = DB::table('user_follow')->where(['user_id'=>$id,'userid_follow'=>$self_id])->first();
+	    		//$relation 1 相互关注 2 已关注 3被关注 4未关注
+	    		$relation = 4;
+	    		if($follow && $fans){
+	    			$relation = 1;
+	    		}elseif($follow && !$fans){
+	    			$relation = 2;
+	    		}elseif(!$follow && $fans){
+	    			$relation = 3;
+	    		}else{
+	    			$relation = 4;
+	    		}
+	    		$user_info[$key]['user'] = UserWebsupply::user_info($id);
+	    		$user_info[$key]['relation'] = $relation;
+	    		$user_info[$key]['count'] = UserWebsupply::get_count(['fans_count','follow_count'],$value['user_id']);
+	    		$user_info[$key]['folders'] = self::get_user_folder($value['user_id'],4,0);
+			}
 		}
 		
-		return $folder;
+		return $user_info;
 	}
 	
 }

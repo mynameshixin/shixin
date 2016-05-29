@@ -12,11 +12,12 @@ a,a:focus,input,textarea,select{outline:none;outline-style:none;text-decoration:
 th, td{vertical-align:top;}
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .clearfix{*+height:1%;}
+textarea{resize: none;}
 /*body样式*/
 body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 /*头部样式*/
 .header{
-	width: 100%;height: 74px;
+	width: 100%;height: 48px;
 	background: #ffffff;
 	-webkit-box-shadow:0 0 4px rgba(0,0,0,.2);
 	-moz-box-shadow:0 0 4px rgba(0,0,0,.2);
@@ -32,17 +33,18 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .w1248 .mrightzero{margin-right: 0px;}
 .w990{width: 990px;margin:0 auto;position: relative;}
 .w990 .mrightzero{margin-right: 0px;}
-.header_logo{height: 74px;font:bold 24px/74px "Microsoft YaHei";color: #e15335;display: inline-block;float: left;margin-right: 15px;text-shadow:1px 1px 1px #f1bbb4;}
-.header_item{height: 74px;font:normal 18px/74px "Microsoft YaHei";color: #333;display: inline-block;padding:0px 15px;float: left;/*text-shadow:1px 1px 1px #cecece;*/}
+.w992{width: 992px;margin:0 auto;position: relative;}
+.header_logo{height: 48px;font:bold 24px/48px "Microsoft YaHei";color: #e15335;display: inline-block;float: left;margin-right: 13px;text-shadow:1px 1px 1px #f1bbb4;background: url(../images/dtj_icon.png) -4px -706px no-repeat;width: 74px;}
+.header_item{height: 48px;font:normal 18px/48px "Microsoft YaHei";color: #333;display: inline-block;padding:0px 15px;float: left;/*text-shadow:1px 1px 1px #cecece;*/}
 .header_item_on{color: #c90000;}
-.header_add_btn{width: 28px;height: 28px;background: #e15335;border-radius: 50%;color: #fff;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:23px 0px 0px 15px;position: relative;cursor: pointer;}
-.header_search{width: 663px;height: 42px;border: 1px solid #b0b0b0;border-radius: 5px;float: left;margin:13px 0px 0px 15px;padding:0px 10px;}
-.header_mess{width: 68px;font:normal 24px/74px "Microsoft YaHei";color: #b0b0b0;display: inline-block;text-align: center;border-left: 1px solid #ebebeb;border-right:1px solid #ebebeb;margin-left: 9px;float: left;position: relative;}
-.header_rel{width: 68px;text-align: center;border-right:1px solid #ebebeb;padding:19px 0px;position: relative;float: left;}
+.header_add_btn{width: 28px;height: 28px;background: #e15335;border-radius: 50%;color: #fff;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:10px 0px 0px 15px;position: relative;cursor: pointer;background: url(../images/dtj_icon.png) -4px -806px no-repeat;}
+.header_search{width: 663px;height: 32px;border: 1px solid #b0b0b0;border-radius: 5px;float: left;margin:7px 0px 0px 15px;padding:0px 10px;}
+.header_mess{width: 68px;height:48px;display: inline-block;text-align: center;border-left: 1px solid #ebebeb;border-right:1px solid #ebebeb;margin-left: 9px;float: left;position: relative;background: url(../images/dtj_icon.png) 19px -906px no-repeat;cursor: pointer;}
+.header_rel{width: 68px;text-align: center;border-right:1px solid #ebebeb;padding:6px 0px;position: relative;float: left;}
 .header_rel img{width: 36px;height: 36px;border-radius: 50%;margin:;}
 .header_tril{width: 0;height: 0;border-bottom: 8px solid #c9c9c9;border-left: 8px solid transparent;position: absolute;bottom: 9px;}
-.header_moreinfo{position: absolute;right: 0px;border:1px solid #f4f4f4;background: #fff;top: 74px;display: none;}
-.header_more_item{display: block;height: 34px;width: 123px;border-bottom:1px solid #f4f4f4;font:normal 16px/34px "Microsoft YaHei";color: #7a7a7a;padding-left: 46px;text-align: left;}
+.header_moreinfo{position: absolute;right: 0px;border:1px solid #f4f4f4;background: #fff;top: 48px;display: none;}
+.header_more_item{display: block;height: 34px;width: 104px;border-bottom:1px solid #f4f4f4;font:normal 16px/34px "Microsoft YaHei";color: #7a7a7a;padding-left: 46px;text-align: left;}
 .header_more_1{background: url(../images/dtj_icon.png) 10px 2px no-repeat;}
 .header_more_2{background: url(../images/dtj_icon.png) 10px -30px no-repeat;}
 .header_more_3{background: url(../images/dtj_icon.png) 10px -59px no-repeat;}
@@ -58,13 +60,13 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 
 
 .header_rel:hover .header_moreinfo{display: block;}
-.container{margin-top: 90px;}
-.nolog_container{margin-top:73px;}
+.container{margin-top: 63px;padding-bottom: 60px;}
+.nolog_container{margin-top:47px;}
 
-.header_add_item{position: absolute;right: -70px;top: 0px;display: none;padding-top: 74px;}
+.header_add_item{position: absolute;right: -70px;top: 0px;display: none;padding-top: 60px;}
 .header_add_iwrap{position: relative;}
-.header_add_up{width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-bottom: 20px solid #fff;position: absolute;top: -20px;left: 65px;}
-.header_add_item_awrap{background: #fff;}
+.header_add_up{width: 42px;height: 21px;background:url(../images/header_add_up.png);top: -20px;left: 65px;position: absolute;}
+.header_add_item_awrap{background: #fff;border:1px solid #f3f0f0;}
 .header_add_item_a{display: block;height: 34px;width: 123px;border-bottom:1px solid #f4f4f4;font:normal 16px/34px "Microsoft YaHei";color: #7a7a7a;padding-left: 46px;text-align: left;text-shadow:none;}
 .header_more_a1{background: url(../images/dtj_icon.png) 10px -366px no-repeat;}
 .header_more_a2{background: url(../images/dtj_icon.png) 10px -410px no-repeat;}
@@ -82,7 +84,7 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .header_mess:hover .header_moremess{display: block;}
 
 .header_moremess .header_add_up{left: 228px;}
-.header_moremess{width: 343px;height: 426px;background: #fff;position: absolute;top: 94px;right: -70px;border-radius: 6px;}
+.header_moremess{width: 343px;height: 426px;background: #fff;position: absolute;top: 68px;right: -64px;border-radius: 6px;border:1px solid #f3f0f0;}
 .header_add_clickbtn{border-bottom: 1px solid #f1f1f1;}
 .header_add_clicka{width: 171px;height: 56px;border-right:1px solid #f1f1f1;display: inline-block;text-align: center;float: left;font:normal 17px/56px "Microsoft YaHei";color: #504e4e;}
 .header_add_clicka_on{background: #f3f0f0;}
@@ -98,7 +100,7 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 
 
 .nolog_header{
-	width: 100%;height: 74px;
+	width: 100%;height: 48px;
 	position:fixed;
 	-webkit-transition:opacity 1s ease;
 	transition:opacity 1s ease;
@@ -108,10 +110,10 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .nolog_index_container{margin-top: -1px;}
 .nolog_index_banner{height: 600px;}
 .header_search_indexnolog{background: rgba(0,0,0,.15);width: 663px;height: 42px;border: 1px solid rgba(255,255,255,.8);border-radius: 5px;float: left;margin:13px 0px 0px 15px;padding:0px 10px;color: #fff;}
-.nolog_header .header_logo{width: 74px;background: url(../images/nolog_logo.png) 0px 25px no-repeat;}
-.nolog_header .header_item{color: #fff;height: 38px;padding:0px;line-height: 38px;margin:16px 15px 0px 15px;}
+.nolog_header .header_logo{width: 74px;background: url(../images/nolog_logo.png) 0px 14px no-repeat;}
+.nolog_header .header_item{color: #fff;height: 38px;padding:0px;line-height: 38px;margin:5px 15px 0px 15px;}
 .nolog_header .header_item_on{border-bottom: 1px solid #fff;}
-.nolog_header .header_add_btn{width: 28px;height: 28px;background: #e7e6e6;border-radius: 50%;color: #333;border:1px solid #e15335;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:21px 0px 0px 15px;position: relative;cursor: pointer;}
+.nolog_header .header_add_btn{width: 28px;height: 28px;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;float: left;margin:10px 0px 0px 15px;position: relative;cursor: pointer;background: url(../images/dtj_icon.png) -4px -866px no-repeat;}
 .nolog_header .nolog_land_btn,.nolog_header .nolog_login_btn{float: right;}
 .nolog_header .nolog_login_btn{background: rgba(225,83,53,.8);}
 .nolog_header .nolog_land_btn{background: none;border:1px solid #fff;}
@@ -119,12 +121,12 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .setting_coneachtit span{width: 176px;display: inline-block;float: left;}
 .setting_coneach_little{float: left;font:normal 13px/51px "Microsoft YaHei";color: #504e4e;}
 .setting_coneach_little .setting_coneach_conrava{width: 40px;height: 40px;border-radius: 50%;margin: 2px 0px 0px 0px;}
-.setting_coneach_little .setting_coneach_conrava img{width: 100%;height: 100%;border-radius: 50%;}
+.setting_coneach_little .setting_coneach_conrava img{width: 100%;height: 100%;border-radius: 50%;border:none;float: left;}
 .nolog_index_conapp_phone{width: 309px;height: 629px;background: url(../images/phone.png);margin:74px 0px 0px 172px;float: left;}
 .nolog_index_conapp_phone img{width: 270px;height: 476px;margin:76px 0px 0px 20px;}
 .nolog_index_conapp_right{float: left;}
 .nolog_app_log{margin: 74px 0px 0px 88px;}
-.nolog_app_font{font:normal 60px/60px "Microsoft YaHei";color: #fff;margin:20px 0px 0px 92px;}
+.nolog_app_font{font:normal 46px/46px "Microsoft YaHei";color: #fff;margin:20px 0px 0px 92px;}
 .nolog_app_wrap{float: left;}
 .nolog_app_code{margin:26px 0px 0px 88px;}
 .nolog_app_wrap{margin-right: 45px;}

@@ -6,31 +6,20 @@
  */
 
 $(function(){
-	var mleft = $('.container').css('marginLeft')
-        $('.headercontainer').css({
-          'left':mleft
-        });
-        $(window).resize(function(){
-          var mleft = $('.container').css('marginLeft')
-          $('.headercontainer').css({
-            'left':mleft
-          })
-        })
-	$(window).bind('scroll',function(event) {
-		var x = document.body.scrollLeft; 
-        if (x>0) {
-            $('.headercontainer').css({
-              'left':-x
-            })
-          }else{
-            var mleft = $('.container').css('marginLeft')
-            $('.headercontainer').css({
-              'left':mleft
-            });
-      	 };
-	});
+  
   $('.header_add_clicka').click(function(){
     $('.header_add_clicka').removeClass('header_add_clicka_on');
     $(this).addClass('header_add_clicka_on')
-  })
+  });
+  // $('.index_item_intro').addClass()
+  function addPoint(){
+    $(".index_item_intro").each(function(i) {
+        var vh = 44;
+        var $vp = $(".word", $(this));
+        while ($vp.outerHeight() > vh){
+            $vp.text($vp.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+        };
+    });
+  }
+    
 })

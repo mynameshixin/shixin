@@ -61,7 +61,17 @@ class PicsController extends CmController{
 	}
 
 	public function show($id){
-		return view('web.pics.show');
+		$self_id = $this->user_id;
+		$oid = $this->other_id;
+		$goods = ProductWebsupply::get_pic_detail();
+		
+		dd($goods);
+		$data = [
+			'user_id'=>$self_id,
+			'self_info'=>$this->self_info,
+			'goods'=>$goods
+		];
+		return view('web.pics.show',$data);
 	}
 
 
