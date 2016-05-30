@@ -56,12 +56,14 @@ $(function (){
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
 		  				$('.index_item_price',$value).remove()
+		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id)
 		  				if(list[index].price!=0){
 		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
 		  				}
-					    
-					    $(".index_item_intro",$value).html(list[index].description);
-					    $(".index_item_intro",$value).attr('title',list[index].description)
+
+					    description = list[index].description!=''?list[index].description:list[index].title
+					    $(".index_item_intro",$value).html(description);
+					    $(".index_item_intro",$value).attr('title',description)
 
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)

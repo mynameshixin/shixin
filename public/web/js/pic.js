@@ -1,12 +1,6 @@
-
-$(function() {
-			$('.index_main').find('.index_item_blurwrap').click(function(){
-				$('body').addClass('overhidden')
-				$('.detail_pop').css({
-					display:'block'
-				});
+$(function(){
 				$('.detail_pop').scroll(function(event) {
-					console.info($('.detail_pop').scrollTop());
+					// console.info($('.detail_pop').scrollTop());
 					var popscrollHei = $('.detail_pop').scrollTop();
 					if (popscrollHei > 30) {
 						$('.detail_pop_tbtnwarp').css({
@@ -36,11 +30,28 @@ $(function() {
 			        	})
 					};
 				});
-
+				var $con_pop = $('.detail_pop_trwwrap');
+			    $con_pop.imagesLoaded(function() {
+			        $con_pop.masonry({
+		                itemSelector: '.detail_pop_tritem',
+		                gutter: 1,
+		                isAnimated: true,
+		            });
+		            
+			     });
+			    var $container = $('.index_con');
+			    $container.imagesLoaded(function() {
+			        $container.masonry({
+		                itemSelector: '.index_item',
+		                gutter: 15,
+		                isAnimated: true,
+		            });
+		            
+			     });
 			    $('.detail_pop_collection').click(function(){
 					$('.pop_collect').show();
 					var popH =$('.pop_collect').show().find('.pop_con').height();
-					$('.pop_collect').show().find('.pop_col_left').height(popH-40);
+					$('.pop_collect').show().find('.pop_col_left').height(popH-60);
 				})
 				$('.pop_col_r').click(function(){
 					if ($(this).hasClass('pop_col_radio_on')) {
@@ -67,6 +78,7 @@ $(function() {
 				var textcon = $('.pop_col_detailtext').text();
 				$('.pop_col_detailtext').focusin(function(event) {
 					var moreHtml = $('.pop_col_detailtext').attr('title');
+					var littleHtml = $('.pop_col_detailtext').html();
 					$('.pop_col_detailtext').html(moreHtml);
 					$('.pop_col_detailtext').css({
 						'overflow-y':'scroll'
@@ -75,49 +87,51 @@ $(function() {
 				});
 				$('.pop_col_detailtext').focusout(function(event) {
 					$('.pop_col_detailtext').html(textcon);
-					$('.pop_col_detailtext').css({
-						'overflow-y':'hidden'
-					});
+					
 					$('.detail_pop_colledit').show();
 				});
+				$('.detail_pop_colledit').click(function(){
+					var moreHtml = $('.pop_col_detailtext').attr('title');
+					$('.pop_col_detailtext').html(moreHtml);
+					$('.pop_col_detailtext').css({
+						'overflow-y':'scroll'
+					});
+					
+				})
 				//左侧相关信息编辑结束
 				if ($('.pop_col_infowrap').height()>360) {
 					$('.pop_col_infowrap').css({
 						'overflow-y': 'scroll'
 					});
-				}else{
-					$('.pop_col_infowrap').css({
-						'overflow-y': 'hidden'
-					});
-				};
-				$('.detail_pop_loadclose,.detail_pop').click(function(){
+				}
+				/*$('.detail_pop_loadclose,.detail_pop').click(function(){
 					$('body').removeClass('overhidden')
 					$('.detail_pop').css({
 						display:'none'
 					});
-				});
+					$('.pop_img_bigpointerwrap').html("");
+					$('.pop_img_bigwrap').css({'left':0});
+					var state = {
+						title:'',
+						url:'http://www.baidu.com'
+					};
+					window.history.pushState(state,document.title,state.url);
+				});*/
+				
+				/*$('.detail_pop_loadclose,.detail_pop').click(function(){
+					$('body').removeClass('overhidden')
+					$('.detail_pop').css({
+						display:'none'
+					});
+				});*/
 				$('.detail_pop_wrap,.detail_pop_loadbtn').click(function(){
 					event.stopPropagation()
 				})
-			})
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-	            var text = $('.index_item_intro');
-	              str = text.html(),
-	              textLeng = 29;
-	              if(str.length > textLeng ){
-	                    text.html( str.substring(0,textLeng )+"...");
-	              }
-		     });
+				
 		   
 		    $(window).scroll(function(event) {
 				var scrollHei = $('body').scrollTop();
-				if (scrollHei <= 68) {
+				if (scrollHei <= 260) {
 					$('.perhome_scroll_info,.perhome_scroll_wrap').css({
 						transform:'translate(0px, -70px)',
 						transition:'transform 200ms ease'
@@ -164,7 +178,7 @@ $(function() {
 				    $(this).find('.detail_pop_comshare').show();
 			  	},
 			    function () {
-				    // $('.detail_pop_comshare').hide();
+				    $('.detail_pop_comshare').hide();
 				}
 			);
 			$('.detail_pop_compub').focus(function(){
@@ -176,5 +190,55 @@ $(function() {
 					background:'#fff'
 				});
 			})
-		});
+	page = 1
+	function onMore() {
 
+    	obj = $(this)
+    	postData.page = ++page
+    	ul = $('#ul')
+    	$.ajax({
+		  	'beforeSend':function(){
+		  		obj.html('请等待。。。')
+		  	},
+		  	'url':folderUrl,
+		  	'type':'POST',
+		  	'dataType':'json',
+		  	'data':postData,
+		  	'success':function(json){
+		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
+		  			data = json.data.list
+
+		  			$lis = $('.find_fold_li',ul).slice(0,data.length).clone()
+
+					$.each($lis,function(index,v){
+
+						gpic_1 = data[index].goods[0] != undefined?data[index].goods[0].image_url:defaultPic
+						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
+						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
+						$($lis[index]).attr('folder_id',data[index].id)
+						$('.find_fold_name',$lis[index]).html(data[index].name)
+						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
+						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
+
+						$('.find_fold_liwrap img',$lis[index]).eq(0).attr('src',gpic_1)
+						$('.find_fold_liwrap img',$lis[index]).eq(1).attr('src',gpic_2)
+						$('.find_fold_liwrap img',$lis[index]).eq(2).attr('src',gpic_3)
+
+						follow = data[index].is_follow==1?'已关注':'<span>+</span>特别关注'
+						$('.find_fold_authflw',$lis[index]).html(follow)
+
+
+					})
+					
+					$(ul).append($lis)
+					obj.html('查看更多。。。')
+					
+		  		}else{
+		  			obj.html('没有更多。。。')
+		  		}
+
+		  	}
+		  })      
+    }
+    $('#more').bind('click', onMore);
+})

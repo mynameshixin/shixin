@@ -5,6 +5,7 @@ namespace App\Websupply;
 use App\Lib\LibUtil;
 use App\Lib\Images;
 use App\Websupply\UserWebsupply;
+use App\Websupply\FolderWebsupply;
 use App\Websupply\CommentWebsupply;
 use DB;
 
@@ -112,30 +113,153 @@ class ProductWebsupply extends CmWebsupply{
 
         return $list;
     }
+    // 该采集也在以下文件夹
+    public static function get_folder_detail($self_id,$data,$good_id){
+        $num = isset($data['num'])?$data['num']:4;
+        $page = isset($data['page'])?$data['page']:1;
+        $skip = ($page-1)*$num;
+        $id = $data['img_id'];
+        $other_id = $data['oid'];
+        $collection = DB::table('collection_good')->orderBy('updated_at','desc')->where('good_id',$good_id)->skip($skip)->take($num)->get();
+        foreach ($collection as $key => $value) {
+            $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
+        }
+        return $collection;
+    }
 
+    //获得关系
+    public static function get_relation($user_id,$self_id){
+        $follow = DB::table('user_follow')->where(['userid_follow'=>$user_id,'user_id'=>$self_id])->first();
+        $fans = DB::table('user_follow')->where(['user_id'=>$user_id,'userid_follow'=>$self_id])->first();
+        //$relation 1 相互关注 2 已关注 3被关注 4未关注
+        $relation = 4;
+        if($follow && $fans){
+            $relation = 1;
+        }elseif($follow && !$fans){
+            $relation = 2;
+        }elseif(!$follow && $fans){
+            $relation = 3;
+        }else{
+            $relation = 4;
+        }
+        return $relation;
+    }
 
-    public static function get_pic_detail(){
+    //获得图片详细
+    public static function get_pic_detail($self_id,$data){
+        $id = $data['img_id'];
+        $other_id = $data['oid'];
         $goods = DB::table('goods')->where(['id'=>$id])->first();
         if($goods){
+            if (!empty($goods['image_ids'])) {
+                    $image_ids = explode(',', $goods['image_ids']);
+                    foreach ($image_ids as $imageId) {
+                        $image_o = LibUtil::getPicUrl($imageId, 3);
+                        $goods['images'][] = [
+                                'img_m' => LibUtil::getPicUrl($imageId, 1),
+                                'img_o' => $image_o
+                            ];
+                    }
+                }
             $folder_id = $goods['folder_id'];
-            $goods['user'] = UserWebsupply::user_info($goods['user_id']);
-            $follow = DB::table('user_follow')->where(['userid_follow'=>$oid,'user_id'=>$self_id])->first();
-            $fans = DB::table('user_follow')->where(['user_id'=>$oid,'userid_follow'=>$self_id])->first();
-            //$relation 1 相互关注 2 已关注 3被关注 4未关注
-            $relation = 4;
-            if($follow && $fans){
-                $relation = 1;
-            }elseif($follow && !$fans){
-                $relation = 2;
-            }elseif(!$follow && $fans){
-                $relation = 3;
-            }else{
-                $relation = 4;
+            $goods['user'] = $user = UserWebsupply::user_info($goods['user_id']);
+
+            $goods['relation'] = self::get_relation($goods['user_id'],$self_id);
+
+            $goods['more'] = self::get_more_goods($folder_id,$data);
+            $comments = DB::table('comments')->where(['good_id'=>$id])->get();
+            foreach ($comments as $key => $value) {
+                $comments[$key]['user'] = UserWebsupply::user_info($value['user_id']);
             }
-            $goods['relation'] = $relation;
-            $goods['more'] = DB::table('goods')->where(['folder_id'=>$folder_id])->get();
-            $goods['comments'] = DB::table('comments')->where(['good_id'=>$id])->get();
+            $goods['comments'] = $comments;
+
+            $goods['collection_folders'] = [];
+            $collection_folders = self::get_folder_detail($self_id,$data,$goods['id']);
+            if(!empty($collection_folders)) $goods['collection_folders'] = $collection_folders;
+
+            $fid = isset($collection[0]['folder_id'])?$collection[0]['folder_id']:0;
+
+            $goods['folders_one'] = [];
+            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$other_id,$collection[0]['user_id'],$data);
+            $goods['folder'] = DB::table('folders')->where('id',$goods['folder_id'])->first();
+            
         }
+
+        return $goods;
+    }
+
+    // 获得该文件夹的其他文件
+    public static function get_more_goods($folder_id){
+        $page = isset($data['page'])?$data['page']:1;
+        $num = isset($data['num'])?$data['num']:15;
+        $skip = ($page-1)*$num;
+        $goods = DB::table('goods')->where(['folder_id'=>$folder_id])->select('image_ids','id')->get();
+        foreach ($goods as $k => $v) {
+            if(strpos($v['image_ids'],',') == 0){
+                    $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                }
+        }
+        return $goods;
+    }
+
+    //获取采集的文件夹 含文件夹图片
+    public static function get_collection_folder($folder_id,$user_id,$other_id,$self_id,$data,$fnum = 8,$gnum = 3){
+
+        $arr = [
+            'id'=>$folder_id
+        ];
+        if($other_id!=$self_id) $arr['private'] = 0;
+        $folders = DB::table('folders')->where($arr)->first();
+        if(!empty($folders)){
+            $id = $folders['id'];
+            $imageId = $folders['image_id'];
+            $img_url = LibUtil::getPicUrl($imageId, 1);
+            $folders['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
+            $follow = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$id])->first();
+            $folders['is_follow'] = !empty($follow)?1:0;
+            if(!empty($gnum) && !empty($id)){
+                $goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+                    foreach ($goods as $k => $v) {
+                        if(strpos($v['image_ids'],',') == 0){
+                            $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                        }
+                    }
+                $folders['goods'] = $goods;         
+            }
+            $folders['user'] = UserWebsupply::user_info($user_id);
+            $follow = DB::table('collection_folder')->where(['folder_id'=>$id,'user_id'=>$self_id])->first();
+            $folders['is_follow'] = $follow?1:0;
+        }
+        return $folders;
+
+    }   
+  
+    //通过文件夹id获取文件
+    public static function get_folder_file($folder_id,$other_id,$user_id,$data){
+
+        $page = isset($data['page'])?$data['page']:1;
+        $num = isset($data['num'])?$data['num']:15;
+        $skip = ($page-1)*$num;
+        $condition =['id'=>$folder_id];
+        if($other_id!=$user_id) $condition['private'] = 0;
+        $folder = DB::table('folders')->where($condition)->first();
+
+        $goods = [];
+        if($folder){
+            $id = $folder['id'];
+            $goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
+            foreach ($goods as $k => $v) {
+                if(strpos($v['image_ids'],',') == 0){
+                    $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                }
+                $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.good_id',$v['id'])->orderBy('cg.created_at','desc')->take(3)->get();
+                foreach ($collection as $key => $value) {
+                    $goods[$k]['collection_good'][$key] = UserWebsupply::user_info($value['user_id']);
+                }
+             }
+            
+        }
+        return $goods;
     }
 
 }

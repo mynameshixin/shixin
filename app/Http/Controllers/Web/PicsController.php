@@ -27,6 +27,16 @@ class PicsController extends CmController{
 
 	}
 
+	public function __construct(){
+		parent::__construct();
+		$getdata = fparam(Input::all());
+		if(isset($getdata['oid']) && !empty($getdata['oid'])){
+			$this->other_id = $getdata['oid'];
+		}else{
+			$this->other_id = $this->user_id;
+		}
+	}
+
 	//获取瀑布流数据
 	public function postGoods(){
 		
@@ -61,17 +71,39 @@ class PicsController extends CmController{
 	}
 
 	public function show($id){
+        $data['img_id'] = $id;
+        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
-		$oid = $this->other_id;
-		$goods = ProductWebsupply::get_pic_detail();
-		
-		dd($goods);
+		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
+		// dd($goods);
 		$data = [
 			'user_id'=>$self_id,
 			'self_info'=>$this->self_info,
 			'goods'=>$goods
 		];
 		return view('web.pics.show',$data);
+	}
+
+	public function postFolder(){
+		$data = Input::all();
+		$data = fparam($data);
+        $data['img_id'] = isset($data['img_id'])?$data['img_id']:0;
+        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
+		$self_id = $this->user_id;
+		$rs = ProductWebsupply::get_folder_detail($self_id,$data,$data['img_id']);
+		$list['list'] = $rs;
+        return response()->forApi($list);
+	}
+
+	public function postImg(){
+		$data = Input::all();
+		$data = fparam($data);
+        $data['img_id'] = isset($data['img_id'])?$data['img_id']:0;
+        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
+		$self_id = $this->user_id;
+		$rs = ProductWebsupply::get_pic_detail($self_id,$data);
+		$list['list'] = $rs;
+        return response()->forApi($list);
 	}
 
 

@@ -12,7 +12,7 @@
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap"></a>
+							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" target="_blank" img_id="{{$v['id']}}"></a>
 							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}">
 							<?php if(isset($v['price']) && !empty($v['price'])): ?>
 								<div class="index_item_price">￥{{$v['price']}}</div>
@@ -20,7 +20,7 @@
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
-								<div class="index_item_intro" title="{{$v['description'] or $v['title']}}">{{$v['description'] or $v['title']}}</div>
+								<div class="index_item_intro" title="{{!empty($v['description'])?$v['description']:$v['title']}}">{{!empty($v['description'])?$v['description']:$v['title']}}</div>
 								<div class="index_item_rel clearfix">
 									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>

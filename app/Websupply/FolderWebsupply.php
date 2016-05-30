@@ -92,6 +92,8 @@ class FolderWebsupply extends CmWebsupply {
 		return $folders;
 	}	
 
+	
+
 	//通过文件夹id获取文件
 	public static function get_folder_file($folder_id,$other_id,$user_id,$data){
 		$page = isset($data['page'])?$data['page']:1;
@@ -116,6 +118,7 @@ class FolderWebsupply extends CmWebsupply {
 				 }
 		 		$folder['goods'] = $goods;
 		 	}
+		 	$folder['file_count'] = DB::table('goods')->where(['folder_id'=>$folder_id,'user_id'=>$other_id])->count();
 	 		$folder['fans_count'] = DB::table('collection_folder')->where('folder_id',$folder_id)->count();
 		}
 		

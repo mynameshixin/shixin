@@ -72,7 +72,7 @@ class UserWebsupply extends CmWebsupply{
     	$params['kind'] = isset($params['kind'])?$params['kind']:1;
     	switch ($params['kind']) {
     		case '1':
-    			$rows =  DB::table('good_action')->join('goods','good_action.good_id','=','goods.id')->where(['good_action.user_id'=>$user_id,'good_action.action'=>1]);
+    			$rows =  DB::table('good_action')->join('goods','good_action.good_id','=','goods.id')->where(['good_action.user_id'=>$user_id,'good_action.action'=>1])->orderBy('goods.created_at','desc');
   				$good_id = 'good_id';
     			break;
     		

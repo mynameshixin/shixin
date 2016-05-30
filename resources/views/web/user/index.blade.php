@@ -8,7 +8,9 @@
 		
 		<div class="w1248 w1240 clearfix">
 			<div class="find_cater perhome_wrap clearfix">
+			
 				<ul class="find_fold_list clearfix" id="ul0">
+
 				<?php foreach ($folders as $key => $value) :?>
 					<?php if($value['private'] == 0): ?>
 					<li class="find_fold_li <?php echo ($key+1)%5 == 0?'mrightzero':''; ?>" folder_id="{{$value['id']}}">

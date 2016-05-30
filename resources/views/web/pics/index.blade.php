@@ -61,10 +61,10 @@
 		<div id="main" role="main" class="w1248 clearfix">
 			<div class="index_con" id="tiles">
 			<?php foreach ($goods as $key => $v):?>
-				<div class="index_item">
+				<div class="index_item" img_id="{{$v['id']}}">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap"></a>
+							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" target="_blank"></a>
 							<img src="{{$v['images'][0]['img_m']}}">
 						</div>
 						<div class="index_item_info">

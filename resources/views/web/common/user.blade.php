@@ -5,6 +5,7 @@
 	relationUrl = "{{url('webd/user/relation')}}"
 </script>
 <script src="{{url('web/js/user/relation.js')}}"></script>
+<script src="{{url('web/js/user/blurwrap.js')}}"></script>
 <div class="perhome_per_wrap">
 			<div class="w1248 w1240 clearfix">
 				<div class="perhome_perinfo_wrap clearfix">
