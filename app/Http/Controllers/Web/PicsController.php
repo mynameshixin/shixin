@@ -76,7 +76,7 @@ class PicsController extends CmController{
         $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
 		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
-		dd($goods);
+		// dd($goods);
 		$data = [
 			'user_id'=>$self_id,
 			'self_info'=>$this->self_info,
