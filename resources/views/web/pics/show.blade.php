@@ -139,7 +139,7 @@
 							<div class="detail_pop_tritem">
 								<div class="index_item_wrap">
 									<div class="index_item_imgwrap clearfix">
-										<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
+										<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
 										<img src="{{$v['image_url']}}">
 									</div>
 								</div>
