@@ -93,7 +93,7 @@
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_3">我的关注</a>
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_4">堆图家认证</a>
 					<a href="javascript:;" target="_blank" class="header_more_item header_more_5">账号设置</a>
-					<a href="javascript:;" class="header_more_item header_more_6">退出</a>
+					<a href="{{url('webd/home/logout')}}" class="header_more_item header_more_6">退出</a>
 				</div>
 			</div>
 		</div>

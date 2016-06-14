@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="container nolog_index_container clearfix">
-    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/logo.png')}} top center no-repeat">
+    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">发现、采集、分享你喜欢的家居  </p>
         <div class="header_search_wrap clearfix">
@@ -138,7 +138,7 @@
         </div>
         <div class="nolog_index_conreco clearfix">
           <div class="nolog_index_conrecbox">
-            <img src="public/images/temp/1.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-1.jpg')}}" alt="">
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -173,10 +173,10 @@
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <img src="public/images/temp/2.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-2.jpg')}}" alt="">
           </div>
           <div class="nolog_index_conrecbox">
-            <img src="public/images/temp/3.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-3.jpg')}}" alt="">
           </div>
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -219,10 +219,10 @@
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <img src="public/images/temp/3.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-3.jpg')}}" alt="">
           </div>
           <div class="nolog_index_conrecbox">
-            <img src="public/images/temp/3.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-2.jpg')}}" alt="">
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -257,7 +257,7 @@
             </div>
           </div>
           <div class="nolog_index_conrecbox mrightzero">
-            <img src="public/images/temp/3.png" alt="">
+            <img src="{{ asset('/static/web/images/index-img/list-3.jpg')}}" alt="">
           </div>
         </div>
         <a href="#" class="nolog_index_conmore">加载更多</a>
@@ -431,8 +431,8 @@
           <div class="nolog_index_confooter_tit">关注我们</div>
           <p><a href="#">新浪微博：@堆图家</a></p>
           <div class="code_a">
-            <p><a href="#">官方微信：<img src="public/images/code.jpg" height="16" width="16" alt=""></a></p>
-            <div class="code_hover"><img src="public/images/code_ip.png" height="108" width="108" alt=""></div>
+            <p><a href="#">官方微信：<img src="{{asset('/static/web/images/index-img/code.jpg')}}" height="16" width="16" alt=""></a></p>
+            <div class="code_hover"><img src="{{asset('/static/web/images/index-img/code_ip.png')}}" height="108" width="108" alt=""></div>
           </div>
         </div>
       </div>
@@ -445,7 +445,7 @@
   <div class="pop_login pop_login1" style="display: none;">
     <div class="pop_con">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="public/images/pop_logo.png" height="87" width="108" alt="">
+        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -454,29 +454,26 @@
         </div>
         <div class="pop_login_content clearfix">
           <div class="pop_login_contwrap clearfix">
-            <input class="pop_login_c" type="" name="" value="" placeholder="请输入用户名">
-          </div>
-          <div class="pop_login_contwrap clearfix">
             <input class="pop_login_a" type="" name="" value="" placeholder="+86">
-            <input class="pop_login_b" type="" name="" value="" placeholder="请输入手机号">
+            <input class="pop_login_b" type="" name="mobile" value="" placeholder="请输入手机号">
           </div>
           <div class="pop_login_contwrap clearfix" style="margin-bottom: 0px;">
-            <input class="pop_login_d" type="" name="" value="" placeholder="请输入验证码">
-            <input class="pop_login_e" type="" name="" value="" placeholder="获取短信验证码">
+            <input class="pop_login_d" type="" name="captcha" value="" placeholder="请输入验证码">
+            <input class="pop_login_e" type="button"  name="" value="获取短信验证码" >
           </div>
           <div class="pop_login_contwrap clearfix">
-            <p class="pop_login_pa">验证码已发送至您的手机，请注意查收</p>
-            <p class="pop_login_pb">58s后重新发送</p>
+            <p class="pop_login_pa" style="display: none">验证码已发送至您的手机，请注意查收</p>
+            <p class="pop_login_pb" style="display: none"><strong>60</strong>s后重新发送</p>
           </div>
           <div class="pop_login_contwrap clearfix" style="margin-bottom: 8px;">
-            <input class="pop_login_c" type="" name="" value="" placeholder="请设置登录密码">
+            <input class="pop_login_c" type="password" name="password" value="" placeholder="请设置登录密码">
             <div class="pop_login_safew clearfix">
               <div class="pop_login_safe pop_login_safeh">高</div>
               <div class="pop_login_safe pop_login_safem">中</div>
               <div class="pop_login_safe pop_login_safel">低</div>
             </div>
           </div>
-          <a href="javascript:;" class="pop_login_confirm">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" id="confirm1">确定</a>
           <p class="pop_login_des">
             注册即表示同意<a href="javascript:;">《用户使用条款及服务协议》</a>
           </p>
@@ -488,7 +485,7 @@
   <div class="pop_login pop_login2" style="display:none">
     <div class="pop_con">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="public/images/pop_logo.png" height="87" width="108" alt="">
+        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -506,12 +503,12 @@
         </div>
         <div class="pop_login_content clearfix">
           <div class="pop_login_contwrap clearfix">
-            <input class="pop_login_c" type="" name="" value="" placeholder="堆图家注册手机号">
+            <input class="pop_login_c" type="" name="account" value="" placeholder="堆图家注册手机号">
           </div>
           <div class="pop_login_contwrap">
-            <input class="pop_login_c" type="" name="" value="" placeholder="堆图家注册手机号">
+            <input class="pop_login_c" type="password" name="password" value="" placeholder="堆图家注册密码">
           </div>
-          <a href="javascript:;" class="pop_login_confirm">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" id="confirm2">确定</a>
           <p class="pop_login_des">
             <a href="javascript:;">忘记密码&nbsp;》</a>
             <span class="pop_login_desw" style="float: right;">
@@ -526,7 +523,7 @@
   <div class="pop_login pop_login3" style="display:none">
     <div class="pop_con">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="public/images/pop_logo.png" height="87" width="108" alt="">
+        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -555,7 +552,7 @@
   <div class="pop_login pop_login4" style="display:none">
     <div class="pop_con">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="public/images/pop_logo.png" height="87" width="108" alt="">
+        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -582,43 +579,6 @@
     </div>
   </div>
 </body>
-<script type="text/javascript">
-    $(function() {
-      popFun($('.nolog_login_btn'),$('.pop_login1,.pop_close,.pop_login_confirm'),$('.pop_login1'),$('.pop_login1 .pop_con'))
-      popFun($('.nolog_login_btn'),$('.pop_login2,.pop_close,.pop_login_confirm'),$('.pop_login2'),$('.pop_login2 .pop_con'))
-      popFun($('.nolog_login_btn'),$('.pop_login3,.pop_close,.pop_login_confirm'),$('.pop_login3'),$('.pop_login3 .pop_con'))
-      popFun($('.nolog_login_btn'),$('.pop_login4,.pop_close,.pop_login_confirm'),$('.pop_login4'),$('.pop_login4 .pop_con'))
-      function popFun(popbtn,hidebtn,popcon,stopbtn){
-        popbtn.click(function(event) {
-          popcon.show();
-        });
-        hidebtn.click(function(event) {
-          popcon.hide();
-        });
-        stopbtn.click(function(event) {
-          event.stopPropagation()
-        });
-      }
-      $('.pop_login_c').keydown(function(event) {
-        var inLen = $(this).val();
-        if (inLen.length < 5) {
-          $('.pop_login_safew').addClass('pop_login_safewlow');
-        }else if(inLen.length < 10){
-          $('.pop_login_safew').addClass('pop_login_safewmiddle');
-        }else{
-          $('.pop_login_safew').addClass('pop_login_safewhigh');
-        };
-      })
-        $(window).scroll(function(event) {
-        var scrollHei = $('body').scrollTop();
-        if (scrollHei <= 272) {
-          $('.header').addClass('slideup');
-          $('.nolog_header').removeClass('slideup');
-        }else{
-          $('.nolog_header').addClass('slideup');
-          $('.header').removeClass('slideup');
-        };
-      });
-    });
-  </script>
+<script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
+<script type="text/javascript" src="{{asset('web/js/register.js')}}"></script>
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use Illuminate\Support\Facades\Crypt;
 use DB;
 
 class HomeController extends CmController{
@@ -17,7 +18,6 @@ class HomeController extends CmController{
 		
 		$user_id = $this->user_id;
 		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
-		// dd($user_info);
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','fans_count'],$user_id);
 		}
@@ -75,10 +75,50 @@ class HomeController extends CmController{
 
 	}
 
+	// 注册先请求api接口后生成浏览器cookie和缓存
+	public function postSet(){
+		// return json_encode(['status'=>1]);
+		$data = Input::all();
+		$user_id = isset($data['u'])?$data['u']:'';
+		$arr = explode('_',$user_id);
+        $id = Crypt::decrypt($arr[1]);
+        $id = ($id/100)-50;
+        $res = DB::table('users')->where(['id'=>$id])->first();
+		if(!empty($id) && is_int($id) && !empty($res)){
+			self::crypt_cookie('user_id',$id);
+			return json_encode(['status'=>1]);
+		}else{
+			return json_encode(['status'=>0]);
+		}
+		
+	}
 
+	// 登陆后生成浏览器cookie和缓存
+	public function postLogin(){
+		$data = fparam(Input::all());
+		if(empty($data['account']) || empty($data['password'])){
+			return response()->forApi([],1001,'账号或密码不为空');
+		}
+		$res = DB::table('users')->where(['username'=>$data['account']])->orWhere(['mobile'=>$data['account']])->first();
+		if(empty($res)) return response()->forApi([],'1001','没有该账号');
+		$pwd = $res['password'];
+		if(crypt($data['password'],$pwd) != $pwd){
+			return response()->forApi([],'1001','账号或密码不正确');
+		}
+		self::crypt_cookie('user_id',$res['id']);
+		return  response()->forApi([],200,'登陆成功');
 
+	}
 
+	// 退出登陆
+	public function getLogout(){
+		if(!empty($_COOKIE['user_id'])){
+			$user_en_id = $_COOKIE['user_id'];
+			self::destory_cookie($user_en_id);
+		}
+		return redirect('webd/home');
 
+	}
 
 
 

@@ -18,12 +18,18 @@ class CmController extends Controller {
     const PAGE_SIZE = 15;
     const DATELINE = 20;
     public $user_id=0;
+    public $self_info = [
+        'id'=>0,
+        'pic_m'=>'/uploads/sundry/blogo.jpg',
+        'auth_avatar'=>'/uploads/sundry/blogo.jpg',
+        'nick'=>'',
+        'username'=>''
+    ];
 
     public function __construct(){
-        $user_id = self::get_user_cache($_COOKIE['user_id']);
-
         if(isset($_COOKIE['user_id']) && !empty($_COOKIE['user_id'])) {
             if($user_id = self::get_user_cache($_COOKIE['user_id'])){
+
                 $this->user_id = $user_id;
                 $this->self_info = UserWebsupply::user_info($user_id);
             }
@@ -47,10 +53,16 @@ class CmController extends Controller {
 
     public function crypt_cookie($key,$id){
         $data = md5(uniqid().time()).'_'.Crypt::encrypt($id);
-        setcookie($key,$data,time()+315360000,'/webd');
+        setcookie($key,$data,time()+315360000,'/');
         self::set_user_cache($data);
     }   
 
+    public function destory_cookie($str){
+        $arr = explode('_',$str);
+        $id = Crypt::decrypt($arr[1]);
+        $data = Cache::store('redis')->forget($id);
+        setcookie('user_id',null,time()-3600,'/');
+    }   
     /**
      * 验证封装类
      *

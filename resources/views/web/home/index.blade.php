@@ -6,6 +6,7 @@
 	<div class="container"  style="background: #d0d0d0">
 		<div class="w1248 clearfix" id="main" role="main">
 			<div class="index_con" id="tiles">
+			<?php if(!empty($user_info)){ ?>
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_user">
@@ -49,6 +50,9 @@
 						</div>
 					</div>
 				</div>
+			<?php }else{ ?>
+					<div class="index_item"></div>
+			<?php } ?>
 			<?php foreach ($goods as $key => $v):?>
 				<div class="index_item">
 					<div class="index_item_wrap">

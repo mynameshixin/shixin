@@ -5,6 +5,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Auth\Guard;
 use App\Lib\UserReg as Registrar ;
 use App\Services\UserService;
@@ -293,7 +294,7 @@ class AuthController extends BaseController
 //                UserService::getInstance()->addInvitation ($rs['id'],$data['invite_code']);
 //            }
             unset($rs['password']);
-            return response()->forApi(['status'=> 1]);
+            return response()->forApi(['status'=> 1,'u'=>md5(uniqid().time()).'_'.Crypt::encrypt(($rs+50)*100)]);
         }
         return response()->forApi(array(), 1001, '注册失败');
 

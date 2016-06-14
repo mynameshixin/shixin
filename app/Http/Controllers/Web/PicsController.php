@@ -67,9 +67,7 @@ class PicsController extends CmController{
 
 	}
 
-	public function getSet(){
-		self::crypt_cookie('user_id',5);
-	}
+	
 
 	public function show($id){
         $data['img_id'] = $id;
