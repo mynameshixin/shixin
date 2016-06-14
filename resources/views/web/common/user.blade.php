@@ -11,7 +11,7 @@
 				<div class="perhome_perinfo_wrap clearfix">
 					<div class="perhome_perinfo">
 						<div class="perhome_perava">
-							<img src="{{$user_info['pic_m']}}" alt="">
+							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
 						</div>
 						<div class="perhome_perline">
 							<a href="javascript:;" class="otherhome_follow">留言</a>

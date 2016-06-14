@@ -145,6 +145,16 @@ class ProductWebsupply extends CmWebsupply{
         return $relation;
     }
 
+    //根据时间戳计算时间维度
+    public static function cpu_time($time){
+
+        if($time < 60) return $time.'秒';
+        if($time >= 60 && $time < 3600) return floor($time/60).'分钟';
+        if($time >= 3600 && $time < 3600*24) return floor($time/3600).'小时';
+        if($time >= 3600*24) return floor($time/(3600*24)).'天';
+    }
+
+
     //获得图片详细
     public static function get_pic_detail($self_id,$data){
         $id = $data['img_id'];
@@ -166,9 +176,11 @@ class ProductWebsupply extends CmWebsupply{
 
             $goods['relation'] = self::get_relation($goods['user_id'],$self_id);
 
-            $goods['more'] = self::get_more_goods($folder_id,$data);
+            $goods['more'] = self::get_more_goods($folder_id,$goods['id']);
             $comments = DB::table('comments')->where(['good_id'=>$id])->get();
             foreach ($comments as $key => $value) {
+                $innertime = time() - strtotime($value['created_at']);
+                $comments[$key]['min'] = self::cpu_time($innertime);
                 $comments[$key]['user'] = UserWebsupply::user_info($value['user_id']);
             }
             $goods['comments'] = $comments;
@@ -177,10 +189,9 @@ class ProductWebsupply extends CmWebsupply{
             $collection_folders = self::get_folder_detail($self_id,$data,$goods['id']);
             if(!empty($collection_folders)) $goods['collection_folders'] = $collection_folders;
 
-            $fid = isset($collection[0]['folder_id'])?$collection[0]['folder_id']:0;
-
+            $fid = isset($collection_folders[0]['id'])?$collection_folders[0]['id']:0;
             $goods['folders_one'] = [];
-            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$other_id,$collection[0]['user_id'],$data);
+            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$other_id,$collection_folders[0]['user_id'],$data);
             $goods['folder'] = DB::table('folders')->where('id',$goods['folder_id'])->first();
             
         }
@@ -189,14 +200,30 @@ class ProductWebsupply extends CmWebsupply{
     }
 
     // 获得该文件夹的其他文件
-    public static function get_more_goods($folder_id){
+    public static function get_more_goods($folder_id,$good_id){
         $page = isset($data['page'])?$data['page']:1;
         $num = isset($data['num'])?$data['num']:15;
         $skip = ($page-1)*$num;
-        $goods = DB::table('goods')->where(['folder_id'=>$folder_id])->select('image_ids','id')->get();
+        
+        $goods = DB::table('goods')->where(['folder_id'=>$folder_id])->select('image_ids','id')->take(100)->get();
+        $last = count($goods)-1;
         foreach ($goods as $k => $v) {
+            if($good_id == $v['id']){
+                if(isset($goods[$k+1])){
+                    $goods['next'] = $goods[$k+1]['id'];
+                }else{
+                    $goods['next'] = isset($goods[0]['id'])?$goods[0]['id']:'';
+                }
+                if(isset($goods[$k-1])){
+                    $goods['pre'] = $goods[$k-1]['id'];
+                }else{
+                    $goods['pre'] = isset($goods[$last]['id'])?$goods[$last]['id']:'';
+                }
+            }
             if(strpos($v['image_ids'],',') == 0){
                     $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                }else{
+                    $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
         }
         return $goods;
@@ -227,8 +254,7 @@ class ProductWebsupply extends CmWebsupply{
                 $folders['goods'] = $goods;         
             }
             $folders['user'] = UserWebsupply::user_info($user_id);
-            $follow = DB::table('collection_folder')->where(['folder_id'=>$id,'user_id'=>$self_id])->first();
-            $folders['is_follow'] = $follow?1:0;
+            $folders['count'] = DB::table('goods')->where('folder_id',$id)->count();
         }
         return $folders;
 
@@ -243,22 +269,25 @@ class ProductWebsupply extends CmWebsupply{
         $condition =['id'=>$folder_id];
         if($other_id!=$user_id) $condition['private'] = 0;
         $folder = DB::table('folders')->where($condition)->first();
-
         $goods = [];
         if($folder){
             $id = $folder['id'];
-            $goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
+            $goods = DB::table('goods')->where(['folder_id'=>$id])->orderBy('updated_at','desc')->skip($skip)->take($num)->get();
+
             foreach ($goods as $k => $v) {
                 if(strpos($v['image_ids'],',') == 0){
-                    $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                    $goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+                }else{
+                    $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
-                $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.good_id',$v['id'])->orderBy('cg.created_at','desc')->take(3)->get();
+                $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.good_id',$v['id'])->orderBy('cg.updated_at','desc')->take(3)->get();
                 foreach ($collection as $key => $value) {
-                    $goods[$k]['collection_good'][$key] = UserWebsupply::user_info($value['user_id']);
+                    $goods[$k]['collection_good'][$key]['user'] = UserWebsupply::user_info($value['user_id']);
                 }
              }
             
         }
+
         return $goods;
     }
 

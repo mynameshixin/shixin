@@ -33,9 +33,8 @@ $(function (){
   function onScroll() {
   	
     var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 10);
-
-    if (closeToBottom && f == 1) {
+        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
+    if (closeToBottom && f==1) {
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
@@ -47,45 +46,57 @@ $(function (){
 		  	'dataType':'json',
 		  	'data':postData,
 		  	'success':function(json){
-		  		if(json.code==200 && json.data.list.goods!=0 && json.data.list!=null){
+
+		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
 		  			f = 0
-		  			var $str = ''
-		  			var list  = json.data.list.goods
+		  			
+		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
-		      		$firstTen = $items.slice(1, list.length+1).clone();
+		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
-		  				$(".index_item_imgwrap img",$value).attr('src',list[index].image_url)
-					    $(".index_item_price",$value).html('￥'+list[index].price)
+		  				$('.index_item_price',$value).remove()
+		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id)
+		  				if(list[index].price!=0){
+		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
+		  				}
 
-					    description = list[index].description==0?list[index].title:list[index].description
+					    description = list[index].description!=''?list[index].description:list[index].title
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
-					    $(".index_item_l",$value).html(list[index].praise_count)
-					    $(".index_item_c",$value).html(list[index].collection_count)
-					    $(".index_item_b",$value).attr('href',list[index].detail_url)
+					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
+					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_d",$value).html(list[index].boo_count)
+					    $(".index_item_c",$value).attr('href',list[index].detail_url)
+					    $('.index_item_bottom',$value).remove()
 
-					    $('.comment',$value).remove()
-					   if(list[index].comment != 0){
-					   		comment = list[index].comment[list[index].id]
-					    	user_nick = (comment.user.nick!='')?comment.user.nick:comment.user.username
-				    		$str = '<div class="index_item_bottom clearfix comment">'
-								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank">'
-									+'<img src="'+comment.user.pic_m+'" alt="">'
-								+'</a>'
-								+'<div class="index_item_authinfo index_item_authtalk">'
-									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank">'+user_nick+'：</a>'
-									+'<span class="index_item_authto">'+comment.content+'</span>'
+					    if(list[index].collection_good != 0){
+					    	cg = list[index].collection_good
+					    	var ap = ''
+					    	$.each(cg,function(k,value){
+					    		var str = ''
+					    		nick = value.nick!=''?value.nick:value.username
+					    		str = '<div class="index_item_bottom clearfix">'
+									+'<a href="/webd/user/index?oid='+value.user_id+'" class="index_item_authava" target="_blank">'
+										+'<img src="'+value.user.pic_m+'" alt="">'
+									+'</a>'
+									+'<div class="index_item_authinfo">'
+										+'<a href="/webd/user/index?oid='+value.user_id+'" target="_blank" class="index_item_authname">'+nick+'</a>'
+										+'<span class="index_item_authto">采集到</span>'
+										+'<p class="index_item_authtopart"><a href="/webd/folder?fid='+value.folder_id+'" target="_blank">'+value.name+'</a></p>'
+									+'</div>'
 								+'</div>'
-							+'</div>'
-							$($value).append($str)
-					    	
+								ap+=str
+					    	})
+							$($value).append(ap)
 					    }
+					    
+					    $(".index_item_imgwrap img",$value).attr('src',list[index].image_url)
+					   
 		  			})
-
 		  			$('#load').hide()
+		  			
 		  			$tiles.append($firstTen)
 		  			applyLayout();
 		  			f = 1

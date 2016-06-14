@@ -12,30 +12,30 @@
 					<?php foreach ($user_fans as $key => $value) :?>
 					<li class="find_user_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>" user_id="{{$value['id']}}">
 						<div class="find_user_info">
-							<a href="javascript:;" class="find_user_name">{{empty($value['nick'])?$value['username']:$value['nick']}}</a>
+							<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="find_user_name" target="_blank">{{empty($value['nick'])?$value['username']:$value['nick']}}</a>
 							<a href="javascript:;" class="find_user_rela">{{$value['count']['fans_count']}}粉丝 {{$value['count']['follow_count']}}关注</a>
 						</div>
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<img src="{{$value['pic_m'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+								<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="position" target="_blank"><img src="{{!empty($value['auth_avatar'])?$value['auth_avatar']:$value['pic_m']}}" alt=""></a>
 							</div>
 							<ul class="find_user_limg">
 								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][0]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][1]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 								</li>
 							</ul>
 							<a onclick="relation(this)" class="find_user_authflw">

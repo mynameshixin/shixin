@@ -13,13 +13,17 @@
 		<div class="w1248 w1240 clearfix" id="main" role='main'>
 
 			<div class="index_con  perhome_wrap" id='tiles'>
-				<div class="index_item" style="box-shadow: none;-webkit-box-shadow: none;">
-					<li class="find_fold_li perhome_add_one perhome_add_goods" style="margin-bottom: 0px;">
-						<a href="javascript:;" class="perhome_add_btn">+</a>
-						<div class="perhome_add_des">添加文件</div>
-					</li>
-				</div>
-				
+				<?php if($self_id==$user_id){?>
+					<div class="index_item" style="box-shadow: none;-webkit-box-shadow: none;">
+						<li class="find_fold_li perhome_add_one perhome_add_goods" style="margin-bottom: 0px;">
+							<a href="javascript:;" class="perhome_add_btn">+</a>
+							<div class="perhome_add_des">添加文件</div>
+						</li>
+					</div>
+				<?php }else{ ?>
+					<div class="index_item"></div>
+				<?php } ?>
+				<?php if(!empty($folder['goods'])): ?>
 				<?php foreach ($folder['goods'] as $key => $value) :?>
 			    <div class="index_item">
 			    	<div class="index_item_wrap">
@@ -37,7 +41,7 @@
 									<a href="javascript:;" class="index_item_l">{{$value['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$value['collection_count']}}</a>
 									<?php if($value['kind'] == 1): ?>
-										<a href="{{$value['detail_url']}}" class="index_item_b"></a>
+										<a href="{{$value['detail_url']}}" class="index_item_b" target="_blank"></a>
 									<?php elseif($value['kind'] == 2):?>
 										<a href="javascript:;" class="index_item_d">{{$value['boo_count']}}</a>
 									<?php endif; ?>
@@ -46,11 +50,11 @@
 							<?php if(!empty($value['comment'])): ?>
 								<?php $comment = $value['comment'][$value['id']]; ?>
 								<div class="index_item_bottom clearfix comment">
-									<a href="javascript:;" class="index_item_authava" target="_blank">
+									<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" class="index_item_authava" target="_blank">
 										<img src="{{$comment['user']['pic_m']}}" alt="">
 									</a>
 									<div class="index_item_authinfo index_item_authtalk">
-										<a href="javascript:;" class="index_item_talkname">{{$comment['user']['nick'] or $comment['user']['username']}}：</a>
+										<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" target="_blank" class="index_item_talkname">{{$comment['user']['nick'] or $comment['user']['username']}}：</a>
 										<span class="index_item_authto">{{$comment['content']}}</span>
 									</div>
 								</div>
@@ -59,6 +63,7 @@
 					</div>
 			    </div>
 				<?php endforeach; ?>
+			<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -919,7 +924,7 @@
 		});
 	</script>
 <script type="text/javascript">
-	postUrl = "{{url('webd/folder/folders')}}?oid={{$user_id}}&fid={{$folder['id']}}"
+	postUrl = "{{url('webd/folder/folders')}}?fid={{$folder['id']}}"
 	postData = {'num':15}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/folder/pubu.js"></script>

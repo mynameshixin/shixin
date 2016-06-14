@@ -6,6 +6,7 @@
  * @version $Id$
  */
 .nodata{margin-left: 80px; color:#666; font-size: 20px}
+.position{position:absolute; width: 100%; height: 100%}
 .nolog_body{background: #fff;height: auto;}
 .index_item{float: left;width: 236px;margin-bottom: 15px;
 	box-shadow:0 1px 3px rgba(0,0,0,.3);
@@ -102,7 +103,7 @@
 .find_fold_name{display:block;float: left;margin-left: 10px;font:normal 16px/21px "Microsoft YaHei";color:#000;width: 170px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis;}
 .find_fold_authnme{float: left;margin-left: 10px;font:normal 12px/20px "Microsoft YaHei";color: #858585;width: 170px;overflow: hidden;white-space:nowrap;text-overflow:ellipsis;}
 .find_fold_authnme a{color: #000;}
-.find_fold_authflw{width: 220px;height: 29px;display: block;text-align: center;font:normal 14px/29px "Microsoft YaHei";color: #000;background: #eee;border:1px solid #d5d5d5;border-radius: 3px;margin:7px 0px 8px 7px;float: left;}
+.find_fold_authflw{width: 220px;height: 29px;display: block;text-align: center;font:normal 14px/29px "Microsoft YaHei";color: #000;background: #eee;border:1px solid #d5d5d5;border-radius: 3px;margin:7px 0px 8px 7px;float: left;cursor: pointer;}
 .find_fold_authflw span{color: #fd0000;font-weight: bold;}
 
 .back_to_top{width: 40px;height: 40px;background: #a8a8a8;color: #555;display: block;text-align: center;font:bold 32px/50px "Microsoft YaHei";position: fixed;bottom: 200px;left: 50%;margin-left: 635px;}
@@ -204,7 +205,7 @@
 	box-shadow:0 0 4px rgba(0,0,0,.2);
 }
 .perhome_perava{width:113px;height: 113px;border-radius: 50%;background: #fff;border:6px solid #fff;position: absolute;left: 50%;margin-left: -56px;top: -40px;z-index: 1001;}
-.perhome_perava img{width:105px;height: 105px;border-radius: 50%;padding:3px;border:1px solid #eaeaea;}
+.perhome_perava img{width:85px;height: 85px;border-radius: 50%;padding:3px;border:1px solid #eaeaea;}
 .perhome_perline{height: 66px;margin:0 auto;border-bottom: 1px solid #eaeaea;}
 .perhome_peridset{width: 80px;height: 28px;background: #f4f4f4;border:1px solid #d7d7d7;border-radius: 3px;text-align: center;line-height: 28px;float: right;margin-top: 20px;font-size: 15px;color:#4c4c4c;}
 .perhome_perdes{margin:15px auto 0px auto;border-bottom: 1px solid #eaeaea;text-align: center;}
@@ -297,7 +298,7 @@
 .detail_fuava{width: 38px;height: 38px;border-radius: 50%;border:1px solid #f2f2f2;float: left;}
 .detail_fuava img{width: 100%;height: 100%;border-radius: 50%;}
 .detail_funame{margin-left: 56px;font:normal 18px/40px "SimSun";color: #222;}
-.detail_fileinfo .perhome_perlike_wrap{width: 276px;float: left;margin:15px 0px 0px 380px;}
+.detail_fileinfo .perhome_perlike_wrap{width: 276px;float: left;margin:15px 0px 0px 300px;}
 .detail_filebtn_wrap{float: right;}
 .detail_filebtn_cpadding{padding:0px 16px;}
 .detail_filebtn{display: inline-block;height:34px;cursor: pointer;background: #e15335;color:#fff;border-radius: 4px;font:normal 14px/34px "SimSun";margin:17px 0px 0px 18px;position: relative;}
@@ -413,8 +414,8 @@
 .detail_pop_trworks{width: 260px;height: 370px;overflow-y: scroll;margin-right: -15px;}
 
 .detail_pop_btitle{font:normal 15px/45px "SimSun";color: #7d7d7d;margin:15px;}
-a.detail_pop_baddmore{display: block;}
-.detail_pop_baddmore{width: 30%;height: 45px;font:normal 15px/45px "Microsoft YaHei";color: #7d7d7d;text-align: center;background: #fff;border-radius: 5px;display: none;margin: 0 auto}
+#more{display: block;}
+.detail_pop_baddmore,#load{width: 200px;height: 45px;font:normal 15px/45px "Microsoft YaHei";color: #7d7d7d;text-align: center;background: #fff;border-radius: 5px;display: none;margin: 0 auto;}
 
 .detail_pop_loadbtn{width: 65px;height: 198px;position: fixed;top: 120px;}
 .detail_pop_loadleft{left: 94px;background: url(../images/detail_pop_load.png) -65px -510px no-repeat;}
@@ -828,7 +829,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 
 
 .perhome_scroll_info .detail_fileuser{padding-top: 6px;margin-top: 0px;}
-.perhome_scroll_info .perhome_perlike_wrap{margin-top: 0px;padding-top: 6px;width: 285px;margin:0px 0px 0px 380px;float: left;}
+.perhome_scroll_info .perhome_perlike_wrap{margin-top: 0px;padding-top: 6px;width: 285px;margin:0px 0px 0px 300px;float: left;}
 .perhome_scroll_info .detail_filebtn{margin-top: 8px;}
 .perhome_scroll_info .otherhome_follow{margin-top: 8px;}
 .follow_each{display: none;}

@@ -17,6 +17,7 @@ $(function (){
     	$.ajax({
 		  	'beforeSend':function(){
 		  		$('#load').show()
+		  		$('#load').css({'display':'block'})
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
@@ -35,18 +36,29 @@ $(function (){
 						gpic_1 = data[index].folder_goods[0] != undefined?data[index].folder_goods[0].image_url:defaultPic
 						gpic_2 = data[index].folder_goods[1] != undefined?data[index].folder_goods[1].image_url:defaultPic
 						gpic_3 = data[index].folder_goods[2] != undefined?data[index].folder_goods[2].image_url:defaultPic
+
+						glink_1 = data[index].folder_goods[0] != undefined?'/webd/pic/'+data[index].folder_goods[0].id:'#'
+						glink_2 = data[index].folder_goods[1] != undefined?'/webd/pic/'+data[index].folder_goods[1].id:'#'
+						glink_3 = data[index].folder_goods[2] != undefined?'/webd/pic/'+data[index].folder_goods[2].id:'#'
 						
 						$($lis[index]).attr('folder_id',data[index].folder_id)
-						$('.find_fold_name',$lis[index]).html(data[index].name)
+						pic = data[index].user.auth_avatar!=null?data[index].user.auth_avatar:data[index].user.pic_m
+						$('.find_fold_authava a',$lis[index]).attr('href','/webd/user?oid='+data[index].user.id)
+						$('.find_fold_authava img',$lis[index]).attr('src',pic)
+						$('.find_fold_name',$lis[index]).html(data[index].name).attr('href','/webd/folder?fid='+data[index].folder_id)
 						username = data[index].nick==''?data[index].username:data[index].nick
-						$('.find_fold_authnme',$lis[index]).html(username)
-
+						$('.find_fold_authnme',$lis[index]).html(username).attr('href','/webd/user?oid='+data[index].user.id)
 						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
+						$('.find_fold_imgwrap a',$lis[index]).attr('href','/webd/folder?fid='+data[index].folder_id)
 						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
 
 						$('.find_fold_liwrap',$lis[index]).eq(0).find('img').attr('src',gpic_1)
 						$('.find_fold_liwrap',$lis[index]).eq(1).find('img').attr('src',gpic_2)
 						$('.find_fold_liwrap',$lis[index]).eq(2).find('img').attr('src',gpic_3)
+
+						$('.find_fold_liwrap',$lis[index]).eq(0).find('a').attr('href',glink_1)
+						$('.find_fold_liwrap',$lis[index]).eq(1).find('a').attr('href',glink_2)
+						$('.find_fold_liwrap',$lis[index]).eq(2).find('a').attr('href',glink_3)
 						if(self_id == user_id){
 							$('.find_fold_authflw',$lis[index]).html('已关注')
 						}else{

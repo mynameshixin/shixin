@@ -38,6 +38,7 @@ class UserController extends CmController{
 	//查询自己的信息 文件夹首页
 	public function getIndex(){
 		$folders = $this->postFolders(0);
+		// dd($folders);
 		$folders_private = $this->postFolders(1);
 		$data = [
 			'user_info'=>$this->user_info,
@@ -117,6 +118,7 @@ class UserController extends CmController{
 	// 用户关注的文件夹
 	public function getFollowfolder(){
 		$user_follow_folder = $this->postFollowfolder();
+		// dd($user_follow_folder);
 		$data = [
 			'user_info'=>$this->user_info,
 			'self_info'=>$this->self_info,

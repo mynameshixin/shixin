@@ -13,18 +13,18 @@
 							<div class="detail_filetit">
 								{{$folder['name']}}
 							</div>
-							<p class="detail_filedes">{{$user_info['nick'] or $user_info['username']}}</p>
+							<p class="detail_filedes">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 						</div>
 						<div class="detail_fileinfo">
 							<div class="detail_fileuser">
 								<div class="detail_fuava">
-									<img src="{{$user_info['pic_m']}}" alt="">
+									<img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt="">
 								</div>
-								<p class="detail_funame">{{$user_info['nick'] or $user_info['username']}}</p>
+								<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 							</div>
 							<div class="perhome_perlike_wrap clearfix">
 								<a href="{{url('webd/folder')}}?oid={{$user_id}}&fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
-									<p class="perhome_perlike_num">{{$folder['file_count']}}</p>
+									<p class="perhome_perlike_num">{{$folder['count']}}</p>
 									<p class="perhome_perlike_la">文件</p>
 								</a>
 								<a href="{{url('webd/folder/fans')}}?oid={{$user_id}}&fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
@@ -78,13 +78,13 @@
 				<div class="perhome_scroll_info">
 					<div class="detail_fileuser">
 						<div class="detail_fuava">
-							<img src="{{$user_info['pic_m']}}" alt="">
+							<img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt="">
 						</div>
-						<p class="detail_funame">{{$user_info['nick'] or $user_info['username']}}</p>
+						<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 					</div>
 					<div class="perhome_perlike_wrap clearfix">
 						<a href="javascript:;" class="perhome_perlike_label perhome_perlike_lon">
-							<p class="perhome_perlike_num">{{$user_info['count']['folder_count']}}</p>
+							<p class="perhome_perlike_num">{{$folder['count']}}</p>
 							<p class="perhome_perlike_la">文件</p>
 						</a>
 						<a href="javascript:;" class="perhome_perlike_label">

@@ -11,8 +11,8 @@ class FolderWebsupply extends CmWebsupply {
 	//获取最新推荐的文件夹(所有人) 
 	public static function get_recommend($num=3,$gnum = 0){
 		 $folders = DB::table('folders')->where([
-				'folders.is_recommend'=>1,'folders.private'=>0,	
-				])->orderBy('folders.updated_at','desc')->take($num)->get();
+				'folders.is_recommend'=>1,'folders.private'=>0,'folders.user_id'=>5,
+				])->orderBy('folders.created_at','desc')->take($num)->get();
 		 foreach ($folders as $key => $value) {
 		 	$imageId = $value['image_id'];
 		 	$id = $value['id'];
@@ -21,6 +21,8 @@ class FolderWebsupply extends CmWebsupply {
 		 		foreach ($goods as $k => $v) {
 		 			if(strpos($v['image_ids'],',') == 0){
 		 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+		 			}else{
+		 				$goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
 		 			}
 		 		}
 		 		$folders[$key]['goods'] = $goods;
@@ -43,11 +45,19 @@ class FolderWebsupply extends CmWebsupply {
 			$img_url = LibUtil::getPicUrl($imageId, 1);
 			$folders[$i]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
+			$user_id = isset($folders[$i]['user_id'])?$folders[$i]['user_id']:0;
 			if(!empty($gnum) && !empty($id)){
 		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+		 		if(count($goods)<$gnum){
+	                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$user_id])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
+	                $goods = $cg+$goods;
+            	} 
+		 		
 			 		foreach ($goods as $k => $v) {
 			 			if(strpos($v['image_ids'],',') == 0){
 			 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+			 			}else{
+			 				$goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
 			 			}
 			 		}
 		 		$folders[$i]['goods'] = $goods;		 	
@@ -78,13 +88,20 @@ class FolderWebsupply extends CmWebsupply {
 			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
 			$follow = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$id])->first();
 			$folders[$i]['is_follow'] = !empty($follow)?1:0;
+			//$folders[$i]['count'] = DB::table('goods')->where('folder_id',$id)->count();
 			if(!empty($gnum) && !empty($id)){
 		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
-			 		foreach ($goods as $k => $v) {
-			 			if(strpos($v['image_ids'],',') == 0){
-			 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
-			 			}
-			 		}
+		 		if(count($goods)<$gnum){
+	                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
+	                $goods = $cg+$goods;
+            	} 
+		 		foreach ($goods as $k => $v) {
+		 			if(strpos($v['image_ids'],',') == 0){
+		 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+		 			}else{
+		 				$goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
+		 			}
+		 		}
 		 		$folders[$i]['goods'] = $goods;		 	
 			}
 		}
@@ -95,30 +112,34 @@ class FolderWebsupply extends CmWebsupply {
 	
 
 	//通过文件夹id获取文件
-	public static function get_folder_file($folder_id,$other_id,$user_id,$data){
+	public static function get_folder_file($folder_id,$user_id,$data){
 		$page = isset($data['page'])?$data['page']:1;
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;
-		$condition =['id'=>$folder_id,'user_id'=>$other_id];
-		if($other_id!=$user_id) $condition['private'] = 0;
-		$folder = DB::table('folders')->where($condition)->first();
+		$folder = DB::table('folders')->where(['id'=>$folder_id])->first();
 		if($folder){
+			if($folder['user_id']!=$user_id && $folder['private'] == 1) return [];
+			$folder['user_info'] = UserWebsupply::user_info($folder['user_id']);
 			$imageId = $folder['image_id'];
 			$img_url = LibUtil::getPicUrl($imageId, 1);
 			$folder['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 			$id = $folder['id'];
 			if($data['kind'] == 1){
-			 	$goods = DB::table('goods')->where('folder_id',$id)->orderBy('created_at','desc')->skip($skip)->take($num)->get();
+
+			 	$goods = DB::select("select * from goods where folder_id = {$id} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} order by created_at desc limit {$skip},{$num}");
+
 				foreach ($goods as $k => $v) {
 					$commentArr = CommentWebsupply::getCommentFirst($v['id']);
 					$goods[$k]['comment'] = $commentArr;
 		 			if(strpos($v['image_ids'],',') == 0){
 		 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+		 			}else{
+		 				$goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
 		 			}
 				 }
 		 		$folder['goods'] = $goods;
 		 	}
-		 	$folder['file_count'] = DB::table('goods')->where(['folder_id'=>$folder_id,'user_id'=>$other_id])->count();
+		 	//$folder['file_count'] = DB::table('goods')->where(['folder_id'=>$folder_id,'user_id'=>$folder['user_id']])->count();
 	 		$folder['fans_count'] = DB::table('collection_folder')->where('folder_id',$folder_id)->count();
 		}
 		

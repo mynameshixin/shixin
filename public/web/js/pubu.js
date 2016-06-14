@@ -40,6 +40,7 @@ $(function (){
     	$.ajax({
 		  	'beforeSend':function(){
 		  		$('#load').show()
+		  		$('#load').css({'display':'block'})
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
@@ -52,37 +53,11 @@ $(function (){
 		  			var list  = json.data.list
 		  			var $items = $('.index_item', $tiles)
 		      		$firstTen = $items.slice(1, list.length+1).clone();
-		      		/*'<div class="index_item">'
-			    	+'<div class="index_item_wrap">'
-						+'<div class="index_item_imgwrap">'
-							+'<a class="index_item_blurwrap"></a>'
-							+'<img src="http://www.duitujia.com/web/images/temp/10.png">'
-							+'<div class="index_item_price">￥980</div>'
-						+'</div>'
-						+'<div class="index_item_info">'
-							+'<div class="index_item_top">'
-								+'<div class="index_item_intro" title="简洁实用的衣柜">简洁实用</div>'
-								+'<div class="index_item_rel clearfix">'
-									+'<a href="javascript:;" class="index_item_l">82</a>'
-									+'<a href="javascript:;" class="index_item_c">90</a>'
-									+'<a href="javascript:;" class="index_item_b"></a>'
-								+'</div>'
-							+'</div>'
-							+'<div class="index_item_bottom clearfix">'
-								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
-									+'<img src="http://www.duitujia.com/web/images/temp_avatar.JPG" alt="">'
-								+'</a>'
-								+'<div class="index_item_authinfo">'
-									+'<a href="javascript:;" class="index_item_authname">叶子</a>'
-									+'<span class="index_item_authto">采集到</span>'
-									+'<p class="index_item_authtopart"><a href="javascript:;" target="_blank">搭配</a></p>'
-								+'</div>'
-							+'</div>'
-						+'</div>'
-					+'</div>'
-				   +'</div>'*/
+
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
+		  				$(".index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
+
 					    $(".index_item_price",$value).html('￥'+list[index].price)
 					    $(".index_item_intro",$value).html(list[index].description);
 					    $(".index_item_intro",$value).attr('title',list[index].description)
@@ -90,11 +65,13 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).attr('href',list[index].detail_url)
-
-					    $(".index_item_bottom img",$value).attr('src',list[index].user.pic_m)
+					    pic_m = list[index].user.auth_avatar!=null?list[index].user.auth_avatar:list[index].user.pic_m
+					    $(".index_item_bottom img",$value).attr('src',pic_m)
 					    user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
-					    $(".index_item_authname",$value).html(user_nick)
-					    $(".index_item_authtopart a",$value).html(list[index].folder_name)
+					    $(".index_item_authname",$value).html(user_nick).attr('href','/webd/user?oid='+list[index].user.id)
+
+					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id)
+					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id)
 
 					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
 					   

@@ -17,12 +17,13 @@ class HomeController extends CmController{
 		
 		$user_id = $this->user_id;
 		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
-
+		// dd($user_info);
 		if(isset($user_info) && !empty($user_info)){
 			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','fans_count'],$user_id);
 		}
 
 		$recommend = FolderWebsupply::get_recommend();
+		// dd($recommend);
 		foreach ($recommend as $key => $value) {
 			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();

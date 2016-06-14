@@ -40,6 +40,7 @@ $(function (){
     	$.ajax({
 		  	'beforeSend':function(){
 		  		$('#load').show()
+		  		$('#load').css({'display':'block'})
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',
@@ -74,13 +75,14 @@ $(function (){
 					    	var c = list[index].comment
 					    	var good_id = list[index].id
 					    	var comment = c[good_id]
-					    	user_nick = (comment.user.nick!=0)?comment.user.nick:comment.user.username
+					    	user_nick = (comment.user.nick!='')?comment.user.nick:comment.user.username
+					    	pic_m = (comment.user.auth_avatar!=null)?comment.user.auth_avatar:comment.user.pic_m
 				    		$str = '<div class="index_item_bottom clearfix comment">'
-								+'<a href="javascript:;" class="index_item_authava" target="_blank">'
-									+'<img src="'+comment.user.pic_m+'" alt="">'
+								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank">'
+									+'<img src="'+pic_m+'" alt="">'
 								+'</a>'
 								+'<div class="index_item_authinfo index_item_authtalk">'
-									+'<a href="javascript:;" class="index_item_talkname">'+user_nick+'：</a>'
+									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank">'+user_nick+'：</a>'
 									+'<span class="index_item_authto">'+comment.content+'</span>'
 								+'</div>'
 							+'</div>'

@@ -24,16 +24,20 @@
 								<div class="index_item_rel clearfix">
 									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
-									<a href="" class="index_item_d">{{$v['boo_count']}}</a>
+									<?php if($v['kind'] == 1): ?>
+										<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank"></a>
+									<?php elseif($v['kind'] == 2):?>
+										<a href="javascript:;" class="index_item_d">{{$v['boo_count']}}</a>
+									<?php endif; ?>
 								</div>
 							</div>
 							<?php foreach ($v['comment'] as $key => $value):?>
 							<div class="index_item_bottom clearfix comment">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
+								<a href="{{url('webd/user')}}/{{$value['user']['id']}}" class="index_item_authava" target="_blank">
 									<img src="{{$value['user']['pic_m']}}" alt="">
 								</a>
 								<div class="index_item_authinfo index_item_authtalk">
-									<a href="javascript:;" class="index_item_authname">{{$value['user']['nick']}}：</a>
+									<a href="{{url('webd/user')}}/{{$value['user']['id']}}" class="index_item_authname">{{$value['user']['nick']}}：</a>
 									<span class="index_item_authto">{{$value['content']}}</span>
 								</div>
 							</div>

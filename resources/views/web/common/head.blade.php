@@ -24,20 +24,6 @@
 			})
 		}
 
-		function current_show(obj){
-			$('body').addClass('overhidden')
-			/*var state = {
-				title:'',
-				url:'http://la.com/webd/pic/'+$(obj).attr('img_id')
-			};*/
-			var state = {
-				title:'',
-				url:'1.html'
-			};
-			console.log(state)
-			window.history.pushState(state,document.title,state.url);
-		}
-
 
 	</script>
 </head>

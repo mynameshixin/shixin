@@ -34,12 +34,13 @@ class FolderController extends CmController{
 	//查询文件夹对应的文件
 	public function getIndex(){
 		$folder = $this->postFolders(1);
+		if(empty($folder['data']['list'])) die('private folder no access!');
 		// dd($folder);
 		$data = [
 			'folder'=>$folder['data']['list'],
 			'user_info'=>$this->user_info,
 			'self_info'=>$this->self_info,
-			'user_id'=>$this->other_id,
+			'user_id'=>$folder['data']['list']['user_id'],
 			'type'=>1,
 			'self_id'=>$this->user_id
 		];
@@ -73,7 +74,7 @@ class FolderController extends CmController{
 		$data['kind'] = isset($data['kind']) ? $data['kind'] : $kind;
         $data['num'] = isset($data['num']) ? $data['num'] : 15;
         $data['page'] = isset($data['page'])?$data['page']:1;
-		$rs = FolderWebsupply::get_folder_file($this->folder_id,$this->other_id,$this->user_id,$data);
+		$rs = FolderWebsupply::get_folder_file($this->folder_id,$this->user_id,$data);
 		$list['list'] = $rs;
 		return response()->forApi($list);
 	}

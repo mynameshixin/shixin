@@ -39,7 +39,7 @@ $(function(){
 		            });
 		            
 			     });
-			    var $container = $('.index_con');
+			   /* var $container = $('.index_con');
 			    $container.imagesLoaded(function() {
 			        $container.masonry({
 		                itemSelector: '.index_item',
@@ -47,7 +47,12 @@ $(function(){
 		                isAnimated: true,
 		            });
 		            
-			     });
+			     });*/
+
+			    $('.detail_pop_loadmore').click(function(){
+			    	$('.detail_pop_tlcomlist li').show()
+			    	$(this).hide()
+			    })
 			    $('.detail_pop_collection').click(function(){
 					$('.pop_collect').show();
 					var popH =$('.pop_collect').show().find('.pop_con').height();
@@ -194,7 +199,7 @@ $(function(){
 	function onMore() {
 
     	obj = $(this)
-    	postData.page = ++page
+    	moreData.page = ++page
     	ul = $('#ul')
     	$.ajax({
 		  	'beforeSend':function(){
@@ -203,7 +208,7 @@ $(function(){
 		  	'url':folderUrl,
 		  	'type':'POST',
 		  	'dataType':'json',
-		  	'data':postData,
+		  	'data':moreData,
 		  	'success':function(json){
 		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
 		  			data = json.data.list
@@ -215,17 +220,37 @@ $(function(){
 						gpic_1 = data[index].goods[0] != undefined?data[index].goods[0].image_url:defaultPic
 						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
 						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
+
+						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:''
+						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:''
+						glink_3 = data[index].goods[2] != undefined?'/webd/pic/'+data[index].goods[2].id:''
+
 						$($lis[index]).attr('folder_id',data[index].id)
-						$('.find_fold_name',$lis[index]).html(data[index].name)
+						$('.find_fold_name',$lis[index]).html(data[index].name).attr('href','/webd/folder?fid='+data[index].id)
+						nick = data[index].user.nick!=''?data[index].user.nick:data[index].user.username
+						$('.find_fold_authnme',$lis[index]).html(nick).attr('href','/webd/user/index?oid='+data[index].user.id)
+
 						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
+						$('.find_fold_imgwrap a',$lis[index]).attr('href','/webd/folder?fid='+data[index].id)
+
 						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
+
+						$('.find_fold_liwrap a',$lis[index]).eq(0).attr('href',glink_1)
+						$('.find_fold_liwrap a',$lis[index]).eq(1).attr('href',glink_2)
+						$('.find_fold_liwrap a',$lis[index]).eq(2).attr('href',glink_3)
 
 						$('.find_fold_liwrap img',$lis[index]).eq(0).attr('src',gpic_1)
 						$('.find_fold_liwrap img',$lis[index]).eq(1).attr('src',gpic_2)
 						$('.find_fold_liwrap img',$lis[index]).eq(2).attr('src',gpic_3)
 
+
+
 						follow = data[index].is_follow==1?'已关注':'<span>+</span>特别关注'
 						$('.find_fold_authflw',$lis[index]).html(follow)
+
+						pic_m = data[index].user.auth_avatar!=null?data[index].user.auth_avatar:data[index].user.pic_m
+						$('.find_fold_authava img',$lis[index]).attr('src',pic_m)
+						$('.find_fold_authava a',$lis[index]).attr('href','/webd/user/index?oid='+data[index].user.id)
 
 
 					})

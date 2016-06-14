@@ -7,8 +7,8 @@
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
-		<a href="javascript:;" class="detail_pop_loadbtn detail_pop_loadleft"></a>
-		<a href="javascript:;" class="detail_pop_loadbtn detail_pop_loadright"></a>
+		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft"></a>
+		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright"></a>
 		<div class="detail_pop_wrap w990 clearfix">
 			<div class="detail_pop_top clearfix">
 				<div class="detail_pop_tleft">
@@ -38,7 +38,7 @@
 							<!-- JiaThis Button END -->
 						</div>
 						<div class="detail_pop_timgwarp" style="overflow: hidden">
-							<img src="{{$goods['images'][0]['img_o']}}" alt="" onload="rect(this)">
+							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668">
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price">￥<?php echo $goods['price'];?></div><?php endif; ?>
 						</div>
 						<p class="detail_pop_des" title="{{$goods['description']}}">
@@ -78,13 +78,13 @@
 						<p class="detail_pop_tlbtmcomment">评论</p>
 						<ul class="detail_pop_tlcomlist">
 							<?php foreach ($goods['comments'] as $key => $v):?>
-							<?php if(in_array($key, [0,1,2])): ?>
-							<li class="clearfix">
+
+							<li class="clearfix" <?php if(!in_array($key, [0,1,2])): ?>style="display: none"<?php endif; ?>>
 								<div class="detail_pop_authava">
 									<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}"><img src="{{$v['user']['pic_m']}}" alt=""></a>
 								</div>
 								<div class="detail_pop_cominfo">
-									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- 1个月前说：
+									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- {{$v['min']}}前说：
 										<span class="detail_pop_comshare">
 											<a href="javascript:;" class="detail_pop_share1"></a>
 											<a href="javascript:;" class="detail_pop_share2"></a>
@@ -95,10 +95,10 @@
 								</div>
 								<div class="detail_pop_favor">{{$v['praise_count']}}</div>
 							</li>
-							<?php endif; ?>
+
 							<?php endforeach; ?>
 						</ul>
-						<?php if(!empty($goods['comments'])): ?><a href="javascript:;" class="detail_pop_loadmore">显示更多评论</a><?php endif; ?>
+						<?php if(!empty($goods['comments'])): ?><a href="javascript:;" class="detail_pop_loadmore">显示全部评论</a><?php endif; ?>
 						<div class="detail_pop_compublish clearfix">
 							<div class="detail_pop_authava">
 								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}"><img src="{{$self_info['pic_m']}}" alt=""></a>
@@ -116,7 +116,7 @@
 							<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}"><img src="{{$goods['user']['pic_m']}}" alt=""></a>
 						</div>
 						<div class="detail_pop_authinfo">
-							<p class="detail_pop_authname"><a href="{{url('webd/folder/index')}}?oid={{$goods['user_id']}}&fid={{$goods['folder']['id']}}">{{$goods['folder']['name']}}</a></p>
+							<p class="detail_pop_authname"><a href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}">{{$goods['folder']['name']}}</a></p>
 							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
 						<a class="detail_pop_authfollow detail_filebtn detail_fileball"><?php 
@@ -139,7 +139,7 @@
 							<div class="detail_pop_tritem">
 								<div class="index_item_wrap">
 									<div class="index_item_imgwrap clearfix">
-										<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}"></a>
+										<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
 										<img src="{{$v['image_url']}}">
 									</div>
 								</div>
@@ -155,34 +155,34 @@
 					<ul class="find_fold_list clearfix" id="ul">
 						<?php if(empty($goods['collection_folders'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
 						<?php foreach($goods['collection_folders'] as $k=>$v): ?>
-							<?php if(in_array($k, [0,1,2,3])): ?>
+							
 							<li class="find_fold_li <?php if(($k+1)%4==0) echo 'mrightzero'; ?>">
 								<div class="find_fold_info clearfix">
 									<div class="find_fold_authava">
 										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt=""></a>
 									</div>
 									<div class="find_fold_tname">
-										<a href="#" target="_blank" class="find_fold_name">{{$v['name']}}</a>
-										<a href="#" target="_blank" class="find_fold_authnme">{{$v['user']['nick'] or $v['user']['username']}}</a>
+										<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="find_fold_name">{{$v['name']}}</a>
+										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme">{{$v['user']['nick'] or $v['user']['username']}}</a>
 									</div>
 								</div>
 								<div class="find_fold_imgwrap">
 									<div class="find_fold_imgblur"></div>
-									<img src="{{$v['img_url']}}" alt="" onload="rect(this)">
+									<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="position"><img src="{{$v['img_url']}}" alt="" onload="rect(this)"></a>
 									<div class="find_fold_catflw">{{$v['count']}}文件&nbsp;&nbsp;{{$v['collection_count']}}关注</div>
 								</div>
 								<div class="find_fold_limg clearfix">
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<img src="{{$v['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+										<a href="{{url('webd/pic')}}/{{$v['goods'][0]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 									</div>
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<img src="{{$v['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+										<a href="{{url('webd/pic')}}/{{$v['goods'][1]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 									</div>
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<img src="{{$v['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+										<a href="{{url('webd/pic')}}/{{$v['goods'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 									</div>
 								</div>
 								<a href="javascript:;" class="find_fold_authflw">
@@ -191,40 +191,46 @@
 								?>
 								</a>
 							</li>
-						<?php endif; ?>
+
 						<?php endforeach; ?>
 					</ul>
 				</div>
 				<?php if(!empty($goods['collection_folders'])): ?><a href="javascript:;" class="detail_pop_baddmore" id="more">加载更多</a><?php endif; ?>
 				<p class="detail_pop_btitle">推荐给你的采集</p>
-				<div class="index_con  perhome_wrap">
+			<div id="main" role="main" class="w1248 w1240 clearfix">
+				<div class="index_con  perhome_wrap" id="tiles">
 					<?php if(empty($goods['collection_folders'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
 					<?php foreach($goods['folders_one'] as $k=>$v): ?>
 					<div class="index_item">
 						<div class="index_item_wrap">
 							<div class="index_item_imgwrap clearfix">
-								<a class="index_item_blurwrap"></a>
+								<a class="index_item_blurwrap" target="_blank" href="{{url('webd/pic')}}/{{$v['id']}}"></a>
 								<?php if(!empty($v['price'])): ?><div class="index_item_price">￥{{$v['price']}}</div><?php endif; ?>
 								<img src="{{$v['image_url']}}">
 							</div>
 							<div class="index_item_info">
 								<div class="index_item_top">
-									<div class="index_item_intro" title="{{!empty($v['description'])?$v['description']:$v['title']}}">{{!empty($v['description'])?$v['description']:$v['title']}}</div>
+									<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
 									<div class="index_item_rel clearfix">
 										<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
 										<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
-										<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
+										<?php if($v['kind']==1){ ?>
+											<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
+										<?php } ?>
+										<?php if($v['kind']==2){ ?>
+											<a href="#" target="_blank" class="index_item_d">{{$v['boo_count']}}</a>
+										<?php } ?>
 									</div>
 								</div>
 								<?php foreach ($v['collection_good'] as $key => $value):?>
 								<div class="index_item_bottom clearfix">
 									<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" class="index_item_authava" target="_blank">
-										<img src="{{$value['pic_m']}}" alt="">
+										<img src="{{$value['user']['pic_m']}}" alt="">
 									</a>
 									<div class="index_item_authinfo">
-										<a href="javascript:;" class="index_item_authname">{{!empty($value['nick'])?$value['nick']:$value['username']}}</a>
+										<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" target="_blank" class="index_item_authname">{{!empty($value['nick'])?$value['nick']:$value['username']}}</a>
 										<span class="index_item_authto">采集到</span>
-										<p class="index_item_authtopart">{{$value['name']}}</p>
+										<p class="index_item_authtopart"><a href="{{url('webd/folder')}}?fid={{$value['folder_id']}}" target="_blank">{{$value['name']}}</a></p>
 									</div>
 								</div>
 								<?php endforeach; ?>
@@ -234,8 +240,10 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
+			</div>
 		</div>
 	</div>
+	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
 	<!-- 采集时新建文件夹 -->
 	<div class="pop_collect" style="display:none;">
 		<div class="pop_con">
@@ -633,10 +641,13 @@
 	</div>
 </body>
 <script type="text/javascript">
+	fid = <?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>;
 	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 	folderUrl = '{{url("webd/pics/folder?oid={$user_id}")}}'
-	imgUrl = '{{url("webd/pics/img?oid={$user_id}")}}'
-	postData = {'num':8,'img_id':{{$goods['id']}}}
+	postUrl = "{{url('webd/pics/img')}}?oid={{$user_id}}&fid="+fid
+	moreData = {'num':4,'img_id':{{$goods['id']}}}
+	postData = {'num':15,'img_id':{{$goods['id']}}}
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
+ <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>
 </html>

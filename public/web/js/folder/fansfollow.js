@@ -17,6 +17,7 @@ $(function (){
     	$.ajax({
 		  	'beforeSend':function(){
 		  		$('#load').show()
+		  		$('#load').css({'display':'block'})
 		  	},
 		  	'url':postUrl,
 		  	'type':'POST',

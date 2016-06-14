@@ -170,15 +170,21 @@ class UserWebsupply extends CmWebsupply{
     		$user_follow_folder[$key]['user'] = self::user_info($value['user_id']);
     		$user_follow_folder[$key]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 
-		 	$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+            $goods = DB::table('goods')->where(['folder_id'=>$id])->select('id','image_ids')->take($gnum)->get();
+            
+            if(count($goods)<$gnum){
+                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
+                $goods = $cg+$goods;
+            } 
 	 		foreach ($goods as $k => $v) {
 	 			if(strpos($v['image_ids'],',') == 0){
-	 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
-	 			}
+	 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+	 			}else{
+                    $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
+                }
 	 		}
 		 	$user_follow_folder[$key]['folder_goods'] = $goods;		 	
     	}
-
 
     	return $user_follow_folder;
     }

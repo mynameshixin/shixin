@@ -18,6 +18,7 @@ class PicsController extends CmController{
 		
 		$user_id = $this->user_id; 
 		$goods = $this->postGoods();
+		// dd($goods);
 		$data = [
 			'user_id'=>$user_id,
 			'self_info'=>$this->self_info,
@@ -99,9 +100,11 @@ class PicsController extends CmController{
 		$data = Input::all();
 		$data = fparam($data);
         $data['img_id'] = isset($data['img_id'])?$data['img_id']:0;
+        $data['fid'] = isset($data['fid'])?$data['fid']:0;
+        if($data['fid'] == 0) return response()->forApi(['invalid param']);
         $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
-		$rs = ProductWebsupply::get_pic_detail($self_id,$data);
+		$rs = ProductWebsupply::get_folder_file($data['fid'],$this->other_id,$self_id,$data);
 		$list['list'] = $rs;
         return response()->forApi($list);
 	}

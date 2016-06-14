@@ -11,7 +11,7 @@
 						<div class="index_item_user">
 							<div class="index_item_utop clearfix">
 								<div class="index_item_uava">
-									<a href="javascript:;" target="_blank"><img src="{{$user_info['pic_m']}}" alt=""></a>
+									<a href="{{url('webd/user')}}" target="_blank"><img src="{{$user_info['pic_m']}}" alt=""></a>
 								</div>
 								<div class="index_item_uname"><a href="javascript:;" target="_blank"><?php echo mb_substr($user_info['nick'], 0,6,'utf-8') ?></a></div>
 							</div>
@@ -31,15 +31,15 @@
 							</div>
 							<div class="index_item_ubtm clearfix">
 								<div class="index_item_ubrec">
-									推荐文件夹 <a href="javascript:;" class="index_item_ubrecmore">查看更多</a>
+									推荐文件夹 <a href="{{url('webd/find')}}" target="_blank" class="index_item_ubrecmore">查看更多</a>
 								</div>
 							<?php foreach ($recommend as $key => $re):?>
 								<div class="index_item_ubfold clearfix">
 									<div class="index_item_ubfava">
-										<a href="javascript:;" target="_blank"><img src="{{$re['img_url']}}" alt=""></a>
+										<a href="{{url('webd/folder')}}?fid={{$re['id']}}" target="_blank"><img src="{{$re['img_url']}}" alt=""></a>
 									</div>
 									<div class="index_item_ubfinfo">
-										<p class="index_item_ubfnme"><a href="javascript:;" target="_blank"><?php echo mb_substr($re['name'], 0,9,'utf-8') ?></a></p>
+										<p class="index_item_ubfnme"><a href="{{url('webd/folder')}}?fid={{$re['id']}}" target="_blank"><?php echo mb_substr($re['name'], 0,8,'utf-8') ?></a></p>
 										<p class="index_item_ubffow">{{$re['count']}}文件&nbsp;&nbsp;{{$re['collection_count']}}关注</p>
 									</div>
 									<a href="javascript:;" class="index_item_ubfatten"><?php echo !empty($re['is_collection'])?'已关注':'关注'; ?></a>
@@ -53,7 +53,7 @@
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap"></a>
+							<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}" target="_blank"></a>
 							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}">
 							<div class="index_item_price">￥{{$v['price']}}</div>
 						</div>
@@ -67,13 +67,13 @@
 								</div>
 							</div>
 							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{$v['user']['pic_m']}}" alt="">
+								<a href="{{url('webd/user')}}?oid={{$v['user']['id']}}" class="index_item_authava" target="_blank">
+									<img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt="">
 								</a>
 								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">{{$v['user']['nick']}}</a>
+									<a href="{{url('webd/user')}}?oid={{$v['user']['id']}}" target="_blank" class="index_item_authname">{{!empty($v['user']['nick'])?$v['user']['nick']:$v['user']['username']}}</a>
 									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart"><a href="javascript:;" target="_blank">{{$v['folder_name']}}</a></p>
+									<p class="index_item_authtopart"><a href="{{url('webd/folder')}}?fid={{$v['folder_id']}}" target="_blank">{{$v['folder_name']}}</a></p>
 								</div>
 							</div>
 						</div>

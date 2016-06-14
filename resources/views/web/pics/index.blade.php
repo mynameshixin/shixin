@@ -77,22 +77,22 @@
 								</div>
 							</div>
 							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{$v['user']['pic_m']}}" alt="">
+								<a href="{{url('webd/user')}}?oid={{$v['user']['id']}}" class="index_item_authava authava" target="_blank">
+									<img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt="">
 								</a>
 								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">{{$v['user']['nick']}}</a>
+									<a href="{{url('webd/user')}}?oid={{$v['user']['id']}}" class="index_item_authname" target="_blank">{{!empty($v['user']['nick'])?$v['user']['nick']:$v['user']['username']}}</a>
 									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">{{$v['folder_name']}}</p>
+									<p class="index_item_authtopart"><a href="{{url('webd/folder')}}?fid={{$v['folder_id']}}" target="_blank">{{$v['folder_name']}}</a></p>
 								</div>
 							</div>
 							<?php if(isset($v['comment']) && !empty($v['comment'])): ?>
 								<div class="index_item_bottom clearfix comment">
-									<a href="javascript:;" class="index_item_authava" target="_blank">
+									<a href="{{url('webd/user')}}?oid={{$v['comment']['user']['id']}}" class="index_item_authava" target="_blank">
 										<img src="<?php echo $v['comment']['user']['pic_m']; ?>" alt="">
 									</a>
 									<div class="index_item_authinfo index_item_authtalk">
-										<a href="javascript:;" class="index_item_talkname"><?php echo $v['comment']['user']['username']; ?>：</a>
+										<a href="{{url('webd/user')}}?oid={{$v['comment']['user']['id']}}" class="index_item_talkname" target="_blank"><?php echo $v['comment']['user']['username']; ?>：</a>
 										<span class="index_item_authto"><?php echo $v['comment']['content']; ?></span>
 									</div>
 								</div>
