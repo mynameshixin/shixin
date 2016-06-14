@@ -15,7 +15,6 @@ class HomeController extends CmController{
 
 	// 首页展示
 	public function getIndex(){
-		
 		$user_id = $this->user_id;
 		if(!empty($user_id)) $user_info = UserWebsupply::user_info($user_id);
 		if(isset($user_info) && !empty($user_info)){
@@ -32,7 +31,7 @@ class HomeController extends CmController{
 		$goods = $this->postGoods();
 		// dd($goods);
 		$data = [
-			'user_id'=>$user_id,
+			'self_id'=>$user_id,
 			'self_info'=>$this->self_info,
 			'goods'=>$goods['data']['list'],
 			'user_info'=>!empty($user_info)?$user_info:[],

@@ -8,19 +8,10 @@
 			<div href="javascript:;" class="header_add_btn">
 				+
 				<div class="header_add_item">
-					<div class="header_add_iwrap">
-						<div class="header_add_up"></div>
-						<div class="header_add_item_awrap">
-							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a1">上传图片</a>
-							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a2">上传商品</a>
-							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a3">添加文件夹</a>
-							<a href="javascript:;" target="_blank" class="header_add_item_a header_more_a4">安装堆工具</a>
-						</div>
-						
-					</div>
+					@include('web.common.banner.action')
 				</div>
 			</div>
-			<input type="text" class="header_search" placeholder="搜索你喜欢的">
+			<input type="text" class="header_search" placeholder="搜索你喜欢的" style="width: 565px;">
 			<div href="javascript:;" class="header_mess">
 				<i class="icon-bell-alt"></i>
 				<div class="header_moremess">
@@ -84,17 +75,9 @@
 					<a href="javascript:;" class="header_add_more">查看更多</a>
 				</div>
 			</div>
-			<div href="javascript:;" class="header_rel">
-				<a href="#"><img src="{{$self_info['pic_m']}}" alt=""></a>
-				<var class="header_tril"></var>
-				<div class="header_moreinfo">
-					<a href="{{url('webd/user')}}" target="_blank" class="header_more_item header_more_1">我的花瓣</a>
-					<a href="javascript:;" target="_blank" class="header_more_item header_more_2">私信</a>
-					<a href="javascript:;" target="_blank" class="header_more_item header_more_3">我的关注</a>
-					<a href="javascript:;" target="_blank" class="header_more_item header_more_4">堆图家认证</a>
-					<a href="javascript:;" target="_blank" class="header_more_item header_more_5">账号设置</a>
-					<a href="{{url('webd/home/logout')}}" class="header_more_item header_more_6">退出</a>
-				</div>
-			</div>
+			@include('web.common.banner.my')
+
 		</div>
-	</div>
+</div>
+
+@include('web.common.login')

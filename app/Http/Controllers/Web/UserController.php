@@ -18,7 +18,7 @@ class UserController extends CmController{
 	public function __construct(){
 		parent::__construct();
 		$getdata = fparam(Input::all());
-		if(empty($this->user_id)) die('no access!');
+		if(empty($this->user_id)) die('you must login to see more!');
 		if(isset($getdata['oid']) && !empty($getdata['oid'])){
 			$this->other_id = $getdata['oid'];
 		}else{

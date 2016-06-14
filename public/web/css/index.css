@@ -220,7 +220,7 @@
 .perhome_perlike_la{font: normal 13px/19px "Microsoft YaHei";}
 .perhome_wrap{margin-top: 15px;margin-bottom: 45px;}
 .perhome_wrap .find_fold_name{margin-left: 0px;}
-.perhome_wrap .find_fold_li{height:310px;}
+.perhome_wrap .find_fold_li{height:310px; margin-right: 12px}
 .find_fold_wrap{height:310px;width: 236px;}
 #find_fold_build{position: relative;min-height: 325px;}
 #find_fold_build .active{ border:2px dashed #bdbdbd;}
@@ -414,7 +414,7 @@
 .detail_pop_trworks{width: 260px;height: 370px;overflow-y: scroll;margin-right: -15px;}
 
 .detail_pop_btitle{font:normal 15px/45px "SimSun";color: #7d7d7d;margin:15px;}
-#more{display: block;}
+#more,#more1{display: block;}
 .detail_pop_baddmore,#load{width: 200px;height: 45px;font:normal 15px/45px "Microsoft YaHei";color: #7d7d7d;text-align: center;background: #fff;border-radius: 5px;display: none;margin: 0 auto;}
 
 .detail_pop_loadbtn{width: 65px;height: 198px;position: fixed;top: 120px;}

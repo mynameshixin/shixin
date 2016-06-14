@@ -26,16 +26,7 @@
           $('.pop_login_safew').addClass('pop_login_safewhigh');
         };
       })
-        $(window).scroll(function(event) {
-        var scrollHei = $('body').scrollTop();
-        if (scrollHei <= 272) {
-          $('.header').addClass('slideup');
-          $('.nolog_header').removeClass('slideup');
-        }else{
-          $('.nolog_header').addClass('slideup');
-          $('.header').removeClass('slideup');
-        };
-      });
+     
       //验证码
       $('.pop_login_e').click(function(){
         mobile = $('input[name=mobile]').val().trim()

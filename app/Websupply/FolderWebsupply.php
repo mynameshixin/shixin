@@ -147,7 +147,7 @@ class FolderWebsupply extends CmWebsupply {
 	}
 
 	//通过文件夹id获取粉丝人
-	public static function get_folder_fans($folder_id,$other_id,$self_id,$data){
+	public static function get_folder_fans($folder_id,$self_id,$data){
 		$page = isset($data['page'])?$data['page']:1;
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;

@@ -31,7 +31,7 @@ $(function (){
 		  			f = 0
 		  			data = json.data.list
 
-		  			$lis = $('.find_fold_li',ul).slice(0,data.length).clone()
+		  			$lis = $('.find_fold_li',ul).slice(1,data.length+1).clone()
 
 					$.each($lis,function(index,v){
 

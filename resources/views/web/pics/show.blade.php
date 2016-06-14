@@ -643,7 +643,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	fid = <?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>;
+	fid = "<?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>"
 	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 	folderUrl = '{{url("webd/pics/folder?oid={$user_id}")}}'
 	postUrl = "{{url('webd/pics/img')}}?oid={{$user_id}}&fid="+fid

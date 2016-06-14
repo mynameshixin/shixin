@@ -8,6 +8,12 @@
 <script src="{{url('web/js/user/blurwrap.js')}}"></script>
 <div class="perhome_per_wrap">
 			<div class="w1248 w1240 clearfix">
+				<!-- <div class="perhome_cater_info" style="display:none">
+					<div class="perhome_scroll_ava">
+							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
+					</div>
+						<div class="perhome_scroll_name">{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}</div>
+				</div> -->
 				<div class="perhome_perinfo_wrap clearfix">
 					<div class="perhome_perinfo">
 						<div class="perhome_perava">
@@ -30,6 +36,9 @@
 								签名：{{empty($user_info['signature'])?'用户太懒什么也没有留下':$user_info['signature']}}
 	                        </div>
 						</div>
+
+						
+
 						<div class="perhome_perlike_wrap clearfix">
 							<a href='{{url("webd/user/index?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
 								<p class="perhome_perlike_num">{{$user_info['count']['folder_count']}}</p>

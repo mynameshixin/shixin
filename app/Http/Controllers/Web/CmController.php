@@ -25,11 +25,16 @@ class CmController extends Controller {
         'nick'=>'',
         'username'=>''
     ];
-
+    public $user_info = [
+        'id'=>0,
+        'pic_m'=>'/uploads/sundry/blogo.jpg',
+        'auth_avatar'=>'/uploads/sundry/blogo.jpg',
+        'nick'=>'',
+        'username'=>''
+    ];
     public function __construct(){
         if(isset($_COOKIE['user_id']) && !empty($_COOKIE['user_id'])) {
             if($user_id = self::get_user_cache($_COOKIE['user_id'])){
-
                 $this->user_id = $user_id;
                 $this->self_info = UserWebsupply::user_info($user_id);
             }

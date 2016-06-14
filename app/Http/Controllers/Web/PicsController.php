@@ -14,20 +14,7 @@ use DB;
 class PicsController extends CmController{
 
 
-	public function getIndex(){
-		
-		$user_id = $this->user_id; 
-		$goods = $this->postGoods();
-		// dd($goods);
-		$data = [
-			'user_id'=>$user_id,
-			'self_info'=>$this->self_info,
-			'goods'=>$goods['data']['list'],
-		];
-		return view('web.pics.index',$data);
-
-	}
-
+	
 	public function __construct(){
 		parent::__construct();
 		$getdata = fparam(Input::all());
@@ -36,6 +23,20 @@ class PicsController extends CmController{
 		}else{
 			$this->other_id = $this->user_id;
 		}
+	}
+
+	public function getIndex(){
+		
+		$user_id = $this->user_id; 
+		$goods = $this->postGoods();
+		// dd($goods);
+		$data = [
+			'self_id'=>$user_id,
+			'self_info'=>$this->self_info,
+			'goods'=>$goods['data']['list'],
+		];
+		return view('web.pics.index',$data);
+
 	}
 
 	//获取瀑布流数据
@@ -71,12 +72,12 @@ class PicsController extends CmController{
 
 	public function show($id){
         $data['img_id'] = $id;
-        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
 		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
 		// dd($goods);
 		$data = [
-			'user_id'=>$self_id,
+			'user_id'=>$goods['user_id'],
+			'self_id'=>$self_id,
 			'self_info'=>$this->self_info,
 			'goods'=>$goods
 		];
@@ -87,9 +88,8 @@ class PicsController extends CmController{
 		$data = Input::all();
 		$data = fparam($data);
         $data['img_id'] = isset($data['img_id'])?$data['img_id']:0;
-        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
-		$rs = ProductWebsupply::get_folder_detail($self_id,$data,$data['img_id']);
+		$rs = ProductWebsupply::get_folder_detail($self_id,$this->other_id,$data,$data['img_id']);
 		$list['list'] = $rs;
         return response()->forApi($list);
 	}
@@ -100,7 +100,6 @@ class PicsController extends CmController{
         $data['img_id'] = isset($data['img_id'])?$data['img_id']:0;
         $data['fid'] = isset($data['fid'])?$data['fid']:0;
         if($data['fid'] == 0) return response()->forApi(['invalid param']);
-        $data['oid'] = isset($data['oid'])?$data['oid']:$this->user_id;
 		$self_id = $this->user_id;
 		$rs = ProductWebsupply::get_folder_file($data['fid'],$this->other_id,$self_id,$data);
 		$list['list'] = $rs;

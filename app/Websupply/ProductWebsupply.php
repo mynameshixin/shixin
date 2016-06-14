@@ -114,12 +114,11 @@ class ProductWebsupply extends CmWebsupply{
         return $list;
     }
     // 该采集也在以下文件夹
-    public static function get_folder_detail($self_id,$data,$good_id){
+    public static function get_folder_detail($self_id,$other_id,$data,$good_id){
         $num = isset($data['num'])?$data['num']:4;
         $page = isset($data['page'])?$data['page']:1;
         $skip = ($page-1)*$num;
         $id = $data['img_id'];
-        $other_id = $data['oid'];
         $collection = DB::table('collection_good')->orderBy('updated_at','desc')->where('good_id',$good_id)->skip($skip)->take($num)->get();
         foreach ($collection as $key => $value) {
             $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
@@ -158,7 +157,6 @@ class ProductWebsupply extends CmWebsupply{
     //获得图片详细
     public static function get_pic_detail($self_id,$data){
         $id = $data['img_id'];
-        $other_id = $data['oid'];
         $goods = DB::table('goods')->where(['id'=>$id])->first();
         if($goods){
             if (!empty($goods['image_ids'])) {
@@ -186,12 +184,12 @@ class ProductWebsupply extends CmWebsupply{
             $goods['comments'] = $comments;
 
             $goods['collection_folders'] = [];
-            $collection_folders = self::get_folder_detail($self_id,$data,$goods['id']);
+            $collection_folders = self::get_folder_detail($self_id,$goods['user_id'],$data,$goods['id']);
             if(!empty($collection_folders)) $goods['collection_folders'] = $collection_folders;
 
             $fid = isset($collection_folders[0]['id'])?$collection_folders[0]['id']:0;
             $goods['folders_one'] = [];
-            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$other_id,$collection_folders[0]['user_id'],$data);
+            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$goods['user_id'],$collection_folders[0]['user_id'],$data);
             $goods['folder'] = DB::table('folders')->where('id',$goods['folder_id'])->first();
             
         }

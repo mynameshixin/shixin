@@ -23,11 +23,11 @@
 								<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 							</div>
 							<div class="perhome_perlike_wrap clearfix">
-								<a href="{{url('webd/folder')}}?oid={{$user_id}}&fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
+								<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
 									<p class="perhome_perlike_num">{{$folder['count']}}</p>
 									<p class="perhome_perlike_la">文件</p>
 								</a>
-								<a href="{{url('webd/folder/fans')}}?oid={{$user_id}}&fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
+								<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
 									<p class="perhome_perlike_num">{{$folder['fans_count']}}</p>
 									<p class="perhome_perlike_la">关注</p>
 								</a>

@@ -65,7 +65,7 @@
 </body>
 
 <script type="text/javascript">
-	postUrl = '{{url("webd/folder/folders")}}?oid={{$user_id}}&fid={{$self_id}}'
+	postUrl = '{{url("webd/folder/fans")}}?oid={{$user_id}}&fid={{$folder['id']}}'
 	postData = {'num':15,'kind':2}
 </script>
 

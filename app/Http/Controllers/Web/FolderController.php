@@ -16,19 +16,9 @@ class FolderController extends CmController{
 
 		parent::__construct();
 		$getdata = fparam(Input::all());
-		
-		$this->other_id = !empty($getdata['oid'])?$getdata['oid']:$this->user_id;
+
 		$this->folder_id = !empty($getdata['fid'])?$getdata['fid']:0;
 		if(empty($this->folder_id)) die('no access!');
-
-		if(!empty($this->other_id)){
-			$this->user_info = UserWebsupply::user_info($this->other_id);
-			$this->self_info = UserWebsupply::user_info($this->user_id);
-		}
-
-		if(isset($this->user_info) && !empty($this->user_info)){
-			$this->user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
-		}
 	}
 
 	//查询文件夹对应的文件
@@ -59,7 +49,7 @@ class FolderController extends CmController{
 			'user_fans'=>$user_fans['data']['list'],
 			'user_info'=>$this->user_info,
 			'self_info'=>$this->self_info,
-			'user_id'=>$this->other_id,
+			'user_id'=>$folder['data']['list']['user_id'],
 			'type'=>2,
 			'self_id'=>$this->user_id
 		];
@@ -84,7 +74,7 @@ class FolderController extends CmController{
 		$data = fparam($data);
         $data['num'] = isset($data['num']) ? $data['num'] : 15;
         $data['page'] = isset($data['page'])?$data['page']:1;
-		$rs = FolderWebsupply::get_folder_fans($this->folder_id,$this->other_id,$this->user_id,$data);
+		$rs = FolderWebsupply::get_folder_fans($this->folder_id,$this->user_id,$data);
 		$list['list'] = $rs;
 		return response()->forApi($list);
 	}
