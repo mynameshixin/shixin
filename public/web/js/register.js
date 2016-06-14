@@ -66,7 +66,8 @@
                 $('.pop_login_pb').find('strong').html(n)
               },1000)
             }else{
-              layer.msg(json.message, {icon: 5});
+              message = json.message[1]!=undefined?json.message:json.message[0]
+              layer.msg(message, {icon: 5});
             }
           }
         })
