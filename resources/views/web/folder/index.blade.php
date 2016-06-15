@@ -471,6 +471,17 @@
 						if(json.code==200){
 							
 							$('.pop_goods_upload').show();
+							var popconHei = $('.pop_goods_upload .pop_con').height();
+						  	if (popconHei > 410) {
+							    $('.pop_goods_upload .pop_conwrap').css({
+							      'max-height':410,
+							      'overflow-y':'scroll'
+							    })
+							  };
+						  	var poptopHei = $('.pop_goods_upload .pop_con').height();
+							$('.pop_goods_upload .pop_con').css({
+							   'margin-top':-(poptopHei/2)
+							})
 						}else{
 							layer.msg(json.message, {icon: 5});
 							return
@@ -481,17 +492,7 @@
 					}
 				})
 				
-				var popconHei = $('.pop_goods_upload .pop_con').height();
-			  	if (popconHei > 410) {
-				    $('.pop_goods_upload .pop_conwrap').css({
-				      'max-height':410,
-				      'overflow-y':'scroll'
-				    })
-				  };
-			  	var poptopHei = $('.pop_goods_upload .pop_con').height();
-				$('.pop_goods_upload .pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
+				
 			})
 	</script>
 	<!-- 上传图片详细弹框 -->
