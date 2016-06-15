@@ -11,7 +11,7 @@
 					@include('web.common.banner.action')
 				</div>
 			</div>
-			<input type="text" class="header_search" placeholder="搜索你喜欢的" style="width: 565px;">
+			<input type="text" class="header_search" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
 			<div href="javascript:;" class="header_mess">
 				<i class="icon-bell-alt"></i>
 				<div class="header_moremess">
