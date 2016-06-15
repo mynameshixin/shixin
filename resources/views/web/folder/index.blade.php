@@ -561,15 +561,16 @@
 					'success':function(json){
 						console.log(json)
 						if(json.code==200){
-							nick = json.data.x_item[0].nick
+							description = nick = json.data.x_item[0].nick
 							price = json.data.x_item[0].price
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
-							description = json.data.x_item[0].description
+							detail_url = $('.pop_iptgoods').val().trim()
 							$('#pname').val(nick)
 							$('#pprice').val(price)
 							$('#pimg img').attr('src',pic_url)
 							$('#gimg').val(pic_url)
+							$('#detail_url').val(detail_url)
 							$('#reserve_price').val(reserve_price)
 							$('#description').val(description)
 							$('.pop_pic_upload').show();
@@ -616,6 +617,7 @@
 					<input type="hidden" value="" name='reserve_price' id='reserve_price'></input>
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>
+					<input type="hidden" value="" name='detail_url' id='detail_url'></input>
 					<input type="hidden" value="{{$folder['id']}}" name='fid'></input>
 				</div>
 				<div class="pop_goodsimgwrap clearfix">
