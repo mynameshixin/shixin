@@ -257,7 +257,8 @@
                 url:"{{url('webd/folder/uimg')}}", //请求url
                 success:function(json){ //提交成功的回调函数
                     if(json.code==200) {
-
+                    	layer.msg('成功上传',{icon: 6});
+                    	location.reload()
                     }else{
                     	layer.msg(json.message, {icon: 5});
 						return

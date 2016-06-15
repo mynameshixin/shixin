@@ -212,6 +212,7 @@ class FolderController extends CmController{
         }
         //用户发布，先发后审
         $data['status'] = 1;
+        $data['folder_id'] = $data['fid'];
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
         if ($id) {
             return response()->forApi(['id' => $id]);
