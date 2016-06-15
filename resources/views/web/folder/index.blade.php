@@ -432,22 +432,68 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function cg(){
+			$('.pop_uploadgoods').hide()
+		}
+	</script>
 	<!-- 获取商品网址弹框 -->
 	<div class="pop_uploadgoods" style="display:none;">
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传商品
-				<span class="pop_close"></span>
+				<span class="pop_close" onclick="cg()"></span>
 			</p>
 			<div class="pop_namewrap clearfix">
-				<input class="pop_iptgoods" placeholder="粘贴商品网站">
+				<input class="pop_iptgoods" placeholder="粘贴商品网站" type="text" value="">
 			</div>
 			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="cg()">取消</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsget">获取</a>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('.detail_pop_goodsget').click(function(){
+				$('.pop_uploadgoods').hide();
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"/api/good/item",
+					'type':'get',
+					'data':{
+						'url':$('.pop_iptgoods').val().trim()
+					},
+					'dataType':'json',
+					'success':function(json){
+						console.log(json)
+						if(json.code==200){
+							
+							$('.pop_goods_upload').show();
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+				
+				var popconHei = $('.pop_goods_upload .pop_con').height();
+			  	if (popconHei > 410) {
+				    $('.pop_goods_upload .pop_conwrap').css({
+				      'max-height':410,
+				      'overflow-y':'scroll'
+				    })
+				  };
+			  	var poptopHei = $('.pop_goods_upload .pop_con').height();
+				$('.pop_goods_upload .pop_con').css({
+				   'margin-top':-(poptopHei/2)
+				})
+			})
+	</script>
 	<!-- 上传图片详细弹框 -->
 	<div class="pop_goods_upload" style="display:none;">
 		<div class="pop_con clearfix">
