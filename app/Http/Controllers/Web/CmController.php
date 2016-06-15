@@ -17,6 +17,7 @@ class CmController extends Controller {
 
     const PAGE_SIZE = 15;
     const DATELINE = 20;
+    public $hash = 50;
     public $user_id=0;
     public $self_info = [
         'id'=>0,
@@ -53,11 +54,14 @@ class CmController extends Controller {
         $arr = explode('_',$str);
         $id = Crypt::decrypt($arr[1]);
         $data = Cache::store('redis')->get($id);
-        if($data) return Crypt::decrypt($data);
+        $nowid = Crypt::decrypt($data);
+        return ($nowid/100)-$this->hash;
+
     }
 
     public function crypt_cookie($key,$id){
-        $data = md5(uniqid().time()).'_'.Crypt::encrypt($id);
+        $newid = ($id+$this->hash)*100;
+        $data = md5(uniqid().time()).'_'.Crypt::encrypt($newid);
         setcookie($key,$data,time()+315360000,'/');
         self::set_user_cache($data);
     }   
@@ -65,6 +69,7 @@ class CmController extends Controller {
     public function destory_cookie($str){
         $arr = explode('_',$str);
         $id = Crypt::decrypt($arr[1]);
+        $id = ($id/100)-$this->hash;
         $data = Cache::store('redis')->forget($id);
         setcookie('user_id',null,time()-3600,'/');
     }   

@@ -3,6 +3,7 @@
 @include('web.common.head',['title'=>'堆图家用户文件夹'])
 <body>
 	@include('web.common.banner')
+	<script type="text/javascript" src="{{asset('web/js/folder/popjs.js')}}"></script>
 	<div class="container">
 		@include('web.common.user')
 		
@@ -45,7 +46,7 @@
 								<a href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{ $value['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 							</div>
 						</div>
-						<a  onclick="relation(this)" class="find_fold_authflw">
+						<a  <?php if($user_id != $self_id){ ?>onclick="relation(this)"<?php }else{ ?>onclick="folderEdit(this)" <?php } ?> class="find_fold_authflw ">
 						<?php 
 						if($user_id == $self_id){
 							echo "编辑";
@@ -73,13 +74,14 @@
 					<?php } ?>
 					<?php foreach ($folders_private as $key => $value) :?>
 					<?php if($value['private'] == 1): ?>
-					<li class="find_fold_li">
+					<li class="find_fold_li" folder_id="{{$value['id']}}">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_tname">
 								<a href="{{url('webd/folder')}}?fid={{$value['id']}}" target="_blank" class="find_fold_name">{{$value['name']}}</a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
+							<!-- <div class="find_fold_lock"></div> -->
 							<div class="find_fold_imgblur"></div>
 							<a href="{{url('webd/folder')}}?fid={{$value['id']}}" target="_blank" class="position"><img src="{{$value['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="rect(this)"></a>
 							<div class="find_fold_catflw">{{$value['count']}}文件&nbsp;&nbsp;{{$value['collection_count']}}关注</div>
@@ -98,7 +100,7 @@
 								<a href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}" class="position" target="_blank"><img src="<?php  echo isset($value['goods'][2]['image_url'])?$value['goods'][2]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt=""></a>
 							</div>
 						</div>
-						<a href="javascript:;" class="find_fold_authflw">编辑</a>
+						<a onclick="folderEdit(this)" class="find_fold_authflw">编辑</a>
 					</li>
 					<?php endif; ?>
 					<?php endforeach; ?>
@@ -116,20 +118,20 @@
 			</p>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
+				<input class="pop_iptname" name='fname' value="" placeholder="取一个好名字，让更多人精准地搜到它">
 			</div>
 			<div class="pop_deswrap clearfix">
 				<span class="pop_labelname">描述</span>
-				<textarea class="pop_iptdes"  placeholder="关于你的文件夹"></textarea>
+				<textarea class="pop_iptdes"  placeholder="关于你的文件夹" ></textarea>
 			</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr">
+				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" name="private" private=0>
 				<label for="pop_iptpr"></label>
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">创建</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folder">创建</a>
 			</div>
 		</div>
 	</div>
@@ -141,7 +143,7 @@
 			</p>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
+				<input class="pop_iptname" value="" name='fname' placeholder="取一个好名字，让更多人精准地搜到它">
 			</div>
 			<div class="pop_deswrap clearfix">
 				<span class="pop_labelname">描述</span>
@@ -150,12 +152,12 @@
 			</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" checked="checkbox">
+				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" checked="checkbox" name="private" private=1>
 				<label for="pop_iptpr"></label>
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">创建</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folder">创建</a>
 			</div>
 		</div>
 	</div>
@@ -167,7 +169,7 @@
 			</p>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
+				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它" value="" name='fname'>
 			</div>
 			<div class="pop_deswrap clearfix">
 				<span class="pop_labelname">描述</span>
@@ -179,13 +181,13 @@
 			</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" checked="checked">
-				<label for="pop_iptpr"></label>
+				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr3" name="private" private=0>
+				<label for="pop_iptpr3"></label>
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除文件夹</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">创建</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folderedit">编辑</a>
 			</div>
 		</div>
 	</div>
@@ -195,22 +197,18 @@
 				更改文件夹封面
 			</p>
 			<div class="pop_change_pic clearfix">
-				<div class="pop_change_wrap">
-					
-					<div class="pop_change_imgwrap">
-						<img src="public/images/temp/1.png"  alt="">
-					</div>
-					<div class="pop_change_imgwrap">
-						<img src="public/images/temp/2.png" alt="">
-					</div>
-					<div class="pop_change_imgwrap">
-						<img src="public/images/temp/3.png" alt="">
-					</div>
-					<div class="pop_change_imgwrap">
-						<img src="public/images/temp/3.png" alt="">
-					</div>
-					
-				</div>
+			<div class="pop_change_wrap">
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+			</div>
 				<div class="pop_change_imgblur pop_change_imgbleft"></div>
 				<div class="pop_change_imgblur pop_change_imgbright"></div>
 				<div class="pop_change_imgblurtb pop_change_imgblurt"></div>
@@ -220,7 +218,7 @@
 			</div>
 			<div class="pop_btnwrap" style="border-top: 1px solid #f1f1f1;">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="avatarsave">保存</a>
 			</div>
 		</div>
 	</div>
@@ -245,14 +243,7 @@
 					});
 					$('.perhome_cater_info').show();
 				};
-			});
-			$('.find_fold_edit').click(function(){
-				$('.pop_editfold').show()
-			  	var poptopHei = $('.pop_editfold .pop_con').height();
-					$('.pop_con').css({
-					   'margin-top':-(poptopHei/2)
-				})
-			})*/
+			});*/			
 			$('.pop_con').click(function(){
 				event.stopPropagation();
 			})
@@ -260,8 +251,35 @@
 				$('.pop_editfold').hide()
 			})
 			$('.detail_filechange').click(function(){
+				foderid = $(this).parents('.pop_con').attr('fid')
 				$('.pop_editfold').hide()
-				$('.pop_changefold').show();
+				$('.pop_changefold').attr('fid',foderid)
+				$.ajax({
+					'url':"{{url('api/goods')}}",
+					'type':'get',
+					'data':{
+						'folder_id':foderid,'num':10,'page':1
+					},
+					'dataType':'json',
+					'success':function(json){
+						// console.log(json)
+						if(json.code==200){
+							list = json.data.list
+							$f = $('.pop_changefold .pop_change_imgwrap').slice(0,list.length)
+							$('.pop_change_imgwrap').css({'display':'none'})
+							$('.pop_change_imgwrap img').attr('src','')
+							$.each($f,function(index,v){
+								$($f[index]).css({'display':'block'})
+								if(list[index].images[0]!=undefined) {
+									$('.imgwrap',$f[index]).attr('src',list[index].images[0].img_m)
+									$('.imgwrap',$f[index]).attr('id',list[index].images[0].image_id)
+								}
+							})
+							$('.pop_changefold').show();
+						}
+					}
+				})
+				
 			  	var poptopHei = $('.pop_changefold .pop_con').height();
 					$('.pop_con').css({
 					   'margin-top':-(poptopHei/2)
@@ -303,7 +321,157 @@
 					display:'none'
 				})
 			})
+			$('.pop_iptprivacy').click(function(){
+				if($(this).attr('checked') == 'checkbox') return
+				if($(this).attr('private') == 1){
+					$(this).attr('private',0)
+				}else{
+					$(this).attr('private',1)
+				}
+			})
+			//创建文件夹
+			$('.folder').click(function(){
+				pop_con = $(this).parents('.pop_con')
+				name = $('input[name=fname]',pop_con).val().trim()
+				description = $('textarea',pop_con).val().trim()
+				private = $('input[name=private]',pop_con).attr('private')
+				if(name=='') {
+					layer.msg('信息没有填写完全', {icon: 5});
+					return 
+				}
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"{{url('webd/folder/cfolder')}}",
+					'type':'post',
+					'data':{
+						'name':name,
+						'description':description,'private':private,
+						'fid':10,'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+					},
+					'dataType':'json',
+					'success':function(json){
+						if(json.code==200){
+							location.reload()
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+			})
+			// 修改文件夹
+			$('.folderedit').click(function(){
+				pop_con = $(this).parents('.pop_con')
+				name = $('input[name=fname]',pop_con).val().trim()
+				description = $('textarea',pop_con).val().trim()
+				private = $('input[name=private]',pop_con).attr('private')
+				if(name=='') {
+					layer.msg('信息没有填写完全', {icon: 5});
+					return 
+				}
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"{{url('webd/folder/efolder')}}",
+					'type':'post',
+					'data':{
+						'name':name,
+						'description':description,'private':private,
+						'fid':pop_con.attr('fid'),'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+					},
+					'dataType':'json',
+					'success':function(json){
+						if(json.code==200){
+							location.reload()
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+			})
+			//保存封面
+			$('#avatarsave').click(function(){
+				fid = $(this).parents('.pop_changefold').attr('fid')
+				var i;
+				left = $('.pop_change_wrap').css('left')
+				if(left == 0){
+					i = 1;
+				}else if(left == '200px'){
+					i = 0;
+				}else{
+					i = Math.abs(parseInt(left))/200+1
+				}
+				img_id = $('.pop_change_wrap img').eq(i).attr('id')
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"{{url('webd/folder/avatar')}}",
+					'type':'post',
+					'data':{
+						'image_id':img_id,
+						'fid':fid,
+						'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+					},
+					'dataType':'json',
+					'success':function(json){
+						if(json.code==200){
+							location.reload()
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+				console.log(i)
+			})
 
+			//删除文件夹
+			$('.detail_pop_delete').click(function(){
+				fid = $(this).parents('.pop_con').attr('fid')
+				layer.confirm('确定删除该文件夹？', {
+				  btn: ['取消','确定'] //按钮
+				}, function(index){
+					layer.close(index)
+				}, function(){
+				  $.ajax({
+						'beforeSend':function(){
+							layer.load(0, {shade: 0.5});
+						},
+						'url':"{{url('webd/folder/dfolder')}}",
+						'type':'post',
+						'data':{
+							'fid':fid,'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+						},
+						'dataType':'json',
+						'success':function(json){
+							if(json.code==200){
+								location.reload()
+							}else{
+								layer.msg(json.message, {icon: 5});
+								return
+							}
+						},
+						'complete':function(){
+							layer.closeAll('loading');
+						}
+					})
+				});
+				
+			})
 		});
 	</script>
 <script type="text/javascript">

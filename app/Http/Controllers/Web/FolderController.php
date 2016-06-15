@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use App\Services\FolderService;
 use DB;
 
 class FolderController extends CmController{
@@ -79,6 +80,102 @@ class FolderController extends CmController{
 		return response()->forApi($list);
 	}
 
+	//创建文件夹
+	public function postCfolder(){
+		$data = Input::all();
+		$data = fparam($data);
+		$user_id = self::get_user_cache($data['user_id']);
+		$user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
+		if($folder) return response()->forApi([],1001,'文件夹已经创建过');
+		$insertid = DB::table('folders')->insertGetId(['user_id'=>$user_id, 'name'=>$data['name'],'description'=>$data['description'],'private'=>$data['private']]);
+		return response()->forApi(['status'=>1]);
+	}
 
+	//修改文件夹
+	public function postEfolder(){
+		$data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'user_id' => 'required|max:200',
+            'fid' => 'required|exists:folders,id',
+            // 'description' => 'required|max:200',
+            'name'=>'required|max:50',
+            'private'=>'required|in:0,1'
+        );
 
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
+		if($folder) return response()->forApi([],1001,'文件夹名称没有修改');
+
+        $entry = [];
+        if (isset($data['name'])) $entry['name'] = $data['name'];
+        if (isset($data['description'])) $entry['description'] = $data['description'];
+        if (isset($data['private'])) $entry['private'] = $data['private'];
+        if (!empty($entry)) {
+            $res = DB::table('folders')->where('id', '=', $data['fid'])->update($entry);
+        }
+        return response()->forApi(['status' => 1]);
+
+	}
+
+	// 根据文件夹id获取图片
+	public function postFpic(){
+		$data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'user_id' => 'required|max:400',
+            'fid' => 'required|exists:folders,id',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+	}
+
+	// 修改文件夹封面
+	public function postAvatar(){
+
+        $data = Input::all();
+        $data = fparam($data);
+        $rules = array(
+            'user_id' => 'required|max:400',
+            'fid' => 'required|exists:folders,id',
+            'image_id' => 'exists:images,id'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+		if (isset($data['image_id'])) $entry['image_id'] = $data['image_id'];
+        $res = DB::table('folders')->where('id', '=', $data['fid'])->update($entry);
+        return response()->forApi(['status' => 1]);
+    }
+
+    //删除文件夹
+    public function postDfolder(){
+    	$data = Input::all();
+    	$data = fparam($data);
+    	$rules = [
+    		'user_id' => 'required|max:400',
+    		'fid'=>'required|exists:folders,id'
+    	];
+    	parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+    	$id = $data['fid'];
+    	DB::table('goods')->where('folder_id',$id)->delete();
+        DB::table('collection_good')->where('folder_id',$id)->delete();
+        DB::table('collection_folder')->where('folder_id',$id)->delete();
+        DB::table('folders')->where('id',$id)->delete();
+        return response()->forApi(['status'=>1]);
+    }
 }

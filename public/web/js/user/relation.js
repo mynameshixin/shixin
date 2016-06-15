@@ -38,3 +38,30 @@ function relation(obj){
 	})
 
 }
+
+//文件夹编辑
+function folderEdit(obj){
+	edit = $(obj)
+	p = $(obj).parents('.find_fold_li')
+	v = $('.pop_editfold')
+
+	$('.pop_con',v).attr('fid',edit.parents('.find_fold_li').attr('folder_id'))
+
+	if($('#pop_iptpr3',v).attr('private') == 1 && $(obj).parents('.find_fold_list').attr('id') == 'ul0'){
+		$('#pop_iptpr3',v).click()
+	}
+
+	if($('#pop_iptpr3',v).attr('private') == 0 && $(obj).parents('.find_fold_list').attr('id') == 'ul1'){
+		$('#pop_iptpr3',v).click()
+	}
+
+	foldername = $('.find_fold_tname a',p).html()
+	$('input[name=fname]',v).val(foldername)
+	//$('.pop_iptdes',v).val()
+
+	$('.pop_editfold').show()
+  	var poptopHei = $('.pop_editfold .pop_con').height();
+		$('.pop_con').css({
+		   'margin-top':-(poptopHei/2)
+	})
+}

@@ -87,7 +87,7 @@
 .find_fold_imgwrap{position: relative;width: 223px;height: 147px;margin:0px 0px 0px 7px;cursor: pointer;border-radius: 4px;overflow: hidden;}
 .find_fold_imgblur{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;}
 .find_fold_imgblur:hover{background: #fff;opacity: 0.1;}
-.find_fold_lock{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;background: url(../images/lock.png) 94px 52px no-repeat; }
+.find_fold_lock{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;background: url(../images/lock.png) 94px 52px no-repeat;z-index: 10 }
 .find_fold_imgwrap img{border-radius: 4px;}
 .find_fold_catname{position: absolute;font:normal 26px/26px "Microsoft YaHei";color: #fff;top: 15px;left: 10px;z-index: 1;}
 .find_fold_catflw{padding:0px 10px;font:normal 14px/26px "Microsoft YaHei";color: #fff;position: absolute;bottom: 0px;left: 1px;z-index: 2;background: rgba(0,0,0,.5);}
@@ -511,6 +511,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 	border-radius: 100px;
 }
 
+
+
 [id^="pop_iptpr"]:checked + label:after {
 	content: 'Yes';
 	/*font-size: 1.5em;*/
@@ -522,6 +524,18 @@ input[type="checkbox"] + label{cursor: pointer;}
 	text-align: left;
 	padding-left: 9px;
 }
+
+ .check{
+	content: 'Yes';
+	font-size: 1.5em;
+	color: #fff;
+	width: 51px;
+	position: absolute;
+	background: #e35f43;
+	box-shadow: 0 0 1px #e35f43;
+	text-align: left;
+	padding-left: 9px;
+} 
 .pop_btnwrap{text-align: right;padding: 17px 30px;}
 .pop_btnwrap a{margin-top:0px;}
 
