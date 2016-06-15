@@ -258,7 +258,10 @@
                 success:function(json){ //提交成功的回调函数
                     if(json.code==200) {
                     	layer.msg('成功上传',{icon: 6});
-                    	location.reload()
+                    	setTimeout(function(){
+                    		location.reload()
+                    	},2000)
+                    	
                     }else{
                     	layer.msg(json.message, {icon: 5});
 						return
@@ -562,15 +565,15 @@
 						console.log(json)
 						if(json.code==200){
 							ub = $('form[name=ub]')
-							description = nick = json.data.x_item[0].nick
+							description = title = json.data.x_item[0].title
 							price = json.data.x_item[0].price
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
 							detail_url = $('.pop_iptgoods').val().trim()
-							$('input[name=pname]',ub).val(nick)
-							$('input[name=pprice]',ub).val(price)
+							$('input[name=title]',ub).val(nick)
+							$('input[name=price]',ub).val(price)
 							$('#pimg img',ub).attr('src',pic_url)
-							$('input[name=img]',ub).val(pic_url)
+							$('input[name=image]',ub).attr('value',pic_url)
 							$('input[name=detail_url]',ub).val(detail_url)
 							$('input[name=reserve_price]',ub).val(reserve_price)
 							$('input[name=description]',ub).val(description)
@@ -610,7 +613,7 @@
 			<div class="pop_conwrap">
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">名称</span>
-					<input class="pop_iptname" placeholder="名称" id='pname' name='title' value="来自商品">
+					<input class="pop_iptname" placeholder="名称"  name='title' value="来自商品">
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
@@ -626,7 +629,7 @@
 					<div class="pop_goodseachimg" id='pimg'>
 						<a href="javascript:;" class="pop_gooddelete"></a>
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-						<input type="file" name="image" value="" id="gimg"></input>
+						<input type="file" name="image" value="http://www.css88.com/archives/2256" id="gimg"></input>
 						<div class="pop_good_toppne">主图</div>
 					</div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
@@ -652,7 +655,6 @@
 					</select>
 				</div> -->
 			</div>
-			
 			<div class="pop_btnwrap pop_goods_share">
 				<div class="pop_col_lbtm">
 					<span class="pop_col_lbshare">
@@ -695,7 +697,9 @@
                 success:function(json){ //提交成功的回调函数
                     if(json.code==200) {
                     	layer.msg('成功上传',{icon: 6});
-                    	location.reload()
+                    	setTimeout(function(){
+                    		location.reload()
+                    	},2000)
                     }else{
                     	layer.msg(json.message, {icon: 5});
 						return
@@ -927,6 +931,7 @@
 			$('.pop_uploadfile .pop_con').click(function(){
 				event.stopPropagation()
 			})
+			
 			$(".pop_upload_a").on("change","input[type='file']",function(){
 			    var filePath=$(this).val();
 			    if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
