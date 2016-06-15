@@ -14,6 +14,7 @@ class AppController extends CmController{
 
 	public function getIndex(){
 		$data = [
+			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 		];
 		
