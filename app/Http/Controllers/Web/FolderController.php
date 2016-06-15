@@ -179,7 +179,7 @@ class FolderController extends CmController{
         DB::table('folders')->where('id',$id)->delete();
         return response()->forApi(['status'=>1]);
     }
-
+    //上传图片或商品
     public function postUimg(){
 
         $data = Input::all();

@@ -453,53 +453,7 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('.detail_pop_goodsget').click(function(){
-				$('.pop_uploadgoods').hide();
-				$.ajax({
-					'beforeSend':function(){
-						layer.load(0, {shade: 0.5});
-					},
-					'url':"/api/good/item",
-					'type':'get',
-					'data':{
-						'url':$('.pop_iptgoods').val().trim()
-					},
-					'dataType':'json',
-					'success':function(json){
-						console.log(json)
-						if(json.code==200){
-							nick = json.data.x_item[0].nick
-							price = json.data.x_item[0].price
-							pic_url = json.data.x_item[0].pic_url
-							$('#pname').val(nick)
-							$('#pprice').html(price)
-							$('#pimg img').attr('src',pic_url)
-							$('.pop_pic_upload').show();
-							var popconHei = $('.pop_pic_upload .pop_con').height();
-						  	if (popconHei > 410) {
-							    $('.pop_pic_upload .pop_conwrap').css({
-							      'max-height':410,
-							      'overflow-y':'scroll'
-							    })
-							  };
-						  	var poptopHei = $('.pop_pic_upload .pop_con').height();
-							$('.pop_pic_upload .pop_con').css({
-							   'margin-top':-(poptopHei/2)
-							})
-						}else{
-							layer.msg(json.message, {icon: 5});
-							return
-						}
-					},
-					'complete':function(){
-						layer.closeAll('loading');
-					}
-				})
-				
-				
-			})
-	</script>
+
 	<!-- 上传图片详细弹框 -->
 	<div class="pop_goods_upload" style="display:none;">
 		<div class="pop_con clearfix">
@@ -590,8 +544,62 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		$('.detail_pop_goodsget').click(function(){
+				$('.pop_uploadgoods').hide();
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"/api/good/item",
+					'type':'get',
+					'data':{
+						'url':$('.pop_iptgoods').val().trim()
+					},
+					'dataType':'json',
+					'success':function(json){
+						console.log(json)
+						if(json.code==200){
+							nick = json.data.x_item[0].nick
+							price = json.data.x_item[0].price
+							pic_url = json.data.x_item[0].pic_url
+							reserve_price = json.data.x_item[0].reserve_price
+							description = json.data.x_item[0].description
+							$('#pname').val(nick)
+							$('#pprice').val(price)
+							$('#pimg img').attr('src',pic_url)
+							$('#gimg').val(pic_url)
+							$('#reserve_price').val(reserve_price)
+							$('#description').val(description)
+							$('.pop_pic_upload').show();
+							var popconHei = $('.pop_pic_upload .pop_con').height();
+						  	if (popconHei > 410) {
+							    $('.pop_pic_upload .pop_conwrap').css({
+							      'max-height':410,
+							      'overflow-y':'scroll'
+							    })
+							  };
+						  	var poptopHei = $('.pop_pic_upload .pop_con').height();
+							$('.pop_pic_upload .pop_con').css({
+							   'margin-top':-(poptopHei/2)
+							})
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+				
+				
+			})
+	</script>
 	<!-- 上传商品详细弹框 -->
 	<div class="pop_pic_upload" style="display:none;">
+	<form action="" method="post" enctype="multipart/form-data" name='ub'>
 		<div class="pop_con clearfix">
 			<p class="pop_tit">
 				上传商品
@@ -600,17 +608,22 @@
 			<div class="pop_conwrap">
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">名称</span>
-					<input class="pop_iptname" placeholder="名称" id='pname' value="">
+					<input class="pop_iptname" placeholder="名称" id='pname' name='title' value="来自商品">
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥<span id='pprice'>45</span></p>
+					<p class="pop_iptprice">￥<input id='pprice' type="text" value="" name='price'></p>
+					<input type="hidden" value="" name='reserve_price' id='reserve_price'></input>
+					<input type="hidden" value="1" name='kind'></input>
+					<input type="hidden" value="" name='description' id='description'></input>
+					<input type="hidden" value="{{$folder['id']}}" name='fid'></input>
 				</div>
 				<div class="pop_goodsimgwrap clearfix">
 					<p class="pop_goodsimgtit">商品图片</p>
 					<div class="pop_goodseachimg" id='pimg'>
 						<a href="javascript:;" class="pop_gooddelete"></a>
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<input type="file" name="image" value="" id="gimg"></input>
 						<div class="pop_good_toppne">主图</div>
 					</div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
@@ -664,10 +677,36 @@
 					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 				</div>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="ub">保存</a>
 			</div>
 		</div>
+	</form>
 	</div>
+
+	<script type="text/javascript">
+		$('form[name=ub]').submit(function(){
+			ua = $('form[name=ub]').serialize()
+			$(this).ajaxSubmit({
+				type:"post",  //提交方式
+                dataType:"json", //数据类型
+                url:"{{url('webd/folder/uimg')}}", //请求url
+                success:function(json){ //提交成功的回调函数
+                    if(json.code==200) {
+                    	layer.msg('成功上传',{icon: 6});
+                    	location.reload()
+                    }else{
+                    	layer.msg(json.message, {icon: 5});
+						return
+                    } 
+                },
+                resetForm:1
+	        });
+	        return false
+		})
+		$('#ub').click(function(){
+			$('form[name=ub]').submit()
+		})
+	</script>
 	<!-- 上传商品弹框 -->
 	<div class="pop_goodsupload" style="display:none;">
 		<div class="pop_con">
