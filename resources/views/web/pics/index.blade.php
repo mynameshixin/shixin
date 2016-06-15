@@ -69,7 +69,7 @@
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
-								<div class="index_item_intro" title="{{$v['description']}}">{{$v['description']}}</div>
+								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
 								<div class="index_item_rel clearfix">
 									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>

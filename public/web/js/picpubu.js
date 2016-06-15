@@ -56,10 +56,11 @@ $(function (){
 		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
+		  				description = list[index].description.trim()!=''?list[index].description.trim():list[index].title
 		  				$(".index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
 					    $(".index_item_price",$value).html('￥'+list[index].price)
-					    $(".index_item_intro",$value).html(list[index].description);
-					    $(".index_item_intro",$value).attr('title',list[index].description)
+					    $(".index_item_intro",$value).html(description);
+					    $(".index_item_intro",$value).attr('title',description)
 
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
