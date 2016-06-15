@@ -459,6 +459,7 @@
 						'dataType':'json',
 						'success':function(json){
 							if(json.code==200){
+								layer.msg('成功上传！',{icon: 6});
 								location.reload()
 							}else{
 								layer.msg(json.message, {icon: 5});

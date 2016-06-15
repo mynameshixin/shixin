@@ -227,6 +227,7 @@
 	</div>
 	<!-- 本地上传采集弹框 -->
 	<div class="pop_uploadfile" style="display: none;">
+		<form action="" method="post" enctype="multipart/form-data" name='ua'>
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传采集
@@ -234,12 +235,42 @@
 			</p>
 			<div class="pop_upload_wrap">
 				<a class="pop_upload_a">
-					<input class="pop_upload" type="file"></input>
+					<input class="pop_upload" type="file" name='image'></input>
+					<input type="hidden" name='fid' value="{{$folder['id']}}"></input>
+					<input type="hidden" name='title' value="来自相册"></input>
+					<input type="hidden" name='kind' value="2"></input>
+					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
 					<span>请选择文件</span>
 				</a>
+				<a href="javascript:;" id='ua' class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">上传</a>
 			</div>
 		</div>
+		</form>
 	</div>
+
+	<script type="text/javascript">
+		$('form[name=ua]').submit(function(){
+			ua = $('form[name=ua]').serialize()
+			$(this).ajaxSubmit({
+				type:"post",  //提交方式
+                dataType:"json", //数据类型
+                url:"{{url('webd/folder/uimg')}}", //请求url
+                success:function(json){ //提交成功的回调函数
+                    if(json.code==200) {
+
+                    }else{
+                    	layer.msg(json.message, {icon: 5});
+						return
+                    } 
+                },
+                resetForm:1
+	        });
+	        return false
+		})
+		$('#ua').click(function(){
+			$('form[name=ua]').submit()
+		})
+	</script>
 	<!-- 移动至弹框 -->
 	<div class="pop_movefile" style="display: none;">
 		<div class="pop_con">
@@ -634,7 +665,7 @@
 			});
 			$('.pop_cona').click(function(){
 				$('.pop_goodsupload').hide();
-				$('.pop_goods_upload').show();
+				$('.pop_uploadfile').show();
 				var popconHei = $('.pop_goods_upload .pop_conwrap').height();
 			  	if (popconHei > 410) {
 				    $('.pop_goods_upload .pop_conwrap').css({
@@ -655,7 +686,7 @@
 			});
 			$('.pop_conb').click(function(){
 				$('.pop_goodsupload').hide();
-				$('.pop_pic_upload').show();
+				$('.pop_uploadgoods').show();
 				var popconHei = $('.pop_pic_upload .pop_conwrap').height();
 			  	if (popconHei > 410) {
 				    $('.pop_pic_upload .pop_conwrap').css({
