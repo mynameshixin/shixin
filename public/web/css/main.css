@@ -34,10 +34,10 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .w990{width: 990px;margin:0 auto;position: relative;}
 .w990 .mrightzero{margin-right: 0px;}
 .w992{width: 992px;margin:0 auto;position: relative;}
-.header_logo{height: 48px;font:bold 24px/48px "Microsoft YaHei";color: #e15335;display: inline-block;float: left;margin-right: 13px;text-shadow:1px 1px 1px #f1bbb4;background: url(../images/dtj_icon.png) -4px -706px no-repeat;width: 74px;}
+.header_logo{height: 48px;font:bold 24px/48px "Microsoft YaHei";color: #e15335;display: inline-block;float: left;margin-right: 13px;text-shadow:1px 1px 1px #f1bbb4;/* background: url(../images/dtj_icon.png) -4px -706px no-repeat; */width: 74px;}
 .header_item{height: 48px;font:normal 18px/48px "Microsoft YaHei";color: #333;display: inline-block;padding:0px 15px;float: left;/*text-shadow:1px 1px 1px #cecece;*/}
 .header_item_on{color: #c90000;}
-.header_add_btn{width: 28px;height: 28px;background: #e15335;border-radius: 50%;color: #fff;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:10px 0px 0px 15px;position: relative;cursor: pointer;background: url(../images/dtj_icon.png) -4px -806px no-repeat;}
+.header_add_btn{width: 28px;height: 28px;background: #e15335;border-radius: 50%;color: #fff;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;text-shadow:1px 1px 1px #666;float: left;margin:10px 0px 0px 15px;position: relative;cursor: pointer;/* background: url(../images/dtj_icon.png) -4px -806px no-repeat; */}
 .header_search{width: 663px;height: 32px;border: 1px solid #b0b0b0;border-radius: 5px;float: left;margin:7px 0px 0px 15px;padding:0px 10px;}
 .header_mess{width: 68px;height:48px;display: inline-block;text-align: center;border-left: 1px solid #ebebeb;border-right:1px solid #ebebeb;margin-left: 9px;float: left;position: relative;background: url(../images/dtj_icon.png) 19px -906px no-repeat;cursor: pointer;}
 .header_rel{width: 68px;text-align: center;border-right:1px solid #ebebeb;padding:6px 0px;position: relative;float: left;}
