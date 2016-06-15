@@ -1,6 +1,6 @@
 <div class="header">
 		<div class="headercontainer w1248 clearfix">
-			<a href="{{url('webd/home')}}" class="header_logo">堆图家</a>
+			<a href="/" class="header_logo">堆图家</a>
 			<a href="{{url('webd/home')}}" class="header_item">首页</a>
 			<a href="{{url('webd/pics')}}" class="header_item">图集</a>
 			<a href="{{url('webd/find')}}" class="header_item">发现</a>

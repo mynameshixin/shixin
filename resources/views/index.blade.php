@@ -17,7 +17,7 @@
 <body class="nolog_body">
   <div class="nolog_header">
     <div class="headercontainer w1248 clearfix">
-      <a href="{{url('webd/home')}}" class="header_logo"></a>
+      <a href="/" class="header_logo"></a>
       <a href="{{url('webd/home')}}" class="header_item header_item_on">首页</a>
       <a href="{{url('webd/pics')}}" class="header_item">图集</a>
       <a href="{{url('webd/find')}}" class="header_item">发现</a>
@@ -32,7 +32,7 @@
   </div>
   <div class="header slideup">
     <div class="headercontainer w1248 clearfix">
-      <a href="{{url('webd/home')}}" class="header_logo"></a>
+      <a href="/" class="header_logo"></a>
       <a href="{{url('webd/home')}}" class="header_item">首页</a>
       <a href="{{url('webd/pics')}}" class="header_item">图集</a>
       <a href="{{url('webd/find')}}" class="header_item">发现</a>

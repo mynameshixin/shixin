@@ -40,7 +40,9 @@ class HomeController extends CmController {
 //		}
 		
 		$data = [
-			'user_id' => $this->user_id
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'user_info'=>!empty($user_info)?$user_info:[],
 		];
 		return view('index',$data);
 
