@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@include('web.common.head',['title'=>'堆图家用户图集'])
+	@include('web.common.head',['title'=>'我的堆图家'])
 </head>
 <body>
 	@include('web.common.banner')
