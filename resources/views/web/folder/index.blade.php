@@ -469,17 +469,22 @@
 					'success':function(json){
 						console.log(json)
 						if(json.code==200){
-							
-							$('.pop_goods_upload').show();
-							var popconHei = $('.pop_goods_upload .pop_con').height();
+							nick = json.data.x_item[0].nick
+							price = json.data.x_item[0].price
+							pic_url = json.data.x_item[0].pic_url
+							$('#pname').val(nick)
+							$('#pprice').html(price)
+							$('#pimg img').attr('src',pic_url)
+							$('.pop_pic_upload').show();
+							var popconHei = $('.pop_pic_upload .pop_con').height();
 						  	if (popconHei > 410) {
-							    $('.pop_goods_upload .pop_conwrap').css({
+							    $('.pop_pic_upload .pop_conwrap').css({
 							      'max-height':410,
 							      'overflow-y':'scroll'
 							    })
 							  };
-						  	var poptopHei = $('.pop_goods_upload .pop_con').height();
-							$('.pop_goods_upload .pop_con').css({
+						  	var poptopHei = $('.pop_pic_upload .pop_con').height();
+							$('.pop_pic_upload .pop_con').css({
 							   'margin-top':-(poptopHei/2)
 							})
 						}else{
@@ -595,30 +600,18 @@
 			<div class="pop_conwrap">
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">名称</span>
-					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
+					<input class="pop_iptname" placeholder="名称" id='pname' value="">
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥45</p>
+					<p class="pop_iptprice">￥<span id='pprice'>45</span></p>
 				</div>
 				<div class="pop_goodsimgwrap clearfix">
 					<p class="pop_goodsimgtit">商品图片</p>
-					<div class="pop_goodseachimg">
+					<div class="pop_goodseachimg" id='pimg'>
 						<a href="javascript:;" class="pop_gooddelete"></a>
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
 						<div class="pop_good_toppne">主图</div>
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
 					</div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
@@ -631,7 +624,7 @@
 						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
 					</div>
 				</div>
-				<div class="pop_namewrap clearfix">
+				<!-- <div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
 					<select class="pop_iptselect" style="margin-top: 17px;">
 						<option value="">椅子</option>
@@ -641,7 +634,7 @@
 						<option value="">卧室</option>
 						<option value="">卫生间</option>
 					</select>
-				</div>
+				</div> -->
 			</div>
 			
 			<div class="pop_btnwrap pop_goods_share">
