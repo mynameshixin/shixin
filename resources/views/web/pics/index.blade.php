@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家图集页'])
+@include('web.common.head',['title'=>'我的堆图家'])
 <body>
 	@include('web.common.banner')
 	<div class="container nolog_container"  style="background: #d0d0d0">

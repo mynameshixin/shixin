@@ -630,8 +630,8 @@
 					<div class="pop_goodseachimg" id='pimg'>
 						<a href="javascript:;" class="pop_gooddelete"></a>
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-						<input type="file" name="image" value="http://www.css88.com/archives/2256" id="gimg"></input>
-						<div class="pop_good_toppne">主图</div>
+						<input type="file" name="image" value="" id="gimg"></input>
+						<!-- <div class="pop_good_toppne">主图</div> -->
 					</div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
