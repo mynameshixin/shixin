@@ -622,7 +622,7 @@
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>
 					<input type="hidden" value="" name='detail_url' id='detail_url'></input>
-					<input type="hidden" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']); ?>" name='user_id'></input>
+					<input type="hidden" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>" name='user_id'></input>
 					<input type="hidden" value="{{$folder['id']}}" name='fid'></input>
 				</div>
 				<div class="pop_goodsimgwrap clearfix">
