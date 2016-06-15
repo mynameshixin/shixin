@@ -561,18 +561,19 @@
 					'success':function(json){
 						console.log(json)
 						if(json.code==200){
+							ub = $('form[name=ub]')
 							description = nick = json.data.x_item[0].nick
 							price = json.data.x_item[0].price
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
 							detail_url = $('.pop_iptgoods').val().trim()
-							$('#pname').val(nick)
-							$('#pprice').val(price)
-							$('#pimg img').attr('src',pic_url)
-							$('#gimg').val(pic_url)
-							$('#detail_url').val(detail_url)
-							$('#reserve_price').val(reserve_price)
-							$('#description').val(description)
+							$('input[name=pname]',ub).val(nick)
+							$('input[name=pprice]',ub).val(price)
+							$('#pimg img',ub).attr('src',pic_url)
+							$('input[name=img]',ub).val(pic_url)
+							$('input[name=detail_url]',ub).val(detail_url)
+							$('input[name=reserve_price]',ub).val(reserve_price)
+							$('input[name=description]',ub).val(description)
 							$('.pop_pic_upload').show();
 							var popconHei = $('.pop_pic_upload .pop_con').height();
 						  	if (popconHei > 410) {
@@ -687,7 +688,6 @@
 
 	<script type="text/javascript">
 		$('form[name=ub]').submit(function(){
-			ua = $('form[name=ub]').serialize()
 			$(this).ajaxSubmit({
 				type:"post",  //提交方式
                 dataType:"json", //数据类型
