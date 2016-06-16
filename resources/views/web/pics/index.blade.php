@@ -65,7 +65,7 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" target="_blank"></a>
-							<img src="{{$v['images'][0]['img_m']}}">
+							<img src="{{$v['images'][0]['img_o']}}">
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">

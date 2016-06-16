@@ -11,7 +11,16 @@
 					@include('web.common.banner.action')
 				</div>
 			</div>
-			<input type="text" class="header_search" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
+			<form action="/webd/search" method="post" name='search'>
+				<input type="text" class="header_search" name="keyword" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
+			</form>
+			<script type="text/javascript">
+				$('.header_search').keydown(function(e){
+					if(e.keyCode==13){
+						$('form[name=search]').submit()
+					}
+				})
+			</script>
 			<div href="javascript:;" class="header_mess">
 				<i class="icon-bell-alt"></i>
 				<div class="header_moremess">
