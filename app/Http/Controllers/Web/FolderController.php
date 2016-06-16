@@ -179,7 +179,7 @@ class FolderController extends CmController{
         DB::table('folders')->where('id',$id)->delete();
         return response()->forApi(['status'=>1]);
     }
-    //上传图片或商品
+    //上传图片
     public function postUimg(){
 
         $data = Input::all();
@@ -214,6 +214,47 @@ class FolderController extends CmController{
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+    }
+    //上传商品
+    public function postUgoods(){
+
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'kind' => 'required|in:1,2',
+            'fid' => 'required|exists:folders,id',
+            'category_id' => 'exists:categories,id',
+            'image_ids' => 'required',
+            'source' => 'in:0,1',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $rulesImage = $file = array();
+        if (is_array($data['image']) && !empty($data['image'])) {
+            foreach ($data['image'] as $k => $v) {
+                $rulesImage[$k] = 'image';
+            }
+            parent::validator($data['image'], $rulesImage);
+        }
+        if (isset($data['folder_id'])) {
+            $row = Folder::find($data['folder_id']);
+            if (empty($row) || $userId !=$row->user_id){
+                return response()->forApi(array(), 1001, '请选择正确文件夹！');
+            }
+        }
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['folder_id'] = $data['fid'];
+        $id = ProductService::getInstance()->addProduct ($userId,$data);
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{

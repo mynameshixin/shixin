@@ -570,12 +570,14 @@
 							price = json.data.x_item[0].price
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
+							image_ids = json.data.x_item[0].image_ids
 							detail_url = $('.pop_iptgoods').val().trim()
 							$('input[name=title]',ub).val(title)
 							$('input[name=price]',ub).val(price)
 							$('#pimg img',ub).attr('src',pic_url)
 							$('input[name=image]',ub).attr('value',pic_url)
 							$('input[name=detail_url]',ub).val(detail_url)
+							$('input[name=image_ids]',ub).val(image_ids)
 							$('input[name=reserve_price]',ub).val(reserve_price)
 							$('input[name=description]',ub).val(description)
 							$('.pop_pic_upload').show();
@@ -623,6 +625,7 @@
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>
 					<input type="hidden" value="" name='detail_url' id='detail_url'></input>
+					<input type="hidden" value="" name='image_ids' id='image_ids'></input>
 					<input type="hidden" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>" name='user_id'></input>
 					<input type="hidden" value="{{$folder['id']}}" name='fid'></input>
 				</div>
@@ -631,7 +634,6 @@
 					<div class="pop_goodseachimg" id='pimg'>
 						<a href="javascript:;" class="pop_gooddelete"></a>
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-						<input type="file" name="image" value="" id="gimg"></input>
 						<!-- <div class="pop_good_toppne">主图</div> -->
 					</div>
 					<div class="pop_goodseachimg pop_goodseachadd"></div>
@@ -695,7 +697,7 @@
 			$(this).ajaxSubmit({
 				type:"post",  //提交方式
                 dataType:"json", //数据类型
-                url:"{{url('webd/folder/uimg')}}", //请求url
+                url:"{{url('webd/folder/ugoods')}}", //请求url
                 success:function(json){ //提交成功的回调函数
                     if(json.code==200) {
                     	layer.msg('成功上传',{icon: 6});
