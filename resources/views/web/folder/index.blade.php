@@ -555,7 +555,7 @@
 					'beforeSend':function(){
 						layer.load(0, {shade: 0.5});
 					},
-					'url':"webd/taobao/detail",
+					'url':"/webd/taobao/detail",
 					'type':'get',
 					'data':{
 						'url':$('.pop_iptgoods').val().trim()
