@@ -224,6 +224,8 @@ class ProductWebsupply extends CmWebsupply{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
         }
+        if(!isset($goods['pre'])) $goods['pre'] = $goods[0]['id'];
+        if(!isset($goods['next'])) $goods['next'] = $goods[$last]['id'];
         return $goods;
     }
 
