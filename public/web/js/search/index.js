@@ -1,47 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-@include('web.common.head',['title'=>'堆图家搜索'])
-<body>
-	<script type="text/javascript">
-		defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
-		self_id = "{{$self_id}}"
-		relationUrl = "{{url('webd/user/relation')}}"
-		keyword = "{{$keyword}}"
-	</script>
-	<script src="{{url('web/js/user/relation.js')}}"></script>
-	@include('web.common.banner')
-	<div class="container">
-		<div class="w1248 clearfix" id="main" role='main'>
-			@include('web.common.search.menu')
-			<div class="find_cater_container">
-				<div class="find_cater clearfix" id='tiles'>
-					<ul class="find_fold_list clearfix">
-					</ul>
-				</div>
-			</div>
-			
-			
-		</div>
-	</div>
-	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
-</body>
-<script type="text/javascript">
-	$(function() { 
-	    $('.find_cater').hide()
-	    $.ajax({
-	    	'beforeSend':function(){
-				layer.load(0, {shade: 0.5});
-			},
-			'url':"/webd/search/folder",
-			'type':'post',
-			'data':{
+$(function (){
+  /**
+   * When scrolled all the way to the bottom, add more tiles
+   */
+  $window = $(window)
+  $document = $(document)
+  $page = 1
+  var f=1
+  function onScroll() {
+  	
+    var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
+        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
+
+    if (closeToBottom && f==1) {
+    	$.ajax({
+		  	'beforeSend':function(){
+		  		$('#load').show()
+		  		$('#load').css({'display':'block'})
+		  	},
+		  	'url':"/webd/search/folder",
+		  	'type':'POST',
+		  	'dataType':'json',
+		  	'data':{
 				'keyword':keyword,
-				'page':1
+				'page':++$page
 			},
-			'dataType':'json',
-			'success':function(json){
-				if(json.code==200 && json.data.list!=0 && json.data.list!=null){
-					data = json.data.list
+		  	'success':function(json){
+		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
+		  			f = 0
+		  			data = json.data.list
 					var str = ''
 					$.each(data,function(index,v){
 						gpic_1 = data[index].goods[0] != undefined?data[index].goods[0].image_url:defaultPic
@@ -87,14 +73,19 @@
 						+'</li>'
 					})
 					$('.find_cater').eq(0).append(str)
-				}
-			},
-			'complete':function(){
-				layer.closeAll('loading');
-			}
-	    })
-	    $('.find_cater').eq(0).show()
-	});
-</script>
-<script src="{{url('web/js/search/index.js')}}"></script>
-</html>
+					f = 1
+					
+		  		}else{
+		  			f = 0
+		  			$('#load').html('全部加载完成。。。')
+		  		}
+
+		  	}
+		  })      
+    }
+  };
+
+
+  // Capture scroll event.
+  $window.bind('scroll', onScroll);
+});

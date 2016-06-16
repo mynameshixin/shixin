@@ -11,7 +11,7 @@
 					@include('web.common.banner.action')
 				</div>
 			</div>
-			<form action="/webd/search" method="post" name='search'>
+			<form action="/webd/search" method="get" name='search'>
 				<input type="text" class="header_search" name="keyword" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
 			</form>
 			<script type="text/javascript">

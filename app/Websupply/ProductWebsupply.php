@@ -75,6 +75,13 @@ class ProductWebsupply extends CmWebsupply{
         if (!empty($condtion)) $rows = $rows->where($condtion);
 
         $rows = $rows->select('id', 'user_id', 'folder_id', 'kind', 'price', 'reserve_price', 'image_ids', 'title', 'tags', 'category_id', 'description', 'source', 'is_recommend', 'collection_count', 'praise_count', 'boo_count', 'detail_url', 'created_at');
+        if (isset($params['keyword']) && !empty($params['keyword'])) {
+            $keyword = urldecode($params['keyword']);
+            $rows = $rows->where(function ($rows) use ($keyword) {
+                $rows = $rows->where('goods.title', "like", "%{$keyword}%")
+                    ->orWhere('goods.tags', "like", "%{$keyword}%");
+            });
+        }
         $rows = $rows->get();
         $list = [];
         if (!empty($rows)) {
