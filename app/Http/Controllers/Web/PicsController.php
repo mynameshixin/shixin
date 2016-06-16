@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use App\Lib\LibUtil;
 use DB;
 
 
@@ -106,7 +107,35 @@ class PicsController extends CmController{
         return response()->forApi($list);
 	}
 
+	//采集ajax 返回文件
+	public function postCgoods(){
+		$data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 
+		$cg = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->where('cg.user_id',$userId)->orderBy('cg.created_at','desc')->select('f.name','f.id','f.image_id','f.private')->take(3)->get();
+		if(!empty($cg)){
+			foreach ($cg as $k => $v) {
+				$cg[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
+			}
+		}
+		$folder = DB::table('folders')->where('user_id',$userId)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
+		if(!empty($folder)){
+			foreach ($folder as $k => $v) {
+				$folder[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
+			}
+		}
+		return response()->forApi([
+			'cg'=>$cg,
+			'folder'=>$folder
+			]);
+	}
 
 
 }

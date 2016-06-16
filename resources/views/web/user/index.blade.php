@@ -353,7 +353,11 @@
 					'dataType':'json',
 					'success':function(json){
 						if(json.code==200){
-							location.reload()
+							layer.msg('创建成功', {icon: 6});
+							setTimeout(function(){
+								location.reload()
+							},2000)
+							
 						}else{
 							layer.msg(json.message, {icon: 5});
 							return
@@ -388,7 +392,10 @@
 					'dataType':'json',
 					'success':function(json){
 						if(json.code==200){
-							location.reload()
+							layer.msg('修改成功', {icon: 6});
+							setTimeout(function(){
+								location.reload()
+							},2000)
 						}else{
 							layer.msg(json.message, {icon: 5});
 							return

@@ -550,8 +550,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_col_detailtext{width: 206px;height:44px;padding:15px;background: #fff;border-radius: 0px 0px 5px 5px;float: left;font:normal 14px/22px "Microsoft YaHei";color: #514141;border:none;overflow: hidden;}
 
 
-.pop_col_ltop{position: relative;margin-bottom: 18px;}
-.detail_pop_colledit{display: inline-block;float: right;width: 18px;height: 18px;background: url(../images/detail_pop.png) -7px -106px no-repeat;position: absolute;right: 15px;bottom: 15px;}
+.pop_col_ltop{position: relative;margin-bottom: 18px; height: 75%}
+.detail_pop_colledit{display: inline-block;float: right;width: 18px;height: 18px;background: url(../images/detail_pop.png) -7px -106px no-repeat;position: absolute;right: 15px;bottom: 15px; display: none}
 .pop_col_lbtm{width: 290px;margin-left: -27px;height: 40px;color: #fff;font:normal 12px/40px "Microsoft YaHei";text-align: center;position: absolute;bottom: 0px;}
 .pop_col_lbswc{width: 20px;height: 18px;display: inline-block;background: url(../images/wechat.png) -1px 1px no-repeat;position: relative;top: 4px;}
 .pop_col_lbsqq{width: 20px;height: 18px;display: inline-block;background: url(../images/qq.png) 2px 0px no-repeat;position: relative;top: 4px;}

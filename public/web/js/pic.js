@@ -53,11 +53,110 @@ $(function(){
 			    	$('.detail_pop_tlcomlist li').show()
 			    	$(this).hide()
 			    })
+			    //采集ajax 
 			    $('.detail_pop_collection').click(function(){
-					$('.pop_collect').show();
-					var popH =$('.pop_collect').show().find('.pop_con').height();
-					$('.pop_collect').show().find('.pop_col_left').height(popH-60);
+					$('.p_collect').show();
+					var popH =$('.p_collect').show().find('.pop_con').height();
+					$('.p_collect').show().find('.pop_col_left').height(popH);
+					$.ajax({
+						'beforeSend':function(){
+							layer.load(0, {shade: 0.5});
+						},
+						'url':'/webd/pics/cgoods',
+						'data':{'user_id':user_id},
+						'type':'post',
+						'dataType':'json',
+						'success':function(json){
+							if(json.code==200){
+								cgcontent = afolder = ''
+								$.each(json.data.cg,function(index,v){
+									cgcontent += '<li class="pop_col_colum_on clearfix">'
+										+'<div class="pop_col_colava">'
+											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
+										+'</div>'
+										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
+
+									if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
+										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>'
+									+'</li>'
+								})
+								$('.pop_col_colum_new').html(cgcontent)
+								$.each(json.data.folder,function(index,v){
+									afolder += '<li class="pop_col_colum_on clearfix">'
+										+'<div class="pop_col_colava">'
+											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
+										+'</div>'
+										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
+										if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
+										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>'
+									+'</li>'
+								})
+								$('.pop_col_colum_all').html(afolder)
+							}else{
+								layer.msg(json.message, {icon: 5});
+								return
+							}
+						},
+						'complete':function(){
+							layer.closeAll('loading');
+						}
+					})
 				})
+
+			    //创建新文件
+				$('.pop_add_addnew').click(function(){
+					$('.p_collect').hide();
+					$('.p_folder').show()
+					var popH =$('.p_folder').show().find('.pop_con').height();
+					$('.p_folder').show().find('.pop_col_left').height(popH);
+				})
+				$('.pop_iptprivacy').click(function(){
+					if($(this).attr('checked') == 'checkbox') return
+					if($(this).attr('private') == 1){
+						$(this).attr('private',0)
+					}else{
+						$(this).attr('private',1)
+					}
+				})
+				//创建点击按钮
+				$('#cfolder').click(function(){
+					pop_con = $(this).parents('.pop_con')
+					name = $('input[name=fname]',pop_con).val().trim()
+					description = $('textarea',pop_con).val().trim()
+					private = $('input[name=private]',pop_con).attr('private')
+					if(name=='') {
+						layer.msg('信息没有填写完全', {icon: 5});
+						return 
+					}
+					$.ajax({
+						'beforeSend':function(){
+							layer.load(0, {shade: 0.5});
+						},
+						'url':"/webd/folder/cfolder",
+						'type':'post',
+						'data':{
+							'name':name,
+							'description':description,'private':private,
+							'fid':10,'user_id':user_id
+						},
+						'dataType':'json',
+						'success':function(json){
+							if(json.code==200){
+								layer.msg('创建成功', {icon: 6});
+								setTimeout(function(){
+									location.reload()
+								},2000)
+							}else{
+								layer.msg(json.message, {icon: 5});
+								return
+							}
+						},
+						'complete':function(){
+							layer.closeAll('loading');
+						}
+					})
+				})
+
 				$('.pop_col_r').click(function(){
 					if ($(this).hasClass('pop_col_radio_on')) {
 						$(this).removeClass('pop_col_radio_on').addClass('pop_col_radio');

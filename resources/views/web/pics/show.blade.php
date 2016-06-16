@@ -26,8 +26,8 @@
 								<div class="detail_fileb_select slideup">
 									<div class="detail_fileb_selectw">
 										<span class="jiathis_style_32x32" id="own_share">
-											<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="public/images/qq.png" height="18" width="15" alt="">QQ</a>
-											<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="public/images/wechat.png" height="17" width="19" alt="">微信</a>
+											<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
+											<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
 										</span>
 										<var class="detail_fileb_setril"></var>
 									</div>
@@ -246,43 +246,70 @@
 		</div>
 	</div>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
-	<!-- 采集时新建文件夹 -->
-	<div class="pop_collect" style="display:none;">
+	<!-- 采集时选择文件夹 -->
+	<div class="pop_collect p_collect" style="display: none">
 		<div class="pop_con">
 			<div class="pop_col_left">
 				<div class="pop_col_ltop clearfix">
-					<img src="public/images/temp/pop_img.png" height="830" width="668" alt="">
+					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" height="830" width="668" alt="">
 					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅">富有海的味道的客厅#室内设计#让新房的...</textarea>
+						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="resize: none;">{{$goods['description']}}</textarea>
 					</div>
 					
 					<a href="javascript:;" class="detail_pop_colledit"></a>
 				</div>
-				<div class="pop_col_lbtm">
-					<span class="pop_col_lbshare">
-						分享到 :
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
-						<a class="pop_col_lbswc"></a>
-						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
-					</span>
+				
+			</div>
+			<div class="pop_col_right">
+				<div class="pop_col_tit">
+					选择文件夹
+					<span class="pop_close"></span>
+					<!-- <p class="pop_col_tips">
+						该文件已采集到<a href="javascript:;">工业风格</a>文件夹
+					</p>
+					<div class="pop_col_sinput_wrap">
+						<a href="javascript:;" class="pop_col_sinputbtn"></a>
+						<input class="pop_col_sinput" placeholder="搜索">
+					</div> -->
 					
-					<span class="pop_col_lbshare">
-						微信朋友圈
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
-						<a class="pop_col_lbsqq"></a>
-						<a class="jiathis_button_qzone jiathis_button"></a>
-					</span>
-					<span class="pop_col_lbshare">
-						QQ空间
-					</span>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 				</div>
+				<div class="">
+					<div class="pop_col_colum_wrap">
+						<!-- <div class="pop_col_alphabet">
+							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
+						</div> -->
+						<p class="pop_col_new">最新采集到</p>
+						<ul class="pop_col_colum pop_col_colum_new">
+							
+						</ul>
+						<p class="pop_col_new">所有文件夹</p>
+						<ul class="pop_col_colum pop_col_colum_all">
+							
+							
+						</ul>
+					</div>
+					
+				</div>
+				<div class="pop_add_foldbtn clearfix">
+					<a href="javascript:;" class="pop_add_addnew">+</a>
+					<p class="pop_add_addfont">新建文件夹</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 采集时新建文件夹 -->
+	<div class="pop_collect p_folder" style="display: none">
+		<div class="pop_con">
+			<div class="pop_col_left">
+				<div class="pop_col_ltop clearfix">
+					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" height="830" width="668" alt="">
+					<div class="pop_col_dwrap clearfix">
+						<textarea class="pop_col_detailtext" title="{{$goods['description']}}">{{$goods['description']}}</textarea>
+					</div>
+					
+					<a href="javascript:;" class="detail_pop_colledit"></a>
+				</div>
+			
 			</div>
 			<div class="pop_col_right">
 				<div class="pop_col_tit">
@@ -292,7 +319,7 @@
 				<div class="pop_col_infowrap">
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">名称</p>
-						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格">
+						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
 					</div>
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">描述</p>
@@ -300,347 +327,18 @@
 					</div>
 					<div class="pop_col_priv">
 						<p class="pop_col_nlabel">隐私</p>
-						<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr">
+						<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" name="private" private="0">
 						<label for="pop_iptpr"></label>
 					</div>
 				</div>
 				<div class="pop_btnwrap">
 					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_build">创建</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_build" id="cfolder">创建</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 采集时选择文件夹 -->
-	<div class="pop_collect pop_choose" style="display:none;">
-		<div class="pop_con">
-			<div class="pop_col_left">
-				<div class="pop_col_ltop clearfix">
-					<img src="public/images/temp/pop_img.png" height="830" width="668" alt="">
-					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅" style="resize: none;">富有海的味道的客厅#室内设计#让新房的...</textarea>
-					</div>
-					
-					<a href="javascript:;" class="detail_pop_colledit"></a>
-				</div>
-				<div class="pop_col_lbtm">
-					<span class="pop_col_lbshare">
-						分享到 :
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
-						<a class="pop_col_lbswc"></a>
-						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
-					</span>
-					
-					<span class="pop_col_lbshare">
-						微信朋友圈
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
-						<a class="pop_col_lbsqq"></a>
-						<a class="jiathis_button_qzone jiathis_button"></a>
-					</span>
-					<span class="pop_col_lbshare">
-						QQ空间
-					</span>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-				</div>
-			</div>
-			<div class="pop_col_right">
-				<div class="pop_col_tit">
-					选择文件夹
-					<span class="pop_close"></span>
-					<p class="pop_col_tips">
-						该文件已采集到<a href="javascript:;">工业风格</a>文件夹
-					</p>
-					<div class="pop_col_sinput_wrap">
-						<a href="javascript:;" class="pop_col_sinputbtn"></a>
-						<input class="pop_col_sinput" placeholder="搜索">
-					</div>
-					
-				</div>
-				<div class="">
-					<div class="pop_col_colum_wrap">
-						<div class="pop_col_alphabet">
-							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
-						</div>
-						<p class="pop_col_new">最新采集到</p>
-						<ul class="pop_col_colum pop_col_colum_new">
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a class="pop_col_foldlock"></a>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-						</ul>
-						<p class="pop_col_new">所有文件夹</p>
-						<ul class="pop_col_colum pop_col_colum_all">
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a class="pop_col_foldlock"></a>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-						</ul>
-					</div>
-					
-				</div>
-				<div class="pop_add_foldbtn clearfix">
-					<a href="javascript:;" class="pop_add_addnew">+</a>
-					<p class="pop_add_addfont">新建文件夹</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 采集时提示已经采集过了 -->
-	<div class="pop_collect pop_choose pop_choose_already" style="display:none;">
-		<div class="pop_con">
-			<div class="pop_col_left">
-				<div class="pop_col_ltop clearfix">
-					<img src="public/images/temp/pop_img.png" height="830" width="668" alt="">
-					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅富有海的味道的客厅#室内设计#让新房的客厅与大自然合二为一了哦，享受美好的自然气息，富有海的味道富有味道的客厅" style="resize: none;">富有海的味道的客厅#室内设计#让新房的...</textarea>
-					</div>
-					
-					<a href="javascript:;" class="detail_pop_colledit"></a>
-				</div>
-				<div class="pop_col_lbtm">
-					<span class="pop_col_lbshare">
-						分享到 :
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
-						<a class="pop_col_lbswc"></a>
-						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
-					</span>
-					
-					<span class="pop_col_lbshare">
-						微信朋友圈
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
-						<a class="pop_col_lbsqq"></a>
-						<a class="jiathis_button_qzone jiathis_button"></a>
-					</span>
-					<span class="pop_col_lbshare">
-						QQ空间
-					</span>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-				</div>
-			</div>
-			<div class="pop_col_right">
-				<div class="pop_col_tit">
-					选择文件夹
-					<span class="pop_close"></span>
-					<p class="pop_col_tips">
-						该文件已采集到<a href="javascript:;">工业风格</a>文件夹
-					</p>
-					<div class="pop_col_sinput_wrap">
-						<a href="javascript:;" class="pop_col_sinputbtn"></a>
-						<input class="pop_col_sinput" placeholder="搜索">
-					</div>
-					
-				</div>
-				<div class="">
-					<div class="pop_col_colum_wrap">
-						<div class="pop_col_alphabet">
-							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
-						</div>
-						<p class="pop_col_new">最新采集到</p>
-						<ul class="pop_col_colum pop_col_colum_new">
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a class="pop_col_foldlock"></a>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-						</ul>
-						<p class="pop_col_new">所有文件夹</p>
-						<ul class="pop_col_colum pop_col_colum_all">
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a class="pop_col_foldlock"></a>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-							<li class="pop_col_colum_on clearfix">
-								<div class="pop_col_colava">
-									<a href="javascript:;" target="_blank"><img src="public/images/temp_avatar.JPG" alt=""></a>
-								</div>
-								<div class="pop_col_colname"><a href="javascript:;" target="_blank">禅意装饰画</a></div>
-								<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>
-							</li>
-						</ul>
-					</div>
-					
-				</div>
-				<div class="pop_add_foldbtn clearfix">
-					<a href="javascript:;" class="pop_add_addnew">+</a>
-					<p class="pop_add_addfont">新建文件夹</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 </body>
 <script type="text/javascript">
 	fid = "<?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>"
@@ -649,6 +347,7 @@
 	postUrl = "{{url('webd/pics/img')}}?oid={{$user_id}}&fid="+fid
 	moreData = {'num':4,'img_id':{{$goods['id']}}}
 	postData = {'num':15,'img_id':{{$goods['id']}}}
+	user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];  ?>"
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
  <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>
