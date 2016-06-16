@@ -562,8 +562,6 @@
 					},
 					'dataType':'json',
 					'success':function(json){
-						console.log(json)
-						return
 						if(json.code==200){
 							ub = $('form[name=ub]')
 							description = title = json.data.x_item[0].title
