@@ -53,6 +53,7 @@ $(function(){
 			    	$('.detail_pop_tlcomlist li').show()
 			    	$(this).hide()
 			    })
+			   
 			    //采集ajax 
 			    $('.detail_pop_collection').click(function(){
 					$('.p_collect').show();
@@ -70,25 +71,25 @@ $(function(){
 							if(json.code==200){
 								cgcontent = afolder = ''
 								$.each(json.data.cg,function(index,v){
-									cgcontent += '<li class="pop_col_colum_on clearfix">'
+									cgcontent += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+'>'
 										+'<div class="pop_col_colava">'
 											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
 										+'</div>'
 										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
 
 									if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
-										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>'
+										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" onclick="c_function(this)">采集</a>'
 									+'</li>'
 								})
 								$('.pop_col_colum_new').html(cgcontent)
 								$.each(json.data.folder,function(index,v){
-									afolder += '<li class="pop_col_colum_on clearfix">'
+									afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+'>'
 										+'<div class="pop_col_colava">'
 											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
 										+'</div>'
 										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
 										if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
-										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn">采集</a>'
+										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" onclick="c_function(this)">采集</a>'
 									+'</li>'
 								})
 								$('.pop_col_colum_all').html(afolder)
@@ -102,6 +103,8 @@ $(function(){
 						}
 					})
 				})
+				
+				
 
 			    //创建新文件
 				$('.pop_add_addnew').click(function(){
@@ -157,6 +160,8 @@ $(function(){
 					})
 				})
 
+
+
 				$('.pop_col_r').click(function(){
 					if ($(this).hasClass('pop_col_radio_on')) {
 						$(this).removeClass('pop_col_radio_on').addClass('pop_col_radio');
@@ -179,7 +184,7 @@ $(function(){
 				// 触发分享按钮结束
 
 				// 左侧相关信息编辑开始
-				var textcon = $('.pop_col_detailtext').text();
+				/*var textcon = $('.pop_col_detailtext').text();
 				$('.pop_col_detailtext').focusin(function(event) {
 					var moreHtml = $('.pop_col_detailtext').attr('title');
 					var littleHtml = $('.pop_col_detailtext').html();
@@ -201,7 +206,7 @@ $(function(){
 						'overflow-y':'scroll'
 					});
 					
-				})
+				})*/
 				//左侧相关信息编辑结束
 				if ($('.pop_col_infowrap').height()>360) {
 					$('.pop_col_infowrap').css({

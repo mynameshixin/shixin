@@ -9,6 +9,8 @@ use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
 use App\Lib\LibUtil;
+use App\Services\CollectionService;
+use App\Models\CollectionGood;
 use DB;
 
 
@@ -109,7 +111,7 @@ class PicsController extends CmController{
 
 	//采集ajax 返回文件
 	public function postCgoods(){
-		$data = Input::all();
+		$data = fparam(Input::all());
         $rules = array(
             'user_id' => 'required',
         );
@@ -137,5 +139,42 @@ class PicsController extends CmController{
 			]);
 	}
 
+
+	//采集动作ajax
+	public function postCpic(){
+		$params = fparam(Input::all());
+		// dd($params);
+        $rules = array(
+            'good_id' => 'required|exists:goods,id',
+            'folder_id' => 'exists:folders,id',
+            'user_id' => 'required',
+            'action'=>'required'
+        );
+        //请求参数验证
+        parent::validator($params, $rules);
+        $user_id = self::get_user_cache($params['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $action = isset($params['action']) ? $params['action'] : 1;
+        if ($action==2) {
+            $folder_id = isset($params['folder_id']) ? $params['folder_id'] : 0;
+            $rs = CollectionService::getInstance()->delCollection ($user_id,$params['good_id'],$folder_id);
+        }else{
+            $folder_id = isset($params['folder_id']) ? $params['folder_id'] : 0;
+            $row = CollectionGood::where(['user_id'=>$user_id,'good_id'=>$params['good_id'],'folder_id'=>$folder_id])->first();
+            if (!empty($row)) {
+                return response()->forApi(array(), 1001, '你已采集过该商品');
+            }
+            $rs = CollectionService::getInstance()->addCollection ($user_id,$params['good_id'],$folder_id);
+
+        }
+
+        if ($rs) {
+            return response()->forApi(['status' => 1], 200, '操作成功');
+        } else {
+            return response()->forApi(array(), 1001, '操作失败');
+        }
+	}
 
 }

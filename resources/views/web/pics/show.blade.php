@@ -247,16 +247,16 @@
 	</div>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
 	<!-- 采集时选择文件夹 -->
-	<div class="pop_collect p_collect" style="display: none">
+	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}">
 		<div class="pop_con">
 			<div class="pop_col_left">
 				<div class="pop_col_ltop clearfix">
 					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" height="830" width="668" alt="">
 					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="resize: none;">{{$goods['description']}}</textarea>
+						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="resize: none;">{{!empty(trim($goods['description']))?trim($goods['description']):trim($goods['title'])}}</textarea>
 					</div>
 					
-					<a href="javascript:;" class="detail_pop_colledit"></a>
+					<!-- <a href="javascript:;" class="detail_pop_colledit"></a> -->
 				</div>
 				
 			</div>
@@ -348,6 +348,43 @@
 	moreData = {'num':4,'img_id':{{$goods['id']}}}
 	postData = {'num':15,'img_id':{{$goods['id']}}}
 	user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];  ?>"
+</script>
+<script type="text/javascript">
+	 var c_function = function (obj){
+		//采集动作
+		folder_id = $(obj).parent('li').attr('folder_id')
+		good_id = $('.p_collect').attr('img_id')
+		action = 1
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"/webd/pics/cpic",
+			'type':'post',
+			'data':{
+				'folder_id':folder_id,
+				'good_id':good_id,
+				'action':action,
+				'user_id':user_id
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					layer.msg('采集成功', {icon: 6});
+					setTimeout(function(){
+						location.reload()
+					},2000)
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+
+	}
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
  <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>
