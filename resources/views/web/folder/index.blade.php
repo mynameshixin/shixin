@@ -555,7 +555,7 @@
 					'beforeSend':function(){
 						layer.load(0, {shade: 0.5});
 					},
-					'url':"/api/good/item",
+					'url':"webd/taobao/detail",
 					'type':'get',
 					'data':{
 						'url':$('.pop_iptgoods').val().trim()
@@ -563,6 +563,7 @@
 					'dataType':'json',
 					'success':function(json){
 						console.log(json)
+						return
 						if(json.code==200){
 							ub = $('form[name=ub]')
 							description = title = json.data.x_item[0].title
@@ -617,7 +618,7 @@
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥<input id='pprice' type="text" value="" name='price'></p>
+					<p class="pop_iptprice">￥<input id='pprice' type="text" value="" name='price' style="color:#a1a1a1;border: none"></p>
 					<input type="hidden" value="" name='reserve_price' id='reserve_price'></input>
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>
