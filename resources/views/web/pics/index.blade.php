@@ -4,7 +4,7 @@
 <body>
 	@include('web.common.banner')
 	<div class="container nolog_container"  style="background: #f0f0f0">
-		@include('web.common.ologin')
+		<?php if(empty($self_id)): ?>
 		<div class="w1248 clearfix">
 			<div class="nolog_allcat clearfix">
 				<div class="nolog_allcateach nolog_allcateach1">
@@ -58,6 +58,7 @@
 					</ul>
 				</div>
 			</div>
+		<?php endif; ?>
 		<div id="main" role="main" class="w1248 clearfix">
 			<div class="index_con" id="tiles">
 			<?php foreach ($goods as $key => $v):?>
