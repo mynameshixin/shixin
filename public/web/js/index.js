@@ -51,7 +51,7 @@ $(function(){
 
   $('.pop_goods_upload,.pop_close,.detail_pop_cancel').click(function(){
     $('.pop_uploadfile').hide();
-    $('.pop_uploadgoods').hide()
+    $('.pop_upload_goods').hide()
     $('.pop_goods_upload').hide()
     $('.pop_addfold').hide()
     $('.header_add_item_awrap').show();
@@ -119,16 +119,16 @@ $(function(){
 
   //上传商品点击按钮 
   $('.popb').click(function(){
-      $('.pop_uploadgoods').show();
-      var popconHei = $('.pop_uploadgoods .pop_conwrap').height();
+      $('.pop_upload_goods').show();
+      var popconHei = $('.pop_upload_goods .pop_conwrap').height();
       if (popconHei > 410) {
-        $('.pop_uploadgoods .pop_conwrap').css({
+        $('.pop_upload_goods .pop_conwrap').css({
           'max-height':410,
           'overflow-y':'scroll'
         })
       };
-      var poptopHei = $('.pop_uploadgoods .pop_con').height();
-      $('.pop_uploadgoods .pop_con').css({
+      var poptopHei = $('.pop_upload_goods .pop_con').height();
+      $('.pop_upload_goods .pop_con').css({
          'margin-top':-(poptopHei/2)
       })
   });
@@ -137,7 +137,7 @@ $(function(){
   });
   // 上传点击
   $('#geturl').click(function(){
-        $('.pop_uploadgoods').hide();
+        $('.pop_upload_goods').hide();
 
         /*$('.pop_goods_upload').show();
         

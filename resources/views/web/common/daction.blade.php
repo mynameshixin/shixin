@@ -49,7 +49,7 @@
 		})
 	</script>
 	<!-- 获取商品网址弹框 -->
-	<div class="pop_uploadgoods" style="display:none;">
+	<div class="pop_upload_goods" style="display:none;">
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传商品
