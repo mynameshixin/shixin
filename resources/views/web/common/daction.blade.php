@@ -56,7 +56,7 @@
 				<span class="pop_close"></span>
 			</p>
 			<div class="pop_namewrap clearfix">
-				<input class="pop_ipt_goods" placeholder="粘贴商品网站">
+				<input class="pop_iptgoods" placeholder="粘贴商品网站" id="pop_ipt_goods">
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
