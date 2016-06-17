@@ -21,7 +21,7 @@ class HomeController extends CmController{
 			$user_info['count'] = UserWebsupply::get_count(['collection_count','folder_count','fans_count'],$user_id);
 		}
 
-		$recommend = FolderWebsupply::get_recommend();
+		$recommend = FolderWebsupply::get_recommend(3,0,['group'=>'user_id']);
 		// dd($recommend);
 		foreach ($recommend as $key => $value) {
 			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);

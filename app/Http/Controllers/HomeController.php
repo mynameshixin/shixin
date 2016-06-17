@@ -40,13 +40,14 @@ class HomeController extends CmController {
 	        $user[$key]['fans_count'] =  DB::table('user_follow')->where('userid_follow',$value['id'])->count();
 		}
 		// dd($user);
-		$recommend = FolderWebsupply::get_recommend(6,0,['group'=>'user_id']);
+		$recommend = FolderWebsupply::get_recommend(6,0,['group'=>'user_id'],1);
 		// dd($recommend);
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
-			'user'=>$user
+			'user'=>$user,
+			'recommend'=>$recommend
 		];
 		return view('index',$data);
 

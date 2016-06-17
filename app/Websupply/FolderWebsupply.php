@@ -9,9 +9,9 @@ use App\Websupply\UserWebsupply;
 class FolderWebsupply extends CmWebsupply {
 
 	//获取最新推荐的文件夹(所有人) 
-	public static function get_recommend($num=3,$gnum = 0,$condition = []){
+	public static function get_recommend($num=3,$gnum = 0,$condition = [],$user = []){
 		 $folders = DB::table('folders')->where([
-				'folders.is_recommend'=>1,'folders.private'=>0,'folders.user_id'=>5,
+				'folders.is_recommend'=>1,'folders.private'=>0
 				])->orderBy('folders.created_at','desc');
 		 if(!empty($condition) && !empty($condition['group'])){
 		 	$folders = $folders->groupBy($condition['group']);
@@ -31,7 +31,11 @@ class FolderWebsupply extends CmWebsupply {
 		 		}
 		 		$folders[$key]['goods'] = $goods;
 		 	}
-		 	
+		 	//获取该文件夹的用户
+		 	if(!empty($user)){
+		 		$folders[$key]['user'] = $user = DB::table('users')->where('id',$value['user_id'])->select('id','username','nick')->first();
+		 		$folders[$key]['count'] = UserWebsupply::get_count(['fans_count','folder_count'],$user['id']);
+		 	}
 		 	$folders[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
 		 }
 		 return $folders;
