@@ -94,11 +94,6 @@
 						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
 						<!-- <div class="pop_good_toppne">主图</div> -->
 					</div>
-					
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="margin-top: 17px;">上传到文件夹</span>
