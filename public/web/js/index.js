@@ -160,7 +160,7 @@ $(function(){
           'url':"/webd/taobao/detail",
           'type':'get',
           'data':{
-            'url':$('.pop_iptgoods').val().trim()
+            'url':$('.pop_ipt_goods').val().trim()
           },
           'dataType':'json',
           'success':function(json){
@@ -171,7 +171,7 @@ $(function(){
               pic_url = json.data.x_item[0].pic_url
               reserve_price = json.data.x_item[0].reserve_price
               image_ids = json.data.x_item[0].image_ids
-              detail_url = $('.pop_iptgoods').val().trim()
+              detail_url = $('.pop_ipt_goods').val().trim()
               $('input[name=title]',ub).val(title)
               $('input[name=price]',ub).val(price)
               $('#pimg img',ub).attr('src',pic_url)
