@@ -151,6 +151,7 @@
 					</div>
 				</div>
 			</div>
+			<?php if(!empty($goods['collection_folders'])): ?>
 			<div class="detail_pop_bottom">
 				<p class="detail_pop_btitle">该采集也在以下文件夹</p>
 				<div class="perhome_follow_wrap clearfix">
@@ -197,11 +198,14 @@
 						<?php endforeach; ?>
 					</ul>
 				</div>
-				<?php if(!empty($goods['collection_folders'])): ?><a href="javascript:;" class="detail_pop_baddmore" id="more">加载更多</a><?php endif; ?>
-				<p class="detail_pop_btitle">推荐给你的采集</p>
+			<?php if(!empty($goods['collection_folders'])): ?><a href="javascript:;" class="detail_pop_baddmore" id="more">加载更多</a><?php endif; ?>
+			<?php endif; ?>
+
+			<?php if(!empty($goods['folders_one'])): ?>
+			<p class="detail_pop_btitle">推荐给你的采集</p>
 			<div id="main" role="main" class="w1248 w1240 clearfix" style="width: 1000px">
 				<div class="index_con  perhome_wrap" id="tiles">
-					<?php if(empty($goods['collection_folders'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
+					<?php if(empty($goods['folders_one'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
 					<?php foreach($goods['folders_one'] as $k=>$v): ?>
 					<div class="index_item">
 						<div class="index_item_wrap">
@@ -242,10 +246,14 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
+			<?php endif; ?>
+
 			</div>
 		</div>
 	</div>
+	<?php if(!empty($goods['folders_one'])): ?>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
+	<?php endif; ?>
 	<!-- 采集时选择文件夹 -->
 	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}">
 		<div class="pop_con">
@@ -385,6 +393,8 @@
 		})
 
 	}
+	he = $('.detail_pop').height()+100
+	$('.detail_pop').css('height',he)
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
  <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>

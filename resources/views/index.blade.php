@@ -14,6 +14,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/main.css">
   <link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/index.css">
   <script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/jquery.lazyload.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/jquery.form.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
@@ -76,7 +78,7 @@
             })
           </script>
         </div>
-        <p class="nolog_index_subtit">热门搜索：<a href="javascript:;">沙发</a>、<a href="javascript:;">吊灯</a>、<a href="javascript:;">窗帘</a>、<a href="javascript:;">中式</a>、<a href="javascript:;">法式</a>、<a href="javascript:;">饰品</a></p>
+        <p class="nolog_index_subtit">热门搜索：<a href="/webd/search?keyword=沙发" target="_blank">沙发</a>、<a href="/webd/search?keyword=吊灯" target="_blank">吊灯</a>、<a href="/webd/search?keyword=窗帘" target="_blank">窗帘</a>、<a href="/webd/search?keyword=中式" target="_blank">中式</a>、<a href="/webd/search?keyword=法式" target="_blank">法式</a>、<a href="/webd/search?keyword=饰品" target="_blank">饰品</a></p>
       </div>
     </div>
     <div class="nolog_index_container">
