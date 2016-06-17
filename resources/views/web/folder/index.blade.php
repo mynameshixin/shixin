@@ -450,7 +450,7 @@
 				<span class="pop_close" onclick="cg()"></span>
 			</p>
 			<div class="pop_namewrap clearfix">
-				<input class="pop_iptgoods" placeholder="粘贴商品网站" type="text" value="">
+				<input class="pop_iptgoods" placeholder="粘贴商品网站" type="text" value="" id="pop_iptgoods">
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="cg()">取消</a>
@@ -560,7 +560,7 @@
 					'url':"/webd/taobao/detail",
 					'type':'get',
 					'data':{
-						'url':$('.pop_iptgoods').val().trim()
+						'url':$('#pop_iptgoods').val().trim()
 					},
 					'dataType':'json',
 					'success':function(json){
@@ -571,7 +571,7 @@
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
 							image_ids = json.data.x_item[0].image_ids
-							detail_url = $('.pop_iptgoods').val().trim()
+							detail_url = $('#pop_iptgoods').val().trim()
 							$('input[name=title]',ub).val(title)
 							$('input[name=price]',ub).val(price)
 							$('#pimg img',ub).attr('src',pic_url)
