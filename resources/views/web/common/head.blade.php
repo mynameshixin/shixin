@@ -6,6 +6,9 @@
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="{{asset('public/web')}}/css/font-awesome-ie7.min.css">
 	<![endif]-->
+	<script type="text/javascript">
+		user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
+	</script>
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/index.css">
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>

@@ -232,7 +232,7 @@
 		<form action="" method="post" enctype="multipart/form-data" name='ua'>
 		<div class="pop_con">
 			<p class="pop_tit">
-				上传采集
+				上传图片
 				<span class="pop_close"></span>
 			</p>
 			<div class="pop_upload_wrap">

@@ -96,5 +96,4 @@
 </script>
 
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>
-<script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 </html>

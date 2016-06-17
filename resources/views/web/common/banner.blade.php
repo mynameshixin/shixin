@@ -87,3 +87,5 @@
 </div>
 
 @include('web.common.login')
+@include('web.common.daction')
+

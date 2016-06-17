@@ -113,5 +113,4 @@
 	postData = {'num':10}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/picpubu.js"></script>
-<script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 </html>
