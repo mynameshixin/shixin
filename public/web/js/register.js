@@ -8,6 +8,11 @@
       function popFun(popbtn,hidebtn,popcon,stopbtn){
         popbtn.click(function(event) {
           popcon.show();
+          h = popcon.find('.pop_con').height()
+          popcon.find('.pop_con').css({
+           'margin-top':-(h/2)
+          })
+
         });
         hidebtn.click(function(event) {
           popcon.hide();
