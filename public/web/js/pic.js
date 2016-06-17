@@ -56,6 +56,15 @@ $(function(){
 			   
 			    //采集ajax 
 			    $('.detail_pop_collection').click(function(){
+			    	if(user_id==''){
+			    		layer.msg('请登录', {icon: 5});
+			    		$('.pop_login2').show()
+			    		h = $('.pop_login2').find('.pop_con').height()
+				        $('.pop_login2').find('.pop_con').css({
+				           'margin-top':-(h/2)
+				        })
+			    		return 
+			    	}
 					$('.p_collect').show();
 					var popH =$('.p_collect').show().find('.pop_con').height();
 					$('.p_collect').show().find('.pop_col_left').height(popH);
