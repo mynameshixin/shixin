@@ -9,10 +9,14 @@ use App\Websupply\UserWebsupply;
 class FolderWebsupply extends CmWebsupply {
 
 	//获取最新推荐的文件夹(所有人) 
-	public static function get_recommend($num=3,$gnum = 0){
+	public static function get_recommend($num=3,$gnum = 0,$condition = []){
 		 $folders = DB::table('folders')->where([
 				'folders.is_recommend'=>1,'folders.private'=>0,'folders.user_id'=>5,
-				])->orderBy('folders.created_at','desc')->take($num)->get();
+				])->orderBy('folders.created_at','desc');
+		 if(!empty($condition) && !empty($condition['group'])){
+		 	$folders = $folders->groupBy($condition['group']);
+		 }
+		 $folders  =$folders->take($num)->get();
 		 foreach ($folders as $key => $value) {
 		 	$imageId = $value['image_id'];
 		 	$id = $value['id'];

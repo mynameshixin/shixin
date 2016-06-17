@@ -42,7 +42,16 @@
           @include('web.common.banner.action')
         </div>
       </div>
-      <input type="text" class="header_search" style="width: 645px;" placeholder="搜索你喜欢的">
+      <form action="/webd/search" method="get" name='search_s'>
+        <input type="text" class="header_search header_search_s" style="width: 645px;" placeholder="搜索你喜欢的" name="keyword">
+      </form>
+      <script type="text/javascript">
+            $('.header_search_s').keydown(function(e){
+              if(e.keyCode==13){
+                $('form[name=search_s]').submit()
+              }
+            })
+      </script>
       @include('web.common.banner.my')
     </div>
   </div>
@@ -55,7 +64,7 @@
             <input type="text" class="header_search header_search_indexnolog" name="keyword" placeholder="搜索你喜欢的">
           </form>
           <script type="text/javascript">
-            $('.header_search').keydown(function(e){
+            $('.header_search_indexnolog').keydown(function(e){
               if(e.keyCode==13){
                 $('form[name=search]').submit()
               }
@@ -71,56 +80,18 @@
           行家推荐
         </div>
         <div class="nolog_index_conexpert clearfix">
-          <div class="nolog_index_conexinfo">
+         <?php foreach ($user as $key => $value):?>
+          <div class="nolog_index_conexinfo <?php if($key==4): ?>mrightzero <?php endif; ?>">
             <div class="nolog_index_conexava">
-              <img src="{{ asset('/static/web/images/index-img/p1.jpeg')}}" height="135" width="135" alt="">
+              <a href="/webd/user?oid={{$value['id']}}" target="_blank"><img src="{{!empty($value['auth_avatar'])?$value['auth_avatar']:$value['pic_m']}}" height="135" width="135" alt=""></a>
             </div>
             <div class="nolog_index_conrel">
-              <p class="nolog_index_conexname">喵星人</p>
-              <p class="nolog_index_conexfans">58粉丝</p>
-              <p class="nolog_index_conexwork"><商家></p>
+              <p class="nolog_index_conexname">{{!empty(trim($value['nick']))?$value['nick']:$value['username']}}</p>
+              <p class="nolog_index_conexfans">{{$value['fans_count']}}粉丝</p>
+               <!--  <p class="nolog_index_conexwork"><商家></p> -->
             </div>
           </div>
-          <div class="nolog_index_conexinfo">
-            <div class="nolog_index_conexava">
-              <img src="{{ asset('/static/web/images/index-img/p2.jpeg')}}" height="135" width="135" alt="">
-            </div>
-            <div class="nolog_index_conrel">
-              <p class="nolog_index_conexname">喵星人</p>
-              <p class="nolog_index_conexfans">58粉丝</p>
-              <p class="nolog_index_conexwork"><商家></p>
-            </div>
-          </div>
-          <div class="nolog_index_conexinfo">
-            <div class="nolog_index_conexava">
-              <img src="{{ asset('/static/web/images/index-img/p3.jpeg')}}" height="135" width="135" alt="">
-            </div>
-            <div class="nolog_index_conrel">
-              <p class="nolog_index_conexname">喵星人</p>
-              <p class="nolog_index_conexfans">58粉丝</p>
-              <p class="nolog_index_conexwork"><商家></p>
-            </div>
-          </div>
-          <div class="nolog_index_conexinfo">
-            <div class="nolog_index_conexava">
-              <img src="{{ asset('/static/web/images/index-img/p4.png')}}" height="135" width="135" alt="">
-            </div>
-            <div class="nolog_index_conrel">
-              <p class="nolog_index_conexname">喵星人</p>
-              <p class="nolog_index_conexfans">58粉丝</p>
-              <p class="nolog_index_conexwork"><商家></p>
-            </div>
-          </div>
-          <div class="nolog_index_conexinfo mrightzero">
-            <div class="nolog_index_conexava">
-              <img src="{{ asset('/static/web/images/index-img/p5.jpeg')}}" height="135" width="135" alt="">
-            </div>
-            <div class="nolog_index_conrel">
-              <p class="nolog_index_conexname">喵星人</p>
-              <p class="nolog_index_conexfans">58粉丝</p>
-              <p class="nolog_index_conexwork"><商家></p>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
         <div class="nolog_index_contit">
           为您推荐
@@ -249,7 +220,7 @@
             <img src="{{ asset('/static/web/images/index-img/list-3.jpg')}}" alt="">
           </div>
         </div>
-        <a href="#" class="nolog_index_conmore">加载更多</a>
+       <!--  <a href="#" class="nolog_index_conmore">加载更多</a> -->
         <div class="nolog_index_cattitle">
           以分类浏览堆图家
           <a href="#">所有分类》</a>
