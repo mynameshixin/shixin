@@ -3,7 +3,7 @@
 @include('web.common.head',['title'=>'堆图家首页'])
 <body>
 	@include('web.common.banner')
-	<div class="container"  style="background: #d0d0d0">
+	<div class="container"  style="background: #f0f0f0">
 		<div class="w1248 clearfix" id="main" role="main">
 			<div class="index_con" id="tiles">
 			<?php if(!empty($user_info)){ ?>

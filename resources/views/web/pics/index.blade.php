@@ -3,7 +3,7 @@
 @include('web.common.head',['title'=>'我的堆图家'])
 <body>
 	@include('web.common.banner')
-	<div class="container nolog_container"  style="background: #d0d0d0">
+	<div class="container nolog_container"  style="background: #f0f0f0">
 		@include('web.common.ologin')
 		<div class="w1248 clearfix">
 			<div class="nolog_allcat clearfix">
