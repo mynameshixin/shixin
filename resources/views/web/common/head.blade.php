@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/index.css">
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/jquery.lazyload.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.form.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery.imagesloaded.js"></script>
@@ -25,7 +26,15 @@
 				'margin-top':marginTop
 			})
 		}
-
-
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	  $(function() {
+	  	  img = $('img')
+	      for (var i = 0; i < img.length; i++) {
+	      	imgsrc = img.eq(i).attr('src')
+	      	img.eq(i).attr('data-original',imgsrc)
+	      	img.eq(i).lazyload({effect: "fadeIn"});
+	      }	  	  
+	  });
 	</script>
 </head>
