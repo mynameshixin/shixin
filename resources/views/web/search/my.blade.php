@@ -4,15 +4,9 @@
 <body>
 	<script type="text/javascript">
 		defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
-		self_id = "{{$self_id}}"
+		user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
 		relationUrl = "{{url('webd/user/relation')}}"
 		keyword = "{{$keyword}}"
-		kinds = "<?php 
-				if($type==2){
-					echo 2;
-				}elseif($type==3){
-					echo 1;
-				}?>"
 	</script>
 	<script src="{{url('web/js/user/relation.js')}}"></script>
 	@include('web.common.banner')
@@ -57,7 +51,7 @@
 			'data':{
 				'keyword':keyword,
 				'page':1,
-				'kind':kinds
+				'user_id':user_id
 			},
 			'dataType':'json',
 			'success':function(json){
@@ -136,5 +130,5 @@
 	    })
 	    $('.find_cater').show()
 </script>
-<script src="{{url('web/js/search/goods.js')}}"></script>
+<script src="{{url('web/js/search/my.js')}}"></script>
 </html>

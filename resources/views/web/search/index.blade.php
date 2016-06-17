@@ -48,7 +48,7 @@
 						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
 						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
 						mrightzero = (parseInt(index)+1)%5==0?'mrightzero':''
-						follow = v.is_follow==1?'已关注':'<span>+</span>关注'
+						follow = v.is_follow==1?'已关注':'<span>+</span>特别关注'
 						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:'#'
 						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:'#'
 						glink_3 = data[index].goods[2] != undefined?'/webd/pic/'+data[index].goods[2].id:'#'

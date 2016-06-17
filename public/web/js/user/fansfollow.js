@@ -38,10 +38,10 @@ $(function (){
 						gpic_3 = data[index].folders[2].img_url
 						gpic_4 = data[index].folders[3].img_url
 
-						glink_1 = data[index].folders[0].id
-						glink_2 = data[index].folders[1].id
-						glink_3 = data[index].folders[2].id
-						glink_4 = data[index].folders[3].id
+						glink_1 = '/webd/folder?fid='+data[index].folders[0].id
+						glink_2 = '/webd/folder?fid='+data[index].folders[1].id
+						glink_3 = '/webd/folder?fid='+data[index].folders[2].id
+						glink_4 = '/webd/folder?fid='+data[index].folders[3].id
 						$($lis[index]).attr('user_id',data[index].id)
 						username = data[index].nick==''?data[index].username:data[index].nick
 						$('.find_user_name',$lis[index]).html(username).attr('href','/webd/user?oid='+data[index].id)

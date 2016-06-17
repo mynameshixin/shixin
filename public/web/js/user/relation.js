@@ -1,3 +1,4 @@
+//关注与被关注
 function relation(obj){
 
 	thisobj = $(obj)
@@ -5,6 +6,10 @@ function relation(obj){
 	folder_id = $(obj).parents('li').attr('folder_id')
 	user_id = $(obj).parents('li').attr('user_id')
 	follow = folder_id!=undefined?'特别关注':'关注'
+	if(self_id==0){
+		layer.msg('没有登陆', {icon:5});
+		return 
+	}
 	$.ajax({
 		'beforeSend':function(){
 		  	layer.load(0, {shade: 0.5});
@@ -19,7 +24,6 @@ function relation(obj){
 	  		'self_id':self_id
 	  	},
 	  	'success':function(json){
-
 	  		if(json.code == 200){
 	  			r = json.data.list.relation
 	  			if(r == 2){

@@ -13,6 +13,8 @@ use App\Services\ProductService;
 use App\Services\FolderService;
 use App\Websupply\ProductWebsupply;
 use App\Websupply\UserWebsupply;
+use App\Websupply\CommentWebsupply;
+use App\Websupply\FolderWebsupply;
 use App\Models\Shop;
 use DB;
 
@@ -26,13 +28,13 @@ class SearchController extends CmController{
 	//首页或者文件夹页
 	public function getIndex(){
 		$keyword = trim(Input::get('keyword'));
-		$type = trim(Input::get('type'));
+
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>$type
+			'type'=>1
 		];
 		return view('web.search.index',$data);
 	}
@@ -79,7 +81,7 @@ class SearchController extends CmController{
 		return view('web.search.my',$data);
 	}
 
-	//获取商品或图集
+	//获取商品或图集或自己的文件
 	public function postGoods(){
 
 		$data = Input::all();
@@ -88,52 +90,40 @@ class SearchController extends CmController{
             'kind' => 'in:1,2',
             'keyword'=>'required'
         );
+        // dd($data);
+
         //请求参数验证
         parent::validator($data, $rules);
+        $keyword = $data['keyword'];
         $num = isset($data['num']) ? $data['num'] : 15;
-        $rows = $rows->select('id', 'user_id', 'folder_id', 'kind', 'price', 'reserve_price', 'image_ids', 'title', 'tags', 'category_id', 'description', 'source', 'is_recommend', 'collection_count', 'praise_count', 'boo_count', 'detail_url', 'created_at');
-        if (isset($data['keyword']) && !empty($data['keyword'])) {
-            $keyword = urldecode($data['keyword']);
-            $rows = $rows->where(function ($rows) use ($keyword) {
-                $rows = $rows->where('goods.title', "like", "%{$keyword}%")
-                    ->orWhere('goods.tags', "like", "%{$keyword}%");
-            });
+        $page = isset($data['page'])?$data['page']:1;
+    	$skip = ($page-1)*$num;
+        $goods = DB::table('goods')->select('id', 'user_id', 'folder_id', 'kind', 'price', 'reserve_price', 'image_ids', 'title', 'tags',  'description', 'collection_count', 'praise_count', 'boo_count', 'detail_url', 'created_at')->where(
+        	function($query) use ($keyword){
+        		$query->where('title', "like", "%{$keyword}%")->orWhere('tags', "like", "%{$keyword}%");
+        	})->orderBy('created_at','desc');
+        if(isset($data['kind'])) $goods = $goods->where('kind','=',$data['kind']);
+        if(isset($data['user_id'])){
+        	$user_id = self::get_user_cache($data['user_id']);
+        	if(!DB::table('users')->where('id',$user_id)->first()) return response()->forApi([],1001,'用户不存在');
+        	$goods = $goods->where('user_id',$user_id);
         }
-        $rows = $rows->get();
+        $goods = $goods->skip($skip)->take($num)->get();
+        foreach ($goods as $key => $value) {
+        	$cuser = DB::table('collection_good')->where('good_id',$value['id'])->select('user_id','folder_id')->orderBy('created_at','desc')->first();
+        	$cfolder = DB::table('folders')->where('id',$cuser['folder_id'])->select('name','id')->first();
+        	$goods[$key]['cfolder'] = !empty($cfolder)?$cfolder:[];
+        	$goods[$key]['cuser'] = UserWebsupply::user_info($cuser['user_id']);
+        	$goods[$key]['comment'] = CommentWebsupply::getCommentFirst($value['id']);
+        	if(strpos($value['image_ids'],',') == 0){
+                $goods[$key]['image_url'] = !empty(LibUtil::getPicUrl($value['image_ids'], 1))?LibUtil::getPicUrl($value['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+            }else{
+                $goods[$key]['image_url'] = url('uploads/sundry/blogo.jpg');
+            }
+        }
+        // dd($goods);
         $list = [];
-        if (!empty($rows)) {
-            if ($user_info) {
-                $user_ids = array_column($rows, 'user_id');
-                $userArr = UserWebsupply::user_info($user_ids);
-            }
-
-            $folder_ids = array_column($rows, 'folder_id');
-            $folderArr = DB::table('folders')->whereIn('id', $folder_ids)->lists('name', 'id');
-            $commentArr = CommentWebsupply::getCommentFirst($product_ids);
-            
-            foreach ($rows as $row) {
-                //$row['folder_name'] = isset($folderArr[$row['folder_id']]) ? $folderArr[$row['folder_id']] : '';
-                $row['source'] = isset(self::$sources[$row['source']]) ? self::$sources[$row['source']] : '';
-                if (isset($commentArr[$row['id']])) $row['comment'] = $commentArr[$row['id']];
-                if (!empty($row['image_ids'])) {
-                    $image_ids = explode(',', $row['image_ids']);
-                    foreach ($image_ids as $imageId) {
-                        $image_o = LibUtil::getPicUrl($imageId, 3);
-                        if (!empty($image_o)) {
-                            $row['images'][] = [
-                                'image_id'=>$imageId,
-                                'name' => isset($fileNames[$imageId]) ? $fileNames[$imageId] : '',
-                                'img_m' => LibUtil::getPicUrl($imageId, 1),
-                                'img_o' => $image_o
-                            ];
-                        }
-                    }
-                }
-                $row['user'] = isset($userArr[$row['user_id']]) ? $userArr[$row['user_id']] : [];
-                $list[$row['id']] = $row;
-
-            }
-        }
+        $list['list'] = $goods;
         return response()->forApi($list);
 	}
 
@@ -181,8 +171,53 @@ class SearchController extends CmController{
         return response()->forApi($list);
     }
 
+    //获取搜索的用户
+    public function postUser(){
+    	$data = fparam(Input::all());
+        //请求参数验证
+        $rules = array(
+            'keyword'=>'required'
+        );
+        parent::validator($data, $rules);
+        $num = isset($data['num']) ? $data['num'] : 20;
+        $page = isset($data['page'])?$data['page']:1;
+    	$skip = ($page-1)*$num;
+    	$keyword = $data['keyword'];
+    	if(!empty($data['user_id'])){
+        	$self_id = self::get_user_cache($data['user_id']);
+        	if(!DB::table('users')->where('id',$self_id)->first()) return response()->forApi([],1001,'用户不存在');
+        }else{
+        	$self_id = 0;
+        }
+    	$user_info = DB::table('users')->where('nick','like',"%".$keyword."%")->orWhere('username','like',"%".$keyword."%")->orWhere('mobile','like',"%".$keyword."%")->select('id','nick','username','auth_avatar','mobile')->skip($skip)->take($num)->get();
 
-
+    	foreach ($user_info as $key => $value) {
+    		$id  = $value['id'];
+    		$follow = DB::table('user_follow')->where(['userid_follow'=>$id,'user_id'=>$self_id])->first();
+    		$fans = DB::table('user_follow')->where(['user_id'=>$id,'userid_follow'=>$self_id])->first();
+    		//$relation 1 相互关注 2 已关注 3被关注 4未关注
+    		$relation = 4;
+    		if($follow && $fans){
+    			$relation = 1;
+    		}elseif($follow && !$fans){
+    			$relation = 2;
+    		}elseif(!$follow && $fans){
+    			$relation = 3;
+    		}else{
+    			$relation = 4;
+    		}
+    		$user_info[$key]['pic_m'] = LibUtil::getUserAvatar($value['id'], 1);
+            if(empty($user_info[$key]['pic_m']) && empty($user[$key]['auth_avatar'])){
+            	$user_info[$key]['pic_m'] = url('uploads/sundry/blogo.jpg');
+            }
+    		$user_info[$key]['relation'] = $relation;
+    		$user_info[$key]['count'] = UserWebsupply::get_count(['fans_count','follow_count'],$value['id']);
+    		$user_info[$key]['folders'] = FolderWebsupply::get_user_folder($value['id'],4,0);
+    	}
+    	sort($user_info);
+    	$list['list'] = $user_info;
+        return response()->forApi($list);
+    }
 
 
 

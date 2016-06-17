@@ -1,5 +1,5 @@
 <div class="search_btn_con clearfix">
-	<a href="/webd/search?keyword={{$keyword}}&type=1" class="search_btn_lround <?php if($type==1): ?>search_btn_select<?php endif;?>">文件夹</a>
+	<a href="/webd/search?keyword={{$keyword}}" class="search_btn_lround <?php if($type==1): ?>search_btn_select<?php endif;?>">文件夹</a>
 	<a href="/webd/search/goods?keyword={{$keyword}}&type=2" class="<?php if($type==2): ?>search_btn_select<?php endif;?>">图片</a>
 	<a href="/webd/search/goods?keyword={{$keyword}}&type=3" class="<?php if($type==3): ?>search_btn_select<?php endif;?>">商品</a>
 	<a href="/webd/search/user?keyword={{$keyword}}&type=4" class="<?php if($type==4): ?>search_btn_select<?php endif;?>">用户</a>

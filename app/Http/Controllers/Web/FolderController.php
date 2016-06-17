@@ -19,8 +19,8 @@ class FolderController extends CmController{
 		parent::__construct();
 		$getdata = fparam(Input::all());
 
-		$this->folder_id = !empty($getdata['fid'])?$getdata['fid']:0;
-		if(empty($this->folder_id)) die('no access!');
+		$this->folder_id = !empty($getdata['fid'])?intval($getdata['fid']):0;
+		if(empty($this->folder_id)) die('no fid no access!');
 	}
 
 	//查询文件夹对应的文件
