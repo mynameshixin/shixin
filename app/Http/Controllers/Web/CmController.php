@@ -54,8 +54,10 @@ class CmController extends Controller {
         $arr = explode('_',$str);
         $id = Crypt::decrypt($arr[1]);
         $data = Cache::store('redis')->get($id);
+        if($data==null) return 0;
         $nowid = Crypt::decrypt($data);
         return ($nowid/100)-$this->hash;
+
 
     }
 
