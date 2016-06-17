@@ -51,7 +51,16 @@
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">发现、采集、分享你喜欢的家居  </p>
         <div class="header_search_wrap clearfix">
-          <input type="text" class="header_search header_search_indexnolog" placeholder="搜索你喜欢的">
+          <form action="/webd/search" method="get" name='search'>
+            <input type="text" class="header_search header_search_indexnolog" name="keyword" placeholder="搜索你喜欢的">
+          </form>
+          <script type="text/javascript">
+            $('.header_search').keydown(function(e){
+              if(e.keyCode==13){
+                $('form[name=search]').submit()
+              }
+            })
+          </script>
         </div>
         <p class="nolog_index_subtit">热门搜索：<a href="javascript:;">沙发</a>、<a href="javascript:;">吊灯</a>、<a href="javascript:;">窗帘</a>、<a href="javascript:;">中式</a>、<a href="javascript:;">法式</a>、<a href="javascript:;">饰品</a></p>
       </div>
