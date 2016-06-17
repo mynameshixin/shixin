@@ -16,6 +16,7 @@
   <script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
 </head>
 <body class="nolog_body">
 @include('web.common.daction')
