@@ -16,7 +16,7 @@ $(function (){
    * Reinitializes the wookmark handler after all images have loaded
    */
   function applyLayout() {
-    
+    $tiles.imagesLoaded(function() {
       // Destroy the old handler
       if ($handler.wookmarkInstance) {
         $handler.wookmarkInstance.clear();
@@ -25,7 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
-   
+   	});
   }
   /**
    * When scrolled all the way to the bottom, add more tiles
@@ -39,6 +39,7 @@ $(function (){
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
+		  		f = 0
 		  		$('#load').show()
 		  		$('#load').css({'display':'block'})
 		  	},
@@ -90,7 +91,9 @@ $(function (){
 		  			
 		  			$tiles.append(str)
 		  			applyLayout();
-		  			f = 1
+		  			setTimeout(function(){
+		  				f = 1
+		  			},500)
 		  		}else{
 		  			f = 0
 		  			$('#load').html('全部加载完成。。。')

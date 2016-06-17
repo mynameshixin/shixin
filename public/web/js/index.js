@@ -39,10 +39,10 @@ $(function(){
 
   $(".pop_upload_a").on("change","input[type='file']",function(){
           var filePath=$(this).val();
-          console.log(filePath)
           if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
               var arr=filePath.split('\\');
               var fileName=arr[arr.length-1];
+              var file = fileName.substring(0,fileName.lastIndexOf('.'))
               $(".pop_upload_a span").html(fileName);
           }else{
               $(".pop_upload_a span").html("您上传文件类型有误！");

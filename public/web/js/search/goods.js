@@ -16,7 +16,7 @@ $(function (){
    * Reinitializes the wookmark handler after all images have loaded
    */
   function applyLayout() {
-   // $tiles.imagesLoaded(function() {
+   $tiles.imagesLoaded(function() {
       // Destroy the old handler
       if ($handler.wookmarkInstance) {
         $handler.wookmarkInstance.clear();
@@ -25,7 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
-   // });
+   });
   }
   /**
    * When scrolled all the way to the bottom, add more tiles
@@ -38,6 +38,7 @@ $(function (){
     if (closeToBottom && f==1) {
     	$.ajax({
 		  	'beforeSend':function(){
+		  		f = 0
 		  		$('#load').show()
 		  		$('#load').css({'display':'block'})
 		  	},
@@ -52,7 +53,6 @@ $(function (){
 		  	'success':function(json){
 
 		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
-		  			f = 0
 		  			data = json.data.list
 					var str = ''
 					$.each(data,function(index,v){
@@ -104,7 +104,9 @@ $(function (){
 
 		  			$('#load').hide()
 		  			applyLayout();
-		  			f = 1
+		  			setTimeout(function(){
+		  				f = 1
+		  			},500)
 		  		}else{
 		  			f = 0
 		  			$('#load').html('全部加载完成。。。')

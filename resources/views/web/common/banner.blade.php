@@ -22,7 +22,7 @@
 				})
 			</script>
 			<div href="javascript:;" class="header_mess">
-				<i class="icon-bell-alt"></i>
+				<!-- <i class="icon-bell-alt"></i> -->
 				<div class="header_moremess">
 					<div class="header_add_up"></div>
 					<div class="header_add_clickbtn clearfix">

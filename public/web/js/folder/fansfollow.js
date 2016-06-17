@@ -16,6 +16,7 @@ $(function (){
     	postData.page = ++$page
     	$.ajax({
 		  	'beforeSend':function(){
+		  		f = 0
 		  		$('#load').show()
 		  		$('#load').css({'display':'block'})
 		  	},
@@ -26,7 +27,6 @@ $(function (){
 		  	'success':function(json){
 		  		
 		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
-		  			f = 0
 		  			data = json.data.list
 		  			$lis = $('.find_user_li','#ul').slice(0,data.length).clone()
 
@@ -66,7 +66,9 @@ $(function (){
 					})
 					$('#ul').append($lis)
 					$('#load').hide()
-					f = 1
+					setTimeout(function(){
+		  				f = 1
+		  			},500)
 					
 		  		}else{
 		  			f = 0

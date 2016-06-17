@@ -36,8 +36,11 @@
 	      for (var i = 0; i < img.length; i++) {
 	      	imgsrc = img.eq(i).attr('src')
 	      	img.eq(i).attr('data-original',imgsrc)
-	      	img.eq(i).lazyload({effect: "fadeIn"});
-	      }	  	  
+	      	img.eq(i).lazyload({
+	      		effect: "fadeIn",
+	      	});
+	      }	  
+  
 	  });
 	</script>
 </head>

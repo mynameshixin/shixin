@@ -14,6 +14,7 @@ $(function (){
     if (closeToBottom && f==1) {
     	$.ajax({
 		  	'beforeSend':function(){
+		  		f = 0
 		  		$('#load').show()
 		  		$('#load').css({'display':'block'})
 		  	},
@@ -27,7 +28,6 @@ $(function (){
 			},
 		  	'success':function(json){
 		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
-		  			f = 0
 		  			data = json.data.list
 					var str = ''
 					$.each(data,function(index,v){
@@ -92,7 +92,9 @@ $(function (){
 
 					})
 					$('.find_cater').find('.find_fold_list').append(str)
-					f = 1
+					setTimeout(function(){
+		  				f = 1
+		  			},500)
 					
 		  		}else{
 		  			f = 0
