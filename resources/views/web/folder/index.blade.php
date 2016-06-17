@@ -28,7 +28,7 @@
 			    <div class="index_item">
 			    	<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$value['id']}}" target="_blank"></a>
+							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"></a>
 							<img src="{{$value['image_url']}}">
 							<?php if(!empty($value['price'])): ?>
 								<div class="index_item_price">￥{{$value['price']}}</div>
