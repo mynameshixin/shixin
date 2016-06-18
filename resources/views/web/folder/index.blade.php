@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	<?php if($self_id==$user_id){?>
-		<a href="javascript:;" class="back_to_add">+</a>
+		<!-- <a href="javascript:;" class="back_to_add">+</a> -->
 	<?php } ?>
 	<!-- 编辑文件夹弹框 -->
 	<div class="pop_editfile" style="display: none;">
