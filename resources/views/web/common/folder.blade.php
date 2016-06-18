@@ -14,17 +14,18 @@
 								{{$folder['name']}}
 							</div>
 							<p class="detail_filedes">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
+							<p class="detail_filedes">{{$folder['description']}}</p>
 						</div>
 						<div class="detail_fileinfo">
 							<div class="detail_fileuser">
 								<div class="detail_fuava">
-									<img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt="">
+									<a href="/webd/user?oid={{$folder['user_id']}}" target="_blank"><img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt=""></a>
 								</div>
 								<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 							</div>
 							<div class="perhome_perlike_wrap clearfix">
 								<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
-									<p class="perhome_perlike_num">{{$folder['count']}}</p>
+									<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
 									<p class="perhome_perlike_la">文件</p>
 								</a>
 								<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
@@ -33,8 +34,8 @@
 								</a>
 							</div>
 							<div class="detail_filebtn_wrap clearfix">
-								<!-- <div class="detail_filebtn detail_fileball">查看全部</div>
-								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div> -->
+								<?php if(isset($_GET['o']) && $_GET['o']==1): ?><a class="detail_filebtn detail_fileball" style="color: #969696" href="/webd/folder?fid={{$folder['id']}}">查看全部</a><?php endif; ?>
+								<?php if($type==1 && !isset($_GET['o'])): ?><a class="detail_filebtn detail_filebtn_cpadding" style="color: #fff" href="/webd/folder?fid={{$folder['id']}}&o=1">只看商品</a><?php endif; ?>
 								<div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										分享
@@ -53,6 +54,11 @@
 								<!-- JiaThis Button BEGIN -->
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->
+								<?php if($folder['user_id']!=$self_id){ ?>
+								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" >
+								<?php echo $folder['is_follow']?"已关注":"<span>+</span>特别关注";?></a></li>
+								<?php } ?>
+
 								<!-- <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑
@@ -78,7 +84,7 @@
 				<div class="perhome_scroll_info">
 					<div class="detail_fileuser">
 						<div class="detail_fuava">
-							<img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt="">
+							<a href="/webd/user?oid={{$folder['user_id']}}" target="_blank"><img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt=""></a>
 						</div>
 						<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 					</div>
@@ -93,8 +99,8 @@
 						</a>
 					</div>
 					<div class="detail_filebtn_wrap clearfix">
-								<!-- <div class="detail_filebtn detail_fileball">查看全部</div>
-								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div> -->
+								<?php if(isset($_GET['o']) && $_GET['o']==1): ?><a class="detail_filebtn detail_fileball" style="color: #969696" href="/webd/folder?fid={{$folder['id']}}">查看全部</a><?php endif; ?>
+								<?php if($type==1 && !isset($_GET['o'])): ?><a class="detail_filebtn detail_filebtn_cpadding" style="color: #fff" href="/webd/folder?fid={{$folder['id']}}&o=1">只看商品</a><?php endif; ?>
 								<div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										分享
@@ -113,6 +119,10 @@
 								<!-- JiaThis Button BEGIN -->
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->
+								<?php if($folder['user_id']!=$self_id){ ?>
+								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" >
+								<?php echo $folder['is_follow']?"已关注":"<span>+</span>特别关注";?></a></li>
+								<?php } ?>
 								<!-- <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑

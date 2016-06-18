@@ -132,10 +132,17 @@ class FolderWebsupply extends CmWebsupply {
 			$img_url = LibUtil::getPicUrl($imageId, 1);
 			$folder['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 			$id = $folder['id'];
+			$follow = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$id])->first();
+			$folder['is_follow'] = !empty($follow)?1:0;
 			if($data['kind'] == 1){
-
-			 	$goods = DB::select("select * from goods where folder_id = {$id} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} order by created_at desc limit {$skip},{$num}");
-
+				
+				$o = "";
+				if(isset($data['o']) && $data['o']==1){
+					$o = "and g.kind = 1";
+				}
+			 	$goods = DB::select("select * from goods as g where g.folder_id = {$id} {$o} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o} order by created_at desc limit {$skip},{$num}");
+			 	$file_count = DB::select("select count(id) as co from (select g.id from goods as g where g.folder_id = {$id} {$o} union all select g.id from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o}) as c");
+			 	$folder['file_count'] = $file_count[0]['co'];
 				foreach ($goods as $k => $v) {
 					$commentArr = CommentWebsupply::getCommentFirst($v['id']);
 					$goods[$k]['comment'] = $commentArr;

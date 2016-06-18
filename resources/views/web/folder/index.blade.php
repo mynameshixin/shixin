@@ -1048,6 +1048,9 @@
 <script type="text/javascript">
 	postUrl = "{{url('webd/folder/folders')}}?fid={{$folder['id']}}"
 	postData = {'num':15}
+	<?php if(isset($_GET['o']) && $_GET['o'] == 1): ?>
+	postData.o = 1
+	<?php endif; ?>
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/folder/pubu.js"></script>
 </html>
