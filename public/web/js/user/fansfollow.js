@@ -57,6 +57,10 @@ $(function (){
 						$('.find_user_limg li',$lis[index]).eq(1).find('a').attr('href',glink_2)
 						$('.find_user_limg li',$lis[index]).eq(2).find('a').attr('href',glink_3)
 						$('.find_user_limg li',$lis[index]).eq(3).find('a').attr('href',glink_4)
+						$('.find_user_authflw',$lis[index]).css('display','block')
+						if(data[index].id==self_id){
+							$('.find_user_authflw',$lis[index]).css('display','none')
+						}
 						r = data[index].relation
 						switch(r){
 							case 1:
@@ -72,7 +76,6 @@ $(function (){
 								reat='<span>+</span>关注';
 							break;
 						}
-
 						$('.find_user_authflw',$lis[index]).html(reat);
 					})
 					$('#ul').append($lis)

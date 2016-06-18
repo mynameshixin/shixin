@@ -41,7 +41,7 @@
 									<a href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 								</li>
 							</ul>
-							<a onclick="relation(this)" class="find_user_authflw">
+							<a onclick="relation(this)" class="find_user_authflw" <?php if($self_id==$value['id']): ?>style="display: none"<?php endif; ?>>
 							<?php 
 							switch ($value['relation']) {
 								case '1':

@@ -59,12 +59,13 @@ $(function (){
 						$('.find_fold_liwrap',$lis[index]).eq(0).find('a').attr('href',glink_1)
 						$('.find_fold_liwrap',$lis[index]).eq(1).find('a').attr('href',glink_2)
 						$('.find_fold_liwrap',$lis[index]).eq(2).find('a').attr('href',glink_3)
-						if(self_id == user_id){
-							$('.find_fold_authflw',$lis[index]).html('已关注')
-						}else{
-							follow = data[index].is_follow==1?'已关注':'<span>+</span>特别关注'
-							$('.find_fold_authflw',$lis[index]).html(follow)
+						$('.find_fold_authflw',$lis[index]).css('display','block')
+						if(self_id==data[index].user.id){
+							$('.find_fold_authflw',$lis[index]).css('display','none')
 						}
+						follow = data[index].is_follow==1?'已关注':'<span>+</span>特别关注'
+						$('.find_fold_authflw',$lis[index]).html(follow)
+						
 					})
 					$('#ul').append($lis)
 					$('#load').hide()

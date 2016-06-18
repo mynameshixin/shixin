@@ -42,13 +42,9 @@
 								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][2]['id'] or '#'}}" target="_blank" class="position"><img src="{{$value['folder_goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 							</div>
 						</div>
-						<a onclick="relation(this)" class="find_fold_authflw">
+						<a onclick="relation(this)" class="find_fold_authflw" <?php  if($value['user']['id']==$self_id):?>style="display: none"<?php endif; ?>>
 							<?php 
-								if($user_id == $self_id){
-									echo "已关注";
-								}else{
-									echo $value['is_follow']?"已关注":"<span>+</span>特别关注";
-								}
+								echo $value['is_follow']?"已关注":"<span>+</span>特别关注";
 							?>
 						</a>
 					</li>
