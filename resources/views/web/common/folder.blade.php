@@ -33,8 +33,8 @@
 								</a>
 							</div>
 							<div class="detail_filebtn_wrap clearfix">
-								<div class="detail_filebtn detail_fileball">查看全部</div>
-								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div>
+								<!-- <div class="detail_filebtn detail_fileball">查看全部</div>
+								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div> -->
 								<div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										分享
@@ -43,8 +43,8 @@
 									<div class="detail_fileb_select slideup">
 										<div class="detail_fileb_selectw">
 											<span class="jiathis_style_32x32" id="own_share">
-												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="public/images/qq.png" height="18" width="15" alt="">QQ</a>
-												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="public/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
+												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
@@ -53,7 +53,7 @@
 								<!-- JiaThis Button BEGIN -->
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->
-								<div class="detail_filebtn">
+								<!-- <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑
 										<var class="detail_filebtril"></var>
@@ -65,7 +65,7 @@
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -83,18 +83,18 @@
 						<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 					</div>
 					<div class="perhome_perlike_wrap clearfix">
-						<a href="javascript:;" class="perhome_perlike_label perhome_perlike_lon">
+						<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label perhome_perlike_lon">
 							<p class="perhome_perlike_num">{{$folder['count']}}</p>
 							<p class="perhome_perlike_la">文件</p>
 						</a>
-						<a href="javascript:;" class="perhome_perlike_label">
+						<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label">
 							<p class="perhome_perlike_num">{{$folder['fans_count']}}</p>
 							<p class="perhome_perlike_la">关注</p>
 						</a>
 					</div>
 					<div class="detail_filebtn_wrap clearfix">
-								<!-- <div class="detail_filebtn detail_fileball">查看全部</div> -->
-								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div>
+								<!-- <div class="detail_filebtn detail_fileball">查看全部</div>
+								<div class="detail_filebtn detail_filebtn_cpadding">只看商品</div> -->
 								<div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										分享
@@ -103,8 +103,8 @@
 									<div class="detail_fileb_select slideup">
 										<div class="detail_fileb_selectw">
 											<span class="jiathis_style_32x32" id="own_share">
-												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="public/images/qq.png" height="18" width="15" alt="">QQ</a>
-												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="public/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
+												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
@@ -113,7 +113,7 @@
 								<!-- JiaThis Button BEGIN -->
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->
-								<div class="detail_filebtn">
+								<!-- <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑
 										<var class="detail_filebtril"></var>
@@ -125,7 +125,7 @@
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 				</div>
 			</div>
