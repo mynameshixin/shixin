@@ -92,7 +92,7 @@
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/home/goods')}}"
-	postData = {'num':10}
+	postData = {'num':15}
 </script>
 
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>

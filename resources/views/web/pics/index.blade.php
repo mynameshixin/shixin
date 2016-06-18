@@ -111,7 +111,7 @@
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/pics/goods')}}"
-	postData = {'num':10}
+	postData = {'num':15}
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/picpubu.js"></script>
 </html>

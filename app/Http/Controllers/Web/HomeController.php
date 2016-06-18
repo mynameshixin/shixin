@@ -50,7 +50,7 @@ class HomeController extends CmController{
 		$data = fparam($data);
         $data['kind'] = 1;
         
-        $num = isset($data['num']) ? $data['num'] : 12;
+        $num = isset($data['num']) ? $data['num'] : 15;
         $data['page'] = isset($data['page'])?$data['page']:1;
         $user_ids = $folder_ids = [];
         $user_id = $this->user_id;

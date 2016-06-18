@@ -1,6 +1,6 @@
 <!-- 本地上传采集弹框 -->
 	<div class="pop_uploadfile" style="display: none;">
-		<form action="" method="post" enctype="multipart/form-data" name='ua'>
+		<form action="" method="post" enctype="multipart/form-data" name='u_a'>
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传图片
@@ -15,15 +15,15 @@
 					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
 					<span>请选择文件</span>
 				</a>
-				<a href="javascript:;" id='ua' class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">上传</a>
+				<a href="javascript:;" id='u_a' class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">上传</a>
 			</div>
 		</div>
 		</form>
 	</div>
 
 	<script type="text/javascript">
-		$('form[name=ua]').submit(function(){
-			ua = $('form[name=ua]').serialize()
+		$('form[name=u_a]').submit(function(){
+			ua = $('form[name=u_a]').serialize()
 			$(this).ajaxSubmit({
 				type:"post",  //提交方式
                 dataType:"json", //数据类型
@@ -44,8 +44,8 @@
 	        });
 	        return false
 		})
-		$('#ua').click(function(){
-			$('form[name=ua]').submit()
+		$('#u_a').click(function(){
+			$('form[name=u_a]').submit()
 		})
 	</script>
 	<!-- 获取商品网址弹框 -->
