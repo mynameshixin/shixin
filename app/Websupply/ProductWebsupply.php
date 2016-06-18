@@ -197,7 +197,17 @@ class ProductWebsupply extends CmWebsupply{
             $fid = isset($collection_folders[0]['id'])?$collection_folders[0]['id']:0;
             $goods['folders_one'] = [];
             if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$goods['user_id'],$collection_folders[0]['user_id'],$data);
-            $goods['folder'] = DB::table('folders')->where('id',$goods['folder_id'])->first();
+            $folder = [];
+            $folder = DB::table('folders')->where('id',$goods['folder_id'])->first();
+            
+            if(empty($folder)){
+                $folder['id'] = 0;
+                $folder['name'] = '无文件夹';
+                $folder['img_url'] = url('uploads/sundry/blogo.jpg');
+            }else{
+                $folder['img_url'] = !empty(LibUtil::getPicUrl($folder['image_id'],1))?LibUtil::getPicUrl($folder['image_id'],1):url('uploads/sundry/blogo.jpg');
+            }
+            $goods['folder'] = $folder;
             
         }
 

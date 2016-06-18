@@ -68,7 +68,11 @@
 
 		
 						<div class="detail_pop_timgwarp" style="overflow: hidden">
+						<?php if(!empty($goods['detail_url'])){ ?>
+							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668"></a>
+						<?php  }else{?>
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668">
+						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price">￥<?php echo $goods['price'];?></div><?php endif; ?>
 						</div>
 						<p class="detail_pop_des" title="{{$goods['description']}}">
@@ -86,10 +90,10 @@
 					<div class="detail_pop_tlbtm">
 						<div class="detail_pop_tlbtmauth clearfix">
 							<div class="detail_pop_authava">
-								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}"><img src="{{$goods['user']['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank"><img src="{{$goods['user']['pic_m']}}" alt=""></a>
 							</div>
 							<div class="detail_pop_authinfo">
-								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
+								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 								<p class="detail_pop_authcollect">采集到<span>{{$goods['folder']['name']}}</span></p>
 							</div>
 							<a class="detail_pop_authfollow detail_filebtn detail_fileball">
@@ -146,11 +150,11 @@
 				<div class="detail_pop_tright">
 					<div class="detail_pop_trauth clearfix">
 						<div class="detail_pop_authava">
-							<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}"><img src="{{$goods['user']['pic_m']}}" alt=""></a>
+							<a href="{{url('webd/folder')}}?fid={{$goods['folder']['id']}}" target="_blank"><img src="{{$goods['folder']['img_url']}}" alt=""></a>
 						</div>
 						<div class="detail_pop_authinfo">
-							<p class="detail_pop_authname"><a href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}">{{$goods['folder']['name']}}</a></p>
-							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
+							<p class="detail_pop_authname"><a href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}" target="_blank">{{$goods['folder']['name']}}</a></p>
+							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
 						<a class="detail_pop_authfollow detail_filebtn detail_fileball"><?php 
 							switch ($goods['relation']) {
