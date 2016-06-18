@@ -359,6 +359,7 @@
 .detail_pop_tbtnbuy{background:#e15335 url(../images/detail_pop.png) 8px 2px no-repeat;padding-left: 44px;}
 .detail_pop_tbtngrey{height:32px;padding:0px 16px;background: #fff;color:#969696;border:1px solid #969696;}
 .detail_pop_tbtnlike{background: url(../images/detail_pop.png) 8px -48px no-repeat;padding-left: 44px;}
+.detail_pop_tbtnlikeon{background: url(../images/detail_pop.png) 8px -757px no-repeat;padding-left: 44px;}
 .detail_pop_tbtntobuy{background: url(../images/dtj_icon.png) 7px -279px no-repeat;padding-left: 44px;}
 .detail_pop_timgwarp{margin: 15px 0px 10px 0px;position: relative;}
 .detail_pop_tbtnright{float: right;margin:0px 0px 0px 15px;}

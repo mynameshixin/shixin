@@ -45,6 +45,9 @@
       <a href="{{url('webd/find')}}" class="header_item">发现</a>
       <a href="{{url('webd/app')}}" class="header_item">APP</a>
       <div href="javascript:;" class="header_add_btn">
+        
+        +
+        
         <div class="header_add_item">
           @include('web.common.banner.action')
         </div>

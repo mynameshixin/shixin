@@ -89,3 +89,11 @@
 @include('web.common.login')
 @include('web.common.daction')
 
+<a href="javascript:;" class="back_to_top">^</a>
+<script type="text/javascript">
+	$(function(){
+		$('.back_to_top').click(function(){
+			$("html,body").animate({scrollTop: 0},600);
+		})
+	})
+</script>

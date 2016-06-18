@@ -99,7 +99,7 @@
 			<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 		</div>
 	</div>
-	<a href="javascript:;" class="back_to_top">^</a>
+	
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/home/goods')}}"
@@ -109,9 +109,7 @@
 <script type="text/javascript">
 		$(function() {
 
-		    $('.back_to_top').click(function(){
-		    	$("html,body").animate({scrollTop: 0},600);
-		    })
+		   
 		    // .find_cater_wrap
 		    $('.find_cat_more').click(function(){
 		    	if ($(this).parents('.find_cater_wrap').find('.find_cater_all').hasClass('slideup')) {

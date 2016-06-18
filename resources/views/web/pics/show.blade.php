@@ -9,6 +9,33 @@
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright"></a>
+
+		<div class="perhome_scroll_wrap shadow" style="transform: translate(0px, 0px); transition: transform 200ms ease; display: none; position: fixed;">
+			<div class="w1248 w1240 clearfix" style="width: 990px">
+				<div class="perhome_scroll_info" style="transform: translate(0px, 0px); transition: transform 200ms ease;">
+					<div class="detail_filebtn_wrap clearfix" style="float: left; padding-top: 8px">
+						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
+						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding">喜欢</div>
+						<div class="detail_pop_tbtn detail_pop_tbtnright">
+								<div class="detail_pop_tbtn_click detail_fileb_pr">
+									分享
+									<var class="detail_pop_tbtntril"></var>
+								</div>
+								<div class="detail_fileb_select slideup">
+									<div class="detail_fileb_selectw">
+										<span class="jiathis_style_32x32" id="own_share">
+											<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
+											<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
+										</span>
+										<var class="detail_fileb_setril"></var>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="detail_pop_wrap w990 clearfix">
 			<div class="detail_pop_top clearfix">
 				<div class="detail_pop_tleft">
@@ -16,7 +43,7 @@
 						<div class="detail_pop_tbtnwarp">
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding">喜欢</div>
-							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtntobuy detail_pop_tbtn_cpadding">去购买</div> -->
+							
 							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">删除</div> -->
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
 								<div class="detail_pop_tbtn_click detail_fileb_pr">
@@ -37,6 +64,9 @@
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 							<!-- JiaThis Button END -->
 						</div>
+
+
+		
 						<div class="detail_pop_timgwarp" style="overflow: hidden">
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668">
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price">￥<?php echo $goods['price'];?></div><?php endif; ?>
@@ -46,7 +76,10 @@
 						</p>
 						<div class="detail_pop_from">
 							来自 <a href="{{$goods['detail_url']}}" class="detail_pop_fromurl" target="_blank"><?php echo mb_substr($goods['detail_url'], 0,50,'utf-8'); ?></a>
-							<a href="javascript:;" class="detail_pop_fromwarn"></a>
+							<?php if(!empty($goods['detail_url'])): ?>
+								<a href="{{$goods['detail_url']}}" target="_blank" style="float: right;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtntobuy detail_pop_tbtn_cpadding">去购买</a>
+							<?php endif; ?>
+							<!-- <a href="javascript:;" class="detail_pop_fromwarn"></a> -->
 							<!-- <a href="javascript:;" class="detail_pop_fromedit"></a> -->
 						</div>
 					</div>
@@ -254,6 +287,12 @@
 	<?php if(!empty($goods['folders_one'])): ?>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
 	<?php endif; ?>
+
+	<script type="text/javascript">
+		$('.detail_pop_tbtnlike').click(function(){
+			$(this).toggleClass('detail_pop_tbtnlikeon')
+		})
+	</script>
 	<!-- 采集时选择文件夹 -->
 	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}">
 		<div class="pop_con">
