@@ -4,6 +4,13 @@
 	@include('web.common.head',['title'=>'我的堆图家'])
 </head>
 <body>
+	<script type="text/javascript">
+		defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
+		user_id = "{{$user_id}}"
+		self_id = "{{$self_id}}"
+		relationUrl = "{{url('webd/user/relation')}}"
+	</script>
+	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
@@ -96,7 +103,7 @@
 								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 								<p class="detail_pop_authcollect">采集到<span>{{$goods['folder']['name']}}</span></p>
 							</div>
-							<a class="detail_pop_authfollow detail_filebtn detail_fileball">
+							<a class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" user_id="{{$goods['user_id']}}" <?php if($goods['user_id'] == $self_id): ?>style="display: none"<?php endif; ?>>
 							<?php 
 							switch ($goods['relation']) {
 								case 1:
@@ -106,7 +113,7 @@
 									echo '已关注';
 								break;
 								default:
-									echo '未关注';
+									echo '<span>+</span>关注';
 								break;
 							}
 							?>
@@ -160,7 +167,7 @@
 							<p class="detail_pop_authname"><a <?php if($goods['folder']['id'] != 0): ?>href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}"<?php endif; ?> target="_blank">{{$goods['folder']['name']}}</a></p>
 							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
-						<a class="detail_pop_authfollow detail_filebtn detail_fileball"><?php 
+						<a class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" user_id="{{$goods['user_id']}}" <?php if($goods['user_id'] == $self_id): ?>style="display: none"<?php endif; ?>><?php 
 							switch ($goods['relation']) {
 								case 1:
 									echo '相互关注';
@@ -169,7 +176,7 @@
 									echo '已关注';
 								break;
 								default:
-									echo '未关注';
+									echo '<span>+</span>关注';
 								break;
 							}
 							?></a>

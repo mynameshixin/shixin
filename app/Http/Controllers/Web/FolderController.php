@@ -99,7 +99,7 @@ class FolderController extends CmController{
 		$data = Input::all();
         $data = fparam($data);
         $rules = array(
-            'user_id' => 'required|max:200',
+            'user_id' => 'required',
             'fid' => 'required|exists:folders,id',
             // 'description' => 'required|max:200',
             'name'=>'required|max:50',
