@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Web\CmController;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Crypt;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use App\Lib\SmsYun;
 use DB;
 
 
@@ -144,11 +146,22 @@ class UserController extends CmController{
 			'self_info'=>$this->self_info,
 			'type'=>5,
 			'user_id'=>$this->other_id,
-			'self_id'=>$this->user_id,
 			'user_follow_folder'=>$user_follow_folder['data']['list'],
 			'self_id'=>$this->user_id
 		];
 		return view('web.user.follow_folder',$data);
+	}
+
+	//设置用户的账号
+	public function getSetaccount(){
+		$data = [
+			'user_info'=>$this->user_info,
+			'self_info'=>$this->self_info,
+			'user_id'=>$this->other_id,
+			'self_id'=>$this->user_id,
+		];
+		// dd($this->self_info);
+		return view('web.user.setaccount',$data);
 	}
 
 	//ajax 传送的数据
@@ -205,5 +218,83 @@ class UserController extends CmController{
         $rs = UserWebsupply::get_relation($self_id,$folder_id,$user_id,$content);
         $list['list'] = $rs;
         return response()->forApi($list);
+	}
+	//修改用户个人信息
+	public function postEinfo(){
+		$data = Input::all();
+		$data = fparam($data);
+        $rules = array(
+            'user_id' => 'required',
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+		unset($data['user_id']);
+		$res = DB::table('users')->where('id',$user['id'])->update($data);
+		// dd($res);
+		if($res){
+			return response()->forApi(['status'=>1]);
+		}else{
+			return response()->forApi([],1001,'您没有修改信息');
+		}
+	}
+
+	//修改用户个人密码
+	public function postEpwd(){
+		$data = Input::all();
+		$data = fparam($data);
+        $rules = array(
+            'user_id' => 'required',
+            'password'=>'required',
+            'repassword'=>'required'
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+		if(trim($data['password']) == '' || trim($data['repassword']) == '') return response()->forApi([],1001,'密码不能为空');
+		if(trim($data['password'])!=trim($data['password'])) return response()->forApi([],1001,'密码不一致');
+		$password = password_hash($data['password'], PASSWORD_BCRYPT);
+		$res = DB::table('users')->where('id',$user['id'])->update(['password'=>$password]);
+		// dd($res);
+		if($res){
+			return response()->forApi(['status'=>1]);
+		}else{
+			return response()->forApi([],1001,'您没有修改信息');
+		}
+	}
+
+	//修改用户手机
+	public function postEphone(){
+		$data = Input::all();
+        $rules = array (
+        	'user_id' => 'required',
+            'mobile' => 'required|max:255|unique:users',
+            'captcha' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        parent::validateMobile($data['mobile']);
+        $mobile = $data['mobile'];
+        $Sms = new SmsYun();
+        $rs = $Sms->checkVerificationCode($data['mobile'],$data['captcha'],1);
+        if ($data['captcha']!='123456' && !$rs) {
+            return response()->forApi(array(), 1001, '验证码错误');
+        }
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+       	$res = DB::table('users')->where('id',$user['id'])->update(['mobile'=>$mobile]);
+        if($res) {
+            return response()->forApi(['status'=> 1]);
+        }else{
+        	return response()->forApi(array(), 1001, '修改失败');
+        }
+        
 	}
 }

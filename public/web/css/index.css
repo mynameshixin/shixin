@@ -820,10 +820,10 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_login_a{width: 35px;height:36px;border-radius: 4px 0px 0px 4px;border:none;background: #f0f0f0;padding: 0px 15px;float: left;}
 .pop_login_b{width: 320px;height:36px;border-radius: 0px 4px 4px 0px;border:none;background: #f0f0f0;padding: 0px 15px;float: right;}
 .pop_login_d{width: 170px;height:36px;border-radius: 4px;border:none;background: #f0f0f0;padding: 0px 15px;float: left;}
-.pop_login_e{width: 110px; cursor: pointer;height:36px;border-radius:4px;border:1px solid #ccc;background: #f0f0f0;padding: 0px 0px;float: left; margin-left: 60px;}
+.pop_login_e,.pop_login_h{width: 110px; cursor: pointer;height:36px;border-radius:4px;border:1px solid #ccc;background: #f0f0f0;padding: 0px 0px;float: left; margin-left: 60px;}
 .pop_login_e:-ms-input-placeholder,.pop_login_e::-webkit-input-placeholder,.pop_login_e:-moz-placeholder,.pop_login_e:-placeholder{color: #e15335!important;}
 .pop_login_pa{width: 207px;float: left;font:normal 8px/20px "Microsoft YaHei";color: #7b7b7b;text-align: center;}
-.pop_login_pb{width: 207px;float: right;font:normal 16px/20px "Microsoft YaHei";color: #a1a1a1;text-align: center;}
+.pop_login_pb,.pop_login_pc{width: 207px;float: right;font:normal 16px/20px "Microsoft YaHei";color: #a1a1a1;text-align: center;}
 .pop_login_confirm{width: 100%;height: 34px;display: block;text-align: center;background: #e15335;border:1px solid #e56a50;border-radius: 6px;font:normal 16px/34px "";color: #fff;}
 .pop_login_des{font:normal 16px/20px "Microsoft YaHei";color: #a1a1a1;margin:20px 0px 21px 0px;}
 .pop_login_des a{color: #e15335;}

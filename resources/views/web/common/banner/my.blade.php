@@ -13,7 +13,7 @@
 					<!-- <a href="javascript:;" target="_blank" class="header_more_item header_more_2">私信</a> -->
 					<a href="{{url('webd/user/follow')}}" target="_blank" class="header_more_item header_more_3">我的关注</a>
 					<!-- <a href="javascript:;" target="_blank" class="header_more_item header_more_4">堆图家认证</a> -->
-					<!-- <a href="javascript:;" target="_blank" class="header_more_item header_more_5">账号设置</a> -->
+					<a href="{{url('webd/user/setaccount')}}" target="_blank" class="header_more_item header_more_5">账号设置</a>
 					<a href="{{url('webd/home/logout')}}" class="header_more_item header_more_6">退出</a>
 				</div>
 			</div>

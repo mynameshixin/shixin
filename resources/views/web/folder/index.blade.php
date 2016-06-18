@@ -703,7 +703,7 @@
                     	layer.msg('成功上传',{icon: 6});
                     	setTimeout(function(){
                     		location.reload()
-                    	},2000)
+                    	},1000)
                     }else{
                     	layer.msg(json.message, {icon: 5});
 						return
