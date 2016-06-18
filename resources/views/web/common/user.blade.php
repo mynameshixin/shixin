@@ -20,10 +20,10 @@
 							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
 						</div>
 						<div class="perhome_perline">
-							<a href="javascript:;" class="otherhome_follow">留言</a>
+							<!-- <a href="javascript:;" class="otherhome_follow">留言</a>
 							<a href="javascript:;" class="otherhome_follow">+关注</a>
 							<a href="javascript:;" class="otherhome_follow otherhome_alfollow">已关注</a>
-							<a href="javascript:;" class="otherhome_follow otherhome_alfollow">相互关注</a>
+							<a href="javascript:;" class="otherhome_follow otherhome_alfollow">相互关注</a> -->
 						</div>
 						<div class="perhome_perdes">
 							<div class="perhome_pername">
