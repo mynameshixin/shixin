@@ -26,9 +26,29 @@ class UserController extends CmController{
 		}
 
 		if(!empty($this->other_id)){
+			$relation = 4;
+			if($this->other_id == $this->user_id){
+				$relation = 4;
+			}else{
+				$follow = DB::table('user_follow')->where(['userid_follow'=>$this->other_id,'user_id'=>$this->user_id])->first();
+    			$fans = DB::table('user_follow')->where(['user_id'=>$this->other_id,'userid_follow'=>$this->user_id])->first();
+    			if($follow && $fans){
+    				$relation = 1;
+	    		}elseif($follow && !$fans){
+	    			$relation = 2;
+	    		}elseif(!$follow && $fans){
+	    			$relation = 3;
+	    		}else{
+	    			$relation = 4;
+	    		}
+			}
+			
+
 			$this->user_info = UserWebsupply::user_info($this->other_id);
+			$this->user_info['t_relation'] = $relation;
 			$this->self_info = UserWebsupply::user_info($this->user_id);
 		}
+		
 
 		if(isset($this->user_info) && !empty($this->user_info)){
 			$this->user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
@@ -38,7 +58,7 @@ class UserController extends CmController{
 	//查询自己的信息 文件夹首页
 	public function getIndex(){
 		$folders = $this->postFolders(0);
-		// dd($folders);
+		// dd($this->user_info);
 		$folders_private = $this->postFolders(1);
 		$data = [
 			'user_info'=>$this->user_info,

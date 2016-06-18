@@ -1,13 +1,17 @@
 //关注与被关注
 function relation(obj){
-
 	thisobj = $(obj)
 	content = $(obj).html().trim()
 	folder_id = $(obj).parents('li').attr('folder_id')
 	user_id = $(obj).parents('li').attr('user_id')
+	if(user_id == undefined) user_id = $(obj).attr('user_id')
 	follow = folder_id!=undefined?'特别关注':'关注'
 	if(self_id==0){
 		layer.msg('没有登陆', {icon:5});
+		return 
+	}
+	if(self_id == user_id){
+		layer.msg('无法关注自己', {icon:5});
 		return 
 	}
 	$.ajax({

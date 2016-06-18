@@ -20,10 +20,24 @@
 							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
 						</div>
 						<div class="perhome_perline">
-							<!-- <a href="javascript:;" class="otherhome_follow">留言</a>
-							<a href="javascript:;" class="otherhome_follow">+关注</a>
-							<a href="javascript:;" class="otherhome_follow otherhome_alfollow">已关注</a>
-							<a href="javascript:;" class="otherhome_follow otherhome_alfollow">相互关注</a> -->
+							<!-- <a href="javascript:;" class="otherhome_follow">留言</a> -->
+							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}">
+							<?php 
+							switch ($user_info['t_relation']) {
+								case '1':
+									echo '相互关注';
+									break;
+								case '2':
+									echo '已关注';
+									break;
+								case '4':
+									echo '<span>+</span>关注';
+									break;
+								default:
+									echo '<span>+</span>关注';
+									break;
+							} ?>
+							</a>
 						</div>
 						<div class="perhome_perdes">
 							<div class="perhome_pername">
