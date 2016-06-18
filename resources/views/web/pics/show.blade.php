@@ -150,10 +150,14 @@
 				<div class="detail_pop_tright">
 					<div class="detail_pop_trauth clearfix">
 						<div class="detail_pop_authava">
-							<a href="{{url('webd/folder')}}?fid={{$goods['folder']['id']}}" target="_blank"><img src="{{$goods['folder']['img_url']}}" alt=""></a>
+							<?php if($goods['folder']['id'] == 0){ ?>
+								<img src="{{$goods['folder']['img_url']}}" alt="">
+							<?php }else{ ?>
+								<a href="{{url('webd/folder')}}?fid={{$goods['folder']['id']}}" target="_blank"><img src="{{$goods['folder']['img_url']}}" alt=""></a>
+							<?php } ?>
 						</div>
 						<div class="detail_pop_authinfo">
-							<p class="detail_pop_authname"><a href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}" target="_blank">{{$goods['folder']['name']}}</a></p>
+							<p class="detail_pop_authname"><a <?php if($goods['folder']['id'] != 0): ?>href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}"<?php endif; ?> target="_blank">{{$goods['folder']['name']}}</a></p>
 							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
 						<a class="detail_pop_authfollow detail_filebtn detail_fileball"><?php 
