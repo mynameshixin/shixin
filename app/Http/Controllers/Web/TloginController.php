@@ -53,7 +53,6 @@ class TloginController extends CmController
 
 
     public function getWeblogin(){
-        return response()->forApi(array(), 1001, 'login failed');
         $data = $this->userinfo;
         $userData = $this->registrar->AuthQqLogin ($data);
         // dd($userData);
