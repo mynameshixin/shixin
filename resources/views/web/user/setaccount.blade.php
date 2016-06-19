@@ -274,10 +274,10 @@
 		    		'beforeSend':function(){
 		  				layer.load(0, {shade: 0.5});
 		  			},
-		  			'url':'/webd/user/einfo',
 		    		'type':'post',
 		    		'data':pdata,
 		    		'dataType':'json',
+		    		'url':'/webd/user/einfo',
 		    		'success':function(json){
 		    			if(json.code==200){
 		    				layer.msg('保存成功',{icon:6})
