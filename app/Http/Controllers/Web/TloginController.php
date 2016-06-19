@@ -17,8 +17,9 @@ class TloginController extends Controller
     public function getQqback(){
         require_once("tlogin/qq/qqConnectAPI.php");
         $qc = new \QC();
-        var_dump($qc->qq_callback());
-        var_dump($qc->get_openid());
+        $qc->qq_callback();
+        $qc->get_openid();
+        $qc->get_user_info();
 
     }
 }
