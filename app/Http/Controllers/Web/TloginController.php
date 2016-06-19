@@ -54,7 +54,7 @@ class TloginController extends CmController
     }
 
     public function getWback(){
-        var_dump($_REQUEST);
+        die('1');
     }
 
     //qq wechat 登陆返回检测
