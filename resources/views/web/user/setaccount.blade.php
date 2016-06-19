@@ -268,6 +268,7 @@
 		    		'gender':$('input[name=gender]',accountc).val().trim(),
 		    		'wechat':$('input[name=wechat]',accountc).val().trim(),
 		    		'signature':$('input[name=signature]',accountc).val(),
+		    		'user_id':$('input[name=user_id]',accountc).val()
 		    	}
 		    	$.ajax({
 		    		'beforeSend':function(){
