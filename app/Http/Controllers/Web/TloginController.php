@@ -125,7 +125,7 @@ class TloginController extends CmController
         }
 
         if(!empty($token)){
-            $c = new \SaeTClientV2( WB_AKEY , WB_SKEY , $token );
+            $c = new \SaeTClientV2( WB_AKEY , WB_SKEY , $token['access_token'] );
             $ms  = $c->home_timeline(); // done
             $uid_get = $c->get_uid();
             $uid = $uid_get['uid'];
