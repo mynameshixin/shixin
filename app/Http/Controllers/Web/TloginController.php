@@ -22,8 +22,8 @@ class TloginController extends Controller
         $openid = $auth->get_openid();
         var_dump($openid);
         
-        $qc = new \QC();
-        $userinfo = $qc->get_user_info($token,$openid);
+        $qc = new \QC($token,$openid);
+        $userinfo = $qc->get_user_info();
         var_dump($userinfo);
 
     }
