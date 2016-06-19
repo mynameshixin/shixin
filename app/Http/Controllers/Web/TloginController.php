@@ -18,9 +18,11 @@ class TloginController extends Controller
         require_once("tlogin/qq/qqConnectAPI.php");
         $qc = new \QC();
         $token = $qc->qq_callback();
-        dd($token);
-        $qc->get_openid();
-        $qc->get_user_info();
+        var_dump($token);
+        $openid = $qc->get_openid();
+        var_dump($openid);
+        $userinfo = $qc->get_user_info();
+        var_dump($userinfo);
 
     }
 }
