@@ -125,7 +125,13 @@ class QqController extends BaseController
 
     public function callback() {
         $gender = ['男'=>1,'女'=>0,''=>0];
-        $oauthUser = \Socialite::with('qq')->user();
+        @$oauthUser = \Socialite::with('qq')->user();
+        $code = isset($_GET['code'])?$_GET['code']:'';
+        if($oauthUser->user==-1 && !empty($code)){
+            $login_url = "http://www.duitujia.com/webd/tlogin/qqback?code={$code}";
+            header("Location: $login_url");
+            die();
+        }
        $userData = $this->registrar->AuthLogin ($oauthUser);
         if (!empty($userData)) {
             \Auth::loginUsingId($userData['user']['id']);
