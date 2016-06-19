@@ -284,7 +284,7 @@ class UserReg
     public function AuthWechatSdkLogin ($params) {
         $token = $params['unionid'];
         $id = $params['openid'];
-        $row = User::where('wechat_id',$id)->first();
+        $row = User::where('wechat_token',$token)->first();
         if (empty($row)) {
             $data['status']=1;
             $data['wechat_id'] =$id;
@@ -305,7 +305,7 @@ class UserReg
             $data['wechat'] = isset($params['wechat']) ? $params['wechat'] : '';
             $data['auth_avatar'] = isset($params['headimgurl']) ? $params['headimgurl'] : '';
             if(isset($params['gender']))$data['gender'] = $params['sex'];
-            if(!empty($id)) User::where('wechat_id',$id)->update($data);
+            if(!empty($token)) User::where('wechat_token',$token)->update($data);
         }
         $row = $row->toArray();
 
