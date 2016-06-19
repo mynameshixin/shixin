@@ -276,7 +276,7 @@
 		  			},
 		  			'url':'/webd/user/einfo',
 		    		'type':'post',
-		    		'data':accountc,
+		    		'data':pdata,
 		    		'dataType':'json',
 		    		'success':function(json){
 		    			if(json.code==200){
