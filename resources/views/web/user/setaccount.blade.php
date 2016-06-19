@@ -267,7 +267,7 @@
 		    		'location':$('input[name=location]',accountc).val().trim(),
 		    		'gender':$('input[name=gender]',accountc).val().trim(),
 		    		'wechat':$('input[name=wechat]',accountc).val().trim(),
-		    		'signature':$('input[name=signature]',accountc).val().trim(),
+		    		'signature':$('input[name=signature]',accountc).val(),
 		    	}
 		    	$.ajax({
 		    		'beforeSend':function(){
