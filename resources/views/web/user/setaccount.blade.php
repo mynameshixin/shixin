@@ -270,7 +270,6 @@
 		    		'signature':$('input[name=signature]',accountc).val(),
 		    		'user_id':$('input[name=user_id]',accountc).val()
 		    	}
-		    	console.log(pdata)
 		    	$.ajax({
 		    		'beforeSend':function(){
 		  				layer.load(0, {shade: 0.5});
