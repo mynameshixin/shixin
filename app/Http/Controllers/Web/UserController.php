@@ -222,9 +222,8 @@ class UserController extends CmController{
 	//修改用户个人信息
 	public function postEinfo(){
 		$data = Input::all();
-		var_dump($data);
 		$data = fparam($data);
-		var_dump($data);
+		if(isset($data['/webd/user/einfo'])) unset($data['/webd/user/einfo']);
         $rules = array(
             'user_id' => 'required',
         );
