@@ -54,6 +54,7 @@ class TloginController extends CmController
     }
 
     public function getWback(){
+        require_once("tlogin/wechat/wechat.php");
         $code = Input::all('code');
         $wechat = new \Wechat();
         $res = $wechat->gettoken($code);
