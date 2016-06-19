@@ -36,21 +36,20 @@ class TloginController extends Controller
             $this->userinfo = $userinfo;
             $this->userinfo['uid'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
-            $this->check();
+            $this->weblogin();
         }
         
 
     }
 
 
-    public function check(){
+    public function weblogin(){
         $data = $this->userinfo;
         $userData = $this->registrar->AuthQqLogin ($data);
-
-        dd($userData);
+        // dd($userData);
         if (!empty($userData)) {
-            $entry['access_token'] = $userData['access_token'];
-            return response(['data'=>$entry,'code'=>200,'message'=>'']);
+             self::crypt_cookie('user_id',$userData['user']['id']);
+            return  response()->forApi([],200,'登陆成功');
         }else{
             return response()->forApi(array(), 1001, 'login failed');
         }
