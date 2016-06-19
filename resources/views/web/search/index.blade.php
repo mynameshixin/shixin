@@ -60,7 +60,7 @@
 									+'<a href="/webd/user?oid='+v.user.id+'" target="_blank"><img src="'+pic_m+'" alt=""></a>'
 								+'</div>'
 								+'<div class="find_fold_tname">'
-									+'<a href="#" target="_blank" class="find_fold_name">'+v.name+'</a>'
+									+'<a href="/webd/folder?fid='+v.id+'" target="_blank" class="find_fold_name">'+v.name+'</a>'
 									+'<a href="/webd/user?oid='+v.user.id+'" target="_blank" class="find_fold_authnme">'+nick+'</a>'
 								+'</div>'
 							+'</div>'
