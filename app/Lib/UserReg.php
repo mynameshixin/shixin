@@ -146,7 +146,7 @@ class UserReg
             $data['auth_avatar'] = $oauthUser->getAvatar();
 
             // $data['gender'] = isset($gender[$qq_gender]) ? $gender[$qq_gender] : 0;
-            User::where('qq_id',$id)->update($data);
+            if(!empty($id)) User::where('qq_id',$id)->update($data);
         }
         $row = $row->toArray();
 
@@ -183,7 +183,7 @@ class UserReg
             if (empty($data['username']))$data['username'] = $data['nick'];
             $data['auth_avatar'] =isset($params['avatar_large']) ? $params['avatar_large'] : '';
             if(isset($params['gender']))$data['gender'] = isset($gender[$params['gender']]) ? $gender[$params['gender']] : 0;
-            User::where('weibo_id',$id)->update($data);
+            if(!empty($id)) User::where('weibo_id',$id)->update($data);
         }
         $row = $row->toArray();
         $user = [];
@@ -227,7 +227,7 @@ class UserReg
             if (empty($data['username']))$data['username'] = $data['nick'];
             $data['auth_avatar'] =isset($params['auth_avatar']) ? $params['auth_avatar'] : '';
             if(isset($params['gender']))$data['gender'] = isset($gender[$params['gender']]) ? $gender[$params['gender']] : 0;
-            User::where('qq_id',$id)->update($data);
+            if(!empty($id)) User::where('qq_id',$id)->update($data);
         }
         $row = $row->toArray();
 
@@ -268,7 +268,7 @@ class UserReg
             $data['email'] = $oauthUser->getEmail();
             $data['auth_avatar'] = $oauthUser->getAvatar();
             // $data['gender'] = isset($gender[$qq_gender]) ? $gender[$qq_gender] : 0;
-            User::where('wechat_id',$id)->update($data);
+            if(!empty($id)) User::where('wechat_id',$id)->update($data);
         }
         $row = $row->toArray();
 
@@ -305,7 +305,7 @@ class UserReg
             $data['wechat'] = isset($params['wechat']) ? $params['wechat'] : '';
             $data['auth_avatar'] = isset($params['headimgurl']) ? $params['headimgurl'] : '';
             if(isset($params['gender']))$data['gender'] = $params['sex'];
-            User::where('wechat_id',$id)->update($data);
+            if(!empty($id)) User::where('wechat_id',$id)->update($data);
         }
         $row = $row->toArray();
 
