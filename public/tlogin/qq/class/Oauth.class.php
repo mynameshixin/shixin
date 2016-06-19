@@ -27,13 +27,13 @@ class Oauth{
         $this->error = new ErrorCase();
     }
 
-    public function qq_login(){
+    public function qq_login($rurl = ''){
         $appid = $this->recorder->readInc("appid");
         $callback = $this->recorder->readInc("callback");
         $scope = $this->recorder->readInc("scope");
 
         //-------生成唯一随机串防CSRF攻击
-        $state = md5(uniqid(rand(), TRUE));
+        $state = base64_encode($rurl);
         $this->recorder->write('state',$state);
 
         //-------构造请求参数列表
@@ -86,11 +86,17 @@ class Oauth{
         $params = array();
         parse_str($response, $params);
 
+        
+        $state = base64_decode($state);
+        $this->recorder->write("rurl", $state);
         $this->recorder->write("access_token", $params["access_token"]);
         return $params["access_token"];
 
     }
-
+    public function get_rurl(){
+        $rurl = $this->recorder->read("rurl");
+        return $rurl;
+    }
     public function get_openid(){
 
         //-------请求参数列表
@@ -116,6 +122,7 @@ class Oauth{
 
         //------记录openid
         $this->recorder->write("openid", $user->openid);
+
         return $user->openid;
 
     }

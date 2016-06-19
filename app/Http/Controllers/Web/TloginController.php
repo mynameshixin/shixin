@@ -9,19 +9,17 @@ use DB;
 class TloginController extends CmController
 {
     public $userinfo = '';
-    public static $url;
-    public function __construct( Registrar $registrar)
-    {
+    public static $url = '';
+    public function __construct( Registrar $registrar){
         $this->registrar = $registrar;
-        self::$url = url('/');
+        $this->url = url('/');
     }
 
     public function getQq(){
-        $url = Input::get('url');
-        self::$url = !empty($url)?$url:url('/');
+        $redirect_url = urldecode(Input::get('rurl'));
         require_once("tlogin/qq/qqConnectAPI.php");
         $qc = new \QC();
-        $login_url = $qc->qq_login();
+        $login_url = $qc->qq_login($redirect_url);
         header("Location: $login_url"); 
         die();
         
@@ -31,10 +29,11 @@ class TloginController extends CmController
         require_once("tlogin/qq/qqConnectAPI.php");
         $auth = new \QC();
         $token = $auth->qq_callback();
+        $rurl = $auth->get_rurl();
         $openid = $auth->get_openid();
+        $redirect_url = !empty($rurl)?$rurl:self::$url;
         
         if(!empty($token) && !empty($openid)){
-
             $qc = new \QC($token,$openid);
             $userinfo = $qc->get_user_info();
             // var_dump($userinfo);
@@ -43,7 +42,7 @@ class TloginController extends CmController
             $this->userinfo['open_id'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
             $r = $this->weblogin(1);
-            if($r) return redirect(self::$url);
+            if($r) return redirect($redirect_url);
         }
     }
 
