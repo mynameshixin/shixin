@@ -57,8 +57,11 @@ class TloginController extends CmController
         require_once("tlogin/wechat/wechat.php");
         $code = Input::get('code');
         $wechat = new \Wechat();
-        $res = $wechat->gettoken($code);
-        dd($res);
+        $token = $wechat->gettoken($code);
+        if(!empty($token['access_token']) && !empty($token['openid'])){
+            $userinfo = $wechat->get_user_info($token['access_token'],$token['openid']);
+        }
+        dd($userinfo);
     }
 
     //qq wechat 登陆返回检测

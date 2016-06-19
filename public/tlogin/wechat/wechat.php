@@ -21,13 +21,7 @@ class Wechat
         $this->lasttime = time();
       }*/
   }
-//获取用户基本信息
-  public function get_user_info($openid)
-  {
-    $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$this->access_token."&openid=".$openid."&lang=zh_CN";
-    $res = $this->https_request($url);
-    return json_decode($res, true);
-  }
+
 
 //https请求
   public function https_request($url, $data = null)
@@ -45,7 +39,7 @@ class Wechat
     curl_close($curl);
     return $output;
   }
-
+  //弹出登录框
   public function login(){
     $appid = $this->appid;
     $csrf = md5(mt_rand(5,1000).time());
@@ -53,9 +47,17 @@ class Wechat
     return $url;
   }
 
+  // 获取token
   public function gettoken($code = ''){
     $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this->appid}&secret={$this->appsecret}&code={$code}&grant_type=authorization_code";
     $res =  $this->https_request($url);
     return json_decode($res,1);
+  }
+
+  //获取用户基本信息
+  public function get_user_info($token = '',$openid = ''){
+    $url = "https://api.weixin.qq.com/sns/userinfo?access_token={$token}&openid={$openid}";
+    $res = $this->https_request($url);
+    return json_decode($res, true);
   }
 }
