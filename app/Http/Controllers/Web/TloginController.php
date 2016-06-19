@@ -124,13 +124,15 @@ class TloginController extends CmController
         require_once("tlogin/weibo/config.php");
         require_once("tlogin/weibo/saetv2.ex.class.php");
         $o = new \SaeTOAuthV2( WB_AKEY , WB_SKEY );
-        dd($_REQUEST);
+
+        $state = trim($_REQUEST['state']);
+        $redirect_url = base64_decode($state);
         if (isset($_REQUEST['code'])) {
             $keys = array();
             $keys['code'] = $_REQUEST['code'];
             $keys['redirect_uri'] = WB_CALLBACK_URL;
             $token = $o->getAccessToken( 'code', $keys ) ;
-            
+
         }
 
         if(!empty($token)){
@@ -142,7 +144,7 @@ class TloginController extends CmController
             $this->userinfo = $userinfo;
             // dd($userinfo);
             $r = $this->weblogin(3);
-            if($r) return redirect('/');
+            if($r) return redirect($redirect_url);
         }
     }
 }
