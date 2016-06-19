@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta property="wb:webmaster" content="9e2bfff93f801b23" />
+  <meta property="qc:admins" content="24531766656451452116375" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>堆图家</title>
   <script type="text/javascript">
