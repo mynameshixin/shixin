@@ -9,7 +9,7 @@ class Wechat
       $this->appsecret = 'def48bece237339faad4f6e253a8036f';
       $this->lasttime = 1395049256;
       $this->callurl = urlencode("http://www.duitujia.com/webd/tlogin/wback");
-      $this->access_token = "nRZvVpDU7LxcSi7GnG2LrUcmKbAECzRf0NyDBwKlng4nMPf88d34pkzdNcvhqm4clidLGAS18cN1RTSK60p49zIZY4aO13sF-eqsCs0xjlbad-lKVskk8T7gALQ5dIrgXbQQ_TAesSasjJ210vIqTQ";
+      /*$this->access_token = "nRZvVpDU7LxcSi7GnG2LrUcmKbAECzRf0NyDBwKlng4nMPf88d34pkzdNcvhqm4clidLGAS18cN1RTSK60p49zIZY4aO13sF-eqsCs0xjlbad-lKVskk8T7gALQ5dIrgXbQQ_TAesSasjJ210vIqTQ";
       if (time() > ($this->lasttime + 7200)){
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appsecret;
         $res = $this->https_request($url);
@@ -17,7 +17,7 @@ class Wechat
         
         $this->access_token = $result["access_token"];
         $this->lasttime = time();
-      }
+      }*/
   }
 //获取用户基本信息
   public function get_user_info($openid)
