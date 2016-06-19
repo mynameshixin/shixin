@@ -33,7 +33,7 @@ class Wechat
   //弹出登录框
   public function login(){
     $appid = $this->appid;
-    $csrf = base64_encode($url);
+    $csrf = base64_encode($this->rurl);
     $url = "https://open.weixin.qq.com/connect/qrconnect?appid={$appid}&redirect_uri={$this->callurl}&response_type=code&scope=snsapi_login&state={$csrf}#wechat_redirect";
     return $url;
   }
