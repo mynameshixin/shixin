@@ -54,9 +54,9 @@ class Oauth{
         $state = $this->recorder->read("state");
 
         //--------验证state防止CSRF攻击
-        if($_GET['state'] != $state){
+       /* if($_GET['state'] != $state){
             $this->error->showError("30001");
-        }
+        }*/
 
         //-------请求参数列表
         $keysArr = array(
