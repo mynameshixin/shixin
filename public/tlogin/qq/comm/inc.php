@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101269781","appkey":"7bbbc65f2f8fa98ef265d9f21ad04179","callback":"/webd/tlogin/qqback","scope":"get_user_info","errorReport":true,"storageType":"file","host":"www.duitujia.com","user":"root","password":"root","database":"test"}
