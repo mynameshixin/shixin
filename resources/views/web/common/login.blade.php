@@ -51,7 +51,7 @@
         <div class="pop_login_conother">
           <a href="javascript:;"></a>
           <a href="javascript:;"></a>
-          <a href="javascript:;"></a>
+          <a href="/webd/tlogin/qq" target="_blank"></a>
           <a href="javascript:;" style="margin-right: 0px;"></a>
         </div>
         <div class="pop_login_contit">

@@ -23,7 +23,8 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'folder'=>'FolderController',
         'taobao'=>'TaoBaoController',
         'search'=>'SearchController',
-        'contact'=>'ContactController'
+        'contact'=>'ContactController',
+        'tlogin'=>'TloginController'
     ]);
     Route::resources([
         'pic'=>'PicsController',
