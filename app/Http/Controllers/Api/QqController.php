@@ -124,14 +124,6 @@ class QqController extends BaseController
 
 
     public function callback() {
-        require_once("tlogin/qq/qqConnectAPI.php");
-        $auth = new \QC();
-        $token = $auth->qq_callback();
-        var_dump($tolen);
-
-        $openid = $auth->get_openid();
-        var_dump($openid);
-        die();
         $gender = ['男'=>1,'女'=>0,''=>0];
         $oauthUser = \Socialite::with('qq')->user();
         $userData = $this->registrar->AuthLogin ($oauthUser);
