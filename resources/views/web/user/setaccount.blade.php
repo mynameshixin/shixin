@@ -260,14 +260,14 @@
 
 		    //个人资料
 		    $('#account').click(function(){
-		    	account = $('form[name=account]').serialize();
+		    	accountc = $('form[name=account]').serialize();
 		    	$.ajax({
 		    		'beforeSend':function(){
 		  				layer.load(0, {shade: 0.5});
 		  			},
 		  			'url':'/webd/user/einfo',
 		    		'type':'post',
-		    		'data':account,
+		    		'data':accountc,
 		    		'dataType':'json',
 		    		'success':function(json){
 		    			if(json.code==200){
