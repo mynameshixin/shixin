@@ -73,7 +73,7 @@ class TloginController extends CmController
         
     }
 
-    //qq wechat 登陆返回检测
+    //登陆返回检测
     public function weblogin($type = ''){
         $data = $this->userinfo;
         $userData = [];

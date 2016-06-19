@@ -76,19 +76,6 @@
       
     </div>
   </div>
-  <script type="text/javascript">
-
-    $('.pop_login_conother a').eq(2).click(function(){
-      $.ajax({
-        'url':'/webd/tlogin/qq',
-        'data':{'url':"<?php echo $_SERVER['REQUEST_URI'];?>"},
-        'dataType':'json',
-        'type':'get',
-        'success':function(json){
-        }
-      })
-    })
-  </script>
   <div class="pop_login pop_login3" style="display:none">
     <div class="pop_con">
       <p class="pop_tit" style="text-align:center;border:none;">
