@@ -49,7 +49,7 @@
           使用第三方账号登录
         </div>
         <div class="pop_login_conother">
-          <a href="javascript:;"></a>
+          <a href="/webd/tlogin/weibo?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="javascript:;" style="margin-right: 0px;"></a>

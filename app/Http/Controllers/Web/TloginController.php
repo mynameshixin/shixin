@@ -102,4 +102,33 @@ class TloginController extends CmController
         }
 
     }
+
+    public function getWeibo(){
+        require_once("tlogin/weibo/config.php");
+        require_once("tlogin/weibo/saetv2.ex.class.php");
+        $o = new \SaeTOAuthV2( WB_AKEY , WB_SKEY );
+        $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+        header("Location: $code_url"); 
+        die();
+    }
+
+    public function getWeiboback(){
+        require_once("tlogin/weibo/config.php");
+        require_once("tlogin/weibo/saetv2.ex.class.php");
+        $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+        if (isset($_REQUEST['code'])) {
+            $keys = array();
+            $keys['code'] = $_REQUEST['code'];
+            $keys['redirect_uri'] = WB_CALLBACK_URL;
+            $token = $o->getAccessToken( 'code', $keys ) ;
+            dd($token);
+        }
+
+        /*$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $_SESSION['token']['access_token'] );
+        $ms  = $c->home_timeline(); // done
+        $uid_get = $c->get_uid();
+        $uid = $uid_get['uid'];
+        $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息*/
+    }
 }
