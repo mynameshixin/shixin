@@ -45,14 +45,9 @@ class TloginController extends Controller
 
     public function check(){
         $data = $this->userinfo;
-        /*$rules = array (
-            'uid' =>'required',
-            'nickname' =>'required',
-            'auth_avatar' =>'required',
-        );
-        //请求参数验证
-        parent::validator($data, $rules);*/
         $userData = $this->registrar->AuthQqLogin ($data);
+
+        dd($userData);
         if (!empty($userData)) {
             $entry['access_token'] = $userData['access_token'];
             return response(['data'=>$entry,'code'=>200,'message'=>'']);
