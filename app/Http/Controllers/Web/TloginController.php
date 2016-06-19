@@ -82,7 +82,7 @@ class TloginController extends CmController
             if(!empty($user)){
                 $userData['user']['id'] = $user['id']; 
             }else{
-                $userData = $this->registrar->AuthQqLogin ($data);
+                $userData = $this->registrar->AuthQqLogin($data);
             }
             
         }elseif($type==2){
@@ -90,7 +90,14 @@ class TloginController extends CmController
             if(!empty($user)){
                 $userData['user']['id'] = $user['id']; 
             }else{
-                $userData = $this->registrar->AuthWechatSdkLogin ($data);
+                $userData = $this->registrar->AuthWechatSdkLogin($data);
+            }
+        }elseif($type==3){
+            $user = DB::table('users')->where('weibo_id',$data['id'])->first();
+            if(!empty($user)){
+                $userData['user']['id'] = $user['id']; 
+            }else{
+                $userData = $this->registrar->AuthWeiboLogin($data);
             }
         }
         // dd($userData);
@@ -128,13 +135,12 @@ class TloginController extends CmController
             $c = new \SaeTClientV2( WB_AKEY , WB_SKEY , $token['access_token'] );
             $ms  = $c->home_timeline(); // done
             $uid_get = $c->get_uid();
-            var_dump($uid_get);
             $uid = $uid_get['uid'];
             $userinfo = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息*/
             $this->userinfo = $userinfo;
-            dd($userinfo);
+            // dd($userinfo);
             $r = $this->weblogin(3);
-            if($r) return redirect();
+            if($r) return redirect('/');
         }
     }
 }

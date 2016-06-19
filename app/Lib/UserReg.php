@@ -158,6 +158,38 @@ class UserReg
         $userData = self::logIn($params);
         return $userData;
     }
+    public function AuthWeiboLogin ($params) {
+        $id = $params['id'];
+        $gender = ['m'=>1,'f'=>0,'h'=>0];
+
+        $row = User::where('weibo_id',$id)->first();
+
+        if (empty($row)) {
+            $data['status']=1;
+            $data['weibo_id'] =$id;
+            $data['username'] = $params['name'];
+            $data['nick'] = $params['name'];
+            $data['signature'] = isset($params['description']) ? $params['description'] : '' ;
+            if(empty( $data['username']))  $data['username'] =  $data['nick'];
+            $data['username'] = self::isNameExit($data['name']);
+            $data['auth_avatar'] =isset($params['avatar_large']) ? $params['avatar_large'] : '';
+
+            if(isset($params['gender'])) $data['gender'] = isset($gender[$params['gender']]) ? $gender[$params['gender']] : 0;
+            $user_id =  User::insertGetId($data);
+            $row = User::find($user_id);
+        }else{
+            $data['signature'] = isset($params['description']) ? $params['description'] : '' ;
+            $data['nick'] =$params['name'];
+            if (empty($data['username']))$data['username'] = $data['nick'];
+            $data['auth_avatar'] =isset($params['avatar_large']) ? $params['avatar_large'] : '';
+            if(isset($params['gender']))$data['gender'] = isset($gender[$params['gender']]) ? $gender[$params['gender']] : 0;
+            User::where('weibo_id',$id)->update($data);
+        }
+        $row = $row->toArray();
+        $user = [];
+        $user['user'] = $row;
+        return $user;
+    }
     public function AuthQqLogin ($params) {
         $token = $params['uid'];
         $id = $params['uid'];
