@@ -55,6 +55,9 @@ class TloginController extends CmController
 
     public function getWback(){
         $code = Input::all('code');
+        $wechat = new \Wechat();
+        $res = $wechat->gettoken($code);
+        dd($res);
     }
 
     //qq wechat 登陆返回检测

@@ -3,12 +3,14 @@ class Wechat
 {
   public $appid = "";
   public $appsecret = "";
+  public $code = "";
   //构造函数，获取Access Token
-  public function __construct($appid = NULL, $appsecret = NULL){
+  public function __construct($code = NULL){
       $this->appid = 'wx11d5991f5ed048f8';
       $this->appsecret = 'def48bece237339faad4f6e253a8036f';
       $this->lasttime = 1395049256;
       $this->callurl = urlencode("http://www.duitujia.com/webd/tlogin/wback");
+      $this->code = $code;
       /*$this->access_token = "nRZvVpDU7LxcSi7GnG2LrUcmKbAECzRf0NyDBwKlng4nMPf88d34pkzdNcvhqm4clidLGAS18cN1RTSK60p49zIZY4aO13sF-eqsCs0xjlbad-lKVskk8T7gALQ5dIrgXbQQ_TAesSasjJ210vIqTQ";
       if (time() > ($this->lasttime + 7200)){
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appsecret;
@@ -49,5 +51,11 @@ class Wechat
     $csrf = md5(mt_rand(5,1000).time());
     $url = "https://open.weixin.qq.com/connect/qrconnect?appid={$appid}&redirect_uri={$this->callurl}&response_type=code&scope=snsapi_login&state={$csrf}#wechat_redirect";
     return $url;
+  }
+
+  public function gettoken($code = ''){
+    $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this->appid}&secret={$this->appsecret}&code={$code}&grant_type=authorization_code";
+    $res =  https_request($url);
+    return json_decode($res,1);
   }
 }
