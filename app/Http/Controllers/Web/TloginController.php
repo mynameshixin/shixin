@@ -111,10 +111,11 @@ class TloginController extends CmController
     }
 
     public function getWeibo(){
+        $redirect_url = urldecode(Input::get('rurl'));
         require_once("tlogin/weibo/config.php");
         require_once("tlogin/weibo/saetv2.ex.class.php");
         $o = new \SaeTOAuthV2( WB_AKEY , WB_SKEY );
-        $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+        $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL,'code',base64_encode($redirect_url));
         header("Location: $code_url"); 
         die();
     }
@@ -123,12 +124,13 @@ class TloginController extends CmController
         require_once("tlogin/weibo/config.php");
         require_once("tlogin/weibo/saetv2.ex.class.php");
         $o = new \SaeTOAuthV2( WB_AKEY , WB_SKEY );
-
+        dd($_REQUEST);
         if (isset($_REQUEST['code'])) {
             $keys = array();
             $keys['code'] = $_REQUEST['code'];
             $keys['redirect_uri'] = WB_CALLBACK_URL;
             $token = $o->getAccessToken( 'code', $keys ) ;
+            
         }
 
         if(!empty($token)){
