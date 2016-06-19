@@ -3,7 +3,8 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
 use Mockery\Exception;
-use App\Lib\UserReg as Registrar ;
+use App\Lib\UserReg as Registrar;
+use DB;
 
 class TloginController extends CmController
 {
@@ -39,6 +40,7 @@ class TloginController extends CmController
             // var_dump($userinfo);
             $this->userinfo = $userinfo;
             $this->userinfo['uid'] = $openid;
+            $this->user_info['open_id'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
             $r = $this->weblogin(1);
             if($r) return redirect(self::$url);
@@ -72,10 +74,22 @@ class TloginController extends CmController
     //qq wechat 登陆返回检测
     public function weblogin($type = ''){
         $data = $this->userinfo;
+        $userData = [];
         if($type == 1){
-            $userData = $this->registrar->AuthQqLogin ($data);
+            $user = DB::table('users')->where('qq_id',$data['open_id'])->first();
+            if(!empty($user)){
+                $userData['user']['id'] = $user['id']; 
+            }else{
+                $userData = $this->registrar->AuthQqLogin ($data);
+            }
+            
         }elseif($type==2){
-            $userData = $this->registrar->AuthWechatSdkLogin ($data);
+            $user = DB::table('users')->where('wechat_token',$data['unionid'])->first();
+            if(!empty($user)){
+                $userData['user']['id'] = $user['id']; 
+            }else{
+                $userData = $this->registrar->AuthQqLogin ($data);
+            }
         }
         // dd($userData);
         if (!empty($userData)) {
