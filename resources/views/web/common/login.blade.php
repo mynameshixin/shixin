@@ -52,7 +52,7 @@
           <a href="javascript:;"></a>
           <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
-          <a href="" target="_blank" style="margin-right: 0px;"></a>
+          <a href="javascript:;" style="margin-right: 0px;"></a>
         </div>
         <div class="pop_login_contit">
           使用手机号登录
