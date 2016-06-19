@@ -8,16 +8,16 @@ use App\Lib\UserReg as Registrar ;
 class TloginController extends CmController
 {
     public $userinfo = '';
-    public $url;
+    public static $url;
     public function __construct( Registrar $registrar)
     {
         $this->registrar = $registrar;
-        $this->url = url('/');
+        self::$url = url('/');
     }
 
     public function getQq(){
         $url = Input::get('url');
-        $this->url = !empty($url)?$url:url('/');
+        self::$url = !empty($url)?$url:url('/');
         require_once("tlogin/qq/qqConnectAPI.php");
         $qc = new \QC();
         $login_url = $qc->qq_login();
@@ -45,7 +45,7 @@ class TloginController extends CmController
             $this->userinfo['uid'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
             $r = $this->weblogin();
-            if($r) return redirect($this->url);
+            if($r) return redirect(self::$url);
         }
         
 
