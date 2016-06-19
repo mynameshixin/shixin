@@ -67,9 +67,9 @@
           </div>
           <a href="javascript:;" class="pop_login_confirm" id="confirm2">确定</a>
           <p class="pop_login_des">
-            <a href="javascript:;">忘记密码&nbsp;》</a>
+            <a href="javascript:;" id="forgetpwd">忘记密码&nbsp;》</a>
             <span class="pop_login_desw" style="float: right;">
-            还没有堆图家账号？<a href="javascript:;">点击注册&nbsp;》</a>
+            还没有堆图家账号？<a href="javascript:;" id="register">点击注册&nbsp;》</a>
             </span>
           </p>
         </div>
@@ -99,24 +99,6 @@
             <p class="pop_login_pa">验证码已发送至您的手机，请注意查收</p>
             <p class="pop_login_pb">58s后重新发送</p>
           </div>
-          <a href="javascript:;" class="pop_login_confirm" style="margin-bottom: 21px;">下一步</a>
-          
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <div class="pop_login pop_login4" style="display:none">
-    <div class="pop_con">
-      <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
-        <span class="pop_close"></span>
-      </p>
-      <div class="pop_login_wrap clearfix">
-        <div class="pop_login_contit">
-          重置密码
-        </div>
-        <div class="pop_login_content clearfix">
           <div class="pop_login_contwrap clearfix" style="margin-bottom: 8px;">
             <input class="pop_login_c" type="" name="" value="" placeholder="请输入新密码">
             <div class="pop_login_safew clearfix">

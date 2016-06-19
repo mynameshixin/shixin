@@ -1,10 +1,10 @@
     $(function() {
       //注册
       popFun($('.nolog_login_btn'),$('.pop_login1,.pop_close'),$('.pop_login1'),$('.pop_login1 .pop_con'))
-      //popFun($('.nolog_login_btn'),$('.pop_login3,.pop_close,.pop_login_confirm'),$('.pop_login3'),$('.pop_login3 .pop_con'))
+      popFun($('#forgetpwd'),$('.pop_login3,.pop_close,.pop_login_confirm'),$('.pop_login3'),$('.pop_login3 .pop_con'))
       // 登陆
       popFun($('.nolog_land_btn'),$('.pop_login2,.pop_close'),$('.pop_login2'),$('.pop_login2 .pop_con'))
-      // popFun($('.nolog_login_btn'),$('.pop_login4,.pop_close,.pop_login_confirm'),$('.pop_login4'),$('.pop_login4 .pop_con'))
+      // popFun($('#register'),$('.pop_login4,.pop_close,.pop_login_confirm'),$('.pop_login4'),$('.pop_login4 .pop_con'))
       function popFun(popbtn,hidebtn,popcon,stopbtn){
         popbtn.click(function(event) {
           popcon.show();
@@ -21,6 +21,16 @@
           event.stopPropagation()
         });
       }
+
+      $('#register').click(function(){
+        $('.pop_login2').hide();
+        popcon = $('.pop_login1')
+        popcon.show();
+        h = popcon.find('.pop_con').height()
+        popcon.find('.pop_con').css({
+         'margin-top':-(h/2)
+        })
+      })
       $('.pop_login_c').keydown(function(event) {
         var inLen = $(this).val();
         if (inLen.length < 5) {
