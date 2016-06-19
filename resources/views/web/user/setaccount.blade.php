@@ -263,9 +263,9 @@
 		    	accountc = $('form[name=account]');
 		    	var pdata = {
 		    		'nick':$('input[name=nick]',accountc).val().trim(),
-		    		'role':$('input[name=role]',accountc).val().trim(),
+		    		'role':$('input[name=role]',accountc).val(),
 		    		'location':$('input[name=location]',accountc).val().trim(),
-		    		'gender':$('input[name=gender]',accountc).val().trim(),
+		    		'gender':$('input[name=gender]',accountc).val(),
 		    		'wechat':$('input[name=wechat]',accountc).val().trim(),
 		    		'signature':$('input[name=signature]',accountc).val(),
 		    		'user_id':$('input[name=user_id]',accountc).val()
