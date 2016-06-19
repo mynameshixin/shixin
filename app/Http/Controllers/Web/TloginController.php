@@ -79,28 +79,13 @@ class TloginController extends CmController
         $userData = [];
         if($type == 1){
             $user = DB::table('users')->where('qq_id',$data['open_id'])->first();
-            /*if(!empty($user)){
-                $userData['user']['id'] = $user['id']; 
-            }else{*/
-                $userData = $this->registrar->AuthQqLogin($data);
-            //}
-            
+            $userData = $this->registrar->AuthQqLogin($data);
         }elseif($type==2){
             $user = DB::table('users')->where('wechat_token',$data['unionid'])->first();
-            /*if(!empty($user)){
-                $ndata['nick'] = $ndata['username'] =  $data['nickname'];
-                $ndata['auth_avatar'] = isset($data['headimgurl']) ? $data['headimgurl'] : '';
-                if(isset($data['sex'])) $ndata['gender'] = $data['sex'];
-                DB::table('users')->where('wechat_token',$data['unionid'])->update($ndata);
-
-                $userData['user']['id'] = $user['id']; 
-            }else{*/
-                $userData = $this->registrar->AuthWechatSdkLogin($data);
-            // }
+            $userData = $this->registrar->AuthWechatSdkLogin($data);
         }elseif($type==3){
             $user = DB::table('users')->where('weibo_id',$data['id'])->first();
             $userData = $this->registrar->AuthWeiboLogin($data);
-
         }
         // dd($userData);
         if (!empty($userData)) {

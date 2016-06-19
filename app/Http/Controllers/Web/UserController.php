@@ -233,6 +233,7 @@ class UserController extends CmController{
         $user = DB::table('users')->where('id',$user_id)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 		unset($data['user_id']);
+		dd($data);
 		$res = DB::table('users')->where('id',$user['id'])->update($data);
 		// dd($res);
 		if($res){
