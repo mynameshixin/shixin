@@ -9,10 +9,10 @@ use DB;
 class TloginController extends CmController
 {
     public $userinfo = '';
-    public static $url = '';
+    public static $rurl = '';
     public function __construct( Registrar $registrar){
         $this->registrar = $registrar;
-        $this->url = url('/');
+        self::$rurl = url('/');
     }
 
     public function getQq(){
@@ -31,7 +31,7 @@ class TloginController extends CmController
         $token = $auth->qq_callback();
         $rurl = $auth->get_rurl();
         $openid = $auth->get_openid();
-        $redirect_url = !empty($rurl)?$rurl:self::$url;
+        $redirect_url = !empty($rurl)?$rurl:self::$rurl;
         
         if(!empty($token) && !empty($openid)){
             $qc = new \QC($token,$openid);
@@ -59,7 +59,7 @@ class TloginController extends CmController
         require_once("tlogin/wechat/wechat.php");
         $code = Input::get('code');
         $state = base64_decode(Input::get('state'));
-        $redirect_url = !empty($state)?$state:self::$url;
+        $redirect_url = !empty($state)?$state:self::$rurl;
         $wechat = new \Wechat();
         $token = $wechat->gettoken($code);
         if(!empty($token['access_token']) && !empty($token['openid'])){
