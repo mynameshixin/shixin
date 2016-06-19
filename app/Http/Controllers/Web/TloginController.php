@@ -52,7 +52,7 @@ class TloginController extends CmController
     }
 
 
-    public function getWeblogin(){
+    public function weblogin(){
         $data = $this->userinfo;
         $userData = $this->registrar->AuthQqLogin ($data);
         // dd($userData);
