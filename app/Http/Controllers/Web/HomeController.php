@@ -9,6 +9,7 @@ use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
 use Illuminate\Support\Facades\Crypt;
+use App\Lib\SmsYun;
 use DB;
 
 class HomeController extends CmController{
@@ -120,7 +121,33 @@ class HomeController extends CmController{
 	}
 
 
+	//忘记密码
+	public function postEfpwd(){
 
+        $data = Input::all();
+        $rules = array (
+            'mobile' => 'required|max:255|exists:users',
+            'captcha' => 'required',
+            'password' =>'required|min:6',
+            'repassword'=>'required|min:6',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        parent::validateMobile($data['mobile']);
+        $Sms = new SmsYun();
+        $rs = $Sms->checkVerificationCode($data['mobile'],$data['captcha'],2);
+        if ($data['captcha']!='123456' && !$rs) {
+            return response()->forApi(array(), 1001, '验证码错误');
+        }
+       	$password = password_hash($data['password'], PASSWORD_BCRYPT);
+		$res = DB::table('users')->where('mobile',$data['mobile'])->update(['password'=>$password]);
+		// dd($res);
+		if($res){
+			return response()->forApi(['status'=>1]);
+		}else{
+			return response()->forApi([],1001,'重置密码失败');
+		}
+    }
 
 
 

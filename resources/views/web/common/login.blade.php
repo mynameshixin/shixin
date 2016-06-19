@@ -89,18 +89,19 @@
         </div>
         <div class="pop_login_content clearfix">
           <div class="pop_login_contwrap clearfix">
-            <input class="pop_login_c" type="" name="" value="" placeholder="请输入手机号">
+            <input class="pop_login_a" type="" name="" value="" placeholder="+86">
+            <input class="pop_login_b" type="" name="mobile" value="" placeholder="请输入手机号">
           </div>
           <div class="pop_login_contwrap clearfix" style="margin-bottom: 0px;">
-            <input class="pop_login_d" type="" name="" value="" placeholder="请输入验证码">
-            <input class="pop_login_e" type="" name="" value="" placeholder="获取短信验证码">
+            <input class="pop_login_d" type="" name="captcha" value="" placeholder="请输入验证码">
+            <input class="pop_login_e" type="button"  name="" value="获取短信验证码" >
           </div>
           <div class="pop_login_contwrap clearfix">
-            <p class="pop_login_pa">验证码已发送至您的手机，请注意查收</p>
-            <p class="pop_login_pb">58s后重新发送</p>
+            <p class="pop_login_pa" style="display: none">验证码已发送至您的手机，请注意查收</p>
+            <p class="pop_login_pb" style="display: none"><strong>60</strong>s后重新发送</p>
           </div>
           <div class="pop_login_contwrap clearfix" style="margin-bottom: 8px;">
-            <input class="pop_login_c" type="" name="" value="" placeholder="请输入新密码">
+            <input class="pop_login_c" type="password" name="password" value="" placeholder="请输入新密码">
             <div class="pop_login_safew clearfix">
               <div class="pop_login_safe pop_login_safeh">高</div>
               <div class="pop_login_safe pop_login_safem">中</div>
@@ -108,9 +109,9 @@
             </div>
           </div>
           <div class="pop_login_contwrap clearfix">
-            <input class="pop_login_c" type="" name="" value="" placeholder="再次输入新密码">
+            <input class="pop_login_c" type="password" name="repassword" value="" placeholder="再次输入新密码">
           </div>
-          <a href="javascript:;" class="pop_login_confirm" style="margin-bottom: 21px;">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" style="margin-bottom: 21px;" id="confirm3">确定</a>
           
         </div>
       </div>
