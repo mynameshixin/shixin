@@ -7,7 +7,7 @@ class Wechat
   //构造函数，获取Access Token
   public function __construct($code = NULL){
       $this->appid = 'wx11d5991f5ed048f8';
-      $this->appsecret = 'def48bece237339faad4f6e253a8036f';
+      $this->appsecret = 'c22d0eecf0dbd9ac8ed77ae48f485095';
       $this->lasttime = 1395049256;
       $this->callurl = urlencode("http://www.duitujia.com/webd/tlogin/wback");
       $this->code = $code;
