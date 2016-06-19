@@ -40,7 +40,7 @@ class TloginController extends CmController
             $this->userinfo = $userinfo;
             $this->userinfo['uid'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
-            $r = $this->weblogin();
+            $r = $this->weblogin(1);
             if($r) return redirect(self::$url);
         }
     }
@@ -60,14 +60,23 @@ class TloginController extends CmController
         $token = $wechat->gettoken($code);
         if(!empty($token['access_token']) && !empty($token['openid'])){
             $userinfo = $wechat->get_user_info($token['access_token'],$token['openid']);
+            $this->userinfo = $userinfo;
+            $r = $this->weblogin(2);
+            if($r) return redirect(self::$url);
+        }else{
+            die('expired,please relogin!');
         }
-        dd($userinfo);
+        
     }
 
     //qq wechat 登陆返回检测
-    public function weblogin(){
+    public function weblogin($type = ''){
         $data = $this->userinfo;
-        $userData = $this->registrar->AuthQqLogin ($data);
+        if($type == 1){
+            $userData = $this->registrar->AuthQqLogin ($data);
+        }elseif($type==2){
+            $userData = $this->registrar->AuthWechatSdkLogin ($data);
+        }
         // dd($userData);
         if (!empty($userData)) {
             self::crypt_cookie('user_id',$userData['user']['id']);
