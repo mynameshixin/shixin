@@ -4,6 +4,7 @@ class Wechat
   public $appid = "";
   public $appsecret = "";
   public $code = "";
+  public $rurl = "";
   //构造函数，获取Access Token
   public function __construct($rurl = ''){
       $this->appid = 'wx11d5991f5ed048f8';

@@ -50,7 +50,7 @@
         </div>
         <div class="pop_login_conother">
           <a href="javascript:;"></a>
-          <a href="/webd/tlogin/wechat" target="_blank"></a>
+          <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="/webd/tlogin/qq" target="_blank"></a>
           <a href="" target="_blank" style="margin-right: 0px;"></a>
         </div>
@@ -77,16 +77,6 @@
     </div>
   </div>
   <script type="text/javascript">
-  $('.pop_login_conother a').eq(1).click(function(){
-      $.ajax({
-        'url':'/webd/tlogin/wechat',
-        'data':{'url':"<?php echo $_SERVER['REQUEST_URI'];?>"},
-        'dataType':'json',
-        'type':'get',
-        'success':function(json){
-        }
-      })
-    })
 
     $('.pop_login_conother a').eq(2).click(function(){
       $.ajax({

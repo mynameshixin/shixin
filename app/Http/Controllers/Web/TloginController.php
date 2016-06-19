@@ -48,10 +48,10 @@ class TloginController extends CmController
     }
 
     public function getWechat(){
-        $redirect_url = trim(Input::get('url'));
+        $redirect_url = urldecode(Input::get('rurl'));
         require_once("tlogin/wechat/wechat.php");
-        $wechat = new \Wechat();
-        $url = $wechat->login($redirect_url);
+        $wechat = new \Wechat($redirect_url);
+        $url = $wechat->login();
         header("Location: $url"); 
         die();
     }
