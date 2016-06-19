@@ -8,6 +8,10 @@ use App\Lib\UserReg as Registrar ;
 class TloginController extends Controller
 {
 
+    public function __construct( Registrar $registrar)
+    {
+        $this->registrar = $registrar;
+    }
     public $userinfo = '';
     public function getQq(){
         require_once("tlogin/qq/qqConnectAPI.php");
