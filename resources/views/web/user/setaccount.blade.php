@@ -260,7 +260,15 @@
 
 		    //个人资料
 		    $('#account').click(function(){
-		    	accountc = $('form[name=account]').serialize();
+		    	accountc = $('form[name=account]');
+		    	var pdata = {
+		    		'nick':$('input[name=nick]',accountc).val().trim(),
+		    		'role':$('input[name=role]',accountc).val().trim(),
+		    		'location':$('input[name=location]',accountc).val().trim(),
+		    		'gender':$('input[name=gender]',accountc).val().trim(),
+		    		'wechat':$('input[name=wechat]',accountc).val().trim(),
+		    		'signature':$('input[name=signature]',accountc).val().trim(),
+		    	}
 		    	$.ajax({
 		    		'beforeSend':function(){
 		  				layer.load(0, {shade: 0.5});
