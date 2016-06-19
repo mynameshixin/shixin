@@ -58,13 +58,15 @@ class TloginController extends CmController
     public function getWback(){
         require_once("tlogin/wechat/wechat.php");
         $code = Input::get('code');
+        $state = base64_decode(Input::get('state'));
+        $redirect_url = !empty($state)?$state:self::$url;
         $wechat = new \Wechat();
         $token = $wechat->gettoken($code);
         if(!empty($token['access_token']) && !empty($token['openid'])){
             $userinfo = $wechat->get_user_info($token['access_token'],$token['openid']);
             $this->userinfo = $userinfo;
             $r = $this->weblogin(2);
-            if($r) return redirect(self::$url);
+            if($r) return redirect($redirect_url);
         }else{
             die('expired,please relogin!');
         }

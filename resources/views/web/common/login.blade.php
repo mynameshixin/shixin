@@ -77,6 +77,17 @@
     </div>
   </div>
   <script type="text/javascript">
+  $('.pop_login_conother a').eq(1).click(function(){
+      $.ajax({
+        'url':'/webd/tlogin/wechat',
+        'data':{'url':"<?php echo $_SERVER['REQUEST_URI'];?>"},
+        'dataType':'json',
+        'type':'get',
+        'success':function(json){
+        }
+      })
+    })
+
     $('.pop_login_conother a').eq(2).click(function(){
       $.ajax({
         'url':'/webd/tlogin/qq',
