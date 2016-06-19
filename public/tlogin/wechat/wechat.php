@@ -56,6 +56,7 @@ class Wechat
   public function gettoken($code = ''){
     $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this->appid}&secret={$this->appsecret}&code={$code}&grant_type=authorization_code";
     $res =  https_request($url);
+    return $res;
     return json_decode($res,1);
   }
 }
