@@ -171,7 +171,7 @@ class UserReg
             $data['nick'] = $params['name'];
             $data['signature'] = isset($params['description']) ? $params['description'] : '' ;
             if(empty( $data['username']))  $data['username'] =  $data['nick'];
-            $data['username'] = self::isNameExit($data['name']);
+            $data['username'] = self::isNameExit($data['username']);
             $data['auth_avatar'] =isset($params['avatar_large']) ? $params['avatar_large'] : '';
 
             if(isset($params['gender'])) $data['gender'] = isset($gender[$params['gender']]) ? $gender[$params['gender']] : 0;
