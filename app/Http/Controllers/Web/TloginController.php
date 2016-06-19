@@ -88,6 +88,11 @@ class TloginController extends CmController
         }elseif($type==2){
             $user = DB::table('users')->where('wechat_token',$data['unionid'])->first();
             if(!empty($user)){
+                $ndata['nick'] = $ndata['username'] =  $data['nickname'];
+                $ndata['auth_avatar'] = isset($data['headimgurl']) ? $data['headimgurl'] : '';
+                if(isset($data['sex'])) $ndata['gender'] = $data['sex'];
+                DB::table('users')->where('wechat_token',$data['unionid'])->update($ndata);
+
                 $userData['user']['id'] = $user['id']; 
             }else{
                 $userData = $this->registrar->AuthWechatSdkLogin($data);
