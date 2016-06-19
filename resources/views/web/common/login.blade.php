@@ -51,8 +51,9 @@
         <div class="pop_login_conother">
           <a href="/webd/tlogin/weibo?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
           <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
-          <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
-          <a href="javascript:;" style="margin-right: 0px;"></a>
+          <!-- <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a> -->
+          <a href="javascript:;" onclick="alert('功能测试中')" target="_blank"></a>
+          <a href="javascript:;" onclick="alert('功能测试中')" style="margin-right: 0px;"></a>
         </div>
         <div class="pop_login_contit">
           使用手机号登录
