@@ -40,7 +40,7 @@ class TloginController extends CmController
             // var_dump($userinfo);
             $this->userinfo = $userinfo;
             $this->userinfo['uid'] = $openid;
-            $this->user_info['open_id'] = $openid;
+            $this->userinfo['open_id'] = $openid;
             $this->userinfo['auth_avatar'] = $userinfo['figureurl_qq_2'];
             $r = $this->weblogin(1);
             if($r) return redirect(self::$url);
