@@ -115,8 +115,8 @@ class FolderController extends CmController{
         $user_id = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$user_id)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
-		if($folder) return response()->forApi([],1001,'文件夹名称没有修改');
+		/*$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
+		if($folder) return response()->forApi([],1001,'文件夹名称没有修改');*/
 
         $entry = [];
         if (isset($data['name'])) $entry['name'] = $data['name'];

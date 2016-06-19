@@ -177,11 +177,24 @@ class UserWebsupply extends CmWebsupply{
                 $goods = $cg+$goods;
             } 
 	 		foreach ($goods as $k => $v) {
-	 			if(strpos($v['image_ids'],',') == 0){
+                if (!empty($v['image_ids'])) {
+                        $image_ids = explode(',', $v['image_ids']);
+                        foreach ($image_ids as $imageId) {
+                            $image_o = LibUtil::getPicUrl($imageId, 3);
+                            if (!empty($image_o)) {
+                                $goods[$k]['images'][] = [
+                                    'image_id'=>$imageId,
+                                    'img_m' => LibUtil::getPicUrl($imageId, 1),
+                                    'img_o' => $image_o
+                                ];
+                            }
+                         }
+                }
+	 			/*if(strpos($v['image_ids'],',') == 0){
 	 				$goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
 	 			}else{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
-                }
+                }*/
 	 		}
 		 	$user_follow_folder[$key]['folder_goods'] = $goods;		 	
     	}

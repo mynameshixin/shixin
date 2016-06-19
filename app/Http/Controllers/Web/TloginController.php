@@ -129,8 +129,10 @@ class TloginController extends CmController
             $ms  = $c->home_timeline(); // done
             $uid_get = $c->get_uid();
             $uid = $uid_get['uid'];
-            $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息*/
-            dd($user_message);
+            $userinfo = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息*/
+            $this->userinfo = $userinfo;
+            $r = $this->weblogin(3);
+            if($r) return redirect();
         }
     }
 }
