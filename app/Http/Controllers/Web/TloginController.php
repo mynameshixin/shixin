@@ -90,7 +90,7 @@ class TloginController extends CmController
             if(!empty($user)){
                 $userData['user']['id'] = $user['id']; 
             }else{
-                $userData = $this->registrar->AuthQqLogin ($data);
+                $userData = $this->registrar->AuthWechatSdkLogin ($data);
             }
         }
         // dd($userData);
