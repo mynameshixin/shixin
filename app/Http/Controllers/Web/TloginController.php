@@ -26,10 +26,6 @@ class TloginController extends CmController
         
     }
 
-    public function getUrl(){
-        
-    }
-
     public function getQqback(){
         require_once("tlogin/qq/qqConnectAPI.php");
         $auth = new \QC();
@@ -47,11 +43,21 @@ class TloginController extends CmController
             $r = $this->weblogin();
             if($r) return redirect(self::$url);
         }
-        
-
     }
 
+    public function getWechat(){
+        require_once("tlogin/wechat/wechat.php");
+        $wechat = new \Wechat();
+        $url = $wechat->login();
+        header("Location: $url"); 
+        die();
+    }
 
+    public function getWback(){
+        var_dump($_REQUEST);
+    }
+
+    //qq wechat 登陆返回检测
     public function weblogin(){
         $data = $this->userinfo;
         $userData = $this->registrar->AuthQqLogin ($data);
