@@ -305,7 +305,7 @@ class UserReg
             $data['wechat'] = isset($params['wechat']) ? $params['wechat'] : '';
             $data['auth_avatar'] = isset($params['headimgurl']) ? $params['headimgurl'] : '';
             if(isset($params['gender']))$data['gender'] = $params['sex'];
-            dd($data);
+            var_dump($data);die;
             User::where('wechat_id',$id)->update($data);
         }
         $row = $row->toArray();
