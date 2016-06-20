@@ -35,11 +35,11 @@
 							</div>
 							<?php foreach ($v['comment'] as $k => $value):?>
 							<div class="index_item_bottom clearfix comment">
-								<a href="{{url('webd/user')}}/{{$value['user']['id']}}" class="index_item_authava" target="_blank">
+								<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authava" target="_blank">
 									<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
 								</a>
 								<div class="index_item_authinfo index_item_authtalk">
-									<a href="{{url('webd/user')}}/{{$value['user']['id']}}" class="index_item_authname">{{$value['user']['nick']}}：</a>
+									<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authname">{{$value['user']['nick']}}：</a>
 									<span class="index_item_authto">{{$value['content']}}</span>
 								</div>
 							</div>
