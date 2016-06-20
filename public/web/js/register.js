@@ -57,6 +57,7 @@
       //验证码
       $('.pop_login_e').click(function(){
         p = $(this).parents('.pop_login')
+        var type = p.attr('login')
         mobile = $('input[name=mobile]',p).val().trim()
         if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/i.test(mobile)){
           layer.msg('手机格式不正确', {icon: 5});
@@ -64,7 +65,7 @@
         }
         $.ajax({
           'dataType':'json',
-          'data':{'mobile':mobile,'type':2},
+          'data':{'mobile':mobile,'type':type},
           'type':'post',
           'url':'/api/mobile/captcha',
           'success':function(json){
