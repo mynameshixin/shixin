@@ -1,2 +1,2 @@
 <?php die('forbidden'); ?>
-{"appid":"101327895","appkey":"987c5b35196579d76d60c9685ac45c04","callback":"http://www.duitujia.com/webd/tlogin/qqback","scope":"get_user_info","errorReport":true,"storageType":"file","host":"www.duitujia.com","user":"root","password":"root","database":"test"}
+{"appid":"1104987288","appkey":"1dnPuuXwgmeUP88Y","callback":"http://www.duitujia.com/webd/tlogin/qqback","scope":"get_user_info","errorReport":true,"storageType":"file","host":"www.duitujia.com","user":"root","password":"root","database":"test"}
