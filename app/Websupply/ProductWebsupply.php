@@ -127,8 +127,10 @@ class ProductWebsupply extends CmWebsupply{
         $skip = ($page-1)*$num;
         $id = $data['img_id'];
         $collection = DB::table('collection_good')->orderBy('updated_at','desc')->where('good_id',$good_id)->skip($skip)->take($num)->get();
+        // dd($collection);
         foreach ($collection as $key => $value) {
             $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
+            if($collection[$key] == null) unset($collection[$key]);
         }
         return $collection;
     }
@@ -262,7 +264,8 @@ class ProductWebsupply extends CmWebsupply{
             $follow = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$id])->first();
             $folders['is_follow'] = !empty($follow)?1:0;
             if(!empty($gnum) && !empty($id)){
-                $goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+                //$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+                $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folders['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
                     foreach ($goods as $k => $v) {
                         if(strpos($v['image_ids'],',') == 0){
                             $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
@@ -271,7 +274,7 @@ class ProductWebsupply extends CmWebsupply{
                 $folders['goods'] = $goods;         
             }
             $folders['user'] = UserWebsupply::user_info($user_id);
-            $folders['count'] = DB::table('goods')->where('folder_id',$id)->count();
+            // $folders['count'] = DB::table('goods')->where('folder_id',$id)->count();
         }
         return $folders;
 

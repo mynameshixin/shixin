@@ -20,7 +20,7 @@
 							<div class="detail_filetit">
 								{{$folder['name']}}
 							</div>
-							<p class="detail_filedes">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
+							<!-- <p class="detail_filedes">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p> -->
 							<p class="detail_filedes">{{$folder['description']}}</p>
 						</div>
 						<div class="detail_fileinfo">
