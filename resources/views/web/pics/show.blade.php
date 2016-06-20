@@ -97,7 +97,7 @@
 					<div class="detail_pop_tlbtm">
 						<div class="detail_pop_tlbtmauth clearfix">
 							<div class="detail_pop_authava">
-								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank"><img src="{{$goods['user']['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank"><img src="{{!empty($goods['user']['auth_avatar'])?$goods['user']['auth_avatar']:$goods['user']['pic_m']}}" alt=""></a>
 							</div>
 							<div class="detail_pop_authinfo">
 								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
