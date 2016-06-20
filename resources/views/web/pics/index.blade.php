@@ -90,7 +90,7 @@
 							<?php if(isset($v['comment']) && !empty($v['comment'])): ?>
 								<div class="index_item_bottom clearfix comment">
 									<a href="{{url('webd/user')}}?oid={{$v['comment']['user']['id']}}" class="index_item_authava" target="_blank">
-										<img src="<?php echo $v['comment']['user']['pic_m']; ?>" alt="">
+										<img src="{{!empty($v['comment']['user']['auth_avatar'])?$v['comment']['user']['auth_avatar']:$v['comment']['user']['pic_m']}}" alt="">
 									</a>
 									<div class="index_item_authinfo index_item_authtalk">
 										<a href="{{url('webd/user')}}?oid={{$v['comment']['user']['id']}}" class="index_item_talkname" target="_blank"><?php echo $v['comment']['user']['username']; ?>：</a>

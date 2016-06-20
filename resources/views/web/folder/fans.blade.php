@@ -17,7 +17,7 @@
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<img src="{{$value['user']['pic_m'] or url('uploads/sundry/blogo.jpg')}}" alt="">
+								<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
 							</div>
 							<ul class="find_user_limg">
 								<li>

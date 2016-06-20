@@ -51,7 +51,7 @@
 								<?php $comment = $value['comment'][$value['id']]; ?>
 								<div class="index_item_bottom clearfix comment">
 									<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" class="index_item_authava" target="_blank">
-										<img src="{{$comment['user']['pic_m']}}" alt="">
+										<img src="{{!empty($comment['user']['auth_avatar'])?$comment['user']['auth_avatar']:$comment['user']['pic_m']}}" alt="">
 									</a>
 									<div class="index_item_authinfo index_item_authtalk">
 										<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" target="_blank" class="index_item_talkname">{{$comment['user']['nick'] or $comment['user']['username']}}：</a>

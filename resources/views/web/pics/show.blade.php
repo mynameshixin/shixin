@@ -125,7 +125,7 @@
 
 							<li class="clearfix" <?php if(!in_array($key, [0,1,2])): ?>style="display: none"<?php endif; ?>>
 								<div class="detail_pop_authava">
-									<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}"><img src="{{$v['user']['pic_m']}}" alt=""></a>
+									<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt=""></a>
 								</div>
 								<div class="detail_pop_cominfo">
 									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- {{$v['min']}}前说：
@@ -274,7 +274,7 @@
 								<?php foreach ($v['collection_good'] as $key => $value):?>
 								<div class="index_item_bottom clearfix">
 									<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" class="index_item_authava" target="_blank">
-										<img src="{{$value['user']['pic_m']}}" alt="">
+										<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
 									</a>
 									<div class="index_item_authinfo">
 										<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" target="_blank" class="index_item_authname">{{!empty($value['nick'])?$value['nick']:$value['username']}}</a>
