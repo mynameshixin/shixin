@@ -6,7 +6,7 @@
 </div>
 <?php }else{ ?>
 <div href="javascript:;" class="header_rel" style="float: right;">
-				<a href="#"><img src="{{$self_info['pic_m']}}" alt=""></a>
+				<a href="#"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>
 				<var class="header_tril"></var>
 				<div class="header_moreinfo">
 					<a href="{{url('webd/user')}}" target="_blank" class="header_more_item header_more_1">我的堆图家</a>

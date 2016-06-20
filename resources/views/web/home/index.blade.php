@@ -12,7 +12,7 @@
 						<div class="index_item_user">
 							<div class="index_item_utop clearfix">
 								<div class="index_item_uava">
-									<a href="{{url('webd/user')}}" target="_blank"><img src="{{$user_info['pic_m']}}" alt=""></a>
+									<a href="{{url('webd/user')}}" target="_blank"><img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt=""></a>
 								</div>
 								<div class="index_item_uname"><a href="javascript:;" target="_blank"><?php echo mb_substr($user_info['nick'], 0,6,'utf-8') ?></a></div>
 							</div>
