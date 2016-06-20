@@ -330,9 +330,8 @@ $(function(){
 
 					$.each($lis,function(index,v){
 						if(data[index]==null) {
-							$($lis[index]).eq(index).remove()
-							console.log($lis)
-							return;
+							/*$($lis[index]).eq(index).remove()
+							return;*/
 						}
 						gpic_1 = data[index].goods[0] != undefined?data[index].goods[0].image_url:defaultPic
 						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic

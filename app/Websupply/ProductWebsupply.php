@@ -126,7 +126,9 @@ class ProductWebsupply extends CmWebsupply{
         $page = isset($data['page'])?$data['page']:1;
         $skip = ($page-1)*$num;
         $id = $data['img_id'];
-        $collection = DB::table('collection_good')->orderBy('updated_at','desc')->where('good_id',$good_id)->skip($skip)->take($num)->get();
+        $condition = ['cg.good_id'=>$good_id];
+        if($other_id!=$self_id) $condition['f.private'] = 0;
+        $collection = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->orderBy('cg.updated_at','desc')->where($condition)->skip($skip)->take($num)->select('cg.*')->get();
         // dd($collection);
         foreach ($collection as $key => $value) {
             $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
