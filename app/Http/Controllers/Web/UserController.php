@@ -161,7 +161,7 @@ class UserController extends CmController{
 			'user_id'=>$this->other_id,
 			'self_id'=>$this->user_id,
 		];
-		dd($this->self_info);
+		// dd($this->self_info);
 		return view('web.user.setaccount',$data);
 	}
 
