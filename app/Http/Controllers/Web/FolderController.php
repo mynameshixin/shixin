@@ -177,9 +177,9 @@ class FolderController extends CmController{
         $user = DB::table('users')->where('id',$user_id)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
     	$id = $data['fid'];
-    	DB::table('goods')->where('folder_id',$id)->delete();
-        DB::table('collection_good')->where('folder_id',$id)->delete();
-        DB::table('collection_folder')->where('folder_id',$id)->delete();
+    	DB::table('goods')->where(['folder_id'=>$id,'user_id'=>$user_id])->delete();
+        DB::table('collection_good')->where(['folder_id'=>$id,'user_id'=>$user_id])->delete();
+        DB::table('folder_goods')->where(['folder_id'=>$id,'user_id'=>$user_id])->delete();
         DB::table('folders')->where('id',$id)->delete();
         return response()->forApi(['status'=>1]);
     }

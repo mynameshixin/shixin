@@ -132,6 +132,7 @@ class ProductWebsupply extends CmWebsupply{
             $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
             if($collection[$key] == null) unset($collection[$key]);
         }
+
         return $collection;
     }
 
