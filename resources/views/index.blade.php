@@ -21,6 +21,12 @@
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
+  <script type="text/javascript">
+    function layer_error(){
+      layer.msg('该功能仍在建设中', {icon: 5});
+      return false;
+    }
+  </script>
 </head>
 <body class="nolog_body">
 @include('web.common.daction')

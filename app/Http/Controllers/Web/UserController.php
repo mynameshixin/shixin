@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Websupply\UserWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
+use App\Services\UserService;
 use App\Lib\SmsYun;
 use DB;
 
@@ -299,5 +300,33 @@ class UserController extends CmController{
         
 	}
 
+	 public function postAvatar(){
+
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'fhead' => 'required|image'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+        $userId = $user['id'];
+
+        $file = array('image' => Input::file('fhead'));
+        // setting up rules
+        $rules = array('image' => 'required|mimes:jpeg,png',); //mimes:jpeg,bmp,png and for max size max:10000
+
+        // doing the validation, passing post data, rules and the messages
+        parent::validator($file, $rules);
+        $images = UserService::getInstance()->uploadAvatar($userId, $_FILES['image']);
+        if (!empty($images)) {
+            return response()->forApi($images);
+        } else {
+            // sending back with error message.
+            return response()->forApi(array(), 1001, 'uploaded file is not valid');
+        }
+    }
 	
 }

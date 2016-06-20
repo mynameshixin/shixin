@@ -29,6 +29,22 @@
 				'margin-top':marginTop
 			})
 		}
+		function layer_error(){
+			layer.msg('该功能仍在建设中', {icon: 5});
+			return false;
+		}
+		function getObjectURL(file) {
+			var url = null ; 
+			if (window.createObjectURL!=undefined) { // basic
+				url = window.createObjectURL(file) ;
+			} else if (window.URL!=undefined) { // mozilla(firefox)
+				url = window.URL.createObjectURL(file) ;
+			} else if (window.webkitURL!=undefined) { // webkit or chrome
+				url = window.webkitURL.createObjectURL(file) ;
+			}
+			return url ;
+		}
+
 	</script>
 	<script type="text/javascript" charset="utf-8">
 	  $(function() {

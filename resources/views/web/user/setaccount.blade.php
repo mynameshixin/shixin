@@ -97,23 +97,72 @@
 						<span>头像</span>
 						<div class="setting_coneach_little">
 							<div class="setting_coneach_conrava">
-								<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
+								<img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt="">
 							</div>
 						</div>
 						<a href="javascript:;"><strong>展开</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<div class="setting_coneach_content slideup">
 						<div class="setting_coneach_conwrap clearfix">
+						<form action="" method="post" enctype="multipart/form-data" name="ehead">
 							<div class="setting_coneach_conleft">&nbsp;</div>
 							<div class="setting_coneach_conright">
 								<div class="setting_coneach_conrava">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
+									<img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt="">
 								</div>
-								<a href="javascript:;" class="setting_coneach_conload" style="color:#969696;float: left;">上传头像</a>
+								<input type="hidden" name="user_id" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
+								<input class="pop_upload" type="file" name='fhead' id="fhead" style="display:none"></input>
+								<label for="fhead" class="setting_coneach_conload" style="color:#969696;float: left; cursor: pointer;">
+								上传头像</label>
+								<a class="setting_org_btn" style="display: inline-block;float: none;margin: 0px 0px 0px 175px;color: #fff;border: none; cursor: pointer;" id="ehead">上传</a>
 							</div>
+						</form>
 						</div>
 					</div>
 				</div>
+				<script type="text/javascript">
+					$("#fhead").on("change",function(){
+			          var filePath=$('#fhead').val();
+			          if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
+			              var arr=filePath.split('\\');
+			              var fileName=arr[arr.length-1];
+			              var file = fileName.substring(0,fileName.lastIndexOf('.'))
+			              files = getObjectURL(this.files[0]);
+			              $('.setting_coneach_conrava img').attr('src',files)
+
+			          }else{
+			          	  layer.msg('文件类型不正确', {icon: 5});
+			              return false 
+			          }
+			      	})
+			      	$('form[name=ehead]').submit(function(){
+						ehead = $('form[name=ehead]').serialize()
+						$(this).ajaxSubmit({
+							type:"post",  //提交方式
+			                dataType:"json", //数据类型
+			                url:"/webd/user/avatar", //请求url
+			                success:function(json){ //提交成功的回调函数
+			                    if(json.code==200) {
+			                    	layer.msg('成功上传',{icon: 6});
+			                    	$('.setting_coneach_conrava img').attr('src',json.data.pic_m)
+			                    }else{
+			                    	layer.msg(json.message, {icon: 5});
+									return
+			                    } 
+			                },
+			                resetForm:1
+				        });
+				        return false
+					})
+					$('#ehead').click(function(){
+						if($('#fhead').val()==''){
+							layer.msg('没有选择图片', {icon: 5});
+							return
+						}
+						$('form[name=ehead]').submit()
+					})
+
+				</script>
 				<div class="setting_coneach">
 					<div class="setting_coneachtit clearfix" id="phone">
 						<span>登录手机号</span>

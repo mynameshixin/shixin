@@ -15,7 +15,7 @@
 							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
 						</div>
 						<div class="perhome_perline">
-							<a href="javascript:;" class="otherhome_follow">留言</a>
+							<a href="javascript:;" onclick="layer_error()" class="otherhome_follow">留言</a>
 							<?php if($user_id!=$self_id){ ?>
 							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}">
 							<?php 
