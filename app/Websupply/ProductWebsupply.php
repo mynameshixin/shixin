@@ -209,7 +209,10 @@ class ProductWebsupply extends CmWebsupply{
                 $folder['id'] = 0;
                 $folder['name'] = '无文件夹';
                 $folder['img_url'] = url('uploads/sundry/blogo.jpg');
+                $folder['is_follow'] = 0;
             }else{
+                $follow = DB::table('collection_folder')->where(['user_id'=>$self_id,'folder_id'=>$folder['id']])->first();
+                $folder['is_follow'] = !empty($follow)?1:0;
                 $folder['img_url'] = !empty(LibUtil::getPicUrl($folder['image_id'],1))?LibUtil::getPicUrl($folder['image_id'],1):url('uploads/sundry/blogo.jpg');
             }
             $goods['folder'] = $folder;

@@ -145,7 +145,7 @@
 						<?php if(!empty($goods['comments'])): ?><a href="javascript:;" class="detail_pop_loadmore">显示全部评论</a><?php endif; ?>
 						<div class="detail_pop_compublish clearfix">
 							<div class="detail_pop_authava">
-								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}"><img src="{{$self_info['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>
 							</div>
 							<textarea name="caption" placeholder="添加评论或把采集@给好友" class="detail_pop_compub" autocomplete="off"></textarea>
 						</div>
@@ -167,19 +167,14 @@
 							<p class="detail_pop_authname"><a <?php if($goods['folder']['id'] != 0): ?>href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}"<?php endif; ?> target="_blank">{{$goods['folder']['name']}}</a></p>
 							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
-						<a class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" user_id="{{$goods['user_id']}}" <?php if($goods['user_id'] == $self_id): ?>style="display: none"<?php endif; ?>><?php 
-							switch ($goods['relation']) {
-								case 1:
-									echo '相互关注';
-								break;
-								case 2:
-									echo '已关注';
-								break;
-								default:
-									echo '<span>+</span>关注';
-								break;
-							}
-							?></a>
+						<li folder_id = "{{$goods['folder']['id']}}">
+							<a href="javascript:;" class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" <?php  if($goods['user']['id']==$self_id):?>style="display: none"<?php endif; ?>>
+								<?php 
+									echo $goods['folder']['is_follow']==1?'已关注':'<span>+</span>特别关注';
+								?>
+							</a>
+						</li>
+						
 					</div>
 					<div class="detail_pop_trworks">
 						<div class="detail_pop_trwwrap">
