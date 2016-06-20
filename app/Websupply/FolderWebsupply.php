@@ -55,12 +55,12 @@ class FolderWebsupply extends CmWebsupply {
 			$id = isset($folders[$i]['id'])?$folders[$i]['id']:0;
 			$user_id = isset($folders[$i]['user_id'])?$folders[$i]['user_id']:0;
 			if(!empty($gnum) && !empty($id)){
-		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+		 		/*$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
 		 		if(count($goods)<$gnum){
 	                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$user_id])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
 	                $goods = $cg+$goods;
-            	} 
-		 		
+            	} */
+		 		$goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$user_id,'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
 			 		foreach ($goods as $k => $v) {
 			 			if(strpos($v['image_ids'],',') == 0){
 			 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
@@ -98,11 +98,12 @@ class FolderWebsupply extends CmWebsupply {
 			$folders[$i]['is_follow'] = !empty($follow)?1:0;
 			//$folders[$i]['count'] = DB::table('goods')->where('folder_id',$id)->count();
 			if(!empty($gnum) && !empty($id)){
-		 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
+		 		/*$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
 		 		if(count($goods)<$gnum){
 	                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
 	                $goods = $cg+$goods;
-            	} 
+            	} */
+            	$goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$value['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
 		 		foreach ($goods as $k => $v) {
 		 			if(strpos($v['image_ids'],',') == 0){
 		 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
@@ -135,15 +136,23 @@ class FolderWebsupply extends CmWebsupply {
 			$follow = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$id])->first();
 			$folder['is_follow'] = !empty($follow)?1:0;
 			if($data['kind'] == 1){
-				
+				$goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folder['user_id'],'fg.folder_id'=>$id])->skip($skip)->take($num)->select('g.*')->orderBy('fg.created_at','desc');
 				$o = "";
 				if(isset($data['o']) && $data['o']==1){
-					$o = "and g.kind = 1";
+					$goods = $goods->where('g.kind',1);
+					$count = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folder['user_id'],'fg.folder_id'=>$id])->select('g.id')->where('g.kind',1)->get();
+					$folder['file_count'] = count($count);
+					// var_dump(count($count));
+				}else{
+					$count = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folder['user_id'],'fg.folder_id'=>$id])->select('g.id')->get();
+					$folder['file_count'] = count($count);
+					// var_dump(count($count));
 				}
-				//DB::table('')
-			 	$goods = DB::select("select * from goods as g where g.folder_id = {$id} {$o} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o} order by created_at desc limit {$skip},{$num}");
-			 	$file_count = DB::select("select count(id) as co from (select g.id from goods as g where g.folder_id = {$id} {$o} union all select g.id from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o}) as c");
-			 	$folder['file_count'] = $file_count[0]['co'];
+				$goods= $goods->get();
+
+			 	/*$goods = DB::select("select * from goods as g where g.folder_id = {$id} {$o} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o} order by created_at desc limit {$skip},{$num}");*/
+			 	/*$file_count = DB::select("select count(id) as co from (select g.id from goods as g where g.folder_id = {$id} {$o} union all select g.id from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o}) as c");
+			 	$folder['file_count'] = $file_count[0]['co'];*/
 
 				foreach ($goods as $k => $v) {
 					$commentArr = CommentWebsupply::getCommentFirst($v['id']);

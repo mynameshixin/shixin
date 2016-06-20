@@ -63,6 +63,7 @@ class UserController extends CmController{
 		$folders = $this->postFolders(0);
 		// dd($this->user_info);
 		$folders_private = $this->postFolders(1);
+		// dd($folders_private);
 		$data = [
 			'user_info'=>$this->user_info,
 			'self_info'=>$this->self_info,

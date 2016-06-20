@@ -63,7 +63,7 @@
 			<?php if($user_id == $self_id):?>
 			<p class="perhome_addprivate">创建隐私文件夹，只有你自己可以看得见哦</p>
 			<div class="find_cater perhome_wrap clearfix">
-				<ul class="find_fold_list clearfix" id="ul1">
+				<ul class="find_fold_list clearfix" id="ul1" >
 					<?php if($user_id==$self_id){ ?>
 						<div class="find_fold_li find_fold_fund perhome_add_one perhome_add_fold">
 							<a href="javascript:;" class="perhome_add_btn">+</a>
@@ -74,7 +74,7 @@
 					<?php } ?>
 					<?php foreach ($folders_private as $key => $value) :?>
 					<?php if($value['private'] == 1): ?>
-					<li class="find_fold_li" folder_id="{{$value['id']}}">
+					<li class="find_fold_li" folder_id="{{$value['id']}}" >
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_tname">
 								<a href="{{url('webd/folder')}}?fid={{$value['id']}}" target="_blank" class="find_fold_name">{{$value['name']}}</a>

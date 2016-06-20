@@ -168,12 +168,13 @@ class UserWebsupply extends CmWebsupply{
     		$user_follow_folder[$key]['user'] = self::user_info($value['user_id']);
     		$user_follow_folder[$key]['img_url'] = !empty($img_url)?$img_url:url('uploads/sundry/blogo.jpg');
 
-            $goods = DB::table('goods')->where(['folder_id'=>$id])->select('id','image_ids')->take($gnum)->get();
+            /*$goods = DB::table('goods')->where(['folder_id'=>$id])->select('id','image_ids')->take($gnum)->get();
             
             if(count($goods)<$gnum){
                 $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
                 $goods = $cg+$goods;
-            } 
+            } */
+            $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$value['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
 	 		foreach ($goods as $k => $v) {
                 if (!empty($v['image_ids'])) {
                         $image_ids = explode(',', $v['image_ids']);

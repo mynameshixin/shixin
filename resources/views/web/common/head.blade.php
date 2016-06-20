@@ -29,8 +29,9 @@
 				'margin-top':marginTop
 			})
 		}
-		function layer_error(){
-			layer.msg('该功能仍在建设中', {icon: 5});
+		function layer_error(str=''){
+			str = str!=''?str:'该功能仍在建设中'
+			layer.msg(str, {icon: 5});
 			return false;
 		}
 		function getObjectURL(file) {
