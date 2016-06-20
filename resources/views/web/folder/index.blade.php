@@ -26,7 +26,7 @@
 				<?php if(!empty($folder['goods'])): ?>
 				<?php foreach ($folder['goods'] as $key => $value) :?>
 			    <div class="index_item">
-			    	<div class="index_item_wrap">
+			    	<div class="index_item_wrap" good_id="{{$value['id']}}">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"></a>
 							<img src="{{$value['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}">
@@ -418,10 +418,10 @@
 				提示
 				<span class="pop_close"></span>
 			</p>
-			<p class="pop_movetp">你确定要删除该采集吗？</p>
+			<p class="pop_movetp">你确定要删除这些文件吗？</p>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="delpfolder">确定</a>
 			</div>
 		</div>
 	</div>
@@ -551,6 +551,47 @@
 	</div>
 
 	<script type="text/javascript">
+		$('#delpfolder').click(function(){
+			var garr = '';
+			var delfs = $('div[class=detail_raido_wrapred]')
+			$.each(delfs,function(i,v){
+				gid = delfs.eq(i).parents('.index_item_wrap').attr('good_id')
+				garr+= gid+'|'
+			})
+			if(garr==''){
+				layer.msg('没有选择文件', {icon: 5});
+				return 
+			}
+			console.log(garr)
+			$.ajax({
+				'beforeSend':function(){
+					layer.load(0, {shade: 0.5});
+				},
+				'url':"/webd/folder/delpfolder",
+				'type':'post',
+				'data':{
+					'user_id':"<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>",
+					'garr':garr,
+					'fid':"{{$folder['id']}}"
+				},
+				'dataType':'json',
+				'success':function(json){
+					if(json.code==200){
+						layer.msg('删除成功', {icon: 6});
+						setTimeout(function(){
+							location.reload()
+						},1000)
+					}else{
+						layer.msg(json.message, {icon: 5});
+						return
+					}
+				},
+				'complete':function(){
+					layer.closeAll('loading');
+				}
+			})
+			return
+		})
 		$('.detail_pop_goodsget').click(function(){
 				$('.pop_uploadgoods').hide();
 				$.ajax({
@@ -730,321 +771,8 @@
 	</div>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 </body>
-<script type="text/javascript">
-		$(function() {
-			$('.perhome_add_goods').click(function(){
+<script type="text/javascript" src="{{asset('web')}}/js/folder/filelist.js"></script>
 
-				$('.pop_goodsupload').show();
-				var popconHei = $('.pop_goodsupload .pop_conwrap').height();
-			  	if (popconHei > 410) {
-				    $('.pop_goodsupload .pop_conwrap').css({
-				      'max-height':410,
-				      'overflow-y':'scroll'
-				    })
-				  };
-			  	var poptopHei = $('.pop_goodsupload .pop_con').height();
-					$('.pop_con').css({
-					   'margin-top':-(poptopHei/2)
-				})
-			});
-			$('.pop_goodsupload,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_goodsupload').hide();
-			});
-			$('.pop_goodsupload .pop_con').click(function(){
-				event.stopPropagation()
-			});
-			$('.pop_cona').click(function(){
-				$('.pop_goodsupload').hide();
-				$('.pop_uploadfile').show();
-				var popconHei = $('.pop_goods_upload .pop_conwrap').height();
-			  	if (popconHei > 410) {
-				    $('.pop_goods_upload .pop_conwrap').css({
-				      'max-height':410,
-				      'overflow-y':'scroll'
-				    })
-				  };
-			  var poptopHei = $('.pop_goods_upload .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			});
-			$('.pop_goods_upload,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_goods_upload').hide();
-			});
-			$('.pop_goods_upload .pop_con').click(function(){
-				event.stopPropagation()
-			});
-			$('.pop_conb').click(function(){
-				$('.pop_goodsupload').hide();
-				$('.pop_uploadgoods').show();
-				var popconHei = $('.pop_pic_upload .pop_conwrap').height();
-			  	if (popconHei > 410) {
-				    $('.pop_pic_upload .pop_conwrap').css({
-				      'max-height':410,
-				      'overflow-y':'scroll'
-				    })
-				  };
-			  var poptopHei = $('.pop_pic_upload .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			});
-			$('.pop_pic_upload,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_pic_upload').hide();
-			});
-			$('.pop_pic_upload .pop_con').click(function(){
-				event.stopPropagation()
-			});
-			$('.pop_col_r').click(function(){
-				if ($(this).hasClass('pop_col_radio_on')) {
-					$(this).removeClass('pop_col_radio_on').addClass('pop_col_radio');
-					$(this).parent('.pop_col_bwrap').find('.jiathis_button').removeClass('jiathis_button_on')
-				}else{
-					$(this).removeClass('pop_col_radio').addClass('pop_col_radio_on');
-					$(this).parent('.pop_col_bwrap').find('.jiathis_button').addClass('jiathis_button_on')
-				};
-			})
-			// 触发分享按钮开始
-			$('.detail_pop_goodsave').click(function(){
-				$('.jiathis_button_on').trigger('click')
-			})
-			// 触发分享按钮结束
-
-			//点击删除提示效果开始
-			$('.detail_select_btndele').click(function(){
-				$('.pop_deletetips').show();
-				var poptopHei = $('.pop_deletetips .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_deletetips,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_deletetips').hide();
-			})
-			$('.pop_deletetips .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//点击复制至提示效果结束
-
-			//点击复制至效果开始
-			$('.detail_select_btncopy').click(function(){
-				$('.pop_copyfile').show();
-				var poptopHei = $('.pop_copyfile .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_copyfile,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_copyfile').hide();
-			})
-			$('.pop_copyfile .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//点击复制至效果结束
-
-			//点击复制至提示效果开始
-			$('.detail_select_btncopy').click(function(){
-				$('.pop_copytips').show();
-				var poptopHei = $('.pop_copytips .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_copytips,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_copytips').hide();
-			})
-			$('.pop_copytips .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//点击复制至提示效果结束
-
-			// 下拉框效果开始
-			$('.pop_fakeselect').click(function(){
-				$('.pop_optionwrap').show();
-				var poptopHei = $('.pop_optionwrap .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			});
-			$('.pop_searul li').click(function(){
-				event.stopPropagation()
-				var fakeOption = $(this).html();
-				$('.pop_fakedefault').html(fakeOption);
-				$('.pop_optionwrap').hide();
-			})
-			// 下拉框效果结束
-			
-
-			//文件未找到提示效果开始
-			$('.pop_searnew').click(function(){
-				$('.pop_findnotips').show();
-				var poptopHei = $('.pop_findnotips .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_findnotips,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_findnotips').hide();
-			})
-			$('.pop_findnotips .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//文件未找到提示效果结束
-
-			//点击移动至效果开始
-			$('.detail_select_btnmove').click(function(){
-				$('.pop_movefile').show();
-				var poptopHei = $('.pop_movefile .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_movefile,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_movefile').hide();
-			})
-			$('.pop_movefile .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//点击移动至效果结束
-
-			//点击移动至提示效果开始
-			$('.detail_select_btnmove').click(function(){
-				$('.pop_movetips').show();
-				var poptopHei = $('.pop_movetips .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_movetips,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_movetips').hide();
-			})
-			$('.pop_movetips .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			//点击移动至提示效果结束
-			$('.back_to_add').click(function(){
-				$('.pop_uploadfile').show();
-				var poptopHei = $('.pop_uploadfile .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
-			$('.pop_uploadfile,.pop_close').click(function(){
-				$('.pop_uploadfile').hide();
-			})
-			$('.pop_uploadfile .pop_con').click(function(){
-				event.stopPropagation()
-			})
-			
-			$(".pop_upload_a").on("change","input[type='file']",function(){
-			    var filePath=$(this).val();
-			    if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
-			        var arr=filePath.split('\\');
-			        var fileName=arr[arr.length-1];
-			        $(".pop_upload_a span").html(fileName);
-			    }else{
-			        $(".pop_upload_a span").html("您上传文件类型有误！");
-			        return false 
-			    }
-			})
-			$('.detail_fileb_sfld').click(function(){
-				$('.pop_editfile').show();
-				var poptopHei = $('.pop_editfile .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			});
-			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_editfile').hide();
-			})
-			// $('.detail_fileb_sfld').click(function(){
-			// 	$('.pop_editpic').show();
-			// });
-			$('.pop_editfile,.pop_close,.detail_pop_cancel').click(function(){
-				$('.pop_editpic').hide();
-			})
-			$('.pop_con').click(function(){
-				event.stopPropagation()
-			})
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-	            var text = $('.index_item_intro');
-	              str = text.html(),
-	              textLeng = 29;
-	              if(str.length > textLeng ){
-	                    text.html( str.substring(0,textLeng )+"...");
-	              }
-		     });
-		    $('.detail_fileb_simg').click(function(){
-		    	var detail_selecth = '<div class="detail_raido_wrap"></div>'
-		    	$('.index_item_imgwrap ').append(detail_selecth)
-		    	$('.detail_raido_wrap').click(function(){
-		    		if ($(this).hasClass('detail_raido_wrapred')) {
-		    			$(this).removeClass('detail_raido_wrapred').addClass('detail_raido_wrap');
-		    		}else{
-		    			$(this).removeClass('detail_raido_wrap').addClass('detail_raido_wrapred');
-		    		};
-		    	});
-		    	if (!$('.detail_select_wrap').hasClass('haha')) {
-		    		$('.detail_select_wrap').show()
-		    		$('.detail_select_wrap').slideUp(400,function(){
-		    			$('.detail_select_wrap').addClass('haha')
-		    		});
-		    		event.stopPropagation();
-		    	}else{
-		    		$('.detail_select_wrap').slideDown(400, function() {
-		    			$('.detail_select_wrap').removeClass('haha')
-		    		});
-		    	};
-		    })
-		    $('.detail_filebtn_click').click(function(){
-		    	event.stopPropagation();
-		    	if ($(this).siblings('.detail_fileb_select').hasClass('slideup')) {
-		    		$('.detail_fileb_select').addClass('slideup');
-		    		$(this).siblings('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
-		    		var isOut = true;
-		    	}else{
-		    		$('.detail_fileb_select').addClass('slideup');
-		    		$(this).siblings('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
-		    	};
-		    	window.document.onclick = function(){
-			    	if(isOut){
-			            $('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
-			        }else{
-			        	$('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
-			        }
-			    }
-		    });
-		    $(window).scroll(function(event) {
-			var scrollHei = $('body').scrollTop();
-			if (scrollHei <= 130) {
-				$('.perhome_scroll_info,.perhome_scroll_wrap').css({
-					transform:'translate(0px, -50px)',
-					transition:'transform 200ms ease'
-				});
-				$('.perhome_scroll_wrap').removeClass('shadow');
-			}else{
-				$('.perhome_scroll_wrap').addClass('shadow');
-				$('.perhome_scroll_wrap').css({
-					display:'block',
-					position: 'fixed',
-					transform:'translate(0px, -0px)',
-					transition:'transform 200ms ease'
-				});
-				$('.perhome_scroll_info').css({
-					transform:'translate(0px, -0px)',
-					transition:'transform 200ms ease'
-				})
-			};
-		});
-		    
-		});
-	</script>
 <script type="text/javascript">
 	postUrl = "{{url('webd/folder/folders')}}?fid={{$folder['id']}}"
 	postData = {'num':15}

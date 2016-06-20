@@ -339,6 +339,8 @@
 .detail_select_bg{background: #000;opacity: 0.5;width: 100%;height: 84px;position: absolute;}
 .detail_select_cbtn{display: inline-block;height: 34px;padding:0px 16px;background: #e15335;color:#fff;border-radius: 4px;cursor: pointer;font:normal 14px/34px "SimSun";margin:25px 0px 0px 18px;float: right;}
 .detail_select_cball{margin:25px 0px 0px 0px;float: left;}
+.detail_select_notball{margin:25px 0px 0px 0px;float: left;}
+#detail_all_select{display: inline-block;height: 34px;padding:0px 16px;background: #e15335;color:#fff;border-radius: 4px;cursor: pointer;font:normal 14px/34px "SimSun";margin:25px 0px 0px 0px;}
 .detail_select_cbgrey{height:32px;padding:0px 16px;background: #fff;color:#969696;border:1px solid #969696;}
 .detail_cater{margin-top: 15px;}
 

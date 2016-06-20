@@ -164,7 +164,6 @@ class ProductController extends BaseController
         $num = isset($data['num']) ? $data['num'] : 20;
         $data['sort'] = isset($data['sort']) ? $data['sort'] : 0;
         //先搜索folders 查询到结果后返回id
-        
 
         $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id,$uid);
         return response()->forApi($rs);

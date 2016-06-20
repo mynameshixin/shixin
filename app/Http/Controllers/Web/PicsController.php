@@ -76,6 +76,10 @@ class PicsController extends CmController{
 	public function show($id){
         $data['img_id'] = $id;
 		$self_id = $this->user_id;
+		$folder = DB::table('goods')->where('id',$id)->select('folder_id')->first();
+		if(!$folder) die('no such pic!');
+		$private = DB::table('folders')->where('id',$folder['folder_id'])->select('private','user_id')->first();
+		if($private['private']==1 && $self_id!=$private['user_id']) die('such pic is in a private folder!');
 		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
 		// dd($goods);
 		$data = [

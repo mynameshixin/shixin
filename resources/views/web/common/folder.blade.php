@@ -3,6 +3,13 @@
 	user_id = "{{$user_id}}"
 	self_id = "{{$self_id}}"
 	relationUrl = "{{url('webd/user/relation')}}"
+	function addSe(obj){
+		if ($(obj).hasClass('detail_raido_wrapred')) {
+			$(obj).removeClass('detail_raido_wrapred').addClass('detail_raido_wrap');
+		}else{
+			$(obj).removeClass('detail_raido_wrap').addClass('detail_raido_wrapred');
+		};
+	}
 </script>
 <script src="{{url('web/js/user/relation.js')}}"></script>
 <div class="perhome_per_wrap">
@@ -58,8 +65,8 @@
 								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" >
 								<?php echo $folder['is_follow']?"已关注":"<span>+</span>特别关注";?></a></li>
 								<?php } ?>
-
-								<!-- <div class="detail_filebtn">
+								<?php if($folder['user_id']==$self_id){ ?>
+								 <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑
 										<var class="detail_filebtril"></var>
@@ -71,7 +78,8 @@
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
-								</div> -->
+								</div> 
+								<?php } ?>
 							</div>
 						</div>
 					</div>
@@ -123,7 +131,8 @@
 								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" >
 								<?php echo $folder['is_follow']?"已关注":"<span>+</span>特别关注";?></a></li>
 								<?php } ?>
-								<!-- <div class="detail_filebtn">
+								<?php if($folder['user_id']==$self_id){ ?>
+								 <div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										编辑
 										<var class="detail_filebtril"></var>
@@ -135,7 +144,8 @@
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
-								</div> -->
+								</div>
+								<?php } ?>
 							</div>
 				</div>
 			</div>
@@ -145,11 +155,12 @@
 			<div class="detail_select_bg"></div>
 			<div class="w1248 w1240 clearfix">
 				<div class="detail_select_con">
-					<a href="javascript:;" class="detail_select_cbtn detail_select_cball">全选</a>
+					<a href="javascript:;" id="detail_all_select" class="detail_select_cball">全选</a>
 					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey">完成</a>
 					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele">删除</a>
-					<a href="javascript:;" class="detail_select_cbtn detail_select_btncopy">复制至...</a>
-					<a href="javascript:;" class="detail_select_cbtn detail_select_btnmove">移动至...</a>
+					<a href="javascript:;" onclick="layer_error()" class="detail_select_cbtn ">复制至...</a>
+					<a href="javascript:;" onclick="layer_error()" class="detail_select_cbtn ">移动至...</a>
 				</div>
 			</div>
 		</div>
+

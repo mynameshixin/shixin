@@ -252,4 +252,46 @@ class FolderController extends CmController{
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
+
+    //删除文件夹的文件
+    public function postDelpfolder(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'garr' => 'required',
+            'fid'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+        if(!empty($data['garr'])){
+            $gidarr = explode("|",$data['garr']);
+            $i = 0;
+            foreach($gidarr as $k=>$v){
+                if(empty($v)) continue;
+                $s = DB::table('goods')->where(['id'=>$v,'user_id'=>$userId])->first();
+                if($s){
+                    DB::table('goods')->where(['id'=>$v,'user_id'=>$userId])->delete();
+                    // $i++;
+                }
+                $c = DB::table('collection_good')->where(['good_id'=>$v,'user_id'=>$userId,'folder_id'=>$data['fid']])->first();
+                if($c){
+                    DB::table('collection_good')->where(['good_id'=>$v,'user_id'=>$userId,'folder_id'=>$data['fid']])->delete();
+                    // $i++;
+                }
+                $fg = DB::table('folder_goods')->where(['good_id'=>$v,'user_id'=>$userId,'folder_id'=>$data['fid']])->first();
+                if($fg){
+                    DB::table('folder_goods')->where(['good_id'=>$v,'user_id'=>$userId,'folder_id'=>$data['fid']])->delete();
+                    $i++;
+                }
+            }
+            $folder = DB::table('folders')->where('id',$data['fid'])->select('count')->first();
+            $count = $folder['count']-$i;
+            $count = $count<0?0:$count;
+            DB::table('folders')->where('id',$data['fid'])->update(['count'=>$count]);
+        }
+        return response()->forApi(['status' => 1]);
+    }
 }

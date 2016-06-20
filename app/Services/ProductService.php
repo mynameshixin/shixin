@@ -389,9 +389,11 @@ class ProductService extends ApiService
         if (isset($params['is_recommend'])) $condtion['goods.is_recommend'] = $params['is_recommend'];
 
         $rows = Product::where($condtion);
+        
         if (isset($params['ids']) ) {
             $rows = $rows->whereIn('goods.id', $params['ids']);
         }
+
         if (isset($params['user_ids']) ) {
             $rows = $rows->whereIn('goods.user_id', $params['user_ids']);
         }
@@ -405,6 +407,7 @@ class ProductService extends ApiService
 
             });
         }
+       
         $rows = $rows->select('goods.id', 'goods.user_id', 'goods.kind', 'goods.price', 'goods.folder_id', 'goods.reserve_price', 'goods.image_ids', 'goods.title', 'goods.tags', 'goods.category_id', 'goods.description', 'goods.source', 'goods.is_recommend', 'goods.collection_count', 'goods.praise_count', 'goods.boo_count', 'goods.detail_url', 'goods.created_at');
         if (isset($params['sort']) && $params['sort'] == 1) {
             $rows = $rows->orderBy('goods.collection_count', 'desc');
