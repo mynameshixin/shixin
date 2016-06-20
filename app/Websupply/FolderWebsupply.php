@@ -140,6 +140,7 @@ class FolderWebsupply extends CmWebsupply {
 				if(isset($data['o']) && $data['o']==1){
 					$o = "and g.kind = 1";
 				}
+				//DB::table('')
 			 	$goods = DB::select("select * from goods as g where g.folder_id = {$id} {$o} union all select g.* from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o} order by created_at desc limit {$skip},{$num}");
 			 	$file_count = DB::select("select count(id) as co from (select g.id from goods as g where g.folder_id = {$id} {$o} union all select g.id from collection_good as cg join goods as g on cg.good_id=g.id where cg.folder_id={$id} and cg.user_id = {$folder['user_id']} {$o}) as c");
 			 	$folder['file_count'] = $file_count[0]['co'];
