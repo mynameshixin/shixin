@@ -236,7 +236,7 @@
 										<a href="{{url('webd/pic')}}/{{$v['goods'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
 									</div>
 								</div>
-								<a href="javascript:;" class="find_fold_authflw">
+								<a href="javascript:;" class="find_fold_authflw" onclick="relation(this)" <?php  if($v['user_id']==$self_id):?>style="display: none"<?php endif; ?>>
 								<?php 
 									echo $v['is_follow']==1?'已关注':'<span>+</span>特别关注';
 								?>

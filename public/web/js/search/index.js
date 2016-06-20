@@ -34,6 +34,7 @@ $(function (){
 						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
 						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
 						mrightzero = (parseInt(index)+1)%5==0?'mrightzero':''
+						var none = (data[index].user.id==self_id)?'style="display: none"':''
 						follow = v.is_follow==1?'已关注':'<span>+</span>关注'
 						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:'#'
 						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:'#'
@@ -69,7 +70,7 @@ $(function (){
 									+'<a href="'+glink_3+'" target="_blank" class="position"><img src="'+gpic_3+'" alt=""></a>'
 								+'</div>'
 							+'</div>'
-							+'<a onclick="relation(this)" class="find_fold_authflw">'+follow+'</a>'
+							+'<a onclick="relation(this)" class="find_fold_authflw" '+none+'>'+follow+'</a>'
 						+'</li>'
 					})
 					$('.find_cater').eq(0).append(str)

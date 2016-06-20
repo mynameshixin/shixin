@@ -52,6 +52,8 @@
 						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:'#'
 						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:'#'
 						glink_3 = data[index].goods[2] != undefined?'/webd/pic/'+data[index].goods[2].id:'#'
+						
+						var none = (data[index].user.id==self_id)?'style="display: none"':''
 						nick = v.user.nick!=''?v.user.nick:v.user.username
 						pic_m = v.user.auth_avatar!=null?v.user.auth_avatar:v.user.pic_m
 						str += '<li class="find_fold_li '+mrightzero+'" folder_id='+v.id+'>'
@@ -83,7 +85,7 @@
 									+'<a href="'+glink_3+'" target="_blank" class="position"><img src="'+gpic_3+'" alt=""></a>'
 								+'</div>'
 							+'</div>'
-							+'<a onclick="relation(this)" class="find_fold_authflw">'+follow+'</a>'
+							+'<a onclick="relation(this)" class="find_fold_authflw" '+none+'>'+follow+'</a>'
 						+'</li>'
 					})
 					$('.find_cater').eq(0).append(str)

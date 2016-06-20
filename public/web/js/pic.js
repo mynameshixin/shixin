@@ -359,8 +359,10 @@ $(function(){
 						$('.find_fold_liwrap img',$lis[index]).eq(1).attr('src',gpic_2)
 						$('.find_fold_liwrap img',$lis[index]).eq(2).attr('src',gpic_3)
 
-
-
+						$('.find_fold_authflw',$lis[index]).css('display','block')
+						if(self_id==data[index].user.id){
+							$('.find_fold_authflw',$lis[index]).css('display','none')
+						}
 						follow = data[index].is_follow==1?'已关注':'<span>+</span>特别关注'
 						$('.find_fold_authflw',$lis[index]).html(follow)
 

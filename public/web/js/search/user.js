@@ -86,8 +86,11 @@ $(function (){
 												+'<a href="/webd/folder?fid='+glink_4+'" class="position" target="_blank"><img src="'+gpic_4+'" alt=""></a>'
 											+'</li>'
 										+'</ul>'
-										+'<a onclick="relation(this)" class="find_user_authflw" style="cursor: pointer">'+follow+'</a>'
-									+'</div>'
+										
+										if(v.id!=self_id){
+											str+= '<a onclick="relation(this)" class="find_user_authflw" style="cursor: pointer">'+follow+'</a>'
+										}
+								str+='</div>'
 								+'</li>'
 
 					})
