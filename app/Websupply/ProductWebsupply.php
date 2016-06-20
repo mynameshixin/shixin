@@ -293,8 +293,8 @@ class ProductWebsupply extends CmWebsupply{
         $goods = [];
         if($folder){
             $id = $folder['id'];
-            $goods = DB::table('goods')->where(['folder_id'=>$id])->orderBy('updated_at','desc')->skip($skip)->take($num)->get();
-
+            //$goods = DB::table('goods')->where(['folder_id'=>$id])->orderBy('updated_at','desc')->skip($skip)->take($num)->get();
+            $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folder['user_id'],'fg.folder_id'=>$id])->skip($skip)->take($num)->select('g.*')->orderBy('fg.created_at','desc')->get();
             foreach ($goods as $k => $v) {
                 if(strpos($v['image_ids'],',') == 0){
                     $goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
