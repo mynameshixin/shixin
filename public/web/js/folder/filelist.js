@@ -313,7 +313,7 @@ $(function() {
 			$('.pop_con').click(function(){
 				event.stopPropagation()
 			})
-		    var $container = $('.index_con');
+		    /*var $container = $('.index_con');
 		    $container.imagesLoaded(function() {
 		        $container.masonry({
 	                itemSelector: '.index_item',
@@ -326,7 +326,7 @@ $(function() {
 	              if(str.length > textLeng ){
 	                    text.html( str.substring(0,textLeng )+"...");
 	              }
-		     });
+		     });*/
 		    
 		    // <!-- htmlv=20160705 -->
 		    $('.detail_fileb_simg').click(function(){

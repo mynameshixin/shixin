@@ -36,7 +36,7 @@
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
-								<div class="index_item_intro" title="{{!empty(trim($value['description']))?$value['description']:$value['title']}}">{{!empty(trim($value['description']))?$value['description']:$value['title']}}</div>
+							<div class="index_item_intro" title="<?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?>"><?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?></div>
 								<div class="index_item_rel clearfix">
 									<a href="javascript:;" class="index_item_l">{{$value['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$value['collection_count']}}</a>
