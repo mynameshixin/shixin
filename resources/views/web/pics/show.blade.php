@@ -207,7 +207,7 @@
 						<?php if(empty($goods['collection_folders'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
 						<?php foreach($goods['collection_folders'] as $k=>$v): ?>
 							
-							<li class="find_fold_li <?php if(($k+1)%4==0) echo 'mrightzero'; ?>">
+							<li class="find_fold_li <?php if(($k+1)%4==0) echo 'mrightzero'; ?>" folder_id="{{$v['id']}}">
 								<div class="find_fold_info clearfix">
 									<div class="find_fold_authava">
 										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt=""></a>
