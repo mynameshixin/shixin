@@ -264,7 +264,7 @@
 					</div>
 				</div>
 			</div>
-			<p class="find_title">设计达人</p>
+			<p class="find_title">堆图达人</p>
 			<div class="clearfix">
 				<ul class="find_fold_list clearfix">
 						<li class="find_user_li">

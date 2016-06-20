@@ -414,7 +414,8 @@
 <script type="text/javascript">
 	 var c_function = function (obj){
 		//采集动作
-		folder_id = $(obj).parent('li').attr('folder_id')
+		// folder_id = $(obj).parent('li').attr('folder_id')
+		folder_id = $(obj).attr('folder_id')
 		good_id = $('.p_collect').attr('img_id')
 		action = 1
 		$.ajax({

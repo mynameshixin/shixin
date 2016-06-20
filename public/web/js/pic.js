@@ -80,25 +80,25 @@ $(function(){
 							if(json.code==200){
 								cgcontent = afolder = ''
 								$.each(json.data.cg,function(index,v){
-									cgcontent += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+'>'
+									cgcontent += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="c_function(this)">'
 										+'<div class="pop_col_colava">'
-											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
+											+'<img src="'+v.image_url+'" alt="">'
 										+'</div>'
-										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
+										+'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
 
 									if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
-										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" onclick="c_function(this)">采集</a>'
+										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
 									+'</li>'
 								})
 								$('.pop_col_colum_new').html(cgcontent)
 								$.each(json.data.folder,function(index,v){
-									afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+'>'
+									afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="c_function(this)">'
 										+'<div class="pop_col_colava">'
-											+'<a href="/webd/folder?fid='+v.id+'" target="_blank"><img src="'+v.image_url+'" alt=""></a>'
+											+'<img src="'+v.image_url+'" alt="">'
 										+'</div>'
-										+'<div class="pop_col_colname"><a href="/webd/folder?fid='+v.id+'" target="_blank">'+v.name.substr(0,8)+'</a></div>'
+										+'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
 										if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
-										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" onclick="c_function(this)">采集</a>'
+										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
 									+'</li>'
 								})
 								$('.pop_col_colum_all').html(afolder)
