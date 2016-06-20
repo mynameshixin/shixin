@@ -320,7 +320,7 @@ class UserController extends CmController{
 
         // doing the validation, passing post data, rules and the messages
         parent::validator($file, $rules);
-        $images = UserService::getInstance()->uploadAvatar($userId, $_FILES['image']);
+        $images = UserService::getInstance()->uploadAvatar($userId, $_FILES['fhead']);
         if (!empty($images)) {
             return response()->forApi($images);
         } else {
