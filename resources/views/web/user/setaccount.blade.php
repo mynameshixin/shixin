@@ -92,6 +92,7 @@
 					</div>
 				</form>
 				</div>
+				<?php if(empty($self_info['auth_avatar'])): ?>
 				<div class="setting_coneach">
 					<div class="setting_coneachtit clearfix">
 						<span>头像</span>
@@ -120,6 +121,7 @@
 						</div>
 					</div>
 				</div>
+			<?php endif; ?>
 				<script type="text/javascript">
 					$("#fhead").on("change",function(){
 			          var filePath=$('#fhead').val();
