@@ -16,7 +16,7 @@
 						<div class="setting_coneach_little slideup">
 							{{$self_info['username']}}
 						</div>
-						<a href="javascript:;">收起&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
+						<a href="javascript:;"><strong>收起</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<div class="setting_coneach_content">
 						<div class="setting_coneach_conwrap clearfix">
@@ -100,7 +100,7 @@
 								<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
 							</div>
 						</div>
-						<a href="javascript:;">收起&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
+						<a href="javascript:;"><strong>展开</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<div class="setting_coneach_content slideup">
 						<div class="setting_coneach_conwrap clearfix">
@@ -118,9 +118,9 @@
 					<div class="setting_coneachtit clearfix" id="phone">
 						<span>登录手机号</span>
 						<div class="setting_coneach_little">
-							13818236788
+							{{$self_info['mobile']}}
 						</div>
-						<a href="javascript:;">收起&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
+						<a href="javascript:;"><strong>展开</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<form action="" method="post" name='ephone'>
 					<div class="setting_coneach_content slideup">
@@ -166,7 +166,7 @@
 						<div class="setting_coneach_little">
 							******
 						</div>
-						<a href="javascript:;">收起&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
+						<a href="javascript:;"><strong>展开</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<div class="setting_coneach_content slideup">
 						<!-- <div class="setting_coneach_conwrap clearfix">
@@ -216,7 +216,7 @@
 							<img src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="" style="margin-right: 20px;">
 							<img src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">
 						</div>
-						<a href="javascript:;">收起&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
+						<a href="javascript:;"><strong>展开</strong>&nbsp;<img src="{{asset('web')}}/images/setting_btn.png" height="10" width="11" alt=""></a>
 					</div>
 					<div class="setting_coneach_content slideup">
 						<div class="setting_coneach_conwrap clearfix">
@@ -246,9 +246,11 @@
 		    	var goalCon = $(this).parents('.setting_coneach').find('.setting_coneach_content');
 		    	var littleCon = $(this).parents('.setting_coneach').find('.setting_coneach_little');
 		    	if (goalCon.hasClass('slideup')) {
+		    		$(this).find('strong').html('收起')
              		goalCon.removeClass('slideup').addClass('slidedown');
              		littleCon.addClass('slideup').removeClass('slidedown');
 		    	}else{
+		    		$(this).find('strong').html('展开')
 		    		goalCon.addClass('slideup');
 		    		littleCon.removeClass('slideup')
 		    	};
