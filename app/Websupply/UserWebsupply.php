@@ -21,7 +21,6 @@ class UserWebsupply extends CmWebsupply{
 					$user['pic_m'] = LibUtil::getUserAvatar($user['id'], 1);
 	                if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
 	                    $user['pic_m'] = $user['auth_avatar'];
-	                    unset($user['auth_avatar']);
 	                }
 	                if(empty($user['pic_m']) && empty($user['auth_avatar'])){
 	                	$user['pic_m'] = url('uploads/sundry/blogo.jpg');
@@ -36,7 +35,6 @@ class UserWebsupply extends CmWebsupply{
 				$user['pic_m'] = LibUtil::getUserAvatar($user['id'], 1);
 	                if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
 	                    $user['pic_m'] = $user['auth_avatar'];
-	                    unset($user['auth_avatar']);
 	                }
 	                if(empty($user['pic_m']) && empty($user['auth_avatar'])){
 	                	$user['pic_m'] = url('uploads/sundry/blogo.jpg');
