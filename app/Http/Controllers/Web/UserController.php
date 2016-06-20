@@ -299,7 +299,7 @@ class UserController extends CmController{
         }
         
 	}
-
+	//修改用户头像
 	 public function postAvatar(){
 
         $data = Input::all();

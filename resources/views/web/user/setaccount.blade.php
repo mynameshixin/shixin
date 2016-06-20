@@ -107,14 +107,14 @@
 						<form action="" method="post" enctype="multipart/form-data" name="ehead">
 							<div class="setting_coneach_conleft">&nbsp;</div>
 							<div class="setting_coneach_conright">
-								<div class="setting_coneach_conrava">
-									<img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt="">
+								<div class="setting_coneach_conrava" style="width: 88px; height: 88px">
+									<img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt="" style="width: 88px; height: 88px">
 								</div>
 								<input type="hidden" name="user_id" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
 								<input class="pop_upload" type="file" name='fhead' id="fhead" style="display:none"></input>
-								<label for="fhead" class="setting_coneach_conload" style="color:#969696;float: left; cursor: pointer;">
+								<label for="fhead" class="setting_coneach_conload" style="color:#969696;float: left; cursor: pointer; margin-left: 30px">
 								上传头像</label>
-								<a class="setting_org_btn" style="display: inline-block;float: none;margin: 0px 0px 0px 175px;color: #fff;border: none; cursor: pointer;" id="ehead">上传</a>
+								<a class="setting_org_btn" style="display: inline-block;float: none;margin: 0px 0px 0px 120px;color: #fff;border: none; cursor: pointer;" id="ehead">上传</a>
 							</div>
 						</form>
 						</div>
@@ -271,16 +271,16 @@
 						<div class="setting_coneach_conwrap clearfix">
 							<div class="setting_coneach_conleft"><img src="{{asset('web')}}/images/qq.png" height="18" width="15" alt=""></div>
 							<div class="setting_coneach_conright">
-								<a href="javascript:;" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px">重新绑定微信</a>
+								<a href="javascript:;" onclick="layer_error()" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px">重新绑定微信</a>
 							</div>
 						</div>
 						<div class="setting_coneach_conwrap clearfix">
 							<div class="setting_coneach_conleft"><img src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt=""></div>
 							<div class="setting_coneach_conright">
-								<a href="javascript:;" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px"> 绑定QQ</a>
+								<a href="javascript:;" onclick="layer_error()" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px"> 绑定QQ</a>
 							</div>
 						</div>
-						<a href="javascript:;" class="setting_org_btn">保存</a>
+						<!-- <a href="javascript:;" class="setting_org_btn">保存</a> -->
 					</div>
 				</div>
 			</div>
