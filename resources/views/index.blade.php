@@ -38,6 +38,9 @@
       <a href="{{url('webd/find')}}" class="header_item">发现</a>
       <a href="{{url('webd/app')}}" class="header_item">APP</a>
       <div href="javascript:;" class="header_add_btn">
+       
+        +
+        
         <div class="header_add_item">
           @include('web.common.banner.action')
         </div>
@@ -95,7 +98,7 @@
     <div class="nolog_index_container">
       <div class="w1248 clearfix">
         <div class="nolog_index_contit">
-          行家推荐
+          用户推荐
         </div>
         <div class="nolog_index_conexpert clearfix">
          <?php foreach ($user as $key => $value):?>
@@ -106,13 +109,17 @@
             <div class="nolog_index_conrel">
               <p class="nolog_index_conexname">{{!empty(trim($value['nick']))?$value['nick']:$value['username']}}</p>
               <p class="nolog_index_conexfans">{{$value['fans_count']}}粉丝</p>
-               <!--  <p class="nolog_index_conexwork"><商家></p> -->
+              <p class="nolog_index_conexwork"><<?php  if($value['role']==1){
+                echo '设计师';
+                }elseif($value['role']==2){
+                  echo '家居迷';
+                  }elseif($value['role']==3){echo '商家';}?>></p>
             </div>
           </div>
           <?php endforeach; ?>
         </div>
         <div class="nolog_index_contit">
-          为您推荐
+          文件夹推荐
         </div>
         <div class="nolog_index_conreco clearfix">
           <div class="nolog_index_conrecbox">
