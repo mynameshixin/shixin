@@ -161,10 +161,10 @@
         $pa = $('.pop_login2') 
         account = $('input[name=account]',$pa).val().trim()
         password = $('input[name=password]',$pa).val().trim()
-        if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/i.test(account)){
+        /*if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/i.test(account)){
           layer.msg('不是一个有效的手机号', {icon: 5});
           return 
-        }
+        }*/
         $.ajax({
           'beforeSend':function(){
             layer.load(0, {shade: 0.5});

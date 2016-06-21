@@ -99,7 +99,7 @@ class HomeController extends CmController{
 		if(empty($data['account']) || empty($data['password'])){
 			return response()->forApi([],1001,'账号或密码不为空');
 		}
-		$res = DB::table('users')->where(['username'=>$data['account']])->orWhere(['mobile'=>$data['account']])->first();
+		$res = DB::table('users')->where(['username'=>$data['account']])->orWhere(['mobile'=>$data['account']])->orWhere(['email'=>$data['account']])->first();
 		if(empty($res)) return response()->forApi([],'1001','没有该账号');
 		$pwd = $res['password'];
 		if(crypt($data['password'],$pwd) != $pwd){
