@@ -54,7 +54,7 @@ class ImageService extends ApiService
 
         if (is_string($files["tmp_name"])) $files["tmp_name"] = array($files["tmp_name"]);
         if (is_string($files["name"])) $files["name"] = array($files["name"]);
-        dd($files);
+        // dd($files);
         foreach ($files["tmp_name"] as $key => $tmp_name) {
             $entry = [
                 'user_id'=> $userId,
