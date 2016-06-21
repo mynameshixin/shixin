@@ -109,8 +109,8 @@
 					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">家具</p>
-							<li><a href="javascript:;">沙发</a></li>
-							<li><a href="javascript:;">椅子</a></li>
+							<li><a href="/webd/search?keyword=宜家">沙发</a></li>
+							<li><a href="/webd/search?keyword=宜家">椅子</a></li>
 							<li><a href="javascript:;">书柜</a></li>
 							<li><a href="javascript:;">茶几</a></li>
 							<li><a href="javascript:;">床</a></li>
