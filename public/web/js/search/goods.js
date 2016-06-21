@@ -70,13 +70,13 @@ $(function (){
 								+'<div class="index_item_info">'
 									+'<div class="index_item_top">'
 										+'<div class="index_item_intro" title="'+des+'">'+des+'</div>'
-										+'<div class="index_item_rel clearfix">'
-											+'<a href="javascript:;" class="index_item_l">'+v.praise_count+'</a>'
+										+'<div class="index_item_rel clearfix" good_id="'+v.id+'">'
+											+'<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">'+v.praise_count+'</a>'
 											+'<a href="javascript:;" class="index_item_c">'+v.collection_count+'</a>'
 										if(kind==1){
 											str +='<a href="'+v.detail_url+'" class="index_item_b" target="_blank"></a>'
 										}else if(kind==2){
-											str +='<a href="javascript:;" class="index_item_d">'+v.boo_count+'</a>'
+											str +='<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">'+v.boo_count+'</a>'
 										}		
 									str +='</div>'
 									+'</div>'

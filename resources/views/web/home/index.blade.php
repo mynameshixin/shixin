@@ -3,6 +3,7 @@
 @include('web.common.head',['title'=>'堆图家首页'])
 <body>
 	@include('web.common.banner')
+	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 	<div class="container"  style="background: #f0f0f0">
 		<div class="w1248 clearfix" id="main" role="main">
 			<div class="index_con" id="tiles">
@@ -64,8 +65,8 @@
 						<div class="index_item_info">
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{$v['description']}}">{{$v['description']}}</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
+								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
 									<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
 								</div>

@@ -22,7 +22,7 @@
 				<div class="perhome_scroll_info" style="transform: translate(0px, 0px); transition: transform 200ms ease;">
 					<div class="detail_filebtn_wrap clearfix" style="float: left; padding-top: 8px">
 						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
-						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding">喜欢</div>
+						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding <?php if($goods['action']) echo 'detail_pop_tbtnlikeon' ?>">喜欢</div>
 						<div class="detail_pop_tbtn detail_pop_tbtnright">
 								<div class="detail_pop_tbtn_click detail_fileb_pr">
 									分享
@@ -49,7 +49,7 @@
 					<div class="detail_pop_tltop">
 						<div class="detail_pop_tbtnwarp">
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
-							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding">喜欢</div>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding <?php if($goods['action']) echo 'detail_pop_tbtnlikeon' ?>">喜欢</div>
 							
 							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">删除</div> -->
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
@@ -300,7 +300,58 @@
 
 	<script type="text/javascript">
 		$('.detail_pop_tbtnlike').click(function(){
-			$(this).toggleClass('detail_pop_tbtnlikeon')
+			good_id = $('.p_collect').attr('img_id')
+			if(!$(this).hasClass('detail_pop_tbtnlikeon')){
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"/webd/goodaction/create",
+					'type':'post',
+					'data':{
+						'good_id':good_id,
+						'action':1,
+						'user_id':user_id
+					},
+					'dataType':'json',
+					'success':function(json){
+						if(json.code==200){
+							$('.detail_pop_tbtnlike').addClass('detail_pop_tbtnlikeon')
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+			}else{
+				$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"/webd/goodaction/del",
+					'type':'post',
+					'data':{
+						'good_id':good_id,
+						'action':1,
+						'user_id':user_id
+					},
+					'dataType':'json',
+					'success':function(json){
+						if(json.code==200){
+							$('.detail_pop_tbtnlike').removeClass('detail_pop_tbtnlikeon')
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+			}
 		})
 	</script>
 	<!-- 采集时选择文件夹 -->

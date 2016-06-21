@@ -3,6 +3,7 @@
 @include('web.common.head',['title'=>'我的堆图家'])
 <body>
 	@include('web.common.banner')
+	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 	<div class="container nolog_container"  style="background: #f0f0f0">
 		<?php if(empty($self_id)): ?>
 		<div class="w1248 clearfix">
@@ -71,10 +72,10 @@
 						<div class="index_item_info">
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
+								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
-									<a href="javascript:;" class="index_item_d">{{$v['boo_count']}}</a>
+									<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
 								</div>
 							</div>
 							<div class="index_item_bottom clearfix">

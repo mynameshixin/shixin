@@ -67,8 +67,10 @@ $(function (){
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
+					    $(".index_item_rel",$value).attr('good_id',list[index].id)
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
+					    //$(".index_item_rel a",$value).eq(2).html('')
 					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)
 
 					    $('.comment',$value).remove()

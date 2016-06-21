@@ -25,6 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
+      //$handler.find('.index_item_imgwrap img').css('visibility','visible')
     });
   }
   /**
@@ -63,6 +64,7 @@ $(function (){
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
+					    $(".index_item_rel",$value).attr('good_id',list[index].id)
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)

@@ -5,7 +5,8 @@
 	@include('web.common.banner')
 	<div class="container">
 		@include('web.common.user')
-		
+		<script type="text/javascript">user_id="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"</script>
+		<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 		<div class="w1248 w1240 clearfix" id="main" role="main">
 			<div class="index_con  perhome_wrap" id="tiles">
 				<?php foreach ($user_like as $key => $v):?>
@@ -21,13 +22,13 @@
 						<div class="index_item_info">
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
+								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
 									<?php if($v['kind'] == 1): ?>
 										<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank"></a>
 									<?php elseif($v['kind'] == 2):?>
-										<a href="javascript:;" class="index_item_d">{{$v['boo_count']}}</a>
+										<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
 									<?php endif; ?>
 								</div>
 							</div>

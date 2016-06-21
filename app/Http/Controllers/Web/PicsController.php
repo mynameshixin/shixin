@@ -81,7 +81,11 @@ class PicsController extends CmController{
 		$private = DB::table('folders')->where('id',$folder['folder_id'])->select('private','user_id')->first();
 		$cg = DB::table('collection_good')->where(['user_id'=>$self_id,'good_id'=>$id])->first();
 		if($private['private']==1 && $self_id!=$private['user_id'] && !$cg) die('such pic is in a private folder!');
+
+
 		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
+		$action = DB::table('good_action')->where(['good_id'=>$id,'kind'=>1,'user_id'=>$self_id])->first();
+		$goods['action'] = !empty($action)?1:0;
 		// dd($goods);
 		$data = [
 			'user_id'=>$goods['user_id'],

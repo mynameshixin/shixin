@@ -65,6 +65,7 @@ $(function (){
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
+					    $(".index_item_rel",$value).attr('good_id',list[index].id)
 					    $(".index_item_l",$value).html(list[index].praise_count)
 					    $(".index_item_c",$value).html(list[index].collection_count)
 					    $(".index_item_b",$value).attr('href',list[index].detail_url)
