@@ -138,7 +138,7 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .nolog_app_wrap{float: left;}
 .nolog_app_code{margin:26px 0px 0px 88px;}
 .nolog_app_wrap{margin-right: 45px;}
-.nolog_app_wrap p{font:bold 16px/22px "Microsoft YaHei";color: #fff;margin-top: 14px;}
+.nolog_app_wrap p{font:normal 16px/22px "Microsoft YaHei";color: #828282;margin-top: 14px;}
 .nolog_app_qqwc{margin:21px 0px 0px 90px;}
 
 
