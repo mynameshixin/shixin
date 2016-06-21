@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('web.common.head',['title'=>'堆图家--发现'])
-<body onload="layer_error('该页面正在建设中')">
+<body>
 	@include('web.common.banner')
 	<div class="container">
 		<div class="w1248 clearfix">
@@ -9,28 +9,28 @@
 			<div class="find_cater_wrap">
 				<div class="clearfix">
 					<ul class="find_cat_list">
-						<li class="find_rec_special">
+						<li class="find_rec_special" onclick="layer_error('正在建设中')">
 							<img src="{{asset('web')}}/images/cat/four_rec/01.jpg" alt="">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">梦幻家</p>
 								<p class="find_rec_wrapdes">“用VR展示住宅空间”</p>
 							</div>
 						</li>
-						<li class="find_rec_special">
+						<li class="find_rec_special" onclick="layer_error('正在建设中')">
 							<img src="{{asset('web')}}/images/cat/four_rec/02.jpg" alt="">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">改造家</p>
 								<p class="find_rec_wrapdes">“二手房与家居改造”</p>
 							</div>
 						</li>
-						<li class="find_rec_special">
+						<li class="find_rec_special" onclick="layer_error('正在建设中')">
 							<img src="{{asset('web')}}/images/cat/four_rec/03.jpg" alt="">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">家居前线</p>
 								<p class="find_rec_wrapdes">“会展信息与公众微信推荐”</p>
 							</div>
 						</li>
-						<li class="find_rec_special mrightzero">
+						<li class="find_rec_special mrightzero" onclick="layer_error('正在建设中')">
 							<img src="{{asset('web')}}/images/cat/four_rec/04.jpg" alt="">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">二手商品</p>
@@ -47,55 +47,55 @@
 					<ul class="find_cat_list">
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/1.jpg" alt="">
-							<a href="javascript:;" target="_blank">餐具</a>
+							<a href="/webd/search?keyword=餐具" target="_blank">餐具</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/2.jpg" alt="">
-							<a href="javascript:;" target="_blank">新古典</a>
+							<a href="/webd/search?keyword=新古典" target="_blank">新古典</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/3.jpg" alt="">
-							<a href="javascript:;" target="_blank">钟</a>
+							<a href="/webd/search?keyword=钟" target="_blank">钟</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/4.jpg" alt="">
-							<a href="javascript:;" target="_blank">床品</a>
+							<a href="/webd/search?keyword=床品" target="_blank">床品</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/5.jpg" alt="">
-							<a href="javascript:;" target="_blank">摆件</a>
+							<a href="/webd/search?keyword=摆件" target="_blank">摆件</a>
 						</li>
 						<li class="find_cat_listli" style="margin-right: 14px;">
 							<img src="{{asset('web')}}/images/cat/6.jpg" alt="">
-							<a href="javascript:;" target="_blank">厨房</a>
+							<a href="/webd/search?keyword=厨房" target="_blank">厨房</a>
 						</li>
 						<li class="find_cat_listli mrightzero">
 							<img src="{{asset('web')}}/images/cat/7.jpg" alt="">
-							<a href="javascript:;" target="_blank">多肉</a>
+							<a href="/webd/search?keyword=多肉" target="_blank">多肉</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/8.jpg" alt="">
-							<a href="javascript:;" target="_blank">儿童房</a>
+							<a href="/webd/search?keyword=儿童房" target="_blank">儿童房</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/9.jpg" alt="">
-							<a href="javascript:;" target="_blank">抱枕</a>
+							<a href="/webd/search?keyword=抱枕" target="_blank">抱枕</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/10.jpg" alt="">
-							<a href="javascript:;" target="_blank">书房</a>
+							<a href="/webd/search?keyword=书房" target="_blank">书房</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/11.jpg" alt="">
-							<a href="javascript:;" target="_blank">客厅</a>
+							<a href="/webd/search?keyword=客厅" target="_blank">客厅</a>
 						</li>
 						<li class="find_cat_listli">
 							<img src="{{asset('web')}}/images/cat/12.jpg" alt="">
-							<a href="javascript:;" target="_blank">挂件</a>
+							<a href="/webd/search?keyword=挂件" target="_blank">挂件</a>
 						</li>
 						<li class="find_cat_listli" style="margin-right: 14px;">
 							<img src="{{asset('web')}}/images/cat/13.jpg" alt="">
-							<a href="javascript:;" target="_blank">宜家</a>
+							<a href="/webd/search?keyword=宜家" target="_blank">宜家</a>
 						</li>
 						<li class="find_cat_listli clickcon mrightzero">
 							<div class="clickconimg"></div>
