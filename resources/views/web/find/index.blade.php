@@ -138,8 +138,8 @@
 							<li><a href="/webd/search?keyword=宜家" target="_blank">摆件</a></li>
 							<li><a href="/webd/search?keyword=宜家" target="_blank">镜子</a></li>
 							<li><a href="/webd/search?keyword=宜家" target="_blank">钟</a></li>
-							<li><a href="javascript:;">装置画</a></li>
-							<li><a href="javascript:;">香薰</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">装置画</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">香薰</a></li>
 							<li><a href="javascript:;">挂钩</a></li>
 							<li><a href="javascript:;">收纳</a></li>
 							<li><a href="javascript:;">相框</a></li>

@@ -41,7 +41,7 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
     float: left;
     margin-right: 13px;
     text-shadow: 1px 1px 1px #f1bbb4;
-    background: url(../images/dtj_icon.png) -4px -706px no-repeat;
+    background: url(../images/dtj_icon.png) -4px -710px no-repeat;
     width: 74px;}
 .header_item{height: 48px;font:normal 16px/48px "Microsoft YaHei";color: #333;display: inline-block;padding:0px 15px;float: left;/*text-shadow:1px 1px 1px #cecece;*/}
 .header_item_on{color: #c90000;}
