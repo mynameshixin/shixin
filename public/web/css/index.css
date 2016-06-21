@@ -22,7 +22,7 @@
 .index_item_imgwrap img{width: 100%;border-radius: 6px 6px 0px 0px;}
 .index_item_price{position: absolute;width: 84px;height: 38px;background: #fff;opacity: 0.75;bottom: 0px;right: 0px;text-align: center;font:normal 14px/38px "Microsoft YaHei";color: #4a4a4a;}
 
-.index_item_intro{font:normal 13px/22px "Microsoft YaHei";color: #b27e67;margin:0px 12px 0px 12px;max-height: 44px;overflow: hidden; margin-top: 5px;}
+.index_item_intro{font:normal 12px/22px "Microsoft YaHei";/* color: #b27e67; */color:#000;margin:0px 12px 0px 12px;max-height: 44px;overflow: hidden; margin-top: 5px;}
 .index_item_rel{margin:18px 12px;margin-bottom: 3px}
 .index_item_rel a{font:normal 15px/13px "Microsoft YaHei";color: #7d7d7d;display: inline-block;float: left; }
 .index_item_l{background: url(../images/dtj_icon.png) -9px -215px no-repeat;padding-left: 24px;width: 68px;}
@@ -88,7 +88,7 @@
 .find_fold_imgblur{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;}
 .find_fold_imgblur:hover{background: #fff;opacity: 0.1;}
 .find_fold_lock{position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;background: url(../images/lock.png) 94px 52px no-repeat;}
-.find_fold_imgwrap img{border-radius: 4px; overflow: hidden;}
+.find_fold_imgwrap img{border-radius: 4px; overflow: hidden;width: 100%;height: 100%;}
 .find_fold_catname{position: absolute;font:normal 26px/26px "Microsoft YaHei";color: #fff;top: 15px;left: 10px;z-index: 1;}
 .find_fold_catflw{padding:0px 10px;font:bold 10px/26px "Microsoft YaHei";color: #fff;position: absolute;bottom: 0px;left: 1px;z-index: 2;background: rgba(0,0,0,.5);}
 

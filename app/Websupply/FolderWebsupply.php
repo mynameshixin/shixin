@@ -9,7 +9,7 @@ use App\Websupply\UserWebsupply;
 class FolderWebsupply extends CmWebsupply {
 
 	//获取最新推荐的文件夹(所有人) 
-	public static function get_recommend($num=3,$gnum = 0,$condition = [],$user = []){
+	public static function get_recommend($num=3,$gnum = 0,$condition = [],$user = [],$goods=[]){
 		 $folders = DB::table('folders')->where([
 				'folders.private'=>0
 				])->whereIn('folders.id',['213','380','120','233','505','300'])->orderBy('folders.created_at','desc');
@@ -33,8 +33,29 @@ class FolderWebsupply extends CmWebsupply {
 		 	}
 		 	//获取该文件夹的用户
 		 	if(!empty($user)){
-		 		$folders[$key]['user'] = $user = DB::table('users')->where('id',$value['user_id'])->select('id','username','nick')->first();
+		 		$user = DB::table('users')->where('id',$value['user_id'])->select('id','username','nick')->first();
+		 		$user['image'] = LibUtil::getUserAvatar($user['id'],2);
+		 		$folders[$key]['user'] = $user;
 		 		$folders[$key]['count'] = UserWebsupply::get_count(['fans_count','folder_count'],$user['id']);
+		 	}
+		 	if(!empty($goods)){
+		 		$folder_goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.folder_id'=>$id,'fg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take(3)->get();
+		 		foreach($folder_goods as $k=>$v){
+		 			if (!empty($v['image_ids'])) {
+	                    $image_ids = explode(',', $v['image_ids']);
+	                    foreach ($image_ids as $imageId) {
+	                        $image_o = LibUtil::getPicUrl($imageId, 3);
+	                        if (!empty($image_o)) {
+	                            $folder_goods[$k]['images'][] = [
+	                                'image_id'=>$imageId,
+	                                'img_m' => LibUtil::getPicUrl($imageId, 1),
+	                                'img_o' => $image_o
+	                            ];
+	                        }
+	                   	 }
+	                }
+		 		}
+		 		$folders[$key]['goods'] = $folder_goods;
 		 	}
 		 	$folders[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
 		 }
@@ -181,7 +202,7 @@ class FolderWebsupply extends CmWebsupply {
 	}
 
 	//通过文件夹id获取粉丝人
-	public static function get_folder_fans($folder_id,$self_id,$data){
+	public static function get_folder_fans($folder_id,$self_id=0,$data){
 		$page = isset($data['page'])?$data['page']:1;
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;

@@ -429,161 +429,39 @@
 			<p class="find_title">精品文件夹</p>
 			<div class="clearfix">
 				<ul class="find_fold_list clearfix">
-					<li class="find_fold_li">
+				<?php foreach ($recommend as $k => $v){ ?>
+					<li class="find_fold_li <?php if($k==4) echo 'mrightzero'; ?>">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
+								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank"><img src="{{$v['user']['image']}}" alt=""></a>
 							</div>
 							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
+								<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="find_fold_name">{{$v['name']}}</a>
+								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme">{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}</a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<img src="{{asset('web')}}/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
+							<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="position"><img src="{{$v['img_url']}}" alt="" onload="rect(this)"></a>
+							<div class="find_fold_catflw">{{$v['count']['folder_count']}}文件&nbsp;&nbsp;{{$v['count']['fans_count']}}关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
+								<img src="{{$v['goods'][0]['images'][0]['img_m']}}" alt="">
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
+								<img src="{{$v['goods'][1]['images'][0]['img_m']}}" alt="">
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
+								<img src="{{$v['goods'][2]['images'][0]['img_m']}}" alt="">
 							</div>
 						</div>
 						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
 					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="{{asset('web')}}/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
-					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="{{asset('web')}}/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
-					</li>
-					<li class="find_fold_li">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="{{asset('web')}}/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
-					</li>
-					<li class="find_fold_li mrightzero">
-						<div class="find_fold_info clearfix">
-							<div class="find_fold_authava">
-								<a href="#" target="_blank"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
-							</div>
-							<div class="find_fold_tname">
-								<a href="#" target="_blank" class="find_fold_name">客厅空间</a>
-								<a href="#" target="_blank" class="find_fold_authnme">ewqhrwiuerhiwuer</a>
-							</div>
-						</div>
-						<div class="find_fold_imgwrap">
-							<div class="find_fold_imgblur"></div>
-							<img src="{{asset('web')}}/images/cat/b.png" alt="">
-							<div class="find_fold_catflw">10文件&nbsp;&nbsp;10关注</div>
-						</div>
-						<div class="find_fold_limg clearfix">
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-							<div class="find_fold_liwrap">
-								<div class="find_fold_liblur"></div>
-								<img src="{{asset('web')}}/images/cat/l.png" alt="">
-							</div>
-						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
-					</li>
+				<?php } ?>
 				</ul>
 			</div>
 			<p class="find_title">人气商品</p>

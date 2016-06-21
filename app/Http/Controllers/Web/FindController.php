@@ -18,9 +18,12 @@ class FindController extends CmController{
 		$cate_all = CateWebsupply::getTree(6);
 		// dd($cate_all);
 
-		$recommend = FolderWebsupply::get_recommend(5,3);
+		// 堆图达人
+		
+		//精品文件夹
+		$recommend = FolderWebsupply::get_recommend(5,0,['group'=>'user_id'],1,1);
+		// dd($recommend);
 		foreach ($recommend as $key => $value) {
-			$recommend[$key]['user'] = UserWebsupply::user_info($value['user_id']);
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 			$recommend[$key]['is_collection'] = $collection_folder;
 		}
