@@ -42,7 +42,7 @@
 .index_item_utop{padding:10px 12px;border-bottom: 1px solid #e3e3e3;background: #fafafa;}
 .index_item_uava{width: 60px;height: 60px;border-radius: 50%;float: left;}
 .index_item_uava img{width: 60px;height: 60px;border-radius: 50%;}
-.index_item_uname{float: left;margin-left: 12px;font:normal 18px/60px "Microsoft YaHei";color: #1a1a1a;}
+.index_item_uname{float: left;margin-left: 12px;font:normal 20px/60px "Microsoft YaHei";color: #1a1a1a;}
 .index_item_uname a{color: #1a1a1a;}
 .index_item_umdl{border-bottom: 1px solid #e3e3e3;}
 .index_item_umcon{width: 78px;border-right: 1px solid #e3e3e3;height: 44px;float: left;text-align: center;padding:7px 0px;}
