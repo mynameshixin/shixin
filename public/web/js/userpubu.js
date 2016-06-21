@@ -70,8 +70,12 @@ $(function (){
 					    $(".index_item_rel",$value).attr('good_id',list[index].id)
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
-					    //$(".index_item_rel a",$value).eq(2).html('')
-					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)
+
+					    if(list[index].kind=='1') {
+					    	$(".index_item_rel a",$value).eq(2).html('').attr('href',list[index].detail_url).attr('class','index_item_b')
+					    }else{
+					    	$(".index_item_rel a",$value).eq(2).html(list[index].boo_count).attr('class','index_item_d')
+					    }
 
 					    $('.comment',$value).remove()
 					    if(list[index].comment != 0){
