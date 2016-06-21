@@ -109,35 +109,35 @@
 					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">家具</p>
-							<li><a href="/webd/search?keyword=宜家">沙发</a></li>
-							<li><a href="/webd/search?keyword=宜家">椅子</a></li>
-							<li><a href="javascript:;">书柜</a></li>
-							<li><a href="javascript:;">茶几</a></li>
-							<li><a href="javascript:;">床</a></li>
-							<li><a href="javascript:;">餐桌</a></li>
-							<li><a href="javascript:;">衣柜</a></li>
-							<li><a href="javascript:;">电视柜</a></li>
-							<li><a href="javascript:;">鞋柜</a></li>
-							<li><a href="javascript:;">户外家具</a></li>
-							<li><a href="javascript:;">儿童家具</a></li>
-							<li><a href="javascript:;">收纳箱</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">沙发</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">椅子</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">书柜</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">茶几</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">床</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">餐桌</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">衣柜</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">电视柜</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">鞋柜</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">户外家具</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">儿童家具</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">收纳箱</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">灯饰</p>
-							<li><a href="javascript:;">台灯</a></li>
-							<li><a href="javascript:;">吊灯</a></li>
-							<li><a href="javascript:;">壁灯</a></li>
-							<li><a href="javascript:;">户外灯</a></li>
-							<li><a href="javascript:;">镜前灯</a></li>
-							<li><a href="javascript:;">吸顶灯</a></li>
-							<li><a href="javascript:;">创意灯</a></li>
-							<li><a href="javascript:;">落地灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">台灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">吊灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">壁灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">户外灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">镜前灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">吸顶灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">创意灯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">落地灯</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">装饰摆设</p>
-							<li><a href="javascript:;">摆件</a></li>
-							<li><a href="javascript:;">镜子</a></li>
-							<li><a href="javascript:;">钟</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">摆件</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">镜子</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">钟</a></li>
 							<li><a href="javascript:;">装置画</a></li>
 							<li><a href="javascript:;">香薰</a></li>
 							<li><a href="javascript:;">挂钩</a></li>
