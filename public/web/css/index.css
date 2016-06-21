@@ -198,7 +198,7 @@
 .find_user_limg{float: left;width: 110px;}
 .find_user_limg li{width: 50px;height: 50px;position: relative;margin:0px 5px 5px 0px;float: left;border-radius: 3px;}
 .find_user_limg li img{width: 100%;height: 100%;border-radius: 3px;}
-.find_user_authflw{width: 212px;height: 29px;display: block;text-align: center;font:normal 14px/29px "Microsoft YaHei";color: #000;background: #eee;border:1px solid #d5d5d5;border-radius: 3px;margin:6px 0px 10px 10px;float: left;}
+.find_user_authflw{width: 212px;height: 29px;display: block;text-align: center;font:normal 14px/29px "Microsoft YaHei";color: #000;background: #eee;border:1px solid #d5d5d5;border-radius: 3px;margin:6px 0px 10px 10px;float: left; cursor: pointer;}
 .find_user_authflw span{color: #fd0000;font-weight: bold;}
 
 

@@ -3,6 +3,13 @@
 @include('web.common.head',['title'=>'堆图家--发现'])
 <body>
 	@include('web.common.banner')
+	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
+	<script type="text/javascript">
+	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
+	self_id = "{{$self_id}}"
+	relationUrl = "{{url('webd/user/relation')}}"
+	</script>
+	<script src="{{url('web/js/user/relation.js')}}"></script>
 	<div class="container">
 		<div class="w1248 clearfix">
 			<p class="find_title">特别推荐</p>
@@ -269,168 +276,62 @@
 			<p class="find_title">堆图达人</p>
 			<div class="clearfix">
 				<ul class="find_fold_list clearfix">
-						<li class="find_user_li">
-							<div class="find_user_info">
-								<a href="javascript:;" class="find_user_name">小明</a>
-								<a href="javascript:;" class="find_user_rela">12粉丝 10关注</a>
+				<?php foreach($user as $k=>$v): ?>
+					<li class="find_user_li <?php if($k==4) echo 'mrightzero'?>" user_id="{{$v['id']}}">
+						<div class="find_user_info">
+							<a href="/webd/user?oid={{$v['id']}}" target="_blank" class="find_user_name">{{!empty($v['nick'])?$v['nick']:$v['username']}}</a>
+							<a  class="find_user_rela">{{$v['fans_count']}}粉丝 {{$v['follow_count']}}关注</a>
+						</div>
+						<div class="find_user_con clearfix">
+							<div class="find_user_img">
+								<div class="find_user_blur"></div>
+								<a href="/webd/user?oid={{$v['id']}}" class="position" target="_blank"><img src="{{!empty($v['auth_avatar'])?$v['auth_avatar']:$v['pic_m']}}" alt=""></a>
 							</div>
-							<div class="find_user_con clearfix">
-								<div class="find_user_img">
+							<ul class="find_user_limg">
+								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<ul class="find_user_limg">
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-								</ul>
-								<a href="javascript:;" class="find_user_authflw"><span>+</span>关注</a>
-							</div>
-						</li>
-						<li class="find_user_li">
-							<div class="find_user_info">
-								<a href="javascript:;" class="find_user_name">小明</a>
-								<a href="javascript:;" class="find_user_rela">12粉丝 10关注</a>
-							</div>
-							<div class="find_user_con clearfix">
-								<div class="find_user_img">
+									<a href="/webd/folder?fid={{$v['folders'][0]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][0]['img_url']}}" alt=""></a>
+								</li>
+								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<ul class="find_user_limg">
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-								</ul>
-								<a href="javascript:;" class="find_user_authflw"><span>+</span>关注</a>
-							</div>
-						</li>
-						<li class="find_user_li">
-							<div class="find_user_info">
-								<a href="javascript:;" class="find_user_name">小明</a>
-								<a href="javascript:;" class="find_user_rela">12粉丝 10关注</a>
-							</div>
-							<div class="find_user_con clearfix">
-								<div class="find_user_img">
+									<a href="/webd/folder?fid={{$v['folders'][1]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][1]['img_url']}}" alt=""></a>
+								</li>
+								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<ul class="find_user_limg">
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-								</ul>
-								<a href="javascript:;" class="find_user_authflw"><span>+</span>关注</a>
-							</div>
-						</li>
-						<li class="find_user_li">
-							<div class="find_user_info">
-								<a href="javascript:;" class="find_user_name">小明</a>
-								<a href="javascript:;" class="find_user_rela">12粉丝 10关注</a>
-							</div>
-							<div class="find_user_con clearfix">
-								<div class="find_user_img">
+									<a href="/webd/folder?fid={{$v['folders'][2]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][2]['img_url']}}" alt=""></a>
+								</li>
+								<li>
 									<div class="find_user_blur"></div>
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<ul class="find_user_limg">
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-								</ul>
-								<a href="javascript:;" class="find_user_authflw">已关注</a>
-							</div>
-						</li>
-						<li class="find_user_li mrightzero">
-							<div class="find_user_info">
-								<a href="javascript:;" class="find_user_name">小明</a>
-								<a href="javascript:;" class="find_user_rela">12粉丝 10关注</a>
-							</div>
-							<div class="find_user_con clearfix">
-								<div class="find_user_img">
-									<div class="find_user_blur"></div>
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<ul class="find_user_limg">
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-									<li>
-										<div class="find_user_blur"></div>
-										<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-									</li>
-								</ul>
-								<a href="javascript:;" class="find_user_authflw">已关注</a>
-							</div>
-						</li>
-					</ul>
+									<a href="/webd/folder?fid={{$v['folders'][3]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][3]['img_url']}}" alt=""></a>
+								</li>
+							</ul>
+							<a href="javascript:;" class="find_user_authflw" onclick="relation(this)" <?php if($self_id==$v['id']): ?>style="display: none"<?php endif; ?>>
+								<?php 
+								switch ($v['relation']) {
+									case '1':
+										echo '相互关注';
+										break;
+									case '2':
+										echo '已关注';
+										break;
+									case '4':
+										echo '<span>+</span>关注';
+										break;
+									default:
+										echo '<span>+</span>关注';
+										break;
+								} ?>
+							</a>
+						</div>
+					</li>
+				<?php endforeach; ?>
+				</ul>
 			</div>
 			<p class="find_title">精品文件夹</p>
 			<div class="clearfix">
 				<ul class="find_fold_list clearfix">
 				<?php foreach ($recommend as $k => $v){ ?>
-					<li class="find_fold_li <?php if($k==4) echo 'mrightzero'; ?>">
+					<li class="find_fold_li <?php if($k==4) echo 'mrightzero'; ?>" folder_id="{{$v['id']}}">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
 								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank"><img src="{{$v['user']['image']}}" alt=""></a>
@@ -448,311 +349,86 @@
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{$v['goods'][0]['images'][0]['img_m']}}" alt="">
+								<a href="/webd/pic/{{$v['goods'][0]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][0]['images'][0]['img_m']}}" alt=""></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{$v['goods'][1]['images'][0]['img_m']}}" alt="">
+								<a href="/webd/pic/{{$v['goods'][1]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][1]['images'][0]['img_m']}}" alt=""></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<img src="{{$v['goods'][2]['images'][0]['img_m']}}" alt="">
+								<a href="/webd/pic/{{$v['goods'][2]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][2]['images'][0]['img_m']}}" alt=""></a>
 							</div>
 						</div>
-						<a href="javascript:;" class="find_fold_authflw"><span>+&nbsp;</span>关注</a>
+						<a href="javascript:;" class="find_fold_authflw" onclick="relation(this)" <?php if($v['user_id'] == $self_id) echo "style='display:none'" ?>>
+						<?php 
+						if($v['user_id'] != $self_id){
+							echo $v['is_collection']?"已关注":"<span>+</span>特别关注";
+						}
+						?>
+						</a>
 					</li>
 				<?php } ?>
 				</ul>
 			</div>
 			<p class="find_title">人气商品</p>
-			<div class="index_con">
+		<div  id="main" role='main' style="position: relative;">
+			<div class="index_con" id='tiles'>
+			<?php foreach ($goods as $k => $v): ?>
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/2.png">
-							<div class="index_item_price">￥980</div>
+							<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}" target="_blank"></a>
+							<img src="{{$v['image_url'] or url('uploads/sundry/blogo.jpg')}}">
+							<div class="index_item_price">￥{{$v['price']}}</div>
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
+								<div class="index_item_intro" title="{{$v['description']}}">{{$v['description']}}</div>
+								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
+									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
+									<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank"></a>
 								</div>
 							</div>
 							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
+								<a href="/webd/user?oid={{$v['cuser']['id']}}" class="index_item_authava" target="_blank">
+									<img src="{{!empty($v['cuser']['auth_avatar'])?$v['cuser']['auth_avatar']:$v['cuser']['pic_m']}}" alt="">
 								</a>
 								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
+									<a href="/webd/user?oid={{$v['cuser']['id']}}" target="_blank" class="index_item_authname">{{!empty($v['cuser']['nick'])?$v['cuser']['nick']:$v['cuser']['username']}}</a>
 									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
+									<p class="index_item_authtopart"><a href="/webd/folder?fid={{$v['cfolder']['id']}}" target="_blank">{{$v['cfolder']['name']}}</a></p>
 								</div>
 							</div>
+							<?php if(!empty($v['comment'])){ ?>
+							<div class="index_item_bottom clearfix">
+								<a href="/webd/user?oid={{$v['comment'][$v['id']]['user']['id']}}" class="index_item_authava" target="_blank">
+									<img src="{{!empty($v['comment'][$v['id']]['user']['auth_avatar'])?$v['comment'][$v['id']]['user']['auth_avatar']:$v['comment'][$v['id']]['user']['pic_m']}}" alt="">
+								</a>
+								<div class="index_item_authinfo index_item_authtalk">
+									<a href="" class="index_item_talkname" target="_blank">{{!empty($v['comment'][$v['id']]['user']['nick'])?$v['comment'][$v['id']]['user']['nick']:$v['comment'][$v['id']]['user']['username']}}：</a>
+									<span class="index_item_authto">{{$v['comment'][$v['id']]['content']}}</span>
+								</div>
+							</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/3.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/4.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/5.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/6.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/7.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/8.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/9.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
-			    <div class="index_item">
-			    	<div class="index_item_wrap">
-						<div class="index_item_imgwrap">
-							<a class="index_item_blurwrap"></a>
-							<img src="{{asset('web')}}/images/temp/10.png">
-							<div class="index_item_price">￥980</div>
-						</div>
-						<div class="index_item_info">
-							<div class="index_item_top">
-								<div class="index_item_intro" title="简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新">简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新简洁实用的衣柜，方便区分，不用每天掏柜子了，打开小小清新</div>
-								<div class="index_item_rel clearfix">
-									<a href="javascript:;" class="index_item_l">82</a>
-									<a href="javascript:;" class="index_item_c">90</a>
-									<a href="javascript:;" class="index_item_b"></a>
-								</div>
-							</div>
-							<div class="index_item_bottom clearfix">
-								<a href="javascript:;" class="index_item_authava" target="_blank">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</a>
-								<div class="index_item_authinfo">
-									<a href="javascript:;" class="index_item_authname">叶子</a>
-									<span class="index_item_authto">采集到</span>
-									<p class="index_item_authtopart">搭配</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			    </div>
+			<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
-	
+	</div>
+	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 </body>
 <script type="text/javascript">
-	postUrl = "{{url('webd/home/goods')}}"
-	postData = {'num':10}
+	postUrl = "{{url('webd/find/goods')}}"
+	postData = {'num':15}
 </script>
-
+<script src="{{url('web/js/find.js')}}"></script>
 <script type="text/javascript">
 		$(function() {
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-	            var text = $('.index_item_intro');
-	              str = text.html(),
-	              textLeng = 27;
-	              if(str.length > textLeng ){
-	                    text.html( str.substring(0,textLeng )+"...");
-	              }
-		     });
 		    
 		    // .find_cater_wrap
 		    $('.clickcon').click(function(){

@@ -5,7 +5,7 @@
 <a href="javascript:;" class="nolog_land_btn">登录</a>
 </div>
 <?php }else{ ?>
-<div href="javascript:;" class="header_rel" style="float: right;">
+<div href="javascript:;" class="header_rel" style="float: right; border-right: none">
 				<a href="#"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>
 				<var class="header_tril"></var>
 				<div class="header_moreinfo">

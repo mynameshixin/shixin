@@ -42,13 +42,11 @@ $(function (){
 		  		$('#load').show()
 		  		$('#load').css({'display':'block'})
 		  	},
-		  	'url':'/webd/search/goods',
+		  	'url':postUrl,
 		  	'type':'POST',
 		  	'dataType':'json',
 		  	'data':{
-		  		'keyword':keyword,
 				'page':++$page,
-				'kind':kinds
 		  	},
 		  	'success':function(json){
 
@@ -73,11 +71,8 @@ $(function (){
 										+'<div class="index_item_rel clearfix" good_id="'+v.id+'">'
 											+'<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">'+v.praise_count+'</a>'
 											+'<a href="javascript:;" class="index_item_c">'+v.collection_count+'</a>'
-										if(kind==1){
 											str +='<a href="'+v.detail_url+'" class="index_item_b" target="_blank"></a>'
-										}else if(kind==2){
-											str +='<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">'+v.boo_count+'</a>'
-										}		
+										
 									str +='</div>'
 									+'</div>'
 
@@ -115,7 +110,7 @@ $(function (){
 						+'</div>'
 						 
 					})
-					$('.find_cater').find('.index_con').append(str)
+					$('.index_con').append(str)
 
 		  			$('#load').hide()
 		  			applyLayout();

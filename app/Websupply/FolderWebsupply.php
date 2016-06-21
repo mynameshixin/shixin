@@ -66,7 +66,7 @@ class FolderWebsupply extends CmWebsupply {
 	public static function get_user_folder($user_id,$fnum = 4,$gnum = 0){
 
 		$folders = DB::table('folders')->where([
-				'user_id'=>$user_id
+				'user_id'=>$user_id,'private'=>0
 				])->orderBy('folders.updated_at','desc')->take($fnum)->get();
 
 		for ($i=0; $i < $fnum; $i++) { 
