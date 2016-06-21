@@ -54,6 +54,7 @@ class ImageService extends ApiService
 
         if (is_string($files["tmp_name"])) $files["tmp_name"] = array($files["tmp_name"]);
         if (is_string($files["name"])) $files["name"] = array($files["name"]);
+        dd($files);
         foreach ($files["tmp_name"] as $key => $tmp_name) {
             $entry = [
                 'user_id'=> $userId,
@@ -62,10 +63,12 @@ class ImageService extends ApiService
             ];
             $imageId = Images::insertGetId($entry);
             $destinationPath = $image_dir . LibUtil::getFacePath($imageId);
+
             LibUtil::make_dir($destinationPath);
             $fileName = $imageId . '_o.jpg'; // renameing image
+            // dd($destinationPath);
             $ext = $this->extend($tmp_name);
-
+            
             if($ext=="2")
             {
                 move_uploaded_file($tmp_name, $destinationPath . $fileName);
