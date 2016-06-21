@@ -64,7 +64,7 @@ class ImageService extends ApiService
             $destinationPath = $image_dir . LibUtil::getFacePath($imageId);
             LibUtil::make_dir($destinationPath);
             $fileName = $imageId . '_o.jpg'; // renameing image
-            $ext = self::extend($tmp_name);
+            $ext = $this->extend($tmp_name);
 
             if($ext=="2")
             {
@@ -85,7 +85,7 @@ class ImageService extends ApiService
             if ( file_exists($destinationPath . $imageId . '_o.jpg')) {
                 $rules = !empty($rules) ? $rules : $this->rules;
                 try{
-                    self::creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId,$rules);
+                    $this->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId,$rules);
                 }catch (\Exception $e){
                     //Log::info($e);
                 }
