@@ -192,11 +192,13 @@ class FolderController extends CmController{
             'kind' => 'required|in:1,2',
             'fid' => 'required|exists:folders,id',
             'category_id' => 'exists:categories,id',
-            'image' => 'required',
+            // 'image' => 'required',
             'source' => 'in:0,1',
         );
         //请求参数验证
         parent::validator($data, $rules);
+        if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
+        // dd($data);
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
