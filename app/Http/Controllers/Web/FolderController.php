@@ -197,8 +197,8 @@ class FolderController extends CmController{
         );
         //请求参数验证
         parent::validator($data, $rules);
+        dd($_FILES);
         if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
-        
         // dd($data);
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();

@@ -232,7 +232,7 @@
 	</div>
 	<!-- 本地上传采集弹框 -->
 	<div class="pop_uploadfile" style="display: none;">
-		<form action="" method="post" enctype="multipart/form-data" name='ua'>
+		<form action="/webd/folder/uimg" method="post" enctype="multipart/form-data" name='ua'>
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传图片
@@ -278,6 +278,7 @@
 		})
 		$('#ua').click(function(){
 			$('form[name=ua]').submit()
+			return
 		})
 	</script>
 	<!-- 移动至弹框 -->

@@ -6,6 +6,15 @@
   <meta property="qc:admins" content="24531766656451452116375" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>堆图家</title>
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d395e3863da8722a0eba22f2bc629b6a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
   <script type="text/javascript">
     user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
   </script>
