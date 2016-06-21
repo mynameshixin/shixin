@@ -140,69 +140,69 @@
 							<li><a href="/webd/search?keyword=宜家" target="_blank">钟</a></li>
 							<li><a href="/webd/search?keyword=宜家" target="_blank">装置画</a></li>
 							<li><a href="/webd/search?keyword=宜家" target="_blank">香薰</a></li>
-							<li><a href="javascript:;">挂钩</a></li>
-							<li><a href="javascript:;">收纳</a></li>
-							<li><a href="javascript:;">相框</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">挂钩</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">收纳</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">相框</a></li>
 						</ul>
 						<ul class="find_cater_aeach mrightzero">
 							<p class="find_cater_label">家纺家饰</p>
-							<li><a href="javascript:;">床品</a></li>
-							<li><a href="javascript:;">抱枕</a></li>
-							<li><a href="javascript:;">布料</a></li>
-							<li><a href="javascript:;">窗帘</a></li>
-							<li><a href="javascript:;">坐垫</a></li>
-							<li><a href="javascript:;">桌布</a></li>
-							<li><a href="javascript:;">枕头</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">床品</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">抱枕</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">布料</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">窗帘</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">坐垫</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">桌布</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">枕头</a></li>
 						</ul>
 					</div>
 					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">地毯</p>
-							<li><a href="javascript:;">现代</a></li>
-							<li><a href="javascript:;">古典</a></li>
-							<li><a href="javascript:;">手工</a></li>
-							<li><a href="javascript:;">儿童</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">现代</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">古典</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">手工</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">儿童</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">花艺植物</p>
-							<li><a href="javascript:;">多肉植物</a></li>
-							<li><a href="javascript:;">花瓶</a></li>
-							<li><a href="javascript:;">花盆</a></li>
-							<li><a href="javascript:;">仿真花</a></li>
-							<li><a href="javascript:;">鲜花</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">多肉植物</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">花瓶</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">花盆</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">仿真花</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">鲜花</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">家用小电器</p>
-							<li><a href="javascript:;">微波炉</a></li>
-							<li><a href="javascript:;">烤箱</a></li>
-							<li><a href="javascript:;">面包机</a></li>
-							<li><a href="javascript:;">咖啡机</a></li>
-							<li><a href="javascript:;">搅拌机</a></li>
-							<li><a href="javascript:;">豆浆机</a></li>
-							<li><a href="javascript:;">加湿器</a></li>
-							<li><a href="javascript:;">饮水机</a></li>
-							<li><a href="javascript:;">电风扇</a></li>
-							<li><a href="javascript:;">吸尘器</a></li>
-							<li><a href="javascript:;">其他</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">微波炉</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">烤箱</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">面包机</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">咖啡机</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">搅拌机</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">豆浆机</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">加湿器</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">饮水机</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">电风扇</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">吸尘器</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">其他</a></li>
 						</ul>
 						<ul class="find_cater_aeach mrightzero">
 							<p class="find_cater_label">文具</p>
-							<li><a href="javascript:;">彩铅&nbsp;钢笔</a></li>
-							<li><a href="javascript:;">笔盒&nbsp;笔袋</a></li>
-							<li><a href="javascript:;">本子</a></li>
-							<li><a href="javascript:;">书立</a></li>
-							<li><a href="javascript:;">工具类</a></li>
-							<li><a href="javascript:;">文房四宝</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">彩铅&nbsp;钢笔</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">笔盒&nbsp;笔袋</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">本子</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">书立</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">工具类</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">文房四宝</a></li>
 						</ul>
 					</div>
 					<div class="find_cater_aeach_wrap clearfix">
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">品牌</p>
-							<li><a href="javascript:;">MINOTTI</a></li>
-							<li><a href="javascript:;">B&B</a></li>
-							<li><a href="javascript:;">Miniforms</a></li>
-							<li><a href="javascript:;">包豪斯</a></li>
-							<li><a href="javascript:;">传世</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">MINOTTI</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">B&B</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">Miniforms</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">包豪斯</a></li>
+							<li><a href="/webd/search?keyword=宜家" target="_blank">传世</a></li>
 							<li><a href="javascript:;">美克美家</a></li>
 							<li><a href="javascript:;">第展</a></li>
 							<li><a href="javascript:;">希尔巴赫</a></li>
