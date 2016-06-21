@@ -259,6 +259,7 @@
 			$(this).ajaxSubmit({
 				type:"post",  //提交方式
                 dataType:"json", //数据类型
+                'fileTypeDesc': "Image Files",
                 url:"{{url('webd/folder/uimg')}}", //请求url
                 success:function(json){ //提交成功的回调函数
                     if(json.code==200) {
