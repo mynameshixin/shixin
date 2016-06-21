@@ -23,8 +23,8 @@
 .index_item_price{position: absolute;width: 84px;height: 38px;background: #fff;opacity: 0.75;bottom: 0px;right: 0px;text-align: center;font:normal 14px/38px "Microsoft YaHei";color: #4a4a4a;}
 
 .index_item_intro{font:normal 13px/22px "Microsoft YaHei";color: #b27e67;margin:0px 12px 0px 12px;max-height: 44px;overflow: hidden; margin-top: 5px;}
-.index_item_rel{margin:8px 12px;}
-.index_item_rel a{font:normal 15px/13px "Microsoft YaHei";color: #7d7d7d;display: inline-block;float: left; margin-bottom: 0px}
+.index_item_rel{margin:8px 12px;margin-bottom: 0px}
+.index_item_rel a{font:normal 15px/13px "Microsoft YaHei";color: #7d7d7d;display: inline-block;float: left; }
 .index_item_l{background: url(../images/dtj_icon.png) -9px -215px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_lon{background: url(../images/dtj_icon.png) -4px -963px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_c{background: url(../images/dtj_icon.png) -9px -253px no-repeat;padding-left: 24px;width: 68px;}
