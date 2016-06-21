@@ -122,6 +122,9 @@ class SearchController extends CmController{
         
         foreach ($goods as $key => $value) {
         	$cuser = DB::table('collection_good')->where('good_id',$value['id'])->select('user_id','folder_id')->orderBy('created_at','desc')->first();
+            if(empty($cuser)){
+                $cuser = DB::table('goods')->where('id',$value['id'])->select('user_id','folder_id')->first();
+            }
         	$cfolder = DB::table('folders')->where('id',$cuser['folder_id'])->select('name','id')->first();
         	$goods[$key]['cfolder'] = !empty($cfolder)?$cfolder:[];
         	$goods[$key]['cuser'] = UserWebsupply::user_info($cuser['user_id']);

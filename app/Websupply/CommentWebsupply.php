@@ -9,9 +9,9 @@ class CommentWebsupply {
 	public static function getCommentFirst($good_ids)
     {
         if(is_array($good_ids)){
-            $rows = DB::table('comments')->whereIn('good_id', $good_ids)->groupBy('good_id')->orderBy('id', 'desc')->get();
+            $rows = DB::table('comments')->whereIn('good_id', $good_ids)->groupBy('good_id')->orderBy('praise_count', 'desc')->get();
         }else{
-            $rows = DB::table('comments')->where('good_id', $good_ids)->groupBy('good_id')->orderBy('id', 'desc')->get();
+            $rows = DB::table('comments')->where('good_id', $good_ids)->groupBy('good_id')->orderBy('praise_count', 'desc')->get();
         }
         
 
