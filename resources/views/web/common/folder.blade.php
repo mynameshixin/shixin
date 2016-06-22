@@ -227,45 +227,166 @@
 		</div>
 	</div>
 <script type="text/javascript">
+	$('.pop_iptprivacy').click(function(){
+		if($(this).attr('checked') == 'checkbox') return
+		if($(this).attr('private') == 1){
+			$(this).attr('private',0)
+		}else{
+			$(this).attr('private',1)
+		}
+	})
 	$('.pop_con').click(function(){
 				event.stopPropagation();
 			})
-			$('.pop_editfold,.pop_editfold .pop_close,.pop_editfold .detail_pop_cancel').click(function(){
-				$('.pop_editfold').hide()
-			})
-			$('.detail_filechange').click(function(){
-				foderid = $(this).parents('.pop_con').attr('fid')
-				$('.pop_editfold').hide()
-				$('.pop_changefold').attr('fid',foderid)
-				$.ajax({
-					'url':"{{url('api/goods')}}",
-					'type':'get',
-					'data':{
-						'folder_id':foderid,'num':10,'page':1
-					},
-					'dataType':'json',
-					'success':function(json){
-						// console.log(json)
-						if(json.code==200){
-							list = json.data.list
-							$f = $('.pop_changefold .pop_change_imgwrap').slice(0,list.length)
-							$('.pop_change_imgwrap').css({'display':'none'})
-							$('.pop_change_imgwrap img').attr('src','')
-							$.each($f,function(index,v){
-								$($f[index]).css({'display':'block'})
-								if(list[index].images[0]!=undefined) {
-									$('.imgwrap',$f[index]).attr('src',list[index].images[0].img_m)
-									$('.imgwrap',$f[index]).attr('id',list[index].images[0].image_id)
-								}
-							})
-							$('.pop_changefold').show();
+	$('.pop_editfold,.pop_editfold .pop_close,.pop_editfold .detail_pop_cancel').click(function(){
+		$('.pop_editfold').hide()
+	})
+	//更改封面
+	$('.detail_filechange').click(function(){
+		foderid = $(this).parents('.pop_con').attr('fid')
+		$('.pop_editfold').hide()
+		$('.pop_changefold').attr('fid',foderid)
+		$.ajax({
+			'url':"{{url('api/goods')}}",
+			'type':'get',
+			'data':{
+				'folder_id':foderid,'num':10,'page':1
+			},
+			'dataType':'json',
+			'success':function(json){
+				// console.log(json)
+				if(json.code==200){
+					list = json.data.list
+					$f = $('.pop_changefold .pop_change_imgwrap').slice(0,list.length)
+					$('.pop_change_imgwrap').css({'display':'none'})
+					$('.pop_change_imgwrap img').attr('src','')
+					$.each($f,function(index,v){
+						$($f[index]).css({'display':'block'})
+						if(list[index].images[0]!=undefined) {
+							$('.imgwrap',$f[index]).attr('src',list[index].images[0].img_m)
+							$('.imgwrap',$f[index]).attr('id',list[index].images[0].image_id)
 						}
+					})
+					$('.pop_changefold').show();
+				}
+			}
+		})
+		
+	  	var poptopHei = $('.pop_changefold .pop_con').height();
+			$('.pop_con').css({
+			   'margin-top':-(poptopHei/2)
+		})
+	})
+	// 修改文件夹
+	$('.folderedit').click(function(){
+		pop_con = $(this).parents('.pop_con')
+		name = $('input[name=fname]',pop_con).val().trim()
+		description = $('textarea',pop_con).val().trim()
+		private = $('input[name=private]',pop_con).attr('private')
+		if(name=='') {
+			layer.msg('信息没有填写完全', {icon: 5});
+			return 
+		}
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"{{url('webd/folder/efolder')}}",
+			'type':'post',
+			'data':{
+				'name':name,
+				'description':description,'private':private,
+				'fid':pop_con.attr('fid'),'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					layer.msg('修改成功', {icon: 6});
+					setTimeout(function(){
+						location.reload()
+					},2000)
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+	})
+	//保存封面
+	$('#avatarsave').click(function(){
+		fid = $(this).parents('.pop_changefold').attr('fid')
+		var i;
+		left = $('.pop_change_wrap').css('left')
+		if(left == 0){
+			i = 1;
+		}else if(left == '200px'){
+			i = 0;
+		}else{
+			i = Math.abs(parseInt(left))/200+1
+		}
+		img_id = $('.pop_change_wrap img').eq(i).attr('id')
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"{{url('webd/folder/avatar')}}",
+			'type':'post',
+			'data':{
+				'image_id':img_id,
+				'fid':fid,
+				'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					location.reload()
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+		console.log(i)
+	})
+
+	//删除文件夹
+	$('.detail_pop_delete').click(function(){
+		fid = $(this).parents('.pop_con').attr('fid')
+		layer.confirm('确定删除该文件夹？', {
+		  btn: ['取消','确定'] //按钮
+		}, function(index){
+			layer.close(index)
+		}, function(){
+		  $.ajax({
+				'beforeSend':function(){
+					layer.load(0, {shade: 0.5});
+				},
+				'url':"{{url('webd/folder/dfolder')}}",
+				'type':'post',
+				'data':{
+					'fid':fid,'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
+				},
+				'dataType':'json',
+				'success':function(json){
+					if(json.code==200){
+						layer.msg('成功删除',{icon: 6});
+						location.reload()
+					}else{
+						layer.msg(json.message, {icon: 5});
+						return
 					}
-				})
-				
-			  	var poptopHei = $('.pop_changefold .pop_con').height();
-					$('.pop_con').css({
-					   'margin-top':-(poptopHei/2)
-				})
+				},
+				'complete':function(){
+					layer.closeAll('loading');
+				}
 			})
+		});
+		
+	})
 </script>

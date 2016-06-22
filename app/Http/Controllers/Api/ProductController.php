@@ -147,7 +147,7 @@ class ProductController extends BaseController
                 $self_id = $folder['user_id'];
             }
             $data['password'] = isset($data['password']) ? $data['password'] : '';
-            if ($folder['private']>0 && $folder['password']!=$data['password']) {
+            if ($folder['private']>0 && trim($folder['password'])!=trim($data['password'])) {
                 $access_token = Input::get('access_token');
                 $rs = parent::validateAcessToken($access_token);
                 if ($rs['user_id'] !=$folder['user_id']){

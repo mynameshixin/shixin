@@ -250,6 +250,7 @@
 			$('.pop_editfold,.pop_editfold .pop_close,.pop_editfold .detail_pop_cancel').click(function(){
 				$('.pop_editfold').hide()
 			})
+			//更改封面
 			$('.detail_filechange').click(function(){
 				foderid = $(this).parents('.pop_con').attr('fid')
 				$('.pop_editfold').hide()
