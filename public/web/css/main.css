@@ -131,8 +131,8 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 .setting_coneach_little{float: left;font:normal 13px/51px "Microsoft YaHei";color: #504e4e;}
 .setting_coneach_little .setting_coneach_conrava{width: 40px;height: 40px;border-radius: 50%;margin: 2px 0px 0px 0px;}
 .setting_coneach_little .setting_coneach_conrava img{width: 100%;height: 100%;border-radius: 50%;border:none;float: left;}
-.nolog_index_conapp_phone{width: 309px;height: 629px;background: url(../images/phone.png);margin:74px 0px 0px 172px;float: left;}
-.nolog_index_conapp_phone img{width: 270px;height: 476px;margin:76px 0px 0px 20px;}
+.nolog_index_conapp_phone{width: 309px;height: 629px;/* background: url(../images/phone.png); */margin:74px 0px 0px 172px;float: left;}
+.nolog_index_conapp_phone img{width: 320px;margin:-20px 0px 0px 20px;}
 .nolog_index_conapp_right{float: left;}
 .nolog_app_log{margin: 74px 0px 0px 88px;}
 .nolog_app_font{font:normal 20px/46px "Microsoft YaHei";color: #ee9a13;margin:20px 0px 0px 92px;}

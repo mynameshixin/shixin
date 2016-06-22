@@ -10,7 +10,7 @@
 		<div class="nolog_index_conapp clearfix" style="background:none">
 			<div class="w1248 clearfix" style="padding-top: 1px;">
 				<div class="nolog_index_conapp_phone">
-					<img src="{{asset('web')}}/images/cat/10.png" alt="">
+					<img src="{{asset('web')}}/images/cat/10.gif" alt="">
 				</div>
 				<div class="nolog_index_conapp_right">
 					<img src="{{asset('web')}}/images/app_logo.png" height="146" width="146" class="nolog_app_log"></img>
