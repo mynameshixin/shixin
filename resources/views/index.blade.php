@@ -34,12 +34,13 @@ var _hmt = _hmt || [];
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
       marginTop = ($(obj).parent().height()-$(obj).height())/2
+
       $(obj).css({
         'margin-left':marginLeft,
         'margin-top':marginTop
       })
     }
-    function layer_error(str=''){
+    function layer_error(str){
       str = str!=''?str:'该功能仍在建设中'
       layer.msg(str, {icon: 5});
       return false;

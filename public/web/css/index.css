@@ -5,6 +5,7 @@
  * @date    2016-04-13 21:34:21
  * @version $Id$
  */
+a{cursor: pointer;}
 .nodata{margin-left: 80px; color:#666; font-size: 20px}
 .position{position:absolute; width: 100%; height: 100%; overflow: hidden; display: inline-block;}
 .nolog_body{background: #fff;height: auto;}
