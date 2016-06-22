@@ -8,7 +8,7 @@
 		relationUrl = "{{url('webd/user/relation')}}"
 		keyword = "{{$keyword}}"
 		kinds = "<?php 
-				if($type==2){
+				if($type==1){
 					echo 2;
 				}elseif($type==3){
 					echo 1;

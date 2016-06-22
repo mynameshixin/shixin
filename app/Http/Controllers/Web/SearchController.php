@@ -34,7 +34,7 @@ class SearchController extends CmController{
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>1
+			'type'=>2
 		];
 		return view('web.search.index',$data);
 	}
@@ -43,12 +43,13 @@ class SearchController extends CmController{
 	public function getGoods(){
 		$keyword = trim(Input::get('keyword'));
 		$type = trim(Input::get('type'));
+        $type  = !empty($type)?$type:1;
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>$type
+			'type'=>$type 
 		];
 		return view('web.search.goods',$data);
 	}
