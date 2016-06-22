@@ -85,7 +85,7 @@
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥<input id='pprice' type="text" value="" name='price' style="color:#a1a1a1;border: none"></p>
+					<p class="pop_iptprice"><input id='pprice' type="text" value="" name='price' style="color:#a1a1a1;border: none; font-size: 16px"></p>
 					<input type="hidden" value="" name='reserve_price' id='reserve_price'></input>
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>

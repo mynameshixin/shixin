@@ -39,7 +39,7 @@ class TaoBaoController extends CmController
                 foreach ($image_url as $url) {
                     $image_ids[] = ImageService::getInstance()->getImageIds($url);
                 }
-                $outdata['x_item'][0]['image_ids'] = implode(',', $image_ids);
+                $outdata[0]['image_ids'] = implode(',', $image_ids);
 
             }
             if($outdata){
