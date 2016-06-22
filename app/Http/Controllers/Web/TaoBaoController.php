@@ -37,7 +37,7 @@ class TaoBaoController extends CmController
             $image_ids = [];
             if (isset($image_url) && !empty($image_url)) {
                 foreach ($image_url as $url) {
-                    $image_ids[] = FancyService::getInstance()->getImageIds($url);
+                    $image_ids[] = ImageService::getInstance()->getImageIds($url);
                 }
                 $outdata['x_item'][0]['image_ids'] = implode(',', $image_ids);
 

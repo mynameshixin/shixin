@@ -20,7 +20,6 @@ use App\Lib\Top\Request\ItemGetRequest;
 class FancyService extends ApiService
 {
 
-    public static $image_dir = 'uploads/images/';
     public function getItemDetail ($url) {
         $tmp = $res = [];
         $response = $this->curl($url);
@@ -57,51 +56,6 @@ class FancyService extends ApiService
 
     }
 
-
-    public function getImageIds($url)
-    {
-
-        //获取远程文件所采用的方法
-        $ch = curl_init();
-        $timeout = 15;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $img = curl_exec($ch);
-        curl_close($ch);
-        if (!empty($img)) {
-            $Image = new Image();
-            $destinationPath = self::$image_dir;
-            $entry = [
-                'user_id' => isset($params['user_id']) ? $params['user_id'] : 0,
-            ];
-            $imageId = Images::insertGetId($entry);
-            $destinationPath = $destinationPath . LibUtil::getFacePath($imageId);
-            LibUtil::make_dir($destinationPath);
-            $fileName = $imageId . '_o.jpg'; // renameing image
-           // $rs = move_uploaded_file($img, $destinationPath . $fileName);
-            $fp2=@fopen($destinationPath . $fileName,'a');
-            fwrite($fp2,$img);
-            fclose($fp2);
-            if (file_exists($destinationPath . $imageId . '_o.jpg')) {
-                $rules = $this->rules;
-                try {
-                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
-                }catch(\Exception $e){
-
-                }
-
-                $images[] = array(
-                    'image_id' => $imageId,
-                    'pic_o' => $Image->getPicUrl($imageId, 4, self::$image_dir),
-                    'pic_b' => $Image->getPicUrl($imageId, 2, self::$image_dir),
-                    'pic_m' => $Image->getPicUrl($imageId, 1, self::$image_dir),
-                );
-            }
-        }
-        dd($imageId);
-        return isset($imageId) ? $imageId : '';
-    }
 
 
     public function curl($url, $postFields = null,$readTimeout = 10,$connectTimeout = 5){
