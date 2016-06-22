@@ -88,7 +88,11 @@
 						<?php if(!empty($goods['detail_url'])): ?>
 							<div class="detail_pop_from">
 								来自 <a href="{{$goods['detail_url']}}" class="detail_pop_fromurl" target="_blank"><?php echo mb_substr($goods['detail_url'], 0,50,'utf-8'); ?></a>
+								<?php if($goods['kind']==1){ ?>
 									<a href="{{$goods['detail_url']}}" target="_blank" style="float: right;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtntobuy detail_pop_tbtn_cpadding">去购买</a>
+								<?php }elseif($goods['kind']==2){ ?>
+									<a href="{{$goods['detail_url']}}" target="_blank" style="float: right;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding">查看VR</a>
+								<?php } ?>
 								<!-- <a href="javascript:;" class="detail_pop_fromwarn"></a> -->
 								<!-- <a href="javascript:;" class="detail_pop_fromedit"></a> -->
 							</div>

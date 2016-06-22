@@ -23,6 +23,10 @@ $(function(){
   }
   //上传图片点击按钮 
   $('.popa').click(function(){
+    if(user_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
       $('.pop_uploadfile').show();
       var popconHei = $('.pop_uploadfile .pop_conwrap').height();
       if (popconHei > 410) {
@@ -62,6 +66,10 @@ $(function(){
 
   //添加文件夹
   $('.popc').click(function(){
+    if(user_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
     $('.pop_addfold').show()
     var popconHei = $('.pop_addfold .pop_conwrap').height();
       if (popconHei > 410) {
@@ -120,6 +128,10 @@ $(function(){
 
   //上传商品点击按钮 
   $('.popb').click(function(){
+    if(user_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
       $('.pop_uploadgoods').show();
       var popconHei = $('.pop_uploadgoods .pop_conwrap').height();
       if (popconHei > 410) {
@@ -257,6 +269,97 @@ $(function(){
       $('form[name=u_b]').submit()
     })
 
+// 上传vr
+ $('.header_more_a5').click(function(){
+    if(user_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
+    $.ajax({
+          'beforeSend':function(){
+            layer.load(0, {shade: 0.5});
+          },
+          'url':"/webd/pics/cgoods",
+          'type':'post',
+          'data':{
+            'user_id':user_id
+          },
+          'dataType':'json',
+          'success':function(json){
+            if(json.code==200){
+              $('.pop_uploadvr .pop_labelselect').html('')
+              strs = ''
+              $.each(json.data.folder,function(index,v){
+                strs += '<option value="'+v.id+'">'+v.name+'</option>';
+              })
+              $('.pop_uploadvr .pop_labelselect').append(strs)
+            }else{
+              layer.msg(json.message, {icon: 5});
+              return
+            }
+          },
+          'complete':function(){
+            layer.closeAll('loading');
+          }
+    })
+    $('.pop_uploadvr').show();
+    var poptopHei = $('.pop_uploadvr .pop_con').height();
+    $('.pop_uploadvr .pop_con').css({
+       'margin-top':-(poptopHei/2)
+    })
+    //vr change
+    $("#fvr").on("change",function(){
+        var filePath=$('#fvr').val();
+        if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
+            var arr=filePath.split('\\');
+            var fileName=arr[arr.length-1];
+            var file = fileName.substring(0,fileName.lastIndexOf('.'))
+            files = getObjectURL(this.files[0]);
+            $('.pop_vrimgwrap img').attr('src',files)
+
+        }else{
+            layer.msg('文件类型不正确', {icon: 5});
+            return false 
+        }
+    })
+    
+    // 保存上传
+    $('form[name=uvr]').submit(function(){
+        uvr = $('form[name=uvr]').serialize()
+        $(this).ajaxSubmit({
+          type:"post",  //提交方式
+          dataType:"json", //数据类型
+          url:"/webd/folder/uvr", //请求url
+          success:function(json){ //提交成功的回调函数
+              if(json.code==200) {
+                layer.msg('成功上传',{icon: 6});
+                setTimeout(function(){
+                  location.reload()
+                },1000)
+              }else{
+                layer.msg(json.message, {icon: 5});
+                return
+              } 
+          },
+          resetForm:1
+        });
+        return false
+    })
+    $('#uvr').click(function(){
+      if($('#fvr').val()==''){
+            layer.msg('没有选择图片', {icon: 5});
+            return
+      }
+      $('form[name=uvr]').submit()
+    })
+      
+  });
+  $('.pop_uploadvr,.pop_close,.pop_uploadvr .detail_pop_cancel').click(function(){
+    $('.pop_uploadvr').hide();
+  })
+  $('.pop_uploadvr .pop_con').click(function(){
+    event.stopPropagation()
+  })
 
 
 

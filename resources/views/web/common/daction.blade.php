@@ -22,6 +22,7 @@
 	</div>
 
 	<script type="text/javascript">
+
 		$('form[name=u_a]').submit(function(){
 			ua = $('form[name=u_a]').serialize()
 			$(this).ajaxSubmit({
@@ -64,6 +65,11 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('.pop_uploadgoods .pop_close,.pop_uploadgoods .detail_pop_cancel').click(function(){
+			$(this).parents('.pop_uploadgoods').hide()
+		})
+	</script>
 	<!-- 上传商品详细弹框 -->
 	<div class="pop_goods_upload" style="display:none;">
 	<form action="" method="post" enctype="multipart/form-data" name='u_b'>
@@ -169,6 +175,52 @@
 			</div>
 		</div>
 	</div>
+
+<!-- 上传VR -->
+<div class="pop_uploadvr">
+<form action="" method="post" enctype="multipart/form-data" name="uvr">
+	<div class="pop_con">
+		<p class="pop_tit">
+			上传VR
+			<span class="pop_close"></span>
+		</p>
+		<div class="pop_conwrap">
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">标题</span>
+				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="">
+			</div>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">展示图片</span>
+				<div class="pop_vrchangewrap">
+					<div class="pop_vrimgwrap">
+						<img src="{{asset('web')}}/images/temp/1.png">
+					</div>
+					<input type="hidden" name='kind' value="2"></input>
+					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
+					<input class="pop_upload" type="file" name='image' id="fvr" style="display:none"></input>
+					<label for="fvr" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" style="color:#969696;float: left; cursor: pointer; margin-left: 30px">
+								上传VR展示图</label>
+				</div>
+			</div>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">地址</span>
+				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="">
+			</div>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">文件夹</span>
+				<select class="pop_labelselect" style="margin-right: 15px;width:255px;" name='fid'>
+					
+				</select>
+			</div>
+		</div>
+		
+		<div class="pop_btnwrap">
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="uvr">上传</a>
+		</div>
+	</div>
+</form>
+</div>
 <script type="text/javascript">
 	 $('#pop_iptpr_s').click(function(){
         if($(this).attr('private') == 1){

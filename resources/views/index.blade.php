@@ -629,5 +629,4 @@ var _hmt = _hmt || [];
 @include('web.common.login',['index'=>1])
 </body>
 <script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
-<script type="text/javascript" src="{{asset('web/js/register.js')}}"></script>
 </html>

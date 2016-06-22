@@ -3,6 +3,7 @@
     <div class="header_add_item_awrap">
       <a href="javascript:;" onclick="layer_error();" target="_blank" class="header_add_item_a header_more_a1 ">上传图片</a>
       <a href="javascript:;" target="_blank" class="header_add_item_a header_more_a2 popb">上传商品</a>
+      <a href="javascript:;" target="_blank" class="header_add_item_a header_more_a5">上传VR</a>
       <a href="javascript:;" target="_blank" class="header_add_item_a header_more_a3 popc">添加文件夹</a>
       <!-- <a href="tools.html" target="_blank" class="header_add_item_a header_more_a4">安装堆工具</a> -->
     </div>  
