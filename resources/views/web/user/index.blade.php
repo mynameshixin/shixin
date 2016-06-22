@@ -330,45 +330,6 @@
 					$(this).attr('private',1)
 				}
 			})
-			//创建文件夹
-			$('.folder').click(function(){
-				pop_con = $(this).parents('.pop_con')
-				name = $('input[name=fname]',pop_con).val().trim()
-				description = $('textarea',pop_con).val().trim()
-				private = $('input[name=private]',pop_con).attr('private')
-				if(name=='') {
-					layer.msg('信息没有填写完全', {icon: 5});
-					return 
-				}
-				$.ajax({
-					'beforeSend':function(){
-						layer.load(0, {shade: 0.5});
-					},
-					'url':"{{url('webd/folder/cfolder')}}",
-					'type':'post',
-					'data':{
-						'name':name,
-						'description':description,'private':private,
-						'fid':10,'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
-					},
-					'dataType':'json',
-					'success':function(json){
-						if(json.code==200){
-							layer.msg('创建成功', {icon: 6});
-							setTimeout(function(){
-								location.reload()
-							},2000)
-							
-						}else{
-							layer.msg(json.message, {icon: 5});
-							return
-						}
-					},
-					'complete':function(){
-						layer.closeAll('loading');
-					}
-				})
-			})
 			// 修改文件夹
 			$('.folderedit').click(function(){
 				pop_con = $(this).parents('.pop_con')

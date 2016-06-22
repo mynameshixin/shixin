@@ -505,6 +505,7 @@
 			})
 			return
 		})
+		// 上传商品点击
 		$('.detail_pop_goodsget').click(function(){
 				if($('#pop_goods').val().trim()==''){
 		          layer.msg('地址不能为空',{'icon':5})

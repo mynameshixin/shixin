@@ -105,7 +105,7 @@ $(function(){
       'data':{
         'name':name,
         'description':description,'private':private,
-        'fid':10000,'user_id':user_id
+        'fid':10000,'user_id':u_id
       },
       'dataType':'json',
       'success':function(json){
@@ -113,7 +113,7 @@ $(function(){
           layer.msg('创建成功', {icon: 6});
           setTimeout(function(){
             location.reload()
-          },2000)
+          },1000)
           
         }else{
           layer.msg(json.message, {icon: 5});
@@ -148,28 +148,13 @@ $(function(){
   $('.pop_goods_upload .pop_con').click(function(){
         event.stopPropagation()
   });
-  // 上传点击
+  // 上传商品点击
   $('#geturl').click(function(){
         if($('#pop_ipt_goods').val().trim()==''){
           layer.msg('地址不能为空',{'icon':5})
           return 
         }
         $('.pop_uploadgoods').hide();
-
-        /*$('.pop_goods_upload').show();
-        
-        var popconHei = $('.pop_goods_upload .pop_conwrap').height();
-        if (popconHei > 410) {
-          $('.pop_goods_upload .pop_conwrap').css({
-            'max-height':410,
-            'overflow-y':'scroll'
-          })
-        };
-        var poptopHei = $('.pop_goods_upload .pop_con').height();
-        $('.pop_goods_upload .pop_con').css({
-           'margin-top':-(poptopHei/2)
-        })
-        return */
         $.ajax({
           'beforeSend':function(){
             layer.load(0, {shade: 0.5});
@@ -211,7 +196,7 @@ $(function(){
                  'margin-top':-(poptopHei/2)
               })
 
-              $.post('/webd/pics/cgoods',{'user_id':user_id},function(json){
+              $.post('/webd/pics/cgoods',{'user_id':u_id},function(json){
                   if(json.code==200){
                     var option = ''
                     $.each(json.data.cg,function(i,v){
@@ -232,20 +217,7 @@ $(function(){
           'complete':function(){
             layer.closeAll('loading');
           }
-        })
-        /*$.post('/webd/pics/cgoods',{'user_id':user_id},function(json){
-          if(json.code==200){
-            var option = ''
-            $.each(json.cg,function(i,v){
-                option += '<option value="'+v.id+'">'+v.name+'</option>'
-            })
-            $.each(json.folder,function(i,v){
-                option += '<option value="'+v.id+'">'+v.name+'</option>'
-            })
-            if(json.cg==0 && json.folder==0) option = '<option>没有文件</option>'
-            $('.pop_iptselect').html(option)
-          }
-        },'json')*/      
+        })   
   })
 
   //保存上传
@@ -286,7 +258,7 @@ $(function(){
           'url':"/webd/pics/cgoods",
           'type':'post',
           'data':{
-            'user_id':user_id
+            'user_id':u_id
           },
           'dataType':'json',
           'success':function(json){

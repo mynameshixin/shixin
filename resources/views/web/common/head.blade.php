@@ -8,6 +8,7 @@
 	<![endif]-->
 	<script type="text/javascript">
 		user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
+		u_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
 	</script>
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/index.css">
