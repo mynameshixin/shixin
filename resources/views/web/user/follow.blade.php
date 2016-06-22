@@ -7,7 +7,7 @@
 		@include('web.common.user')
 		<div class="w1248 w1240 clearfix">
 			<div class="search_btn_con perhome_follow_wrap clearfix">
-				<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="search_btn_lround search_btn_select">关注者</a>
+				<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="search_btn_lround search_btn_select">用户</a>
 				<a href='{{url("webd/user/followfolder?oid={$user_id}")}}' class="search_btn_rround">文件夹</a>
 			</div>
 			<div class="index_con perhome_wrap">
