@@ -12,7 +12,7 @@ class FolderWebsupply extends CmWebsupply {
 	public static function get_recommend($num=3,$gnum = 0,$condition = [],$user = [],$goods=[]){
 		 $folders = DB::table('folders')->where([
 				'folders.private'=>0
-				])->whereIn('folders.id',['213','380','120','233','443','300','340','58','396','229','1748','114','484','111','508'])->orderByRaw(DB::raw("FIELD(id,'213','380','120','233','443','300','340','58','396','229','1748','114','484','111','508')"));
+				])->whereIn('folders.id',['213','380','120','233','443','300','340','58','396','852','198','114','484','237','500'])->orderByRaw(DB::raw("FIELD(id,'213','380','120','233','443','300','340','58','396','852','198','114','484','237','500')"));
 		 if(!empty($condition) && !empty($condition['group'])){
 		 	$folders = $folders->groupBy($condition['group']);
 		 }

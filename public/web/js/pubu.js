@@ -60,7 +60,9 @@ $(function (){
 		  				$value = $firstTen[index]
 		  				$(".index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
 
-					    $(".index_item_price",$value).html('￥'+list[index].price)
+
+		  				fuhao = list[index].detail_url.indexOf('m.fancy.com')>0?'$':'￥'
+					    $(".index_item_price",$value).html(fuhao+list[index].price)
 					    $(".index_item_intro",$value).html(list[index].description);
 					    $(".index_item_intro",$value).attr('title',list[index].description)
 
