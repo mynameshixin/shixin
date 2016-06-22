@@ -7,6 +7,8 @@
  */
 namespace App\Services;
 
+use App\Models\Images;
+use App\Lib\Images as Image;
 use App\Lib\LibUtil;
 use App\Lib\Top\TopClient;
 use App\Lib\Top\Request\ProductGetRequest;
