@@ -82,8 +82,8 @@
 						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
 						</div>
-						<p class="detail_pop_des" title="{{$goods['description']}}">
-							{{$goods['description']}}<a href="javascript:;" class="detail_pop_desmore"></a>
+						<p class="detail_pop_des" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}">
+							{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}<a href="javascript:;" class="detail_pop_desmore"></a>
 						</p>
 						<?php if(!empty($goods['detail_url'])): ?>
 							<div class="detail_pop_from">
