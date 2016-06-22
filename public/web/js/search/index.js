@@ -53,7 +53,7 @@ $(function (){
 							+'</div>'
 							+'<div class="find_fold_imgwrap">'
 								+'<div class="find_fold_imgblur"></div>'
-								+'<a href="/webd/folder?fid='+v.id+'" class="position" target="_blank"><img src="'+v.img_url+'" alt=""></a>'
+								+'<a href="/webd/folder?fid='+v.id+'" class="position" target="_blank"><img src="'+v.img_url+'" alt="" onload="rect(this)"></a>'
 								+'<div class="find_fold_catflw">'+v.count+'文件&nbsp;&nbsp;'+v.collection_count+'关注</div>'
 							+'</div>'
 							+'<div class="find_fold_limg clearfix">'
