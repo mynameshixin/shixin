@@ -163,12 +163,6 @@ $(function() {
 				})
 			})
 
-			// 点击完成
-			/*$('.detail_select_cbgrey').click(function(){
-				$('.detail_select_con').hide()
-				$('.detail_select_bg').hide();
-			})*/
-
 			$('.pop_deletetips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_deletetips').hide();
 			})
@@ -332,7 +326,12 @@ $(function() {
 	                    text.html( str.substring(0,textLeng )+"...");
 	              }
 		     });*/
-		    
+		    // 点击完成
+			$('.detail_select_cbgrey').click(function(){
+				$('.detail_select_wrap').slideUp(400,function(){}).addClass('haha')
+				$('.detail_raido_wrap',$('.index_item_imgwrap')).remove();
+				$('.detail_raido_wrapred',$('.index_item_imgwrap')).remove();
+			})
 		    // <!-- htmlv=20160705 -->
 		    $('.detail_fileb_simg').click(function(){
 		    	var detail_selecth = '<div class="detail_raido_wrap" onclick="addSe(this)"></div>'

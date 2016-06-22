@@ -80,7 +80,7 @@
 						<?php  }else{?>
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668">
 						<?php } ?>
-							<?php if(!empty($goods['price'])): ?><div class="index_item_price">￥<?php echo $goods['price'];?></div><?php endif; ?>
+							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
 						</div>
 						<p class="detail_pop_des" title="{{$goods['description']}}">
 							{{$goods['description']}}<a href="javascript:;" class="detail_pop_desmore"></a>
