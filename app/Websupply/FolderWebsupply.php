@@ -178,6 +178,7 @@ class FolderWebsupply extends CmWebsupply {
 				foreach ($goods as $k => $v) {
 					$commentArr = CommentWebsupply::getCommentFirst($v['id']);
 					$goods[$k]['comment'] = $commentArr;
+					
 					if (!empty($v['image_ids'])) {
 	                    $image_ids = explode(',', $v['image_ids']);
 	                    foreach ($image_ids as $imageId) {
@@ -190,6 +191,12 @@ class FolderWebsupply extends CmWebsupply {
 	                            ];
 	                        }
 	                   	 }
+	                }else{
+	                	$goods[$k]['images'][] = [
+							'image_id'=>0,
+		                    'img_m' => url('uploads/sundry/blogo.jpg'),
+		                    'img_o' => url('uploads/sundry/blogo.jpg')
+						];
 	                }
 				 }
 		 		$folder['goods'] = $goods;
