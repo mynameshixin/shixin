@@ -116,7 +116,7 @@
 				
 			</div>
 			
-			<div class="pop_btnwrap pop_goods_share">
+			<!-- <div class="pop_btnwrap pop_goods_share">
 				<div class="pop_col_lbtm">
 					<span class="pop_col_lbshare">
 						分享到 :
@@ -140,11 +140,11 @@
 					<span class="pop_col_lbshare">
 						QQ空间
 					</span>
-					<!-- <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script> -->
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 				</div>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave" id="u_b">保存</a>
-			</div>
+			</div> -->
 		</div>
 	</form>
 	</div>

@@ -708,7 +708,7 @@
 					</select>
 				</div> -->
 			</div>
-			<div class="pop_btnwrap pop_goods_share">
+			<!-- <div class="pop_btnwrap pop_goods_share">
 				<div class="pop_col_lbtm">
 					<span class="pop_col_lbshare">
 						分享到 :
@@ -736,7 +736,7 @@
 				</div>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="ub">保存</a>
-			</div>
+			</div> -->
 		</div>
 	</form>
 	</div>
