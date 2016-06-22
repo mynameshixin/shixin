@@ -138,11 +138,15 @@ class PicsController extends CmController{
 		}
 		$folder = DB::table('folders')->where('user_id',$userId)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
 		$folder = array_merge($cg,$folder);
-		/*$tmp = [];
-		foreach ($folder as $key => $value) {
-			$str = implode("|",$value);
-		}*/
-		// $folder = array_unique($folder);
+		//去重算法
+		$rAr=array(); 
+		for($i=0;$i<count($folder);$i++) { 
+			if(!isset($rAr[$folder[$i]['id']])) { 
+				$rAr[$folder[$i]['id']]=$folder[$i]; 
+			} 
+		} 
+		$folder = array_values($rAr); 
+
 		if(!empty($folder)){
 			foreach ($folder as $k => $v) {
 				$folder[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
