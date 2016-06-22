@@ -464,97 +464,6 @@
 		</div>
 	</div>
 
-	<!-- 上传图片详细弹框 -->
-	<div class="pop_goods_upload" style="display:none;">
-		<div class="pop_con clearfix">
-			<p class="pop_tit">
-				上传图片
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_conwrap">
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">名称</span>
-					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
-				</div>
-				<!-- <div class="pop_namewrap clearfix">
-					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥45</p>
-				</div> -->
-				<div class="pop_goodsimgwrap clearfix">
-					<p class="pop_goodsimgtit">图片</p>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-						<div class="pop_good_toppne">主图</div>
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (2).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (3).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-				</div>
-				<div class="pop_desimgwrap clearfix">
-					<div class="pop_deswrap clearfix">
-						<span class="pop_labelname">评论</span>
-						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
-					<select class="pop_iptselect" style="margin-top: 17px;">
-						<option value="">椅子</option>
-						<option value="">桌子</option>
-						<option value="">电视柜</option>
-						<option value="">沙发</option>
-						<option value="">卧室</option>
-						<option value="">卫生间</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="pop_btnwrap pop_goods_share">
-				<div class="pop_col_lbtm">
-					<span class="pop_col_lbshare">
-						分享到 :
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
-						<a class="pop_col_lbswc"></a>
-						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
-					</span>
-					
-					<span class="pop_col_lbshare">
-						微信朋友圈
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
-						<a class="pop_col_lbsqq"></a>
-						<a class="jiathis_button_qzone jiathis_button"></a>
-					</span>
-					<span class="pop_col_lbshare">
-						QQ空间
-					</span>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-				</div>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
-			</div>
-		</div>
-	</div>
-
 	<script type="text/javascript">
 		$('#delpfolder').click(function(){
 			var garr = '';
@@ -669,7 +578,7 @@
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥<input id='pprice' type="text" value="" name='price' style="color:#a1a1a1;border: none"></p>
+					<p class="pop_iptprice"><input id='pprice' type="text" value="" name='price' style="color:#a1a1a1;border: none; font-size: 16px"></p>
 					<input type="hidden" value="" name='reserve_price' id='reserve_price'></input>
 					<input type="hidden" value="1" name='kind'></input>
 					<input type="hidden" value="" name='description' id='description'></input>
