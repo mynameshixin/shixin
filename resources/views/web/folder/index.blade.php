@@ -620,7 +620,7 @@
 							pic_url = json.data.x_item[0].pic_url
 							reserve_price = json.data.x_item[0].reserve_price
 							image_ids = json.data.x_item[0].image_ids
-							detail_url = $('#pop_iptgoods').val().trim()
+							detail_url = $('#pop_goods').val().trim()
 							$('input[name=title]',ub).val(title)
 							$('input[name=price]',ub).val(price)
 							$('#pimg img',ub).attr('src',pic_url)
