@@ -20,6 +20,7 @@ use App\Lib\Top\Request\ItemGetRequest;
 class FancyService extends ApiService
 {
 
+    public static $image_dir = 'uploads/images/';
     public function getItemDetail ($url) {
         $tmp = $res = [];
         $response = $this->curl($url);
@@ -101,7 +102,7 @@ class FancyService extends ApiService
         return isset($imageId) ? $imageId : '';
     }
 
-    
+
     public function curl($url, $postFields = null,$readTimeout = 10,$connectTimeout = 5){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
