@@ -729,8 +729,9 @@ input[type="checkbox"] + label{cursor: pointer;}
 .nolog_index_conexname{font:normal 16px/16px "Microsoft YaHei";color: #333;text-align: center;margin-top: 80px;}
 .nolog_index_conexfans{font:normal 12px/24px "Microsoft YaHei";color: #b1b1b1;text-align: center;margin-top: 6px;}
 .nolog_index_conexwork{font:normal 12px/22px "Microsoft YaHei";color: #888686;text-align: center;}
-.nolog_index_conrecbox{width: 244px;height: 244px;float: left;margin:4px 6px 4px 0px;position: relative;}
-.nolog_index_conrecbox img{width: 100%;height: 100%;}
+.nolog_index_conrecbox{width: 244px;height: 244px;float: left;margin:4px 6px 4px 0px;position: relative; overflow: hidden;}
+
+.nolog_index_conrecbox img{ width: 100%;}
 .nolog_index_conrecinfobox{height: 120px;width: 204px;background: #fafafa;padding:0px 20px;}
 .marbtm{margin-bottom: 4px;}
 .nolog_index_conrecivonleft{width: 0px;height: 0px;border-top:12px solid transparent;border-bottom:12px solid transparent;border-right:16px solid #fafafa;position: absolute;left: -16px;top: 48px;z-index: 1;}
