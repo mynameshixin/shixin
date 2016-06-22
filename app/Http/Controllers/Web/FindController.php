@@ -45,7 +45,7 @@ class FindController extends CmController{
 		}
 		// dd($user);
 		//精品文件夹
-		$recommend = FolderWebsupply::get_recommend(5,0,['group'=>'user_id'],1,1);
+		$recommend = FolderWebsupply::get_recommend(5,0,0,1,1);
 		foreach ($recommend as $key => $value) {
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 			$recommend[$key]['is_collection'] = !empty($collection_folder)?1:0;
