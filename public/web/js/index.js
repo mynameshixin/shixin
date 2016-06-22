@@ -199,13 +199,13 @@ $(function(){
               $.post('/webd/pics/cgoods',{'user_id':u_id},function(json){
                   if(json.code==200){
                     var option = ''
-                    $.each(json.data.cg,function(i,v){
+                    /*$.each(json.data.cg,function(i,v){
                         option += '<option value="'+v.id+'">'+v.name+'</option>'
-                    })
+                    })*/
                     $.each(json.data.folder,function(i,v){
                         option += '<option value="'+v.id+'">'+v.name+'</option>'
                     })
-                    if(json.cg==0 && json.folder==0) option = '<option>没有文件</option>'
+                    if(json.folder==0) option = '<option>没有文件</option>'
                         $('.pop_iptselect').html(option)
                     }
               },'json')  
