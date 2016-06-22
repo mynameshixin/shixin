@@ -29,7 +29,7 @@ class TaoBaoController extends CmController
         $host = parse_url($url);
         if(!empty($host['host']) && in_array($host['host'],$fancy)){
             $outdata = FancyService::getInstance()->getItemDetail($url);
-            $item = $outdata['x_item'][0];
+            $item = $outdata[0];
             if (!empty($item['pic_url'])) {
                 $image_url[] = $item['pic_url'];
             }
