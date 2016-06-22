@@ -130,6 +130,7 @@ var _hmt = _hmt || [];
         <div class="nolog_index_contit">
           文件夹推荐
         </div>
+        <!-- 1 -->
         <div class="nolog_index_conreco clearfix">
           <div class="nolog_index_conrecbox">
             <a href="/webd/folder?fid={{$recommend[0]['id']}}" target="_blank"><img src="{{$recommend[0]['img_url']}}" alt=""></a>
@@ -192,11 +193,9 @@ var _hmt = _hmt || [];
               
             </div>
           </div>
-
-
+        <!-- 2 -->
           <div class="nolog_index_conrecbox nolog_index_conrecone">
             <div class="nolog_index_conrecinfobox textleft marbtm">
-              
             </div>
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
@@ -255,7 +254,204 @@ var _hmt = _hmt || [];
           <div class="nolog_index_conrecbox mrightzero">
             <a href="/webd/folder?fid={{$recommend[5]['id']}}" target="_blank"><img src="{{$recommend[5]['img_url']}}" alt=""></a>
           </div>
+
+          <!-- 3 -->
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[6]['id']}}" target="_blank"><img src="{{$recommend[6]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+              <div class="nolog_index_conrecivonleft"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[6]['id']}}" target="_blank">{{$recommend[6]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[6]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[6]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[6]['user']['id']}}" target="_blank">{{!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']}}</a>
+              </p>
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              <div class="nolog_index_conrecivonright"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[7]['id']}}" target="_blank">{{$recommend[7]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[7]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[7]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[7]['user']['id']}}" target="_blank">{{!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']}}
+              </p>
+            </div>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[7]['id']}}" target="_blank"><img src="{{$recommend[7]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[8]['id']}}" target="_blank"><img src="{{$recommend[8]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+              <div class="nolog_index_conrecivonleft"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[8]['id']}}" target="_blank">{{$recommend[8]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[8]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[8]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[8]['user']['id']}}" target="_blank">{{!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']}}
+              </p>
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              
+            </div>
+          </div>
+
+        <!-- 4 -->
+         <div class="nolog_index_conrecbox nolog_index_conrecone">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              <div class="nolog_index_conrecivonright"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[9]['id']}}" target="_blank">{{$recommend[9]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[9]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[9]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[9]['user']['id']}}" target="_blank">{{!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']}}
+              </p>
+            </div>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[9]['id']}}" target="_blank"><img src="{{$recommend[9]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[10]['id']}}" target="_blank"><img src="{{$recommend[10]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+              <div class="nolog_index_conrecivonleft"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[10]['id']}}" target="_blank">{{$recommend[10]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[10]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[10]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[10]['user']['id']}}" target="_blank">{{!empty(trim($recommend[10]['user']['nick']))?$recommend[10]['user']['nick']:$recommend[10]['user']['username']}}
+              </p>
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              <div class="nolog_index_conrecivonright"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[11]['id']}}" target="_blank">{{$recommend[11]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[11]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[11]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[11]['user']['id']}}" target="_blank">{{!empty(trim($recommend[11]['user']['nick']))?$recommend[11]['user']['nick']:$recommend[11]['user']['username']}}
+              </p>
+            </div>
+          </div>
+          <div class="nolog_index_conrecbox mrightzero">
+            <a href="/webd/folder?fid={{$recommend[11]['id']}}" target="_blank"><img src="{{$recommend[11]['img_url']}}" alt=""></a>
+          </div>
+
+        <!-- 5 -->
+         <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[12]['id']}}" target="_blank"><img src="{{$recommend[12]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+              <div class="nolog_index_conrecivonleft"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[12]['id']}}" target="_blank">{{$recommend[12]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[12]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[12]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[12]['user']['id']}}" target="_blank">{{!empty(trim($recommend[12]['user']['nick']))?$recommend[12]['user']['nick']:$recommend[12]['user']['username']}}</a>
+              </p>
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              <div class="nolog_index_conrecivonright"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[13]['id']}}" target="_blank">{{$recommend[13]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[13]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[13]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[13]['user']['id']}}" target="_blank">{{!empty(trim($recommend[13]['user']['nick']))?$recommend[13]['user']['nick']:$recommend[13]['user']['username']}}
+              </p>
+            </div>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[13]['id']}}" target="_blank"><img src="{{$recommend[13]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox">
+            <a href="/webd/folder?fid={{$recommend[14]['id']}}" target="_blank"><img src="{{$recommend[14]['img_url']}}" alt=""></a>
+          </div>
+          <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
+            <div class="nolog_index_conrecinfobox textleft marbtm">
+              <div class="nolog_index_conrecivonleft"></div>
+              <a class="nolog_index_conrecfold">
+                文件夹
+              </a>
+              <p class="nolog_index_conrecauto">
+                <a href="/webd/folder?fid={{$recommend[14]['id']}}" target="_blank">{{$recommend[14]['name']}}</a>
+              </p>
+              <p class="nolog_index_conrecfans">
+                {{$recommend[14]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[14]['count']['fans_count']}}粉丝
+              </p>
+              <p class="nolog_index_conrecfrom">
+                来自<a href="/webd/user?oid={{$recommend[14]['user']['id']}}" target="_blank">{{!empty(trim($recommend[14]['user']['nick']))?$recommend[14]['user']['nick']:$recommend[14]['user']['username']}}
+              </p>
+            </div>
+            <div class="nolog_index_conrecinfobox textright">
+              
+            </div>
+          </div>
+
+
+
+
+
+
+
+
         </div>
+
        <!--  <a href="#" class="nolog_index_conmore">加载更多</a> -->
         <div class="nolog_index_cattitle">
           以分类浏览堆图家
