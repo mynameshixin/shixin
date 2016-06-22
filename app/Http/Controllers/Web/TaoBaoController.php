@@ -28,9 +28,22 @@ class TaoBaoController extends CmController
         $fancy = ['m.fancy.com'];
         $host = parse_url($url);
         if(!empty($host['host']) && in_array($host['host'],$fancy)){
-            $res = FancyService::getInstance()->getItemDetail($url);
-            if($res){
-                return response()->forApi(['x_item'=>$res], 200);
+            $outdata = FancyService::getInstance()->getItemDetail($url);
+            $item = $outdata['x_item'][0];
+            if (!empty($item['pic_url'])) {
+                $image_url[] = $item['pic_url'];
+            }
+
+            $image_ids = [];
+            if (isset($image_url) && !empty($image_url)) {
+                foreach ($image_url as $url) {
+                    $image_ids[] = FancyService::getInstance()->getImageIds($url);
+                }
+                $outdata['x_item'][0]['image_ids'] = implode(',', $image_ids);
+
+            }
+            if($outdata){
+                return response()->forApi(['x_item'=>$outdata], 200);
             }
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');
         }
