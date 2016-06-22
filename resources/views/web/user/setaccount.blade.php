@@ -273,13 +273,13 @@
 						<div class="setting_coneach_conwrap clearfix">
 							<div class="setting_coneach_conleft"><img src="{{asset('web')}}/images/qq.png" height="18" width="15" alt=""></div>
 							<div class="setting_coneach_conright">
-								<a href="javascript:;" onclick="layer_error()" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px">重新绑定微信</a>
+								<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px">重新绑定微信</a>
 							</div>
 						</div>
 						<div class="setting_coneach_conwrap clearfix">
 							<div class="setting_coneach_conleft"><img src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt=""></div>
 							<div class="setting_coneach_conright">
-								<a href="javascript:;" onclick="layer_error()" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px"> 绑定QQ</a>
+								<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="setting_coneach_conload" style="color:#969696;float: left;margin:0px"> 绑定QQ</a>
 							</div>
 						</div>
 						<!-- <a href="javascript:;" class="setting_org_btn">保存</a> -->

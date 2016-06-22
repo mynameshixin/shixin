@@ -158,8 +158,8 @@
 					<a href="javascript:;" id="detail_all_select" class="detail_select_cball">全选</a>
 					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey">完成</a>
 					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele">删除</a>
-					<a href="javascript:;" onclick="layer_error()" class="detail_select_cbtn ">复制至...</a>
-					<a href="javascript:;" onclick="layer_error()" class="detail_select_cbtn ">移动至...</a>
+					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn ">复制至...</a>
+					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn ">移动至...</a>
 				</div>
 			</div>
 		</div>
