@@ -750,6 +750,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .nolog_index_cattitle a{float: right;font:normal 15px/16px "Microsoft YaHei";color: #9d7059;}
 .nolog_index_catcon_left{width: 930px;float: left;}
 .nolog_index_catcon_right{width: 312px;float: left;}
+.nolog_index_catcon_leftmin{width: 310px;float: left;}
 .nolog_index_catcon_ltit{font:normal 24px/32px "Microsoft YaHei";color: #be462e;padding:35px 0px 15px 0px;}
 .nolog_index_cateach{width: 260px;float: left;padding-right: 50px;margin-bottom: 20px;}
 .nolog_index_cateachtit{font:normal 19px/32px "Microsoft YaHei";color: #be462e;margin-bottom: 10px;}
