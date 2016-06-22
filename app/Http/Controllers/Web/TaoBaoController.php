@@ -7,6 +7,7 @@ use App\Models\Folder;
 use App\Models\Product;
 use App\Services\ImageService;
 use App\Services\TaoBaoService;
+use App\Services\FancyService;
 use Zofe\Rapyd\Facades\DataEdit;
 /**
  * Created by PhpStorm.
