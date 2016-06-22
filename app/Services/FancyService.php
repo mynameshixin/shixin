@@ -99,6 +99,7 @@ class FancyService extends ApiService
                 );
             }
         }
+        dd($imageId);
         return isset($imageId) ? $imageId : '';
     }
 
