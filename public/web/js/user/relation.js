@@ -73,3 +73,28 @@ function folderEdit(obj){
 		   'margin-top':-(poptopHei/2)
 	})
 }
+
+//文件夹页面编辑
+function folderEditInner(obj){
+	edit = $(obj)
+	v = $('.pop_editfold')
+
+	$('.pop_con',v).attr('fid',fid)
+
+	if($('#pop_iptpr3',v).attr('private') == 1 && $('.container').attr('private') == 0){
+		$('#pop_iptpr3',v).click()
+	}
+
+	if($('#pop_iptpr3',v).attr('private') == 0 && $('.container').attr('private') == 1){
+		$('#pop_iptpr3',v).click()
+	}
+
+	foldername = $('.detail_filetit').html().trim()
+	$('input[name=fname]',v).val(foldername)
+
+	$('.pop_editfold').show()
+  	var poptopHei = $('.pop_editfold .pop_con').height();
+		$('.pop_con').css({
+		   'margin-top':-(poptopHei/2)
+	})
+}

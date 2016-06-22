@@ -9,7 +9,7 @@
 <body>
 	@include('web.common.banner')
 
-	<div class="container">
+	<div class="container" private="{{$folder['private']}}">
 		@include('web.common.folder')
 		<script type="text/javascript">user_id="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"</script>
 		<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
@@ -567,7 +567,6 @@
 				layer.msg('没有选择文件', {icon: 5});
 				return 
 			}
-			console.log(garr)
 			$.ajax({
 				'beforeSend':function(){
 					layer.load(0, {shade: 0.5});

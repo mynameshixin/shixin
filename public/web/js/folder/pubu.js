@@ -55,7 +55,7 @@ $(function (){
 		      		$firstTen = $items.slice(1, list.length+1).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
-		  				$(".index_item_imgwrap img",$value).attr('src',list[index].image_url)
+		  				$(".index_item_imgwrap img",$value).attr('src',list[index].images[0]['img_m'])
 		  				$(".index_item_wrap",$value).attr('good_id',list[index].id)
 		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
 					    $(".index_item_price",$value).html('￥'+list[index].price)

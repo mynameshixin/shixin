@@ -161,9 +161,14 @@ $(function() {
 				$('.pop_con').css({
 				   'margin-top':-(poptopHei/2)
 				})
-				
-
 			})
+
+			// 点击完成
+			/*$('.detail_select_cbgrey').click(function(){
+				$('.detail_select_con').hide()
+				$('.detail_select_bg').hide();
+			})*/
+
 			$('.pop_deletetips,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_deletetips').hide();
 			})

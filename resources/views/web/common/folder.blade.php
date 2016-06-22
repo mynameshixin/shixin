@@ -3,6 +3,7 @@
 	user_id = "{{$user_id}}"
 	self_id = "{{$self_id}}"
 	relationUrl = "{{url('webd/user/relation')}}"
+	fid = "{{$folder['id']}}"
 	function addSe(obj){
 		if ($(obj).hasClass('detail_raido_wrapred')) {
 			$(obj).removeClass('detail_raido_wrapred').addClass('detail_raido_wrap');
@@ -73,8 +74,8 @@
 									</div>
 									<div class="detail_fileb_select detail_fileb_selectt slideup">
 										<div class="detail_fileb_selectw">
-											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
-											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_sfld">编辑文件夹</a>
+											<a class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
+											<a class="detail_fileb_seleta detail_fileb_sfld" onclick="folderEditInner(this)">编辑文件夹</a>
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
@@ -139,8 +140,8 @@
 									</div>
 									<div class="detail_fileb_select detail_fileb_selectt slideup">
 										<div class="detail_fileb_selectw">
-											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
-											<a href="javascript:;" class="detail_fileb_seleta detail_fileb_sfld">编辑文件</a>
+											<a class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
+											<a class="detail_fileb_seleta detail_fileb_sfld" onclick="folderEditInner(this)">编辑文件夹</a>
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
@@ -164,3 +165,107 @@
 			</div>
 		</div>
 
+<div class="pop_editfold">
+		<div class="pop_con">
+			<p class="pop_tit">
+				编辑文件夹
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">名称</span>
+				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它" value="" name='fname'>
+			</div>
+			<div class="pop_deswrap clearfix">
+				<span class="pop_labelname">描述</span>
+				<textarea class="pop_iptdes"  placeholder="关于你的文件夹"></textarea>
+			</div>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">封面</span>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_filechange">更改</a>
+			</div>
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname">隐私</span>
+				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr3" name="private" private=0>
+				<label for="pop_iptpr3"></label>
+			</div>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除文件夹</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folderedit">编辑</a>
+			</div>
+		</div>
+	</div>
+	<div class="pop_changefold">
+		<div class="pop_con">
+			<p class="pop_tit">
+				更改文件夹封面
+			</p>
+			<div class="pop_change_pic clearfix">
+			<div class="pop_change_wrap">
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+				<div class="pop_change_imgwrap" style="display: none"><img src="" alt="" class="imgwrap"></div>
+			</div>
+				<div class="pop_change_imgblur pop_change_imgbleft"></div>
+				<div class="pop_change_imgblur pop_change_imgbright"></div>
+				<div class="pop_change_imgblurtb pop_change_imgblurt"></div>
+				<div class="pop_change_imgblurtb pop_change_imgblurb"></div>
+				<a href="javascript:;" class="pop_change_imgbtn pop_change_imgleft"></a>
+				<a href="javascript:;" class="pop_change_imgbtn pop_change_imgrigt"></a>
+			</div>
+			<div class="pop_btnwrap" style="border-top: 1px solid #f1f1f1;">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="avatarsave">保存</a>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	$('.pop_con').click(function(){
+				event.stopPropagation();
+			})
+			$('.pop_editfold,.pop_editfold .pop_close,.pop_editfold .detail_pop_cancel').click(function(){
+				$('.pop_editfold').hide()
+			})
+			$('.detail_filechange').click(function(){
+				foderid = $(this).parents('.pop_con').attr('fid')
+				$('.pop_editfold').hide()
+				$('.pop_changefold').attr('fid',foderid)
+				$.ajax({
+					'url':"{{url('api/goods')}}",
+					'type':'get',
+					'data':{
+						'folder_id':foderid,'num':10,'page':1
+					},
+					'dataType':'json',
+					'success':function(json){
+						// console.log(json)
+						if(json.code==200){
+							list = json.data.list
+							$f = $('.pop_changefold .pop_change_imgwrap').slice(0,list.length)
+							$('.pop_change_imgwrap').css({'display':'none'})
+							$('.pop_change_imgwrap img').attr('src','')
+							$.each($f,function(index,v){
+								$($f[index]).css({'display':'block'})
+								if(list[index].images[0]!=undefined) {
+									$('.imgwrap',$f[index]).attr('src',list[index].images[0].img_m)
+									$('.imgwrap',$f[index]).attr('id',list[index].images[0].image_id)
+								}
+							})
+							$('.pop_changefold').show();
+						}
+					}
+				})
+				
+			  	var poptopHei = $('.pop_changefold .pop_con').height();
+					$('.pop_con').css({
+					   'margin-top':-(poptopHei/2)
+				})
+			})
+</script>
