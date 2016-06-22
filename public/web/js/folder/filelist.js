@@ -106,8 +106,8 @@ $(function() {
 			})
 			$('.pop_conb').click(function(){
 				$('.pop_goodsupload').hide();
-				$('.pop_uploadgoods').show();
-				var popconHei = $('.pop_uploadgoods .pop_con').height();
+				$('#pop_file').show();
+				var popconHei = $('#pop_file .pop_con').height();
 				$('.pop_con').css({
 				   'margin-top':-(popconHei/2)
 				})
@@ -118,21 +118,7 @@ $(function() {
 			$('.pop_pic_upload .pop_con').click(function(){
 				event.stopPropagation()
 			});
-			$('.detail_pop_goodsget').click(function(){
-				$('.pop_uploadgoods').hide();
-				$('.pop_goods_upload').show();
-				var popconHei = $('.pop_goods_upload .pop_con').height();
-			  	if (popconHei > 410) {
-				    $('.pop_goods_upload .pop_conwrap').css({
-				      'max-height':410,
-				      'overflow-y':'scroll'
-				    })
-				  };
-			  	var poptopHei = $('.pop_goods_upload .pop_con').height();
-				$('.pop_goods_upload .pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
+
 			$('.pop_uploadgoods,.pop_uploadgoods .detail_pop_cancel,.pop_uploadgoods .pop_close').click(function(){
 				$('.pop_uploadgoods').hide();
 			})

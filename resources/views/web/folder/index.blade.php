@@ -444,18 +444,18 @@
 	</div>
 	<script type="text/javascript">
 		function cg(){
-			$('.pop_uploadgoods').hide()
+			$('#pop_file').hide()
 		}
 	</script>
 	<!-- 获取商品网址弹框 -->
-	<div class="pop_uploadgoods" style="display:none;">
+	<div class="pop_uploadgoods" style="display:none;" id="pop_file">
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传商品
 				<span class="pop_close" onclick="cg()"></span>
 			</p>
 			<div class="pop_namewrap clearfix">
-				<input class="pop_iptgoods" placeholder="粘贴商品网站" type="text" value="" id="pop_iptgoods">
+				<input class="pop_iptgoods" placeholder="粘贴商品网站" type="text" value="" id="pop_goods">
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="cg()">取消</a>
@@ -597,6 +597,10 @@
 			return
 		})
 		$('.detail_pop_goodsget').click(function(){
+				if($('#pop_goods').val().trim()==''){
+		          layer.msg('地址不能为空',{'icon':5})
+		          return 
+		        }
 				$('.pop_uploadgoods').hide();
 				$.ajax({
 					'beforeSend':function(){
@@ -605,7 +609,7 @@
 					'url':"/webd/taobao/detail",
 					'type':'get',
 					'data':{
-						'url':$('#pop_iptgoods').val().trim()
+						'url':$('#pop_goods').val().trim()
 					},
 					'dataType':'json',
 					'success':function(json){

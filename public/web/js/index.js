@@ -150,6 +150,10 @@ $(function(){
   });
   // 上传点击
   $('#geturl').click(function(){
+        if($('#pop_ipt_goods').val().trim()==''){
+          layer.msg('地址不能为空',{'icon':5})
+          return 
+        }
         $('.pop_uploadgoods').hide();
 
         /*$('.pop_goods_upload').show();
