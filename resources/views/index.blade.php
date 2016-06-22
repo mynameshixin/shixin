@@ -31,9 +31,29 @@ var _hmt = _hmt || [];
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
   <script type="text/javascript">
-    function layer_error(){
-      layer.msg('该功能仍在建设中', {icon: 5});
+    function rect(obj){
+      marginLeft = ($(obj).parent().width()-$(obj).width())/2
+      marginTop = ($(obj).parent().height()-$(obj).height())/2
+      $(obj).css({
+        'margin-left':marginLeft,
+        'margin-top':marginTop
+      })
+    }
+    function layer_error(str=''){
+      str = str!=''?str:'该功能仍在建设中'
+      layer.msg(str, {icon: 5});
       return false;
+    }
+    function getObjectURL(file) {
+      var url = null ; 
+      if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file) ;
+      } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file) ;
+      } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file) ;
+      }
+      return url ;
     }
   </script>
 </head>
