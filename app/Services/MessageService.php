@@ -114,6 +114,9 @@ class MessageService extends ApiService
                 if(isset($userArr[$v['from_userid']])){
                     $user = $userArr[$v['from_userid']];
                     $v['user'] = $user;
+                }else{
+                    unset($v);
+                    continue;
                 }
                 if (!empty($v['var1'])) {
                     $var = json_decode($v['var1'],true);
