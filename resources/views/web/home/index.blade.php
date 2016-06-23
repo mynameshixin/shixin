@@ -42,6 +42,7 @@
 									推荐文件夹 <a href="{{url('webd/find')}}" target="_blank" class="index_item_ubrecmore">查看更多</a>
 								</div>
 							<?php foreach ($recommend as $key => $re):?>
+								<?php if($re['user_id'] != $self_id): ?>
 								<li folder_id="{{$re['id']}}">
 								<div class="index_item_ubfold clearfix">
 									<div class="index_item_ubfava">
@@ -54,6 +55,7 @@
 									<a class="index_item_ubfatten" onclick="relation(this)"><?php echo !empty($re['is_collection'])?'已关注':'<span>+</span>特别关注'; ?></a>
 								</div>
 								</li>
+							<?php endif; ?>
 							<?php endforeach; ?>
 							</div>
 						</div>
