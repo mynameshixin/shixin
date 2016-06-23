@@ -40,15 +40,7 @@ var _hmt = _hmt || [];
 					</div>
 					<div class="header_add_con" style="height: 360px;overflow-y: scroll;">
 						<ul class="header_add_cul">
-							<li class="clearfix">
-								<div class="header_add_mava_wrap">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<div class="header_add_font_wrap">
-									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
-									<p class="header_add_font_a">关注了你</p>
-								</div>
-							</li>
+							
 						</ul>
 					</div>
 					<!-- <a href="javascript:;" class="header_add_more">查看更多</a> -->
@@ -61,10 +53,50 @@ var _hmt = _hmt || [];
 <script type="text/javascript">
 	$('.header_mess').click(function(){
 		if($('.header_moremess').css('display') == 'block'){
+			$('.header_moremess').find('ul').html('')
 			$('.header_moremess').css("display","none")
 		}else{
+			$.ajax({
+				'beforeSend':function(){
+					layer.load(0, {shade: 0.5});
+				},
+				'url':"{{url('webd/notice/index')}}",
+				'type':'post',
+				'data':{
+					'user_id':user_id,
+					'num':100
+				},
+				'dataType':'json',
+				'success':function(json){
+					if(json.code==200){
+						var lis = ''
+						$.each(json.data.list,function(index,v){
+							var pic_m = v.user.auth_avatar!=null?v.user.auth_avatar:v.user.pic_m
+							var nick = v.user.nick!=''?v.user.nick:v.user.username
+							var uid = v.user.id
+							lis += '<li class="clearfix">'
+								+'<div class="header_add_mava_wrap">'
+									+'<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>'
+								+'</div>'
+								+'<div class="header_add_font_wrap">'
+									+'<p class="header_add_font_a">'+nick+' - <span>'+v.min+'前</span></p>'
+									+'<p class="header_add_font_a">'+v.msg_content+'</p>'
+								+'</div>'
+							+'</li>'
+						})
+						$('.header_moremess').find('ul').html(lis)
+						
+					}
+				},
+				'complete':function(){
+					layer.closeAll('loading');
+				}
+			})
 			$('.header_moremess').css("display","block")
 		}
+	})
+	$('.header_moremess').click(function(){
+		event.stopPropagation();
 	})
 </script>
 @include('web.common.login')
