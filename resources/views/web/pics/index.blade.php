@@ -72,11 +72,11 @@
 						<div class="index_item_info">
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
-								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+								<!-- <div class="index_item_rel clearfix" good_id="{{$v['id']}}">
 									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
 									<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
-								</div>
+								</div> -->
 							</div>
 							<div class="index_item_bottom clearfix">
 								<a href="{{url('webd/user')}}?oid={{$v['user']['id']}}" class="index_item_authava authava" target="_blank">

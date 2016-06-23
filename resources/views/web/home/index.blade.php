@@ -7,7 +7,6 @@
 	<script type="text/javascript">
 		var self_id = "{{$self_id}}"
 		relationUrl = "{{url('webd/user/relation')}}"
-		console.log(user_id)
 	</script>
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	<div class="container"  style="background: #f0f0f0">

@@ -32,13 +32,13 @@ var _hmt = _hmt || [];
 			</script>
 			<div href="javascript:;" class="header_mess">
 				<!-- <i class="icon-bell-alt"></i> -->
-				<div class="header_moremess">
+				<div class="header_moremess" >
 					<div class="header_add_up"></div>
 					<div class="header_add_clickbtn clearfix">
 						<a href="javascript:;" class="header_add_clicka header_add_clicka_on" style="border-radius: 6px 0px 0px 0px">通知</a>
 						<a href="javascript:;" class="header_add_clicka" style="border: none;border-radius:0px 6px 0px 0px">消息</a>
 					</div>
-					<!-- <div class="header_add_con">
+					<div class="header_add_con" style="height: 360px;overflow-y: scroll;">
 						<ul class="header_add_cul">
 							<li class="clearfix">
 								<div class="header_add_mava_wrap">
@@ -49,44 +49,8 @@ var _hmt = _hmt || [];
 									<p class="header_add_font_a">关注了你</p>
 								</div>
 							</li>
-							<li class="clearfix">
-								<div class="header_add_mava_wrap">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<div class="header_add_font_wrap">
-									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
-									<p class="header_add_font_a">关注了你的文件夹</p>
-								</div>
-								<div class="header_add_fold_wrap">
-									<img src="{{asset('web')}}/images/temp/temp (1).png" height="127" width="127" alt="">	
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="header_add_mava_wrap">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<div class="header_add_font_wrap">
-									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
-									<p class="header_add_font_a">关注了你的文件夹</p>
-								</div>
-								<div class="header_add_fold_wrap">
-									<img src="{{asset('web')}}/images/temp/temp (1).png" height="127" width="127" alt="">	
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="header_add_mava_wrap">
-									<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-								</div>
-								<div class="header_add_font_wrap">
-									<p class="header_add_font_a">小周 - <span>1个月前</span></p>
-									<p class="header_add_font_a">关注了你的文件夹</p>
-								</div>
-								<div class="header_add_fold_wrap">
-									<img src="{{asset('web')}}/images/temp/temp (1).png" height="127" width="127" alt="">	
-								</div>
-							</li>
 						</ul>
-					</div> -->
+					</div>
 					<!-- <a href="javascript:;" class="header_add_more">查看更多</a> -->
 				</div>
 			</div>
@@ -94,7 +58,15 @@ var _hmt = _hmt || [];
 
 		</div>
 </div>
-
+<script type="text/javascript">
+	$('.header_mess').click(function(){
+		if($('.header_moremess').css('display') == 'block'){
+			$('.header_moremess').css("display","none")
+		}else{
+			$('.header_moremess').css("display","block")
+		}
+	})
+</script>
 @include('web.common.login')
 @include('web.common.daction')
 
