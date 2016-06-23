@@ -199,9 +199,8 @@ class PicsController extends CmController{
 
 	//上传多张图片
     public function postUimg(){
-
+    	
         $data = Input::all();
-
         $rules = array(
             'user_id' => 'required',
             'kind' => 'required|in:1,2',
@@ -232,9 +231,16 @@ class PicsController extends CmController{
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
         }
+
+        foreach ($data['pop_addfont_wrap'] as $key => $value) {
+        	if(isset($value)){
+        		$_FILES['image']['name'][$key] = $value;
+        	}
+        }
         //用户发布，先发后审
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
+
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
         if ($id) {
             return response()->forApi(['id' => $id]);
