@@ -3,7 +3,8 @@
 	user_id = "{{$user_id}}"
 	self_id = "{{$self_id}}"
 	relationUrl = "{{url('webd/user/relation')}}"
-	fid = "{{$folder['id']}}"
+	fid = f_id = "{{$folder['id']}}"
+
 	function addSe(obj){
 		if ($(obj).hasClass('detail_raido_wrapred')) {
 			$(obj).removeClass('detail_raido_wrapred').addClass('detail_raido_wrap');

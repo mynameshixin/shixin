@@ -8,7 +8,7 @@
 
 // 批量上传弹框
 
-
+$(function(){
   var uploadPophtml = '<div class="pop_addpic_multi">\
   <form name="allimg" action="" method="post" enctype="multipart/form-data">\
     <div class="pop_con">\
@@ -40,14 +40,19 @@
               <input type="file" name="image[]"/>\
             </div>\
         </div>\
-      </div>\
-      <div class="pop_namewrap clearfix" style="padding:8px 0px 8px 30px;">\
-        <span class="pop_labelname" style="font-size:12px;line-height:36px;">保存至文件夹</span>\
-        <select class="pop_iptselect" name="fid">\
-          <option value="">椅子</option>\
-        </select>\
-      </div>\
-      <div class="pop_btnwrap">\
+      </div>';
+      var f_id_now = typeof(f_id)!='undefined'?f_id:0;
+      if(f_id_now==0){
+        uploadPophtml+='<div class="pop_namewrap clearfix" style="padding:8px 0px 8px 30px;">\
+          <span class="pop_labelname" style="font-size:12px;line-height:36px;">保存至文件夹</span>\
+          <select class="pop_iptselect" name="fid">\
+            <option value="">椅子</option>\
+          </select>\
+        </div>';
+      }else{
+         uploadPophtml+='<input type="hidden" name="fid" value="'+f_id_now+'"/>';
+      }
+      uploadPophtml+='<div class="pop_btnwrap">\
         <input type="hidden" name="user_id" value="'+u_id+'"/>\
         <input type="hidden" name="kind" value="2"/>\
         <a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>\
@@ -64,31 +69,33 @@ $('.header_more_a1,.pop_cona').click(function(){
        'margin-top':-(poptopHei/2)
     });
     //获取文件id
-    $.ajax({
-        'beforeSend':function(){
-          layer.load(0, {shade: 0.5});
-        },
-        'url':'/webd/pics/cgoods',
-        'type':'post',
-        'data':{'user_id':u_id},
-        'dataType':'json',
-        'success':function(json){
-          if(json.code==200){
-            var option = ''
-            $.each(json.data.folder,function(index,v){
-                option += "<option value="+v.id+">"+v.name+"</option>"
-            })
-            
-            $('form[name=allimg]').find('.pop_iptselect').html(option)
-          }else{
-              layer.msg(json.message, {icon: 5});
-              return
-          } 
-        },
-        'complete':function(){
-          layer.closeAll('loading');
-        }
-    })
+    if(f_id_now==0){
+      $.ajax({
+          'beforeSend':function(){
+            layer.load(0, {shade: 0.5});
+          },
+          'url':'/webd/pics/cgoods',
+          'type':'post',
+          'data':{'user_id':u_id},
+          'dataType':'json',
+          'success':function(json){
+            if(json.code==200){
+              var option = ''
+              $.each(json.data.folder,function(index,v){
+                  option += "<option value="+v.id+">"+v.name+"</option>"
+              })
+              
+              $('form[name=allimg]').find('.pop_iptselect').html(option)
+            }else{
+                layer.msg(json.message, {icon: 5});
+                return
+            } 
+          },
+          'complete':function(){
+            layer.closeAll('loading');
+          }
+      })
+    }
     
     $('.pop_addpic_wrap input').change(function(){
         var imgcon = $('.pop_pic_wrap');
@@ -163,4 +170,4 @@ $('.header_more_a1,.pop_cona').click(function(){
 
 
   })
-  
+})

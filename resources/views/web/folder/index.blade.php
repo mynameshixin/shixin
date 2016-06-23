@@ -680,7 +680,7 @@
 	<div class="pop_goodsupload" style="display:none;">
 		<div class="pop_con">
 			<div class="pop_conabwrap">
-				<div class="pop_cona"></div>
+				<div class="pop_cona popa"></div>
 				<div class="pop_conb"></div>
 			</div>
 		</div>

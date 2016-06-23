@@ -90,14 +90,14 @@ $(function() {
 			$('.pop_goodsupload .pop_con').click(function(){
 				event.stopPropagation()
 			});
-			$('.pop_cona').click(function(){
+			/*$('.pop_cona').click(function(){
 				$('.pop_goodsupload').hide();
 				$('.pop_uploadfile').show();
 				var poptopHei = $('.pop_uploadfile .pop_con').height();
 				$('.pop_con').css({
 				   'margin-top':-(poptopHei/2)
 				})
-			});
+			});*/
 			$('.pop_uploadfile,.pop_close').click(function(){
 				$('.pop_uploadfile').hide();
 			})
