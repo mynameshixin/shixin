@@ -13,6 +13,7 @@ use App\Services\ProductService;
 use App\Services\FolderService;
 use App\Websupply\ProductWebsupply;
 use App\Websupply\UserWebsupply;
+use App\Services\UserService;
 use App\Websupply\CommentWebsupply;
 use App\Websupply\FolderWebsupply;
 use App\Models\Shop;
@@ -28,13 +29,19 @@ class SearchController extends CmController{
 	//首页或者文件夹页
 	public function getIndex(){
 		$keyword = trim(Input::get('keyword'));
-
+        $count = [
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+        ];
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>2
+			'type'=>2,
+            'count'=>$count
 		];
 		return view('web.search.index',$data);
 	}
@@ -44,12 +51,19 @@ class SearchController extends CmController{
 		$keyword = trim(Input::get('keyword'));
 		$type = trim(Input::get('type'));
         $type  = !empty($type)?$type:1;
+        $count = [
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+        ];
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>$type 
+			'type'=>$type,
+            'count'=>$count
 		];
 		return view('web.search.goods',$data);
 	}
@@ -58,12 +72,19 @@ class SearchController extends CmController{
 	public function getUser(){
 		$keyword = trim(Input::get('keyword'));
 		$type = trim(Input::get('type'));
+        $count = [
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+        ];
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>$type
+			'type'=>$type,
+            'count'=>$count
 		];
 		return view('web.search.user',$data);
 	}
