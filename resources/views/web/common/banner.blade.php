@@ -64,7 +64,7 @@ var _hmt = _hmt || [];
 				'type':'post',
 				'data':{
 					'user_id':user_id,
-					'num':100
+					'num':20
 				},
 				'dataType':'json',
 				'success':function(json){
