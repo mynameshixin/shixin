@@ -49,6 +49,8 @@
 			$('form[name=u_a]').submit()
 		})
 	</script>
+	<!-- 上传图片的js -->
+	<script type="text/javascript" src="{{asset('web')}}/js/backupjs.js"></script>
 	<!-- 获取商品网址弹框 -->
 	<div class="pop_uploadgoods" style="display:none;">
 		<div class="pop_con">

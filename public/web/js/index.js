@@ -21,25 +21,6 @@ $(function(){
         };
     });
   }
-  //上传图片点击按钮 
-  $('.popa').click(function(){
-    if(user_id==''){
-      layer.msg('需要登录',{'icon':5})
-      return
-    }
-      $('.pop_uploadfile').show();
-      var popconHei = $('.pop_uploadfile .pop_conwrap').height();
-      if (popconHei > 410) {
-        $('.pop_uploadfile .pop_conwrap').css({
-          'max-height':410,
-          'overflow-y':'scroll'
-        })
-      };
-      var poptopHei = $('.pop_uploadfile .pop_con').height();
-      $('.pop_uploadfile .pop_con').css({
-         'margin-top':-(poptopHei/2)
-      })
-  });
 
   $(".pop_upload_a").on("change","input[type='file']",function(){
           var filePath=$(this).val();

@@ -188,6 +188,7 @@ class FolderController extends CmController{
     public function postUimg(){
 
         $data = Input::all();
+
         $rules = array(
             'user_id' => 'required',
             'kind' => 'required|in:1,2',

@@ -20,7 +20,7 @@ class PicsController extends CmController{
 	
 	public function __construct(){
 		parent::__construct();
-		$getdata = fparam(Input::all());
+		$getdata = Input::all();
 		if(isset($getdata['oid']) && !empty($getdata['oid'])){
 			$this->other_id = $getdata['oid'];
 		}else{
@@ -195,5 +195,51 @@ class PicsController extends CmController{
             return response()->forApi(array(), 1001, '操作失败');
         }
 	}
+
+	//上传多张图片
+    public function postUimg(){
+
+        $data = Input::all();
+
+        $rules = array(
+            'user_id' => 'required',
+            'kind' => 'required|in:1,2',
+            'fid' => 'required|exists:folders,id',
+            'category_id' => 'exists:categories,id',
+            // 'image' => 'required',
+            'source' => 'in:0,1',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+ 
+        if(empty($_FILES['uallimg'])) return response()->forApi(array(), 1001, '没有选择图片');
+        // dd($data);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $rulesImage = $file = array();
+        if (is_array($data['image']) && !empty($data['image'])) {
+            foreach ($data['image'] as $k => $v) {
+                $rulesImage[$k] = 'image';
+            }
+            parent::validator($data['image'], $rulesImage);
+        }
+        if (isset($data['folder_id'])) {
+            $row = Folder::find($data['folder_id']);
+            if (empty($row) || $userId !=$row->user_id){
+                return response()->forApi(array(), 1001, '请选择正确文件夹！');
+            }
+        }
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['folder_id'] = $data['fid'];
+        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+    }
 
 }

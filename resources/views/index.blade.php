@@ -60,7 +60,7 @@ var _hmt = _hmt || [];
   </script>
 </head>
 <body class="nolog_body">
-@include('web.common.daction')
+
   <div class="nolog_header">
     <div class="headercontainer w1248 clearfix">
       <a href="/" class="header_logo"></a>
@@ -107,6 +107,7 @@ var _hmt = _hmt || [];
       @include('web.common.banner.my')
     </div>
   </div>
+  @include('web.common.daction')
   <div class="container nolog_index_container clearfix">
     <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
       <div class="w1248 clearfix nolog_index_top">

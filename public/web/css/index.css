@@ -937,15 +937,20 @@ input[type="checkbox"] + label{cursor: pointer;}
 .protocal_right{margin-left: 30px;font: normal 16px/20px "Microsoft YaHei";color: #000;}
 
 .pop_addpic_multi{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
-.pop_addpic_multi .pop_con{width: 510px;}
+.pop_addpic_multi .pop_con{width: 510px;margin-left: -255px;}
 .pop_addpic_con{float: left;padding-bottom: 16px;}
-.pop_addpic_wrap{width: 78px;height: 78px;border:1px solid #f0f0f0;float: left;margin-left: 13px;cursor: pointer;text-align: center;position: relative;}
+.pop_addpic_wrap,.pop_addpic_wrap2{width: 78px;height: 78px;border:1px solid #f0f0f0;float: left;margin-left: 13px;cursor: pointer;text-align: center;position: relative;}
+.pop_addpic_wrap2{z-index: 100; margin-left: 0}
 .pop_addpic_wrap:first-child{margin-left: 0px;}
 .detail_pop_tbtn input[type="file"]{width: 102px;height: 34px;opacity: 0;position: absolute;top: 0px;left: 0px;}
 
-.pop_addpic_wrap input[type="file"]{opacity: 0.5;position: absolute;margin-left:0px;position:absolute;top:0px;left:0px;width:77px;height:77px;}
+.pop_addpic_wrap input[type="file"]{opacity: 0;position: absolute;margin-left:0px;position:absolute;top:0px;left:0px;width:77px;height:77px;}
 .pop_addpic_wrap img{margin-left:0px;position:absolute;top:0px;left:0px;width:77px;height:77px;}
-.close_img_btn{width: 15px;height: 15px;position: absolute;top: -7px;right: -7px;background: #f0f0f0;color: #fff;z-index: 200000;border-radius: 50%;line-height: 15px;display: block;text-align: center;}
+.close_img_btn{width: 15px;height: 15px;position: absolute;top: -7px;right: -7px;background: #db4444;color: #fff;z-index: 200000;border-radius: 50%;line-height: 15px;display: block;text-align: center;}
+.pop_addfont_wrap{width: 70px;padding:4px;position: absolute;bottom: 0px;left: 0px;background: rgba(249,36,36,.54);border:none;height: 30px;line-height: 14px;color: #fff;}
+/*.pop_addfont_wrap p{width: 100%;font-size: 12px;line-height: 8px;color: #fff;-webkit-transform-origin-x: 0;-webkit-transform: scale(0.5);}*/
+.pop_col_dwrap {float: left;width: 206px;background: #fff;padding:15px;background: #fff;border-radius: 0px 0px 5px 5px;}
+.pop_col_searfold_wrap{position: absolute;top: 36px;left: 0px;padding: 0px 15px;width: 250px;background: #fff;z-index: 9000000;border-left: 1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0;border-right: 1px solid #f0f0f0;max-height:200px;overflow-y: scroll;}
 
 
 
