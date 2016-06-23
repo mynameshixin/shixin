@@ -21,23 +21,23 @@
         <div class="pop_addpic_con clearfix" style="float:left">\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
               <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
-              <input type="file" name="uallimg[]"/>\
+              <input type="file" name="image[]"/>\
             </div>\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
               <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
-              <input type="file" name="uallimg[]"/>\
+              <input type="file" name="image[]"/>\
             </div>\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
               <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
-              <input type="file" name="uallimg[]"/>\
+              <input type="file" name="image[]"/>\
             </div>\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
               <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
-              <input type="file" name="uallimg[]"/>\
+              <input type="file" name="image[]"/>\
             </div>\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
               <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
-              <input type="file" name="uallimg[]"/>\
+              <input type="file" name="image[]"/>\
             </div>\
         </div>\
       </div>\
