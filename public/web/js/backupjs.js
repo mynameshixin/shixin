@@ -48,7 +48,7 @@
         </select>\
       </div>\
       <div class="pop_btnwrap">\
-        <input type="hidden" name="user_id" value="'+user_id+'"/>\
+        <input type="hidden" name="user_id" value="'+u_id+'"/>\
         <input type="hidden" name="kind" value="2"/>\
         <a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>\
         <a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="allimg">上传</a>\
@@ -70,7 +70,7 @@ $('.header_more_a1,.pop_cona').click(function(){
         },
         'url':'/webd/pics/cgoods',
         'type':'post',
-        'data':{'user_id':user_id},
+        'data':{'user_id':u_id},
         'dataType':'json',
         'success':function(json){
           if(json.code==200){
