@@ -31,6 +31,7 @@
 								</div>
 								<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 							</div>
+							<?php if(!$folder['private']){?>
 							<div class="perhome_perlike_wrap clearfix">
 								<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
 									<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
@@ -41,9 +42,18 @@
 									<p class="perhome_perlike_la">关注</p>
 								</a>
 							</div>
+							<?php }else{ ?>
+								<div class="perhome_perlike_wrap clearfix" style="margin-left: 436px;margin-top: 0px;padding-top: 8px;height:48px;">
+									<a href="javascript:;" class="perhome_perlike_label">
+										<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
+										<p class="perhome_perlike_la">隐私文件</p>
+									</a>
+								</div>
+							<?php } ?>
 							<div class="detail_filebtn_wrap clearfix">
 								<?php if(isset($_GET['o']) && $_GET['o']==1): ?><a class="detail_filebtn detail_fileball" style="color: #969696" href="/webd/folder?fid={{$folder['id']}}">查看全部</a><?php endif; ?>
 								<?php if($type==1 && !isset($_GET['o'])): ?><a class="detail_filebtn detail_filebtn_cpadding" style="color: #fff" href="/webd/folder?fid={{$folder['id']}}&o=1">只看商品</a><?php endif; ?>
+								<?php if(!$folder['private']): ?>
 								<div class="detail_filebtn">
 									<div class="detail_filebtn_click detail_fileb_pr">
 										分享
@@ -59,6 +69,7 @@
 										</div>
 									</div>
 								</div>
+								<?php endif; ?>
 								<!-- JiaThis Button BEGIN -->
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->

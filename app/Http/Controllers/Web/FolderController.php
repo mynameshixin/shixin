@@ -27,7 +27,7 @@ class FolderController extends CmController{
 	public function getIndex(){
 
 		$folder = $this->postFolders(1);
-		if(empty($folder['data']['list'])) die('private folder no access!');
+		if(empty($folder['data']['list'])) die('private folder or no such folder!');
 		// dd($folder);
         $user_id = $folder['data']['list']['user_id']; 
 		$data = [
@@ -46,6 +46,7 @@ class FolderController extends CmController{
 	//查询文件夹被谁关注
 	public function getFans(){
 		$folder = $this->postFolders(2);
+        if(empty($folder['data']['list'])) die('private folder or no such folder!');
 		$user_fans = $this->postFans();
         $user_id = $folder['data']['list']['user_id'];
 		// dd($user_fans);

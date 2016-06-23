@@ -141,12 +141,13 @@ class FolderWebsupply extends CmWebsupply {
 
 	
 
-	//通过文件夹id获取文件
+	//通过文件夹id获取文件 
 	public static function get_folder_file($folder_id,$user_id,$data){
 		$page = isset($data['page'])?$data['page']:1;
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;
 		$folder = DB::table('folders')->where(['id'=>$folder_id])->first();
+		if(empty($folder)) return [];
 		if($folder){
 			if($folder['user_id']!=$user_id && $folder['private'] == 1) return [];
 			$folder['user_info'] = UserWebsupply::user_info($folder['user_id']);

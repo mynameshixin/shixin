@@ -20,7 +20,7 @@
 					<div class="index_item" style="box-shadow: none;-webkit-box-shadow: none;">
 						<li class="find_fold_li perhome_add_one perhome_add_goods" style="margin-bottom: 0px;">
 							<a href="javascript:;" class="perhome_add_btn">+</a>
-							<div class="perhome_add_des">添加文件</div>
+							<div class="perhome_add_des">添加<?php if($folder['private']==1) echo '隐私';?>文件</div>
 						</li>
 					</div>
 				<?php }else{ ?>
