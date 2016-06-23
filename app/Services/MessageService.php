@@ -110,12 +110,12 @@ class MessageService extends ApiService
         if (!empty($data['list'])){
             $userIds = array_column($data['list'],'from_userid');
             $userArr = UserService::getInstance()->getUserArr ($userIds);
-            foreach ($data['list'] as &$v) {
+            foreach ($data['list'] as $k=>&$v) {
                 if(isset($userArr[$v['from_userid']])){
                     $user = $userArr[$v['from_userid']];
                     $v['user'] = $user;
                 }else{
-                    unset($v);
+                    unset($data['list'][$k]);
                     continue;
                 }
                 if (!empty($v['var1'])) {
