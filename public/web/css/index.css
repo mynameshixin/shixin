@@ -59,7 +59,7 @@ a{cursor: pointer;}
 .index_item_ubfnme{font:normal 12px/20px "Microsoft YaHei";color: #333333;}
 .index_item_ubfnme a{color: #333333;}
 .index_item_ubffow{font:normal 10px/20px "Microsoft YaHei";color: #969696;}
-.index_item_ubfatten{width: 54px;height: 34px;border:1px solid #d4d4d4;background: #f0f0f0;color: #333333;display: inline-block;font:normal 14px/34px "Microsoft YaHei";text-align: center;float: right;margin-top: 6px;}
+.index_item_ubfatten{width: 60px;height: 34px;border:1px solid #d4d4d4;background: #f0f0f0;color: #333333;display: inline-block;font:normal 12px/34px "Microsoft YaHei";text-align: center;float: right;margin-top: 6px;}
 .index_item_ubfatten:hover{background: #d9d9d9;}
 
 

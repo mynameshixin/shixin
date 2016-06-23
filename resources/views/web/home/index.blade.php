@@ -4,6 +4,12 @@
 <body>
 	@include('web.common.banner')
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
+	<script type="text/javascript">
+		var self_id = "{{$self_id}}"
+		relationUrl = "{{url('webd/user/relation')}}"
+		console.log(user_id)
+	</script>
+	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	<div class="container"  style="background: #f0f0f0">
 		<div class="w1248 clearfix" id="main" role="main">
 			<div class="index_con" id="tiles">
@@ -36,6 +42,7 @@
 									推荐文件夹 <a href="{{url('webd/find')}}" target="_blank" class="index_item_ubrecmore">查看更多</a>
 								</div>
 							<?php foreach ($recommend as $key => $re):?>
+								<li folder_id="{{$re['id']}}">
 								<div class="index_item_ubfold clearfix">
 									<div class="index_item_ubfava">
 										<a href="{{url('webd/folder')}}?fid={{$re['id']}}" target="_blank"><img src="{{$re['img_url']}}" alt=""></a>
@@ -44,8 +51,9 @@
 										<p class="index_item_ubfnme"><a href="{{url('webd/folder')}}?fid={{$re['id']}}" target="_blank"><?php echo mb_substr($re['name'], 0,8,'utf-8') ?></a></p>
 										<p class="index_item_ubffow">{{$re['count']}}文件&nbsp;&nbsp;{{$re['collection_count']}}关注</p>
 									</div>
-									<a href="javascript:;" class="index_item_ubfatten"><?php echo !empty($re['is_collection'])?'已关注':'关注'; ?></a>
+									<a class="index_item_ubfatten" onclick="relation(this)"><?php echo !empty($re['is_collection'])?'已关注':'<span>+</span>特别关注'; ?></a>
 								</div>
+								</li>
 							<?php endforeach; ?>
 							</div>
 						</div>
