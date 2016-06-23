@@ -79,10 +79,11 @@
 								<?php } ?>
 								<?php if($folder['user_id']==$self_id){ ?>
 								 <div class="detail_filebtn">
-									<div class="detail_filebtn_click detail_fileb_pr">
-										编辑
-										<var class="detail_filebtril"></var>
+									<div class="detail_filebtn_click detail_fileb_pr" <?php if($type==2){?>onclick="folderEditInner(this)" style="cursor: pointer; padding-right: 15px"<?php } ?>>
+										编辑<?php if($type==2){?>文件夹<?php } ?>
+										<?php if($type==1){?><var class="detail_filebtril"></var><?php } ?>
 									</div>
+									<?php if($type==1){?>
 									<div class="detail_fileb_select detail_fileb_selectt slideup">
 										<div class="detail_fileb_selectw">
 											<a class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
@@ -90,6 +91,7 @@
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
+									<?php } ?>
 								</div> 
 								<?php } ?>
 							</div>
