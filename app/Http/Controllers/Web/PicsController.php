@@ -10,6 +10,7 @@ use App\Websupply\FolderWebsupply;
 use App\Websupply\ProductWebsupply;
 use App\Lib\LibUtil;
 use App\Services\CollectionService;
+use App\Services\ProductService;
 use App\Models\CollectionGood;
 use DB;
 
@@ -211,7 +212,7 @@ class PicsController extends CmController{
         );
         //请求参数验证
         parent::validator($data, $rules);
- 
+
         if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
         // dd($data);
         $userId = self::get_user_cache($data['user_id']);
