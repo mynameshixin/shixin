@@ -138,7 +138,7 @@ class UserService extends ApiService
                 if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
                     //$user['auth_avatar'] = $user['auth_avatar'].'?'.time();
                     $user['pic_m'] = $user['auth_avatar'];
-                    unset($user['auth_avatar']);
+                    //unset($user['auth_avatar']);
                 }
                 if(empty($user['pic_m']) && empty($user['auth_avatar'])){
                         $user['pic_m'] = url('uploads/sundry/blogo.jpg');
