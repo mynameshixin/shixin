@@ -303,6 +303,10 @@
 
 	<script type="text/javascript">
 		$('.detail_pop_tbtnlike').click(function(){
+			if(u_id==''){
+				layer.msg('没有登陆',{'icon':5})
+				return
+			}
 			good_id = $('#collect_inner').attr('img_id')
 			if(!$(this).hasClass('detail_pop_tbtnlikeon')){
 				$.ajax({

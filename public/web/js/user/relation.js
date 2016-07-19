@@ -100,6 +100,10 @@ function folderEditInner(obj){
 
 //评论赞添加
 function comment_parise(obj){
+	if(u_id==''){
+		layer.msg('没有登陆',{'icon':5})
+		return
+	}
 	var count = $(obj).html()
 	var user_id = $(obj).attr('user_id')
 	var comment_id = $(obj).attr('comment_id')
