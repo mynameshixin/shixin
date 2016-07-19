@@ -200,6 +200,7 @@ class PicsController extends CmController{
 
 	//上传多张图片
     public function postUimg(){
+        
         $data = Input::all();
         $rules = array(
             'user_id' => 'required',
@@ -213,6 +214,12 @@ class PicsController extends CmController{
         parent::validator($data, $rules);
 
         if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
+
+        //8M大小验证
+        foreach ($_FILES['image']['size'] as $key => $value) {
+            if($value>8388608) return response()->forApi(array(), 1001, '图片大小大于8M');
+        }
+
         // dd($data);
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
@@ -232,11 +239,23 @@ class PicsController extends CmController{
             }
         }
 
+        //删除没有的
+        foreach ($_FILES['image']['name'] as $key => $value) {
+            if(!isset($data['pop_addfont_wrap'][$key])){
+                unset($_FILES['image']['name'][$key]);
+                unset($_FILES['image']['type'][$key]);
+                unset($_FILES['image']['tmp_name'][$key]);
+                unset($_FILES['image']['error'][$key]);
+                unset($_FILES['image']['size'][$key]);
+            }
+        }
+        // 设置名称
         foreach ($data['pop_addfont_wrap'] as $key => $value) {
         	if(isset($value)){
         		$_FILES['image']['name'][$key] = $value;
         	}
         }
+
         //用户发布，先发后审
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
