@@ -20,7 +20,7 @@ $(function(){
         <span class="pop_labelname" style="font-size:14px;line-height:42px;width:100%;">图片展示(最多5张且每张大小不超过8M)</span>\
         <div class="pop_addpic_con clearfix" style="float:left">\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\
-              <img src="/web/images/pop_upload_multi.png" alt="" class="show"/>\
+              <img src="/web/images/pop_upload_multi.png" alt="" class="show" />\
               <input type="file" name="image[]"/>\
             </div>\
             <div class="pop_addpic_wrap" style="position:relative;float:left;">\

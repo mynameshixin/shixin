@@ -133,15 +133,15 @@
 								</div>
 								<div class="detail_pop_cominfo">
 									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- {{$v['min']}}前说：
-										<span class="detail_pop_comshare">
-											<a href="javascript:;" class="detail_pop_share1"></a>
-											<a href="javascript:;" class="detail_pop_share2"></a>
-											<a href="javascript:;" class="detail_pop_share3"></a>
-									</span>
+									<!-- <span class="detail_pop_comshare">
+										<a href="javascript:;" class="detail_pop_share1"></a>
+										<a href="javascript:;" class="detail_pop_share2"></a>
+										<a href="javascript:;" class="detail_pop_share3"></a>
+									</span> -->
 									</p>
 									<p class="detail_pop_comcon">{{$v['content']}}</p>
 								</div>
-								<div class="detail_pop_favor">{{$v['praise_count']}}</div>
+								<div class="detail_pop_favor" style="cursor: pointer;" onclick="comment_parise(this)" user_id="{{$v['user']['id']}}" comment_id="{{$v['id']}}">{{$v['praise_count']}}</div>
 							</li>
 
 							<?php endforeach; ?>
@@ -151,10 +151,10 @@
 							<div class="detail_pop_authava">
 								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>
 							</div>
-							<textarea name="caption" placeholder="添加评论或把采集@给好友" class="detail_pop_compub" autocomplete="off"></textarea>
+							<textarea name="caption" placeholder="添加评论" class="detail_pop_compub" autocomplete="off"></textarea>
 						</div>
 						<div class="detail_pop_addcom clearfix">
-							<a class="detail_pop_authfollow detail_filebtn detail_fileball">添加评论</a>
+							<a class="detail_pop_authfollow detail_filebtn detail_fileball" id="add_commit_btn">添加评论</a>
 						</div>
 					</div>
 				</div>
@@ -500,6 +500,55 @@
 	}
 	he = $('.detail_pop').height()+100
 	$('.detail_pop').css('height',he)
+
+	// 添加评论
+	$("#add_commit_btn").click(function(){
+		if(u_id==''){
+			layer.msg('没有登陆',{'icon':5})
+			return
+		}
+		if($('textarea[name=caption]').val().trim()==''){
+			layer.msg('没有填写评论',{'icon':5})
+			return
+		}
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"/webd/pics/addcomment",
+			'type':'post',
+			'data':{
+				'good_id':"{{$goods['id']}}",
+				'content':$('textarea[name=caption]').val().trim(),
+				'user_id':u_id
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					var commitHtml = '<li class="clearfix">\
+									<div class="detail_pop_authava">\
+										<a href="/webd/user/index?oid={{$self_info['id']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>\
+									</div>\
+									<div class="detail_pop_cominfo">\
+										<p class="detail_pop_comname"><a href="/webd/user/index?oid={{$self_info['id']}}">小周</a>- 刚刚说：\
+										</p>\
+										<p class="detail_pop_comcon">'+$('textarea[name=caption]').val().trim()+'</p>\
+									</div>\
+									<div class="detail_pop_favor" style="cursor:pointer" onclick="comment_parise(this)" user_id="{{$self_info['id']}}" comment_id="'+json.data.id+'">0</div>\
+								</li>'
+					$(".detail_pop_tlcomlist").prepend(commitHtml);
+					$(".detail_pop_compub").val("")
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+		
+	})
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
  <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>

@@ -97,3 +97,31 @@ function folderEditInner(obj){
 		   'margin-top':-(poptopHei/2)
 	})
 }
+
+//评论赞添加
+function comment_parise(obj){
+	var count = $(obj).html()
+	var user_id = $(obj).attr('user_id')
+	var comment_id = $(obj).attr('comment_id')
+	$.ajax({
+		
+		'url':"/webd/pics/commentcount",
+		'type':'post',
+		'data':{
+			'comment_id':comment_id,
+			'user_id':user_id,
+			'u_id':u_id
+		},
+		'dataType':'json',
+		'success':function(json){
+			if(json.code==200){
+				$(obj).html(parseInt(count)+1)
+			}else{
+				layer.msg(json.message, {icon: 5});
+				return
+			}
+			
+		},
+		
+	})
+}

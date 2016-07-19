@@ -88,6 +88,7 @@ class PicsController extends CmController{
 		$action = DB::table('good_action')->where(['good_id'=>$id,'kind'=>1,'user_id'=>$self_id])->first();
 		$goods['action'] = !empty($action)?1:0;
 		// dd($goods);
+        // dd($goods['comments']);   
 		$data = [
 			'user_id'=>$goods['user_id'],
 			'self_id'=>$self_id,
@@ -199,7 +200,6 @@ class PicsController extends CmController{
 
 	//上传多张图片
     public function postUimg(){
-    	
         $data = Input::all();
         $rules = array(
             'user_id' => 'required',
@@ -247,6 +247,67 @@ class PicsController extends CmController{
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
+    }
+
+    //添加评论
+    public function postAddcomment(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'good_id' => 'required|exists:goods,id',
+            'content'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);    
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $entry = [
+            'good_id'=>$data['good_id'],
+            'user_id'=>$userId,
+            'content'=>$data['content'],
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s'),
+        ];
+        if($id = DB::table('comments')->insertGetId($entry)){
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+
+    }
+    //评论的赞提高
+    public function postCommentcount(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required|exists:users,id',
+            'comment_id' => 'required|exists:comments,id',
+            'u_id'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);    
+        $userId = self::get_user_cache($data['u_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+        if(DB::table('comment_action')->where(['user_id'=>$data['user_id'],'comment_id'=>$data['comment_id']])->first()){
+            return response()->forApi([],1001,'您已经赞过了');
+        }
+        DB::table('comments')->where('id',$data['comment_id'])->increment('praise_count');
+        $entry = [
+            'user_id'=>$data['user_id'],
+            'comment_id'=>$data['comment_id'],
+            'action'=>1,
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s')
+        ];
+        $id = DB::table('comment_action')->insertGetId($entry);
+        if($id){
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+
     }
 
 }

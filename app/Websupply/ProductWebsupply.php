@@ -187,11 +187,12 @@ class ProductWebsupply extends CmWebsupply{
             $goods['relation'] = self::get_relation($goods['user_id'],$self_id);
 
             $goods['more'] = self::get_more_goods($folder_id,$goods['id']);
-            $comments = DB::table('comments')->where(['good_id'=>$id])->get();
+            $comments = DB::table('comments')->where(['good_id'=>$id])->orderBy('praise_count','desc')->orderBy('created_at','desc')->take(20)->get();
             foreach ($comments as $key => $value) {
                 $innertime = time() - strtotime($value['created_at']);
                 $comments[$key]['min'] = self::cpu_time($innertime);
                 $comments[$key]['user'] = UserWebsupply::user_info($value['user_id']);
+
             }
             $goods['comments'] = $comments;
 
