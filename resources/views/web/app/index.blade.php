@@ -17,16 +17,16 @@
 					<p class="nolog_app_font">用社交的方式链接全球家居资源</p>
 					<div class="nolog_app_code clearfix">
 						<div class="nolog_app_wrap">
-							<img src="{{asset('web')}}/images/code_an.png" height="128" width="128" alt="">
+							<img src="{{asset('web')}}/images/code_an.jpg" height="128" width="128" alt="">
 							<p style="color:#828282">Android 下载</p>
 						</div>
 						<div class="nolog_app_wrap">
-							<img src="{{asset('web')}}/images/code_ip.png" height="128" width="128" alt="">
+							<img src="{{asset('web')}}/images/code_ip.jpg" height="128" width="128" alt="">
 							<p style="color:#828282">iPhone/iPad 下载</p>
 						</div>
 						<!-- htmlv?=20160707 -->
 						<div class="nolog_app_wrap">
-							<img src="{{asset('web')}}/images/code_dy.png" height="128" width="128" alt="">
+							<img src="{{asset('web')}}/images/code_dy.jpg" height="128" width="128" alt="">
 							<p style="color:#828282">微信订阅号</p>
 						</div>
 						<!-- htmlv?=20160707 -->
