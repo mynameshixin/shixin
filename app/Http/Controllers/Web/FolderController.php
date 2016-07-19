@@ -280,6 +280,10 @@ class FolderController extends CmController{
         //请求参数验证
         parent::validator($data, $rules,$messages);
         if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
+        //8M大小验证
+        foreach ($_FILES['image']['size'] as $key => $value) {
+            if($value>8388608) return response()->forApi(array(), 1001, '图片大小大于8M');
+        }
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
