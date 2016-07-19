@@ -45,7 +45,11 @@ $(function(){
     </div>\
   </form>\
   </div>';
-$('.header_more_a1,.pop_cona').click(function(){
+$('.header_more_a1').click(function(){
+    if(u_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
     $('.pop_goodsupload').hide();
     $('body').append(uploadPophtml);
     var poptopHei = $('.pop_addpic_multi .pop_con').height();
@@ -83,14 +87,15 @@ $('.header_more_a1,.pop_cona').click(function(){
     
     $('.pop_addpic_wrap input').change(function(){
         var imgcon = $('.pop_pic_wrap');
-
+        var obj = $(this)
         if(this.files.length > 5){
           layer.msg('上传图片个数不能超过5个',{'icon':5})
-          $(this).val('')
+          obj.val('')
+          obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
           return
         }
 
-        var obj = $(this)
+        
         obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
         /*console.log(this.files[0].)
         return*/
@@ -107,7 +112,7 @@ $('.header_more_a1,.pop_cona').click(function(){
                   var appendnewNode = '<div class="pop_addpic_wrap">\
                                 <span class="close_img_btn">×</span>\
                                 <img src="'+file_url+'" alt="">\
-                                <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]">'+subfile[0]+'</textarea>\
+                                <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea>\
                               </div>';
                   //obj.prev().css('display','none')
                   obj.parents('.pop_addpic_con').append(appendnewNode)
@@ -116,11 +121,18 @@ $('.header_more_a1,.pop_cona').click(function(){
                     /*$(this).parents('.pop_addpic_wrap2').prev().prev().css('display','block').next().val('')
                     $(this).parents('.pop_addpic_wrap2').remove();*/
                     $(this).parents('.pop_addpic_wrap').remove()
+                  })
 
+                  $('.pop_addpic_wrap .pop_addfont_wrap').click(function(){
+                      $(this).animate({height:"40px"})
+                  }).blur(function(){
+                      $(this).animate({height:"20px"})
                   })
 
               }else{
-                  alert("您选择的上传文件不是有效的图片文件！请重新选择");
+                  layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})
+                  obj.val('')
+                  obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
                   return false;
               }
             }
@@ -129,9 +141,10 @@ $('.header_more_a1,.pop_cona').click(function(){
     $('.pop_addpic_multi,.pop_close,.detail_pop_cancel').click(function(){
         $('.pop_addpic_multi').remove();
       })
-      $('.pop_addpic_multi .pop_con').click(function(){
-        event.stopPropagation()
-      })
+    $('.pop_addpic_multi .pop_con').click(function(){
+      event.stopPropagation()
+    })
+    
 
   $('form[name=allimg]').submit(function(){
     var form = $('form[name=allimg]')

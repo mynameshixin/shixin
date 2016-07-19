@@ -77,8 +77,8 @@
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{$v['description']}}">{{$v['description']}}</div>
 								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
-									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
-									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
+									<a  class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
+									<a  class="index_item_c" onclick="collect(this)">{{$v['collection_count']}}</a>
 									<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
 								</div>
 							</div>

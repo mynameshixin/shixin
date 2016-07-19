@@ -232,3 +232,96 @@
         }
   	})
 </script>
+
+<!-- 采集时选择文件夹 -->
+	<div class="pop_collect p_collect" style="display: none" img_id="" id="collect_outer">
+		<div class="pop_con">
+			<div class="pop_col_left" style="height: 400px">
+				<div class="pop_col_ltop clearfix">
+					<img src=""  width="668" alt="">
+					<div class="pop_col_dwrap clearfix">
+						<textarea class="pop_col_detailtext" title="" style="resize: none; padding: 0"></textarea>
+					</div>
+					
+					<!-- <a href="javascript:;" class="detail_pop_colledit"></a> -->
+				</div>
+				
+			</div>
+			<div class="pop_col_right">
+				<div class="pop_col_tit">
+					选择文件夹
+					<span class="pop_close"></span>
+					 <p class="pop_col_tips">
+					 该文件已采集到<a href="javascript:;">工业风格</a>文件夹
+					 </p>
+					<div class="pop_col_sinput_wrap">
+						<a href="javascript:;" class="pop_col_sinputbtn"></a>
+						<input class="pop_col_sinput" placeholder="搜索">
+					</div>
+					
+				</div>
+				<div class="">
+					<div class="pop_col_colum_wrap">
+						<div class="pop_col_alphabet">
+							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
+						</div>
+						<p class="pop_col_new">最新采集到</p>
+						<ul class="pop_col_colum pop_col_colum_new">
+							
+						</ul>
+						<p class="pop_col_new">所有文件夹</p>
+						<ul class="pop_col_colum pop_col_colum_all">
+							
+							
+						</ul>
+					</div>
+					
+				</div>
+				<div class="pop_add_foldbtn clearfix">
+					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew_outer">+</a>
+					<p class="pop_add_addfont">新建文件夹</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 采集时新建文件夹 -->
+	<div class="pop_collect p_folder" style="display: none" id="folder_outer">
+		<div class="pop_con">
+			<div class="pop_col_left" style="height: 400px">
+				<div class="pop_col_ltop clearfix">
+					<img src="" width="668" alt="">
+					<div class="pop_col_dwrap clearfix">
+						<textarea class="pop_col_detailtext" title="" style="padding: 0"></textarea>
+					</div>
+					
+					<!-- <a href="javascript:;" class="detail_pop_colledit"></a> -->
+				</div>
+			
+			</div>
+			<div class="pop_col_right">
+				<div class="pop_col_tit">
+					创建文件夹
+					<span class="pop_close"></span>
+				</div>
+				<div class="pop_col_infowrap">
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">名称</p>
+						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
+					</div>
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">描述</p>
+						<textarea class="pop_col_narea" placeholder="例如：欧式低奢亮色系风格"></textarea>
+					</div>
+					<div class="pop_col_priv">
+						<p class="pop_col_nlabel">隐私</p>
+						<input class="pop_iptprivacy" type="checkbox" id="pop_iptprs" name="private" private="0">
+						<label for="pop_iptprs"></label>
+					</div>
+				</div>
+				<div class="pop_btnwrap">
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="cfolder_outer">创建</a>
+				</div>
+			</div>
+		</div>
+	</div>

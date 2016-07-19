@@ -265,8 +265,8 @@
 								<div class="index_item_top">
 									<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
 									<div class="index_item_rel clearfix">
-										<a href="javascript:;" class="index_item_l">{{$v['praise_count']}}</a>
-										<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
+										<a  class="index_item_l">{{$v['praise_count']}}</a>
+										<a  class="index_item_c" onclick="collect(this)">{{$v['collection_count']}}</a>
 										<?php if($v['kind']==1){ ?>
 											<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
 										<?php } ?>
@@ -304,7 +304,7 @@
 
 	<script type="text/javascript">
 		$('.detail_pop_tbtnlike').click(function(){
-			good_id = $('.p_collect').attr('img_id')
+			good_id = $('#collect_inner').attr('img_id')
 			if(!$(this).hasClass('detail_pop_tbtnlikeon')){
 				$.ajax({
 					'beforeSend':function(){
@@ -359,13 +359,13 @@
 		})
 	</script>
 	<!-- 采集时选择文件夹 -->
-	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}">
+	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}" id="collect_inner">
 		<div class="pop_con">
 			<div class="pop_col_left">
 				<div class="pop_col_ltop clearfix">
-					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" height="830" width="668" alt="">
+					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" width="668" alt="">
 					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="resize: none;">{{!empty(trim($goods['description']))?trim($goods['description']):trim($goods['title'])}}</textarea>
+						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="resize: none; padding: 0">{{!empty(trim($goods['description']))?trim($goods['description']):trim($goods['title'])}}</textarea>
 					</div>
 					
 					<!-- <a href="javascript:;" class="detail_pop_colledit"></a> -->
@@ -403,23 +403,23 @@
 					
 				</div>
 				<div class="pop_add_foldbtn clearfix">
-					<a href="javascript:;" class="pop_add_addnew">+</a>
+					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew">+</a>
 					<p class="pop_add_addfont">新建文件夹</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- 采集时新建文件夹 -->
-	<div class="pop_collect p_folder" style="display: none">
+	<div class="pop_collect p_folder" style="display: none" id="folder_inner">
 		<div class="pop_con">
 			<div class="pop_col_left">
 				<div class="pop_col_ltop clearfix">
-					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" height="830" width="668" alt="">
+					<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}"  width="668" alt="">
 					<div class="pop_col_dwrap clearfix">
-						<textarea class="pop_col_detailtext" title="{{$goods['description']}}">{{$goods['description']}}</textarea>
+						<textarea class="pop_col_detailtext" title="{{$goods['description']}}" style="padding: 0">{{$goods['description']}}</textarea>
 					</div>
 					
-					<a href="javascript:;" class="detail_pop_colledit"></a>
+					<!-- <a href="javascript:;" class="detail_pop_colledit"></a> -->
 				</div>
 			
 			</div>
@@ -462,42 +462,7 @@
 	user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];  ?>"
 </script>
 <script type="text/javascript">
-	 var c_function = function (obj){
-		//采集动作
-		// folder_id = $(obj).parent('li').attr('folder_id')
-		folder_id = $(obj).attr('folder_id')
-		good_id = $('.p_collect').attr('img_id')
-		action = 1
-		$.ajax({
-			'beforeSend':function(){
-				layer.load(0, {shade: 0.5});
-			},
-			'url':"/webd/pics/cpic",
-			'type':'post',
-			'data':{
-				'folder_id':folder_id,
-				'good_id':good_id,
-				'action':action,
-				'user_id':user_id
-			},
-			'dataType':'json',
-			'success':function(json){
-				if(json.code==200){
-					layer.msg('采集成功', {icon: 6});
-					setTimeout(function(){
-						location.reload()
-					},2000)
-				}else{
-					layer.msg(json.message, {icon: 5});
-					return
-				}
-			},
-			'complete':function(){
-				layer.closeAll('loading');
-			}
-		})
-
-	}
+	 
 	he = $('.detail_pop').height()+100
 	$('.detail_pop').css('height',he)
 

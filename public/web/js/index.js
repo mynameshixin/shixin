@@ -5,8 +5,177 @@
  * @version $Id$
  */
 
+function c_function(obj){
+    //采集动作
+    // folder_id = $(obj).parent('li').attr('folder_id')
+    var folder_id = $(obj).attr('folder_id')
+    var good_id = $(obj).parents('.p_collect').attr('img_id')
+    var action = 1
+    $.ajax({
+      'beforeSend':function(){
+        layer.load(0, {shade: 0.5});
+      },
+      'url':"/webd/pics/cpic",
+      'type':'post',
+      'data':{
+        'folder_id':folder_id,
+        'good_id':good_id,
+        'action':action,
+        'user_id':u_id
+      },
+      'dataType':'json',
+      'success':function(json){
+        if(json.code==200){
+          layer.msg('采集成功', {icon: 6});
+          setTimeout(function(){
+            location.reload()
+          },2000)
+        }else{
+          layer.msg(json.message, {icon: 5});
+          return
+        }
+      },
+      'complete':function(){
+        layer.closeAll('loading');
+      }
+    })
+
+  }
+
+function collect(obj){
+  var o = $(obj)
+  var imgsrc = o.parents('.index_item_wrap').find('.index_item_imgwrap').find('img').attr('src')
+  var description = o.parents('.index_item_wrap').find('.index_item_intro').html()
+  var good_id = o.parents('.index_item_wrap').find('.index_item_rel').attr('good_id')
+  if(u_id==''){
+      layer.msg('请登录', {icon: 5});
+      $('.pop_login2').show()
+      h = $('.pop_login2').find('.pop_con').height()
+        $('.pop_login2').find('.pop_con').css({
+           'margin-top':-(h/2)
+        })
+      return 
+  }
+  $('#collect_outer').find('.pop_col_ltop').find('img').attr('src',imgsrc)
+  $('#collect_outer').find('.pop_col_detailtext').val(description)
+  $('#collect_outer').attr('img_id',good_id)
+  $('#folder_outer').find('.pop_col_ltop').find('img').attr('src',imgsrc)
+  $('#folder_outer').find('.pop_col_detailtext').val(description)
+
+  $('#collect_outer').show();
+  var popH =$('#collect_outer').show().find('.pop_con').height();
+  $('#collect_outer').show().find('.pop_col_left').height(popH);
+  var collect_outer = $('#collect_outer')
+  $.ajax({
+      'beforeSend':function(){
+        layer.load(0, {shade: 0.5});
+      },
+      'url':'/webd/pics/cgoods',
+      'data':{'user_id':u_id},
+      'type':'post',
+      'dataType':'json',
+      'success':function(json){
+        if(json.code==200){
+          cgcontent = afolder = ''
+          $.each(json.data.cg,function(index,v){
+            cgcontent += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="c_function(this)">'
+              +'<div class="pop_col_colava">'
+                +'<img src="'+v.image_url+'" alt="">'
+              +'</div>'
+              +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+
+            if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
+              cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
+            +'</li>'
+          })
+          $('.pop_col_colum_new',collect_outer).html(cgcontent)
+          $.each(json.data.folder,function(index,v){
+            afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="c_function(this)">'
+              +'<div class="pop_col_colava">'
+                +'<img src="'+v.image_url+'" alt="">'
+              +'</div>'
+              +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+              if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
+              afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
+            +'</li>'
+          })
+          $('.pop_col_colum_all',collect_outer).html(afolder)
+        }else{
+          layer.msg(json.message, {icon: 5});
+          return
+        }
+      },
+      'complete':function(){
+        layer.closeAll('loading');
+      }
+    })
+}
+
 $(function(){
-  
+  //采集创建新文件
+  $('#pop_add_addnew_outer').click(function(){
+    $('#collect_outer').hide();
+    $('#folder_outer').show()
+    var popH =$('#folder_outer').show().find('.pop_con').height();
+    $('#folder_outer').show().find('.pop_col_left').height(popH);
+  })
+  //隐私文件夹设置
+  $('#folder_outer .pop_iptprivacy').click(function(){
+    if($(this).attr('checked') == 'checkbox') return
+    if($(this).attr('private') == 1){
+      $(this).attr('private',0)
+    }else{
+      $(this).attr('private',1)
+    }
+  })
+  $('#collect_outer .pop_collect,#collect_outer .pop_close,#collect_outer .detail_pop_cancel').click(function(){
+      $('#collect_outer').hide()
+  });
+  $('#folder_outer .pop_collect,#folder_outer .pop_close,#folder_outer .detail_pop_cancel').click(function(){
+      $('#folder_outer').hide()
+  });
+  //采集创建文件夹点击按钮
+  $('#cfolder_outer').click(function(){
+    var pop_con = $(this).parents('.pop_con')
+    var name = $('input[name=fname]',pop_con).val().trim()
+    var description = $('textarea',pop_con).val().trim()
+    var private = $('input[name=private]',pop_con).attr('private')
+    if(name=='') {
+      layer.msg('信息没有填写完全', {icon: 5});
+      return 
+    }
+    $.ajax({
+      'beforeSend':function(){
+        layer.load(0, {shade: 0.5});
+      },
+      'url':"/webd/folder/cfolder",
+      'type':'post',
+      'data':{
+        'name':name,
+        'description':description,'private':private,
+        'fid':10,'user_id':u_id
+      },
+      'dataType':'json',
+      'success':function(json){
+        if(json.code==200){
+          layer.msg('创建成功', {icon: 6});
+          setTimeout(function(){
+            location.reload()
+          },2000)
+        }else{
+          layer.msg(json.message, {icon: 5});
+          return
+        }
+      },
+      'complete':function(){
+        layer.closeAll('loading');
+      }
+    })
+  })
+
+
+
+
   $('.header_add_clicka').click(function(){
     $('.header_add_clicka').removeClass('header_add_clicka_on');
     $(this).addClass('header_add_clicka_on')
@@ -47,7 +216,7 @@ $(function(){
 
   //添加文件夹
   $('.popc').click(function(){
-    if(user_id==''){
+    if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
@@ -109,7 +278,7 @@ $(function(){
 
   //上传商品点击按钮 
   $('.popb').click(function(){
-    if(user_id==''){
+    if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
@@ -228,7 +397,7 @@ $(function(){
 
 // 上传vr
  $('.header_more_a5').click(function(){
-    if(user_id==''){
+    if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }

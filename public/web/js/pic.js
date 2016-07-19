@@ -65,9 +65,10 @@ $(function(){
 				        })
 			    		return 
 			    	}
-					$('.p_collect').show();
-					var popH =$('.p_collect').show().find('.pop_con').height();
-					$('.p_collect').show().find('.pop_col_left').height(popH);
+					$('#collect_inner').show();
+					var popH =$('#collect_inner').show().find('.pop_con').height();
+					$('#collect_inner').show().find('.pop_col_left').height(popH);
+					var collect_inner = $('#collect_inner')
 					$.ajax({
 						'beforeSend':function(){
 							layer.load(0, {shade: 0.5});
@@ -90,7 +91,7 @@ $(function(){
 										cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
 									+'</li>'
 								})
-								$('.pop_col_colum_new').html(cgcontent)
+								$('.pop_col_colum_new',collect_inner).html(cgcontent)
 								$.each(json.data.folder,function(index,v){
 									afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="c_function(this)">'
 										+'<div class="pop_col_colava">'
@@ -101,7 +102,7 @@ $(function(){
 										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
 									+'</li>'
 								})
-								$('.pop_col_colum_all').html(afolder)
+								$('.pop_col_colum_all',collect_inner).html(afolder)
 							}else{
 								layer.msg(json.message, {icon: 5});
 								return
@@ -116,13 +117,13 @@ $(function(){
 				
 
 			    //创建新文件
-				$('.pop_add_addnew').click(function(){
-					$('.p_collect').hide();
-					$('.p_folder').show()
-					var popH =$('.p_folder').show().find('.pop_con').height();
-					$('.p_folder').show().find('.pop_col_left').height(popH);
+				$('#pop_add_addnew').click(function(){
+					$('#collect_inner').hide();
+					$('#folder_inner').show()
+					var popH =$('#folder_inner').show().find('.pop_con').height();
+					$('#folder_inner').show().find('.pop_col_left').height(popH);					
 				})
-				$('.pop_iptprivacy').click(function(){
+				$('#folder_inner .pop_iptprivacy').click(function(){
 					if($(this).attr('checked') == 'checkbox') return
 					if($(this).attr('private') == 1){
 						$(this).attr('private',0)
@@ -132,10 +133,10 @@ $(function(){
 				})
 				//创建点击按钮
 				$('#cfolder').click(function(){
-					pop_con = $(this).parents('.pop_con')
-					name = $('input[name=fname]',pop_con).val().trim()
-					description = $('textarea',pop_con).val().trim()
-					private = $('input[name=private]',pop_con).attr('private')
+					var pop_con = $(this).parents('.pop_con')
+					var name = $('input[name=fname]',pop_con).val().trim()
+					var description = $('textarea',pop_con).val().trim()
+					var private = $('input[name=private]',pop_con).attr('private')
 					if(name=='') {
 						layer.msg('信息没有填写完全', {icon: 5});
 						return 
