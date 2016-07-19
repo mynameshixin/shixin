@@ -141,7 +141,7 @@
 									</p>
 									<p class="detail_pop_comcon">{{$v['content']}}</p>
 								</div>
-								<div class="detail_pop_favor" style="cursor: pointer;" onclick="comment_parise(this)" user_id="{{$v['user']['id']}}" comment_id="{{$v['id']}}">{{$v['praise_count']}}</div>
+								<div class="detail_pop_favor" style="cursor: pointer;" onclick="comment_parise(this)" user_id="{{$self_info['id']}}" comment_id="{{$v['id']}}">{{$v['praise_count']}}</div>
 							</li>
 
 							<?php endforeach; ?>
