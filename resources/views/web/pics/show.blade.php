@@ -530,7 +530,7 @@
 										<a href="/webd/user/index?oid={{$self_info['id']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>\
 									</div>\
 									<div class="detail_pop_cominfo">\
-										<p class="detail_pop_comname"><a href="/webd/user/index?oid={{$self_info['id']}}">{{!empty($self_info['nick'])?$self_info['nick']:$self_info['user_name']}}</a>- 刚刚说：\
+										<p class="detail_pop_comname"><a href="/webd/user/index?oid={{$self_info['id']}}">{{!empty($self_info['nick'])?$self_info['nick']:$self_info['username']}}</a>- 刚刚说：\
 										</p>\
 										<p class="detail_pop_comcon">'+$('textarea[name=caption]').val().trim()+'</p>\
 									</div>\
