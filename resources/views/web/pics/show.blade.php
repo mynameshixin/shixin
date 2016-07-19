@@ -11,6 +11,7 @@
 		relationUrl = "{{url('webd/user/relation')}}"
 	</script>
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
@@ -264,14 +265,14 @@
 							<div class="index_item_info">
 								<div class="index_item_top">
 									<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
-									<div class="index_item_rel clearfix">
-										<a  class="index_item_l">{{$v['praise_count']}}</a>
+									<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
+										<a  class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
 										<a  class="index_item_c" onclick="collect(this)">{{$v['collection_count']}}</a>
 										<?php if($v['kind']==1){ ?>
 											<a href="{{$v['detail_url']}}" target="_blank" class="index_item_b"></a>
 										<?php } ?>
 										<?php if($v['kind']==2){ ?>
-											<a href="#" target="_blank" class="index_item_d">{{$v['boo_count']}}</a>
+											<a onclick="praise(this,2)" class="index_item_d">{{$v['boo_count']}}</a>
 										<?php } ?>
 									</div>
 								</div>
@@ -295,9 +296,7 @@
 			</div>
 			<?php endif; ?>
 
-			</div>
-		</div>
-	</div>
+
 	<?php if(!empty($goods['folders_one'])): ?>
 	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
 	<?php endif; ?>
@@ -463,8 +462,8 @@
 </script>
 <script type="text/javascript">
 	 
-	he = $('.detail_pop').height()+100
-	$('.detail_pop').css('height',he)
+	/*he = $('.detail_pop').height()+10
+	$('.detail_pop').css('height',he)*/
 
 	// 添加评论
 	$("#add_commit_btn").click(function(){

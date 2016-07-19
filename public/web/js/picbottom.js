@@ -68,8 +68,10 @@ $(function (){
 
 					    $(".index_item_rel a",$value).eq(0).html(list[index].praise_count)
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
+					    $(".index_item_rel",$value).attr('good_id',list[index].id)
+
 					    $(".index_item_d",$value).html(list[index].boo_count)
-					    $(".index_item_c",$value).attr('href',list[index].detail_url)
+					    $(".index_item_b",$value).attr('href',list[index].detail_url)
 					    $('.index_item_bottom',$value).remove()
 
 					    if(list[index].collection_good != 0){

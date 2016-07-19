@@ -68,7 +68,7 @@
 					data = json.data.list
 					var str = ''
 					$.each(data,function(index,v){
-						des = v.description != ''?v.description:v.title
+						des = v.description.trim() != ''?v.description:v.title
 						kind = v.kind
 						str += '<div class="index_item">'
 							+'<div class="index_item_wrap">'
@@ -83,8 +83,8 @@
 									+'<div class="index_item_top">'
 										+'<div class="index_item_intro" title="'+des+'">'+des+'</div>'
 										+'<div class="index_item_rel clearfix" good_id="'+v.id+'">'
-											+'<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">'+v.praise_count+'</a>'
-											+'<a href="javascript:;" class="index_item_c">'+v.collection_count+'</a>'
+											+'<a  class="index_item_l" onclick="praise(this,1)">'+v.praise_count+'</a>'
+											+'<a  class="index_item_c" onclick="collect(this)">'+v.collection_count+'</a>'
 										if(kind==1){
 											str +='<a href="'+v.detail_url+'" class="index_item_b" target="_blank"></a>'
 										}else if(kind==2){

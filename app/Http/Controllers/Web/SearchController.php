@@ -93,12 +93,19 @@ class SearchController extends CmController{
 	public function getMy(){
 		$keyword = trim(Input::get('keyword'));
 		$type = trim(Input::get('type'));
+        $count = [
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+        ];
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'keyword'=>$keyword,
-			'type'=>$type
+			'type'=>$type,
+            'count'=>$count
 		];
 		return view('web.search.my',$data);
 	}

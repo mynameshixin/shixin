@@ -41,12 +41,12 @@
 							<div class="index_item_top">
 							<div class="index_item_intro" title="<?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?>"><?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?></div>
 								<div class="index_item_rel clearfix" good_id="{{$value['id']}}">
-									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$value['praise_count']}}</a>
-									<a href="javascript:;" class="index_item_c">{{$value['collection_count']}}</a>
+									<a class="index_item_l" onclick="praise(this,1)">{{$value['praise_count']}}</a>
+									<a class="index_item_c" onclick="collect(this)">{{$value['collection_count']}}</a>
 									<?php if($value['kind'] == 1): ?>
 										<a href="{{$value['detail_url']}}" class="index_item_b" target="_blank"></a>
 									<?php elseif($value['kind'] == 2):?>
-										<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">{{$value['boo_count']}}</a>
+										<a class="index_item_d" onclick="praise(this,2)">{{$value['boo_count']}}</a>
 									<?php endif; ?>
 								</div>
 							</div>

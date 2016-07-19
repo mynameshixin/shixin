@@ -23,12 +23,12 @@
 							<div class="index_item_top">
 								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty(trim($v['description']))?$v['description']:$v['title']}}</div>
 								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
-									<a href="javascript:;" class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
-									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
+									<a class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
+									<a class="index_item_c" onclick="collect(this)">{{$v['collection_count']}}</a>
 									<?php if($v['kind'] == 1): ?>
 										<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank"></a>
 									<?php elseif($v['kind'] == 2):?>
-										<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
+										<a class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
 									<?php endif; ?>
 								</div>
 							</div>
