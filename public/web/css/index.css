@@ -31,8 +31,8 @@ a{cursor: pointer;}
 .index_item_c{background: url(../images/dtj_icon.png) -9px -253px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_b{background: url(../images/dtj_icon.png) -9px -289px no-repeat;padding-left: 24px;height: 15px;float: right;width: 0px;}
 .index_item_bottom{border-top: 1px solid #e3e3e3;padding:12px; padding-bottom: 10px}
-.index_item_authava{width: 35px;height: 35px;border-radius: 50%;float: left; padding-top: 5px;}
-.index_item_authava img{width: 35px;height: 35px;border-radius: 50%;}
+.index_item_authava{width: 25px;height: 25px;border-radius: 50%;float: left; padding-top: 5px;}
+.index_item_authava img{width: 25px;height: 25px;border-radius: 50%;}
 .index_item_authinfo{float: left;margin-left: 12px;width: 154px;}
 .index_item_authname,.index_item_authto{font:normal 12px/22px "Microsoft YaHei";color: #969696;display: inline-block;}
 .index_item_talkname{font:normal 12px/22px "Microsoft YaHei";color: #b27e67;display: inline-block;}
