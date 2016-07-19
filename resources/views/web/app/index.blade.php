@@ -26,7 +26,7 @@
 						</div>
 						<!-- htmlv?=20160707 -->
 						<div class="nolog_app_wrap">
-							<img src="{{asset('web')}}/images/code_ip.png" height="128" width="128" alt="">
+							<img src="{{asset('web')}}/images/code_dy.png" height="128" width="128" alt="">
 							<p style="color:#828282">微信订阅号</p>
 						</div>
 						<!-- htmlv?=20160707 -->
