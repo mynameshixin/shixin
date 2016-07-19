@@ -4,7 +4,7 @@
 <body>
 	@include('web.common.banner')
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
-	<div class="container nolog_container"  style="background: #f0f0f0">
+	<div class="container nolog_container"  style="background: #f0f0f0; padding-top: 15px;">
 		<?php if(empty($self_id)): ?>
 		<div class="w1248 clearfix">
 			<div class="nolog_allcat clearfix">
