@@ -827,7 +827,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 
 
 .pop_login{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
-.pop_login .pop_con{padding:0px 30px 15px 30px;width: 600px;}
+.pop_login .pop_con{width: 600px;}
 .pop_login_wrap{width: 418px;margin:0 auto;}
 .pop_login_contit{text-align: center;color: #969696;position: relative;padding:20px 0px;font-size: 20px;}
 .pop_login_contit:before,.pop_login_contit:after{width: 25%;content: "";border-top:1px solid #969696;position: absolute;display: block;top: 28px;}
