@@ -247,11 +247,15 @@ class UserWebsupply extends CmWebsupply{
         		
         		case '已关注':
         			$res = DB::table('user_follow')->where(['user_id'=>$self_id,'userid_follow'=>$user_id])->delete();
+                    $folder_ids1 = DB::table('folders')->where('user_id',$user_id)->select('id')->get();
+                    DB::table('collection_folder')->where(['user_id'=>$self_id])->whereIn('folder_id',$folder_ids1)->delete();
         			$relation =  $res?4:0;
         			break;
 
         		case '相互关注':
         			$res = DB::table('user_follow')->where(['user_id'=>$self_id,'userid_follow'=>$user_id])->delete();
+                    $folder_ids1 = DB::table('folders')->where('user_id',$user_id)->select('id')->get();
+                    DB::table('collection_folder')->where(['user_id'=>$self_id])->whereIn('folder_id',$folder_ids1)->delete();
         			$relation =  $res?4:0;
         			break;
 
