@@ -162,7 +162,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[0]['id']}}" target="_blank">{{$recommend[0]['name']}}</a>
@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[1]['id']}}" target="_blank">{{$recommend[1]['name']}}</a>
@@ -200,7 +200,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[2]['id']}}" target="_blank">{{$recommend[2]['name']}}</a>
@@ -223,7 +223,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[3]['id']}}" target="_blank">{{$recommend[3]['name']}}</a>
@@ -246,7 +246,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[4]['id']}}" target="_blank">{{$recommend[4]['name']}}</a>
@@ -261,7 +261,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[5]['id']}}" target="_blank">{{$recommend[5]['name']}}</a>
@@ -286,7 +286,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[6]['id']}}" target="_blank">{{$recommend[6]['name']}}</a>
@@ -301,7 +301,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[7]['id']}}" target="_blank">{{$recommend[7]['name']}}</a>
@@ -324,7 +324,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[8]['id']}}" target="_blank">{{$recommend[8]['name']}}</a>
@@ -348,7 +348,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[9]['id']}}" target="_blank">{{$recommend[9]['name']}}</a>
@@ -371,7 +371,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[10]['id']}}" target="_blank">{{$recommend[10]['name']}}</a>
@@ -386,7 +386,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[11]['id']}}" target="_blank">{{$recommend[11]['name']}}</a>
@@ -411,7 +411,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[12]['id']}}" target="_blank">{{$recommend[12]['name']}}</a>
@@ -426,7 +426,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[13]['id']}}" target="_blank">{{$recommend[13]['name']}}</a>
@@ -449,7 +449,7 @@ var _hmt = _hmt || [];
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                文件夹
+                
               </a>
               <p class="nolog_index_conrecauto">
                 <a href="/webd/folder?fid={{$recommend[14]['id']}}" target="_blank">{{$recommend[14]['name']}}</a>

@@ -69,6 +69,7 @@ $(function(){
 					var popH =$('#collect_inner').show().find('.pop_con').height();
 					$('#collect_inner').show().find('.pop_col_left').height(popH);
 					var collect_inner = $('#collect_inner')
+					var proposals = []
 					$.ajax({
 						'beforeSend':function(){
 							layer.load(0, {shade: 0.5});
@@ -101,6 +102,7 @@ $(function(){
 										if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
 										afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
 									+'</li>'
+									proposals[index] = v.name
 								})
 								$('.pop_col_colum_all',collect_inner).html(afolder)
 							}else{
@@ -112,6 +114,22 @@ $(function(){
 							layer.closeAll('loading');
 						}
 					})
+					//自动补全
+					$('#search_form_inner').autocomplete({
+							hints: proposals,
+							width: 218,
+							height: 36,
+							onSubmit: function(text){
+								var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
+								$.each(pop_col_colum_all_li,function(index,v){
+									if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
+										$('.pop_col_colum_all').html('')
+										$('.pop_col_colum_all').append(pop_col_colum_all_li.eq(index).html())
+										return
+									}
+								})	
+							}
+						});
 				})
 				
 				

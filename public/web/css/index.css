@@ -113,7 +113,7 @@ a{cursor: pointer;}
 .find_cater_all{position: relative;background: #fff;padding: 25px 28px;margin-bottom: 16px;}
 .find_cater_tril{width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-bottom: 20px solid #fff;position: absolute;top: -20px;right: 62px;}
 .find_cater_aeach{width: 264px;/*min-height: 220px;*/float: left;margin-right: 44px;}
-.find_cater_label{font:normal 18px/36px "Microsoft YaHei";color: #ff6666;}
+.find_cater_label{font:normal 16px/36px "Microsoft YaHei";color: #ff6666;}
 .find_cater_aeach li {width: 72px;height: 30px;float: left;margin:0px 16px 0px 0px;}
 .find_cater_aeach li a{display: inline-block;width: 72px;height: 30px;font-size:14px;line-height: 30px;color: #969696;border-radius: 4px;font-family: "Microsoft YaHei";}
 .find_cater_aeach li a:hover{color: #ff6666;}

@@ -12,6 +12,7 @@
 	</script>
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
@@ -361,6 +362,94 @@
 			}
 		})
 	</script>
+	<style type="text/css">
+	.autocomplete-container {
+		position: relative;
+		width: 190px;
+		height: 32px;
+		margin: 0 auto;
+		display: inline-block;
+	}
+
+	.autocomplete-input {
+		width: 218px;
+	    height: 36px;
+	    background: #f0f0f0;
+	    border-radius: 3px;
+	    border: none
+	}
+
+	.autocomplete-button {
+		font-family: inherit;
+		border: none;
+		background-color: #990101;
+		color: white;
+		padding: 8px;
+		float: left;
+		cursor: pointer;
+		border-radius: 0px 3px 3px 0px;
+		transition: all 0.2s ease-out 0s;
+		margin: 0.5px 0px 0px -1px;
+	}
+
+	.autocomplete-button:HOVER {
+		background-color: #D11E1E;
+	}
+	#search_form_inner{
+		display: inline-block;
+		position: absolute;
+	    left: 40px;
+	    top: 0;
+	    z-index: 100
+	}
+	.proposal-box {
+		position: absolute;
+		height: auto;
+		border-left: 1px solid rgba(0, 0, 0, 0.11);
+		border-right: 1px solid rgba(0, 0, 0, 0.11);
+		left: 0px;
+	}
+
+	.proposal-list {
+		list-style: none;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.44);
+		-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 0px;
+	}
+
+	.proposal-list li {
+		text-align: left;
+		padding: 5px;
+		font-size: 16px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+		height: 25px;
+		line-height: 25px;
+		background-color: rgba(255, 255, 255, 1);
+		cursor: pointer;
+	}
+
+	li.proposal.selected {
+		background-color: rgba(175, 175, 175, 1);
+		color: white;
+	}
+
+	#search-box {
+		position: relative;
+		width: 400px;
+		margin: 0 auto;
+		display: inline;
+	}
+
+	#message {
+		/* margin-top: 40px;
+		margin-bottom: 50px;
+		font-size: 20px;
+		text-align: center; */
+	}
+	</style>
 	<!-- 采集时选择文件夹 -->
 	<div class="pop_collect p_collect" style="display: none" img_id="{{$goods['id']}}" id="collect_inner">
 		<div class="pop_con">
@@ -385,9 +474,11 @@
 					<div class="pop_col_sinput_wrap">
 						<a href="javascript:;" class="pop_col_sinputbtn"></a>
 						<input class="pop_col_sinput" placeholder="搜索">
+						<div id="search_form_inner"></div>
 					</div>
-					
+
 				</div>
+
 				<div class="">
 					<div class="pop_col_colum_wrap">
 						<div class="pop_col_alphabet">
