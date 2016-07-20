@@ -150,7 +150,7 @@ var _hmt = _hmt || [];
           </div>
           <?php endforeach; ?>
         </div>
-        <div class="nolog_index_contit">
+        <div class="nolog_index_contit" style="padding-top: 0">
           文件夹推荐
         </div>
         <!-- 1 -->
