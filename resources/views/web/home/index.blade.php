@@ -9,7 +9,7 @@
 		relationUrl = "{{url('webd/user/relation')}}"
 	</script>
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
-	<div class="container"  style="background: #f0f0f0">
+	<div class="container"  style="background: #fff">
 		<div class="w1248 clearfix" id="main" role="main">
 			<div class="index_con" id="tiles">
 			<?php if(!empty($user_info)){ ?>
