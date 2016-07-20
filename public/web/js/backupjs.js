@@ -45,7 +45,7 @@ $(function(){
     </div>\
   </form>\
   </div>';
-$('.header_more_a1').click(function(){
+$('.header_more_a1,.pop_cona').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
