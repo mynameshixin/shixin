@@ -124,7 +124,7 @@ $(function(){
 								$.each(pop_col_colum_all_li,function(index,v){
 									if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
 										$('.pop_col_colum_all').html('')
-										$('.pop_col_colum_all').append(pop_col_colum_all_li.eq(index).html())
+										$('.pop_col_colum_all').append(pop_col_colum_all_li.eq(index).clone())
 										return
 									}
 								})	
