@@ -448,7 +448,7 @@ a{cursor: pointer;}
 .pop_addfold{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 .pop_con{width: 660px;background: #fff;border-radius: 12px;position: fixed;top: 50%;left: 50%;margin-left: -330px;}
 .pop_tit{font:normal 21px/21px "Microsoft YaHei";color: #333333;padding: 20px 60px 20px 30px;border-bottom: 1px solid #f1f1f1;position: relative;}
-.pop_close{width: 24px;height: 23px;background: url(../images/pop_close.png);position: absolute;right: 30px;top: 20px;cursor: pointer;display: block;}
+.pop_close{width: 24px;height: 23px;background: url(../images/pop_close.png) no-repeat;position: absolute;right: 35px;top: 20px;cursor: pointer;display: block;}
 .pop_namewrap{padding:17px 0px 17px 30px;border-bottom:1px solid #f1f1f1;}
 .pop_labelname{font:normal 16px/36px "Microsoft YaHei";color: #333333;display: inline-block;width: 142px;float: left;}
 .pop_iptname{height: 36px;width: 430px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 16px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
