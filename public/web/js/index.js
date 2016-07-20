@@ -56,6 +56,7 @@ function collect(obj){
         })
       return 
   }
+  var proposals = []
   $('#collect_outer').find('.pop_col_ltop').find('img').attr('src',imgsrc)
   $('#collect_outer').find('.pop_col_detailtext').val(description)
   $('#collect_outer').attr('img_id',good_id)
@@ -98,6 +99,7 @@ function collect(obj){
               if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
               afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
             +'</li>'
+            proposals[index] = v.name
           })
           $('.pop_col_colum_all',collect_outer).html(afolder)
         }else{
@@ -109,6 +111,21 @@ function collect(obj){
         layer.closeAll('loading');
       }
     })
+  //自动补全
+  $('#search_form_outer').autocomplete({
+      hints: proposals,
+      width: 218,
+      height: 36,
+      onSubmit: function(text){
+        var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
+        $.each(pop_col_colum_all_li,function(index,v){
+          if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
+            $('#search_outer').html(pop_col_colum_all_li.eq(index).clone())
+            return
+          }
+        })  
+      }
+    });
 }
 
 $(function(){

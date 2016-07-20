@@ -322,10 +322,10 @@ class UserController extends CmController{
         // doing the validation, passing post data, rules and the messages
         parent::validator($file, $rules);
 
-        //8M大小验证
+        /*//8M大小验证
         foreach ($_FILES['fhead']['size'] as $key => $value) {
             if($value>8388608) return response()->forApi(array(), 1001, '图片大小大于8M');
-        }
+        }*/
         $images = UserService::getInstance()->uploadAvatar($userId, $_FILES['fhead']);
         if (!empty($images)) {
             return response()->forApi($images);
