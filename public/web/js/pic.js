@@ -53,7 +53,7 @@ $(function(){
 			    	$('.detail_pop_tlcomlist li').show()
 			    	$(this).hide()
 			    })
-			   
+			   	var cf = 0
 			    //采集ajax 
 			    $('.detail_pop_collection').click(function(){
 			    	if(user_id==''){
@@ -114,21 +114,25 @@ $(function(){
 							layer.closeAll('loading');
 						}
 					})
+					if(cf == 0){
 					//自动补全
-					$('#search_form_inner').autocomplete({
-							hints: proposals,
-							width: 218,
-							height: 36,
-							onSubmit: function(text){
-								var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
-								$.each(pop_col_colum_all_li,function(index,v){
-									if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
-										$('#search_inner').html(pop_col_colum_all_li.eq(index).clone())
-										return
-									}
-								})	
-							}
-						});
+						$('#search_form_inner').autocomplete({
+								hints: proposals,
+								width: 218,
+								height: 36,
+								onSubmit: function(text){
+									var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
+									$.each(pop_col_colum_all_li,function(index,v){
+										if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
+											$('#search_inner').html(pop_col_colum_all_li.eq(index).clone())
+											return
+										}
+									})	
+								}
+							});
+						cf = 1;
+					}
+					
 				})
 				
 				

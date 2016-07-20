@@ -41,7 +41,7 @@ function c_function(obj){
     })
 
   }
-
+var cout = 0;
 function collect(obj){
   var o = $(obj)
   var imgsrc = o.parents('.index_item_wrap').find('.index_item_imgwrap').find('img').attr('src')
@@ -112,20 +112,23 @@ function collect(obj){
       }
     })
   //自动补全
-  $('#search_form_outer').autocomplete({
-      hints: proposals,
-      width: 218,
-      height: 36,
-      onSubmit: function(text){
-        var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_outer)
-        $.each(pop_col_colum_all_li,function(index,v){
-          if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
-            $('#search_outer').html(pop_col_colum_all_li.eq(index).clone())
-            return
-          }
-        })  
-      }
-    });
+  if(cout == 0){
+    $('#search_form_outer').autocomplete({
+        hints: proposals,
+        width: 218,
+        height: 36,
+        onSubmit: function(text){
+          var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_outer)
+          $.each(pop_col_colum_all_li,function(index,v){
+            if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
+              $('#search_outer').html(pop_col_colum_all_li.eq(index).clone())
+              return
+            }
+          })  
+        }
+      });
+    cout = 1;
+  }
 }
 
 $(function(){
