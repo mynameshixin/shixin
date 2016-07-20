@@ -1,3 +1,92 @@
+<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
+<style type="text/css">
+	.autocomplete-container {
+		position: relative;
+		width: 190px;
+		height: 32px;
+		margin: 0 auto;
+		display: inline-block;
+	}
+
+	.autocomplete-input {
+		width: 218px;
+	    height: 36px;
+	    background: #f0f0f0;
+	    border-radius: 3px;
+	    border: none
+	}
+
+	.autocomplete-button {
+		font-family: inherit;
+		border: none;
+		background-color: #990101;
+		color: white;
+		padding: 8px;
+		float: left;
+		cursor: pointer;
+		border-radius: 0px 3px 3px 0px;
+		transition: all 0.2s ease-out 0s;
+		margin: 0.5px 0px 0px -1px;
+	}
+
+	.autocomplete-button:HOVER {
+		background-color: #D11E1E;
+	}
+	#search_form_outer{
+		display: inline-block;
+		position: absolute;
+	    left: 40px;
+	    top: 0;
+	    z-index: 100
+	}
+	.proposal-box {
+		position: absolute;
+		height: auto;
+		border-left: 1px solid rgba(0, 0, 0, 0.11);
+		border-right: 1px solid rgba(0, 0, 0, 0.11);
+		left: 0px;
+	}
+
+	.proposal-list {
+		list-style: none;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.44);
+		-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 0px;
+	}
+
+	.proposal-list li {
+		text-align: left;
+		padding: 5px;
+		font-size: 16px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+		height: 25px;
+		line-height: 25px;
+		background-color: rgba(255, 255, 255, 1);
+		cursor: pointer;
+	}
+
+	li.proposal.selected {
+		background-color: rgba(175, 175, 175, 1);
+		color: white;
+	}
+
+	#search-box {
+		position: relative;
+		width: 400px;
+		margin: 0 auto;
+		display: inline;
+	}
+
+	#message {
+		/* margin-top: 40px;
+		margin-bottom: 50px;
+		font-size: 20px;
+		text-align: center; */
+	}
+	</style>
 <!-- 本地上传采集弹框 -->
 	<div class="pop_uploadfile" style="display: none;">
 		<form action="" method="post" enctype="multipart/form-data" name='u_a'>
@@ -257,6 +346,7 @@
 					<div class="pop_col_sinput_wrap">
 						<a href="javascript:;" class="pop_col_sinputbtn"></a>
 						<input class="pop_col_sinput" placeholder="搜索">
+						<div id="search_form_outer"></div>
 					</div>
 					
 				</div>
@@ -265,7 +355,7 @@
 						<div class="pop_col_alphabet">
 							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
 						</div>
-						<ul class="pop_col_colum search_outer">
+						<ul class="pop_col_colum" id="search_outer">
 							
 						</ul>
 						<p class="pop_col_new">最新采集到</p>

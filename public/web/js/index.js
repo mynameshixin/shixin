@@ -117,7 +117,7 @@ function collect(obj){
       width: 218,
       height: 36,
       onSubmit: function(text){
-        var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
+        var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_outer)
         $.each(pop_col_colum_all_li,function(index,v){
           if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
             $('#search_outer').html(pop_col_colum_all_li.eq(index).clone())
