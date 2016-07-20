@@ -70,6 +70,12 @@ $(function (){
 					    $(".index_item_c",$value).html(list[index].collection_count)
 					    $(".index_item_b",$value).attr('href',list[index].detail_url)
 					    $(".index_item_d",$value).html(list[index].boo_count)
+					    //vr
+					    $(".index_item_vrlogo",$value).remove()
+					    if(list[index].detail_url!='' && list[index].kind==2){
+					    	$('.index_item_blurwrap',$value).after('<a class="index_item_vrlogo"></a>')
+					    }
+
 
 					    $('.comment',$value).remove()
 					   if(list[index].comment != 0){
