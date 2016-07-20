@@ -6,6 +6,9 @@ use App\Lib\LibUtil;
 use App\Lib\Images;
 use App\Websupply\CommentWebsupply;
 use App\Websupply\FolderWebsupply;
+use App\Models\Follow;
+use App\Models\User;
+use App\Services\MessageService;
 use DB;
 
 class UserWebsupply extends CmWebsupply{
@@ -235,6 +238,11 @@ class UserWebsupply extends CmWebsupply{
 
         			$res = DB::table('user_follow')->insert(['user_id'=>$self_id,'userid_follow'=>$user_id,'created_at'=>$date,'updated_at'=>$date]);
         			$relation =  $res?2:0;
+                    $user = User::select('username', 'nick', 'mobile')->find($self_id)->toArray();
+                    $nick = $user['username'] ? $user['username'] : $user['mobile'];
+                    $msg_content = "用户 {$nick} 关注了你！";
+                    MessageService::getInstance()->addMessage($self_id, $user_id, 1, $msg_content, 1);
+
         			break;
         		
         		case '已关注':
