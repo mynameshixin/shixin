@@ -371,8 +371,8 @@
 				<?php } ?>
 				</ul>
 			</div>
-			<p class="find_title">人气商品</p>
-		<div  id="main" role='main' style="position: relative;">
+			<!-- <p class="find_title">人气商品</p> -->
+		<!-- <div  id="main" role='main' style="position: relative;">
 			<div class="index_con" id='tiles'>
 			<?php foreach ($goods as $k => $v): ?>
 				<div class="index_item">
@@ -417,16 +417,16 @@
 				</div>
 			<?php endforeach; ?>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	</div>
-	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
+	<!-- <a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a> -->
 </body>
 <script type="text/javascript">
 	postUrl = "{{url('webd/find/goods')}}"
 	postData = {'num':15}
 </script>
-<script src="{{url('web/js/find.js')}}"></script>
+<!-- <script src="{{url('web/js/find.js')}}"></script> -->
 <script type="text/javascript">
 		$(function() {
 		    

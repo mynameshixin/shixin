@@ -123,8 +123,7 @@ $(function(){
 								var pop_col_colum_all_li =  $('.pop_col_colum_all li',collect_inner)
 								$.each(pop_col_colum_all_li,function(index,v){
 									if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
-										$('.pop_col_colum_all').html('')
-										$('.pop_col_colum_all').append(pop_col_colum_all_li.eq(index).clone())
+										$('#search_inner').html(pop_col_colum_all_li.eq(index).clone())
 										return
 									}
 								})	
