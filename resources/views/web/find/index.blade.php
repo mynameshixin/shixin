@@ -53,55 +53,55 @@
 				<div class="clearfix">
 					<ul class="find_cat_list">
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/1.jpg" alt="">
+							<a href="/webd/search/goods?keyword=餐具" target="_blank"><img src="{{asset('web')}}/images/cat/1.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=餐具" target="_blank">餐具</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/2.jpg" alt="">
+							<a href="/webd/search/goods?keyword=新古典" target="_blank"><img src="{{asset('web')}}/images/cat/2.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=新古典" target="_blank">新古典</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/3.jpg" alt="">
+							<a href="/webd/search/goods?keyword=钟" target="_blank"><img src="{{asset('web')}}/images/cat/3.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=钟" target="_blank">钟</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/4.jpg" alt="">
+							<a href="/webd/search/goods?keyword=床品" target="_blank"><img src="{{asset('web')}}/images/cat/4.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=床品" target="_blank">床品</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/5.jpg" alt="">
+							<a href="/webd/search/goods?keyword=摆件" target="_blank"><img src="{{asset('web')}}/images/cat/5.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=摆件" target="_blank">摆件</a>
 						</li>
 						<li class="find_cat_listli" style="margin-right: 14px;">
-							<img src="{{asset('web')}}/images/cat/6.jpg" alt="">
+							<a href="/webd/search/goods?keyword=厨房" target="_blank"><img src="{{asset('web')}}/images/cat/6.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=厨房" target="_blank">厨房</a>
 						</li>
 						<li class="find_cat_listli mrightzero">
-							<img src="{{asset('web')}}/images/cat/7.jpg" alt="">
+							<a href="/webd/search/goods?keyword=多肉" target="_blank"><img src="{{asset('web')}}/images/cat/7.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=多肉" target="_blank">多肉</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/8.jpg" alt="">
+							<a href="/webd/search/goods?keyword=儿童房" target="_blank"><img src="{{asset('web')}}/images/cat/8.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=儿童房" target="_blank">儿童房</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/9.jpg" alt="">
+							<a href="/webd/search/goods?keyword=抱枕" target="_blank"><img src="{{asset('web')}}/images/cat/9.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=抱枕" target="_blank">抱枕</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/10.jpg" alt="">
+							<a href="/webd/search/goods?keyword=书房" target="_blank"><img src="{{asset('web')}}/images/cat/10.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=书房" target="_blank">书房</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/11.jpg" alt="">
+							<a href="/webd/search/goods?keyword=客厅" target="_blank"><img src="{{asset('web')}}/images/cat/11.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=客厅" target="_blank">客厅</a>
 						</li>
 						<li class="find_cat_listli">
-							<img src="{{asset('web')}}/images/cat/12.jpg" alt="">
+							<a href="/webd/search/goods?keyword=挂件" target="_blank"><img src="{{asset('web')}}/images/cat/12.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=挂件" target="_blank">挂件</a>
 						</li>
 						<li class="find_cat_listli" style="margin-right: 14px;">
-							<img src="{{asset('web')}}/images/cat/13.jpg" alt="">
+							<a href="/webd/search/goods?keyword=宜家" target="_blank"><img src="{{asset('web')}}/images/cat/13.jpg" alt=""></a>
 							<a href="/webd/search/goods?keyword=宜家" target="_blank">宜家</a>
 						</li>
 						<li class="find_cat_listli clickcon mrightzero">

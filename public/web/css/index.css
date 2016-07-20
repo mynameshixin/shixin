@@ -72,7 +72,7 @@ a{cursor: pointer;}
 .find_cat_list{margin-bottom: 20px;}
 .find_cat_listli{width: 164px;height: 197px;float: left;background: #fff;margin:0px 16px 15px 0px;}
 .find_cat_listli img{width: 156px;height: 156px;margin:4px 0px 0px 4px;}
-.find_cat_listli a{height: 34px;font:normal 16px/32px "Microsoft YaHei";color: #a1a0a0;text-align: center;display: block;}
+.find_cat_listli a{/* height: 34px; */font:normal 16px/32px "Microsoft YaHei";color: #a1a0a0;text-align: center;display: block;}
 .clickcon{cursor: pointer;}
 .find_fold_li{
 	float: left;
