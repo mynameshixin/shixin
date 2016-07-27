@@ -32,7 +32,7 @@
 	.autocomplete-button:HOVER {
 		background-color: #D11E1E;
 	}
-	#search_form_outer{
+	#search_form_outer,#search_upload_outer{
 		display: inline-block;
 		position: absolute;
 	    left: 40px;
@@ -81,65 +81,69 @@
 	}
 
 	#message {
-		/* margin-top: 40px;
-		margin-bottom: 50px;
-		font-size: 20px;
-		text-align: center; */
+
 	}
 	</style>
-<!-- 本地上传采集弹框 -->
-	<div class="pop_uploadfile" style="display: none;">
-		<form action="" method="post" enctype="multipart/form-data" name='u_a'>
+	<!-- 上传图片 -->
+	<div class="pop_collect p_collect" style="display: none" img_id="" id="upload_outer">
+	<form action="" method="post" enctype="multipart/form-data" name="allimg">
 		<div class="pop_con">
-			<p class="pop_tit">
-				上传图片
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_upload_wrap">
-				<a class="pop_upload_a">
-					<input class="pop_upload" type="file" name='image'></input>
-					<input type="hidden" name='fid' value=""></input>
-					<input type="hidden" name='title' value="来自相册"></input>
-					<input type="hidden" name='kind' value="2"></input>
-					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
-					<span>请选择文件</span>
-				</a>
-				<a href="javascript:;" id='u_a' class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">上传</a>
+			<div class="pop_col_left" style="height: 400px">
+				<div class="pop_col_ltop clearfix">
+					<div class="pop_namewrap clearfix" style="padding:0px 0px 0px 30px;">
+			        <span class="pop_labelname" style="font-size:14px;line-height:42px;width:100%;">图片展示<br>最多5张且每张大小不超过8M</span>
+			        <div class="pop_addpic_con clearfix" style="float:left">
+			            <div class="pop_addpic_wrap" style="position:relative;float:left;">
+			              <img src="/web/images/pop_upload_multi.png" alt="" class="show" />
+			              <input type="file" name="image[]" multiple="true"/>
+			            </div>
+			        </div>
+			      </div>
+				</div>
+				<input type="hidden" name="user_id" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>"/>
+				<input type="hidden" name="kind" value="2"/>
+			</div>
+			<div class="pop_col_right">
+				<div class="pop_col_tit">
+					选择文件夹
+					<span class="pop_close" onclick="$('#upload_outer').hide()"></span>
+					 
+					<div class="pop_col_sinput_wrap" style="margin-top: 20px">
+						<a href="javascript:;" class="pop_col_sinputbtn"></a>
+						<input class="pop_col_sinput" placeholder="搜索">
+						<div id="search_upload_outer"></div>
+					</div>
+					
+				</div>
+				<div class="">
+					<div class="pop_col_colum_wrap">
+						<div class="pop_col_alphabet">
+						</div>
+						<ul class="pop_col_colum" id="search_upload">
+							
+						</ul>
+						<p class="pop_col_new">最新采集到</p>
+						<ul class="pop_col_colum pop_col_colum_new">
+							
+						</ul>
+						<p class="pop_col_new">所有文件夹</p>
+						<ul class="pop_col_colum pop_col_colum_all">
+							
+							
+						</ul>
+					</div>
+					
+				</div>
+				<div class="pop_add_foldbtn clearfix">
+					<a href="javascript:;" class="pop_add_addnew" id="show_folder_add" >+</a>
+					<p class="pop_add_addfont">新建文件夹</p>
+				</div>
 			</div>
 		</div>
-		</form>
+	</form>
 	</div>
-
-	<script type="text/javascript">
-
-		$('form[name=u_a]').submit(function(){
-			ua = $('form[name=u_a]').serialize()
-			$(this).ajaxSubmit({
-				type:"post",  //提交方式
-                dataType:"json", //数据类型
-                url:"{{url('webd/folder/uimg')}}", //请求url
-                success:function(json){ //提交成功的回调函数
-                    if(json.code==200) {
-                    	layer.msg('成功上传',{icon: 6});
-                    	setTimeout(function(){
-                    		location.reload()
-                    	},2000)
-                    	
-                    }else{
-                    	layer.msg(json.message, {icon: 5});
-						return
-                    } 
-                },
-                resetForm:1
-	        });
-	        return false
-		})
-		$('#u_a').click(function(){
-			$('form[name=u_a]').submit()
-		})
-	</script>
 	<!-- 上传图片的js -->
-	<script type="text/javascript" src="{{asset('web')}}/js/backupjs.js"></script>
+	<!-- <script type="text/javascript" src="{{asset('web')}}/js/backupjs.js"></script> -->
 	<!-- 获取商品网址弹框 -->
 	<div class="pop_uploadgoods" style="display:none;">
 		<div class="pop_con">

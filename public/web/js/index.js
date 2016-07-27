@@ -131,6 +131,31 @@ function collect(obj){
   }
 }
 
+//上传图片最后步骤
+function allimg_upload(obj){
+  var folder_id = $(obj).attr('folder_id')
+  $('form[name=allimg]').ajaxSubmit({
+          type:"post",  //提交方式
+          dataType:"json", //数据类型
+          url:"/webd/pics/uimg", //请求url
+          'fileTypeDesc': "Image Files",
+          'data':{'fid':folder_id},
+          success:function(json){ //提交成功的回调函数
+              if(json.code==200) {
+                layer.msg('成功上传',{icon: 6});
+                setTimeout(function(){
+                  location.reload()
+                },1000)
+              }else{
+                layer.msg(json.message, {icon: 5});
+                return
+              } 
+          },
+          resetForm:1
+  });
+  return false
+}
+
 $(function(){
   //采集创建新文件
   $('#pop_add_addnew_outer').click(function(){
@@ -232,15 +257,148 @@ $(function(){
     $('.header_add_item_awrap').show();
   })
 
-  
+
+
+var cx = 0
+// 上传图片js
+$('.header_more_a1').click(function(){
+    if(u_id==''){
+      layer.msg('需要登录',{'icon':5})
+      return
+    }
+    $('#upload_outer').show();
+    var popH =$('#upload_outer').show().find('.pop_con').height();
+    $('#upload_outer').show().find('.pop_col_left').height(popH);
+    var upload_outer = $('#upload_outer')
+    var proposals = []
+    $.ajax({
+            'beforeSend':function(){
+              layer.load(0, {shade: 0.5});
+            },
+            'url':'/webd/pics/cgoods',
+            'data':{'user_id':u_id},
+            'type':'post',
+            'dataType':'json',
+            'success':function(json){
+              if(json.code==200){
+                cgcontent = afolder = ''
+                $.each(json.data.cg,function(index,v){
+                  cgcontent += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="allimg_upload(this)">'
+                    +'<div class="pop_col_colava">'
+                      +'<img src="'+v.image_url+'" alt="">'
+                    +'</div>'
+                    +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+
+                  if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
+                    cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn " >上传</a>'
+                  +'</li>'
+                })
+                $('.pop_col_colum_new',upload_outer).html(cgcontent)
+                $.each(json.data.folder,function(index,v){
+                  afolder += '<li class="pop_col_colum_on clearfix" folder_id='+v.id+' style="cursor:pointer" onclick="allimg_upload(this)">'
+                    +'<div class="pop_col_colava">'
+                      +'<img src="'+v.image_url+'" alt="">'
+                    +'</div>'
+                    +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+                    if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
+                    afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn " >上传</a>'
+                  +'</li>'
+                  proposals[index] = v.name
+                })
+                $('.pop_col_colum_all',upload_outer).html(afolder)
+              }else{
+                layer.msg(json.message, {icon: 5});
+                return
+              }
+            },
+            'complete':function(){
+              layer.closeAll('loading');
+            }
+          })
+    if(cx == 0){
+      //自动补全
+        $('#search_upload_outer').autocomplete({
+            hints: proposals,
+            width: 218,
+            height: 36,
+            onSubmit: function(text){
+              var pop_col_colum_all_li =  $('.pop_col_colum_all li',upload_outer)
+              $.each(pop_col_colum_all_li,function(index,v){
+                if(pop_col_colum_all_li.eq(index).find('.pop_col_colname').html()==text){
+                  $('#search_upload').html(pop_col_colum_all_li.eq(index).clone())
+                  return
+                }
+              })  
+            }
+          });
+        cx = 1;
+    }
+    $('.pop_addpic_wrap input').change(function(){
+        var imgcon = $('.pop_pic_wrap');
+        var obj = $(this)
+        if(this.files.length > 5){
+          layer.msg('上传图片个数不能超过5个',{'icon':5})
+          obj.val('')
+          obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
+          return
+        }
+
+        
+        obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
+        for (var i = 0; i < this.files.length; i++) {
+          if (this.files[i]) {
+            var filename = this.files[i].name;
+            var subfile = filename.split('.');
+            var subfilelen = subfile.length;
+            var last = subfile[subfilelen-1].toLowerCase();
+            var tp ="jpg,gif,bmp,png,jpeg";
+            var rs=tp.indexOf(last);
+              if(rs>=0){
+                  var file_url = getObjectURL(this.files[i]);
+                  var appendnewNode = '<div class="pop_addpic_wrap">\
+                                <span class="close_img_btn">×</span>\
+                                <img src="'+file_url+'" alt="">\
+                                <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea>\
+                              </div>';
+                  obj.parents('.pop_addpic_con').append(appendnewNode)
+
+                  $('.close_img_btn').click(function(){
+                    $(this).parents('.pop_addpic_wrap').remove()
+                  })
+
+                  $('.pop_addpic_wrap .pop_addfont_wrap').click(function(){
+                      $(this).animate({height:"40px"})
+                  }).blur(function(){
+                      $(this).animate({height:"20px"})
+                  })
+
+              }else{
+                  layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})
+                  obj.val('')
+                  obj.parents('.pop_addpic_con').find('.pop_addpic_wrap:gt(0)').remove()
+                  return false;
+              }
+            }
+        }
+      });
+    $('.pop_addpic_multi,.pop_close,.detail_pop_cancel').click(function(){
+        $('.pop_addpic_multi').remove();
+      })
+    $('.pop_addpic_multi .pop_con').click(function(){
+      event.stopPropagation()
+    })
+
+
+})
 
   //添加文件夹
-  $('.popc').click(function(){
+  $('.popc,#show_folder_add').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
     $('.pop_addfold').show()
+    $('#upload_outer').hide()
     var popconHei = $('.pop_addfold .pop_conwrap').height();
       if (popconHei > 410) {
         $('.pop_addfold .pop_conwrap').css({
