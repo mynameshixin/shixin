@@ -29,7 +29,7 @@ class Role
         $user = $request->user();
 
         if (!$res =  $user->hasRole($role)) {
-            die('运营账号无法登陆');
+            die('普通账号无法登陆');
             // return redirect('/admin');
         }
 
