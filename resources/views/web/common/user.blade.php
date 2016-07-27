@@ -20,6 +20,7 @@
 							<?php } ?>
 							<?php if($user_id!=$self_id){ ?>
 							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}">
+
 							<?php 
 								switch ($user_info['t_relation']) {
 									case '1':
@@ -84,8 +85,33 @@
 							<p class="perhome_perlike_num">{{$user_info['count']['follow_count']}}</p>
 							<p class="perhome_perlike_la">关注</p>
 						</a>
+
+						<div class="detail_pop_tbtn detail_pop_tbtnright" style="float: none;position: absolute;right: 0">
+							<div class="detail_pop_tbtn_click detail_fileb_pr">
+								分享
+								<var class="detail_pop_tbtntril"></var>
+							</div>
+							<div class="detail_fileb_select slideup">
+								<div class="detail_fileb_selectw">
+									<span class="jiathis_style_32x32" id="own_share">
+										<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
+										<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
+									</span>
+									<var class="detail_fileb_setril"></var>
+								</div>
+							</div>
+						</div>
+						<!-- JiaThis Button BEGIN -->
+						<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+						<!-- JiaThis Button END -->
 					</div>
+
+					
+
 				</div>
+
+				
+
 			</div>
 </div>
 
@@ -108,5 +134,24 @@
 			});
 			$('.perhome_cater_info').show();
 		};
+	});
+
+	$('.detail_pop_tbtn_click').click(function(){
+    	event.stopPropagation();
+    	if ($(this).siblings('.detail_fileb_select').hasClass('slideup')) {
+    		$('.detail_fileb_select').addClass('slideup');
+    		$(this).siblings('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+    		var isOut = true;
+    	}else{
+    		$('.detail_fileb_select').addClass('slideup');
+    		$(this).siblings('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+    	};
+    	window.document.onclick = function(){
+	    	if(isOut){
+	            $('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+	        }else{
+	        	$('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+	        }
+	    }
 	});
 </script>
