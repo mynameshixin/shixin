@@ -261,11 +261,13 @@ $(function(){
 
 var cx = 0
 // 上传图片js
-$('.header_more_a1').click(function(){
+$('.header_more_a1,.pop_cona').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
+    
+    $(this).parents('.pop_goodsupload').hide()
     $('#upload_outer').show();
     var popH =$('#upload_outer').show().find('.pop_con').height();
     $('#upload_outer').show().find('.pop_col_left').height(popH);
