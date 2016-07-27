@@ -24,10 +24,13 @@ class Role
      */
     public function handle($request, Closure $next, $role)
     {
+        header('content-type:text/html;charset=utf-8');
         $role = explode(';',$role);
         $user = $request->user();
-        if (! $user->hasRole($role)) {
-            return redirect('/');
+
+        if (!$res =  $user->hasRole($role)) {
+            die('运营账号无法登陆');
+            // return redirect('/admin');
         }
 
         return $next($request);

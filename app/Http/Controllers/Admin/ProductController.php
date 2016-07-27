@@ -221,7 +221,8 @@ class ProductController extends ApiController
             $edit->add('kind', '类别', 'hidden')->insertValue($kind);
             $edit->add('folder_id', '文件夹', 'select')->options($folders)->attributes(array("readonly" => "true"));
             $edit->add('title', '标题', 'text')->attributes(array("readonly" => "true"));
-            $edit->add('tags', '标签', 'text')->attributes(array("readonly" => "true"));
+            // $edit->add('tags', '标签', 'text')->attributes(array("readonly" => "true"));
+            $edit->add('tags', '标签：多标签用";" 分割', 'text')->insertValue(' ');
             if ($kind==1) {
                 $edit->add('reserve_price', '优惠价格', 'text')->attributes(array("readonly" => "true"));
                 $edit->add('price', '原价', 'text')->attributes(array("readonly" => "true"));

@@ -24,11 +24,13 @@ class UserController extends ApiController
     private  $statusArr =  ['0'=>'受限','1'=>'使用中','2'=>'已停用'];
 
     public function main() {
+
         return view('admin.main');
     }
 
     public function index(Request $request)
     {
+        
         $roles['']='角色';
         $lists = Role::lists('display_name','id')->toArray();
         $statusArr['']= '状态';

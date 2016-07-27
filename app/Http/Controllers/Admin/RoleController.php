@@ -27,7 +27,7 @@ class RoleController extends ApiController
 
     public function index(Request $request)
     {
-
+        
         $user = Auth::user();
         $filter = DataFilter::source( new Role);
         $filter->add('name','名称', 'text');

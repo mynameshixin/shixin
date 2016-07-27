@@ -32,6 +32,7 @@ class AuthController extends ApiController
 
     public function __construct(Guard $auth)
     {
+
         $this->auth = $auth;
         //$this->middleware('guest', ['except' => 'getLogout']);
     }
@@ -39,6 +40,7 @@ class AuthController extends ApiController
 
     public function index()
     {
+
         $user = \Auth::user();
         if ($user) {
             return view('admin');
@@ -48,12 +50,13 @@ class AuthController extends ApiController
     }
 
     public function getLogin()
-    {
-        if (view()->exists('auth.authenticate')) {
-            return $this->redirectPath('admin');
+    {   
+        if ($res = view()->exists('auth.authenticate')) {
+
+            // return $this->redirectPath('admin');
+            return redirect('/admin');
             //return view('auth.authenticate');
         }
-
         return view('admin.auth.login');
     }
 
@@ -80,12 +83,14 @@ class AuthController extends ApiController
         }
 
         $user = \Auth::user();
+
         if ($user) {
             return $this->handleUserWasAuthenticated($request, $throttles);
             if (!$user->hasRole(['administrator','super_administrator']) ){
                 return $this->handleUserWasAuthenticated($request, $throttles);
             }else{
-                return $this->redirectPath('admin');
+                return redirect('/admin');
+                // return $this->redirectPath('admin');
             }
         }
 
