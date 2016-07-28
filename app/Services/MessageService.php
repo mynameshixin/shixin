@@ -80,7 +80,7 @@ class MessageService extends ApiService
         if ($num) {
             $rows = $rows->take($num+1);
         }
-        $rows = $rows->orderBy('id', 'desc')->get()->toArray();
+        $rows = $rows->orderBy('created_at', 'desc')->get()->toArray();
         $outDate = array ('messages'=>array(),'havenext'=>0);
         if (!empty($rows)) {
             if ($num && count($rows)>$num) {
@@ -105,7 +105,7 @@ class MessageService extends ApiService
         if ($msg_kind) {
             $rows = $rows->where('msg_kind','=',$msg_kind);
         }
-        $rows = $rows->orderBy('id', 'desc')->paginate($num);
+        $rows = $rows->orderBy('created_at', 'desc')->paginate($num);
         $data = LibUtil::pageFomate($rows);
         if (!empty($data['list'])){
             $userIds = array_column($data['list'],'from_userid');
@@ -147,7 +147,7 @@ class MessageService extends ApiService
      * @return multitype:
      */
     function getMsgContact($user_id, $num) {
-        $rows = UserContact::where('user_id',$user_id)->orderBy('updated_at', 'desc')->paginate($num);
+        $rows = UserContact::where('user_id',$user_id)->orderBy('created_at', 'desc')->paginate($num);
         $data = LibUtil::pageFomate($rows);
         if (!empty($data['list'])){
             $userIds = array_column($data['list'],'contact_id');
