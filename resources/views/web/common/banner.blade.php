@@ -50,6 +50,30 @@ var _hmt = _hmt || [];
 
 		</div>
 </div>
+
+<script type="text/javascript">
+	$.ajax({
+		'url':"{{url('webd/notice/index')}}",
+		'type':'post',
+		'data':{
+			'user_id':u_id,
+			'num':50
+		},
+		'dataType':'json',
+		'success':function(json){
+			if(json.code==200){
+				$.each(json.data.list,function(index,v){
+					if(v.status == 0){
+						console.log(v.status==0)
+						$('.header_mess').css({'background-position-y':'-1084px'})
+						return false
+					}
+					
+				})				
+			}
+		},
+	})
+</script>
 <script type="text/javascript">
 	$('.header_mess').click(function(){
 		if($('.header_moremess').css('display') == 'block'){
@@ -64,7 +88,8 @@ var _hmt = _hmt || [];
 				'type':'post',
 				'data':{
 					'user_id':u_id,
-					'num':50
+					'num':50,
+					'editstatus':1
 				},
 				'dataType':'json',
 				'success':function(json){

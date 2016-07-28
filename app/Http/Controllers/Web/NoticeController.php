@@ -19,24 +19,30 @@ class NoticeController extends CmController{
             'num'                  => 'integer',
             'msg_kind'                  => 'integer',
             'status'                  => 'integer',
-            'user_id'=>'required'
+            'user_id'=>'required',
+            'editstatus'=>'integer'
         );
         //请求参数验证
         parent::validator($data, $rules);
         $user_id = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$user_id)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-
+        $editstatus = isset($data['editstatus']) ? $data['editstatus'] : 0;
         $num = isset($data['num']) ? $data['num'] : 0;
         $msg_kind =  isset($data['msg_kind']) ? $data['msg_kind'] : '';
         $status = isset($data['status']) ? $data['status'] : null;
         $outDate =  MessageService::getInstance()->getMessageByPage ($user_id,$status,$msg_kind,$num);
         foreach ($outDate['list'] as $key => $value) {
+            $id = $value['id'];
+            if($editstatus == 1){
+                DB::table('system_msgs')->where('id',$id)->update(['status'=>1]);
+            }
         	$innertime = time() - strtotime($value['created_at']);
             $outDate['list'][$key]['min'] = self::cpu_time($innertime);
         }
         return response()->forApi($outDate);
 	}
+
 
 	public function cpu_time($time){
 
