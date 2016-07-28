@@ -1,5 +1,5 @@
   <div class="pop_login pop_login1" style="display: none;" login="1">
-    <div class="pop_con">
+    <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
         <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="pop_login pop_login2" style="display:none">
-    <div class="pop_con">
+    <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
         <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
@@ -77,7 +77,7 @@
     </div>
   </div>
   <div class="pop_login pop_login3" style="display:none" login="2">
-    <div class="pop_con">
+    <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
         <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
         <span class="pop_close"></span>
