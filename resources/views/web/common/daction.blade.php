@@ -142,6 +142,42 @@
 		</div>
 	</form>
 	</div>
+
+	<!-- 上传图片时新建文件夹 -->
+	<div class="pop_collect p_folder" style="display: none" id="pic_folder_outer">
+		<div class="pop_con">
+			<div class="pop_col_left" style="height: 470px">
+				<div class="pop_col_ltop clearfix">
+					<img src="{{url('uploads/sundry/wlogo.jpg')}}"  width="668" alt="">
+				</div>			
+			</div>
+			<div class="pop_col_right">
+				<div class="pop_col_tit">
+					创建文件夹
+					<span class="pop_close" onclick="$('#pic_folder_outer').hide()"></span>
+				</div>
+				<div class="pop_col_infowrap">
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">名称</p>
+						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
+					</div>
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">描述</p>
+						<textarea class="pop_col_narea" placeholder="例如：欧式低奢亮色系风格"></textarea>
+					</div>
+					<div class="pop_col_priv">
+						<p class="pop_col_nlabel">隐私</p>
+						<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr_o" name="private" private="0">
+						<label for="pop_iptpr_o"></label>
+					</div>
+				</div>
+				<div class="pop_btnwrap">
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="$('#pic_folder_outer').hide()">取消</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="pic_cfolder">创建</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- 上传图片的js -->
 	<!-- <script type="text/javascript" src="{{asset('web')}}/js/backupjs.js"></script> -->
 	<!-- 获取商品网址弹框 -->

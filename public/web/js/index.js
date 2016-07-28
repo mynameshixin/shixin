@@ -392,9 +392,61 @@ $('.header_more_a1,.pop_cona').click(function(){
 
 
 })
+// 上传图片添加文件夹
+$('#show_folder_add').click(function(){
+    $('#pic_folder_outer').show()
+    $('#upload_outer').hide()
+})
+$('#pic_folder_outer .pop_iptprivacy').click(function(){
+      if($(this).attr('checked') == 'checkbox') return
+      if($(this).attr('private') == 1){
+        $(this).attr('private',0)
+      }else{
+        $(this).attr('private',1)
+      }
+ })
+//创建点击按钮
+$('#pic_cfolder').click(function(){
+  var pop_con = $(this).parents('.pop_con')
+  var name = $('input[name=fname]',pop_con).val().trim()
+  var description = $('textarea',pop_con).val().trim()
+  var private = $('input[name=private]',pop_con).attr('private')
+  if(name=='') {
+    layer.msg('信息没有填写完全', {icon: 5});
+    return 
+  }
+  $.ajax({
+    'beforeSend':function(){
+      layer.load(0, {shade: 0.5});
+    },
+    'url':"/webd/folder/cfolder",
+    'type':'post',
+    'data':{
+      'name':name,
+      'description':description,'private':private,
+      'fid':10,'user_id':u_id
+    },
+    'dataType':'json',
+    'success':function(json){
+      if(json.code==200){
+        layer.msg('创建成功', {icon: 6});
+        $('#pic_folder_outer').hide()
+        $('.header_more_a1').click()
+      }else{
+        layer.msg(json.message, {icon: 5});
+        return
+      }
+    },
+    'complete':function(){
+      layer.closeAll('loading');
+    }
+  })
+})
+
+
 
   //添加文件夹
-  $('.popc,#show_folder_add').click(function(){
+  $('.popc').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return

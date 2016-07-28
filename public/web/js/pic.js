@@ -171,15 +171,14 @@ $(function(){
 						'data':{
 							'name':name,
 							'description':description,'private':private,
-							'fid':10,'user_id':user_id
+							'fid':10,'user_id':u_id
 						},
 						'dataType':'json',
 						'success':function(json){
 							if(json.code==200){
 								layer.msg('创建成功', {icon: 6});
-								setTimeout(function(){
-									location.reload()
-								},2000)
+								$('#folder_inner').hide()
+								$('.detail_pop_collection').click()
 							}else{
 								layer.msg(json.message, {icon: 5});
 								return
