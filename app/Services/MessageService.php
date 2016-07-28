@@ -66,11 +66,11 @@ class MessageService extends ApiService
      */
     public function getMessageList ($to_userid,$user_type,$last_id=0,$num=0,$status=null,$msg_kind='') {
         $rows = SystemMsg::where('to_userid','=',$to_userid)->where('user_type','=',$user_type);
-        if ($status!==null && in_array($status,[0,1])) {
+        /*if ($status!==null && in_array($status,[0,1])) {
             $rows = $rows->where('status','=',$status);
         }else{
             $rows = $rows->where('status','<>',2);
-        }
+        }*/
         if ($last_id) {
             $rows = $rows->where('id','<',$last_id);
         }
