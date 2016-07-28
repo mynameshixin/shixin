@@ -1,0 +1,7 @@
+<div class="search_btn_con clearfix">
+	<a href="/webd/search?keyword=<?php echo e($keyword); ?>&type=2" class="search_btn_lround <?php if($type==2): ?>search_btn_select<?php endif;?>">文件夹&nbsp;&nbsp;(<?php echo e($count['folder_count']); ?>)</a>
+	<a href="/webd/search/goods?keyword=<?php echo e($keyword); ?>" class="<?php if($type==1): ?>search_btn_select<?php endif;?>">图片&nbsp;&nbsp;(<?php echo e($count['image_count']); ?>)</a>
+	<a href="/webd/search/goods?keyword=<?php echo e($keyword); ?>&type=3" class="<?php if($type==3): ?>search_btn_select<?php endif;?>">商品&nbsp;&nbsp;(<?php echo e($count['good_count']); ?>)</a>
+	<a href="/webd/search/user?keyword=<?php echo e($keyword); ?>&type=4" class="<?php if($type==4): ?>search_btn_select<?php endif;?>">用户&nbsp;&nbsp;(<?php echo e($count['user_count']); ?>)</a>
+	<?php if(!empty($self_id)): ?><a href="/webd/search/my?keyword=<?php echo e($keyword); ?>&type=5" class="search_btn_rround <?php if($type==5): ?>search_btn_select<?php endif;?>">我的文件</a><?php endif; ?>
+</div>

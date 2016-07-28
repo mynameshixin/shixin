@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php echo $__env->make('web.common.head',['title'=>'堆图家首页'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<body>
+	<?php echo $__env->make('web.common.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/like.js"></script>
+	<script type="text/javascript">
+		var self_id = "<?php echo e($self_id); ?>"
+		relationUrl = "<?php echo e(url('webd/user/relation')); ?>"
+	</script>
+	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/user/relation.js"></script>
+	<div class="container"  style="background: #fff">
+		<div class="w1248 clearfix" id="main" role="main">
+			<div class="index_con" id="tiles">
+			<?php if(!empty($user_info)){ ?>
+				<div class="index_item">
+					<div class="index_item_wrap">
+						<div class="index_item_user">
+							<div class="index_item_utop clearfix">
+								<div class="index_item_uava">
+									<a href="<?php echo e(url('webd/user')); ?>" target="_blank"><img src="<?php echo e(!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']); ?>" alt=""></a>
+								</div>
+								<div class="index_item_uname"><a href="javascript:;" target="_blank"><?php echo mb_substr($user_info['nick'], 0,6,'utf-8') ?></a></div>
+							</div>
+							<div class="index_item_umdl clearfix">
+								<div class="index_item_umcon">
+									<p class="index_item_umnum"><?php echo e($user_info['count']['collection_count']); ?></p>
+									<p class="index_item_umitem">采集</p>
+								</div>
+								<div class="index_item_umcon">
+									<p class="index_item_umnum"><?php echo e($user_info['count']['folder_count']); ?></p>
+									<p class="index_item_umitem">文件夹</p>
+								</div>
+								<div class="index_item_umcon" style="border-right: 0px;">
+									<p class="index_item_umnum"><?php echo e($user_info['count']['fans_count']); ?></p>
+									<p class="index_item_umitem">粉丝</p>
+								</div>
+							</div>
+							<div class="index_item_ubtm clearfix">
+								<div class="index_item_ubrec">
+									推荐文件夹 <a href="<?php echo e(url('webd/find')); ?>" target="_blank" class="index_item_ubrecmore">查看更多</a>
+								</div>
+							<?php foreach ($recommend as $key => $re):?>
+								
+								<li folder_id="<?php echo e($re['id']); ?>">
+								<div class="index_item_ubfold clearfix">
+									<div class="index_item_ubfava">
+										<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($re['id']); ?>" target="_blank"><img src="<?php echo e($re['img_url']); ?>" alt=""></a>
+									</div>
+									<div class="index_item_ubfinfo">
+										<p class="index_item_ubfnme"><a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($re['id']); ?>" target="_blank"><?php echo mb_substr($re['name'], 0,8,'utf-8') ?></a></p>
+										<p class="index_item_ubffow"><?php echo e($re['count']); ?>文件&nbsp;&nbsp;<?php echo e($re['collection_count']); ?>关注</p>
+									</div>
+									<?php if($re['user_id'] != $self_id): ?>
+									<a class="index_item_ubfatten" onclick="relation(this)"><?php echo !empty($re['is_collection'])?'已关注':'<span>+</span>特别关注'; ?></a>
+									<?php endif; ?>
+								</div>
+								</li>
+							
+							<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php }else{ ?>
+					<div class="index_item"></div>
+			<?php } ?>
+			<?php foreach ($goods as $key => $v):?>
+				<div class="index_item">
+					<div class="index_item_wrap">
+						<div class="index_item_imgwrap clearfix">
+							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic/')); ?>/<?php echo e($v['id']); ?>" target="_blank"></a>
+							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>">
+							<div class="index_item_price"><?php echo strpos($v['detail_url'],'m.fancy.com')?'$':'￥'; ?><?php echo e($v['price']); ?></div>
+						</div>
+						<div class="index_item_info">
+							<div class="index_item_top">
+								<div class="index_item_intro" title="<?php echo e($v['description']); ?>"><?php echo e($v['description']); ?></div>
+								<div class="index_item_rel clearfix" good_id="<?php echo e($v['id']); ?>">
+									<a  class="index_item_l" onclick="praise(this,1)"><?php echo e($v['praise_count']); ?></a>
+									<a  class="index_item_c" onclick="collect(this)"><?php echo e($v['collection_count']); ?></a>
+									<a href="<?php echo e($v['detail_url']); ?>" target="_blank" class="index_item_b"></a>
+								</div>
+							</div>
+							<div class="index_item_bottom clearfix">
+								<a href="<?php echo e(url('webd/user')); ?>?oid=<?php echo e($v['user']['id']); ?>" class="index_item_authava" target="_blank">
+									<img src="<?php echo e(!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']); ?>" alt="">
+								</a>
+								<div class="index_item_authinfo">
+									<a href="<?php echo e(url('webd/user')); ?>?oid=<?php echo e($v['user']['id']); ?>" target="_blank" class="index_item_authname"><?php echo e(!empty($v['user']['nick'])?$v['user']['nick']:$v['user']['username']); ?></a>
+									<span class="index_item_authto">采集到</span>
+									<p class="index_item_authtopart"><a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($v['folder_id']); ?>" target="_blank"><?php echo e($v['folder_name']); ?></a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
+
+</body>
+<script type="text/javascript">
+	postUrl = "<?php echo e(url('webd/home/goods')); ?>"
+	postData = {'num':15}
+</script>
+
+<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/pubu.js"></script>
+</html>

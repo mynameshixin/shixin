@@ -10,18 +10,18 @@ var _hmt = _hmt || [];
 <div class="header">
 		<div class="headercontainer w1248 clearfix">
 			<a href="/" class="header_logo"></a>
-			<a href="{{url('webd/home')}}" class="header_item">商品</a>
-			<a href="{{url('webd/pics')}}" class="header_item">图集</a>
-			<a href="{{url('webd/find')}}" class="header_item">发现</a>
-			<a href="{{url('webd/app')}}" class="header_item">APP</a>
+			<a href="<?php echo e(url('webd/home')); ?>" class="header_item">商品</a>
+			<a href="<?php echo e(url('webd/pics')); ?>" class="header_item">图集</a>
+			<a href="<?php echo e(url('webd/find')); ?>" class="header_item">发现</a>
+			<a href="<?php echo e(url('webd/app')); ?>" class="header_item">APP</a>
 			<div href="javascript:;" class="header_add_btn">
 				+
 				<div class="header_add_item">
-					@include('web.common.banner.action')
+					<?php echo $__env->make('web.common.banner.action', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 				</div>
 			</div>
 			<form action="/webd/search/goods" method="get" name='search'>
-				<input type="text" class="header_search" value="{{$keyword or ''}}" name="keyword" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
+				<input type="text" class="header_search" value="<?php echo e(isset($keyword) ? $keyword : ''); ?>" name="keyword" placeholder="搜索你喜欢的" <?php if(empty($self_id)){?>style="width: 565px;"<?php } ?>>
 			</form>
 			<script type="text/javascript">
 				$('.header_search').keydown(function(e){
@@ -46,7 +46,7 @@ var _hmt = _hmt || [];
 					<!-- <a href="javascript:;" class="header_add_more">查看更多</a> -->
 				</div>
 			</div>
-			@include('web.common.banner.my')
+			<?php echo $__env->make('web.common.banner.my', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 		</div>
 </div>
@@ -60,7 +60,7 @@ var _hmt = _hmt || [];
 				'beforeSend':function(){
 					layer.load(0, {shade: 0.5});
 				},
-				'url':"{{url('webd/notice/index')}}",
+				'url':"<?php echo e(url('webd/notice/index')); ?>",
 				'type':'post',
 				'data':{
 					'user_id':u_id,
@@ -99,8 +99,8 @@ var _hmt = _hmt || [];
 		event.stopPropagation();
 	})
 </script>
-@include('web.common.login')
-@include('web.common.daction')
+<?php echo $__env->make('web.common.login', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('web.common.daction', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <a href="javascript:;" class="back_to_top">^</a>
 <script type="text/javascript">

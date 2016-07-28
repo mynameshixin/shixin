@@ -1,8 +1,7 @@
 
 <?php if(empty($self_id)){?>
 <div style="">
-<a href="javascript:;" class="nolog_login_btn">注册</a>
-<a href="javascript:;" class="nolog_land_btn">登录</a>
+<a href="javascript:;" class="nolog_land_btn" style="float: right;">登录</a>
 </div>
 <?php }else{ ?>
 <div href="javascript:;" class="header_rel" style="float: right; border-right: none">
