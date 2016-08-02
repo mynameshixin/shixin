@@ -14,7 +14,7 @@ class VrController extends BaseController{
     //获取全国的区域 省市县
     public function getZone(){
 
-    	$data = Input::all();
+    	/*$data = Input::all();
 
         $rules = array(
             'access_token' => 'required',
@@ -25,7 +25,7 @@ class VrController extends BaseController{
         $userId = $userData['user_id'];
         if (empty($userId)) {
             return response()->forApi(array(), 1001, '无权限调用接口');
-        }
+        }*/
     	$zones = DB::table('citys')->select('id','name','pid','level')->where('pid','>',0)->get();
     	// dd(count($zones));
     	$arr = [];
