@@ -76,6 +76,7 @@ var _hmt = _hmt || [];
 </script>
 <script type="text/javascript">
 	$('.header_mess').click(function(){
+		$(this).css({'background-position-y':'-906px'})
 		if($('.header_moremess').css('display') == 'block'){
 			$('.header_moremess').find('ul').html('')
 			$('.header_moremess').css("display","none")

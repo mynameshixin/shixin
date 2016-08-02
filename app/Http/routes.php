@@ -152,6 +152,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'share' => 'ShareController',
         'location'=> 'LocationController',
         'notice' => 'NoticeController',
+        'vr' => 'VrController',
     ]);
 
     Route::resources([
