@@ -162,7 +162,7 @@ class UserReg
         $id = $params['id'];
         $gender = ['m'=>1,'f'=>0,'h'=>0];
 
-        $row = User::where('weibo_id',$id)->first();
+        $row = User::where('weibo_id',trim($id))->first();
 
         if (empty($row)) {
             $data['status']=1;
@@ -204,7 +204,7 @@ class UserReg
 //
 //        }
 
-        $row = User::where('qq_id',$id)->first();
+        $row = User::where('qq_id',trim($id))->first();
 
         if (empty($row)) {
             $data['status']=1;
@@ -284,7 +284,7 @@ class UserReg
     public function AuthWechatSdkLogin ($params) {
         $token = $params['unionid'];
         $id = $params['openid'];
-        $row = User::where('wechat_token',$token)->first();
+        $row = User::where('wechat_token',trim($token))->first();
         if (empty($row)) {
             $data['status']=1;
             $data['wechat_id'] =$id;

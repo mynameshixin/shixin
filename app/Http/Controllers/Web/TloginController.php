@@ -78,13 +78,13 @@ class TloginController extends CmController
         $data = $this->userinfo;
         $userData = [];
         if($type == 1){
-            $user = DB::table('users')->where('qq_id',$data['open_id'])->first();
+            // $user = DB::table('users')->where('qq_id',$data['open_id'])->first();
             $userData = $this->registrar->AuthQqLogin($data);
         }elseif($type==2){
-            $user = DB::table('users')->where('wechat_token',$data['unionid'])->first();
+            // $user = DB::table('users')->where('wechat_token',$data['unionid'])->first();
             $userData = $this->registrar->AuthWechatSdkLogin($data);
         }elseif($type==3){
-            $user = DB::table('users')->where('weibo_id',$data['id'])->first();
+            // $user = DB::table('users')->where('weibo_id',$data['id'])->first();
             $userData = $this->registrar->AuthWeiboLogin($data);
         }
         // dd($userData);
