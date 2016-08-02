@@ -65,7 +65,7 @@ var _hmt = _hmt || [];
 				$.each(json.data.list,function(index,v){
 					if(v.status == 0){
 						console.log(v.status==0)
-						$('.header_mess').css({'background-position-y':'-1084px'})
+						$('.header_mess').css({'background-position-y':'-1075px'})
 						return false
 					}
 					

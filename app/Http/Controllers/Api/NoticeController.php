@@ -103,8 +103,6 @@ class NoticeController extends BaseController
         $rs = DB::table('system_msgs')->where('to_userid',self::$user_id)->update(['status'=>1]);
         if($rs){
             return response()->forApi(array('status'=>1));
-        }else{
-            return response()->forApi([],1001,'更新失败');
         }
         
     }
