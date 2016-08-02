@@ -5,7 +5,7 @@ use App\Services\MessageService;
 use Illuminate\Support\Facades\Input;
 
 use App\SystemMsg;
-
+use DB;
 
 /**
  *
@@ -90,6 +90,18 @@ class NoticeController extends BaseController
         $status = isset($data['status']) ? $data['status'] : null;
         $outDate =  MessageService::getInstance()->getMessageByPage (self::$user_id,$status,$msg_kind,$num);
         return response()->forApi($outDate);
+    }
+    //返回更新为已读
+    public function postSetstatus (){
+        $data = Input::all();
+        $rules = array(
+            'access_token'                  => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+
+        $rs = DB::table('system_msgs')->where('to_userid',self::$user_id)->update(['status'=>1]);
+        return response()->forApi(array('status'=>$rs ? 1 : 0));
     }
 
     /**
