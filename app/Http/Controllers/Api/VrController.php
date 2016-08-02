@@ -27,7 +27,8 @@ class VrController extends BaseController{
             return response()->forApi(array(), 1001, '无权限调用接口');
         }*/
     	$zones = DB::table('citys')->select('id','name','pid','level')->where('pid','>',0)->get();
-    	// dd(count($zones));
+    	$arr = [];
+
     	$arr = [];
     	foreach ($zones as $key => $value) {
     		if($value['level'] == 1){
@@ -39,19 +40,44 @@ class VrController extends BaseController{
     					unset($zones[$k]);
     					foreach ($zones as $i => $o) {
     						if($o['pid'] == $v['id']){
-    							$arr[$key]['citys'][$k]['countys'][$i] = $o;
+    							$arr[$key]['citys'][$k]['countrys'][$i] = $o;
     						}
     					}
     				}
     			}
     		}
     	}
+
+    	sort($arr);
+    	foreach ($arr as $key => $value) {
+    		if(isset($value['citys'])){
+    			
+    			foreach ($value['citys'] as $k => $v) {
+    				if(isset($v['countrys'])){
+    					sort($arr[$key]['citys'][$k]['countrys']);
+    				}
+    			}
+    			sort($arr[$key]['citys']);
+    		}
+    	}
+    
     	return response()->forApi(['list' => $arr]);
 
     }
 
+    //获取开发商
+    public function getDev(){
+    	$deves = DB::table('develops')->get();
+    	return response()->forApi(['list' => $deves]);
 
+    }
 
+    //获取户型
+    public function getHuxing(){
+    	$huxing = DB::table('huxing')->get();
+    	return response()->forApi(['list' => $huxing]);
+
+    }
 
 
 
