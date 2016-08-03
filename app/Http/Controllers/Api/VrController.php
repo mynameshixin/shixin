@@ -73,14 +73,28 @@ class VrController extends BaseController{
 
     //获取开发商
     public function getDev(){
-    	$deves = DB::table('develops')->get();
+    	$nolimit = [
+    		'id'=>0,
+    		'name'=>'不限',
+    	];
+    	$deves[] = $nolimit;
+    	$dev = DB::table('develops')->get();
+    	$deves = array_merge($deves,$dev);
+    	sort($deves);
     	return response()->forApi(['list' => $deves]);
 
     }
 
     //获取户型
     public function getHuxing(){
+    	$nolimit = [
+    		'id'=>0,
+    		'name'=>'不限',
+    	];
+    	$deves[] = $nolimit;
     	$huxing = DB::table('huxing')->get();
+    	$huxing = array_merge($deves,$huxing);
+    	sort($huxing);
     	return response()->forApi(['list' => $huxing]);
 
     }
