@@ -197,7 +197,7 @@ class VrController extends BaseController{
 
     //获取设计家首页数据
     public function getDesign(){
-
+        $data = Input::all();
         $one = $this->needData($data,3511,2);
         $two = $this->needData($data,3511,3);
         
@@ -206,8 +206,7 @@ class VrController extends BaseController{
 
     //获取VR首页数据
     public function getVrindex(){
-        
-
+        $data = Input::all();
         $one = $this->needData($data,3438,0,1);
         $two = $this->needData($data,3438,0,2);
         $three = $this->needData($data,3438,0,3);
