@@ -96,7 +96,7 @@ class FolderController extends CmController{
 		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
 		if($folder) return response()->forApi([],1001,'文件夹已经创建过');
 		$insertid = DB::table('folders')->insertGetId(['user_id'=>$user_id, 'name'=>$data['name'],'description'=>$data['description'],'private'=>$data['private']]);
-		return response()->forApi(['status'=>1]);
+		return response()->forApi(['folder_id'=>$insertid]);
 	}
 
 	//修改文件夹

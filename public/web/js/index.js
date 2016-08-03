@@ -415,6 +415,8 @@ $('#pic_cfolder').click(function(){
     layer.msg('信息没有填写完全', {icon: 5});
     return 
   }
+  var folder_id = ''
+  //创建
   $.ajax({
     'beforeSend':function(){
       layer.load(0, {shade: 0.5});
@@ -429,9 +431,30 @@ $('#pic_cfolder').click(function(){
     'dataType':'json',
     'success':function(json){
       if(json.code==200){
-        layer.msg('创建成功', {icon: 6});
-        $('#pic_folder_outer').hide()
-        $('.header_more_a1').click()
+        folder_id = json.data.folder_id
+        // 上传图片
+        $('form[name=allimg]').ajaxSubmit({
+                type:"post",  //提交方式
+                dataType:"json", //数据类型
+                url:"/webd/pics/uimg", //请求url
+                'fileTypeDesc': "Image Files",
+                'data':{'fid':folder_id},
+                success:function(json){ //提交成功的回调函数
+                    if(json.code==200) {
+                      layer.msg('成功上传',{icon: 6});
+                      setTimeout(function(){
+                        location.reload()
+                      },1000)
+                    }else{
+                      layer.msg('文件夹创建成功', {icon: 6});
+                      setTimeout(function(){
+                        location.reload()
+                      },1000)
+                      return
+                    } 
+                },
+                resetForm:1
+          });
       }else{
         layer.msg(json.message, {icon: 5});
         return
@@ -441,6 +464,7 @@ $('#pic_cfolder').click(function(){
       layer.closeAll('loading');
     }
   })
+  
 })
 
 
