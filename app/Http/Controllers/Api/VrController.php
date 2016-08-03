@@ -13,19 +13,6 @@ class VrController extends BaseController{
     }
     //获取全国的区域 省市县
     public function getZone(){
-
-    	/*$data = Input::all();
-
-        $rules = array(
-            'access_token' => 'required',
-        );
-        //请求参数验证
-        parent::validator($data, $rules);
-        $userData = parent::validateAcessToken($data['access_token']);
-        $userId = $userData['user_id'];
-        if (empty($userId)) {
-            return response()->forApi(array(), 1001, '无权限调用接口');
-        }*/
     	$zones = DB::table('citys')->select('id','name','pid','level')->where('pid','>',0)->get();
     	$arr = [];
     	$nolimit = [
@@ -89,7 +76,6 @@ class VrController extends BaseController{
     public function getType(){
         $data = Input::all();
         $rules = array(
-            'access_token' => 'required',
             'alias'=>'in:1'
         );
         //请求参数验证
@@ -120,13 +106,12 @@ class VrController extends BaseController{
     }
 
     //获取梦幻家首页数据
-    public function postDream(){
-    	$data = Input::all();
-        $rules = array(
-            'access_token' => 'required',
-        );
-        //请求参数验证
-        parent::validator($data, $rules);
+    public function getDream(){
+
+        /*$rs = parent::validateAcessToken($data['access_token']);
+        if(!$res = DB::table('users')->where('id',$rs['user_id'])->first()){
+            return response()->forApi([],1001,'不存在的用户');
+        }*/
 
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
@@ -211,13 +196,7 @@ class VrController extends BaseController{
 
 
     //获取设计家首页数据
-    public function postDesign(){
-        $data = Input::all();
-        $rules = array(
-            'access_token' => 'required',
-        );
-        //请求参数验证
-        parent::validator($data, $rules);
+    public function getDesign(){
 
         $one = $this->needData($data,3511,2);
         $two = $this->needData($data,3511,3);
@@ -226,13 +205,7 @@ class VrController extends BaseController{
     }
 
     //获取VR首页数据
-    public function postVrindex(){
-        $data = Input::all();
-        $rules = array(
-            'access_token' => 'required',
-        );
-        //请求参数验证
-        parent::validator($data, $rules);
+    public function getVrindex(){
         
 
         $one = $this->needData($data,3438,0,1);
@@ -242,16 +215,29 @@ class VrController extends BaseController{
     }
 
     //获取搜索和筛选结果
-    public function getDreamsearch(){
+    public function getSearch(){
     	$data = Input::all();
     	$rules = array(
-            'access_token' => 'required',
-            'keyword'=>'required'
+            'keyword'=>'required',
+            'alias'=>'required|in:1,2,3'
         );
+        switch ($data['alias']) {
+            case 1:
+                $alias = 3510;
+                break;
+            case 2:
+                $alias = 3511;
+                break;
+            case 3:
+                $alias = 3438;
+                break;
+            default:
+                break;
+        }
     	$keyword =trim($data['keyword']);
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
-    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',3510)->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
+    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',$alias)->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
     	$rows = $rows->where(function ($rows) use ($keyword) {
                 $rows = $rows->where('g.title', "like", "%{$keyword}%")->orWhere('g.description','like',"%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
             });
