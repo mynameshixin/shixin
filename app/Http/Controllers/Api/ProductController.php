@@ -636,6 +636,58 @@ class ProductController extends BaseController
         }
     }
 
+    //上传 vr
+    public function postVr(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'kind' => 'required|in:1,2',
+            'title'=>'required',
+            'detail_url'=>'required',
+            'typeid'=>'required',
+            'folder_id' => 'required',
+            'image' => 'required',
+        );
+        $pa = [
+            'access_token.required'=>'没有传入令牌',
+            'kind.required'=>'没有传入图片类型',
+            'title.required'=>'没有传入标题',
+            'detail_url.required'=>'没有传入地址',
+            'typeid.required'=>'没有传入类型',
+            'folder_id.required'=>'没有传入文件夹',
+            'image.required'=>'没有传入图片'
+        ];
+        //请求参数验证
+        parent::validator($data, $rules,$pa);
+        $rs = parent::validateAcessToken($data['access_token']);
+        self::$user_id = $rs['user_id'];
+        $userId = self::$user_id;
+
+        $rulesImage = $file = array();
+        if (is_array($data['image']) && !empty($data['image'])) {
+            foreach ($data['image'] as $k => $v) {
+                $rulesImage[$k] = 'image';
+            }
+            parent::validator($data['image'], $rulesImage);
+        }
+        if (isset($data['folder_id'])) {
+            $row = Folder::find($data['folder_id']);
+            if (empty($row) || $userId !=$row->user_id){
+                return response()->forApi(array(), 1001, '请选择正确文件夹！');
+            }
+        }
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['description'] = $data['title'];
+        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+    }
+
+
 
     /**
      *
