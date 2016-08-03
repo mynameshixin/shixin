@@ -59,6 +59,7 @@ class TaoBaoController extends CmController
         $image_ids = [];
         if (isset($image_url) && !empty($image_url)) {
             foreach ($image_url as $url) {
+                //远程图片保存于服务器 返回imageid
                 $image_ids[] = ImageService::getInstance()->getImageIds($url);
             }
             $outdata['x_item'][0]['image_ids'] = implode(',', $image_ids);
