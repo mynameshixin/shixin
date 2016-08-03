@@ -220,6 +220,8 @@ class VrController extends BaseController{
             'keyword'=>'required',
             'alias'=>'required|in:1,2,3'
         );
+        //请求参数验证
+        parent::validator($data, $rules);
         switch ($data['alias']) {
             case 1:
                 $alias = 3510;
