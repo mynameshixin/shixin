@@ -73,29 +73,36 @@ class VrController extends BaseController{
 
     //获取开发商
     public function getDev(){
-    	$nolimit = [
-    		'id'=>0,
-    		'name'=>'不限',
-    	];
-    	$deves[] = $nolimit;
-    	$dev = DB::table('develops')->get();
-    	$deves = array_merge($deves,$dev);
-    	sort($deves);
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'世茂'],['id'=>2,'name'=>'万科'],['id'=>3,'name'=>'恒大'],['id'=>4,'name'=>'绿地'],['id'=>5,'name'=>'保利'],['id'=>6,'name'=>'中国海外发展'],['id'=>7,'name'=>'碧桂园'],['id'=>8,'name'=>'融创中国'],['id'=>9,'name'=>'龙湖'],['id'=>10,'name'=>'富力'],['id'=>11,'name'=>'华润'],['id'=>12,'name'=>'华夏幸福基业'],['id'=>13,'name'=>'招商'],['id'=>14,'name'=>'金地'],['id'=>15,'name'=>'远洋'],['id'=>16,'name'=>'绿城'],['id'=>17,'name'=>'荣盛'],['id'=>18,'name'=>'北京首都'],['id'=>19,'name'=>'复地'],['id'=>20,'name'=>'金科'],['id'=>21,'name'=>'其他']];
     	return response()->forApi(['list' => $deves]);
 
     }
 
     //获取户型
     public function getHuxing(){
-    	$nolimit = [
-    		'id'=>0,
-    		'name'=>'不限',
-    	];
-    	$deves[] = $nolimit;
-    	$huxing = DB::table('huxing')->get();
-    	$huxing = array_merge($deves,$huxing);
-    	sort($huxing);
-    	return response()->forApi(['list' => $huxing]);
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'1居'],['id'=>2,'name'=>'2居'],['id'=>3,'name'=>'3居'],['id'=>4,'name'=>'4居'],['id'=>5,'name'=>'5居'],['id'=>6,'name'=>'5居以上']];
+    	return response()->forApi(['list' => $deves]);
+
+    }
+
+    //获取类型
+    public function getType(){
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+    	return response()->forApi(['list' => $deves]);
+
+    }
+
+    //获取门店类型
+    public function getBrandtype(){
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'家具店'],['id'=>2,'name'=>'饰品店'],['id'=>3,'name'=>'卫浴店']];
+    	return response()->forApi(['list' => $deves]);
+
+    }
+
+    //获取卖场
+    public function getSales(){
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'百案居'],['id'=>2,'name'=>'红星美凯龙'],['id'=>3,'name'=>'居然之家'],['id'=>4,'name'=>'集美家居'],['id'=>5,'name'=>'吉盛伟邦'],['id'=>6,'name'=>'艺展中心']];
+    	return response()->forApi(['list' => $deves]);
 
     }
 
