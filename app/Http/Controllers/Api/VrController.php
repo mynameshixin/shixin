@@ -87,7 +87,20 @@ class VrController extends BaseController{
 
     //获取类型
     public function getType(){
-    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'alias'=>'in:1'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+
+        if(isset($data['alias']) && $data['alias']==1){
+            $deves = [['id'=>0,'name'=>'不限'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造']];
+        }else{
+            $deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+        }
+    	
     	return response()->forApi(['list' => $deves]);
 
     }
@@ -107,8 +120,14 @@ class VrController extends BaseController{
     }
 
     //获取梦幻家首页数据
-    public function getDream(){
+    public function postDream(){
     	$data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
     	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',3510)->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
@@ -145,6 +164,83 @@ class VrController extends BaseController{
         }
         return response()->forApi(['list' => $rows]);
     }
+
+    public function needData($data,$folder_id,$typeid=0,$btypeid=0){
+        $num = isset($data['num'])?$data['num']:4;
+        $page = isset($data['page'])?$data['page']:1;
+        $rows = DB::table('folder_goods as fg')->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
+        if(!empty($typeid)){
+            $rows = $rows->where(['fg.folder_id'=>$folder_id,'g.typeid'=>$typeid]);
+        }
+        if(!empty($btypeid)){
+            $rows = $rows->where(['fg.folder_id'=>$folder_id,'g.btypeid'=>$btypeid]);
+        }
+        $rows = $rows->leftJoin('goods as g','fg.good_id','=','g.id')->orderBy('fg.created_at','desc');
+        $skip = ($page-1)*$num;
+        $rows = $rows->skip($skip)->take($num)->get();
+        foreach ($rows as $k=>$row) {
+            //images
+            if (!empty($row['image_ids'])) {
+                    $image_ids = explode(',', $row['image_ids']);
+                    foreach ($image_ids as $imageId) {
+                        $image_o = LibUtil::getPicUrl($imageId, 3);
+                        if (!empty($image_o)) {
+                            $rows[$k]['images'][] = [
+                                'image_id'=>$imageId,   
+                                'img_m' => LibUtil::getPicUrl($imageId, 1),
+                                'img_o' => $image_o
+                            ];
+                        }
+                    }
+             }
+             // 地区
+             if(!empty($row['cityid'])){
+                $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
+                $rows[$k]['countryname'] = $cinfo['name'];
+                $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
+                $rows[$k]['cityname'] = $cpinfo['name'];
+             }
+
+             if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
+                $rows[$k]['viewcount'] = $viewcount['num'];
+             }
+
+        }
+        return $rows;
+    }
+
+
+    //获取设计家首页数据
+    public function postDesign(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+
+        $one = $this->needData($data,3511,2);
+        $two = $this->needData($data,3511,3);
+        
+        return response()->forApi(['list' => ['one'=>$one,'two'=>$two]]);
+    }
+
+    //获取VR首页数据
+    public function postVrindex(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        
+
+        $one = $this->needData($data,3438,0,1);
+        $two = $this->needData($data,3438,0,2);
+        $three = $this->needData($data,3438,0,3);
+        return response()->forApi(['list' => ['one'=>$one,'two'=>$two,'three'=>$three]]);
+    }
+
     //获取搜索和筛选结果
     public function getDreamsearch(){
     	$data = Input::all();
@@ -181,6 +277,15 @@ class VrController extends BaseController{
     	if(!empty($data['huid'])){
     		$rows = $rows->where('g.huid',$data['huid']);
     	}
+        if(!empty($data['typeid'])){
+            $rows = $rows->where('g.devid',$data['typeid']);
+        }
+        if(!empty($data['btypeid'])){
+            $rows = $rows->where('g.huid',$data['btypeid']);
+        }
+        if(!empty($data['saleid'])){
+            $rows = $rows->where('g.devid',$data['saleid']);
+        }
         $skip = ($page-1)*$num;
         $rows = $rows->skip($skip)->take($num)->get();
     	return response()->forApi(['list' => $rows]);
