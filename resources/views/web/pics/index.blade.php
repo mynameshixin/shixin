@@ -10,52 +10,52 @@
 			<div class="nolog_allcat clearfix">
 				<div class="nolog_allcateach nolog_allcateach1">
 					<ul class="nolog_catul">
-						<li><a href="/webd/search/goods?keyword=沙发" target="_blank">沙发</a></li>
-						<li><a href="/webd/search/goods?keyword=椅子" target="_blank">椅子</a></li>
-						<li><a href="/webd/search/goods?keyword=书柜" target="_blank">书柜</a></li>
-						<li><a href="/webd/search/goods?keyword=茶几" target="_blank">茶几</a></li>
-						<li><a href="/webd/search/goods?keyword=鞋柜" target="_blank">鞋柜</a></li>
-						<li><a href="/webd/search/goods?keyword=床品" target="_blank">床品</a></li>
+						<li><a href="/webd/search/goods?keyword=现代" target="_blank">现代</a></li>
+						<li><a href="/webd/search/goods?keyword=北欧" target="_blank">北欧</a></li>
+						<li><a href="/webd/search/goods?keyword=日式" target="_blank">日式</a></li>
+						<li><a href="/webd/search/goods?keyword=法式" target="_blank">法式</a></li>
+						<li><a href="/webd/search/goods?keyword=简欧" target="_blank">简欧</a></li>
+						<li><a href="/webd/search/goods?keyword=古典" target="_blank">古典</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach2">
 					<ul class="nolog_catul">
-						<li><a href="/webd/search/goods?keyword=壁灯" target="_blank">壁灯</a></li>
-						<li><a href="/webd/search/goods?keyword=香薰" target="_blank">香薰</a></li>
-						<li><a href="/webd/search/goods?keyword=枕头" target="_blank">枕头</a></li>
-						<li><a href="/webd/search/goods?keyword=地毯" target="_blank">地毯</a></li>
-						<li><a href="/webd/search/goods?keyword=花瓶" target="_blank">花瓶</a></li>
-						<li><a href="/webd/search/goods?keyword=花盆" target="_blank">花盆</a></li>
+						<li><a href="/webd/search/goods?keyword=新中式" target="_blank">新中式</a></li>
+						<li><a href="/webd/search/goods?keyword=新古典" target="_blank">新古典</a></li>
+						<li><a href="/webd/search/goods?keyword=东南亚" target="_blank">东南亚</a></li>
+						<li><a href="/webd/search/goods?keyword=中式" target="_blank">中式</a></li>
+						<li><a href="/webd/search/goods?keyword=LOFT" target="_blank">LOFT</a></li>
+						<li><a href="/webd/search/goods?keyword=地中海" target="_blank">地中海</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach3">
 					<ul class="nolog_catul">
-						<li><a href="/webd/search/goods?keyword=现代" target="_blank">现代</a></li>
-						<li><a href="/webd/search/goods?keyword=中式" target="_blank">中式</a></li>
-						<li><a href="/webd/search/goods?keyword=日式" target="_blank">日式</a></li>
-						<li><a href="/webd/search/goods?keyword=美式" target="_blank">美式</a></li>
-						<li><a href="/webd/search/goods?keyword=北欧" target="_blank">北欧</a></li>
+						<li><a href="/webd/search/goods?keyword=美式简约" target="_blank">美式简约</a></li>
+						<li><a href="/webd/search/goods?keyword=工业" target="_blank">工业</a></li>
 						<li><a href="/webd/search/goods?keyword=田园" target="_blank">田园</a></li>
+						<li><a href="/webd/search/goods?keyword=巴洛克" target="_blank">巴洛克</a></li>
+						<li><a href="/webd/search/goods?keyword=意大利" target="_blank">意大利</a></li>
+						<li><a href="/webd/search/goods?keyword=混搭" target="_blank">混搭</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach4">
 					<ul class="nolog_catul">
 						<li><a href="/webd/search/goods?keyword=客厅" target="_blank">客厅</a></li>
 						<li><a href="/webd/search/goods?keyword=玄关" target="_blank">玄关</a></li>
-						<li><a href="/webd/search/goods?keyword=厨房" target="_blank">厨房</a></li>
+						<li><a href="/webd/search/goods?keyword=餐厅" target="_blank">餐厅</a></li>
 						<li><a href="/webd/search/goods?keyword=卧室" target="_blank">卧室</a></li>
-						<li><a href="/webd/search/goods?keyword=书房" target="_blank">书房</a></li>
 						<li><a href="/webd/search/goods?keyword=阳台" target="_blank">阳台</a></li>
+						<li><a href="/webd/search/goods?keyword=厨房" target="_blank">厨房</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach5 mrightzero">
 					<ul class="nolog_catul">
-						<li><a href="/webd/search/goods?keyword=红调" target="_blank">红调</a></li>
-						<li><a href="/webd/search/goods?keyword=绿调" target="_blank">绿调</a></li>
-						<li><a href="/webd/search/goods?keyword=蓝调" target="_blank">蓝调</a></li>
-						<li><a href="/webd/search/goods?keyword=黑色" target="_blank">黑色</a></li>
-						<li><a href="/webd/search/goods?keyword=白调" target="_blank">白调</a></li>
-						<li><a href="/webd/search/goods?keyword=灰调" target="_blank">灰调</a></li>
+						<li><a href="/webd/search/goods?keyword=书房" target="_blank">书房</a></li>
+						<li><a href="/webd/search/goods?keyword=阳光房" target="_blank">阳光房</a></li>
+						<li><a href="/webd/search/goods?keyword=庭院" target="_blank">庭院</a></li>
+						<li><a href="/webd/search/goods?keyword=衣帽间" target="_blank">衣帽间</a></li>
+						<li><a href="/webd/search/goods?keyword=卫生间" target="_blank">卫生间</a></li>
+						<li><a href="/webd/search/goods?keyword=花园" target="_blank">花园</a></li>
 					</ul>
 				</div>
 			</div>
