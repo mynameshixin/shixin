@@ -112,7 +112,8 @@ a{cursor: pointer;}
 /*findall.html*/
 .find_cater_all{position: relative;background: #fff;padding: 25px 28px;margin-bottom: 16px;}
 .find_cater_tril{width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-bottom: 20px solid #fff;position: absolute;top: -20px;right: 62px;}
-.find_cater_aeach{width: 264px;/*min-height: 220px;*/float: left;margin-right: 44px;}
+.find_cater_aeach{width: 264px;/*min-height: 220px;*/float: left;margin-right: 44px; margin-top: 40px}
+.find_cater_aeach p{color:#555;}
 .find_cater_label{font:normal 16px/36px "Microsoft YaHei";color: #000;}
 .find_cater_aeach li {width: 72px;height: 30px;float: left;margin:0px 16px 0px 0px;}
 .find_cater_aeach li a{display: inline-block;width: 72px;height: 30px;font-size:14px;line-height: 30px;color: #969696;border-radius: 4px;font-family: "Microsoft YaHei";}
@@ -285,7 +286,7 @@ a{cursor: pointer;}
 .nolog_waytips{font:normal 14px/36px "Microsoft YaHei";color:#fff;}
 .nolog_allcat{margin: 15px 0px;}
 .nolog_allcateach{width: 192px;height:82px;padding:10px 22px;border-radius: 5px;background: green;color:#fff;float: left;margin-right: 15px;}
-.nolog_catul li{width: 64px;height: 41px;float: left;text-align: center;font:normal 20px/41px "Microsoft YaHei";}
+.nolog_catul li{width: 50px; padding-left:14px;height: 41px;float: left;font:normal 15px/41px "Microsoft YaHei";}
 .nolog_catul li a{color: #fff;}
 .nolog_allcateach1{background: #bdc792;}
 .nolog_allcateach2{background: #4a7a88;}
@@ -761,7 +762,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 .nolog_index_cateachtit{font:normal 16px/32px "Microsoft YaHei";color: #000;margin-bottom: 10px;}
 .nolog_index_cateach ul li{float: left;margin-right: 10px;margin-bottom: 10px;}
 .nolog_index_cateach ul li a{color: #717171;}
-.nolog_index_cateachcolor ul li a{width: 20px;height: 20px;border-radius: 50%;display: block;}
+.nolog_index_cateachcolor  li{width: 30px}
+.nolog_index_cateachcolor  li a{width: 20px;height: 20px;border-radius: 50%;display: block;}
 .nolog_index_cr{background: #fe6061;border:1px solid #fe6061;}
 .nolog_index_co{background: #fba364;border:1px solid #fba364;}
 .nolog_index_cy{background: #f7cd67;border:1px solid #f7cd67;}
@@ -770,7 +772,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 .nolog_index_cl{background: #35b8f0;border:1px solid #35b8f0;}
 .nolog_index_cp{background: #d587db;border:1px solid #d587db;}
 .nolog_index_cb{background: #000000;border:1px solid #000000;}
-.nolog_index_cw{background: #ffffff;border:1px solid #f0f0f0;}
+.nolog_index_cw{background: #ffffff;border:1px solid #ccc;}
+.nolog_index_cc{background: #ccc;border:1px solid #ccc;}
 .nolog_index_confooter{background: #333;padding:30px 0px;color: #fff;}
 .nolog_index_confooter_for{width: 310px;float: left;position: relative;}
 .nolog_index_confooter_tit{font:normal 20px/36px "Microsoft YaHei";}

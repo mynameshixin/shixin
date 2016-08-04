@@ -30,12 +30,13 @@
 				</div>
 				<div class="nolog_allcateach nolog_allcateach3">
 					<ul class="nolog_catul">
-						<li><a href="/webd/search/goods?keyword=美式简约" target="_blank">美式简约</a></li>
+						
 						<li><a href="/webd/search/goods?keyword=工业" target="_blank">工业</a></li>
 						<li><a href="/webd/search/goods?keyword=田园" target="_blank">田园</a></li>
+						<li style="width: 63px; padding: 0; text-align: right;"><a href="/webd/search/goods?keyword=美式简约" target="_blank">美式简约</a></li>
 						<li><a href="/webd/search/goods?keyword=巴洛克" target="_blank">巴洛克</a></li>
 						<li><a href="/webd/search/goods?keyword=意大利" target="_blank">意大利</a></li>
-						<li><a href="/webd/search/goods?keyword=混搭" target="_blank">混搭</a></li>
+						<li style="text-align: right;"><a href="/webd/search/goods?keyword=混搭" target="_blank">混搭</a></li>
 					</ul>
 				</div>
 				<div class="nolog_allcateach nolog_allcateach4">
