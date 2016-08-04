@@ -27,9 +27,6 @@ function c_function(obj){
       'success':function(json){
         if(json.code==200){
           layer.msg('保存成功', {icon: 6});
-          setTimeout(function(){
-            location.reload()
-          },2000)
         }else{
           layer.msg(json.message, {icon: 5});
           return
@@ -157,6 +154,7 @@ function allimg_upload(obj){
 }
 
 $(function(){
+
   //采集创建新文件
   $('#pop_add_addnew_outer').click(function(){
     $('#collect_outer').hide();

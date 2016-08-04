@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php echo $__env->make('web.common.head',['title'=>'堆图家文件夹'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('web.common.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <script type="text/javascript">
 	defaultPic = "<?php echo e(url('uploads/sundry/blogo.jpg')); ?>"
 	user_id = "<?php echo e($user_id); ?>"
