@@ -78,7 +78,7 @@ $(function (){
 					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id)
 					    var rh = parseInt(list[index].images[0].rh)
-					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m).css({'height':rh+'px'})
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m)
 					   
 		  			})
 		  			$('#load').hide()

@@ -99,7 +99,7 @@ $(function (){
 					    
 					    pic = list[index].images!=undefined?list[index].images[0].img_m:defaultPic
 					    var rh = list[index].images!=undefined?parseInt(list[index].images[0].rh):''
-					    $(".index_item_imgwrap img",$value).attr('src',pic).css({'height':rh+'px'})
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',pic)
 					   
 		  			})
 		  			$('#load').hide()

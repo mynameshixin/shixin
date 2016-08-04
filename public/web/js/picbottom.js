@@ -95,7 +95,7 @@ $(function (){
 							$($value).append(ap)
 					    }
 					    var rh = parseInt(list[index].rh)
-					    $(".index_item_imgwrap img",$value).attr('src',list[index].image_url).css({'height':rh+'px'})
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].image_url)
 					   
 		  			})
 		  			$('#load').hide()
