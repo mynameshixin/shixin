@@ -16,7 +16,7 @@ $(function (){
    * Reinitializes the wookmark handler after all images have loaded
    */
   function applyLayout() {
-    $tiles.imagesLoaded(function() {
+    //$tiles.imagesLoaded(function() {
       // Destroy the old handler
       if ($handler.wookmarkInstance) {
         $handler.wookmarkInstance.clear();
@@ -25,7 +25,7 @@ $(function (){
       // Create a new layout handler.
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
-   });
+   //});
   }
   /**
    * When scrolled all the way to the bottom, add more tiles
@@ -55,7 +55,8 @@ $(function (){
 		      		$firstTen = $items.slice(1, list.length+1).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
-		  				$(".index_item_imgwrap img",$value).attr('src',list[index].images[0]['img_m'])
+		  				var rh = list[index].images[0].rh
+		  				$(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m).css({'height':rh+'px'})
 		  				$(".index_item_wrap",$value).attr('good_id',list[index].id)
 		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
 					    $(".index_item_price",$value).html('￥'+list[index].price)

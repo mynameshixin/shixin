@@ -188,7 +188,8 @@ class FolderWebsupply extends CmWebsupply {
 	                            $goods[$k]['images'][] = [
 	                                'image_id'=>$imageId,
 	                                'img_m' => LibUtil::getPicUrl($imageId, 1),
-	                                'img_o' => $image_o
+	                                'img_o' => $image_o,
+	                                'rh'=>LibUtil::getPicSize($imageId, 1)
 	                            ];
 	                        }
 	                   	 }
@@ -196,7 +197,8 @@ class FolderWebsupply extends CmWebsupply {
 	                	$goods[$k]['images'][] = [
 							'image_id'=>0,
 		                    'img_m' => url('uploads/sundry/blogo.jpg'),
-		                    'img_o' => url('uploads/sundry/blogo.jpg')
+		                    'img_o' => url('uploads/sundry/blogo.jpg'), 
+		                    'rh'=>LibUtil::getPicSize($imageId, 1)
 						];
 	                }
 				 }
