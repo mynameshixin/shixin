@@ -31,7 +31,7 @@ class HomeController extends CmController {
 	 */
 	public function index()
 	{
-		$user = DB::table('users')->select('id','username','nick','auth_avatar','role')->whereIn('id',[6,5,181,182,183])->get();
+		$user = DB::table('users')->select('id','username','nick','auth_avatar','role')->whereIn('id',[6,5,104,182,12])->get();
 		foreach ($user as $key => $value) {
 			$user[$key]['pic_m'] = LibUtil::getUserAvatar($value['id'], 1);
 			if(empty($user[$key]['pic_m']) && empty($user[$key]['auth_avatar'])){
