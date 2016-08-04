@@ -645,11 +645,13 @@ class ProductController extends BaseController
             'title'=>'required',
             'detail_url'=>'required',
             'typeid'=>'required',
+            'cityid'=>'required',
             'folder_id' => 'required',
             'image' => 'required',
         );
         $pa = [
             'access_token.required'=>'没有传入令牌',
+            'cityid.required'=>'没有选择省市县',
             'kind.required'=>'没有传入图片类型',
             'title.required'=>'没有传入标题',
             'detail_url.required'=>'没有传入地址',
