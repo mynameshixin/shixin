@@ -13,6 +13,12 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
+	<script type="text/javascript">
+		var jiathis_config = { 
+			pic:"{{$goods['images'][0]['img_o'] or url('uploads/sundry/wlogo.jpg')}}"
+		} 
+		
+	</script>
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
