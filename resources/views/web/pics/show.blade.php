@@ -193,7 +193,7 @@
 					<div class="detail_pop_trworks">
 						<div class="detail_pop_trwwrap">
 							<?php foreach ($goods['more'] as $key => $v):?>
-							<?php if(!in_array($key,['next','pre']) || $key==0){ ?>
+							<?php if(!in_array($key,['next','pre'])){ ?>
 								<div class="detail_pop_tritem">
 									<div class="index_item_wrap">
 										<div class="index_item_imgwrap clearfix">
