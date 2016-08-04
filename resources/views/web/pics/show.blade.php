@@ -92,7 +92,7 @@
 		
 						<div class="detail_pop_timgwarp" style="overflow: hidden; text-align: center;">
 						<?php if(!empty($goods['detail_url'])){ ?>
-							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)"></a>
+							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)" class="JIATHIS_IMG_OK"></a>
 						<?php  }else{?>
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)">
 						<?php } ?>
