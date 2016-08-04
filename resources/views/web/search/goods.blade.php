@@ -37,14 +37,14 @@
 <script type="text/javascript">
 		function floatFun(){
 			var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
+		    // $container.imagesLoaded(function() {
 		        $container.masonry({
 	                itemSelector: '.index_item',
 	                gutter: 15,
 	                isAnimated: true,
 	            });
 	            
-		     });
+		     //});
 		}
 
 
@@ -74,7 +74,7 @@
 							+'<div class="index_item_wrap">'
 								+'<div class="index_item_imgwrap clearfix">'
 									+'<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank"></a>'
-									+'<img src="'+v.image_url+'">'
+									+'<img src="'+v.image_url+'" style="height:'+v.rh+'px">'
 									if(kind==1){
 										str += '<div class="index_item_price">'+v.price+'</div>'
 									}

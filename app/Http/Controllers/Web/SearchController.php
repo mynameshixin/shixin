@@ -160,6 +160,7 @@ class SearchController extends CmController{
         	$goods[$key]['comment'] = CommentWebsupply::getCommentFirst($value['id']);
         	if(strpos($value['image_ids'],',') == 0){
                 $goods[$key]['image_url'] = !empty(LibUtil::getPicUrl($value['image_ids'], 1))?LibUtil::getPicUrl($value['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                $goods[$key]['rh'] = LibUtil::getPicSize($value['image_ids'], 1);
             }else{
                 $goods[$key]['image_url'] = url('uploads/sundry/blogo.jpg');
             }
