@@ -16,7 +16,7 @@ $(function (){
    * Reinitializes the wookmark handler after all images have loaded
    */
   function applyLayout() {
-  $tiles.imagesLoaded(function() {
+  //$tiles.imagesLoaded(function() {
       // Destroy the old handler
       if ($handler.wookmarkInstance) {
         $handler.wookmarkInstance.clear();
@@ -26,7 +26,7 @@ $(function (){
       $handler = $('.index_item', $tiles);
       $handler.wookmark(options);
      // $handler.find('.index_item_imgwrap img').css('visibility','visible')
- });
+// });
   }
   /**
    * When scrolled all the way to the bottom, add more tiles
@@ -77,8 +77,8 @@ $(function (){
 
 					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id)
-
-					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m)
+					    var rh = parseInt(list[index].images[0].rh)
+					    $(".index_item_imgwrap img",$value).attr('src',list[index].images[0].img_m).css({'height':rh+'px'})
 					   
 		  			})
 		  			$('#load').hide()

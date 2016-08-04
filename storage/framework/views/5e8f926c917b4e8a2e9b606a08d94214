@@ -67,7 +67,7 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" target="_blank"></a>
-							<img src="<?php echo e($v['images'][0]['img_o']); ?>">
+							<img src="<?php echo e($v['images'][0]['img_m']); ?>" style="height: <?php echo $v['images'][0]['rh']."px";?>">
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">

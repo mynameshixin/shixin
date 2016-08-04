@@ -70,7 +70,7 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic/')); ?>/<?php echo e($v['id']); ?>" target="_blank"></a>
-							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>">
+							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" style="height: <?php echo e($v['images'][0]['rh']); ?>">
 							<div class="index_item_price"><?php echo strpos($v['detail_url'],'m.fancy.com')?'$':'￥'; ?><?php echo e($v['price']); ?></div>
 						</div>
 						<div class="index_item_info">

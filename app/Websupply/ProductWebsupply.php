@@ -107,7 +107,8 @@ class ProductWebsupply extends CmWebsupply{
                                 'image_id'=>$imageId,
                                 'name' => isset($fileNames[$imageId]) ? $fileNames[$imageId] : '',
                                 'img_m' => LibUtil::getPicUrl($imageId, 1),
-                                'img_o' => $image_o
+                                'img_o' => $image_o,
+                                'rh'=>LibUtil::getPicSize($imageId, 1),
                             ];
                         }
                     }
@@ -117,7 +118,6 @@ class ProductWebsupply extends CmWebsupply{
 
             }
         }
-
         return $list;
     }
     // 该采集也在以下文件夹
