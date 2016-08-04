@@ -148,7 +148,7 @@
 		<div class="pop_con">
 			<div class="pop_col_left" style="height: 470px">
 				<div class="pop_col_ltop clearfix">
-					<img src="{{url('uploads/sundry/wlogo.jpg')}}"  width="668" alt="">
+					<!-- <img src="{{url('uploads/sundry/wlogo.jpg')}}"  width="668" alt=""> -->
 				</div>			
 			</div>
 			<div class="pop_col_right">
