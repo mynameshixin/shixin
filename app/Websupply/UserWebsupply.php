@@ -96,6 +96,7 @@ class UserWebsupply extends CmWebsupply{
 		                    $rows[$key]['images'][] = [
 		                        'image_id'=>$imageId,
 		                        'img_m' => !empty(LibUtil::getPicUrl($imageId, 1))?LibUtil::getPicUrl($imageId, 1):self::$defaultPic,
+                                'rh'=>LibUtil::getPicSize($imageId, 1)
 		                    ];
 		             }
 		        }

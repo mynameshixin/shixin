@@ -247,6 +247,7 @@ class ProductWebsupply extends CmWebsupply{
             }
             if(strpos($v['image_ids'],',') == 0){
                     $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');
+                    $goods[$k]['rh'] = LibUtil::getPicSize($v['image_ids'], 1);
                 }else{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
@@ -305,6 +306,7 @@ class ProductWebsupply extends CmWebsupply{
             foreach ($goods as $k => $v) {
                 if(strpos($v['image_ids'],',') == 0){
                     $goods[$k]['image_url'] = LibUtil::getPicUrl($v['image_ids'], 1);
+                    $goods[$k]['rh'] = LibUtil::getPicSize($v['image_ids'], 1);
                 }else{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }

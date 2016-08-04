@@ -31,14 +31,14 @@ $(function(){
 					};
 				});
 				var $con_pop = $('.detail_pop_trwwrap');
-			    $con_pop.imagesLoaded(function() {
+			    //$con_pop.imagesLoaded(function() {
 			        $con_pop.masonry({
 		                itemSelector: '.detail_pop_tritem',
 		                gutter: 1,
 		                isAnimated: true,
 		            });
 		            
-			     });
+			   //});
 			   /* var $container = $('.index_con');
 			    $container.imagesLoaded(function() {
 			        $container.masonry({
