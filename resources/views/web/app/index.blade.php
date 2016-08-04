@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家--app'])
+@include('web.common.head')
 <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
 <body class="nolog_body">
 	@include('web.common.banner')
