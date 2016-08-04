@@ -2,7 +2,7 @@
 /docs
 /.idea
 composer.lock
-/storage
+storage
 .project
 .dump.rdb
 /public/uploads
