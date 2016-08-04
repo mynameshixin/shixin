@@ -15,7 +15,17 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
 	<script type="text/javascript">
 		var jiathis_config = { 
-			pic:"{{$goods['images'][0]['img_o'] or url('uploads/sundry/wlogo.jpg')}}"
+			shareImg:{
+		        "showType":"MARK",
+		        "bgColor":"",
+		        "txtColor":"",
+		        "text":"",
+		        "services":"",
+		        "position":"",
+		        "imgwidth":"",
+		        "imgheight":"",
+		        "divname":""
+		    }
 		} 
 		
 	</script>
