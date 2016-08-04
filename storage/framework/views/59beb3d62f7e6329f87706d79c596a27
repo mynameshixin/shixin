@@ -86,11 +86,13 @@
 		
 						<div class="detail_pop_timgwarp" style="overflow: hidden; text-align: center;">
 						<?php if(!empty($goods['detail_url'])){ ?>
-							<a href="<?php echo e($goods['detail_url']); ?>" target="_blank"><img src="<?php echo e(isset($goods['images'][0]['img_o']) ? $goods['images'][0]['img_o'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="re668(this)"></a>
+							<a href="<?php echo e($goods['detail_url']); ?>" target="_blank"><img src="<?php echo e(isset($goods['images'][0]['img_o']) ? $goods['images'][0]['img_o'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="re668(this)" class="bigimg"></a>
 						<?php  }else{?>
-							<img src="<?php echo e(isset($goods['images'][0]['img_o']) ? $goods['images'][0]['img_o'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="re668(this)">
+							<img src="<?php echo e(isset($goods['images'][0]['img_o']) ? $goods['images'][0]['img_o'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="re668(this)" class="bigimg">
 						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
+
+						<?php if(!empty($goods['detail_url']) && $goods['kind']==2){?><a href="<?php echo e($goods['detail_url']); ?>" target="_blank"><img src="<?php echo e(asset('web')); ?>/images/vrlogo.png" alt="" style="position: absolute; display: none; left:278.5px;top:50px; z-index: 2" id="vlogo"></a> <?php } ?>
 						</div>
 						<p class="detail_pop_des" title="<?php echo e(!empty(trim($goods['description']))?$goods['description']:$goods['title']); ?>">
 							<?php echo e(!empty(trim($goods['description']))?$goods['description']:$goods['title']); ?><a href="javascript:;" class="detail_pop_desmore"></a>
@@ -108,6 +110,12 @@
 							</div>
 						<?php endif; ?>
 					</div>
+					<script type="text/javascript">
+						$(function(){
+							var bheight = $('.bigimg').height()/2-55.5
+							$('#vlogo').css({'top':bheight}).show()
+						})
+					</script>
 					<div class="detail_pop_tlbtm">
 						<div class="detail_pop_tlbtmauth clearfix">
 							<div class="detail_pop_authava">
