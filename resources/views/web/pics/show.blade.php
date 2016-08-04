@@ -13,22 +13,6 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
-	<script type="text/javascript">
-		var jiathis_config = { 
-			shareImg:{
-		        "showType":"MARK",
-		        "bgColor":"",
-		        "txtColor":"",
-		        "text":"",
-		        "services":"",
-		        "position":"",
-		        "imgwidth":"",
-		        "imgheight":"",
-		        "divname":""
-		    }
-		} 
-		
-	</script>
 	@include('web.common.banner')
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
@@ -102,7 +86,7 @@
 		
 						<div class="detail_pop_timgwarp" style="overflow: hidden; text-align: center;">
 						<?php if(!empty($goods['detail_url'])){ ?>
-							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)" class="JIATHIS_IMG_OK"></a>
+							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)"></a>
 						<?php  }else{?>
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)">
 						<?php } ?>
