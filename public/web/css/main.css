@@ -126,8 +126,8 @@ body{background: #f0f0f0;padding-top: 1px;min-width: 1244px;}
 /* .nolog_header .header_add_btn{width: 28px;height: 28px;float: left;font: bold 24px/26px "Microsoft YaHei";text-align: center;float: left;margin:10px 0px 0px 15px;position: relative;cursor: pointer;background: url(../images/dtj_icon.png) -4px -806px no-repeat;} */
 .nolog_header .nolog_land_btn,.nolog_header .nolog_login_btn{float: right;}
 .nolog_header .nolog_login_btn{background: rgba(225,83,53,.8);}
-.nolog_header .nolog_land_btn{background: none;border:1px solid #fff;}
-
+/* .nolog_header .nolog_land_btn{background: none;border:1px solid #fff;}
+ */
 .setting_coneachtit span{width: 176px;display: inline-block;float: left;}
 .setting_coneach_little{float: left;font:normal 13px/51px "Microsoft YaHei";color: #504e4e;}
 .setting_coneach_little .setting_coneach_conrava{width: 40px;height: 40px;border-radius: 50%;margin: 2px 0px 0px 0px;}

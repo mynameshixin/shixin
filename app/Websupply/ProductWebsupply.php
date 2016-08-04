@@ -187,6 +187,7 @@ class ProductWebsupply extends CmWebsupply{
             $goods['relation'] = self::get_relation($goods['user_id'],$self_id);
 
             $goods['more'] = self::get_more_goods($folder_id,$goods['id']);
+            // dd($goods['more']);
             $comments = DB::table('comments')->where(['good_id'=>$id])->orderBy('praise_count','desc')->orderBy('created_at','desc')->take(20)->get();
             foreach ($comments as $key => $value) {
                 $innertime = time() - strtotime($value['created_at']);
@@ -229,7 +230,7 @@ class ProductWebsupply extends CmWebsupply{
         $num = isset($data['num'])?$data['num']:15;
         $skip = ($page-1)*$num;
         
-        $goods = DB::table('goods')->where(['folder_id'=>$folder_id])->select('image_ids','id')->take(100)->get();
+        $goods = DB::table('folder_goods as fg')->leftJoin('goods as g','fg.good_id','=','g.id')->where(['fg.folder_id'=>$folder_id])->select('g.image_ids','g.id')->take(100)->get();
         $last = count($goods)-1;
         foreach ($goods as $k => $v) {
             if($good_id == $v['id']){

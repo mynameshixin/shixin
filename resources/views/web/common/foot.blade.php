@@ -17,7 +17,7 @@
         </div>
         <div class="nolog_index_confooter_for">
           <div class="nolog_index_confooter_tit">关注我们</div>
-          <p><a href="#">新浪微博：@堆图家</a></p>
+          <p><a href="http://weibo.com/u/5786329199?refer_flag=1001030101_" target="_blank">新浪微博：@堆图家</a></p>
           <div class="code_a">
             <p><a href="#">官方微信：<img src="{{asset('/static/web/images/index-img/code.jpg')}}" height="16" width="16" alt=""></a></p>
             <div class="code_hover"><img src="{{asset('/static/web/images/index-img/code_ip.png')}}" height="108" width="108" alt=""></div>

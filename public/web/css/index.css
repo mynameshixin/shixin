@@ -261,8 +261,8 @@ a{cursor: pointer;}
 .index_item_authtalk .index_item_authto{display: inline;padding-left: 0px;color:#333;}
 
 /*nolog_allfile.html*/
-.nolog_login_btn{display: inline-block;width:70px;height: 32px;border:1px solid #e15335;border-radius: 5px;background: #e15335;text-align: center;font:normal 18px/32px "SimSun";color:#fff;margin:7px 0px 0px 11px;}
-.nolog_land_btn{display: inline-block;width:70px;height: 32px;border:1px solid #b0b0b0;border-radius: 5px;background: #fff;text-align: center;font:normal 18px/32px "SimSun";color:#333;margin:7px 0px 0px 11px;}
+.nolog_login_btn,.nolog_land_btn{display: inline-block;width:70px;height: 32px;border:1px solid #e15335;border-radius: 5px;background: #e15335;text-align: center;font:normal 18px/32px "SimSun";color:#fff;margin:7px 0px 0px 11px;}
+/* .nolog_land_btn{display: inline-block;width:70px;height: 32px;border:1px solid #b0b0b0;border-radius: 5px;background: #fff;text-align: center;font:normal 18px/32px "SimSun";color:#333;margin:7px 0px 0px 11px;} */
 .header_search_nolog{width: 642px;}
 .nolog_adv_wrap{height: 120px;}
 

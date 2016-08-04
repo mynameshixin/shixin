@@ -13,12 +13,6 @@
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/user/relation.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/like.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/autocomplete.js"></script>
-	<script type="text/javascript">
-		var jiathis_config = { 
-			pic:"<?php echo e(isset($goods['images'][0]['img_o']) ? $goods['images'][0]['img_o'] : url('uploads/sundry/wlogo.jpg')); ?>"
-		} 
-		
-	</script>
 	<?php echo $__env->make('web.common.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	<div class="detail_pop">
 		<a href="javascript:;" class="detail_pop_loadclose"></a>
@@ -199,16 +193,16 @@
 					<div class="detail_pop_trworks">
 						<div class="detail_pop_trwwrap">
 							<?php foreach ($goods['more'] as $key => $v):?>
-							<?php if(!in_array($key,['next','pre'])): ?>
-							<div class="detail_pop_tritem">
-								<div class="index_item_wrap">
-									<div class="index_item_imgwrap clearfix">
-										<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
-										<img src="<?php echo e($v['image_url']); ?>">
+							<?php if(!in_array($key,['next','pre']) || $key==0){ ?>
+								<div class="detail_pop_tritem">
+									<div class="index_item_wrap">
+										<div class="index_item_imgwrap clearfix">
+											<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
+											<img src="<?php echo e($v['image_url']); ?>">
+										</div>
 									</div>
 								</div>
-							</div>
-							<?php endif ?>
+							<?php } ?>
 							<?php endforeach; ?>
 						</div>
 					</div>
