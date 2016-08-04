@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家文件夹'])
+@include('web.common.head')
 <script type="text/javascript">
 	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 	user_id = "{{$user_id}}"

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家搜索'])
+@include('web.common.head')
 <body>
 	<script type="text/javascript">
 		defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"

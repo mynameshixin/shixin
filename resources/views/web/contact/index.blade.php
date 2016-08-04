@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家--联系我们'])
+@include('web.common.head')
 <body class="nolog_body">
 	<div class="header">
 		<div class="headercontainer w992 clearfix contact_header">

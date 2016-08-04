@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家关注的文件夹'])
+@include('web.common.head')
 <body>
 	@include('web.common.banner')
 	<div class="container">

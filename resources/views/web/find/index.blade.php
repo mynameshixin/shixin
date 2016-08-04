@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('web.common.head',['title'=>'堆图家--发现'])
+@include('web.common.head')
 <body>
 	@include('web.common.banner')
 	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
