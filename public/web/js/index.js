@@ -26,7 +26,7 @@ function c_function(obj){
       'dataType':'json',
       'success':function(json){
         if(json.code==200){
-          layer.msg('采集成功', {icon: 6});
+          layer.msg('保存成功', {icon: 6});
           setTimeout(function(){
             location.reload()
           },2000)
@@ -86,7 +86,7 @@ function collect(obj){
               +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
 
             if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
-              cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
+              cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >保存</a>'
             +'</li>'
           })
           $('.pop_col_colum_new',collect_outer).html(cgcontent)
@@ -97,7 +97,7 @@ function collect(obj){
               +'</div>'
               +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
               if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
-              afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >采集</a>'
+              afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >保存</a>'
             +'</li>'
             proposals[index] = v.name
           })

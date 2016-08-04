@@ -4,6 +4,20 @@
 	<title><?php echo e(isset($title) ? $title : '堆图家，链接全球家居资源(家居、室内设计、商品、美图、VR)'); ?></title>
 	<meta name="keywords" content="堆图家,家居,室内设计,商品,美图,建筑,装修,VR,设计,人物,数据<?php echo e(isset($keywords) ? $keywords : ''); ?>"/> 
 	<meta name="description" content="堆图家,带你搜集你喜欢的家居,你可以用它搜集灵感图片,发布VR,保存素材,晒晒喜欢的家居"/> 
+	<script type="text/javascript">
+		(function(){
+		    var bp = document.createElement('script');
+		    var curProtocol = window.location.protocol.split(':')[0];
+		    if (curProtocol === 'https') {
+		        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+		    }
+		    else {
+		        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		    }
+		    var s = document.getElementsByTagName("script")[0];
+		    s.parentNode.insertBefore(bp, s);
+		})();
+	</script>
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('web')); ?>/css/font-awesome.min.css">
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/web')); ?>/css/font-awesome-ie7.min.css">

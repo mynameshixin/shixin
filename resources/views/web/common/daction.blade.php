@@ -122,7 +122,7 @@
 						<ul class="pop_col_colum" id="search_upload">
 							
 						</ul>
-						<p class="pop_col_new">最新采集到</p>
+						<p class="pop_col_new">最新保存到</p>
 						<ul class="pop_col_colum pop_col_colum_new">
 							
 						</ul>
@@ -398,7 +398,7 @@
 						<ul class="pop_col_colum" id="search_outer">
 							
 						</ul>
-						<p class="pop_col_new">最新采集到</p>
+						<p class="pop_col_new">最新保存到</p>
 						<ul class="pop_col_colum pop_col_colum_new">
 							
 						</ul>
@@ -439,11 +439,11 @@
 				<div class="pop_col_infowrap">
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">名称</p>
-						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
+						<input class="pop_col_ninput" placeholder="" name="fname" value="">
 					</div>
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">描述</p>
-						<textarea class="pop_col_narea" placeholder="例如：欧式低奢亮色系风格"></textarea>
+						<textarea class="pop_col_narea" placeholder=""></textarea>
 					</div>
 					<div class="pop_col_priv">
 						<p class="pop_col_nlabel">隐私</p>

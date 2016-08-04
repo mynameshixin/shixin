@@ -23,7 +23,7 @@
 			<div class="w1248 w1240 clearfix" style="width: 990px">
 				<div class="perhome_scroll_info" style="transform: translate(0px, 0px); transition: transform 200ms ease;">
 					<div class="detail_filebtn_wrap clearfix" style="float: left; padding-top: 8px">
-						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
+						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">保存</div>
 						<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding <?php if($goods['action']) echo 'detail_pop_tbtnlikeon' ?>">喜欢</div>
 						<div class="detail_pop_tbtn detail_pop_tbtnright">
 								<div class="detail_pop_tbtn_click detail_fileb_pr">
@@ -50,7 +50,7 @@
 				<div class="detail_pop_tleft">
 					<div class="detail_pop_tltop">
 						<div class="detail_pop_tbtnwarp">
-							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">保存</div>
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding <?php if($goods['action']) echo 'detail_pop_tbtnlikeon' ?>">喜欢</div>
 							
 							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">删除</div> -->
@@ -156,7 +156,7 @@
 							<textarea name="caption" placeholder="添加评论" class="detail_pop_compub" autocomplete="off"></textarea>
 						</div>
 						<div class="detail_pop_addcom clearfix">
-							<a class="detail_pop_authfollow detail_filebtn detail_fileball" id="add_commit_btn">添加评论</a>
+							<a class="detail_pop_authfollow detail_filebtn detail_fileball" style="color:#000" id="add_commit_btn">添加评论</a>
 						</div>
 					</div>
 				</div>
@@ -487,7 +487,7 @@
 						<ul class="pop_col_colum" id="search_inner">
 							
 						</ul>
-						<p class="pop_col_new">最新采集到</p>
+						<p class="pop_col_new">最新保存到</p>
 						<ul class="pop_col_colum pop_col_colum_new">
 							
 						</ul>
@@ -528,11 +528,11 @@
 				<div class="pop_col_infowrap">
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">名称</p>
-						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
+						<input class="pop_col_ninput" placeholder="" name="fname" value="">
 					</div>
 					<div class="pop_col_name">
 						<p class="pop_col_nlabel">描述</p>
-						<textarea class="pop_col_narea" placeholder="例如：欧式低奢亮色系风格"></textarea>
+						<textarea class="pop_col_narea" placeholder=""></textarea>
 					</div>
 					<div class="pop_col_priv">
 						<p class="pop_col_nlabel">隐私</p>

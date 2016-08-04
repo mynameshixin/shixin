@@ -660,7 +660,7 @@ class ProductController extends BaseController
             'image.required'=>'没有传入图片'
         ];
         //请求参数验证
-        parent::validator($data, $rules,$pa);
+        parent::validator($data,$rules,$pa);
         $rs = parent::validateAcessToken($data['access_token']);
         self::$user_id = $rs['user_id'];
         $userId = self::$user_id;
