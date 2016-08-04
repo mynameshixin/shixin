@@ -5,14 +5,11 @@
 	<?php echo $__env->make('web.common.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	<div class="container">
 		<?php echo $__env->make('web.common.user', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		
 		<div class="w1248 w1240 clearfix">
-			<div class="search_btn_con perhome_follow_wrap clearfix">
-				<a href='<?php echo e(url("webd/user/follow?oid={$user_id}")); ?>' class="search_btn_lround search_btn_select">用户</a>
-				<a href='<?php echo e(url("webd/user/followfolder?oid={$user_id}")); ?>' class="search_btn_rround">文件夹</a>
-			</div>
-			<div class="index_con perhome_wrap">
+			<div class="index_con  perhome_wrap">
 				<ul class="find_fold_list clearfix" id="ul">
-					<?php foreach ($user_follow as $key => $value) :?>
+					<?php foreach ($user_fans as $key => $value) :?>
 					<li class="find_user_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>" user_id="<?php echo e($value['id']); ?>">
 						<div class="find_user_info">
 							<a href="<?php echo e(url('webd/user')); ?>?oid=<?php echo e($value['id']); ?>" class="find_user_name" target="_blank"><?php echo e(empty($value['nick'])?$value['username']:$value['nick']); ?></a>
@@ -41,26 +38,28 @@
 									<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e(isset($value['folders'][3]['id']) ? $value['folders'][3]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php echo e(isset($value['folders'][3]['img_url']) ? $value['folders'][3]['img_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt=""></a>
 								</li>
 							</ul>
+							
 							<a onclick="relation(this)" class="find_user_authflw" <?php if($self_id==$value['id']): ?>style="display: none"<?php endif; ?>>
-							<?php 
-							switch ($value['relation']) {
-								case '1':
-									echo '相互关注';
-									break;
-								case '2':
-									echo '已关注';
-									break;
-								case '4':
-									echo '<span>+</span>关注';
-									break;
-								default:
-									echo '<span>+</span>关注';
-									break;
-							} ?>
+								<?php 
+								switch ($value['relation']) {
+									case '1':
+										echo '相互关注';
+										break;
+									case '2':
+										echo '已关注';
+										break;
+									case '4':
+										echo '<span>+</span>关注';
+										break;
+									default:
+										echo '<span>+</span>关注';
+										break;
+								} ?>
 							</a>
+							
 						</div>
 					</li>
-				<?php endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>
@@ -70,7 +69,7 @@
 
 <script type="text/javascript">
 	postUrl = '<?php echo e(url("webd/user/fanfollow?oid={$user_id}")); ?>'
-	postData = {'num':15,'kind':2}
+	postData = {'num':15}
 </script>
 
 <script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/user/fansfollow.js"></script>

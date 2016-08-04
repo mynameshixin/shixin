@@ -95,7 +95,7 @@ class PicsController extends CmController{
 			'self_id'=>$self_id,
 			'self_info'=>$this->self_info,
 			'goods'=>$goods,
-            'title'=>'堆图家，'.$title,
+            'title'=>'堆图家.'.$title,
             'keywords'=>','.$goods['folder']['name']
 		];
 		return view('web.pics.show',$data);
