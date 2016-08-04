@@ -74,13 +74,17 @@
 							<!-- JiaThis Button END -->
 						</div>
 
-
+						<script type="text/javascript">
+							function re668(obj){
+								if($(obj).width()>668) $(obj).css('width','668px')
+							}
+						</script>
 		
-						<div class="detail_pop_timgwarp" style="overflow: hidden">
+						<div class="detail_pop_timgwarp" style="overflow: hidden; text-align: center;">
 						<?php if(!empty($goods['detail_url'])){ ?>
-							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668"></a>
+							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)"></a>
 						<?php  }else{?>
-							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" width="668">
+							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)">
 						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
 						</div>
