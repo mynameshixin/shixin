@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@include('web.common.head',['title'=>'我的堆图家'])
+	@include('web.common.head')
 </head>
 <body>
 	<script type="text/javascript">

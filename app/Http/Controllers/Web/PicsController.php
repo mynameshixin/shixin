@@ -87,13 +87,16 @@ class PicsController extends CmController{
 		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
 		$action = DB::table('good_action')->where(['good_id'=>$id,'kind'=>1,'user_id'=>$self_id])->first();
 		$goods['action'] = !empty($action)?1:0;
+        $title = !empty(trim($goods['description']))?$goods['description']:$goods['title'];
 		// dd($goods);
         // dd($goods['comments']);   
 		$data = [
 			'user_id'=>$goods['user_id'],
 			'self_id'=>$self_id,
 			'self_info'=>$this->self_info,
-			'goods'=>$goods
+			'goods'=>$goods,
+            'title'=>'堆图家，'.$title,
+            'keywords'=>','.$goods['folder']['name']
 		];
 		return view('web.pics.show',$data);
 	}

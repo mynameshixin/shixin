@@ -36,7 +36,7 @@ class HomeController extends CmController{
 			'self_info'=>$this->self_info,
 			'goods'=>$goods['data']['list'],
 			'user_info'=>!empty($user_info)?$user_info:[],
-			'recommend'=>!empty($recommend)?$recommend:[]
+			'recommend'=>!empty($recommend)?$recommend:[],
 		];
 		return view('web.home.index',$data);
 	}

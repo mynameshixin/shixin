@@ -47,7 +47,8 @@ class HomeController extends CmController {
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'user'=>$user,
-			'recommend'=>$recommend
+			'recommend'=>$recommend,
+			'title'=>'堆图家，链接全球家居资源(家居、室内设计、商品、美图、VR)'
 		];
 		return view('index',$data);
 

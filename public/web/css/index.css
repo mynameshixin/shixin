@@ -556,7 +556,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_addprivfold{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 
 .pop_collect{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
-.pop_collect .pop_con{top:30%;}
+.pop_collect .pop_con{top:20%;}
 .pop_con{width: 660px;background: #fff;border-radius: 12px;position: fixed;top: 50%;left: 50%;}
 .pop_col_left{width: 236px;background: #d9d9d9;border-radius: 12px 0px 0px 12px;padding:20px 47px 0px 47px;float: left;position: relative; overflow: hidden;}
 .pop_col_left img{width: 100%;border-radius: 5px 5px 0px 0px;float: left;}

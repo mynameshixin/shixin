@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php echo $__env->make('web.common.head',['title'=>'我的堆图家'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('web.common.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head>
 <body>
 	<script type="text/javascript">

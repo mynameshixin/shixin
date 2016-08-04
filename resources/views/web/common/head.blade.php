@@ -1,7 +1,9 @@
 <head>
 	<meta charset="UTF-8">
   	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>{{$title}}</title>
+	<title>{{$title or '堆图家，链接全球家居资源(家居、室内设计、商品、美图、VR)'}}</title>
+	<meta name="keywords" content="堆图家,家居,室内设计,商品,美图,建筑,装修,VR,设计,人物,数据{{$keywords or ''}}"/> 
+	<meta name="description" content="堆图家,带你搜集你喜欢的家居,你可以用它搜集灵感图片,发布VR,保存素材,晒晒喜欢的家居"/> 
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/font-awesome.min.css">
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="{{asset('public/web')}}/css/font-awesome-ie7.min.css">
