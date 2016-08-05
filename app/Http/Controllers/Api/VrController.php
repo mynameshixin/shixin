@@ -238,7 +238,7 @@ class VrController extends BaseController{
     	$keyword =trim($data['keyword']);
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
-    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',$alias)->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
+    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',$alias)->select('*');
     	$rows = $rows->where(function ($rows) use ($keyword) {
                 $rows = $rows->where('g.title', "like", "%{$keyword}%")->orWhere('g.description','like',"%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
             });
@@ -275,6 +275,34 @@ class VrController extends BaseController{
         }
         $skip = ($page-1)*$num;
         $rows = $rows->skip($skip)->take($num)->get();
+        foreach ($rows as $k=>$row) {
+            //images
+            if (!empty($row['image_ids'])) {
+                    $image_ids = explode(',', $row['image_ids']);
+                    foreach ($image_ids as $imageId) {
+                        $image_o = LibUtil::getPicUrl($imageId, 3);
+                        if (!empty($image_o)) {
+                            $rows[$k]['images'][] = [
+                                'image_id'=>$imageId,   
+                                'img_m' => LibUtil::getPicUrl($imageId, 1),
+                                'img_o' => $image_o
+                            ];
+                        }
+                    }
+             }
+             // 地区
+             if(!empty($row['cityid'])){
+                $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
+                $rows[$k]['countryname'] = $cinfo['name'];
+                $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
+                $rows[$k]['cityname'] = $cpinfo['name'];
+             }
+
+             if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
+                $rows[$k]['viewcount'] = $viewcount['num'];
+             }
+
+        }
     	return response()->forApi(['list' => $rows]);
     }
 

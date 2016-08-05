@@ -360,6 +360,7 @@ a{cursor: pointer;}
 
 /*弹出样式*/
 .detail_pop{background: rgba(229,229,229,.95);color: #000;padding-top: 30px;}
+.detail_pop_o{background: rgba(229,229,229,.95);width: 100%;min-height: 100%;overflow-y: scroll;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
 .detail_pop_wrap{padding-top: 30px;}
 .detail_pop_top{}
 .detail_pop_tleft{width: 698px;float: left;}

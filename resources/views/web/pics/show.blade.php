@@ -3,19 +3,22 @@
 <head>
 	@include('web.common.head')
 </head>
-<body>
+<body id="ashow">
+
 	<script type="text/javascript">
 		defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
 		user_id = "{{$user_id}}"
 		self_id = "{{$self_id}}"
 		relationUrl = "{{url('webd/user/relation')}}"
 	</script>
-	<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
-	<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
-	<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
+	
 	@include('web.common.banner')
+
 	<div class="detail_pop">
-		<a href="javascript:;" class="detail_pop_loadclose"></a>
+		<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
+		<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
+		<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
+		<a href="javascript:;" class="detail_pop_loadclose" style="display: block; top:0;right: 30px" onclick="$('.detail_pop_o').hide()"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright"></a>
 
@@ -563,8 +566,6 @@
 			</div>
 		</div>
 	</div>
-	
-</body>
 <script type="text/javascript">
 	fid = "<?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>"
 	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
@@ -575,9 +576,6 @@
 	user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];  ?>"
 </script>
 <script type="text/javascript">
-	 
-	/*he = $('.detail_pop').height()+10
-	$('.detail_pop').css('height',he)*/
 
 	// 添加评论
 	$("#add_commit_btn").click(function(){
@@ -630,4 +628,30 @@
 </script>
  <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
  <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>
+</div>
+</body>
+<script type="text/javascript">
+    $(window).scroll(function(event) {
+		var scrollHei = $('body').scrollTop();
+		if (scrollHei <= 260) {
+			$('.perhome_scroll_info,.perhome_scroll_wrap').css({
+				transform:'translate(0px, -70px)',
+				transition:'transform 200ms ease'
+			});
+			$('.perhome_scroll_wrap').removeClass('shadow');
+		}else{
+			$('.perhome_scroll_wrap').addClass('shadow');
+			$('.perhome_scroll_wrap').css({
+				display:'block',
+				position: 'fixed',
+				transform:'translate(0px, -0px)',
+				transition:'transform 200ms ease'
+			});
+			$('.perhome_scroll_info').css({
+				transform:'translate(0px, -0px)',
+				transition:'transform 200ms ease'
+			})
+		};
+	});
+</script>
 </html>

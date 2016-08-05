@@ -32,6 +32,7 @@
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery.lazyload.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery.form.js"></script>
+	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery.pjax.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/plugins/Masonry/masonry-docs.min.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery.imagesloaded.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/jquery.wookmark.js"></script>
