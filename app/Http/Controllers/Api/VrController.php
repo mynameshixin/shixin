@@ -93,14 +93,14 @@ class VrController extends BaseController{
 
     //获取门店类型
     public function getBrandtype(){
-    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'家具店'],['id'=>2,'name'=>'饰品店'],['id'=>3,'name'=>'卫浴店']];
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'家具店'],['id'=>2,'name'=>'饰品店'],['id'=>3,'name'=>'卫浴店'],['id'=>4,'name'=>'其他']];
     	return response()->forApi(['list' => $deves]);
 
     }
 
     //获取卖场
     public function getSales(){
-    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'百案居'],['id'=>2,'name'=>'红星美凯龙'],['id'=>3,'name'=>'居然之家'],['id'=>4,'name'=>'集美家居'],['id'=>5,'name'=>'吉盛伟邦'],['id'=>6,'name'=>'艺展中心'],['id'=>7,'name'=>'曹家渡花鸟市场'],['id'=>8,'name'=>'文定生活馆']];
+    	$deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'百案居'],['id'=>2,'name'=>'红星美凯龙'],['id'=>3,'name'=>'居然之家'],['id'=>4,'name'=>'集美家居'],['id'=>5,'name'=>'吉盛伟邦'],['id'=>6,'name'=>'艺展中心'],['id'=>7,'name'=>'曹家渡花鸟市场'],['id'=>8,'name'=>'文定生活馆'],['id'=>9,'name'=>'其他']];
     	return response()->forApi(['list' => $deves]);
 
     }

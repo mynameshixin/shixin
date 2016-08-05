@@ -102,30 +102,25 @@
 	<a href="javascript:;" id='load' class="detail_pop_baddmore">正在加载中。。。</a>
 <div class="detail_pop_o" style="display: none"></div>
 </body>
-<script type="text/javascript">
-	relationUrl = "{{url('webd/user/relation')}}"
-</script>
-<script type="text/javascript" src="{{asset('web')}}/js/user/relation.js"></script>
-<script type="text/javascript" src="{{asset('web')}}/js/like.js"></script>
-<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
- <script type="text/javascript" src="{{asset('web')}}/js/pic.js"></script>
- <script type="text/javascript" src="{{asset('web')}}/js/picbottom.js"></script>
-<script type="text/javascript">
-	/*$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000});
 
+<script type="text/javascript">
+/*$(function(){
+	$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000,cache:false});
 	$(document).on('pjax:send', function() {
 	    layer.load(0, {shade: 0.5});
 	});
 	$(document).on('pjax:complete', function() {
 	    layer.closeAll('loading');
+	    $('body').css({'overflow':'hidden'})
 	    $('.detail_pop_o').show()
-	});	*/
+	});
+})*/
 </script>
 
 <script type="text/javascript">
 	postUrl = "{{url('webd/home/goods')}}"
 	postData = {'num':15}
 </script>
-
 <script type="text/javascript" src="{{asset('web')}}/js/pubu.js"></script>
+
 </html>

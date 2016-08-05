@@ -18,7 +18,7 @@
 
 	<div class="detail_pop">
 		
-		<a href="javascript:;" class="detail_pop_loadclose" style="display: block; top:0;right: 30px" onclick="$('.detail_pop_o').hide()"></a>
+		<a href="javascript:;" class="detail_pop_loadclose" style="display: block; top:0;right: 30px" onclick="$('.detail_pop_o').hide();$('body').attr('style','')"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft"></a>
 		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright"></a>
 
@@ -566,9 +566,6 @@
 			</div>
 		</div>
 	</div>
-
-</div>
-</body>
 <script type="text/javascript">
 	fid = "<?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>"
 	defaultPic = "{{url('uploads/sundry/blogo.jpg')}}"
@@ -655,4 +652,8 @@
 		};
 	});
 </script>
+</div>
+
+</body>
+
 </html>
