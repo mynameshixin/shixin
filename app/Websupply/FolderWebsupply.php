@@ -198,7 +198,7 @@ class FolderWebsupply extends CmWebsupply {
 							'image_id'=>0,
 		                    'img_m' => url('uploads/sundry/blogo.jpg'),
 		                    'img_o' => url('uploads/sundry/blogo.jpg'), 
-		                    'rh'=>LibUtil::getPicSize($imageId, 1)
+		                    'rh'=>LibUtil::getPicSize('', 1)
 						];
 	                }
 				 }
