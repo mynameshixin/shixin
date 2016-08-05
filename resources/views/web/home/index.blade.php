@@ -104,7 +104,7 @@
 </body>
 
 <script type="text/javascript">
-	/*$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000});
+	$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000});
 
 	$(document).on('pjax:send', function() {
 	    layer.load(0, {shade: 0.5});
@@ -112,7 +112,7 @@
 	$(document).on('pjax:complete', function() {
 	    layer.closeAll('loading');
 	    $('.detail_pop_o').show()
-	});*/	
+	});	
 </script>
 
 <script type="text/javascript">

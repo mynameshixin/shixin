@@ -198,19 +198,32 @@ class VrController extends BaseController{
     //获取设计家首页数据
     public function getDesign(){
         $data = Input::all();
-        $one = $this->needData($data,3511,2);
-        $two = $this->needData($data,3511,3);
+        $rules = array(
+            't'=>'required|in:2,3'
+        );
+        $p = [
+            't.required'=>'参数t必须为2或者3'
+        ];
+        //请求参数验证
+        parent::validator($data, $rules,$p);
+        $list = $this->needData($data,3511,$data['t']);
         
-        return response()->forApi(['list' => ['one'=>$one,'two'=>$two]]);
+        return response()->forApi(['list' => $list]);
     }
 
     //获取VR首页数据
     public function getVrindex(){
         $data = Input::all();
-        $one = $this->needData($data,3438,0,1);
-        $two = $this->needData($data,3438,0,2);
-        $three = $this->needData($data,3438,0,3);
-        return response()->forApi(['list' => ['one'=>$one,'two'=>$two,'three'=>$three]]);
+        $rules = array(
+            't'=>'required|in:1,2,3'
+        );
+        $p = [
+            't.required'=>'参数t必须为1或2或3'
+        ];
+        //请求参数验证
+        parent::validator($data, $rules,$p);
+        $list = $this->needData($data,3438,0,$data['t']);
+        return response()->forApi(['list' => $list]);
     }
 
     //获取搜索和筛选结果
