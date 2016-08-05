@@ -8,7 +8,7 @@
         <div class="nolog_index_confooter_for">
           <div class="nolog_index_confooter_tit">联系与合作</div>
           <p><a href="/webd/contact">联系我们</a></p>
-          <p><a href="#">用户反馈</a></p>
+          <p><a href="/webd/pic/171909">用户反馈</a></p>
         </div>
         <div class="nolog_index_confooter_for">
           <div class="nolog_index_confooter_tit">移动客户端</div>
