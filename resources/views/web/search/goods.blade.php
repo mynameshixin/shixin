@@ -74,7 +74,7 @@
 							+'<div class="index_item_wrap">'
 								+'<div class="index_item_imgwrap clearfix">'
 									+'<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank"></a>'
-									+'<img src="'+v.image_url+'" style="height:'+v.rh+'px">'
+									+'<img src="'+v.image_url+'" style="height:'+v.rh+'px" onload="resize_xy(this)">'
 									if(kind==1){
 										str += '<div class="index_item_price">'+v.price+'</div>'
 									}

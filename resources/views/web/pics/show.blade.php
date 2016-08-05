@@ -277,7 +277,7 @@
 							<div class="index_item_imgwrap clearfix">
 								<a class="index_item_blurwrap" target="_blank" href="{{url('webd/pic')}}/{{$v['id']}}"></a>
 								<?php if(!empty($v['price'])): ?><div class="index_item_price">￥{{$v['price']}}</div><?php endif; ?>
-								<img src="{{$v['image_url']}}" style="height: {{$v['rh']}}px">
+								<img src="{{$v['image_url']}}" style="height: {{$v['rh']}}px" onload="resize_xy(this)">
 							</div>
 							<div class="index_item_info">
 								<div class="index_item_top">

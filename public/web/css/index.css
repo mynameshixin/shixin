@@ -19,8 +19,8 @@ a{cursor: pointer;}
 .index_item_wrap{border-radius: 6px;position: relative;}
 .index_item_blurwrap{position: absolute;top: -2px;border-radius: 6px 6px 0px 0px;left: 0px;width: 100%;height: 100%;cursor: pointer;}
 .index_item_blurwrap:hover{background: #fff;opacity: 0.1;}
-.index_item_imgwrap{position: relative;border-radius: 6px 6px 0px 0px;top: 0px;left: 0px;}
-.index_item_imgwrap img{width: 100%;border-radius: 6px 6px 0px 0px;}
+.index_item_imgwrap{position: relative;border-radius: 6px 6px 0px 0px;top: 0px;left: 0px; text-align: center;}
+.index_item_imgwrap img{border-radius: 6px 6px 0px 0px;}
 .index_item_price{position: absolute;width: 84px;height: 38px;background: #fff;opacity: 0.75;bottom: 0px;right: 0px;text-align: center;font:normal 14px/38px "Microsoft YaHei";color: #4a4a4a;}
 
 .index_item_intro{font:normal 12px/22px "Microsoft YaHei";/* color: #b27e67; */color:#000;margin:0px 12px 0px 12px;max-height: 44px;overflow: hidden; margin-top: 5px;}

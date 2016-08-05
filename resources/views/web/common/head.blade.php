@@ -65,5 +65,11 @@
 			return url ;
 		}
 
+		function resize_xy(obj){
+			var obj = $(obj)
+			if(obj.width()>236) obj.css('width','236px')
+			if(obj.height()>800) obj.css('height','800px')
+		}
+
 	</script>
 </head>
