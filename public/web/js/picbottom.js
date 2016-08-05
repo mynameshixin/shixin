@@ -1,58 +1,58 @@
 $(function (){
-  var $tiles = $('#tiles')
-  $handler = $('.index_item', $tiles)
-  $main = $('#main')
-  $window = $(window)
-  $document = $(document)
-  $page = 1
-  var f = 1
-  options = {
+  var $tiles_show = $('#tiles_show')
+  var $handler_show = $('.index_item', $tiles_show)
+  $main_show = $('#main_show')
+  $window_show = $(window)
+  $document_show = $(document)
+  $page_show = 1
+  var pic_f = 1
+  var options_show = {
     autoResize: true, // This will auto-update the layout when the browser window is resized.
-    container: $main, // Optional, used for some extra CSS styling
+    container: $main_show, // Optional, used for some extra CSS styling
     offset: 15, // Optional, the distance between grid items
     itemWidth:236 // Optional, the width of a grid item
   };
   /**
    * Reinitializes the wookmark handler after all images have loaded
    */
-  function applyLayout() {
+  function applyLayout_show() {
    	//$tiles.imagesLoaded(function() {
       // Destroy the old handler
-      if ($handler.wookmarkInstance) {
-        $handler.wookmarkInstance.clear();
+      if ($handler_show.wookmarkInstance) {
+        $handler_show.wookmarkInstance.clear();
       }
 
       // Create a new layout handler.
-      $handler = $('.index_item', $tiles);
-      $handler.wookmark(options);
+      $handler_show = $('.index_item', $tiles_show);
+      $handler_show.wookmark(options_show);
   	//});
   }
   /**
    * When scrolled all the way to the bottom, add more tiles
    */
-  function onScroll() {
+  function onScroll_show() {
   	
-    var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-        closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 1);
-    if (closeToBottom && f==1) {
-    	postData.page = ++$page
+    var winHeight = window.innerHeight ? window.innerHeight : $window_show.height(), // iphone fix
+    closeToBottom = ($window_show.scrollTop() + winHeight > $document_show.height() - 1);
+    if (closeToBottom && pic_f==1) {
+    	postData_show.page = ++$page_show
     	$.ajax({
 		  	'beforeSend':function(){
-		  		f = 0
-		  		$('#load').show()
-		  		$('#load').css({'display':'block'})
+		  		pic_f = 0
+		  		$('#load_show').show()
+		  		$('#load_show').css({'display':'block'})
 		  	},
-		  	'url':postUrl,
+		  	'url':postUrl_show,
 		  	'type':'POST',
 		  	'dataType':'json',
-		  	'data':postData,
+		  	'data':postData_show,
 		  	'success':function(json){
 
 		  		if(json.code==200 && json.data.list!=0 && json.data.list!=null){
-		  			f = 0
+		  			pic_f = 0
 		  			
 		  			var list  = json.data.list
-		  			var $items = $('.index_item', $tiles)
+		  			var $items = $('.index_item', $tiles_show)
 		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
@@ -98,16 +98,16 @@ $(function (){
 					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].image_url)
 					   
 		  			})
-		  			$('#load').hide()
+		  			$('#load_show').hide()
 		  			
-		  			$tiles.append($firstTen)
-		  			applyLayout();
+		  			$tiles_show.append($firstTen)
+		  			applyLayout_show();
 		  			setTimeout(function(){
-		  				f = 1
+		  				pic_f = 1
 		  			},500)
 		  		}else{
-		  			f = 0
-		  			$('#load').html('全部加载完成。。。')
+		  			pic_f = 0
+		  			$('#load_show').html('全部加载完成。。。')
 		  		}
 		  	}
 		  })      
@@ -115,8 +115,8 @@ $(function (){
   };
 
   // Call the layout function for the first time
-  applyLayout();
+  applyLayout_show();
 
   // Capture scroll event.
-  $window.bind('scroll.wookmark', onScroll);
+  $window_show.bind('scroll.wookmark', onScroll_show);
 });

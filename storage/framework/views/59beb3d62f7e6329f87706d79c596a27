@@ -271,8 +271,8 @@
 
 			<?php if(!empty($goods['folders_one'])): ?>
 			<p class="detail_pop_btitle">推荐给你的采集</p>
-			<div id="main" role="main" class="w1248 w1240 clearfix" style="width: 1000px">
-				<div class="index_con  perhome_wrap" id="tiles">
+			<div id="main_show" role="main" class="w1248 w1240 clearfix" style="width: 1000px">
+				<div class="index_con  perhome_wrap" id="tiles_show">
 					<?php if(empty($goods['folders_one'])): ?><p class="nodata">暂无数据</p><?php endif; ?>
 					<?php foreach($goods['folders_one'] as $k=>$v): ?>
 					<div class="index_item">
@@ -318,7 +318,7 @@
 
 
 	<?php if(!empty($goods['folders_one'])): ?>
-	<a href="javascript:;" id='load' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
+	<a href="javascript:;" id='load_show' class="detail_pop_baddmore" style="display: none;">正在加载中。。。</a>
 	<?php endif; ?>
 
 	<script type="text/javascript">
@@ -570,9 +570,9 @@
 	fid = "<?php echo isset($goods['collection_folders'][0]['id'])?$goods['collection_folders'][0]['id']:0; ?>"
 	defaultPic = "<?php echo e(url('uploads/sundry/blogo.jpg')); ?>"
 	folderUrl = '<?php echo e(url("webd/pics/folder?oid={$user_id}")); ?>'
-	postUrl = "<?php echo e(url('webd/pics/img')); ?>?oid=<?php echo e($user_id); ?>&fid="+fid
+	postUrl_show = "<?php echo e(url('webd/pics/img')); ?>?oid=<?php echo e($user_id); ?>&fid="+fid
 	moreData = {'num':4,'img_id':<?php echo e($goods['id']); ?>}
-	postData = {'num':15,'img_id':<?php echo e($goods['id']); ?>}
+	postData_show = {'num':15,'img_id':<?php echo e($goods['id']); ?>}
 	user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];  ?>"
 </script>
 <script type="text/javascript">

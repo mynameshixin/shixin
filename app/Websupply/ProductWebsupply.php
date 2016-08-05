@@ -30,7 +30,7 @@ class ProductWebsupply extends CmWebsupply{
 
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc');
         // $rows = $rows->paginate($num);
-        $skip = ($params['page']-1)*10;
+        $skip = ($params['page']-1)*$num;
 
         $rows = $rows->skip($skip)->take($num)->get();
         // $outDate = LibUtil::pageFomate($rows);
