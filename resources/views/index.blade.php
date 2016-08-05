@@ -558,7 +558,7 @@ var _hmt = _hmt || [];
             <ul class="find_cater_aeach">
               <p class="find_cater_label">装饰摆设</p>
               <li><a href="/webd/search/goods?keyword=摆件" target="_blank">摆件</a></li>
-              <li><a href="/webd/search/goods?keyword=装置画" target="_blank">装置画</a></li>
+              <li><a href="/webd/search/goods?keyword=装饰画" target="_blank">装饰画</a></li>
               <li><a href="/webd/search/goods?keyword=香薰" target="_blank">香薰</a></li>
               <li><a href="/webd/search/goods?keyword=挂钩" target="_blank">挂钩</a></li>
               <li><a href="/webd/search/goods?keyword=收纳" target="_blank">收纳</a></li>
