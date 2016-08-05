@@ -62,19 +62,18 @@
 			},
 			'dataType':'json',
 			'success':function(json){
-				/*console.log(json)
-				return*/
 				if(json.code==200 && json.data.list!=0 && json.data.list!=null){
 					data = json.data.list
 					var str = ''
 					$.each(data,function(index,v){
 						des = v.description.trim() != ''?v.description:v.title
 						kind = v.kind
+						var rh = v.rh>800?800:v.rh
 						str += '<div class="index_item">'
 							+'<div class="index_item_wrap">'
 								+'<div class="index_item_imgwrap clearfix">'
 									+'<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank"></a>'
-									+'<img src="'+v.image_url+'" style="height:'+v.rh+'px" onload="resize_xy(this)">'
+									+'<img src="'+v.image_url+'" style="height:'+rh+'px" onload="resize_xy(this)">'
 									if(kind==1){
 										str += '<div class="index_item_price">'+v.price+'</div>'
 									}

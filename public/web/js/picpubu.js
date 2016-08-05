@@ -92,7 +92,7 @@ $(function (){
 							$($value).append($str)
 					    	
 					    }
-					    var rh = parseInt(list[index].images[0].rh)
+					    var rh = parseInt(list[index].images[0].rh)>800?800:list[index].images[0].rh
 					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m)
 					   
 		  			})

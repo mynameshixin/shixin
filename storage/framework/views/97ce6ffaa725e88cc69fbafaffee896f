@@ -33,7 +33,7 @@
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($value['id']); ?>" target="_blank"></a>
 							<?php if(!empty($value['detail_url']) && $value['kind']==2): ?><a class="index_item_vrlogo" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($value['id']); ?>" target="_blank"></a><?php endif; ?>
-							<img src="<?php echo e(isset($value['images'][0]['img_m']) ? $value['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" style="height: <?php echo e($value['images'][0]['rh']); ?>px">
+							<img src="<?php echo e(isset($value['images'][0]['img_m']) ? $value['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" style="height: <?php echo e($value['images'][0]['rh']); ?>px" onload="resize_xy(this)">
 							<?php if(!empty($value['price'])): ?>
 								<div class="index_item_price">￥<?php echo e($value['price']); ?></div>
 							<?php endif; ?>
