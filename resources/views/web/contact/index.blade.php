@@ -23,6 +23,8 @@
 				<p class="nolog_index_contact_c">或发送邮件至duitujia@126.com</p>
 				<p class="nolog_index_contact_b">联系电话：</p>
 				<p class="nolog_index_contact_c">021-62308521</p>
+				<p class="nolog_index_contact_b">手机：</p>
+				<p class="nolog_index_contact_c">13817979231</p>
 				<p class="nolog_index_contact_b">公司地址：</p>
 				<p class="nolog_index_contact_c">上海市普陀区怒江北路598号红星世贸大厦B座1207室</p>
 			</div>
