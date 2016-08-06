@@ -17,28 +17,28 @@
 				<div class="clearfix">
 					<ul class="find_cat_list">
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="{{asset('web')}}/images/cat/four_rec/01.jpg" alt="">
+							<img src="{{asset('web')}}/images/cat/four_rec/01.jpg" alt="梦幻家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">梦幻家</p>
 								<p class="find_rec_wrapdes">“用VR展示住宅空间”</p>
 							</div>
 						</li>
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="{{asset('web')}}/images/cat/four_rec/02.jpg" alt="">
+							<img src="{{asset('web')}}/images/cat/four_rec/02.jpg" alt="改造家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">改造家</p>
 								<p class="find_rec_wrapdes">“二手房与家居改造”</p>
 							</div>
 						</li>
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="{{asset('web')}}/images/cat/four_rec/03.jpg" alt="">
+							<img src="{{asset('web')}}/images/cat/four_rec/03.jpg" alt="家居前线">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">家居前线</p>
 								<p class="find_rec_wrapdes">“会展信息与公众微信推荐”</p>
 							</div>
 						</li>
 						<li class="find_rec_special mrightzero" onclick="layer_error('正在建设中')">
-							<img src="{{asset('web')}}/images/cat/four_rec/04.jpg" alt="">
+							<img src="{{asset('web')}}/images/cat/four_rec/04.jpg" alt="二手商品">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">二手商品</p>
 								<p class="find_rec_wrapdes">“二手家居商品展示平台”</p>

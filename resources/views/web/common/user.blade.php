@@ -59,7 +59,7 @@
 				<div class="w1248 w1240 clearfix">
 					<div class="perhome_cater_info" style="display:none">
 						<div class="perhome_scroll_ava">
-							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}">
+							<a href="/webd/user?oid={{$user_info['id']}}" target="_blank" title="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}"><img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}"></a>
 						</div>
 						<div class="perhome_scroll_name">{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}</div>
 					</div>

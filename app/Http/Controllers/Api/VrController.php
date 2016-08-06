@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Api;
 use App\Lib\LibUtil;
 use Illuminate\Support\Facades\Input;
 use DB;
-
+use App\Services\UserService;
 
 class VrController extends BaseController{
     private static $user_id;
@@ -145,6 +145,8 @@ class VrController extends BaseController{
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
              	$rows[$k]['viewcount'] = $viewcount['num'];
              }
+             $userArr = UserService::getInstance()->getUserArr([$row['user_id']]);
+             $rows[$k]['user'] = isset($userArr[$row['user_id']]) ? $userArr[$row['user_id']] : [];
 
         }
         return response()->forApi(['list' => $rows]);
@@ -189,6 +191,9 @@ class VrController extends BaseController{
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }
+
+             $userArr = UserService::getInstance()->getUserArr([$row['user_id']]);
+             $rows[$k]['user'] = isset($userArr[$row['user_id']]) ? $userArr[$row['user_id']] : [];
 
         }
         return $rows;
@@ -314,6 +319,8 @@ class VrController extends BaseController{
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }
+             $userArr = UserService::getInstance()->getUserArr([$row['user_id']]);
+             $rows[$k]['user'] = isset($userArr[$row['user_id']]) ? $userArr[$row['user_id']] : [];
 
         }
     	return response()->forApi(['list' => $rows]);

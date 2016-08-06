@@ -5,13 +5,13 @@
 	<div class="header">
 		<div class="headercontainer w992 clearfix contact_header">
 			<a href="/" class="header_logo"></a>
-			<p><a class="contact_header_a contact_header_aon" href="/webd/contact">联系我们</a></p>
-			<p><a class="contact_header_a" href="javascript:;">关于堆图家</a></p>
+			<p><a class="contact_header_a contact_header_aon" href="/webd/contact" title="联系我们">联系我们</a></p>
+			<p><a class="contact_header_a" href="javascript:;" title="堆图家">关于堆图家</a></p>
 		</div>
 	</div>
 	<div class="container nolog_index_container clearfix">
 		<div class="nolog_index_contactbg" style="width: 1252px; margin:0 auto">
-			<img src="{{asset('/web/images/contact_bg.jpg')}}" height="126" width="1252" alt="">
+			<img src="{{asset('/web/images/contact_bg.jpg')}}" height="126" width="1252" alt="堆图家">
 		</div>
 		<div class="nolog_index_contactcon">
 			<div class="w992 clearfix">
@@ -33,22 +33,5 @@
 	</div>
 	@include('web.common.foot')
 </body>
-<script type="text/javascript">
-		$(function() {
-		    var $container = $('.index_con');
-		    $container.imagesLoaded(function() {
-		        $container.masonry({
-	                itemSelector: '.index_item',
-	                gutter: 15,
-	                isAnimated: true,
-	            });
-		     });
-		    var scrHei = $(window).height();
-		    var minHei = scrHei - 420;
-		    $('.nolog_index_contactcon').css({
-		    	'min-height':minHei
-		    })
-		   
-		});
-	</script>
+
 </html>
