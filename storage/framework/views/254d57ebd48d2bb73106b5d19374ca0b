@@ -17,28 +17,28 @@
 				<div class="clearfix">
 					<ul class="find_cat_list">
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/01.jpg" alt="">
+							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/01.jpg" alt="梦幻家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">梦幻家</p>
 								<p class="find_rec_wrapdes">“用VR展示住宅空间”</p>
 							</div>
 						</li>
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/02.jpg" alt="">
+							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/02.jpg" alt="改造家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">改造家</p>
 								<p class="find_rec_wrapdes">“二手房与家居改造”</p>
 							</div>
 						</li>
 						<li class="find_rec_special" onclick="layer_error('正在建设中')">
-							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/03.jpg" alt="">
+							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/03.jpg" alt="家居前线">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">家居前线</p>
 								<p class="find_rec_wrapdes">“会展信息与公众微信推荐”</p>
 							</div>
 						</li>
 						<li class="find_rec_special mrightzero" onclick="layer_error('正在建设中')">
-							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/04.jpg" alt="">
+							<img src="<?php echo e(asset('web')); ?>/images/cat/four_rec/04.jpg" alt="二手商品">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">二手商品</p>
 								<p class="find_rec_wrapdes">“二手家居商品展示平台”</p>
@@ -279,30 +279,30 @@
 				<?php foreach($user as $k=>$v): ?>
 					<li class="find_user_li <?php if($k==4) echo 'mrightzero'?>" user_id="<?php echo e($v['id']); ?>">
 						<div class="find_user_info">
-							<a href="/webd/user?oid=<?php echo e($v['id']); ?>" target="_blank" class="find_user_name"><?php echo e(!empty($v['nick'])?$v['nick']:$v['username']); ?></a>
+							<a href="/webd/user?oid=<?php echo e($v['id']); ?>" target="_blank" class="find_user_name" title="<?php echo e(!empty($v['nick'])?$v['nick']:$v['username']); ?>"><?php echo e(!empty($v['nick'])?$v['nick']:$v['username']); ?></a>
 							<a  class="find_user_rela"><?php echo e($v['fans_count']); ?>粉丝 <?php echo e($v['follow_count']); ?>关注</a>
 						</div>
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<a href="/webd/user?oid=<?php echo e($v['id']); ?>" class="position" target="_blank"><img src="<?php echo e(!empty($v['auth_avatar'])?$v['auth_avatar']:$v['pic_m']); ?>" alt=""></a>
+								<a href="/webd/user?oid=<?php echo e($v['id']); ?>" class="position" target="_blank" title="<?php echo e(!empty($v['nick'])?$v['nick']:$v['username']); ?>"><img src="<?php echo e(!empty($v['auth_avatar'])?$v['auth_avatar']:$v['pic_m']); ?>" alt="<?php echo e(!empty($v['nick'])?$v['nick']:$v['username']); ?>"></a>
 							</div>
 							<ul class="find_user_limg">
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid=<?php echo e($v['folders'][0]['id']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][0]['img_url']); ?>" alt=""></a>
+									<a href="/webd/folder?fid=<?php echo e($v['folders'][0]['id']); ?>" title="<?php echo e($v['folders'][0]['name']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][0]['img_url']); ?>" alt="<?php echo e($v['folders'][0]['name']); ?>"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid=<?php echo e($v['folders'][1]['id']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][1]['img_url']); ?>" alt=""></a>
+									<a href="/webd/folder?fid=<?php echo e($v['folders'][1]['id']); ?>" title="<?php echo e($v['folders'][1]['name']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][1]['img_url']); ?>" alt="<?php echo e($v['folders'][1]['name']); ?>"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid=<?php echo e($v['folders'][2]['id']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][2]['img_url']); ?>" alt=""></a>
+									<a href="/webd/folder?fid=<?php echo e($v['folders'][2]['id']); ?>" title="<?php echo e($v['folders'][2]['name']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][2]['img_url']); ?>" alt="<?php echo e($v['folders'][2]['name']); ?>"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid=<?php echo e($v['folders'][3]['id']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][3]['img_url']); ?>" alt=""></a>
+									<a href="/webd/folder?fid=<?php echo e($v['folders'][3]['id']); ?>" title="<?php echo e($v['folders'][3]['name']); ?>" class="position" target="_blank"><img src="<?php echo e($v['folders'][3]['img_url']); ?>" alt="<?php echo e($v['folders'][3]['name']); ?>"></a>
 								</li>
 							</ul>
 							<a href="javascript:;" class="find_user_authflw" onclick="relation(this)" <?php if($self_id==$v['id']): ?>style="display: none"<?php endif; ?>>
@@ -334,30 +334,30 @@
 					<li class="find_fold_li <?php if($k==4) echo 'mrightzero'; ?>" folder_id="<?php echo e($v['id']); ?>">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
-								<a href="/webd/user?oid=<?php echo e($v['user']['id']); ?>" target="_blank"><img src="<?php echo e($v['user']['image']); ?>" alt=""></a>
+								<a href="/webd/user?oid=<?php echo e($v['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']); ?>"><img src="<?php echo e($v['user']['image']); ?>" alt="<?php echo e(!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']); ?>"></a>
 							</div>
 							<div class="find_fold_tname">
-								<a href="/webd/folder?fid=<?php echo e($v['id']); ?>" target="_blank" class="find_fold_name"><?php echo e($v['name']); ?></a>
-								<a href="/webd/user?oid=<?php echo e($v['user']['id']); ?>" target="_blank" class="find_fold_authnme"><?php echo e(!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']); ?></a>
+								<a href="/webd/folder?fid=<?php echo e($v['id']); ?>" target="_blank" class="find_fold_name" title="<?php echo e($v['name']); ?>"><?php echo e($v['name']); ?></a>
+								<a href="/webd/user?oid=<?php echo e($v['user']['id']); ?>" target="_blank" class="find_fold_authnme" title="<?php echo e(!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']); ?>"><?php echo e(!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']); ?></a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<a href="/webd/folder?fid=<?php echo e($v['id']); ?>" target="_blank" class="position"><img src="<?php echo e($v['img_url']); ?>" alt="" onload="rect(this)"></a>
+							<a href="/webd/folder?fid=<?php echo e($v['id']); ?>" target="_blank" class="position" title="<?php echo e($v['name']); ?>"><img src="<?php echo e($v['img_url']); ?>" alt="<?php echo e($v['name']); ?>" onload="rect(this)"></a>
 							<div class="find_fold_catflw"><?php echo e($v['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($v['count']['fans_count']); ?>关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/<?php echo e($v['goods'][0]['id']); ?>" target="_blank" class="position"><img src="<?php echo e($v['goods'][0]['images'][0]['img_m']); ?>" alt=""></a>
+								<a href="/webd/pic/<?php echo e($v['goods'][0]['id']); ?>" target="_blank" class="position" title="<?php echo e(!empty(trim($v['goods'][0]['title']))?$v['goods'][0]['title']:$v['goods'][0]['description']); ?>"><img src="<?php echo e($v['goods'][0]['images'][0]['img_m']); ?>" alt="<?php echo e(!empty(trim($v['goods'][0]['title']))?$v['goods'][0]['title']:$v['goods'][0]['description']); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/<?php echo e($v['goods'][1]['id']); ?>" target="_blank" class="position"><img src="<?php echo e($v['goods'][1]['images'][0]['img_m']); ?>" alt=""></a>
+								<a href="/webd/pic/<?php echo e($v['goods'][1]['id']); ?>" target="_blank" class="position" title="<?php echo e(!empty(trim($v['goods'][1]['title']))?$v['goods'][1]['title']:$v['goods'][1]['description']); ?>"><img src="<?php echo e($v['goods'][1]['images'][0]['img_m']); ?>" alt="<?php echo e(!empty(trim($v['goods'][1]['title']))?$v['goods'][1]['title']:$v['goods'][1]['description']); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/<?php echo e($v['goods'][2]['id']); ?>" target="_blank" class="position"><img src="<?php echo e($v['goods'][2]['images'][0]['img_m']); ?>" alt=""></a>
+								<a href="/webd/pic/<?php echo e($v['goods'][2]['id']); ?>" target="_blank" class="position" title="<?php echo e(!empty(trim($v['goods'][2]['title']))?$v['goods'][2]['title']:$v['goods'][2]['description']); ?>"><img src="<?php echo e($v['goods'][2]['images'][0]['img_m']); ?>" alt="<?php echo e(!empty(trim($v['goods'][2]['title']))?$v['goods'][2]['title']:$v['goods'][2]['description']); ?>"></a>
 							</div>
 						</div>
 						<a href="javascript:;" class="find_fold_authflw" onclick="relation(this)" <?php if($v['user_id'] == $self_id) echo "style='display:none'" ?>>

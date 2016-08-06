@@ -279,30 +279,30 @@
 				<?php foreach($user as $k=>$v): ?>
 					<li class="find_user_li <?php if($k==4) echo 'mrightzero'?>" user_id="{{$v['id']}}">
 						<div class="find_user_info">
-							<a href="/webd/user?oid={{$v['id']}}" target="_blank" class="find_user_name">{{!empty($v['nick'])?$v['nick']:$v['username']}}</a>
+							<a href="/webd/user?oid={{$v['id']}}" target="_blank" class="find_user_name" title="{{!empty($v['nick'])?$v['nick']:$v['username']}}">{{!empty($v['nick'])?$v['nick']:$v['username']}}</a>
 							<a  class="find_user_rela">{{$v['fans_count']}}粉丝 {{$v['follow_count']}}关注</a>
 						</div>
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<a href="/webd/user?oid={{$v['id']}}" class="position" target="_blank"><img src="{{!empty($v['auth_avatar'])?$v['auth_avatar']:$v['pic_m']}}" alt=""></a>
+								<a href="/webd/user?oid={{$v['id']}}" class="position" target="_blank" title="{{!empty($v['nick'])?$v['nick']:$v['username']}}"><img src="{{!empty($v['auth_avatar'])?$v['auth_avatar']:$v['pic_m']}}" alt="{{!empty($v['nick'])?$v['nick']:$v['username']}}"></a>
 							</div>
 							<ul class="find_user_limg">
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid={{$v['folders'][0]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][0]['img_url']}}" alt=""></a>
+									<a href="/webd/folder?fid={{$v['folders'][0]['id']}}" title="{{$v['folders'][0]['name']}}" class="position" target="_blank"><img src="{{$v['folders'][0]['img_url']}}" alt="{{$v['folders'][0]['name']}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid={{$v['folders'][1]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][1]['img_url']}}" alt=""></a>
+									<a href="/webd/folder?fid={{$v['folders'][1]['id']}}" title="{{$v['folders'][1]['name']}}" class="position" target="_blank"><img src="{{$v['folders'][1]['img_url']}}" alt="{{$v['folders'][1]['name']}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid={{$v['folders'][2]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][2]['img_url']}}" alt=""></a>
+									<a href="/webd/folder?fid={{$v['folders'][2]['id']}}" title="{{$v['folders'][2]['name']}}" class="position" target="_blank"><img src="{{$v['folders'][2]['img_url']}}" alt="{{$v['folders'][2]['name']}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="/webd/folder?fid={{$v['folders'][3]['id']}}" class="position" target="_blank"><img src="{{$v['folders'][3]['img_url']}}" alt=""></a>
+									<a href="/webd/folder?fid={{$v['folders'][3]['id']}}" title="{{$v['folders'][3]['name']}}" class="position" target="_blank"><img src="{{$v['folders'][3]['img_url']}}" alt="{{$v['folders'][3]['name']}}"></a>
 								</li>
 							</ul>
 							<a href="javascript:;" class="find_user_authflw" onclick="relation(this)" <?php if($self_id==$v['id']): ?>style="display: none"<?php endif; ?>>
@@ -334,30 +334,30 @@
 					<li class="find_fold_li <?php if($k==4) echo 'mrightzero'; ?>" folder_id="{{$v['id']}}">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_authava">
-								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank"><img src="{{$v['user']['image']}}" alt=""></a>
+								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank" title="{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}"><img src="{{$v['user']['image']}}" alt="{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}"></a>
 							</div>
 							<div class="find_fold_tname">
-								<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="find_fold_name">{{$v['name']}}</a>
-								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme">{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}</a>
+								<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="find_fold_name" title="{{$v['name']}}">{{$v['name']}}</a>
+								<a href="/webd/user?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme" title="{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}">{{!empty(trim($v['user']['nick']))?$v['user']['nick']:$v['user']['username']}}</a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="position"><img src="{{$v['img_url']}}" alt="" onload="rect(this)"></a>
+							<a href="/webd/folder?fid={{$v['id']}}" target="_blank" class="position" title="{{$v['name']}}"><img src="{{$v['img_url']}}" alt="{{$v['name']}}" onload="rect(this)"></a>
 							<div class="find_fold_catflw">{{$v['count']['folder_count']}}文件&nbsp;&nbsp;{{$v['count']['fans_count']}}关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/{{$v['goods'][0]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][0]['images'][0]['img_m']}}" alt=""></a>
+								<a href="/webd/pic/{{$v['goods'][0]['id']}}" target="_blank" class="position" title="{{!empty(trim($v['goods'][0]['title']))?$v['goods'][0]['title']:$v['goods'][0]['description']}}"><img src="{{$v['goods'][0]['images'][0]['img_m']}}" alt="{{!empty(trim($v['goods'][0]['title']))?$v['goods'][0]['title']:$v['goods'][0]['description']}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/{{$v['goods'][1]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][1]['images'][0]['img_m']}}" alt=""></a>
+								<a href="/webd/pic/{{$v['goods'][1]['id']}}" target="_blank" class="position" title="{{!empty(trim($v['goods'][1]['title']))?$v['goods'][1]['title']:$v['goods'][1]['description']}}"><img src="{{$v['goods'][1]['images'][0]['img_m']}}" alt="{{!empty(trim($v['goods'][1]['title']))?$v['goods'][1]['title']:$v['goods'][1]['description']}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="/webd/pic/{{$v['goods'][2]['id']}}" target="_blank" class="position"><img src="{{$v['goods'][2]['images'][0]['img_m']}}" alt=""></a>
+								<a href="/webd/pic/{{$v['goods'][2]['id']}}" target="_blank" class="position" title="{{!empty(trim($v['goods'][2]['title']))?$v['goods'][2]['title']:$v['goods'][2]['description']}}"><img src="{{$v['goods'][2]['images'][0]['img_m']}}" alt="{{!empty(trim($v['goods'][2]['title']))?$v['goods'][2]['title']:$v['goods'][2]['description']}}"></a>
 							</div>
 						</div>
 						<a href="javascript:;" class="find_fold_authflw" onclick="relation(this)" <?php if($v['user_id'] == $self_id) echo "style='display:none'" ?>>

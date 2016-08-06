@@ -11,13 +11,13 @@
 					<?php foreach ($user_fans as $key => $value) :?>
 					<li class="find_user_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>" user_id="{{$value['user']['id']}}">
 						<div class="find_user_info">
-							<a href="javascript:;" class="find_user_name">{{empty($value['user']['nick'])?$value['user']['username']:$value['user']['nick']}}</a>
+							<a href="javascript:;" class="find_user_name" title="{{empty($value['user']['nick'])?$value['user']['username']:$value['user']['nick']}}">{{empty($value['user']['nick'])?$value['user']['username']:$value['user']['nick']}}</a>
 							<a href="javascript:;" class="find_user_rela">{{$value['count']['fans_count']}}粉丝 {{$value['count']['follow_count']}}关注</a>
 						</div>
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
+								<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="{{empty($value['user']['nick'])?$value['user']['username']:$value['user']['nick']}}">
 							</div>
 							<ul class="find_user_limg">
 								<li>

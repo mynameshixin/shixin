@@ -115,7 +115,7 @@ class VrController extends BaseController{
 
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
-    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',3510)->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
+    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',3510)->select('*');
     	$rows = $rows->leftJoin('goods as g','fg.good_id','=','g.id')->orderBy('fg.created_at','desc');
         $skip = ($page-1)*$num;
         $rows = $rows->skip($skip)->take($num)->get();
@@ -155,7 +155,7 @@ class VrController extends BaseController{
     public function needData($data,$folder_id,$typeid=0,$btypeid=0){
         $num = isset($data['num'])?$data['num']:4;
         $page = isset($data['page'])?$data['page']:1;
-        $rows = DB::table('folder_goods as fg')->select('g.id','g.user_id','g.kind','g.title','g.description','g.detail_url','g.source_url','g.praise_count','g.collection_count','g.image_ids');
+        $rows = DB::table('folder_goods as fg')->select('*');
         if(!empty($typeid)){
             $rows = $rows->where(['fg.folder_id'=>$folder_id,'g.typeid'=>$typeid]);
         }

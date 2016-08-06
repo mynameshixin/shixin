@@ -50,7 +50,6 @@ class FindController extends CmController{
 			$collection_folder = DB::table('collection_folder')->where(['user_id'=>$user_id,'folder_id'=>$value['id']])->first();
 			$recommend[$key]['is_collection'] = !empty($collection_folder)?1:0;
 		}
-		// dd($recommend);
 		//人气商品
 		$goods = $this->postGoods();
 
