@@ -58,9 +58,7 @@ $(function (){
 
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
-		  				$(".index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
-
-
+		  				$(".index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id).attr('title',list[index].description)
 		  				fuhao = list[index].detail_url.indexOf('m.fancy.com')>0?'$':'￥'
 					    $(".index_item_price",$value).html(fuhao+list[index].price)
 					    $(".index_item_intro",$value).html(list[index].description);
@@ -71,14 +69,15 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).attr('href',list[index].detail_url)
 					    pic_m = list[index].user.auth_avatar!=null?list[index].user.auth_avatar:list[index].user.pic_m
-					    $(".index_item_bottom img",$value).attr('src',pic_m)
 					    user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
-					    $(".index_item_authname",$value).html(user_nick).attr('href','/webd/user?oid='+list[index].user.id)
+					    $(".index_item_bottom img",$value).attr('src',pic_m).attr('alt',user_nick)
+					    $(".index_item_bottom a",$value).attr('src',user_nick)
+					    $(".index_item_authname",$value).html(user_nick).attr('href','/webd/user?oid='+list[index].user.id).attr('title',user_nick)
 
 					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id)
-					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id)
+					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id).attr('title',user_nick)
 					    var rh = parseInt(list[index].images[0].rh)>800?800:list[index].images[0].rh
-					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m)
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m).attr('alt',list[index].description)
 					   
 		  			})
 		  			$('#load').hide()

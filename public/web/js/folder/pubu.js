@@ -57,7 +57,7 @@ $(function (){
 		  				$value = $firstTen[index]
 		  				description = list[index].description==0?list[index].title:list[index].description
 		  				var rh = parseInt(list[index].images[0].rh)>800?800:list[index].images[0].rh
-		  				$(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m)
+		  				$(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m).attr('alt',description)
 		  				$(".index_item_wrap",$value).attr('good_id',list[index].id)
 		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id).attr('title',description)
 					    $(".index_item_price",$value).html('￥'+list[index].price)
@@ -84,11 +84,11 @@ $(function (){
 					   		comment = list[index].comment[list[index].id]
 					    	user_nick = (comment.user.nick!='')?comment.user.nick:comment.user.username
 				    		$str = '<div class="index_item_bottom clearfix comment">'
-								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank">'
-									+'<img src="'+comment.user.pic_m+'" alt="">'
+								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank" title='+user_nick+'>'
+									+'<img src="'+comment.user.pic_m+'" alt="'+user_nick+'">'
 								+'</a>'
 								+'<div class="index_item_authinfo index_item_authtalk">'
-									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank">'+user_nick+'：</a>'
+									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank" title='+user_nick+'>'+user_nick+'：</a>'
 									+'<span class="index_item_authto">'+comment.content+'</span>'
 								+'</div>'
 							+'</div>'
