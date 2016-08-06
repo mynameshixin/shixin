@@ -74,7 +74,7 @@ $(function (){
 					    $(".index_item_bottom a",$value).attr('src',user_nick)
 					    $(".index_item_authname",$value).html(user_nick).attr('href','/webd/user?oid='+list[index].user.id).attr('title',user_nick)
 
-					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id)
+					    $(".index_item_authava",$value).attr('href','/webd/user?oid='+list[index].user.id).attr('title',user_nick)
 					    $(".index_item_authtopart a",$value).html(list[index].folder_name).attr('href','/webd/folder?fid='+list[index].folder_id).attr('title',user_nick)
 					    var rh = parseInt(list[index].images[0].rh)>800?800:list[index].images[0].rh
 					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m).attr('alt',list[index].description)
