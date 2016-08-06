@@ -79,12 +79,12 @@ class ProductService extends ApiService
             'is_recommend' => isset($data['is_recommend']) ? $data['is_recommend'] : 0,
             'source' => isset($data['source']) ? $data['source'] : 0,
             'sort' => isset($data['sort']) ? $data['sort'] : 9999,
-            'cityid'=>isset($data['cityid']) ? $data['cityid'] : 0,
-            'devid'=>isset($data['devid']) ? $data['devid'] : 0,
-            'huid'=>isset($data['huid']) ? $data['huid'] : 0,
-            'typeid'=>isset($data['typeid']) ? $data['typeid'] : 0,
-            'btypeid'=>isset($data['btypeid']) ? $data['btypeid'] : 0,
-            'saleid'=>isset($data['saleid']) ? $data['saleid'] : 0,
+            'cityid'=>isset($data['cityid']) ? (int)$data['cityid'] : 0,
+            'devid'=>isset($data['devid']) ? (int)$data['devid'] : 0,
+            'huid'=>isset($data['huid']) ? (int)$data['huid'] : 0,
+            'typeid'=>isset($data['typeid']) ? (int)$data['typeid'] : 0,
+            'btypeid'=>isset($data['btypeid']) ? (int)$data['btypeid'] : 0,
+            'saleid'=>isset($data['saleid']) ? (int)$data['saleid'] : 0,
         );
         if (isset($data['image_ids']) && !empty($data['image_ids'])) {
             $entry['image_ids'] = $data['image_ids'];

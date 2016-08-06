@@ -268,7 +268,6 @@
 				</div>
 			<?php if(!empty($goods['collection_folders'])): ?><a href="javascript:;" class="detail_pop_baddmore" id="more">加载更多</a><?php endif; ?>
 			<?php endif; ?>
-
 			<?php if(!empty($goods['folders_one'])): ?>
 			<p class="detail_pop_btitle">推荐给你的采集</p>
 			<div id="main_show" role="main" class="w1248 w1240 clearfix" style="width: 1000px">

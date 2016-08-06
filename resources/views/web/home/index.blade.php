@@ -24,15 +24,15 @@
 							</div>
 							<div class="index_item_umdl clearfix">
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">{{$user_info['count']['collection_count']}}</p>
+									<p class="index_item_umnum"><a href="/webd/user?oid={{$user_info['id']}}" title="采集">{{$user_info['count']['collection_count']}}</a></p>
 									<p class="index_item_umitem">采集</p>
 								</div>
 								<div class="index_item_umcon">
-									<p class="index_item_umnum">{{$user_info['count']['folder_count']}}</p>
+									<p class="index_item_umnum"><a href="/webd/user?oid={{$user_info['id']}}" title="文件夹">{{$user_info['count']['folder_count']}}</a></p>
 									<p class="index_item_umitem">文件夹</p>
 								</div>
 								<div class="index_item_umcon" style="border-right: 0px;">
-									<p class="index_item_umnum">{{$user_info['count']['fans_count']}}</p>
+									<p class="index_item_umnum"><a href="/webd/user/fans?oid={{$user_info['id']}}" title="粉丝">{{$user_info['count']['fans_count']}}</a></p>
 									<p class="index_item_umitem">粉丝</p>
 								</div>
 							</div>
@@ -104,8 +104,8 @@
 </body>
 
 <script type="text/javascript">
-/*$(function(){
-	$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000,cache:false});
+$(function(){
+	/*$(document).pjax('a.index_item_blurwrap', '.detail_pop_o', {fragment:'.detail_pop', timeout:5000,cache:false});
 	$(document).on('pjax:send', function() {
 	    layer.load(0, {shade: 0.5});
 	});
@@ -113,8 +113,8 @@
 	    layer.closeAll('loading');
 	    $('body').css({'overflow':'hidden'})
 	    $('.detail_pop_o').show()
-	});
-})*/
+	});*/
+})
 </script>
 
 <script type="text/javascript">
