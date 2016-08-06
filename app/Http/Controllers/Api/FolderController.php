@@ -291,6 +291,7 @@ class FolderController extends BaseController
         if (empty($folder) || self::$user_id != $folder->user_id) {
             return response()->forApi(array(), 1001, '文件夹不存在或无权限修改');
         }
+        if(mb_substr($data['name'], 10)) return response()->forApi([],1001,'文件夹名称不能超过10个字');
         FolderService::getInstance()->update ($id,$data);
         return response()->forApi(['status' => 1]);
     }
