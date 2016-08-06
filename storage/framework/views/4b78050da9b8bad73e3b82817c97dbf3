@@ -94,7 +94,7 @@
 			        <span class="pop_labelname" style="font-size:14px;line-height:42px;width:100%;">图片展示<br>最多5张且每张大小不超过8M</span>
 			        <div class="pop_addpic_con clearfix" style="float:left">
 			            <div class="pop_addpic_wrap" style="position:relative;float:left;">
-			              <img src="/web/images/pop_upload_multi.png" alt="" class="show" />
+			              <img src="/web/images/pop_upload_multi.png" alt="堆图家" class="show" />
 			              <input type="file" name="image[]" multiple="true"/>
 			            </div>
 			        </div>
@@ -109,7 +109,7 @@
 					<span class="pop_close" onclick="$('#upload_outer').hide()"></span>
 					 
 					<div class="pop_col_sinput_wrap" style="margin-top: 20px">
-						<a href="javascript:;" class="pop_col_sinputbtn"></a>
+						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索'></a>
 						<input class="pop_col_sinput" placeholder="搜索">
 						<div id="search_upload_outer"></div>
 					</div>
@@ -135,7 +135,7 @@
 					
 				</div>
 				<div class="pop_add_foldbtn clearfix">
-					<a href="javascript:;" class="pop_add_addnew" id="show_folder_add" >+</a>
+					<a href="javascript:;" class="pop_add_addnew" id="show_folder_add" title="新建文件夹并上传" >+</a>
 					<p class="pop_add_addfont">新建文件夹并上传</p>
 				</div>
 			</div>
@@ -148,7 +148,7 @@
 		<div class="pop_con">
 			<div class="pop_col_left" style="height: 470px">
 				<div class="pop_col_ltop clearfix">
-					<!-- <img src="<?php echo e(url('uploads/sundry/wlogo.jpg')); ?>"  width="668" alt=""> -->
+					<!-- <img src="<?php echo e(url('uploads/sundry/wlogo.jpg')); ?>"  width="668" alt="堆图家"> -->
 				</div>			
 			</div>
 			<div class="pop_col_right">
@@ -172,8 +172,8 @@
 					</div>
 				</div>
 				<div class="pop_btnwrap">
-					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="$('#pic_folder_outer').hide()">取消</a>
-					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="pic_cfolder">创建</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="$('#pic_folder_outer').hide()" title="堆图家取消">取消</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="pic_cfolder" title="堆图家创建">创建</a>
 				</div>
 			</div>
 		</div>
@@ -191,8 +191,8 @@
 				<input class="pop_iptgoods" placeholder="粘贴商品网站" id="pop_ipt_goods">
 			</div>
 			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="geturl">获取</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="geturl" title="堆图家获取">获取</a>
 			</div>
 		</div>
 	</div>
@@ -227,8 +227,8 @@
 				<div class="pop_goodsimgwrap clearfix">
 					<p class="pop_goodsimgtit">商品图片</p>
 					<div class="pop_goodseachimg" id='pimg'>
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="">
+						<a href="javascript:;" class="pop_gooddelete" title="堆图家"></a>
+						<img src="public/images/temp/temp (1).png" height="127" width="127" alt="堆图家">
 						<!-- <div class="pop_good_toppne">主图</div> -->
 					</div>
 				</div>
@@ -273,8 +273,8 @@
 					</span>
 					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 				</div> -->
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave" id="u_b">保存</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave" id="u_b" title="堆图家保存">保存</a>
 			</div>
 		</div>
 	</form>
@@ -301,8 +301,8 @@
 				<label for="pop_iptpr_s"></label>
 			</div>
 			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folder">创建</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folder" title="堆图家创建">创建</a>
 			</div>
 		</div>
 	</div>
@@ -346,8 +346,8 @@
 		</div>
 		
 		<div class="pop_btnwrap">
-			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="uvr">上传</a>
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消">取消</a>
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="uvr" title="堆图家上传">上传</a>
 		</div>
 	</div>
 </form>
@@ -367,7 +367,7 @@
 		<div class="pop_con">
 			<div class="pop_col_left" style="height: 400px">
 				<div class="pop_col_ltop clearfix">
-					<img src=""  width="668" alt="">
+					<img src=""  width="668" alt="堆图家">
 					<div class="pop_col_dwrap clearfix">
 						<textarea class="pop_col_detailtext" title="" style="resize: none; padding: 0"></textarea>
 					</div>
@@ -384,7 +384,7 @@
 					 该文件已采集到<a href="javascript:;">工业风格</a>文件夹
 					 </p>
 					<div class="pop_col_sinput_wrap">
-						<a href="javascript:;" class="pop_col_sinputbtn"></a>
+						<a href="javascript:;" class="pop_col_sinputbtn" title="堆图家搜索"></a>
 						<input class="pop_col_sinput" placeholder="搜索">
 						<div id="search_form_outer"></div>
 					</div>
@@ -411,7 +411,7 @@
 					
 				</div>
 				<div class="pop_add_foldbtn clearfix">
-					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew_outer">+</a>
+					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew_outer" title="堆图家新建文件夹">+</a>
 					<p class="pop_add_addfont">新建文件夹</p>
 				</div>
 			</div>
@@ -422,7 +422,7 @@
 		<div class="pop_con">
 			<div class="pop_col_left" style="height: 400px">
 				<div class="pop_col_ltop clearfix">
-					<img src="" width="668" alt="">
+					<img src="" width="668" alt="堆图家">
 					<div class="pop_col_dwrap clearfix">
 						<textarea class="pop_col_detailtext" title="" style="padding: 0"></textarea>
 					</div>
@@ -452,8 +452,8 @@
 					</div>
 				</div>
 				<div class="pop_btnwrap">
-					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="cfolder_outer">创建</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消">取消</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="cfolder_outer" title="堆图家创建">创建</a>
 				</div>
 			</div>
 		</div>

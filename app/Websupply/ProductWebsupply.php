@@ -19,28 +19,28 @@ class ProductWebsupply extends CmWebsupply{
 
         $rows = DB::table('folder_goods')->where('kind', $kind);
         $rows = $rows->leftJoin('folders','folder_goods.folder_id','=','folders.id');
-        if (empty($folder_ids)) {
+        $rows = $rows->where('private',0);
+        /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
             $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids,$self_id) {
                 $rows = $rows->whereIn('folder_goods.user_id',$user_ids)
                     ->orwhereIn('folder_goods.folder_id',$folder_ids);
             });
-        }        
+        }  */      
 
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc');
-        // $rows = $rows->paginate($num);
         $skip = ($params['page']-1)*$num;
 
         $rows = $rows->skip($skip)->take($num)->get();
-        // $outDate = LibUtil::pageFomate($rows);
 
-        foreach ($rows as $key => $value) {
+
+        /*foreach ($rows as $key => $value) {
             if($value['private'] == 1 && $self_id != $value['user_id']){
                 unset($rows[$key]);
             }
             
-        }
+        }*/
 
         $outDate = [];
         if (!empty($rows)) {

@@ -140,7 +140,7 @@ var _hmt = _hmt || [];
             })
           </script>
         </div>
-        <p class="nolog_index_subtit">热门搜索：<a href="/webd/search/goods?keyword=沙发" target="_blank">沙发</a>、<a href="/webd/search/goods?keyword=吊灯" target="_blank">吊灯</a>、<a href="/webd/search/goods?keyword=窗帘" target="_blank">窗帘</a>、<a href="/webd/search/goods?keyword=中式" target="_blank">中式</a>、<a href="/webd/search/goods?keyword=法式" target="_blank">法式</a>、<a href="/webd/search/goods?keyword=饰品" target="_blank">饰品</a></p>
+        <p class="nolog_index_subtit">热门搜索：<a href="/webd/search/goods?keyword=沙发" target="_blank" title="堆图家沙发">沙发</a>、<a href="/webd/search/goods?keyword=吊灯" target="_blank" title="堆图家吊灯">吊灯</a>、<a href="/webd/search/goods?keyword=窗帘" target="_blank" title="堆图家窗帘">窗帘</a>、<a href="/webd/search/goods?keyword=中式" target="_blank" title="堆图家中式">中式</a>、<a href="/webd/search/goods?keyword=法式" target="_blank" title="堆图家法式">法式</a>、<a href="/webd/search/goods?keyword=饰品" target="_blank" title="堆图家饰品">饰品</a></p>
       </div>
     </div>
     <div class="nolog_index_container">
