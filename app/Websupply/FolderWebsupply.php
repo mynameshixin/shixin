@@ -205,7 +205,8 @@ class FolderWebsupply extends CmWebsupply {
 		 		$folder['goods'] = $goods;
 		 	}
 		 	//$folder['file_count'] = DB::table('goods')->where(['folder_id'=>$folder_id,'user_id'=>$folder['user_id']])->count();
-	 		$folder['fans_count'] = DB::table('collection_folder')->where('folder_id',$folder_id)->count();
+	 		$cfc = DB::table('collection_folder')->where('folder_id',$folder_id)->groupBy('user_id')->get();
+	 		$folder['fans_count'] = count($cfc);
 		}
 		
 		return $folder;
