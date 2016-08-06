@@ -217,7 +217,7 @@ class FolderWebsupply extends CmWebsupply {
 		$num = isset($data['num'])?$data['num']:15;
     	$skip = ($page-1)*$num;
 		$condition =['folder_id'=>$folder_id];
-		$user_info = DB::table('collection_folder')->where($condition)->get();
+		$user_info = DB::table('collection_folder')->where($condition)->groupBy('user_id')->skip($skip)->take($num)->get();
 
 		if($user_info){
 			foreach ($user_info as $key => $value) {

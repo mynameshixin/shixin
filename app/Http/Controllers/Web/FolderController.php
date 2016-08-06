@@ -79,7 +79,7 @@ class FolderController extends CmController{
 	public function postFans(){
 		$data = Input::all();
 		$data = fparam($data);
-        $data['num'] = isset($data['num']) ? $data['num'] : 15;
+        $data['num'] = isset($data['num']) ? $data['num'] : 5;
         $data['page'] = isset($data['page'])?$data['page']:1;
 		$rs = FolderWebsupply::get_folder_fans($this->folder_id,$this->user_id,$data);
 		$list['list'] = $rs;

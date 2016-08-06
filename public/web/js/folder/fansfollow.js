@@ -36,16 +36,30 @@ $(function (){
 						gpic_2 = data[index].folders[1].img_url
 						gpic_3 = data[index].folders[2].img_url
 						gpic_4 = data[index].folders[3].img_url
+						var name_1 = data[index].folders[0].name!=undefined?data[index].folders[0].name:'堆图家'
+						var name_2 = data[index].folders[1].name!=undefined?data[index].folders[1].name:'堆图家'
+						var name_3 = data[index].folders[2].name!=undefined?data[index].folders[2].name:'堆图家'
+						var name_4 = data[index].folders[3].name!=undefined?data[index].folders[3].name:'堆图家'
+						var h_1 = data[index].folders[0].id!=undefined?'/webd/folder?fid='+data[index].folders[0].id:'/webd/folder?fid=0'
+						var h_2 = data[index].folders[1].id!=undefined?'/webd/folder?fid='+data[index].folders[1].id:'/webd/folder?fid=0'
+						var h_3 = data[index].folders[2].id!=undefined?'/webd/folder?fid='+data[index].folders[2].id:'/webd/folder?fid=0'
+						var h_4 = data[index].folders[3].id!=undefined?'/webd/folder?fid='+data[index].folders[3].id:'/webd/folder?fid=0'
 						$($lis[index]).attr('user_id',data[index].user.id)
 						username = data[index].user.nick==''?data[index].user.username:data[index].user.nick
-						$('.find_user_name',$lis[index]).html(username)
+						$('.find_user_name',$lis[index]).html(username).attr('title',username).attr('href','/webd/user?oid='+data[index].user.id)
 						$('.find_user_rela',$lis[index]).html(data[index].count.fans_count+'粉丝 '+data[index].count.follow_count+'关注')
-						$('.find_user_img img',$lis[index]).attr('src',pic)
+						$('.find_user_img img',$lis[index]).attr('src',pic).attr('alt',username)
+						$('.find_user_img a',$lis[index]).attr('href','/webd/user?oid='+data[index].user.id).attr('title',username)
 
-						$('.find_user_limg li',$lis[index]).eq(0).find('img').attr('src',gpic_1)
-						$('.find_user_limg li',$lis[index]).eq(1).find('img').attr('src',gpic_2)
-						$('.find_user_limg li',$lis[index]).eq(2).find('img').attr('src',gpic_3)
-						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4)
+						$('.find_user_limg li',$lis[index]).eq(0).find('img').attr('src',gpic_1).attr('alt',name_1)
+						$('.find_user_limg li',$lis[index]).eq(1).find('img').attr('src',gpic_2).attr('alt',name_2)
+						$('.find_user_limg li',$lis[index]).eq(2).find('img').attr('src',gpic_3).attr('alt',name_3)
+						$('.find_user_limg li',$lis[index]).eq(3).find('img').attr('src',gpic_4).attr('alt',name_4)
+
+						$('.find_user_limg li',$lis[index]).eq(0).find('a').attr('href',h_1).attr('title',name_1)
+						$('.find_user_limg li',$lis[index]).eq(1).find('a').attr('href',h_2).attr('title',name_2)
+						$('.find_user_limg li',$lis[index]).eq(2).find('a').attr('href',h_3).attr('title',name_3)
+						$('.find_user_limg li',$lis[index]).eq(3).find('a').attr('href',h_4).attr('title',name_4)
 						r = data[index].relation
 						switch(r){
 							case 1:
