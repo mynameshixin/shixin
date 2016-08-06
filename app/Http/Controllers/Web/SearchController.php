@@ -195,11 +195,13 @@ class SearchController extends CmController{
 			$folders[$i]['is_follow'] = !empty($follow)?1:0;
 			//$folders[$i]['count'] = DB::table('goods')->where('folder_id',$id)->count();
 			$folders[$i]['user'] = UserWebsupply::user_info($value['user_id']);
-	 		$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take(3)->get();
+	 		/*$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids','title','description')->take(3)->get();
 	 		if(count($goods) < 3){
                 $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take(3 - count($goods))->get();
                 $goods = $cg+$goods;
-        	} 
+        	}*/
+            $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.folder_id'=>$id])->take(3)->select('g.id','g.image_ids','g.title','g.description')->orderBy('fg.created_at','desc')->get();
+
 	 		foreach ($goods as $k => $v) {
 	 			if(strpos($v['image_ids'],',') == 0){
 	 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');

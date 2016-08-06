@@ -336,9 +336,9 @@ $(function(){
 						gpic_2 = data[index].goods[1] != undefined?data[index].goods[1].image_url:defaultPic
 						gpic_3 = data[index].goods[2] != undefined?data[index].goods[2].image_url:defaultPic
 
-						gtitle_1 = data[index].goods[0].title != undefined?data[index].goods[0].title:'堆图家'
-						gtitle_2 = data[index].goods[1].title != undefined?data[index].goods[1].title:'堆图家'
-						gtitle_3 = data[index].goods[2].title != undefined?data[index].goods[2].title:'堆图家'
+						gtitle_1 = data[index].goods[0] != undefined?data[index].goods[0].title:'堆图家'
+						gtitle_2 = data[index].goods[1] != undefined?data[index].goods[1].title:'堆图家'
+						gtitle_3 = data[index].goods[2] != undefined?data[index].goods[2].title:'堆图家'
 
 						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:''
 						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:''

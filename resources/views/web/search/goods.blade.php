@@ -72,8 +72,8 @@
 						str += '<div class="index_item">'
 							+'<div class="index_item_wrap">'
 								+'<div class="index_item_imgwrap clearfix">'
-									+'<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank"></a>'
-									+'<img src="'+v.image_url+'" style="height:'+rh+'px" onload="resize_xy(this)">'
+									+'<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank" title="'+des+'"></a>'
+									+'<img src="'+v.image_url+'" style="height:'+rh+'px" onload="resize_xy(this)" alt="'+des+'">'
 									if(kind==1){
 										str += '<div class="index_item_price">'+v.price+'</div>'
 									}
@@ -82,12 +82,12 @@
 									+'<div class="index_item_top">'
 										+'<div class="index_item_intro" title="'+des+'">'+des+'</div>'
 										+'<div class="index_item_rel clearfix" good_id="'+v.id+'">'
-											+'<a  class="index_item_l" onclick="praise(this,1)">'+v.praise_count+'</a>'
-											+'<a  class="index_item_c" onclick="collect(this)">'+v.collection_count+'</a>'
+											+'<a  class="index_item_l" onclick="praise(this,1)" title="喜欢">'+v.praise_count+'</a>'
+											+'<a  class="index_item_c" onclick="collect(this)" title="保存">'+v.collection_count+'</a>'
 										if(kind==1){
-											str +='<a href="'+v.detail_url+'" class="index_item_b" target="_blank"></a>'
+											str +='<a href="'+v.detail_url+'" class="index_item_b" target="_blank" title="链接"></a>'
 										}else if(kind==2){
-											str +='<a href="javascript:;" class="index_item_d" onclick="praise(this,2)">'+v.boo_count+'</a>'
+											str +='<a href="javascript:;" class="index_item_d" onclick="praise(this,2)" title="踩">'+v.boo_count+'</a>'
 										}		
 									str +='</div>'
 									+'</div>'
@@ -96,13 +96,13 @@
 										userpic = v.cuser.auth_avatar!=null?v.cuser.auth_avatar:v.cuser.pic_m
 										nick = v.cuser.nick!=''?v.cuser.nick:v.cuser.username
 										str+='<div class="index_item_bottom clearfix">'
-											+'<a href="/webd/user?oid='+v.cuser.id+'" class="index_item_authava" target="_blank">'
-												+'<img src="'+userpic+'" alt="">'
+											+'<a href="/webd/user?oid='+v.cuser.id+'" class="index_item_authava" target="_blank" title="'+nick+'">'
+												+'<img src="'+userpic+'" alt="'+nick+'">'
 											+'</a>'
 											+'<div class="index_item_authinfo">'
-												+'<a href="/webd/user?oid='+v.cuser.id+'" target="_blank" class="index_item_authname">'+nick+'</a>'
+												+'<a href="/webd/user?oid='+v.cuser.id+'" target="_blank" class="index_item_authname" title="'+nick+'">'+nick+'</a>'
 												+'<span class="index_item_authto">采集到</span>'
-												+'<p class="index_item_authtopart"><a href="/webd/folder?fid='+v.cfolder.id+'" target="_blank">'+v.cfolder.name+'</a></p>'
+												+'<p class="index_item_authtopart"><a href="/webd/folder?fid='+v.cfolder.id+'" target="_blank" title="'+v.cfolder.name+'">'+v.cfolder.name+'</a></p>'
 											+'</div>'
 										+'</div>'
 									}
@@ -112,11 +112,11 @@
 										userpic = v.comment[$id].user.auth_avatar!=null?v.comment[$id].user.auth_avatar:v.comment[$id].user.pic_m
 										nick = v.comment[$id].user.nick!=''?v.comment[$id].user.nick:v.comment[$id].user.username
 										str+='<div class="index_item_bottom clearfix">'
-											+'<a href="/webd/user?oid='+v.comment[$id].user.id+'" class="index_item_authava" target="_blank">'
-												+'<img src="'+userpic+'" alt="">'
+											+'<a href="/webd/user?oid='+v.comment[$id].user.id+'" class="index_item_authava" target="_blank" title="'+nick+'">'
+												+'<img src="'+userpic+'" alt="'+nick+'">'
 											+'</a>'
 											+'<div class="index_item_authinfo index_item_authtalk">'
-												+'<a href="/webd/user?oid='+v.comment[$id].user.id+'" class="index_item_talkname" target="_blank">'+nick+'：</a>'
+												+'<a href="/webd/user?oid='+v.comment[$id].user.id+'" class="index_item_talkname" target="_blank" title="'+nick+'">'+nick+'：</a>'
 												+'<span class="index_item_authto">'+v.comment[$id].content+'</span>'
 											+'</div>'
 										+'</div>'
