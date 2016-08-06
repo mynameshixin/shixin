@@ -55,14 +55,15 @@ $(function (){
 		      		$firstTen = $items.slice(1, list.length+1).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
+		  				description = list[index].description==0?list[index].title:list[index].description
 		  				var rh = parseInt(list[index].images[0].rh)>800?800:list[index].images[0].rh
 		  				$(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m)
 		  				$(".index_item_wrap",$value).attr('good_id',list[index].id)
-		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id)
+		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id).attr('title',description)
 					    $(".index_item_price",$value).html('￥'+list[index].price)
 
 					    $('.detail_raido_wrapred',$value).attr('class','detail_raido_wrap')
-					    description = list[index].description==0?list[index].title:list[index].description
+					    
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 

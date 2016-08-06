@@ -111,8 +111,8 @@ class VrController extends BaseController{
         /*$rs = parent::validateAcessToken($data['access_token']);
         if(!$res = DB::table('users')->where('id',$rs['user_id'])->first()){
             return response()->forApi([],1001,'不存在的用户');
-        }*/
-
+        }*/ 
+        $data = Input::all();
     	$num = isset($data['num'])?$data['num']:8;
     	$page = isset($data['page'])?$data['page']:1;
     	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',3510)->select('*');

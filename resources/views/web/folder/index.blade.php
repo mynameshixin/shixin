@@ -19,7 +19,7 @@
 				<?php if($self_id==$user_id){?>
 					<div class="index_item" style="box-shadow: none;-webkit-box-shadow: none;">
 						<li class="find_fold_li perhome_add_one perhome_add_goods" style="margin-bottom: 0px;">
-							<a href="javascript:;" class="perhome_add_btn">+</a>
+							<a href="javascript:;" class="perhome_add_btn" title="添加">+</a>
 							<div class="perhome_add_des">添加<?php if($folder['private']==1) echo '隐私';?>文件</div>
 						</li>
 					</div>
@@ -31,9 +31,9 @@
 			    <div class="index_item">
 			    	<div class="index_item_wrap" good_id="{{$value['id']}}">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"></a>
+							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"  title="{{!empty(trim($value['description']))?$value['description']:$value['title']}}"></a>
 							<?php if(!empty($value['detail_url']) && $value['kind']==2): ?><a class="index_item_vrlogo" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"></a><?php endif; ?>
-							<img src="{{$value['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" style="height: {{$value['images'][0]['rh']}}px" onload="resize_xy(this)">
+							<img src="{{$value['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" style="height: {{$value['images'][0]['rh']}}px" onload="resize_xy(this)" alt="{{!empty(trim($value['description']))?$value['description']:$value['title']}}">
 							<?php if(!empty($value['price'])): ?>
 								<div class="index_item_price">￥{{$value['price']}}</div>
 							<?php endif; ?>
@@ -42,23 +42,23 @@
 							<div class="index_item_top">
 							<div class="index_item_intro" title="<?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?>"><?php  echo !empty(trim($value['description']))?$value['description']:$value['title']?></div>
 								<div class="index_item_rel clearfix" good_id="{{$value['id']}}">
-									<a class="index_item_l" onclick="praise(this,1)">{{$value['praise_count']}}</a>
-									<a class="index_item_c" onclick="collect(this)">{{$value['collection_count']}}</a>
+									<a class="index_item_l" onclick="praise(this,1)" title="喜欢">{{$value['praise_count']}}</a>
+									<a class="index_item_c" onclick="collect(this)" title="采集">{{$value['collection_count']}}</a>
 									<?php if($value['kind'] == 1): ?>
-										<a href="{{$value['detail_url']}}" class="index_item_b" target="_blank"></a>
+										<a href="{{$value['detail_url']}}" class="index_item_b" target="_blank" title="保存"></a>
 									<?php elseif($value['kind'] == 2):?>
-										<a class="index_item_d" onclick="praise(this,2)">{{$value['boo_count']}}</a>
+										<a class="index_item_d" onclick="praise(this,2)" title="点踩">{{$value['boo_count']}}</a>
 									<?php endif; ?>
 								</div>
 							</div>
 							<?php if(!empty($value['comment'])): ?>
 								<?php $comment = $value['comment'][$value['id']]; ?>
 								<div class="index_item_bottom clearfix comment">
-									<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" class="index_item_authava" target="_blank">
-										<img src="{{!empty($comment['user']['auth_avatar'])?$comment['user']['auth_avatar']:$comment['user']['pic_m']}}" alt="">
+									<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" title="{{$comment['user']['nick'] or $comment['user']['username']}}" class="index_item_authava" target="_blank">
+										<img src="{{!empty($comment['user']['auth_avatar'])?$comment['user']['auth_avatar']:$comment['user']['pic_m']}}" alt="{{$comment['user']['nick'] or $comment['user']['username']}}">
 									</a>
 									<div class="index_item_authinfo index_item_authtalk">
-										<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" target="_blank" class="index_item_talkname">{{$comment['user']['nick'] or $comment['user']['username']}}：</a>
+										<a href="{{url('webd/user')}}?oid={{$comment['user']['id']}}" target="_blank" class="index_item_talkname" title="{{$comment['user']['nick'] or $comment['user']['username']}}">{{$comment['user']['nick'] or $comment['user']['username']}}：</a>
 										<span class="index_item_authto">{{$comment['content']}}</span>
 									</div>
 								</div>
