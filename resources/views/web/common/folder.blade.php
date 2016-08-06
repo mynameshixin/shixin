@@ -28,24 +28,24 @@
 						<div class="detail_fileinfo">
 							<div class="detail_fileuser">
 								<div class="detail_fuava">
-									<a href="/webd/user?oid={{$folder['user_id']}}" target="_blank"><img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt=""></a>
+									<a href="/webd/user?oid={{$folder['user_id']}}" target="_blank" title="{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}"><img src="{{!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']}}" alt="{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}"></a>
 								</div>
 								<p class="detail_funame">{{!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']}}</p>
 							</div>
 							<?php if(!$folder['private']){?>
 							<div class="perhome_perlike_wrap clearfix">
-								<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
+								<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>" title="文件">
 									<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
 									<p class="perhome_perlike_la">文件</p>
 								</a>
-								<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
+								<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>" title="关注">
 									<p class="perhome_perlike_num">{{$folder['fans_count']}}</p>
 									<p class="perhome_perlike_la">关注</p>
 								</a>
 							</div>
 							<?php }else{ ?>
 								<div class="perhome_perlike_wrap clearfix" style="margin-left: 436px;margin-top: 0px;padding-top: 8px;height:48px;">
-									<a href="javascript:;" class="perhome_perlike_label">
+									<a href="javascript:;" class="perhome_perlike_label" title="隐私文件">
 										<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
 										<p class="perhome_perlike_la">隐私文件</p>
 									</a>
@@ -65,6 +65,8 @@
 											<span class="jiathis_style_32x32" id="own_share">
 												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
 												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_tsina detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/weibo.png" height="19" width="19" alt="">微博</a>
+												<a class="jiathis_button_douban detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/douban.png" height="19" width="19" alt="">豆瓣</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
@@ -134,6 +136,8 @@
 											<span class="jiathis_style_32x32" id="own_share">
 												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="{{asset('web')}}/images/qq.png" height="18" width="15" alt="">QQ</a>
 												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_tsina detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/weibo.png" height="19" width="19" alt="">微博</a>
+												<a class="jiathis_button_douban detail_fileb_selecta"><img class="detail_fileb_swx" src="{{asset('web')}}/images/douban.png" height="19" width="19" alt="">豆瓣</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
@@ -143,7 +147,7 @@
 								<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 								<!-- JiaThis Button END -->
 								<?php if($folder['user_id']!=$self_id){ ?>
-								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" >
+								<li style="display: inline-block;" folder_id="{{$folder['id']}}"><a href="javascript:;" style="color:#fff" class="detail_filebtn detail_filebtn_cpadding" onclick="relation(this)" title="堆图家">
 								<?php echo $folder['is_follow']?"已关注":"<span>+</span>特别关注";?></a></li>
 								<?php } ?>
 								<?php if($folder['user_id']==$self_id){ ?>
@@ -154,8 +158,8 @@
 									</div>
 									<div class="detail_fileb_select detail_fileb_selectt slideup">
 										<div class="detail_fileb_selectw">
-											<a class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg">批量管理文件</a>
-											<a class="detail_fileb_seleta detail_fileb_sfld" onclick="folderEditInner(this)">编辑文件夹</a>
+											<a class="detail_fileb_seleta detail_fileb_seletah detail_fileb_simg" title="批量管理文件">批量管理文件</a>
+											<a class="detail_fileb_seleta detail_fileb_sfld" onclick="folderEditInner(this)" title="编辑文件夹">编辑文件夹</a>
 											<var class="detail_fileb_setril"></var>
 										</div>
 									</div>
@@ -170,11 +174,11 @@
 			<div class="detail_select_bg"></div>
 			<div class="w1248 w1240 clearfix">
 				<div class="detail_select_con">
-					<a href="javascript:;" id="detail_all_select" class="detail_select_cball">全选</a>
-					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey">完成</a>
-					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele">删除</a>
-					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn ">复制至...</a>
-					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn ">移动至...</a>
+					<a href="javascript:;" id="detail_all_select" class="detail_select_cball" title="全选">全选</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey" title="完成">完成</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele" title="删除">删除</a>
+					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn " title="复制至">复制至...</a>
+					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn " title="移动至">移动至...</a>
 				</div>
 			</div>
 		</div>
@@ -203,9 +207,9 @@
 				<label for="pop_iptpr3"></label>
 			</div>
 			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除文件夹</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folderedit">编辑</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete" title="删除文件夹">删除文件夹</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="取消">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding folderedit" title="编辑">编辑</a>
 			</div>
 		</div>
 	</div>
@@ -235,8 +239,8 @@
 				<a href="javascript:;" class="pop_change_imgbtn pop_change_imgrigt"></a>
 			</div>
 			<div class="pop_btnwrap" style="border-top: 1px solid #f1f1f1;">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="avatarsave">保存</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="取消">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="avatarsave" title="保存">保存</a>
 			</div>
 		</div>
 	</div>

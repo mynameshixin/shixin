@@ -1,7 +1,7 @@
   <div class="pop_login pop_login1" style="display: none;" login="1">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="">
+        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -29,7 +29,7 @@
               <div class="pop_login_safe pop_login_safel">低</div>
             </div>
           </div>
-          <a href="javascript:;" class="pop_login_confirm" id="confirm1">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" id="confirm1" title="堆图家确定">确定</a>
           <p class="pop_login_des">
             注册即表示同意<a href="javascript:;">《用户使用条款及服务协议》</a>
           </p>
@@ -41,7 +41,7 @@
   <div class="pop_login pop_login2" style="display:none">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="">
+        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -49,9 +49,9 @@
           使用第三方账号登录
         </div>
         <div class="pop_login_conother">
-          <a href="/webd/tlogin/weibo?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
-          <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
-          <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank"></a>
+          <a href="/webd/tlogin/weibo?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank" title="微博"></a>
+          <a href="/webd/tlogin/wechat?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank" title="微信"></a>
+          <a href="/webd/tlogin/qq?rurl=<?php echo urlencode($_SERVER['REQUEST_URI']);?>" target="_blank" title="qq"></a>
           <a href="javascript:;" onclick="layer_error('该功能仍在建设中')" style="margin-right: 0px;"></a>
         </div>
         <div class="pop_login_contit">
@@ -64,11 +64,11 @@
           <div class="pop_login_contwrap">
             <input class="pop_login_c" type="password" name="password" value="" placeholder="堆图家注册密码">
           </div>
-          <a href="javascript:;" class="pop_login_confirm" id="confirm2">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" id="confirm2" title="堆图家确定">确定</a>
           <p class="pop_login_des">
-            <a href="javascript:;" id="forgetpwd">忘记密码&nbsp;》</a>
+            <a href="javascript:;" id="forgetpwd" title="堆图家忘记密码">忘记密码&nbsp;》</a>
             <span class="pop_login_desw" style="float: right;">
-            还没有堆图家账号？<a href="javascript:;" id="register">点击注册&nbsp;》</a>
+            还没有堆图家账号？<a href="javascript:;" id="register" title="堆图家点击注册">点击注册&nbsp;》</a>
             </span>
           </p>
         </div>
@@ -79,7 +79,7 @@
   <div class="pop_login pop_login3" style="display:none" login="2">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="">
+        <img src="<?php echo e(asset('/static/web/images/index-img/pop_logo.png')); ?>" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -110,7 +110,7 @@
           <div class="pop_login_contwrap clearfix">
             <input class="pop_login_c" type="password" name="repassword" value="" placeholder="再次输入新密码">
           </div>
-          <a href="javascript:;" class="pop_login_confirm" style="margin-bottom: 21px;" id="confirm3">确定</a>
+          <a href="javascript:;" class="pop_login_confirm" style="margin-bottom: 21px;" id="confirm3" title="堆图家确定">确定</a>
           
         </div>
       </div>

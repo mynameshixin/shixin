@@ -12,14 +12,14 @@
 				<div class="perhome_perinfo_wrap clearfix">
 					<div class="perhome_perinfo">
 						<div class="perhome_perava">
-							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
+							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}">
 						</div>
 						<div class="perhome_perline">
 							<?php if($user_id!=$self_id){ ?>
 							<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="otherhome_follow">留言</a>
 							<?php } ?>
 							<?php if($user_id!=$self_id){ ?>
-							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}">
+							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}" title="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}">
 
 							<?php 
 								switch ($user_info['t_relation']) {
@@ -59,29 +59,29 @@
 				<div class="w1248 w1240 clearfix">
 					<div class="perhome_cater_info" style="display:none">
 						<div class="perhome_scroll_ava">
-							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="">
+							<img src="{{!empty($user_info['auth_avatar'])?$user_info['auth_avatar']:$user_info['pic_m']}}" alt="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}">
 						</div>
 						<div class="perhome_scroll_name">{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}</div>
 					</div>
 					
 					<div class="perhome_cater_wrap clearfix" style="width: 690px;margin: auto;padding: 6px 0px;">
-						<a href='{{url("webd/user/index?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
+						<a href='{{url("webd/user/index?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>" title="文件夹">
 						<p class="perhome_perlike_num">{{$user_info['count']['folder_count']}}</p>
 						<p class="perhome_perlike_la">文件夹</p>
 						</a>
-						<a href='{{url("webd/user/praise?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
+						<a href='{{url("webd/user/praise?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>" title="喜欢">
 							<p class="perhome_perlike_num">{{$user_info['count']['praise_count']}}</p>
 							<p class="perhome_perlike_la">喜欢</p>
 						</a>
-						<a href='{{url("webd/user/pub?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==3?'perhome_perlike_lon':''; ?>">
+						<a href='{{url("webd/user/pub?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==3?'perhome_perlike_lon':''; ?>" title="发布">
 							<p class="perhome_perlike_num">{{$user_info['count']['pub_count']}}</p>
 							<p class="perhome_perlike_la">发布</p>
 						</a>
-						<a href='{{url("webd/user/fans?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==4?'perhome_perlike_lon':''; ?>">
+						<a href='{{url("webd/user/fans?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==4?'perhome_perlike_lon':''; ?>" title="粉丝">
 							<p class="perhome_perlike_num">{{$user_info['count']['fans_count']}}</p>
 							<p class="perhome_perlike_la">粉丝</p>
 						</a>
-						<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==5?'perhome_perlike_lon':''; ?>">
+						<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="perhome_perlike_label <?php echo $type==5?'perhome_perlike_lon':''; ?>" title="关注">
 							<p class="perhome_perlike_num">{{$user_info['count']['follow_count']}}</p>
 							<p class="perhome_perlike_la">关注</p>
 						</a>

@@ -29,24 +29,24 @@
 						<div class="detail_fileinfo">
 							<div class="detail_fileuser">
 								<div class="detail_fuava">
-									<a href="/webd/user?oid=<?php echo e($folder['user_id']); ?>" target="_blank"><img src="<?php echo e(!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']); ?>" alt=""></a>
+									<a href="/webd/user?oid=<?php echo e($folder['user_id']); ?>" target="_blank" title="<?php echo e(!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']); ?>"><img src="<?php echo e(!empty($folder['user_info']['auth_avatar'])?$folder['user_info']['auth_avatar']:$folder['user_info']['pic_m']); ?>" alt="<?php echo e(!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']); ?>"></a>
 								</div>
 								<p class="detail_funame"><?php echo e(!empty($folder['user_info']['nick'])?$folder['user_info']['nick']:$folder['user_info']['username']); ?></p>
 							</div>
 							<?php if(!$folder['private']){?>
 							<div class="perhome_perlike_wrap clearfix">
-								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($folder['id']); ?>" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>">
+								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($folder['id']); ?>" class="perhome_perlike_label <?php echo $type==1?'perhome_perlike_lon':''; ?>" title="文件">
 									<p class="perhome_perlike_num"><?php echo e(isset($folder['file_count']) ? $folder['file_count'] : $folder['count']); ?></p>
 									<p class="perhome_perlike_la">文件</p>
 								</a>
-								<a href="<?php echo e(url('webd/folder/fans')); ?>?fid=<?php echo e($folder['id']); ?>" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>">
+								<a href="<?php echo e(url('webd/folder/fans')); ?>?fid=<?php echo e($folder['id']); ?>" class="perhome_perlike_label <?php echo $type==2?'perhome_perlike_lon':''; ?>" title="关注">
 									<p class="perhome_perlike_num"><?php echo e($folder['fans_count']); ?></p>
 									<p class="perhome_perlike_la">关注</p>
 								</a>
 							</div>
 							<?php }else{ ?>
 								<div class="perhome_perlike_wrap clearfix" style="margin-left: 436px;margin-top: 0px;padding-top: 8px;height:48px;">
-									<a href="javascript:;" class="perhome_perlike_label">
+									<a href="javascript:;" class="perhome_perlike_label" title="隐私文件">
 										<p class="perhome_perlike_num"><?php echo e(isset($folder['file_count']) ? $folder['file_count'] : $folder['count']); ?></p>
 										<p class="perhome_perlike_la">隐私文件</p>
 									</a>
@@ -66,6 +66,8 @@
 											<span class="jiathis_style_32x32" id="own_share">
 												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="<?php echo e(asset('web')); ?>/images/qq.png" height="18" width="15" alt="">QQ</a>
 												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_tsina detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/weibo.png" height="19" width="19" alt="">微博</a>
+												<a class="jiathis_button_douban detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/douban.png" height="19" width="19" alt="">豆瓣</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
@@ -135,6 +137,8 @@
 											<span class="jiathis_style_32x32" id="own_share">
 												<a class="jiathis_button_qzone detail_fileb_selecta detail_fileb_selectah"><img class="detail_fileb_sqq" src="<?php echo e(asset('web')); ?>/images/qq.png" height="18" width="15" alt="">QQ</a>
 												<a class="jiathis_button_weixin detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/wechat.png" height="17" width="19" alt="">微信</a>
+												<a class="jiathis_button_tsina detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/weibo.png" height="19" width="19" alt="">微博</a>
+												<a class="jiathis_button_douban detail_fileb_selecta"><img class="detail_fileb_swx" src="<?php echo e(asset('web')); ?>/images/douban.png" height="19" width="19" alt="">豆瓣</a>
 											</span>
 											<var class="detail_fileb_setril"></var>
 										</div>
