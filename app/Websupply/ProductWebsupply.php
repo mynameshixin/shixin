@@ -230,7 +230,7 @@ class ProductWebsupply extends CmWebsupply{
         $num = isset($data['num'])?$data['num']:15;
         $skip = ($page-1)*$num;
         
-        $goods = DB::table('folder_goods as fg')->leftJoin('goods as g','fg.good_id','=','g.id')->where(['fg.folder_id'=>$folder_id])->select('g.image_ids','g.id')->take(100)->get();
+        $goods = DB::table('folder_goods as fg')->leftJoin('goods as g','fg.good_id','=','g.id')->where(['fg.folder_id'=>$folder_id])->select('g.image_ids','g.id','g.title','g.description')->take(100)->get();
         $last = count($goods)-1;
         foreach ($goods as $k => $v) {
             if($good_id == $v['id']){
@@ -274,7 +274,7 @@ class ProductWebsupply extends CmWebsupply{
             $folders['is_follow'] = !empty($follow)?1:0;
             if(!empty($gnum) && !empty($id)){
                 //$goods = DB::table('goods')->where('folder_id',$id)->select('id','image_ids')->take($gnum)->get();
-                $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folders['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
+                $goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$folders['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids','g.title','g.description')->orderBy('fg.created_at','desc')->get();
                     foreach ($goods as $k => $v) {
                         if(strpos($v['image_ids'],',') == 0){
                             $goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');

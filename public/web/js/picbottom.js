@@ -57,12 +57,13 @@ $(function (){
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
 		  				$('.index_item_price',$value).remove()
-		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id)
+		  				
 		  				if(list[index].price!=0){
 		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
 		  				}
 
 					    description = list[index].description!=''?list[index].description:list[index].title
+					    $('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id).attr('title',description)
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
@@ -81,13 +82,13 @@ $(function (){
 					    		var str = ''
 					    		nick = value.nick!=''?value.nick:value.username
 					    		str = '<div class="index_item_bottom clearfix">'
-									+'<a href="/webd/user/index?oid='+value.user_id+'" class="index_item_authava" target="_blank">'
-										+'<img src="'+value.user.pic_m+'" alt="">'
+									+'<a href="/webd/user/index?oid='+value.user_id+'" class="index_item_authava" target="_blank" title="'+nick+'">'
+										+'<img src="'+value.user.pic_m+'" alt="'+nick+'">'
 									+'</a>'
 									+'<div class="index_item_authinfo">'
-										+'<a href="/webd/user/index?oid='+value.user_id+'" target="_blank" class="index_item_authname">'+nick+'</a>'
+										+'<a href="/webd/user/index?oid='+value.user_id+'" target="_blank" class="index_item_authname" title="'+nick+'">'+nick+'</a>'
 										+'<span class="index_item_authto">采集到</span>'
-										+'<p class="index_item_authtopart"><a href="/webd/folder?fid='+value.folder_id+'" target="_blank">'+value.name+'</a></p>'
+										+'<p class="index_item_authtopart"><a href="/webd/folder?fid='+value.folder_id+'" target="_blank" title="'+value.name+'">'+value.name+'</a></p>'
 									+'</div>'
 								+'</div>'
 								ap+=str
@@ -95,7 +96,7 @@ $(function (){
 							$($value).append(ap)
 					    }
 					    var rh = parseInt(list[index].rh)>800?800:list[index].rh
-					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].image_url)
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].image_url).attr('alt',description)
 					   
 		  			})
 		  			$('#load_show').hide()

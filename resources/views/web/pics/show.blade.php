@@ -19,8 +19,8 @@
 	<div class="detail_pop">
 		
 		<a href="javascript:;" class="detail_pop_loadclose" style="display: block; top:0;right: 30px" onclick="$('.detail_pop_o').hide();$('body').attr('style','')"></a>
-		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft"></a>
-		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright"></a>
+		<a href="{{url('webd/pic/')}}/{{$goods['more']['pre'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadleft" title="上一个"></a>
+		<a href="{{url('webd/pic/')}}/{{$goods['more']['next'] or '#'}}" class="detail_pop_loadbtn detail_pop_loadright" title="下一个"></a>
 
 		<div class="perhome_scroll_wrap shadow" style="transform: translate(0px, 0px); transition: transform 200ms ease; display: none; position: fixed;">
 			<div class="w1248 w1240 clearfix" style="width: 990px">
@@ -89,16 +89,16 @@
 		
 						<div class="detail_pop_timgwarp" style="overflow: hidden; text-align: center;">
 						<?php if(!empty($goods['detail_url'])){ ?>
-							<a href="{{$goods['detail_url']}}" target="_blank"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)" class="bigimg"></a>
+							<a href="{{$goods['detail_url']}}" target="_blank" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}"  onload="re668(this)" class="bigimg" alt="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}"></a>
 						<?php  }else{?>
-							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="" onload="re668(this)" class="bigimg">
+							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}" onload="re668(this)" class="bigimg">
 						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
 
-						<?php if(!empty($goods['detail_url']) && $goods['kind']==2){?><a href="{{$goods['detail_url']}}" target="_blank"><img src="{{asset('web')}}/images/vrlogo.png" alt="" style="position: absolute; display: none; left:278.5px;top:50px; z-index: 2" id="vlogo"></a> <?php } ?>
+						<?php if(!empty($goods['detail_url']) && $goods['kind']==2){?><a href="{{$goods['detail_url']}}" target="_blank" title="vr"><img src="{{asset('web')}}/images/vrlogo.png" alt="vr" style="position: absolute; display: none; left:278.5px;top:50px; z-index: 2" id="vlogo"></a> <?php } ?>
 						</div>
 						<p class="detail_pop_des" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}">
-							{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}<a href="javascript:;" class="detail_pop_desmore"></a>
+							{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}<a href="javascript:;" class="detail_pop_desmore" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}"></a>
 						</p>
 						<?php if(!empty($goods['detail_url'])): ?>
 							<div class="detail_pop_from">
@@ -122,10 +122,10 @@
 					<div class="detail_pop_tlbtm">
 						<div class="detail_pop_tlbtmauth clearfix">
 							<div class="detail_pop_authava">
-								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank"><img src="{{!empty($goods['user']['auth_avatar'])?$goods['user']['auth_avatar']:$goods['user']['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank" title="{{$goods['user']['nick'] or $goods['user']['username']}}"><img src="{{!empty($goods['user']['auth_avatar'])?$goods['user']['auth_avatar']:$goods['user']['pic_m']}}" alt="{{$goods['user']['nick'] or $goods['user']['username']}}"></a>
 							</div>
 							<div class="detail_pop_authinfo">
-								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
+								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank" title="{{$goods['user']['nick'] or $goods['user']['username']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 								<p class="detail_pop_authcollect">采集到<span>{{$goods['folder']['name']}}</span></p>
 							</div>
 							<a class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" user_id="{{$goods['user_id']}}" <?php if($goods['user_id'] == $self_id): ?>style="display: none"<?php endif; ?>>
@@ -150,10 +150,10 @@
 
 							<li class="clearfix" <?php if(!in_array($key, [0,1,2])): ?>style="display: none"<?php endif; ?>>
 								<div class="detail_pop_authava">
-									<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt=""></a>
+									<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" title="{{$v['user']['nick'] or $v['user']['username']}}"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt="{{$v['user']['nick'] or $v['user']['username']}}"></a>
 								</div>
 								<div class="detail_pop_cominfo">
-									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- {{$v['min']}}前说：
+									<p class="detail_pop_comname"><a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" title="{{$v['user']['nick'] or $v['user']['username']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>- {{$v['min']}}前说：
 									<!-- <span class="detail_pop_comshare">
 										<a href="javascript:;" class="detail_pop_share1"></a>
 										<a href="javascript:;" class="detail_pop_share2"></a>
@@ -170,7 +170,7 @@
 						<?php if(!empty($goods['comments'])): ?><a href="javascript:;" class="detail_pop_loadmore">显示全部评论</a><?php endif; ?>
 						<div class="detail_pop_compublish clearfix">
 							<div class="detail_pop_authava">
-								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user/index')}}?oid={{$self_info['id']}}" title="{{$self_info['nick'] or $self_info['username']}}"><img src="{{!empty($self_info['auth_avatar'])?$self_info['auth_avatar']:$self_info['pic_m']}}" alt="{{$self_info['nick'] or $self_info['username']}}"></a>
 							</div>
 							<textarea name="caption" placeholder="添加评论" class="detail_pop_compub" autocomplete="off"></textarea>
 						</div>
@@ -183,14 +183,14 @@
 					<div class="detail_pop_trauth clearfix">
 						<div class="detail_pop_authava">
 							<?php if($goods['folder']['id'] == 0){ ?>
-								<img src="{{$goods['folder']['img_url']}}" alt="">
+								<img src="{{$goods['folder']['img_url']}}" alt="堆图家">
 							<?php }else{ ?>
-								<a href="{{url('webd/folder')}}?fid={{$goods['folder']['id']}}" target="_blank"><img src="{{$goods['folder']['img_url']}}" alt=""></a>
+								<a href="{{url('webd/folder')}}?fid={{$goods['folder']['id']}}" target="_blank" title="{{$goods['folder']['name']}}"><img src="{{$goods['folder']['img_url']}}" alt="{{$goods['folder']['name']}}"></a>
 							<?php } ?>
 						</div>
 						<div class="detail_pop_authinfo">
 							<p class="detail_pop_authname"><a <?php if($goods['folder']['id'] != 0): ?>href="{{url('webd/folder/index')}}?fid={{$goods['folder']['id']}}"<?php endif; ?> target="_blank">{{$goods['folder']['name']}}</a></p>
-							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
+							<p class="detail_pop_authcollect"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank" title="{{$goods['user']['nick'] or $goods['user']['username']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
 						</div>
 						<li folder_id = "{{$goods['folder']['id']}}">
 							<a href="javascript:;" class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" <?php  if($goods['user']['id']==$self_id):?>style="display: none"<?php endif; ?>>
@@ -208,8 +208,8 @@
 								<div class="detail_pop_tritem">
 									<div class="index_item_wrap">
 										<div class="index_item_imgwrap clearfix">
-											<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
-											<img src="{{$v['image_url']}}">
+											<a title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}" class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" <?php if($v['id']==$goods['id']) echo 'style="opacity: 0"'; ?>></a>
+											<img src="{{$v['image_url']}}" alt="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">
 										</div>
 									</div>
 								</div>
@@ -230,30 +230,30 @@
 							<li class="find_fold_li <?php if(($k+1)%4==0) echo 'mrightzero'; ?>" folder_id="{{$v['id']}}">
 								<div class="find_fold_info clearfix">
 									<div class="find_fold_authava">
-										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt=""></a>
+										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank" title="{{$v['user']['nick'] or $v['user']['username']}}"><img src="{{!empty($v['user']['auth_avatar'])?$v['user']['auth_avatar']:$v['user']['pic_m']}}" alt="{{$v['user']['nick'] or $v['user']['username']}}"></a>
 									</div>
 									<div class="find_fold_tname">
-										<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="find_fold_name">{{$v['name']}}</a>
-										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme">{{$v['user']['nick'] or $v['user']['username']}}</a>
+										<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="find_fold_name" title="{{$v['name']}}">{{$v['name']}}</a>
+										<a href="{{url('webd/user/index')}}?oid={{$v['user']['id']}}" target="_blank" class="find_fold_authnme" title="{{$v['user']['nick'] or $v['user']['username']}}">{{$v['user']['nick'] or $v['user']['username']}}</a>
 									</div>
 								</div>
 								<div class="find_fold_imgwrap">
 									<div class="find_fold_imgblur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="position"><img src="{{$v['img_url']}}" alt="" onload="rect(this)"></a>
+									<a href="{{url('webd/folder')}}?fid={{$v['id']}}" target="_blank" class="position" title="{{$v['name']}}"><img src="{{$v['img_url']}}" alt="{{$v['name']}}" onload="rect(this)"></a>
 									<div class="find_fold_catflw">{{$v['count']}}文件&nbsp;&nbsp;{{$v['collection_count']}}关注</div>
 								</div>
 								<div class="find_fold_limg clearfix">
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<a href="{{url('webd/pic')}}/{{$v['goods'][0]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+										<a href="{{url('webd/pic')}}/{{$v['goods'][0]['id'] or '#'}}" class="position" target="_blank" title="{{$v['goods'][0]['title'] or '堆图家'}}"><img src="{{$v['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$v['goods'][0]['title'] or '堆图家'}}"></a>
 									</div>
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<a href="{{url('webd/pic')}}/{{$v['goods'][1]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+										<a href="{{url('webd/pic')}}/{{$v['goods'][1]['id'] or '#'}}" class="position" target="_blank" title="{{$v['goods'][1]['title'] or '堆图家'}}"><img src="{{$v['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$v['goods'][1]['title'] or '堆图家'}}"></a>
 									</div>
 									<div class="find_fold_liwrap">
 										<div class="find_fold_liblur"></div>
-										<a href="{{url('webd/pic')}}/{{$v['goods'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{$v['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+										<a href="{{url('webd/pic')}}/{{$v['goods'][2]['id'] or '#'}}" class="position" target="_blank" title="{{$v['goods'][2]['title'] or '堆图家'}}"><img src="{{$v['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$v['goods'][2]['title'] or '堆图家'}}"></a>
 									</div>
 								</div>
 								<a href="javascript:;" class="find_fold_authflw" onclick="relation(this)" <?php  if($v['user_id']==$self_id):?>style="display: none"<?php endif; ?>>
@@ -277,9 +277,9 @@
 					<div class="index_item">
 						<div class="index_item_wrap">
 							<div class="index_item_imgwrap clearfix">
-								<a class="index_item_blurwrap" target="_blank" href="{{url('webd/pic')}}/{{$v['id']}}"></a>
+								<a class="index_item_blurwrap" target="_blank" href="{{url('webd/pic')}}/{{$v['id']}}" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}"></a>
 								<?php if(!empty($v['price'])): ?><div class="index_item_price">￥{{$v['price']}}</div><?php endif; ?>
-								<img src="{{$v['image_url']}}" style="height: {{$v['rh']}}px" onload="resize_xy(this)">
+								<img src="{{$v['image_url']}}" style="height: {{$v['rh']}}px" onload="resize_xy(this)" alt="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">
 							</div>
 							<div class="index_item_info">
 								<div class="index_item_top">
@@ -297,11 +297,11 @@
 								</div>
 								<?php foreach ($v['collection_good'] as $key => $value):?>
 								<div class="index_item_bottom clearfix">
-									<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" class="index_item_authava" target="_blank">
-										<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
+									<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" class="index_item_authava" target="_blank" title="{{$value['user']['nick'] or $value['user']['username']}}">
+										<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="{{$value['user']['nick'] or $value['user']['username']}}">
 									</a>
 									<div class="index_item_authinfo">
-										<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" target="_blank" class="index_item_authname">{{!empty($value['nick'])?$value['nick']:$value['username']}}</a>
+										<a href="{{url('webd/user/index')}}?oid={{$value['user_id']}}" target="_blank" class="index_item_authname" title="{{!empty($value['nick'])?$value['nick']:$value['username']}}">{{!empty($value['nick'])?$value['nick']:$value['username']}}</a>
 										<span class="index_item_authto">采集到</span>
 										<p class="index_item_authtopart"><a href="{{url('webd/folder')}}?fid={{$value['folder_id']}}" target="_blank">{{$value['name']}}</a></p>
 									</div>
