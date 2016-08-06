@@ -55,7 +55,9 @@ class HomeController extends CmController{
         $data['page'] = isset($data['page'])?$data['page']:1;
         $user_ids = $folder_ids = [];
         $user_id = $this->user_id;
-        if (isset($user_id) && !empty($user_id)){
+        $user_ids[] = $user_id;
+        $folder_ids = [];
+        /*if (isset($user_id) && !empty($user_id)){
             $user_follow =  DB::table('user_follow')->where('user_id',$user_id)->lists('userid_follow');
             $folder_ids1 = DB::table('collection_folder')->where('user_id',$user_id)->lists('folder_id');
             $user_ids = $user_follow;
@@ -68,7 +70,7 @@ class HomeController extends CmController{
         $user_ids = array_unique($user_ids);
         $folder_ids = DB::table('folders')->whereIn('user_id',$user_ids)->lists('id');
         if(isset($folder_ids1) && !empty($folder_ids1)) $folder_ids = array_merge($folder_ids,$folder_ids1);
-        $folder_ids = array_unique($folder_ids);
+        $folder_ids = array_unique($folder_ids);*/
         $rs = ProductWebsupply::getProductsByFids($folder_ids,$user_ids,$data,$num,$user_id);
         return response()->forApi($rs);
 

@@ -172,7 +172,7 @@ var _hmt = _hmt || [];
         <!-- 1 -->
         <div class="nolog_index_conreco clearfix">
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[0]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[0]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[0]['id']); ?>" target="_blank" title="堆图家卧室"><img src="<?php echo e($recommend[0]['img_url']); ?>" alt="堆图家卧室"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -181,13 +181,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[0]['id']); ?>" target="_blank"><?php echo e($recommend[0]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[0]['id']); ?>" target="_blank" title="<?php echo e($recommend[0]['name']); ?>"><?php echo e($recommend[0]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[0]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[0]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[0]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[0]['user']['nick']))?$recommend[0]['user']['nick']:$recommend[0]['user']['username']); ?></a>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[0]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[0]['user']['nick']))?$recommend[0]['user']['nick']:$recommend[0]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[0]['user']['nick']))?$recommend[0]['user']['nick']:$recommend[0]['user']['username']); ?></a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -196,22 +196,22 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[1]['id']); ?>" target="_blank"><?php echo e($recommend[1]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[1]['id']); ?>" target="_blank" title="<?php echo e($recommend[1]['name']); ?>"><?php echo e($recommend[1]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[1]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[1]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[1]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[1]['user']['nick']))?$recommend[1]['user']['nick']:$recommend[1]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[1]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[1]['user']['nick']))?$recommend[1]['user']['nick']:$recommend[1]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[1]['user']['nick']))?$recommend[1]['user']['nick']:$recommend[1]['user']['username']); ?>
 
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[1]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[1]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[1]['id']); ?>" target="_blank" title="装置艺术"><img src="<?php echo e($recommend[1]['img_url']); ?>" alt="装置艺术"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[2]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[2]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[2]['id']); ?>" target="_blank" title="庭院"><img src="<?php echo e($recommend[2]['img_url']); ?>" alt="庭院"></a>
           </div>
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -220,13 +220,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[2]['id']); ?>" target="_blank"><?php echo e($recommend[2]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[2]['id']); ?>" target="_blank" title="<?php echo e($recommend[2]['name']); ?>"><?php echo e($recommend[2]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[2]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[2]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[2]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[2]['user']['nick']))?$recommend[2]['user']['nick']:$recommend[2]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[2]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[2]['user']['nick']))?$recommend[2]['user']['nick']:$recommend[2]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[2]['user']['nick']))?$recommend[2]['user']['nick']:$recommend[2]['user']['username']); ?>
 
               </p>
             </div>
@@ -244,22 +244,22 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[3]['id']); ?>" target="_blank"><?php echo e($recommend[3]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[3]['id']); ?>" target="_blank" title="<?php echo e($recommend[3]['name']); ?>"><?php echo e($recommend[3]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[3]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[3]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[3]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[3]['user']['nick']))?$recommend[3]['user']['nick']:$recommend[3]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[3]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[3]['user']['nick']))?$recommend[3]['user']['nick']:$recommend[3]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[3]['user']['nick']))?$recommend[3]['user']['nick']:$recommend[3]['user']['username']); ?>
 
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[3]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[3]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[3]['id']); ?>" target="_blank" title="边柜"><img src="<?php echo e($recommend[3]['img_url']); ?>" alt="边柜"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[4]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[4]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[4]['id']); ?>" target="_blank" title="J酒店"><img src="<?php echo e($recommend[4]['img_url']); ?>" alt="J酒店"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -268,13 +268,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[4]['id']); ?>" target="_blank"><?php echo e($recommend[4]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[4]['id']); ?>" target="_blank" title="<?php echo e($recommend[4]['name']); ?>"><?php echo e($recommend[4]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[4]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[4]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[4]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[4]['user']['nick']))?$recommend[4]['user']['nick']:$recommend[4]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[4]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[4]['user']['nick']))?$recommend[4]['user']['nick']:$recommend[4]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[4]['user']['nick']))?$recommend[4]['user']['nick']:$recommend[4]['user']['username']); ?>
 
               </p>
             </div>
@@ -284,24 +284,24 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[5]['id']); ?>" target="_blank"><?php echo e($recommend[5]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[5]['id']); ?>" target="_blank" title="<?php echo e($recommend[5]['name']); ?>"><?php echo e($recommend[5]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[5]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[5]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[5]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[5]['user']['nick']))?$recommend[5]['user']['nick']:$recommend[5]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[5]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[5]['user']['nick']))?$recommend[5]['user']['nick']:$recommend[5]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[5]['user']['nick']))?$recommend[5]['user']['nick']:$recommend[5]['user']['username']); ?>
 
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox mrightzero">
-            <a href="/webd/folder?fid=<?php echo e($recommend[5]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[5]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[5]['id']); ?>" target="_blank" title="【配色】早安色彩"><img src="<?php echo e($recommend[5]['img_url']); ?>" alt="【配色】早安色彩"></a>
           </div>
 
           <!-- 3 -->
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[6]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[6]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[6]['id']); ?>" target="_blank" title="方案排版"><img src="<?php echo e($recommend[6]['img_url']); ?>" alt="方案排版"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -310,13 +310,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[6]['id']); ?>" target="_blank"><?php echo e($recommend[6]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[6]['id']); ?>" target="_blank" title="<?php echo e($recommend[6]['name']); ?>"><?php echo e($recommend[6]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[6]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[6]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[6]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']); ?></a>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[6]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']); ?></a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -325,22 +325,22 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[7]['id']); ?>" target="_blank"><?php echo e($recommend[7]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[7]['id']); ?>" target="_blank" title="<?php echo e($recommend[7]['name']); ?>"><?php echo e($recommend[7]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[7]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[7]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[7]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[7]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']); ?>
 
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[7]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[7]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[7]['id']); ?>" target="_blank" title="衣帽间"><img src="<?php echo e($recommend[7]['img_url']); ?>" alt="衣帽间"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid=<?php echo e($recommend[8]['id']); ?>" target="_blank"><img src="<?php echo e($recommend[8]['img_url']); ?>" alt=""></a>
+            <a href="/webd/folder?fid=<?php echo e($recommend[8]['id']); ?>" target="_blank" title="椅子"><img src="<?php echo e($recommend[8]['img_url']); ?>" alt="椅子"></a>
           </div>
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -349,13 +349,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[8]['id']); ?>" target="_blank"><?php echo e($recommend[8]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[8]['id']); ?>" target="_blank" title="<?php echo e($recommend[8]['name']); ?>"><?php echo e($recommend[8]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[8]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[8]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[8]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[8]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']); ?>
 
               </p>
             </div>
@@ -374,13 +374,13 @@ var _hmt = _hmt || [];
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid=<?php echo e($recommend[9]['id']); ?>" target="_blank"><?php echo e($recommend[9]['name']); ?></a>
+                <a href="/webd/folder?fid=<?php echo e($recommend[9]['id']); ?>" target="_blank" title="<?php echo e($recommend[9]['name']); ?>"><?php echo e($recommend[9]['name']); ?></a>
               </p>
               <p class="nolog_index_conrecfans">
                 <?php echo e($recommend[9]['count']['folder_count']); ?>文件&nbsp;&nbsp;<?php echo e($recommend[9]['count']['fans_count']); ?>粉丝
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid=<?php echo e($recommend[9]['user']['id']); ?>" target="_blank"><?php echo e(!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']); ?>
+                来自<a href="/webd/user?oid=<?php echo e($recommend[9]['user']['id']); ?>" target="_blank" title="<?php echo e(!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']); ?>"><?php echo e(!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']); ?>
 
               </p>
             </div>

@@ -1,7 +1,7 @@
   <div class="pop_login pop_login1" style="display: none;" login="1">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="">
+        <img src="{{asset('/static/web/images/index-img/pop_logo.png')}}" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
