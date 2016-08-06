@@ -66,7 +66,7 @@
 
 <script type="text/javascript">
 	postUrl = '{{url("webd/folder/fans")}}?oid={{$user_id}}&fid={{$folder['id']}}'
-	postData = {'num':5,'kind':2}
+	postData = {'num':15,'kind':2}
 </script>
 
 <script type="text/javascript" src="{{asset('web')}}/js/folder/fansfollow.js"></script>
