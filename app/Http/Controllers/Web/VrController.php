@@ -147,6 +147,37 @@ class VrController extends CmController{
 		return response()->forApi(['list' => $needData]);
 	}
 
+	// vr制作预约
+	public function postVrorder(){
+		$data = Input::all();
+		$data = fparam($data);
+		$rules = [
+			'type'=>'required|in:1,2',
+			'num'=>'required|integer',
+			'area'=>'required|numeric',
+			'name'=>'required|min:1|max:20',
+			'mobile'=>'required|regex:/^1[34578][0-9]{9}$/',
+			'other'=>'max:200'
+		];
+		$pa = [
+			'type.required|in:1,2'=>'空间类型错误',
+			'num.required'=>'空间数不能为空',
+			'num.integer'=>'空间数不是一个有效数字',
+			'area.required'=>'面积不能为空',
+			'area.numeric'=>'面积不是一个有效数字',
+			'name.required'=>'联系人不能为空',
+			'name.max'=>'联系人不能超过20个字',
+			'mobile.required'=>'联系方式不能为空',
+			'mobile.regex'=>'联系方式不是一个有效手机号',
+			'other.max'=>'补充信息不能超过200个字'
+		];
+		parent::validator($data,$rules,$pa);
+		$data['create_at'] = date("Y-m-d H:i:s");
+		$id = DB::table('vr_order')->insertGetId($data);
+		
+		return response()->forApi(['id' => $id]);
+	}
+
 }
 
 

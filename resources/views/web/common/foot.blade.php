@@ -32,6 +32,7 @@
     </div>
   <!--vr预约制作提醒-->
   <div class="pop_vr_apply" style="display: none;">
+    <form action="" method="post" name="vr_order">
     <div class="pop_con">
       <p class="pop_tit">
         VR制作预约
@@ -40,12 +41,17 @@
       </p>
       <div class="pop_namewrap clearfix">
         <h3>空间类型</h3>
-        <p class="radio_btns"><input type="radio" name="type" id="type" value=""/><label for="type">实体门店</label> <input type="radio" name="type" id="type2"  value="实体门店"/> <label for="type2">住宅空间</label> </p>
-        <p><label for="space_num">空间数</label><input type="text" name="space_num" id="space_num" placeholder="所需拍摄场景数量"/></p>
-        <p><label for="space_area">空间面积</label><input type="text" name="space_area" id="space_area" placeholder="整个空间的面积"/></p>
-        <p><label for="space_area">联系人</label><input type="text" name="space_area" id="space_area" placeholder="申请方联系人"/></p>
-        <p><label for="space_area">联系方式</label><input type="text" name="space_area" id="space_area" placeholder="请预留联系方式便于堆图家及时联系" value=""/></p>
-        <p><label for="space_area">其他补充</label><textarea type="text" name="space_area" id="space_area" placeholder="其他补充说明或要求" ></textarea></p>
+        <p class="radio_btns">
+           <input type="radio" name="type" id="type" value="1" checked="checked" />
+           <label for="type">实体门店</label>
+           <input type="radio" name="type" id="type2"  value="2"/> 
+           <label for="type2">住宅空间</label>
+         </p>
+        <p><label for="space_num">空间数</label><input type="text" name="num" id="space_num" placeholder="所需拍摄场景数量"/></p>
+        <p><label for="space_area">空间面积</label><input type="text" name="area" id="space_area" placeholder="整个空间的面积"/></p>
+        <p><label for="space_area">联系人</label><input type="text" name="name" id="space_area" placeholder="申请方联系人"/></p>
+        <p><label for="space_area">联系方式</label><input type="text" name="mobile" id="space_area" placeholder="请预留联系方式便于堆图家及时联系" value=""/></p>
+        <p><label for="space_area">其他补充</label><textarea type="text" name="other" id="space_area" placeholder="其他补充说明或要求" ></textarea></p>
 
       </div>
       <div class="pop_btnwrap">
@@ -53,7 +59,7 @@
         <a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding vr_apply_sub">提交</a>
       </div>
     </div>
-    
+    </form>
     
   </div>
   <div class="pop_con_info" style="display: none;">
@@ -120,21 +126,23 @@
       });
 
       $('.vr_apply_sub').click(function(){
+        var data = $('form[name=vr_order]').serialize();
         $.ajax({
+          dataType:'json',
           type:"post",
-          url:"#",
-          async:true,
-          success:function(date){
-            if(data){
+          url:"/vrp/vrorder",
+          data:data,
+          success:function(json){
+            if(json.code==200){
               $('.pop_vr_apply').hide();
-              $('body').append()
+              $('.sunccess').show();
+              $('.sunccess').fadeOut(5000);
+            }else{
+              layer.msg(json.message, {icon: 5});
+              return
             }
           },
-          error:function(date){//模拟正确提交测试
-            $('.pop_vr_apply').hide();
-            $('.sunccess').show();
-            $('.sunccess').fadeOut(5000);
-          }
+         
         });
       })
 </script>
