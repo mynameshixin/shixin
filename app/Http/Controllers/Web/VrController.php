@@ -160,7 +160,7 @@ class VrController extends CmController{
 			'other'=>'max:200'
 		];
 		$pa = [
-			'type.required|in:1,2'=>'空间类型错误',
+			'type.required'=>'空间类型不能为空',
 			'num.required'=>'空间数不能为空',
 			'num.integer'=>'空间数不是一个有效数字',
 			'area.required'=>'面积不能为空',
