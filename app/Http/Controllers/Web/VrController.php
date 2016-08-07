@@ -151,6 +151,7 @@ class VrController extends CmController{
 	public function postVrorder(){
 		$data = Input::all();
 		$data = fparam($data);
+		dd($data);
 		$rules = [
 			'type'=>'required|in:1,2',
 			'num'=>'required|integer',
