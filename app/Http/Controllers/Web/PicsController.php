@@ -33,7 +33,6 @@ class PicsController extends CmController{
 		
 		$user_id = $this->user_id; 
 		$goods = $this->postGoods();
-		// dd($goods);
 		$data = [
 			'self_id'=>$user_id,
 			'self_info'=>$this->self_info,

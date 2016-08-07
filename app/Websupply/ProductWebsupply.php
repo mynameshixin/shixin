@@ -13,13 +13,14 @@ class ProductWebsupply extends CmWebsupply{
 	private static $sources = ['0' => '用户发布', '1' => '淘宝网'];
 	//获取商品信息
 	public static function getProductsByFids($folder_ids,$user_ids,$params,$num,$self_id){
+       
 		$kind = isset($params['kind']) ? $params['kind'] : 1;
         $user_ids = array_unique($user_ids);
         $self_id  = !empty($self_id)?$self_id:0;
 
-        $rows = DB::table('folder_goods')->where('kind', $kind);
+        $rows = DB::table('folder_goods')->where('folder_goods.kind', $kind);
         $rows = $rows->leftJoin('folders','folder_goods.folder_id','=','folders.id');
-        $rows = $rows->where('private',0);
+        $rows = $rows->where('folders.private',0);
         /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
@@ -29,7 +30,7 @@ class ProductWebsupply extends CmWebsupply{
             });
         }  */      
 
-        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc');
+        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
         $skip = ($params['page']-1)*$num;
 
         $rows = $rows->skip($skip)->take($num)->get();
@@ -41,7 +42,6 @@ class ProductWebsupply extends CmWebsupply{
             }
             
         }*/
-
         $outDate = [];
         if (!empty($rows)) {
             $params['ids'] = $product_ids = array_column($rows, 'good_id');
@@ -68,8 +68,8 @@ class ProductWebsupply extends CmWebsupply{
 	public static function getProductListByIds($product_ids, $params = [],$user_info=true)
     {
         $rows = DB::table('goods')->whereIn('id', $product_ids);
-        //$condtion = [];
-        $condtion = ['is_delete' => 0,'status'=>1];
+        $condtion = [];
+        // $condtion = ['is_delete' => 0,'status'=>1];
         if (isset($params['kind'])) $condtion['kind'] = $params['kind'];
         if (isset($params['user_id'])) $condtion['user_id'] = $params['user_id'];
         if (!empty($condtion)) $rows = $rows->where($condtion);

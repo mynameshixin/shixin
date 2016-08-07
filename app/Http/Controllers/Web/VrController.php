@@ -17,13 +17,14 @@ class VrController extends CmController{
 	public function index($id){
 		$id = (int)($id);
 		if($id == 1) return $this->dream();
-		if($id == 2) $this->design();
-		if($id == 3) $this->vrindex();
+		if($id == 2) return $this->design();
+		if($id == 3) return $this->vrindex();
 	}
 
 	public function needData($data,$folder_id,$typeid=0,$btypeid=0){
         $num = isset($data['num'])?$data['num']:4;
         $page = isset($data['page'])?$data['page']:1;
+
         $rows = DB::table('folder_goods as fg')->select('g.id','g.folder_id','g.created_at','g.kind','g.user_id','g.title','g.description','g.detail_url','g.source_url','g.image_ids','g.praise_count','g.cityid')->where('fg.folder_id',$folder_id);
         if(!empty($typeid)){
             $rows = $rows->where('g.typeid',$typeid);
@@ -83,16 +84,68 @@ class VrController extends CmController{
 		return view('web.vr.index',$data);
 	}
 
+	// 梦想家更多
+	public function postDream(){
+		$data = Input::all();
+		$data['num'] = 9;
+		$needData = $this->needData($data,3510);
+		// dd($needData);
+		return response()->forApi(['list' => $needData]);
+	}
+
 	// 设计家首页
 	public function design(){
+		$data = Input::all();
+		$data['num'] = 9;
+		$needData = $this->needData($data,3511,2);
+		$needData2 = $this->needData($data,3511,3);
+		// dd($needData);
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'user_info'=>!empty($user_info)?$user_info:[],
+			'needData'=>$needData,
+			'needData2'=>$needData2
+		];
+		return view('web.vr.design',$data);
+	}
 
+	// 设计家更多
+	public function postDesign(){
+		$data = Input::all();
+		$data['num'] = 9;
+		$needData = $this->needData($data,3510,$data['type']);
+		// dd($needData);
+		return response()->forApi(['list' => $needData]);
 	}
 
 	// vr门店首页
 	public function vrindex(){
-
+		$data = Input::all();
+		$data['num'] = 1;
+		$needData = $this->needData($data,3438,0,1);
+		$needData2 = $this->needData($data,3438,0,2);
+		$needData3 = $this->needData($data,3438,0,3);
+		// dd($needData);
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'user_info'=>!empty($user_info)?$user_info:[],
+			'needData'=>$needData,
+			'needData2'=>$needData2,
+			'needData3'=>$needData3
+		];
+		return view('web.vr.vrindex',$data);
 	}
 
+	// vr门店首页更多
+	public function postVrindex(){
+		$data = Input::all();
+		$data['num'] = 9;
+		$needData = $this->needData($data,3438,0,$data['type']);
+		// dd($needData);
+		return response()->forApi(['list' => $needData]);
+	}
 
 }
 

@@ -984,7 +984,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .sunccess .sunccess_txt span{font-size: 21px;}
 /*梦幻家-vr*/
 .vr_home{width: 100%; height: auto;padding-top: 60px; background-color: #e8e8e8;}
-.vr_home_list{width: 310px;height: 246px; float: left;margin-right: 30px; overflow: hidden;margin-bottom: 30px; border-radius: 6px;background: #fff;box-shadow: 0 1px 3px rgba(0,0,0,.3); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);}
+.vr_home_list{width: 310px;height: 246px; float: left;margin: 0 10px; overflow: hidden;margin-bottom: 30px; border-radius: 6px;background: #fff;box-shadow: 0 1px 3px rgba(0,0,0,.3); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);}
 .vr_home_list:hover{background: #fff;opacity: 0.9;}
 .vr_home_list .vr_content{width: 100%; height: 194px;overflow: hidden;position: relative;}
 .vr_content img{width: 100%; height: auto;display: block;}
