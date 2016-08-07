@@ -151,7 +151,6 @@ class VrController extends CmController{
 	public function postVrorder(){
 		$data = Input::all();
 		$data = fparam($data);
-		dd($data);
 		$rules = [
 			'type'=>'required|in:1,2',
 			'num'=>'required|integer',
@@ -173,9 +172,9 @@ class VrController extends CmController{
 			'other.max'=>'补充信息不能超过200个字'
 		];
 		parent::validator($data,$rules,$pa);
+		if(isset($data['/vrp/vrorder'])) unset($data['/vrp/vrorder']);
 		$data['create_at'] = date("Y-m-d H:i:s");
 		$id = DB::table('vr_order')->insertGetId($data);
-		
 		return response()->forApi(['id' => $id]);
 	}
 
