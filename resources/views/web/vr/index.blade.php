@@ -56,114 +56,20 @@
 			<div class="w1248">
 				<div class="w990 clearfix">
 					<ul class="clearfix">
-						<li class="vr_home_list">
+					<?php foreach ($needData as $key => $v) { ?>
+						<li class="vr_home_list <?php if(($key+1)%3==0): ?>mrightzero <?php endif; ?>">
 							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
+								<a class="index_item_vrlogo" href="{{$v['detail_url']}}" target="_blank"></a>
+								<span>{{$v['title']}}</span>
+								<img src="{{$v['images'][0]['img_m']}}"/>
 							</div>
 							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
+								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
+								<span class="vr_like">{{$v['praise_count']}}</span>
+								<span class="vr_view">{{$v['viewcount'] or '0'}}</span>
 							</div>
 						</li>
-						<li class="vr_home_list">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}//images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list mrightzero">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list mrightzero">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
-						<li class="vr_home_list mrightzero">
-							<div class="vr_content">
-								<a class="index_item_vrlogo"></a>
-								<span>绿洲中环三居室样板房</span>
-								<img src="{{asset('web')}}/images/vr_pic1.png"/>
-							</div>
-							<div class="vr_title">
-								<span class="vr_home_loc">上海 普陀区</span>
-								<span class="vr_like">68</span>
-								<span class="vr_view">253</span>
-							</div>
-						</li>
+					<?php } ?>
 					</ul>
 					<div class="des_more"><a href="#">看看其它</a></div>
 				</div>
