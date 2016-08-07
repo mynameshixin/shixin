@@ -35,7 +35,7 @@
     <div class="pop_con">
       <p class="pop_tit">
         VR制作预约
-        <a href="##" class="arrow">说明</a>
+        <a href="javascript:;" class="arrow">说明</a>
         <span class="pop_close"></span>
       </p>
       <div class="pop_namewrap clearfix">
@@ -53,14 +53,18 @@
         <a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding vr_apply_sub">提交</a>
       </div>
     </div>
-    <div class="pop_con pop_con_info" style="display: none;">
+    
+    
+  </div>
+  <div class="pop_con_info" style="display: none;">
+    <div class="pop_con" style="width: 472px;height: 464px;overflow: hidden;margin-left: -244px;">
       <p class="pop_tit">
-        <a href="##" class="arrow_left">返回</a>
+        <a href="javascript:;" class="arrow_left">返回</a>
         <span class="pop_close"></span>
       </p>
       <div class="pop_namewrap clearfix">
         <div class="pop_con_logo">
-          <img src="public/images/app_logo.png"/>
+          <img src="<?php echo e(asset('web')); ?>/images/app_logo.png"/>
         </div>
         <ul class="pay_rules">
           <li>VR制作费报价依据空间数统计,每个空间按照500元/点进行计费</li>
@@ -74,8 +78,8 @@
         <p>www.duitujia.com</p>
         <p>Add:上海普陀区怒江北路598号红星世贸大厦1207</p>
       </div>
+      </div>
     </div>
-  </div>
   <div class="sunccess" style="display: none">
     <div class="smile"></div>
     <div class="sunccess_txt">
@@ -85,38 +89,52 @@
 <script type="text/javascript">
   //vr制作申请JS代码
       $('.arrow').click(function(){
-        $(".pop_con_info").fadeIn("slow");
-      })
-      $('.arrow_left,.pop_con_info .pop_close').click(function(){
-        $(".pop_con_info").fadeOut("slow");
-      });
-       $('.vr_apply').click(function(){
-          $('.pop_vr_apply').show();
-          var popconHei = $('.pop_vr_apply .pop_con').height();
-
-          $('.pop_vr_apply .pop_con').css({
-             'margin-top':-(popconHei/2)
-          })
-        });
-        $('.pop_vr_apply,.pop_vr_apply .detail_pop_cancel,.pop_vr_apply .pop_close').click(function(){
-          $('.pop_vr_apply').hide();
-        });
-        $('.vr_apply_sub').click(function(){
-          $.ajax({
-            type:"post",
-            url:"#",
-            async:true,
-            success:function(date){
-              if(data){
-                $('.pop_vr_apply').hide();
-                $('body').append()
-              }
-            },
-            error:function(date){//模拟正确提交测试
-              $('.pop_vr_apply').hide();
-              $('.sunccess').show();
-              $('.sunccess').fadeOut(5000);
-            }
-          });
+        $('.pop_vr_apply').hide();
+        $(".pop_con_info").show();
+        var popconHei = $('.pop_con_info .pop_con').height();
+        $('.pop_con_info .pop_con').css({
+           'margin-top':-(popconHei/2)
         })
+      })
+
+      $('.arrow_left,.pop_con_info .pop_close').click(function(){
+        $(".pop_con_info").hide();
+        $('.pop_vr_apply').show();
+        var popconHei = $('.pop_vr_apply .pop_con').height();
+        $('.pop_vr_apply .pop_con').css({
+           'margin-top':-(popconHei/2)
+        })
+      });
+
+     $('.vr_apply').click(function(){
+        $('.pop_vr_apply').show();
+        var popconHei = $('.pop_vr_apply .pop_con').height();
+        $('.pop_vr_apply .pop_con').css({
+           'margin-top':-(popconHei/2)
+        })
+      });
+
+      $('.pop_vr_apply .detail_pop_cancel,.pop_close').click(function(){
+        $('.pop_vr_apply').hide();
+        $(".pop_con_info").hide();
+      });
+
+      $('.vr_apply_sub').click(function(){
+        $.ajax({
+          type:"post",
+          url:"#",
+          async:true,
+          success:function(date){
+            if(data){
+              $('.pop_vr_apply').hide();
+              $('body').append()
+            }
+          },
+          error:function(date){//模拟正确提交测试
+            $('.pop_vr_apply').hide();
+            $('.sunccess').show();
+            $('.sunccess').fadeOut(5000);
+          }
+        });
+      })
 </script>
