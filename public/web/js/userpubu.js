@@ -57,13 +57,14 @@ $(function (){
 		      		$firstTen = $items.slice(0, list.length).clone();
 		  			$.each($firstTen,function(index,v){
 		  				$value = $firstTen[index]
+		  				description = list[index].description!=''?list[index].description:list[index].title
 		  				$('.index_item_price',$value).remove()
-		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id)
+		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id).attr('title',description)
 		  				if(list[index].price!=0){
 		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
 		  				}
 
-					    description = list[index].description!=''?list[index].description:list[index].title
+					    
 					    $(".index_item_intro",$value).html(description);
 					    $(".index_item_intro",$value).attr('title',description)
 
@@ -85,11 +86,11 @@ $(function (){
 					    	user_nick = (comment.user.nick!='')?comment.user.nick:comment.user.username
 					    	pic_m = (comment.user.auth_avatar!=null)?comment.user.auth_avatar:comment.user.pic_m
 				    		$str = '<div class="index_item_bottom clearfix comment">'
-								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank">'
-									+'<img src="'+pic_m+'" alt="">'
+								+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_authava" target="_blank" title="'+user_nick+'">'
+									+'<img src="'+pic_m+'" alt="'+user_nick+'">'
 								+'</a>'
 								+'<div class="index_item_authinfo index_item_authtalk">'
-									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank">'+user_nick+'：</a>'
+									+'<a href="/webd/user?oid='+comment.user.id+'" class="index_item_talkname" target="_blank" title="'+user_nick+'">'+user_nick+'：</a>'
 									+'<span class="index_item_authto">'+comment.content+'</span>'
 								+'</div>'
 							+'</div>'
@@ -100,7 +101,7 @@ $(function (){
 					    pic = list[index].images!=undefined?list[index].images[0].img_m:defaultPic
 					    var rh = list[index].images!=undefined?parseInt(list[index].images[0].rh):''
 					    var rh = parseInt(rh)>800?800:parseInt(rh)
-					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',pic)
+					    $(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',pic).attr('alt',description)
 					   
 		  			})
 		  			$('#load').hide()

@@ -24,26 +24,26 @@
 					<li class="find_fold_li" folder_id="<?php echo e($value['id']); ?>">
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_tname">
-								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="find_fold_name"><?php echo e($value['name']); ?></a>
+								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="find_fold_name" title="<?php echo e($value['name']); ?>"><?php echo e($value['name']); ?></a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<div class="find_fold_imgblur"></div>
-							<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="position"><img src="<?php echo e(isset($value['img_url']) ? $value['img_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="rect(this)"></a>
+							<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="position" title="<?php echo e($value['name']); ?>"><img src="<?php echo e(isset($value['img_url']) ? $value['img_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e($value['name']); ?>" onload="rect(this)"></a>
 							<div class="find_fold_catflw"><?php echo e($value['count']); ?>文件&nbsp;&nbsp;<?php echo e($value['collection_count']); ?>关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][0]['id']) ? $value['goods'][0]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php echo e(isset($value['goods'][0]['image_url']) ? $value['goods'][0]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][0]['id']) ? $value['goods'][0]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][0]['title']) ? $value['goods'][0]['title'] : '堆图家'); ?>"><img src="<?php echo e(isset($value['goods'][0]['image_url']) ? $value['goods'][0]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e(isset($value['goods'][0]['title']) ? $value['goods'][0]['title'] : '堆图家'); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][1]['id']) ? $value['goods'][1]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php echo e(isset($value['goods'][1]['image_url']) ? $value['goods'][1]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][1]['id']) ? $value['goods'][1]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][1]['title']) ? $value['goods'][1]['title'] : '堆图家'); ?>"><img src="<?php echo e(isset($value['goods'][1]['image_url']) ? $value['goods'][1]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e(isset($value['goods'][1]['title']) ? $value['goods'][1]['title'] : '堆图家'); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][2]['id']) ? $value['goods'][2]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php echo e(isset($value['goods'][2]['image_url']) ? $value['goods'][2]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][2]['id']) ? $value['goods'][2]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][2]['title']) ? $value['goods'][2]['title'] : '堆图家'); ?>"><img src="<?php echo e(isset($value['goods'][2]['image_url']) ? $value['goods'][2]['image_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e(isset($value['goods'][2]['title']) ? $value['goods'][2]['title'] : '堆图家'); ?>"></a>
 							</div>
 						</div>
 						<a  <?php if($user_id != $self_id){ ?>onclick="relation(this)"<?php }else{ ?>onclick="folderEdit(this)" <?php } ?> class="find_fold_authflw " style="cursor: pointer;">
@@ -77,27 +77,27 @@
 					<li class="find_fold_li" folder_id="<?php echo e($value['id']); ?>" >
 						<div class="find_fold_info clearfix">
 							<div class="find_fold_tname">
-								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="find_fold_name"><?php echo e($value['name']); ?></a>
+								<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="find_fold_name" title="<?php echo e($value['name']); ?>"><?php echo e($value['name']); ?></a>
 							</div>
 						</div>
 						<div class="find_fold_imgwrap">
 							<!-- <div class="find_fold_lock"></div> -->
 							<div class="find_fold_imgblur"></div>
-							<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="position"><img src="<?php echo e(isset($value['img_url']) ? $value['img_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="" onload="rect(this)"></a>
+							<a href="<?php echo e(url('webd/folder')); ?>?fid=<?php echo e($value['id']); ?>" target="_blank" class="position" title="<?php echo e($value['name']); ?>"><img src="<?php echo e(isset($value['img_url']) ? $value['img_url'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e($value['name']); ?>" onload="rect(this)"></a>
 							<div class="find_fold_catflw"><?php echo e($value['count']); ?>文件&nbsp;&nbsp;<?php echo e($value['collection_count']); ?>关注</div>
 						</div>
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][0]['id']) ? $value['goods'][0]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php  echo isset($value['goods'][0]['image_url'])?$value['goods'][0]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][0]['id']) ? $value['goods'][0]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][0]['title']) ? $value['goods'][0]['title'] : '堆图家'); ?>"><img src="<?php  echo isset($value['goods'][0]['image_url'])?$value['goods'][0]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="<?php echo e(isset($value['goods'][0]['title']) ? $value['goods'][0]['title'] : '堆图家'); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][1]['id']) ? $value['goods'][1]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php  echo isset($value['goods'][1]['image_url'])?$value['goods'][1]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][1]['id']) ? $value['goods'][1]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][1]['title']) ? $value['goods'][1]['title'] : '堆图家'); ?>"><img src="<?php  echo isset($value['goods'][1]['image_url'])?$value['goods'][1]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="<?php echo e(isset($value['goods'][1]['title']) ? $value['goods'][1]['title'] : '堆图家'); ?>"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][2]['id']) ? $value['goods'][2]['id'] : '#'); ?>" class="position" target="_blank"><img src="<?php  echo isset($value['goods'][2]['image_url'])?$value['goods'][2]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt=""></a>
+								<a href="<?php echo e(url('webd/pic')); ?>/<?php echo e(isset($value['goods'][2]['id']) ? $value['goods'][2]['id'] : '#'); ?>" class="position" target="_blank" title="<?php echo e(isset($value['goods'][2]['title']) ? $value['goods'][2]['title'] : '堆图家'); ?>"><img src="<?php  echo isset($value['goods'][2]['image_url'])?$value['goods'][2]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="<?php echo e(isset($value['goods'][2]['title']) ? $value['goods'][2]['title'] : '堆图家'); ?>"></a>
 							</div>
 						</div>
 						<a onclick="folderEdit(this)" class="find_fold_authflw">编辑</a>

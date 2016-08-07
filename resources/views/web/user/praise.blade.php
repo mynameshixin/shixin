@@ -16,32 +16,32 @@
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
 							<!-- <a class="index_item_blurwrap" img_id="{{$v['id']}}" onclick="blurwrap(this)"></a> -->
-							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}"  target="_blank" img_id="{{$v['id']}}"></a>
-							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" style="height: {{$v['images'][0]['rh']}}px">
+							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}"  target="_blank" img_id="{{$v['id']}}" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}"></a>
+							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($v['description']))?$v['description']:$v['title']}}" style="height: {{$v['images'][0]['rh']}}px">
 							<?php if(isset($v['price']) && !empty($v['price'])): ?>
 								<div class="index_item_price">￥{{$v['price']}}</div>
 							<?php endif; ?>
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
-								<div class="index_item_intro" title="{{!empty($v['description'])?$v['description']:$v['title']}}">{{!empty($v['description'])?$v['description']:$v['title']}}</div>
+								<div class="index_item_intro" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">{{!empty($v['description'])?$v['description']:$v['title']}}</div>
 								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
-									<a class="index_item_l" onclick="praise(this,1)">{{$v['praise_count']}}</a>
-									<a class="index_item_c" onclick="collect(this)">{{$v['collection_count']}}</a>
+									<a class="index_item_l" onclick="praise(this,1)" title="喜欢">{{$v['praise_count']}}</a>
+									<a class="index_item_c" onclick="collect(this)" title="保存">{{$v['collection_count']}}</a>
 									<?php if($v['kind'] == 1): ?>
-										<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank"></a>
+										<a href="{{$v['detail_url']}}" class="index_item_b" target="_blank" title="链接"></a>
 									<?php elseif($v['kind'] == 2):?>
-										<a class="index_item_d" onclick="praise(this,2)">{{$v['boo_count']}}</a>
+										<a class="index_item_d" onclick="praise(this,2)" title="踩">{{$v['boo_count']}}</a>
 									<?php endif; ?>
 								</div>
 							</div>
 							<?php foreach ($v['comment'] as $k => $value):?>
 							<div class="index_item_bottom clearfix comment">
-								<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authava" target="_blank">
-									<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="">
+								<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authava" target="_blank" title="{{$value['user']['nick'] or $value['user']['username']}}">
+									<img src="{{!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']}}" alt="{{$value['user']['nick'] or $value['user']['username']}}">
 								</a>
 								<div class="index_item_authinfo index_item_authtalk">
-									<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authname">{{$value['user']['nick']}}：</a>
+									<a href="{{url('webd/user')}}?oid={{$value['user']['id']}}" class="index_item_authname" title="{{$value['user']['nick'] or $value['user']['username']}}">{{$value['user']['nick'] or $value['user']['username']}}：</a>
 									<span class="index_item_authto">{{$value['content']}}</span>
 								</div>
 							</div>

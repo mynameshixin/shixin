@@ -124,7 +124,7 @@ class FolderWebsupply extends CmWebsupply {
 	                $cg = DB::table('collection_good as cg')->join('goods as g','cg.good_id','=','g.id')->where(['cg.folder_id'=>$id,'cg.user_id'=>$value['user_id']])->select('g.id','g.image_ids')->take($gnum - count($goods))->get();
 	                $goods = $cg+$goods;
             	} */
-            	$goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$value['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids')->orderBy('fg.created_at','desc')->get();
+            	$goods = DB::table('folder_goods as fg')->join('goods as g','fg.good_id','=','g.id')->where(['fg.user_id'=>$value['user_id'],'fg.folder_id'=>$id])->take($gnum)->select('g.id','g.image_ids','g.title','g.description')->orderBy('fg.created_at','desc')->get();
 		 		foreach ($goods as $k => $v) {
 		 			if(strpos($v['image_ids'],',') == 0){
 		 				$goods[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_ids'], 1))?LibUtil::getPicUrl($v['image_ids'], 1):url('uploads/sundry/blogo.jpg');

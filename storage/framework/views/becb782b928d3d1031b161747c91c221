@@ -13,8 +13,8 @@
 				<div class="index_item">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" target="_blank" img_id="<?php echo e($v['id']); ?>"></a>
-							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" style="height: <?php echo e($v['images'][0]['rh']); ?>px">
+							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" target="_blank" img_id="<?php echo e($v['id']); ?>" title="<?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?>"></a>
+							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?>" style="height: <?php echo e($v['images'][0]['rh']); ?>px">
 							<?php if(isset($v['price']) && !empty($v['price'])): ?>
 								<div class="index_item_price">￥<?php echo e($v['price']); ?></div>
 							<?php endif; ?>
@@ -23,22 +23,22 @@
 							<div class="index_item_top">
 								<div class="index_item_intro" title="<?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?>"><?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?></div>
 								<div class="index_item_rel clearfix" good_id="<?php echo e($v['id']); ?>">
-									<a class="index_item_l" onclick="praise(this,1)"><?php echo e($v['praise_count']); ?></a>
-									<a class="index_item_c" onclick="collect(this)"><?php echo e($v['collection_count']); ?></a>
+									<a class="index_item_l" onclick="praise(this,1)" title="喜欢"><?php echo e($v['praise_count']); ?></a>
+									<a class="index_item_c" onclick="collect(this)" title="保存"><?php echo e($v['collection_count']); ?></a>
 									<?php if($v['kind'] == 1): ?>
-										<a href="<?php echo e($v['detail_url']); ?>" class="index_item_b" target="_blank"></a>
+										<a href="<?php echo e($v['detail_url']); ?>" class="index_item_b" target="_blank" title="链接"></a>
 									<?php elseif($v['kind'] == 2):?>
-										<a class="index_item_d" onclick="praise(this,2)"><?php echo e($v['boo_count']); ?></a>
+										<a class="index_item_d" onclick="praise(this,2)" title="踩"><?php echo e($v['boo_count']); ?></a>
 									<?php endif; ?>
 								</div>
 							</div>
 							<?php foreach ($v['comment'] as $key => $value):?>
 							<div class="index_item_bottom clearfix comment">
-								<a href="<?php echo e(url('webd/user')); ?>/<?php echo e($value['user']['id']); ?>" class="index_item_authava" target="_blank">
-									<img src="<?php echo e(!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']); ?>" alt="">
+								<a href="<?php echo e(url('webd/user')); ?>/<?php echo e($value['user']['id']); ?>" class="index_item_authava" target="_blank" title="<?php echo e(isset($value['user']['nick']) ? $value['user']['nick'] : $value['user']['username']); ?>">
+									<img src="<?php echo e(!empty($value['user']['auth_avatar'])?$value['user']['auth_avatar']:$value['user']['pic_m']); ?>" alt="<?php echo e(isset($value['user']['nick']) ? $value['user']['nick'] : $value['user']['username']); ?>">
 								</a>
 								<div class="index_item_authinfo index_item_authtalk">
-									<a href="<?php echo e(url('webd/user')); ?>/<?php echo e($value['user']['id']); ?>" class="index_item_authname"><?php echo e($value['user']['nick']); ?>：</a>
+									<a href="<?php echo e(url('webd/user')); ?>/<?php echo e($value['user']['id']); ?>" class="index_item_authname" title="<?php echo e(isset($value['user']['nick']) ? $value['user']['nick'] : $value['user']['username']); ?>"><?php echo e($value['user']['nick']); ?>：</a>
 									<span class="index_item_authto"><?php echo e($value['content']); ?></span>
 								</div>
 							</div>
