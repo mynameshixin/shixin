@@ -122,7 +122,7 @@ class VrController extends CmController{
 	// vr门店首页
 	public function vrindex(){
 		$data = Input::all();
-		$data['num'] = 1;
+		$data['num'] = 9;
 		$needData = $this->needData($data,3438,0,1);
 		$needData2 = $this->needData($data,3438,0,2);
 		$needData3 = $this->needData($data,3438,0,3);
