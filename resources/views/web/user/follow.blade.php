@@ -7,7 +7,7 @@
 		@include('web.common.user')
 		<div class="w1248 w1240 clearfix">
 			<div class="search_btn_con perhome_follow_wrap clearfix">
-				<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="search_btn_lround search_btn_select">用户</a>
+				<a href='{{url("webd/user/follow?oid={$user_id}")}}' class="search_btn_lround search_btn_select">关注者</a>
 				<a href='{{url("webd/user/followfolder?oid={$user_id}")}}' class="search_btn_rround">文件夹</a>
 			</div>
 			<div class="index_con perhome_wrap">
@@ -15,30 +15,30 @@
 					<?php foreach ($user_follow as $key => $value) :?>
 					<li class="find_user_li <?php echo (($key+1)%5==0)?'mrightzero':''; ?>" user_id="{{$value['id']}}">
 						<div class="find_user_info">
-							<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="find_user_name" target="_blank">{{empty($value['nick'])?$value['username']:$value['nick']}}</a>
+							<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="find_user_name" target="_blank" title="{{empty($value['nick'])?$value['username']:$value['nick']}}">{{empty($value['nick'])?$value['username']:$value['nick']}}</a>
 							<a href="javascript:;" class="find_user_rela">{{$value['count']['fans_count']}}粉丝 {{$value['count']['follow_count']}}关注</a>
 						</div>
 						<div class="find_user_con clearfix">
 							<div class="find_user_img">
 								<div class="find_user_blur"></div>
-								<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="position" target="_blank"><img src="{{!empty($value['auth_avatar'])?$value['auth_avatar']:$value['pic_m']}}" alt=""></a>
+								<a href="{{url('webd/user')}}?oid={{$value['id']}}" class="position" target="_blank" title="{{empty($value['nick'])?$value['username']:$value['nick']}}"><img src="{{!empty($value['auth_avatar'])?$value['auth_avatar']:$value['pic_m']}}" alt="{{empty($value['nick'])?$value['username']:$value['nick']}}"></a>
 							</div>
 							<ul class="find_user_limg">
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][0]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][0]['id'] or '#'}}" class="position" target="_blank" title="{{$value['folders'][0]['name'] or '堆图家'}}"><img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][0]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][1]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][1]['id'] or '#'}}" class="position" target="_blank" title="{{$value['folders'][1]['name'] or '堆图家'}}"><img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][1]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][2]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][2]['id'] or '#'}}" class="position" target="_blank" title="{{$value['folders'][2]['name'] or '堆图家'}}"><img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][2]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or '#'}}" class="position" target="_blank"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt=""></a>
+									<a href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or '#'}}" class="position" target="_blank" title="{{$value['folders'][3]['name'] or '堆图家'}}"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][3]['name'] or '堆图家'}}"></a>
 								</li>
 							</ul>
 							<a onclick="relation(this)" class="find_user_authflw" <?php if($self_id==$value['id']): ?>style="display: none"<?php endif; ?>>

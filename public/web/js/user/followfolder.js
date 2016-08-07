@@ -37,28 +37,32 @@ $(function (){
 						gpic_2 = data[index].folder_goods[1] != undefined?data[index].folder_goods[1].image_url:defaultPic
 						gpic_3 = data[index].folder_goods[2] != undefined?data[index].folder_goods[2].image_url:defaultPic
 
+						gtitle_1 = data[index].folder_goods[0] != undefined?data[index].folder_goods[0].title:'堆图家'
+						gtitle_2 = data[index].folder_goods[1] != undefined?data[index].folder_goods[1].title:'堆图家'
+						gtitle_3 = data[index].folder_goods[2] != undefined?data[index].folder_goods[2].title:'堆图家'
+
 						glink_1 = data[index].folder_goods[0] != undefined?'/webd/pic/'+data[index].folder_goods[0].id:'#'
 						glink_2 = data[index].folder_goods[1] != undefined?'/webd/pic/'+data[index].folder_goods[1].id:'#'
 						glink_3 = data[index].folder_goods[2] != undefined?'/webd/pic/'+data[index].folder_goods[2].id:'#'
-						
+						username = data[index].nick==''?data[index].username:data[index].nick
 						$($lis[index]).attr('folder_id',data[index].folder_id)
 						pic = data[index].user.auth_avatar!=null?data[index].user.auth_avatar:data[index].user.pic_m
-						$('.find_fold_authava a',$lis[index]).attr('href','/webd/user?oid='+data[index].user.id)
-						$('.find_fold_authava img',$lis[index]).attr('src',pic)
-						$('.find_fold_name',$lis[index]).html(data[index].name).attr('href','/webd/folder?fid='+data[index].folder_id)
-						username = data[index].nick==''?data[index].username:data[index].nick
-						$('.find_fold_authnme',$lis[index]).html(username).attr('href','/webd/user?oid='+data[index].user.id)
-						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url)
-						$('.find_fold_imgwrap a',$lis[index]).attr('href','/webd/folder?fid='+data[index].folder_id)
+						$('.find_fold_authava a',$lis[index]).attr('href','/webd/user?oid='+data[index].user.id).attr('title',username)
+						$('.find_fold_authava img',$lis[index]).attr('src',pic).attr('alt',username)
+						$('.find_fold_name',$lis[index]).html(data[index].name).attr('href','/webd/folder?fid='+data[index].folder_id).attr('title',data[index].name)
+						
+						$('.find_fold_authnme',$lis[index]).html(username).attr('href','/webd/user?oid='+data[index].user.id).attr('title',username)
+						$('.find_fold_imgwrap img',$lis[index]).attr('src',data[index].img_url).attr('alt',data[index].name)
+						$('.find_fold_imgwrap a',$lis[index]).attr('href','/webd/folder?fid='+data[index].folder_id).attr('title',data[index].name)
 						$('.find_fold_catflw',$lis[index]).html(data[index].count+'文件&nbsp;&nbsp;'+data[index].collection_count+'关注')
 
-						$('.find_fold_liwrap',$lis[index]).eq(0).find('img').attr('src',gpic_1)
-						$('.find_fold_liwrap',$lis[index]).eq(1).find('img').attr('src',gpic_2)
-						$('.find_fold_liwrap',$lis[index]).eq(2).find('img').attr('src',gpic_3)
+						$('.find_fold_liwrap',$lis[index]).eq(0).find('img').attr('src',gpic_1).attr('alt',gtitle_1)
+						$('.find_fold_liwrap',$lis[index]).eq(1).find('img').attr('src',gpic_2).attr('alt',gtitle_2)
+						$('.find_fold_liwrap',$lis[index]).eq(2).find('img').attr('src',gpic_3).attr('alt',gtitle_3)
 
-						$('.find_fold_liwrap',$lis[index]).eq(0).find('a').attr('href',glink_1)
-						$('.find_fold_liwrap',$lis[index]).eq(1).find('a').attr('href',glink_2)
-						$('.find_fold_liwrap',$lis[index]).eq(2).find('a').attr('href',glink_3)
+						$('.find_fold_liwrap',$lis[index]).eq(0).find('a').attr('href',glink_1).attr('title',gtitle_1)
+						$('.find_fold_liwrap',$lis[index]).eq(1).find('a').attr('href',glink_2).attr('title',gtitle_2)
+						$('.find_fold_liwrap',$lis[index]).eq(2).find('a').attr('href',glink_3).attr('title',gtitle_3)
 						$('.find_fold_authflw',$lis[index]).css('display','block')
 						if(self_id==data[index].user.id){
 							$('.find_fold_authflw',$lis[index]).css('display','none')
