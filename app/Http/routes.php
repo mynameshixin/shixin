@@ -34,9 +34,7 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
     ]);
 });
 
-
-
-
+Route::get('vr/{id}', 'Web\VrController@index')->where('id', '[0-9]+');
 
 Route::get('/home', ['uses'=>'\App\Http\Controllers\HomeController@index']);
 //图片base64格式上传

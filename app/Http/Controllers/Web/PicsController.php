@@ -102,7 +102,52 @@ class PicsController extends CmController{
 		];
 		return view('web.pics.show',$data);
 	}
+    public function getMain(){
+        $data = Input::all();
+        $id = isset($data['img_id'])?$data['img_id']:636;
+        $self_id = isset($data['user_id'])?$data['user_id']:6;
+        $data['img_id'] = $id;
+        $folder = DB::table('goods')->where('id',$id)->select('folder_id')->first();
+        if(!$folder) die('no such pic!');
+        $private = DB::table('folders')->where('id',$folder['folder_id'])->select('private','user_id')->first();
+        $cg = DB::table('collection_good')->where(['user_id'=>$self_id,'good_id'=>$id])->first();
+        if($private['private']==1 && $self_id!=$private['user_id'] && !$cg) die('such pic is in a private folder!');
 
+
+        $goods = ProductWebsupply::get_pic_detail($self_id,$data);
+        $action = DB::table('good_action')->where(['good_id'=>$id,'kind'=>1,'user_id'=>$self_id])->first();
+        $goods['action'] = !empty($action)?1:0;
+        $title = !empty(trim($goods['description']))?$goods['description']:$goods['title'];
+        // dd($goods);
+        // dd($goods['comments']);   
+        $list = [
+            'list'=>$goods,
+        ];
+        return response()->forApi($list);
+    }
+
+    public function getFolder(){
+        $data = Input::all();
+        $self_id = isset($data['user_id'])?$data['user_id']:6;
+        $data['img_id'] = isset($data['img_id'])?$data['img_id']:636;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $data['num'] = isset($data['num'])?$data['num']:4;
+        $rs = ProductWebsupply::get_folder_detail($self_id,$this->other_id,$data,$data['img_id']);
+        $list['list'] = $rs;
+        return response()->forApi($list);
+    }
+
+    public function getImg(){
+        $data = Input::all();
+        $data['img_id'] = isset($data['img_id'])?$data['img_id']:636;
+        $data['fid'] = isset($data['fid'])?$data['fid']:2589;
+        $self_id = isset($data['user_id'])?$data['user_id']:6;
+        $data['page'] = isset($data['page'])?$data['page']:1;
+        $data['num'] = isset($data['num'])?$data['num']:15;
+        $rs = ProductWebsupply::get_folder_file($data['fid'],$this->other_id,$self_id,$data);
+        $list['list'] = $rs;
+        return response()->forApi($list);
+    }
 	public function postFolder(){
 		$data = Input::all();
 		$data = fparam($data);

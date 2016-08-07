@@ -956,7 +956,55 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_col_searfold_wrap{position: absolute;top: 36px;left: 0px;padding: 0px 15px;width: 250px;background: #fff;z-index: 9000000;border-left: 1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0;border-right: 1px solid #f0f0f0;max-height:200px;overflow-y: scroll;}
 
 
+.pop_vr_apply .pop_namewrap{padding: 17px 0px 0px 30px}
+.pop_vr_apply .pop_tit{padding: 15px 60px 15px 30px;}
+.pop_vr_apply .pop_con{width: 472px;height: 464px;overflow: hidden; margin-left: -244px;}
+.pop_vr_apply .pop_con .pop_tit .arrow{font-size: 12px;color: #A1A1A1; display: inline-block;padding-right: 22px; background: url(../images/arrow.png) no-repeat right; margin-left:15px;}
+.pop_namewrap h3{font-size: 16px;font-weight: bold;color: #333;padding: 10px 0 0 0;}
+.pop_vr_apply .pop_namewrap p{padding-bottom: 16px;}
+.pop_vr_apply .pop_namewrap p{font-size: 12px; font-weight: bold;color: #333;}
+.pop_namewrap p label{width: 108px;height: 35px;line-height: 35px; display: inline-block;float: left; font-size: 16px; font-weight: bold;color: #333;padding-left: 25px;text-align: left;overflow: hidden;}
+.pop_namewrap p input[type=text],.pop_namewrap p textarea{border: none;width: 253px;height: 35px;line-height: 35px;background-color: #F0F0F0;border-radius: 4px;padding-left: 10px;}
+.pop_vr_apply .pop_namewrap .radio_btns{ margin-left: 133px;}
+.pop_namewrap .radio_btns label{padding-left: 10px;line-height: 10px;  overflow: inherit;}
+.pop_namewrap .radio_btns input{float: left;}
+.pop_con_info .pop_tit .arrow_left{font-size: 17px;color: #A1A1A1; display: inline-block;padding-left: 30px; background: url(../images/arrow_back.png) no-repeat left;}
+.pop_con_info .pop_con_logo{width: 100%; height: auto;text-align: center;}
+.pop_con_info .pop_tit{border-bottom: none;}
+.pop_con_info .pop_con_logo img{width: 103px;margin-top: -55px;margin-bottom: 17px;}
+.pay_rules{margin-left: 25px;}
+.pay_rules li{width: 340px; font-weight: bold;font-size: 13px; color:#4B4B4B;background: url(../images/dotted.png) no-repeat left 20%; padding-left: 25px; line-height: 24px;}
+.pop_con_info h3{text-align: center;margin: 100px 0 10px -30px;padding: 0;}
+.pop_con_info .pop_btnwrap p{text-align: center;font-size: 8px;}
+.pop_con_info .pop_btnwrap{padding: 10px 0 25px 0;}
 
+.sunccess{width: 472px; height: 79px;border-radius: 5px;background: rgba(0,0,0,.5);position: fixed;bottom: 30%;left: 50%;margin-left: -236px;z-index: 100;}
+.sunccess .smile{width: 100px;height: 100%;background: url(../images/smile.png) no-repeat right center;float: left;}
+.sunccess .sunccess_txt{margin: 20px 0 0 30px; font-weight: bold;font-size: 17px; color: #fff;float: left;}
+.sunccess .sunccess_txt span{font-size: 21px;}
+/*梦幻家-vr*/
+.vr_home{width: 100%; height: auto;padding-top: 60px; background-color: #e8e8e8;}
+.vr_home_list{width: 310px;height: 246px; float: left;margin-right: 30px; overflow: hidden;margin-bottom: 30px; border-radius: 6px;background: #fff;box-shadow: 0 1px 3px rgba(0,0,0,.3); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);}
+.vr_home_list:hover{background: #fff;opacity: 0.9;}
+.vr_home_list .vr_content{width: 100%; height: 194px;overflow: hidden;position: relative;}
+.vr_content img{width: 100%; height: auto;display: block;}
+.vr_content span{width: 100%;height: auto;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;position: absolute;left: 0;bottom: 5px;font-size: 16px;color: #fff; font-weight: bold;text-indent: 16px;}
+.vr_title{width: 100%;height:52px;padding-top: 20px; padding-left: 10px;}
+.vr_home_loc{color: #838383;font-size: 10px; font-weight: bold;display: inline-block; float: left;}
+.vr_view,.vr_like{color: #7d7d7d; display: inline-block;float: right;background: url(../images/view.png) no-repeat; padding-left: 30px; width: 40px;}
+.vr_like{background: url(../images/vr_like.png) no-repeat; padding-left: 20px}
+.des_more{width: 100%;height: auto;text-align: center;}
+.des_more a{display: block; width: 302px; height: 53px; border-radius: 6px; margin: 0 auto; font-weight: bold;font-size: 15px;color: #4b4949;line-height: 53px;background-color: #f5f5f5;}
+.des_more:hover{opacity: 0.8;color: #000;}
+.cooperate{width: 100%; background-color: #fff; margin-top: 30px;text-align: center;}
+.cooperate h2{font:bold 25px/25px "Microsoft YaHei";color: #333;}
+.cooperate a{display: inline-block; width: 120px; height: 31px; line-height: 31px; font-size: 14px; color: #fff; background-color: #E15335;border-radius: 6px; text-align: center;margin: 30px auto;}
+.cooperate a:hover{color: #fff;opacity: 0.8;}
+/*设计家 home_design*/
+.home_design{padding-top: 0;}
+.home_title{width: 100%;height: auto;padding: 25px 0;}
+.home_title h3{height: 33px; font-weight: bold;font-size: 25px; color: #333;line-height: 33px; text-align: center;}
+.home_title h3 span{letter-spacing: 3px;}
 
 
 
