@@ -25,10 +25,13 @@ class TaoBaoController extends CmController
         //请求参数验证
         parent::validator($data, $rules);
         $url = $data['url'];
-        $fancy = ['m.fancy.com'];
+        $fancy = ['m.fancy.com','fancy.com'];
         $host = parse_url($url);
         if(!empty($host['host']) && in_array($host['host'],$fancy)){
-            $outdata = FancyService::getInstance()->getItemDetail($url);
+            $type = 2;
+            if($host['host'] == 'm.fancy.com') $type = 2;
+            if($host['host'] == 'fancy.com') $type = 1;
+            $outdata = FancyService::getInstance()->getItemDetail($url,$type);
             $item = $outdata[0];
             if (!empty($item['pic_url'])) {
                 $image_url[] = $item['pic_url'];

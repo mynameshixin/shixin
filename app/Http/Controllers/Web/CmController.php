@@ -19,6 +19,7 @@ class CmController extends Controller {
     const DATELINE = 20;
     public $hash = 50;
     public $user_id=0;
+    public $other_id=0;
     public $self_info = [
         'id'=>0,
         'pic_m'=>'/uploads/sundry/blogo.jpg',

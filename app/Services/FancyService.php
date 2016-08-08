@@ -20,27 +20,47 @@ use App\Lib\Top\Request\ItemGetRequest;
 class FancyService extends ApiService
 {
 
-    public function getItemDetail ($url) {
+    public function getItemDetail ($url,$type = 2) {
         $tmp = $res = [];
         $response = $this->curl($url);
         if(!empty($response)){
-
-            $preg ="/<span class=\"figure-img\"><img src=\".+\" style=\"background-image:url\(\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\)\"><\/span>/is";
-            preg_match($preg,$response,$arr);
+            if($type==2){
+                $preg_pic ="/<span class=\"figure-img\"><img src=\".+\" style=\"background-image:url\(\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\)\"><\/span>/is";
+            }
+            if($type == 1){
+                $preg_pic ="/<img src=\"\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\" class=\"fit\">/is";
+            }
+            preg_match($preg_pic,$response,$arr);
             $imageurl = isset($arr[0])?$arr[0]:'';
+            
             preg_match("/\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)/is",$imageurl,$pic_url);
             $pic_url  = $pic_url[0]?'https:'.$pic_url[0]:'';
 
-            preg_match("/<figcaption>(.*?)<\/figcaption>/is",$response,$o_title);
+            if($type==2){
+                $preg_title = "/<figcaption>(.*?)<\/figcaption>/is";
+            }
+            if($type == 1){
+                $preg_title = "/<h3 class=\"title\">(.*?)<\/h3>/is";
+            }
+            preg_match($preg_title,$response,$o_title);
             $o_title = isset($o_title[1])?$o_title[1]:'';
             $o_t2 = str_replace('\n','',$o_title);
             $o_t3 = str_replace('\t','',$o_t2);
             $title = trim($o_t3);
 
-            preg_match("/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is",$response,$o_price);
-            $o_price = isset($o_price[1])?$o_price[1]:'';
-            preg_match("/\d+/is",$o_price,$price);
-            $price = isset($price[0])?$price[0]:'';
+            if($type==2){
+                $preg_price = "/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is";
+                preg_match($preg_price,$response,$o_price);
+                $o_price = isset($o_price[1])?$o_price[1]:'';
+                preg_match("/\d+/is",$o_price,$price);
+                $price = isset($price[0])?$price[0]:'';
+            }
+            if($type == 1){
+                $preg_price = "/<big class=\"\">(.*)$(.*)\d+(.*)<small class=\"usd\"><a class=\"code\">USD</a></small></big>/is";
+                preg_match($preg_price,$response,$o_price);
+                dd($o_price);
+            }
+            
 
             $tmp = [
                 'pic_url'=>$pic_url,
@@ -58,7 +78,7 @@ class FancyService extends ApiService
 
 
 
-    public function curl($url, $postFields = null,$readTimeout = 10,$connectTimeout = 5){
+    public function curl($url, $postFields = null,$readTimeout = 10,$connectTimeout = 15){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
