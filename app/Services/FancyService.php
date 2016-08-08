@@ -31,6 +31,7 @@ class FancyService extends ApiService
                 $preg_pic ="/<img src=\"\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\" class=\"fit\">/is";
             }
             preg_match($preg_pic,$response,$arr);
+            // dd($arr);
             $imageurl = isset($arr[0])?$arr[0]:'';
             
             preg_match("/\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)/is",$imageurl,$pic_url);
@@ -78,7 +79,7 @@ class FancyService extends ApiService
 
 
 
-    public function curl($url, $postFields = null,$readTimeout = 10,$connectTimeout = 15){
+    public function curl($url, $postFields = null,$readTimeout = 15,$connectTimeout = 15){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
