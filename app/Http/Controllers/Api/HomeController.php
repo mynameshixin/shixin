@@ -233,4 +233,22 @@ class HomeController extends BaseController
         $outData = UserService::getInstance()->getBindUserList($params,$num);
         return response()->forApi($outData);
     }
+
+    //发现页获得堆图达人 10个
+    public function getBindhuman(){
+
+        $params = Input::all();
+        $page = isset($params['page'])?$params['page']:1;
+        $num = isset($params['num'])?$params['num']:10;
+        $access_token = Input::get('access_token');
+        $user_id = 0;
+        if(!empty($access_token)){
+            $rs = parent::validateAcessToken($access_token);
+            $user_id = $rs['user_id'];
+        }
+
+        $params['current_uid'] = $user_id;
+        $outData = UserService::getInstance()->getBindUserList($params,$num,$page);
+        return response()->forApi($outData);
+    }
 }

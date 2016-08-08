@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Lib\Images;
 use App\Lib\LibUtil;
 use App\Lib\Sms;
+use DB;
 
 class UserService extends ApiService
 {
@@ -216,14 +217,17 @@ class UserService extends ApiService
         return $data;
 
     }
-     public function getBindUserList($params,$num){
+     public function getBindUserList($params,$num,$page= null){
+        if(!empty($page)){
+            $skip = ($page-1)*$num;
+            $data = DB::table('users')->where('is_recommend',1)->skip($skip)->take($num)->get();
+        }else{
+            $arr = DB::table('users')->where('is_recommend',1)->lists('id');
+            $data = DB::table('users')->where('id', $arr[$num])->get();
+        }
 
-        $arr = [6,5,7,12,11,182,104,15,35,154];
-        $rows = User::where('id', $arr[$num])->paginate($num);
-           
-        $data = LibUtil::pageFomate ($rows);
-
-        if (!empty($data['list'])){
+        $rdata= [];
+        if (!empty($data)){
 
             $list = [] ;
             if (isset($params['current_uid']) && !empty($params['current_uid'])) {
@@ -231,7 +235,7 @@ class UserService extends ApiService
                 $user_ids = array_column($arr,'userid_follow');
             }
 
-            foreach ($data['list'] as $val) {
+            foreach ($data as $val) {
                 //$follow_num = self::getFollowNum($val['id']);
                 $entry = [
                     'id'    => $val['id'],
@@ -254,9 +258,9 @@ class UserService extends ApiService
                 }
                 $list[] = $entry;
             }
-            $data['list'] = $list;
+            $rdata['list'] = $list;
         }
-        return $data;
+        return $rdata;
 
     }
     public function getSearchCount ($keyword) {
