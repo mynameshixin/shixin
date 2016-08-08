@@ -107,8 +107,9 @@ class HomeController extends CmController{
 		if(crypt($data['password'],$pwd) != $pwd){
 			return response()->forApi([],'1001','账号或密码不正确');
 		}
-		self::crypt_cookie('user_id',$res['id']);
-		return  response()->forApi([],200,'登陆成功');
+		$token = self::crypt_cookie('user_id',$res['id']);
+		// dd($token);
+		return  response()->forApi(['user_id'=>$token],200,'登陆成功');
 
 	}
 

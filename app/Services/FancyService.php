@@ -20,48 +20,17 @@ use App\Lib\Top\Request\ItemGetRequest;
 class FancyService extends ApiService
 {
 
-    public function getItemDetail ($url,$type = 2) {
+    public function getItemDetail ($url) {
         $tmp = $res = [];
-        $response = $this->curl($url);
+        preg_match("/\d+/is", $url,$rurl);
+        $url = "https://fancy.com/rest-api/v1/things/".$rurl[0];
+        $response = file_get_contents($url);
         if(!empty($response)){
-            if($type==2){
-                $preg_pic ="/<span class=\"figure-img\"><img src=\".+\" style=\"background-image:url\(\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\)\"><\/span>/is";
-            }
-            if($type == 1){
-                $preg_pic ="/<img src=\"\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\" class=\"fit\">/is";
-            }
-            preg_match($preg_pic,$response,$arr);
-            // dd($arr);
-            $imageurl = isset($arr[0])?$arr[0]:'';
-            
-            preg_match("/\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)/is",$imageurl,$pic_url);
-            $pic_url  = $pic_url[0]?'https:'.$pic_url[0]:'';
-
-            if($type==2){
-                $preg_title = "/<figcaption>(.*?)<\/figcaption>/is";
-            }
-            if($type == 1){
-                $preg_title = "/<h3 class=\"title\">(.*?)<\/h3>/is";
-            }
-            preg_match($preg_title,$response,$o_title);
-            $o_title = isset($o_title[1])?$o_title[1]:'';
-            $o_t2 = str_replace('\n','',$o_title);
-            $o_t3 = str_replace('\t','',$o_t2);
-            $title = trim($o_t3);
-
-            if($type==2){
-                $preg_price = "/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is";
-                preg_match($preg_price,$response,$o_price);
-                $o_price = isset($o_price[1])?$o_price[1]:'';
-                preg_match("/\d+/is",$o_price,$price);
-                $price = isset($price[0])?$price[0]:'';
-            }
-            if($type == 1){
-                $preg_price = "/<big class=\"\">(.*)$(.*)\d+(.*)<small class=\"usd\"><a class=\"code\">USD</a></small></big>/is";
-                preg_match($preg_price,$response,$o_price);
-                dd($o_price);
-            }
-            
+            $r_arr = json_decode($response,1);
+           // dd($r_arr);
+            $pic_url = $r_arr['image']['src'];
+            $price = $r_arr['sales']['price'];
+            $title = $r_arr['name'];
 
             $tmp = [
                 'pic_url'=>$pic_url,
@@ -104,6 +73,7 @@ class FancyService extends ApiService
             }
             unset($k, $v);
             curl_setopt($ch, CURLOPT_POST, true);
+            
             if ($postMultipart){
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
             }else{
