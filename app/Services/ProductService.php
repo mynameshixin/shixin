@@ -62,6 +62,8 @@ class ProductService extends ApiService
         if ($data['kind'] == 2) {
             return self::addImageProduct($userId, $data , $files );
         }
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
@@ -85,6 +87,7 @@ class ProductService extends ApiService
             'typeid'=>isset($data['typeid']) ? (int)$data['typeid'] : 0,
             'btypeid'=>isset($data['btypeid']) ? (int)$data['btypeid'] : 0,
             'saleid'=>isset($data['saleid']) ? (int)$data['saleid'] : 0,
+            'tags' => $tags,
         );
         if (isset($data['image_ids']) && !empty($data['image_ids'])) {
             $entry['image_ids'] = $data['image_ids'];
@@ -117,11 +120,13 @@ class ProductService extends ApiService
     public function addImageProduct($userId, $data = array(), $files = array())
     {
         $data['title'] = isset($data['title']) ? trim($data['title']) : '';
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
             'title' => $data['title'],
-            'tags' => isset($data['tags']) ? trim($data['tags']) : '',
+            'tags' => $tags,
             'description' => isset($data['description']) ? $data['description'] : '',
             'category_id' => isset($data['category_id']) ? $data['category_id'] : 0,
             'price' => isset($data['price']) ? $data['price'] : 0,

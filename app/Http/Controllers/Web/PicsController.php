@@ -283,6 +283,7 @@ class PicsController extends CmController{
         }
         if (isset($data['folder_id'])) {
             $row = Folder::find($data['folder_id']);
+            $data['tags'] = $row['name'];
             if (empty($row) || $userId !=$row->user_id){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
