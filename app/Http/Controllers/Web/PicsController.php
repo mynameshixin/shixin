@@ -289,7 +289,6 @@ class PicsController extends CmController{
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
         }
-        die;
         //删除没有的
         foreach ($_FILES['image']['name'] as $key => $value) {
             if(!isset($data['pop_addfont_wrap'][$key])){
