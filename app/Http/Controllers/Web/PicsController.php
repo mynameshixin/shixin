@@ -281,14 +281,15 @@ class PicsController extends CmController{
             }
             parent::validator($data['image'], $rulesImage);
         }
-        if (isset($data['folder_id'])) {
-            $row = Folder::find($data['folder_id']);
-            $data['tags'] = $row['name'];
+        if (isset($data['fid'])) {
+            $row = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
+            $data['folder_name'] = $row['name'];
+            
             if (empty($row) || $userId !=$row->user_id){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
         }
-
+        die;
         //删除没有的
         foreach ($_FILES['image']['name'] as $key => $value) {
             if(!isset($data['pop_addfont_wrap'][$key])){

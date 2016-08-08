@@ -18,6 +18,7 @@ use App\Services\FancyService;
 use Illuminate\Support\Facades\Input;
 use App\Services\ProductService;
 use App\Models\Shop;
+use DB;
 
 /**
  *
@@ -621,8 +622,8 @@ class ProductController extends BaseController
             parent::validator($data['image'], $rulesImage);
         }
         if (isset($data['folder_id'])) {
-            $row = Folder::find($data['folder_id']);
-            $data['tags'] = $row['name'];
+            $row = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+            $data['folder_name'] = $row['name'];
             if (empty($row) || $userId !=$row->user_id){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
@@ -674,8 +675,8 @@ class ProductController extends BaseController
             parent::validator($data['image'], $rulesImage);
         }
         if (isset($data['folder_id'])) {
-            $row = Folder::find($data['folder_id']);
-            $data['tags'] = $row['name'];
+            $row = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+            $data['folder_name'] = $row['name'];
             if (empty($row) || $userId !=$row->user_id){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
