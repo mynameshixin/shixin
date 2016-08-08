@@ -11,6 +11,7 @@ use App\Services\FolderService;
 use App\Services\ProductService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Input;
+use DB;
 
 /**
  *
@@ -211,5 +212,24 @@ class HomeController extends BaseController
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
         return response()->forApi($rs);
+    }
+
+    //获得堆图达人 10个
+    public function getHuman(){
+        $params = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'num'=>'required|integer'
+        );
+        parent::validator($params,$rules);
+        $access_token = Input::get('access_token');
+
+        $rs = parent::validateAcessToken($access_token);
+        $user_id = $rs['user_id'];
+
+        $num  = ($params['num']-1)%10;
+        $params['current_uid'] = $user_id;
+        $outData = UserService::getInstance()->getBindUserList($params,$num);
+        return response()->forApi($outData);
     }
 }

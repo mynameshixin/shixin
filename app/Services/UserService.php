@@ -216,7 +216,49 @@ class UserService extends ApiService
         return $data;
 
     }
+     public function getBindUserList($params,$num){
 
+        $arr = [6,5,7,12,11,182,104,15,35,154];
+        $rows = User::where('id', $arr[$num])->paginate($num);
+           
+        $data = LibUtil::pageFomate ($rows);
+
+        if (!empty($data['list'])){
+
+            $list = [] ;
+            if (isset($params['current_uid']) && !empty($params['current_uid'])) {
+                $arr = Follow::where('user_id',$params['current_uid'])->select('userid_follow')->get()->toArray();
+                $user_ids = array_column($arr,'userid_follow');
+            }
+
+            foreach ($data['list'] as $val) {
+                //$follow_num = self::getFollowNum($val['id']);
+                $entry = [
+                    'id'    => $val['id'],
+                    'nick'  => $val['nick'],
+                    'username'  =>$val['username'],
+                    'gender' => $val['gender'],
+                    //'status' => $user->status,
+                    'pic_b'   => LibUtil::getUserAvatar($val['id'],4),
+                    'pic_b'   => LibUtil::getUserAvatar($val['id'],3),
+                    'pic_m'   =>  LibUtil::getUserAvatar($val['id'], 1),
+                    //'follow_num'=>$follow_num,
+                    'fan_num'=>self::getFanNum($val['id']),
+                    'is_follow'=>0
+                ];
+                if (isset($params['current_uid']) && !empty($params['current_uid']) && in_array($val['id'],$user_ids)) {
+                    $entry['is_follow'] = 1;
+                }
+                if (empty($entry['pic_b']) && !empty($val['auth_avatar'])) {
+                    $entry['pic_o'] = $entry['pic_b'] = $entry['pic_m'] = $val['auth_avatar'];
+                }
+                $list[] = $entry;
+            }
+            $data['list'] = $list;
+        }
+        return $data;
+
+    }
     public function getSearchCount ($keyword) {
         $keyword = fparam($keyword);
         return User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->count();
