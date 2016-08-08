@@ -218,15 +218,16 @@ class HomeController extends BaseController
     public function getHuman(){
         $params = Input::all();
         $rules = array(
-            'access_token' => 'required',
             'num'=>'required|integer'
         );
         parent::validator($params,$rules);
         $access_token = Input::get('access_token');
-
-        $rs = parent::validateAcessToken($access_token);
-        $user_id = $rs['user_id'];
-
+        $user_id = 0;
+        if(!empty($access_token)){
+            $rs = parent::validateAcessToken($access_token);
+            $user_id = $rs['user_id'];
+        }
+    
         $num  = ($params['num']-1)%10;
         $params['current_uid'] = $user_id;
         $outData = UserService::getInstance()->getBindUserList($params,$num);
