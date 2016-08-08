@@ -624,7 +624,7 @@ class ProductController extends BaseController
         if (isset($data['folder_id'])) {
             $row = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
             $data['folder_name'] = $row['name'];
-            if (empty($row) || $userId !=$row->user_id){
+            if (empty($row)){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
         }
@@ -677,7 +677,7 @@ class ProductController extends BaseController
         if (isset($data['folder_id'])) {
             $row = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
             $data['folder_name'] = $row['name'];
-            if (empty($row) || $userId !=$row->user_id){
+            if (empty($row)){
                 return response()->forApi(array(), 1001, '请选择正确文件夹！');
             }
         }
