@@ -29,15 +29,19 @@ class CollectionService extends ApiService
    public function addCollection ($user_id,$good_id,$folder_id=0) {
        $row = CollectionGood::where(['user_id'=>$user_id,'good_id'=>$good_id,'folder_id'=>$folder_id])->first();
        if (empty($row)) {
-           $good = Product::select('id','user_id','collection_count','title','image_ids','kind')->find($good_id);
+           $good = Product::select('id','user_id','collection_count','title','image_ids','kind','tags')->find($good_id);
            if (empty($good))return false;
            $good = $good->toArray();
+           $tags = '';
            if ($folder_id) {
                $folder =  Folder::where(['user_id'=>$user_id,'id'=>$folder_id])->first();
+               $tags = $good['tags'].';'.$folder['name'];
+               Product::where('id',$good_id)->update(['tags'=>$tags]);
                if (empty($folder)) $folder_id = 0 ;
            }
            $rs = CollectionGood::insert(['user_id'=>$user_id,'good_id'=>$good_id,'folder_id'=>$folder_id,'kind'=>$good['kind']]);
            FolderGood::insert(['good_id'=>$good_id,'folder_id'=>$folder_id,'kind'=>$good['kind'],'action'=>1,'user_id'=>$user_id]);
+
            if ($rs) {
                Product::where('id',$good_id)->increment('collection_count');
                if($folder_id){
