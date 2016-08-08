@@ -31,7 +31,7 @@
           </div>
           <a href="javascript:;" class="pop_login_confirm" id="confirm1" title="堆图家确定">确定</a>
           <p class="pop_login_des">
-            注册即表示同意<a href="javascript:;">《用户使用条款及服务协议》</a>
+            注册即表示同意<a href="/webd/contact/protocol" target="_blank">《用户使用条款及服务协议》</a>
           </p>
         </div>
       </div>

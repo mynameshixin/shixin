@@ -20,7 +20,14 @@ class ContactController extends CmController{
 		
 		return view('web.contact.index',$data);
 	}
-
+	//协议
+	public function getProtocol(){
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+		];
+		return view('web.contact.protocol',$data);
+	}
 
 
 

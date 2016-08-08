@@ -2,13 +2,7 @@
 <html lang="en">
 @include('web.common.head')
 <body class="nolog_body">
-	<div class="header">
-		<div class="headercontainer w992 clearfix contact_header">
-			<a href="/" class="header_logo"></a>
-			<p><a class="contact_header_a contact_header_aon" href="/webd/contact" title="联系我们">联系我们</a></p>
-			<p><a class="contact_header_a" href="javascript:;" title="堆图家">关于堆图家</a></p>
-		</div>
-	</div>
+	@include('web.common.contact.menu',['type'=>1])
 	<div class="container nolog_index_container clearfix">
 		<div class="nolog_index_contactbg" style="width: 1252px; margin:0 auto">
 			<img src="{{asset('/web/images/contact_bg.jpg')}}" height="126" width="1252" alt="堆图家">
