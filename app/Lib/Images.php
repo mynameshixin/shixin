@@ -29,7 +29,7 @@ class Images
             $ext = strtolower(substr(strrchr($file,"."),1));
             if ($picArr ['arr']) {
                 foreach ( $picArr ['arr'] as $val ) {
-                    $val ['name'] =$imageId.$val ['name'] . '.'.$ext;
+                    $val ['name'] =$imageId.$val ['name'] . '.jpg';
                     $t = new ResizeImage ( $file, $val ['w'], $val ['h'], $val ['isCut'], $path . $val ['name'] );
                 }
             }
@@ -47,14 +47,14 @@ class Images
      * @param string $basepath 文件存储目录
      * @return string
      */
-    public  function getPicUrl($imageId,$kind = 0,$dir='',$ext='jpg'){
+    public  function getPicUrl($imageId,$kind = 0,$dir=''){
 
         if ($imageId == '' || $imageId == null) {
             return '';
         }
         $path = LibUtil::getFacePath($imageId);
         $base =  $path. '/';
-        $pic = $imageId.LibUtil::getPicName($kind).'.'.$ext ;
+        $pic = $imageId.LibUtil::getPicName($kind).'.jpg' ;
         //检查图片是否存在，不存在返回空
         $basepath =$dir.$path;
         $url = \url($basepath.$pic);

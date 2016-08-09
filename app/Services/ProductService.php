@@ -151,7 +151,6 @@ class ProductService extends ApiService
             $images_arr = explode(',', $data['image_ids']);
         }
         if (isset($files['image']) && !empty($files['image'])) {
-
             $images = ImageService::getInstance()->uploadImage($userId, $files['image']);
             if (!empty($images)) {
                 $images_arr = array_column($images, 'image_id');

@@ -39,7 +39,7 @@ class ImageService extends ApiService
 
     public function getImageIds($url)
     {
-        $ext = strtolower(substr(strrchr($url,"."),1));
+        
         //获取远程文件所采用的方法
         $ch = curl_init();
         $timeout = 15;
@@ -59,24 +59,25 @@ class ImageService extends ApiService
             $imageId = Images::insertGetId($entry);
             $destinationPath = $destinationPath . LibUtil::getFacePath($imageId);
             LibUtil::make_dir($destinationPath);
-            $fileName = $imageId . '_o.'.$ext; // renameing image
+            $fileName = $imageId . '_o.jpg'; // renameing image
            // $rs = move_uploaded_file($img, $destinationPath . $fileName);
             $fp2=@fopen($destinationPath . $fileName,'a');
             fwrite($fp2,$img);
             fclose($fp2);
-            if (file_exists($destinationPath . $imageId . '_o.'.$ext)) {
+            $ext = self::ext($destinationPath . $fileName);
+            if (file_exists($destinationPath . $imageId . '_o.jpg')) {
                 $rules = $this->rules;
                 try {
-                    $Image->creatThumbPi($destinationPath . $imageId . '_o.'.$ext, $destinationPath, $imageId, $rules);
+                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
                 }catch(\Exception $e){
 
                 }
 
                 $images[] = array(
                     'image_id' => $imageId,
-                    'pic_o' => $Image->getPicUrl($imageId, 4, self::$image_dir,$ext),
-                    'pic_b' => $Image->getPicUrl($imageId, 2, self::$image_dir,$ext),
-                    'pic_m' => $Image->getPicUrl($imageId, 1, self::$image_dir,$ext),
+                    'pic_o' => $Image->getPicUrl($imageId, 4, self::$image_dir),
+                    'pic_b' => $Image->getPicUrl($imageId, 2, self::$image_dir),
+                    'pic_m' => $Image->getPicUrl($imageId, 1, self::$image_dir),
                 );
             }
         }
@@ -102,7 +103,6 @@ class ImageService extends ApiService
             LibUtil::make_dir($destinationPath);
             $fileName = $imageId . '_o.jpg'; // renameing image
             $ext = self::extend($entry['name']);
-
             if($ext=="jpg")
             {
                 move_uploaded_file($tmp_name, $destinationPath . $fileName);
@@ -144,6 +144,12 @@ class ImageService extends ApiService
         return $extend;
     }
 
+    function ext($file_name){
+        if(function_exists('exif_imagetype')){
+            return exif_imagetype($file_name);
+        }
+        
+    }
 
 
 }
