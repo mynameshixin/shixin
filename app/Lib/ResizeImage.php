@@ -68,7 +68,6 @@ class ResizeImage {
 	}
 	function newimg()
 	{
-		dd($this->type);
 		//改变后的图象的比例
 		$resize_ratio = ($this->resize_width)/($this->resize_height);
 		//实际图象的比例
