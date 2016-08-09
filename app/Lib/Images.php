@@ -47,14 +47,14 @@ class Images
      * @param string $basepath 文件存储目录
      * @return string
      */
-    public  function getPicUrl($imageId,$kind = 0,$dir='',$type='jpg'){
+    public  function getPicUrl($imageId,$kind = 0,$dir='',$ext='jpg'){
 
         if ($imageId == '' || $imageId == null) {
             return '';
         }
         $path = LibUtil::getFacePath($imageId);
         $base =  $path. '/';
-        $pic = $imageId.LibUtil::getPicName($kind).'.'.$type ;
+        $pic = $imageId.LibUtil::getPicName($kind).'.'.$ext ;
         //检查图片是否存在，不存在返回空
         $basepath =$dir.$path;
         $url = \url($basepath.$pic);

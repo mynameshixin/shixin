@@ -84,8 +84,8 @@ class ResizeImage {
 					case 'gif':
 						imagegif ($newimg,$this->dstimg);
 						break;
-					case 'gif':
-						imagepng ($newimg,$this->dstimg);
+					case 'png':
+						imagejpeg ($newimg,$this->dstimg);
 						break;
 					case 'jpg':
 						imagejpeg ($newimg,$this->dstimg);
