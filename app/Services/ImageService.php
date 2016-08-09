@@ -39,7 +39,7 @@ class ImageService extends ApiService
 
     public function getImageIds($url)
     {
-
+        $ext = strtolower(substr(strrchr($url,"."),1));
         //获取远程文件所采用的方法
         $ch = curl_init();
         $timeout = 15;
@@ -48,6 +48,8 @@ class ImageService extends ApiService
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $img = curl_exec($ch);
         curl_close($ch);
+        
+
         if (!empty($img)) {
             $Image = new Image();
             $destinationPath = self::$image_dir;
@@ -57,24 +59,24 @@ class ImageService extends ApiService
             $imageId = Images::insertGetId($entry);
             $destinationPath = $destinationPath . LibUtil::getFacePath($imageId);
             LibUtil::make_dir($destinationPath);
-            $fileName = $imageId . '_o.jpg'; // renameing image
+            $fileName = $imageId . '_o.'.$ext; // renameing image
            // $rs = move_uploaded_file($img, $destinationPath . $fileName);
             $fp2=@fopen($destinationPath . $fileName,'a');
             fwrite($fp2,$img);
             fclose($fp2);
-            if (file_exists($destinationPath . $imageId . '_o.jpg')) {
+            if (file_exists($destinationPath . $imageId . '_o.'.$ext)) {
                 $rules = $this->rules;
                 try {
-                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
+                    $Image->creatThumbPi($destinationPath . $imageId . '_o.'.$ext, $destinationPath, $imageId, $rules);
                 }catch(\Exception $e){
 
                 }
 
                 $images[] = array(
                     'image_id' => $imageId,
-                    'pic_o' => $Image->getPicUrl($imageId, 4, self::$image_dir),
-                    'pic_b' => $Image->getPicUrl($imageId, 2, self::$image_dir),
-                    'pic_m' => $Image->getPicUrl($imageId, 1, self::$image_dir),
+                    'pic_o' => $Image->getPicUrl($imageId, 4, self::$image_dir,$ext),
+                    'pic_b' => $Image->getPicUrl($imageId, 2, self::$image_dir,$ext),
+                    'pic_m' => $Image->getPicUrl($imageId, 1, self::$image_dir,$ext),
                 );
             }
         }
