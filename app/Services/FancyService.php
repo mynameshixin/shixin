@@ -48,16 +48,24 @@ class FancyService extends ApiService
 
     public function getIkeaDetail ($url) {
         $tmp = $res = [];
-        preg_match("/\d+/is", $url,$rurl);
-        $url = "https://fancy.com/rest-api/v1/things/".$rurl[0];
-        $response = file_get_contents($url);
+        $response = $this->curl($url);
+        // echo $response;die;
         if(!empty($response)){
-            $r_arr = json_decode($response,1);
-           // dd($r_arr);
-            $pic_url = $r_arr['image']['src'];
-            $price = $r_arr['sales']['price'];
-            $title = $r_arr['name'];
 
+            $preg_pic ="/<img id=\"productImg\" src=\'(.+)\.(jpg|gif|png)\'.+border=\"0\"  alt=\'.+\' title=\'(.*)\' width=\"500\" height=\"500\"\/>/is";
+            preg_match($preg_pic,$response,$arr);
+            $pic_url = $title = '';
+            if(!empty($arr[0])){
+                $pic_url = "http://www.ikea.com".$arr[1].'.'.$arr[2];
+                $title = $arr[3];
+            }
+
+            $preg_price = "/<span id=\"price1\" class=\"packagePrice\">(.+?)<\/span>/is";
+            preg_match($preg_price,$response,$o_price);
+            if(!empty($o_price[1])){
+                preg_match("/\d+\.\d{2}/is",$o_price[1],$price);
+                $price = $price[0];
+            }
             $tmp = [
                 'pic_url'=>$pic_url,
                 'price' => $price,
