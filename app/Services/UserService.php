@@ -173,7 +173,7 @@ class UserService extends ApiService
     public function getUserList($params,$num){
 
         $rows = new User;
-        if (isset($params['user_id'])){
+        if (!empty($params['user_id'])){
             $follow_ids = DB::table('user_follow')->where('user_id',$params['user_id'])->lists('userid_follow');
             $rows = $rows->whereIn('id',$follow_ids);
         } 

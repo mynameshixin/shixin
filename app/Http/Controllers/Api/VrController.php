@@ -326,6 +326,24 @@ class VrController extends BaseController{
     	return response()->forApi(['list' => $rows]);
     }
 
+    //vr展示个数加1
+    public function getViewincrease(){
+        $data = Input::all();
+        $rules = array(
+            'gid'=>'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+
+        $gshow = DB::table('vrview')->where('gid',$data['gid'])->first();
+        if($gshow){
+            DB::table('vrview')->where('gid',$data['gid'])->increment('num');
+        }else{
+            DB::table('vrview')->insert(['gid'=>$data['gid'],'num'=>1]);
+        }
+        return response()->forApi(['status' => 1]);
+    }
+
 }
 
 

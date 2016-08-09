@@ -285,8 +285,8 @@ class ProductService extends ApiService
         $outDate_self = !empty($outDate_self)?$outDate_self:[];
         $count_self = isset($outDate_self['list'])?count($outDate_self['list']):0;*/
 
-        $rows = FolderGood::where('kind', $kind);
-        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
+        $rows = FolderGood::where('folder_goods.kind', $kind);
+        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id')->where('folders.private',0);
         if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
@@ -306,7 +306,7 @@ class ProductService extends ApiService
             $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);
             $outDate['per_page']  = $count_self+$count;
         }*/
-        $count = 0;
+        /*$count = 0;
         foreach ($outDate['list'] as $key => $value) {
             if($value['private'] == 1 && $self_id != $value['user_id']){
                 unset($outDate['list'][$key]);
@@ -314,7 +314,7 @@ class ProductService extends ApiService
             }
             
         }
-        $outDate['per_page'] = $num-$count;
+        $outDate['per_page'] = $num-$count;*/
 
         if (!empty($outDate['list'])) {
             $params['ids'] = $product_ids = array_column($outDate['list'], 'good_id');
@@ -381,7 +381,7 @@ class ProductService extends ApiService
         }
         if (isset($params['is_delete'])) $condtion['goods.is_delete'] = $params['is_delete'];
         if (isset($params['kind'])) $condtion['goods.kind'] = $params['kind'];
-        if (isset($params['user_id'])) $condtion['goods.user_id'] = $params['user_id'];
+        if (!empty($params['user_id'])) $condtion['goods.user_id'] = $params['user_id'];
         if (isset($params['folder_id'])) {
             if ($params['folder_id'] > 0) {
                 $params['ids'] = self::getFolderGoodIds($params['folder_id']);
