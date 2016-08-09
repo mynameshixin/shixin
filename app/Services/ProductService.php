@@ -296,7 +296,7 @@ class ProductService extends ApiService
             });
         }        
         // $rows = $rows->where('folders.private',0);
-        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
+        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
         $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
         
@@ -416,9 +416,6 @@ class ProductService extends ApiService
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = urldecode($params['keyword']);
             //模糊查询
-            if(!empty($params['is_self']) && !empty($self_id)){
-                $rows = $rows->where('goods.user_id',$self_id);
-            }
             $rows = $rows->where(function ($rows) use ($keyword) {
 
                 $rows = $rows->where('goods.title', "like", "%{$keyword}%")

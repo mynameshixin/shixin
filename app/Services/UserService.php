@@ -172,12 +172,21 @@ class UserService extends ApiService
 
     public function getUserList($params,$num){
 
+        $rows = new User;
+        if (isset($params['user_id'])){
+            $follow_ids = DB::table('user_follow')->where('user_id',$params['user_id'])->lists('userid_follow');
+            $rows = $rows->whereIn('id',$follow_ids);
+        } 
+
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = $params['keyword'];
-            $rows = User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->paginate($num);
+            $rows = $rows->where(function ($rows) use ($keyword) {
+               $rows = $rows->where('username', "like", "%{$keyword}%")->orWhere('nick', "like", "%{$keyword}%")->orWhere('mobile', "like", "%{$keyword}%");
+            })->paginate($num);
+            
             //$rows = User::where('username', "like" , "%{$keyword}%")->paginate($num);
         }else{
-            $rows = User::paginate($num);
+            $rows = $rows->paginate($num);
         }
         $data = LibUtil::pageFomate ($rows);
 

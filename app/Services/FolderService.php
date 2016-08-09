@@ -105,7 +105,7 @@ class FolderService extends ApiService
            $rows = $rows->where(function ($rows) use ($keyword) {
 
                $rows = $rows->where('name', "like", "%{$keyword}%")
-                   ->orwhere('tags', "like", "%{$keyword}%");
+                   ->orWhere('tags', "like", "%{$keyword}%");
 
            });
        }
