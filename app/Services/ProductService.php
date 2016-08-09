@@ -416,12 +416,16 @@ class ProductService extends ApiService
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = urldecode($params['keyword']);
             //模糊查询
+            if(!empty($params['is_self']) && !empty($self_id)){
+                $rows = $rows->where('goods.user_id',$self_id);
+            }
             $rows = $rows->where(function ($rows) use ($keyword) {
 
                 $rows = $rows->where('goods.title', "like", "%{$keyword}%")
                     ->orWhere('goods.tags', "like", "%{$keyword}%");
 
             });
+            
         }
        
         $rows = $rows->select('goods.id', 'goods.user_id', 'goods.kind', 'goods.price', 'goods.folder_id', 'goods.reserve_price', 'goods.image_ids', 'goods.title', 'goods.tags', 'goods.category_id', 'goods.description', 'goods.source', 'goods.is_recommend', 'goods.collection_count', 'goods.praise_count', 'goods.boo_count', 'goods.detail_url', 'goods.created_at');
