@@ -325,9 +325,15 @@ class FolderService extends ApiService
         return true;
     }
 
-    public function getSearchCount ($keyword) {
+    public function getSearchCount ($keyword,$data=[]) {
         $keyword = fparam($keyword);
-        return Folder::where('name', "like" , "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%")->count();
+        $rows = new Folder;
+        if(!empty($data['user_id'])){
+            $rows = $rows->where('user_id',$data['user_id']);
+        }
+        return $rows->where(function ($rows) use ($keyword) {
+         $rows  = $rows->where('name', "like" , "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+       })->count();
     }
 
     public function delFolder($id)

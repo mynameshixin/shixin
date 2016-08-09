@@ -124,10 +124,10 @@ class HomeController extends BaseController
         parent::validator($data, $rules);
         $keyword = urldecode($data['keyword']);
         $outData = [
-            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
-            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
-            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
-            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1,$data),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2,$data),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword,$data),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword,$data)
         ];
         return response()->forApi($outData , 200);
     }

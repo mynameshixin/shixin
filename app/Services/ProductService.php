@@ -612,9 +612,14 @@ class ProductService extends ApiService
         return $outDate;
     }
 
-    public function getSearchCount($keyword, $kind)
+    public function getSearchCount($keyword, $kind,$data=[])
     {   $keyword = fparam($keyword);
         $rows = Product::where(['kind' => $kind, 'status' => 1]);
+        
+        if(!empty($data['user_id'])){
+            $rows = $rows->where('user_id',$data['user_id']);
+        }
+        
         return $rows->where(function($query) use ($keyword){
             $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
         })->count();

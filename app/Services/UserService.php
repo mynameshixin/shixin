@@ -272,9 +272,17 @@ class UserService extends ApiService
         return $rdata;
 
     }
-    public function getSearchCount ($keyword) {
+    public function getSearchCount ($keyword,$data=[]) {
         $keyword = fparam($keyword);
-        return User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->count();
+        $rows = new User;
+
+        if(!empty($data['user_id'])){
+            $follow_ids = DB::table('user_follow')->where('user_id',$data['user_id'])->lists('userid_follow');
+            $rows = $rows->whereIn('id',$follow_ids);
+        }
+        return $rows->where(function ($rows) use ($keyword) {
+               $rows = $rows->where('username', "like", "%{$keyword}%")->orWhere('nick', "like", "%{$keyword}%")->orWhere('mobile', "like", "%{$keyword}%");
+            })->count();
     }
 
     public function getAdminIds () {
