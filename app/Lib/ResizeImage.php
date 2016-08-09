@@ -80,14 +80,38 @@ class ResizeImage {
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width,$this->resize_height, (($this->height)*$resize_ratio), $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				switch ($this->type) {
+					case 'gif':
+						imagegif ($newimg,$this->dstimg);
+						break;
+					case 'gif':
+						imagepng ($newimg,$this->dstimg);
+						break;
+					case 'jpg':
+						imagejpeg ($newimg,$this->dstimg);
+						break;
+					default:
+						break;
+				}
 			}
 			if($ratio<$resize_ratio)
 				//宽度优先
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width, $this->resize_height, $this->width, (($this->width)/$resize_ratio));
-				ImageJpeg ($newimg,$this->dstimg);
+				switch ($this->type) {
+					case 'gif':
+						imagegif ($newimg,$this->dstimg);
+						break;
+					case 'png':
+						imagepng ($newimg,$this->dstimg);
+						break;
+					case 'jpg':
+						imagejpeg ($newimg,$this->dstimg);
+						break;
+					default:
+						break;
+				}
 			}
 		}
 		else
@@ -97,13 +121,37 @@ class ResizeImage {
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,($this->resize_width)/$ratio);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width, ($this->resize_width)/$ratio, $this->width, $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				switch ($this->type) {
+					case 'gif':
+						imagegif ($newimg,$this->dstimg);
+						break;
+					case 'png':
+						imagepng ($newimg,$this->dstimg);
+						break;
+					case 'jpg':
+						imagejpeg ($newimg,$this->dstimg);
+						break;
+					default:
+						break;
+				}
 			}
 			if($ratio<$resize_ratio)
 			{
 				$newimg = imagecreatetruecolor(($this->resize_height)*$ratio,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, ($this->resize_height)*$ratio, $this->resize_height, $this->width, $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				switch ($this->type) {
+					case 'gif':
+						imagegif ($newimg,$this->dstimg);
+						break;
+					case 'png':
+						imagepng ($newimg,$this->dstimg);
+						break;
+					case 'jpg':
+						imagejpeg ($newimg,$this->dstimg);
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}
