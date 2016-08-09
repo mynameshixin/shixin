@@ -27,6 +27,7 @@ class TaoBaoController extends CmController
         $url = $data['url'];
         $fancy = ['m.fancy.com','fancy.com'];
         $ikea = ['www.ikea.com'];
+        $wowdsgn = ['www.wowdsgn.com'];
         $host = parse_url($url);
 
         // fancy 欢喜网站
@@ -54,6 +55,29 @@ class TaoBaoController extends CmController
         // 宜家网站
         if(!empty($host['host']) && in_array($host['host'],$ikea)){
             $outdata = FancyService::getInstance()->getIkeaDetail($url);
+            $item = $outdata[0];
+            if (!empty($item['pic_url'])) {
+                $image_url[] = $item['pic_url'];
+            }
+
+            $image_ids = [];
+            if (isset($image_url) && !empty($image_url)) {
+                foreach ($image_url as $url) {
+                    $image_ids[] = ImageService::getInstance()->getImageIds($url);
+                }
+                $outdata[0]['image_ids'] = implode(',', $image_ids);
+
+            }
+            if($outdata){
+                return response()->forApi(['x_item'=>$outdata], 200);
+            }
+            return response()->forApi(array(), 1001, ' 商品信息采集失败！');
+
+        }
+
+        // 尖叫设计网站
+        if(!empty($host['host']) && in_array($host['host'],$wowdsgn)){
+            $outdata = FancyService::getInstance()->getWowdsgnDetail($url);
             $item = $outdata[0];
             if (!empty($item['pic_url'])) {
                 $image_url[] = $item['pic_url'];

@@ -80,6 +80,40 @@ class FancyService extends ApiService
 
     }
 
+    public function getWowdsgnDetail ($url) {
+        $tmp = $res = [];
+        $response = $this->curl($url);
+        echo $response;die;
+        if(!empty($response)){
+
+            $preg_pic ="/<img id=\"productImg\" src=\'(.+)\.(jpg|gif|png)\'.+border=\"0\"  alt=\'.+\' title=\'(.*)\' width=\"500\" height=\"500\"\/>/is";
+            preg_match($preg_pic,$response,$arr);
+            $pic_url = $title = '';
+            if(!empty($arr[0])){
+                $pic_url = "http://www.ikea.com".$arr[1].'.'.$arr[2];
+                $title = $arr[3];
+            }
+
+            $preg_price = "/<span id=\"price1\" class=\"packagePrice\">(.+?)<\/span>/is";
+            preg_match($preg_price,$response,$o_price);
+            if(!empty($o_price[1])){
+                preg_match("/\d+\.\d{2}/is",$o_price[1],$price);
+                $price = $price[0];
+            }
+            $tmp = [
+                'pic_url'=>$pic_url,
+                'price' => $price,
+                'price_wap' => $price,
+                'reserve_price' => $price,
+                'title' => $title
+            ];
+            $res[0] = $tmp;
+            return $res;
+        }
+        return 0;
+
+    }
+
     public function curl($url, $postFields = null,$readTimeout = 15,$connectTimeout = 15){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -115,7 +149,6 @@ class FancyService extends ApiService
             }
         }
         $reponse = curl_exec($ch);
-        
         if (curl_errno($ch)){
             return 0;
         }else{
