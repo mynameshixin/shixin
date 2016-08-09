@@ -26,7 +26,10 @@ class TaoBaoController extends CmController
         parent::validator($data, $rules);
         $url = $data['url'];
         $fancy = ['m.fancy.com','fancy.com'];
+        $ikea = ['www.ikea.com'];
         $host = parse_url($url);
+
+        // fancy 欢喜网站
         if(!empty($host['host']) && in_array($host['host'],$fancy)){
             $outdata = FancyService::getInstance()->getItemDetail($url);
             $item = $outdata[0];
@@ -46,6 +49,29 @@ class TaoBaoController extends CmController
                 return response()->forApi(['x_item'=>$outdata], 200);
             }
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');
+        }
+
+        // 宜家网站
+        if(!empty($host['host']) && in_array($host['host'],$ikea)){
+            $outdata = FancyService::getInstance()->getIkeaDetail($url);
+            $item = $outdata[0];
+            if (!empty($item['pic_url'])) {
+                $image_url[] = $item['pic_url'];
+            }
+
+            $image_ids = [];
+            if (isset($image_url) && !empty($image_url)) {
+                foreach ($image_url as $url) {
+                    $image_ids[] = ImageService::getInstance()->getImageIds($url);
+                }
+                $outdata[0]['image_ids'] = implode(',', $image_ids);
+
+            }
+            if($outdata){
+                return response()->forApi(['x_item'=>$outdata], 200);
+            }
+            return response()->forApi(array(), 1001, ' 商品信息采集失败！');
+
         }
 
         $params = LibUtil::getKeyValue($url);

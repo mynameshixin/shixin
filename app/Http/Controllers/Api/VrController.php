@@ -141,7 +141,7 @@ class VrController extends BaseController{
              	$cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
              	$rows[$k]['cityname'] = $cpinfo['name'];
              }
-
+             $rows[$k]['viewcount'] = 0;
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
              	$rows[$k]['viewcount'] = $viewcount['num'];
              }
@@ -187,7 +187,7 @@ class VrController extends BaseController{
                 $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
                 $rows[$k]['cityname'] = $cpinfo['name'];
              }
-
+             $rows[$k]['viewcount'] = 0;
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }
@@ -315,7 +315,7 @@ class VrController extends BaseController{
                 $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
                 $rows[$k]['cityname'] = $cpinfo['name'];
              }
-
+             $rows[$k]['viewcount'] = 0;
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }

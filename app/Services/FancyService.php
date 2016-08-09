@@ -46,7 +46,31 @@ class FancyService extends ApiService
 
     }
 
+    public function getIkeaDetail ($url) {
+        $tmp = $res = [];
+        preg_match("/\d+/is", $url,$rurl);
+        $url = "https://fancy.com/rest-api/v1/things/".$rurl[0];
+        $response = file_get_contents($url);
+        if(!empty($response)){
+            $r_arr = json_decode($response,1);
+           // dd($r_arr);
+            $pic_url = $r_arr['image']['src'];
+            $price = $r_arr['sales']['price'];
+            $title = $r_arr['name'];
 
+            $tmp = [
+                'pic_url'=>$pic_url,
+                'price' => $price,
+                'price_wap' => $price,
+                'reserve_price' => $price,
+                'title' => $title
+            ];
+            $res[0] = $tmp;
+            return $res;
+        }
+        return 0;
+
+    }
 
     public function curl($url, $postFields = null,$readTimeout = 15,$connectTimeout = 15){
         $ch = curl_init();
