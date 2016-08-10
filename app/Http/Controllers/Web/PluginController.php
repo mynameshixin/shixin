@@ -16,11 +16,13 @@ use Cache;
 class PluginController extends CmController {
 
 	public function getIndex(){
-
+		$callback = isset($_GET['callback'])?$_GET['callback']:'';
 		if(!empty($_COOKIE['user_id']) && self::get_user_cache($_COOKIE['user_id'])) {
-            return response()->forApi(['status'=>1],200,'已登录');
+            $r = response()->forApi(['status'=>1],200,'已登录');
+            die($callback.'('.json_encode($r).')');
         }  
-		return response()->forApi(['status'=>0],1001,'未登陆');
+		$r = response()->forApi(['status'=>0],1001,'未登陆');
+		die($callback.'('.json_encode($r).')');
 	}
 
 
