@@ -16,7 +16,6 @@ use Cache;
 class PluginController extends CmController {
 
 	public function getIndex(){
-		$data = Input::all();
 
 		if(!empty($_COOKIE['user_id']) && self::get_user_cache($_COOKIE['user_id'])) {
             return response()->forApi(['status'=>1],200,'已登录');
