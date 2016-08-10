@@ -11,7 +11,7 @@ use App\Websupply\ProductWebsupply;
 use App\Lib\LibUtil;
 use App\Services\CollectionService;
 use App\Services\ProductService;
-use App\Services\ImageService;
+use App\Services\Admin\ImageService as ImageService;
 use App\Models\CollectionGood;
 use DB;
 
@@ -172,6 +172,7 @@ class PicsController extends CmController{
 
 	//采集ajax 返回文件
 	public function postCgoods(){
+
 		$data = fparam(Input::all());
         $rules = array(
             'user_id' => 'required',
@@ -204,12 +205,49 @@ class PicsController extends CmController{
 				$folder[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
 			}
 		}
-		return response()->forApi([
-			'cg'=>$cg,
-			'folder'=>$folder
-			]);
+        $rarr = ['cg'=>$cg,'folder'=>$folder];
+        return response()->forApi($rarr);
 	}
 
+    //采集ajax 返回文件 get
+    public function getCgoods(){
+        $callback = isset($_GET['callback'])?$_GET['callback'].'(':'';
+        $right = isset($_GET['callback'])?')':'';
+        $data = fparam(Input::all());
+        $rules = array(
+            'user_id' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $cg = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->where('cg.user_id',$userId)->orderBy('cg.created_at','desc')->groupBy('cg.folder_id')->select('f.name','f.id','f.image_id','f.private')->take(3)->get();
+        if(!empty($cg)){
+            foreach ($cg as $k => $v) {
+                $cg[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
+            }
+        }
+        $folder = DB::table('folders')->where('user_id',$userId)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
+        $folder = array_merge($cg,$folder);
+        //去重算法
+        $rAr=array(); 
+        for($i=0;$i<count($folder);$i++) { 
+            if(!isset($rAr[$folder[$i]['id']])) { 
+                $rAr[$folder[$i]['id']]=$folder[$i]; 
+            } 
+        } 
+        $folder = array_values($rAr); 
+
+        if(!empty($folder)){
+            foreach ($folder as $k => $v) {
+                $folder[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
+            }
+        }
+        $rarr = ['cg'=>$cg,'folder'=>$folder];
+        die($callback.json_encode($rarr).$right);
+    }
 
 	//采集动作ajax
 	public function postCpic(){
@@ -320,7 +358,7 @@ class PicsController extends CmController{
     }
 
     //采集插件上传图片
-    public function postPluginimg(){
+    public function getPluginimg(){
         
         $data = Input::all();
         $rules = array(
@@ -330,32 +368,38 @@ class PicsController extends CmController{
             'source_urls'=>'required',
             'fid' => 'required|exists:folders,id',
         );
+        $callback = isset($_GET['callback'])?$_GET['callback'].'(':'';
+        $right = isset($_GET['callback'])?')':'';
         //请求参数验证
         parent::validator($data, $rules);
+
         if(!is_array($data['img_urls'])) return response()->forApi(array(), 1001, '没有选择图片');
-        // dd($data);
+       
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 
-        
+        $entry = [];
         if (isset($data['fid'])) {
             $row = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
-            $data['folder_name'] = $row['name'];
+            $entry['folder_name'] = $data['folder_name'] = $row['name'];
             if (empty($row)) return response()->forApi(array(), 1001, '请选择正确文件夹！');
         }
-        
+        $ids = [];
         foreach ($data['img_urls'] as $key => $url) {
-            $data['title'] = $data['titles'][$key];
-            $data['source_url'] = $data['source_urls'][$key];
-            $data['status'] = 1;
-            $data['kind'] = 2;
-            $data['folder_id'] = $data['fid'];
-            $data['image_ids'] = ImageService::getInstance()->getImageIds($url);
-            $id = ProductService::getInstance()->addProduct ($userId,$data);
+
+            $entry['title'] = $data['titles'][$key];
+            $entry['source_url'] = $data['source_urls'][$key];
+            $entry['status'] = 1;
+            $entry['kind'] = 2;
+            $entry['folder_id'] = $data['fid'];
+            $image_id = ImageService::getInstance()->getImageIds($url);
+            // print_r($image_id);die;
+            $entry['image_id'] = isset($image_id)?$image_id:null;
+            $ids[] = ProductService::getInstance()->addProduct($userId,$entry,[]);
+
         }
-        
-        return response()->forApi(['status' => 1]);
+        die($callback.json_encode(['ids'=>$ids]).$right);
 
     }
 

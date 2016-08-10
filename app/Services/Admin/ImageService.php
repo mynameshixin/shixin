@@ -10,6 +10,7 @@ namespace App\Services\Admin;
 use App\Lib\LibUtil;
 use App\Lib\ProportionImage;
 use App\Models\Images;
+use App\Lib\Images as Image;
 use App\Services\ApiService;
 use Illuminate\Support\Facades\Log;
 
@@ -157,5 +158,57 @@ class ImageService extends ApiService
         
     }
 
+    // 获取远程图片
+     public function getImageIds($url){
+        
+        //获取远程文件所采用的方法
+        $ch = curl_init();
+        $timeout = 15;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $img = curl_exec($ch);
+        curl_close($ch);
+        
 
+        if (!empty($img)) {
+            $Image = new Image();
+            $destinationPath = $this->image_dir;
+            $entry = [
+                'user_id' => isset($params['user_id']) ? $params['user_id'] : 0,
+            ];
+            $imageId = Images::insertGetId($entry);
+            $destinationPath = $destinationPath . LibUtil::getFacePath($imageId);
+            LibUtil::make_dir($destinationPath);
+            $fileName = $imageId . '_o.jpg'; // renameing image
+           // $rs = move_uploaded_file($img, $destinationPath . $fileName);
+            $fp2=@fopen($destinationPath . $fileName,'a');
+            fwrite($fp2,$img);
+            fclose($fp2);
+            $ext = self::ext($destinationPath . $fileName);
+            if (file_exists($destinationPath . $imageId . '_o.jpg')) {
+                $rules = $this->rules;
+                try {
+                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
+                }catch(\Exception $e){
+
+                }
+
+                $images[] = array(
+                    'image_id' => $imageId,
+                    'pic_o' => $Image->getPicUrl($imageId, 4, $this->image_dir),
+                    'pic_b' => $Image->getPicUrl($imageId, 2, $this->image_dir),
+                    'pic_m' => $Image->getPicUrl($imageId, 1, $this->image_dir),
+                );
+            }
+        }
+        return isset($imageId) ? $imageId : '';
+    }
+
+    function ext($file_name){
+        if(function_exists('exif_imagetype')){
+            return exif_imagetype($file_name);
+        }
+        
+    }
 }

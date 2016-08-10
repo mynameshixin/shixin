@@ -112,6 +112,12 @@
 								<!-- <a href="javascript:;" class="detail_pop_fromedit"></a> -->
 							</div>
 						<?php endif; ?>
+
+						<?php if(empty($goods['detail_url']) && !empty($goods['source_url'])): ?>
+							<div class="detail_pop_from">
+								来自 <a href="<?php echo e($goods['source_url']); ?>" class="detail_pop_fromurl" target="_blank"><?php echo mb_substr($goods['source_url'], 0,50,'utf-8'); ?></a>
+							</div>
+						<?php endif; ?>
 					</div>
 					<script type="text/javascript">
 						$(function(){
