@@ -740,7 +740,61 @@ $('#pic_cfolder').click(function(){
   $('.pop_uploadvr .pop_con').click(function(){
     event.stopPropagation()
   })
-
+  // 私信弹窗
+  // htmlv?=20160720 
+  $('.otherhome_sendmess').click(function(){
+    $('.pop_letter').show();
+    $(".letter_ul").animate({ scrollTop: 10000}, 800);
+    var poptopHei = $('.pop_letter .pop_con').height();
+    $('.pop_con').css({
+       'margin-top':-(poptopHei/2)
+    })
+    sendMess()
+  });
+  function sendMess(){
+    $('#send_new_message').click(function(){
+      var sendtextArea = $('.letter_textarea textarea').val().trim();
+      var to_id = $(this).attr('to_id')
+      var pic_m = $(this).attr('pic_m')
+      if (sendtextArea == "") {
+        $('textarea[name=message]').focus()
+      }else{
+        $.ajax({
+          'beforeSend':function(){
+            $('#send_new_message').html('发送中')
+          },
+          'url':"/webd/notice/messages",
+          'type':'post',
+          'data':{
+            'user_id':u_id,
+            'content':sendtextArea,
+            'to_id':to_id
+          },
+          'dataType':'json',
+          'success':function(json){
+            if(json.code==200){
+              var messHtml = $('<li class="clearfix letter_ulright">\
+              <span class="letter_rel">'+sendtextArea+'</span>\
+              <div class="letter_avawrap">\
+                <img src="'+pic_m+'" alt="">\
+              </div>\
+            </li>');
+            $('.letter_ul').append(messHtml);
+            $(".letter_ul").animate({ scrollTop: 10000}, 800);
+            $('.letter_textarea textarea').val("")
+            }else{
+              layer.msg(json.message, {icon: 5});
+              return
+            }
+          },
+          'complete':function(){
+            $('#send_new_message').html('发送留言')
+          }
+        })
+        
+      };
+    })
+  }
 
 
 })

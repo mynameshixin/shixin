@@ -22,6 +22,8 @@ class UserController extends CmController{
 		parent::__construct();
 		$getdata = fparam(Input::all());
 		// if(empty($this->user_id)) die('you must login to see more!');
+		// 查询留言信息
+		
 		if(isset($getdata['oid']) && !empty($getdata['oid'])){
 			$this->other_id = $getdata['oid'];
 		}else{
@@ -52,6 +54,10 @@ class UserController extends CmController{
 			$this->self_info = UserWebsupply::user_info($this->user_id);
 		}
 		
+		if(!empty($getdata['oid']) && !empty($this->user_id) && $getdata['oid']!=$this->user_id){
+			$this->self_info['message'] = DB::table('messages')->where('from_id',$this->user_id)->where('to_id',$getdata['oid'])->get();
+			$this->user_info['message'] = DB::table('messages')->where('to_id',$this->user_id)->where('from_id',$getdata['oid'])->get();
+		}
 
 		if(isset($this->user_info) && !empty($this->user_info)){
 			$this->user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
@@ -61,7 +67,6 @@ class UserController extends CmController{
 	//查询自己的信息 文件夹首页
 	public function getIndex(){
 		$folders = $this->postFolders(0);
-		// dd($this->user_info);
 		$folders_private = $this->postFolders(1);
 		// dd($folders_private);
 		$data = [

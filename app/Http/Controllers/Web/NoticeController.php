@@ -12,7 +12,24 @@ use App\Services\MessageService;
 use DB;
 
 class NoticeController extends CmController{
+    // 检测通知
+    public function postCheck(){
+        $data = Input::all();
+        $rules = array(
+            'num'=> 'integer',
+            'user_id'=>'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        if(empty($user_id)) return response()->forApi([],1001,'不存在的用户');
+        $num = isset($data['num']) ? $data['num'] : 0;
+        $res = DB::table('system_msgs')->where('to_userid',$user_id)->where('status',0)->take($num)->orderBy('created_at', 'desc')->get();
+        if(!empty($res)) return response()->forApi([],1001,'有新通知');
+        return response()->forApi(['status'=>1]);
+    }
 
+    // 获取通知信息
 	public function postIndex(){
 		$data = Input::all();
         $rules = array(
@@ -44,6 +61,30 @@ class NoticeController extends CmController{
 	}
 
 
+    //给用户留言
+    public function postMessages(){
+        $data = Input::all();
+        $rules = array(
+            'content' => 'required',
+            'to_id' => 'required',
+            'user_id'=>'required',
+        );
+        $pa = [
+            'user_id.required'=>'没有登陆',
+            'to_id.required'=>'没有传入留言人',
+            'content.required'=>'留言信息为空',
+        ];
+        //请求参数验证
+        parent::validator($data, $rules,$pa);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+        $date = date('Y-m-d H:i:s');
+        DB::table('messages')->insert(['from_id'=>$user_id,'to_id'=>$data['to_id'],'content'=>$data['content'],'created_at'=>$date]);
+        return response()->forApi(['status'=>1]);
+
+
+    }
 	public function cpu_time($time){
 
         if($time < 60) return $time.'秒';

@@ -886,8 +886,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_letter .pop_con{width: 660px;border-radius: 12px;background: #fff;position: fixed;top: 50%;left: 50%;margin-left: -330px;}
 .pop_letter .pop_tit{text-align: center;width: 570px;padding:20px 10px 20px 15px;margin:0px 0px 0px 30px;}
 .pop_letter .pop_close{right: 0px;}
-.letter_time{width: 86px;height: 21px;text-align: center;margin:30px auto;background: #e7e7e7;color: #fff;font:normal 12px/21px "Microsoft YaHei";border-radius: 4px;}
-.letter_ul{padding:0px 30px;}
+.letter_time{width: 86px;height: 21px;text-align: center;margin:30px auto;background: #e7e7e7;color: #fff;font:normal 12px/21px "Microsoft YaHei";border-radius: 4px;display: none;}
+.letter_ul{padding:10px 0px 10px 30px;height: 260px;overflow-y: scroll;width: 600px;}
 .letter_ul li{position: relative;min-height: 50px;margin-bottom: 15px;}
 .letter_ulleft .letter_avawrap{left: 0px;}
 .letter_ulleft .letter_rel{float: left;padding:10px 10px 10px 21px;margin:8px 0px 0px 44px;}
@@ -897,7 +897,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .letter_ulright .letter_avawrap{right: 0px;}
 .letter_ulright .letter_rel{float: right;padding:10px 21px 10px 10px;margin:8px 44px 0px 0px;}
 .letter_textarea{padding:0px 30px;}
-.letter_textarea textarea{width: 570px;height: 50px;border-radius: 4px;border:none;background: #f0f0f0;padding:15px;}
+.letter_textarea textarea{width: 600px;height: 50px;border-radius: 4px;border:none;background: #eee;padding:15px;}
 .pop_report{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
 .pop_report .pop_con{width: 660px;}
 .report_con{padding:0px 30px;}

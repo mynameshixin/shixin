@@ -16,7 +16,7 @@
 						</div>
 						<div class="perhome_perline">
 							<?php if($user_id!=$self_id){ ?>
-							<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="otherhome_follow">留言</a>
+							<a href="javascript:;" class="otherhome_follow otherhome_sendmess">留言</a>
 							<?php } ?>
 							<?php if($user_id!=$self_id){ ?>
 							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="<?php echo e($user_id); ?>" title="<?php echo e(empty($user_info['nick'])?$user_info['username']:$user_info['nick']); ?>">
