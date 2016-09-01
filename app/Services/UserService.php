@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Lib\Images;
 use App\Lib\LibUtil;
 use App\Lib\Sms;
+use DB;
 
 class UserService extends ApiService
 {
@@ -171,12 +172,21 @@ class UserService extends ApiService
 
     public function getUserList($params,$num){
 
+        $rows = new User;
+        if (!empty($params['user_id'])){
+            $follow_ids = DB::table('user_follow')->where('user_id',$params['user_id'])->lists('userid_follow');
+            $rows = $rows->whereIn('id',$follow_ids);
+        } 
+
         if (isset($params['keyword']) && !empty($params['keyword'])) {
             $keyword = $params['keyword'];
-            $rows = User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->paginate($num);
+            $rows = $rows->where(function ($rows) use ($keyword) {
+               $rows = $rows->where('username', "like", "%{$keyword}%")->orWhere('nick', "like", "%{$keyword}%")->orWhere('mobile', "like", "%{$keyword}%");
+            })->paginate($num);
+            
             //$rows = User::where('username', "like" , "%{$keyword}%")->paginate($num);
         }else{
-            $rows = User::paginate($num);
+            $rows = $rows->paginate($num);
         }
         $data = LibUtil::pageFomate ($rows);
 
@@ -216,10 +226,63 @@ class UserService extends ApiService
         return $data;
 
     }
+     public function getBindUserList($params,$num,$page= null){
+        if(!empty($page)){
+            $skip = ($page-1)*$num;
+            $data = DB::table('users')->where('is_recommend',1)->skip($skip)->take($num)->get();
+        }else{
+            $arr = DB::table('users')->where('is_recommend',1)->lists('id');
+            $data = DB::table('users')->where('id', $arr[$num])->get();
+        }
 
-    public function getSearchCount ($keyword) {
+        $rdata= [];
+        if (!empty($data)){
+
+            $list = [] ;
+            if (isset($params['current_uid']) && !empty($params['current_uid'])) {
+                $arr = Follow::where('user_id',$params['current_uid'])->select('userid_follow')->get()->toArray();
+                $user_ids = array_column($arr,'userid_follow');
+            }
+
+            foreach ($data as $val) {
+                //$follow_num = self::getFollowNum($val['id']);
+                $entry = [
+                    'id'    => $val['id'],
+                    'nick'  => $val['nick'],
+                    'username'  =>$val['username'],
+                    'gender' => $val['gender'],
+                    //'status' => $user->status,
+                    'pic_b'   => LibUtil::getUserAvatar($val['id'],4),
+                    'pic_b'   => LibUtil::getUserAvatar($val['id'],3),
+                    'pic_m'   =>  LibUtil::getUserAvatar($val['id'], 1),
+                    //'follow_num'=>$follow_num,
+                    'fan_num'=>self::getFanNum($val['id']),
+                    'is_follow'=>0
+                ];
+                if (isset($params['current_uid']) && !empty($params['current_uid']) && in_array($val['id'],$user_ids)) {
+                    $entry['is_follow'] = 1;
+                }
+                if (empty($entry['pic_b']) && !empty($val['auth_avatar'])) {
+                    $entry['pic_o'] = $entry['pic_b'] = $entry['pic_m'] = $val['auth_avatar'];
+                }
+                $list[] = $entry;
+            }
+            $rdata['list'] = $list;
+        }
+        return $rdata;
+
+    }
+    public function getSearchCount ($keyword,$data=[]) {
         $keyword = fparam($keyword);
-        return User::where('username', "like" , "%{$keyword}%")->orWhere('nick', "like" , "%{$keyword}%")->orWhere('mobile', "like" , "%{$keyword}%")->count();
+        $rows = new User;
+
+        if(!empty($data['user_id'])){
+            $follow_ids = DB::table('user_follow')->where('user_id',$data['user_id'])->lists('userid_follow');
+            $rows = $rows->whereIn('id',$follow_ids);
+        }
+        return $rows->where(function ($rows) use ($keyword) {
+               $rows = $rows->where('username', "like", "%{$keyword}%")->orWhere('nick', "like", "%{$keyword}%")->orWhere('mobile', "like", "%{$keyword}%");
+            })->count();
     }
 
     public function getAdminIds () {

@@ -91,7 +91,7 @@ class FolderService extends ApiService
    public function getFolders($params,$num){
         
        $rows = new Folder;
-       if (isset($params['user_id'])) $cond['user_id'] = $params['user_id'];
+       if (!empty($params['user_id'])) $cond['user_id'] = $params['user_id'];
        if (isset($params['private'])) $cond['private'] = $params['private'];
        if (isset($params['is_recommend'])) $cond['is_recommend'] = $params['is_recommend'];
        if(isset($cond)) $rows = $rows->where($cond);
@@ -105,7 +105,7 @@ class FolderService extends ApiService
            $rows = $rows->where(function ($rows) use ($keyword) {
 
                $rows = $rows->where('name', "like", "%{$keyword}%")
-                   ->orwhere('tags', "like", "%{$keyword}%");
+                   ->orWhere('tags', "like", "%{$keyword}%");
 
            });
        }
@@ -325,9 +325,15 @@ class FolderService extends ApiService
         return true;
     }
 
-    public function getSearchCount ($keyword) {
+    public function getSearchCount ($keyword,$data=[]) {
         $keyword = fparam($keyword);
-        return Folder::where('name', "like" , "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%")->count();
+        $rows = new Folder;
+        if(!empty($data['user_id'])){
+            $rows = $rows->where('user_id',$data['user_id']);
+        }
+        return $rows->where(function ($rows) use ($keyword) {
+         $rows  = $rows->where('name', "like" , "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+       })->count();
     }
 
     public function delFolder($id)

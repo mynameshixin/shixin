@@ -34,7 +34,7 @@ class ResizeImage {
 		$this->resize_height = $hei;
 		$this->cut = $c;
 		//图片的类型
-		$this->type = strtolower(substr(strrchr($this->srcimg,"."),1));
+		$this->type = exif_imagetype($this->srcimg);
 		//初始化图象
 		$this->initi_img();
 		//目标图象地址
@@ -54,7 +54,7 @@ class ResizeImage {
 		$this->resize_height = $hei;
 		$this->cut = $c;
 		//图片的类型
-		$this->type = strtolower(substr(strrchr($this->srcimg,"."),1));
+		$this->type = exif_imagetype($this->srcimg);
 		//初始化图象
 		$this->initi_img();
 		//目标图象地址
@@ -80,14 +80,15 @@ class ResizeImage {
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width,$this->resize_height, (($this->height)*$resize_ratio), $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				imagejpeg ($newimg,$this->dstimg);
+
 			}
 			if($ratio<$resize_ratio)
 				//宽度优先
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width, $this->resize_height, $this->width, (($this->width)/$resize_ratio));
-				ImageJpeg ($newimg,$this->dstimg);
+				imagejpeg ($newimg,$this->dstimg);
 			}
 		}
 		else
@@ -97,28 +98,28 @@ class ResizeImage {
 			{
 				$newimg = imagecreatetruecolor($this->resize_width,($this->resize_width)/$ratio);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, $this->resize_width, ($this->resize_width)/$ratio, $this->width, $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				imagejpeg ($newimg,$this->dstimg);
 			}
 			if($ratio<$resize_ratio)
 			{
 				$newimg = imagecreatetruecolor(($this->resize_height)*$ratio,$this->resize_height);
 				imagecopyresampled($newimg, $this->im, 0, 0, 0, 0, ($this->resize_height)*$ratio, $this->resize_height, $this->width, $this->height);
-				ImageJpeg ($newimg,$this->dstimg);
+				imagejpeg ($newimg,$this->dstimg);
 			}
 		}
 	}
 	//初始化图象
 	function initi_img()
 	{
-		if($this->type=="jpg")
+		if($this->type=="2")
 		{
 			$this->im = imagecreatefromjpeg($this->srcimg);
 		}
-		if($this->type=="gif")
+		if($this->type=="1")
 		{
 			$this->im = imagecreatefromgif($this->srcimg);
 		}
-		if($this->type=="png")
+		if($this->type=="3")
 		{
 			$this->im = imagecreatefrompng($this->srcimg);
 		}
@@ -126,16 +127,6 @@ class ResizeImage {
 	//图象目标地址
 	function dst_img($dstpath)
 	{
-		$full_length  = strlen($this->srcimg);
-
-		$type_length  = strlen($this->type);
-		$name_length  = $full_length-$type_length;
-
-
-		$name         = substr($this->srcimg,0,$name_length-1);
 		$this->dstimg = $dstpath;
-
-
-		//echo $this->dstimg;
 	}
 }

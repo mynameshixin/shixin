@@ -20,48 +20,17 @@ use App\Lib\Top\Request\ItemGetRequest;
 class FancyService extends ApiService
 {
 
-    public function getItemDetail ($url,$type = 2) {
+    public function getItemDetail ($url) {
         $tmp = $res = [];
-        $response = $this->curl($url);
+        preg_match("/\d+/is", $url,$rurl);
+        $url = "https://fancy.com/rest-api/v1/things/".$rurl[0];
+        $response = file_get_contents($url);
         if(!empty($response)){
-            if($type==2){
-                $preg_pic ="/<span class=\"figure-img\"><img src=\".+\" style=\"background-image:url\(\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\)\"><\/span>/is";
-            }
-            if($type == 1){
-                $preg_pic ="/<img src=\"\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)\" class=\"fit\">/is";
-            }
-            preg_match($preg_pic,$response,$arr);
-            // dd($arr);
-            $imageurl = isset($arr[0])?$arr[0]:'';
-            
-            preg_match("/\/\/thingd-media-ec\d+\.thefancy\.com\/.+\.(jpg|gif|png)/is",$imageurl,$pic_url);
-            $pic_url  = $pic_url[0]?'https:'.$pic_url[0]:'';
-
-            if($type==2){
-                $preg_title = "/<figcaption>(.*?)<\/figcaption>/is";
-            }
-            if($type == 1){
-                $preg_title = "/<h3 class=\"title\">(.*?)<\/h3>/is";
-            }
-            preg_match($preg_title,$response,$o_title);
-            $o_title = isset($o_title[1])?$o_title[1]:'';
-            $o_t2 = str_replace('\n','',$o_title);
-            $o_t3 = str_replace('\t','',$o_t2);
-            $title = trim($o_t3);
-
-            if($type==2){
-                $preg_price = "/<b class=\"price\s\">(.*?)\s<a class=\"currency\">USD<\/a><\/b>/is";
-                preg_match($preg_price,$response,$o_price);
-                $o_price = isset($o_price[1])?$o_price[1]:'';
-                preg_match("/\d+/is",$o_price,$price);
-                $price = isset($price[0])?$price[0]:'';
-            }
-            if($type == 1){
-                $preg_price = "/<big class=\"\">(.*)$(.*)\d+(.*)<small class=\"usd\"><a class=\"code\">USD</a></small></big>/is";
-                preg_match($preg_price,$response,$o_price);
-                dd($o_price);
-            }
-            
+            $r_arr = json_decode($response,1);
+           // dd($r_arr);
+            $pic_url = $r_arr['image']['src'];
+            $price = $r_arr['sales']['price'];
+            $title = $r_arr['name'];
 
             $tmp = [
                 'pic_url'=>$pic_url,
@@ -77,7 +46,79 @@ class FancyService extends ApiService
 
     }
 
+    public function getIkeaDetail ($url) {
+        $tmp = $res = [];
+        $response = $this->curl($url);
+        // echo $response;die;
+        if(!empty($response)){
 
+            $preg_pic ="/<img id=\"productImg\" src=\'(.+)\.(jpg|gif|png)\'.+border=\"0\"  alt=\'.+\' title=\'(.*)\' width=\"500\" height=\"500\"\/>/is";
+            preg_match($preg_pic,$response,$arr);
+            $pic_url = $title = '';
+            if(!empty($arr[0])){
+                $pic_url = "http://www.ikea.com".$arr[1].'.'.$arr[2];
+                $title = $arr[3];
+            }
+
+            $preg_price = "/<span id=\"price1\" class=\"packagePrice\">(.+?)<\/span>/is";
+            preg_match($preg_price,$response,$o_price);
+            if(!empty($o_price[1])){
+                preg_match("/\d+\.\d{2}/is",$o_price[1],$price);
+                $price = $price[0];
+            }
+            $tmp = [
+                'pic_url'=>$pic_url,
+                'price' => $price,
+                'price_wap' => $price,
+                'reserve_price' => $price,
+                'title' => $title
+            ];
+            $res[0] = $tmp;
+            return $res;
+        }
+        return 0;
+
+    }
+
+    public function getWowdsgnDetail ($url) {
+        $tmp = $res = [];
+        $response = $this->curl($url);
+
+        if(!empty($response)){
+
+            $preg_pic ="/<img id=\"product-pic\" class=\"img-responsive\" src=\"(.*?)\">/is";
+            preg_match($preg_pic,$response,$arr);
+            $pic_url = $title = '';
+            if(!empty($arr[1])){
+                $pic_url = $arr[1];
+            }
+
+            $preg_price = "/<p class=\"price-lg\">(.*?)<\/p>/is";
+            preg_match($preg_price,$response,$o_price);
+            if(!empty($o_price[1])){
+                preg_match("/\d+\.\d{2}/is",$o_price[1],$price);
+                $price = $price[0];
+            }
+            
+            $preg_title = "/<title>(.*?)<\/title>/is";
+            preg_match($preg_title,$response,$o_title);
+            if(!empty($o_title[1])){
+                $title = $o_title[1];
+            }
+
+            $tmp = [
+                'pic_url'=>$pic_url,
+                'price' => $price,
+                'price_wap' => $price,
+                'reserve_price' => $price,
+                'title' => $title
+            ];
+            $res[0] = $tmp;
+            return $res;
+        }
+        return 0;
+
+    }
 
     public function curl($url, $postFields = null,$readTimeout = 15,$connectTimeout = 15){
         $ch = curl_init();
@@ -85,6 +126,11 @@ class FancyService extends ApiService
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, $readTimeout);
+        $header = array (
+        'User-Agent: Mozilla/5.0 (Windows NT 5.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36','X-FORWARDED-FOR:154.125.25.15', 'CLIENT-IP:154.125.25.15'
+        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header); //构造用户IP
+        curl_setopt($ch, CURLOPT_REFERER, "http://www.baidu.com/");//构造来路 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connectTimeout);
         //https 请求
         if(strlen($url) > 5 && strtolower(substr($url,0,5)) == "https" ) {
@@ -104,6 +150,7 @@ class FancyService extends ApiService
             }
             unset($k, $v);
             curl_setopt($ch, CURLOPT_POST, true);
+            
             if ($postMultipart){
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
             }else{
@@ -113,7 +160,6 @@ class FancyService extends ApiService
             }
         }
         $reponse = curl_exec($ch);
-        
         if (curl_errno($ch)){
             return 0;
         }else{

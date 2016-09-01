@@ -67,6 +67,7 @@ class CmController extends Controller {
         $data = md5(uniqid().time()).'_'.Crypt::encrypt($newid);
         setcookie($key,$data,time()+315360000,'/');
         self::set_user_cache($data);
+        return $data;
     }   
 
     public function destory_cookie($str){

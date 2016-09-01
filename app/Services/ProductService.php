@@ -62,6 +62,8 @@ class ProductService extends ApiService
         if ($data['kind'] == 2) {
             return self::addImageProduct($userId, $data , $files );
         }
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
@@ -85,6 +87,7 @@ class ProductService extends ApiService
             'typeid'=>isset($data['typeid']) ? (int)$data['typeid'] : 0,
             'btypeid'=>isset($data['btypeid']) ? (int)$data['btypeid'] : 0,
             'saleid'=>isset($data['saleid']) ? (int)$data['saleid'] : 0,
+            'tags' => $tags,
         );
         if (isset($data['image_ids']) && !empty($data['image_ids'])) {
             $entry['image_ids'] = $data['image_ids'];
@@ -117,11 +120,13 @@ class ProductService extends ApiService
     public function addImageProduct($userId, $data = array(), $files = array())
     {
         $data['title'] = isset($data['title']) ? trim($data['title']) : '';
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
             'title' => $data['title'],
-            'tags' => isset($data['tags']) ? trim($data['tags']) : '',
+            'tags' => $tags,
             'description' => isset($data['description']) ? $data['description'] : '',
             'category_id' => isset($data['category_id']) ? $data['category_id'] : 0,
             'price' => isset($data['price']) ? $data['price'] : 0,
@@ -146,7 +151,6 @@ class ProductService extends ApiService
             $images_arr = explode(',', $data['image_ids']);
         }
         if (isset($files['image']) && !empty($files['image'])) {
-
             $images = ImageService::getInstance()->uploadImage($userId, $files['image']);
             if (!empty($images)) {
                 $images_arr = array_column($images, 'image_id');
@@ -281,8 +285,8 @@ class ProductService extends ApiService
         $outDate_self = !empty($outDate_self)?$outDate_self:[];
         $count_self = isset($outDate_self['list'])?count($outDate_self['list']):0;*/
 
-        $rows = FolderGood::where('kind', $kind);
-        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
+        $rows = FolderGood::where('folder_goods.kind', $kind);
+        $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id')->where('folders.private',0);
         if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
@@ -292,7 +296,7 @@ class ProductService extends ApiService
             });
         }        
         // $rows = $rows->where('folders.private',0);
-        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc');
+        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
         $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
         
@@ -302,7 +306,7 @@ class ProductService extends ApiService
             $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);
             $outDate['per_page']  = $count_self+$count;
         }*/
-        $count = 0;
+        /*$count = 0;
         foreach ($outDate['list'] as $key => $value) {
             if($value['private'] == 1 && $self_id != $value['user_id']){
                 unset($outDate['list'][$key]);
@@ -310,7 +314,7 @@ class ProductService extends ApiService
             }
             
         }
-        $outDate['per_page'] = $num-$count;
+        $outDate['per_page'] = $num-$count;*/
 
         if (!empty($outDate['list'])) {
             $params['ids'] = $product_ids = array_column($outDate['list'], 'good_id');
@@ -377,7 +381,7 @@ class ProductService extends ApiService
         }
         if (isset($params['is_delete'])) $condtion['goods.is_delete'] = $params['is_delete'];
         if (isset($params['kind'])) $condtion['goods.kind'] = $params['kind'];
-        if (isset($params['user_id'])) $condtion['goods.user_id'] = $params['user_id'];
+        if (!empty($params['user_id'])) $condtion['goods.user_id'] = $params['user_id'];
         if (isset($params['folder_id'])) {
             if ($params['folder_id'] > 0) {
                 $params['ids'] = self::getFolderGoodIds($params['folder_id']);
@@ -418,6 +422,7 @@ class ProductService extends ApiService
                     ->orWhere('goods.tags', "like", "%{$keyword}%");
 
             });
+            
         }
        
         $rows = $rows->select('goods.id', 'goods.user_id', 'goods.kind', 'goods.price', 'goods.folder_id', 'goods.reserve_price', 'goods.image_ids', 'goods.title', 'goods.tags', 'goods.category_id', 'goods.description', 'goods.source', 'goods.is_recommend', 'goods.collection_count', 'goods.praise_count', 'goods.boo_count', 'goods.detail_url', 'goods.created_at');
@@ -607,9 +612,14 @@ class ProductService extends ApiService
         return $outDate;
     }
 
-    public function getSearchCount($keyword, $kind)
+    public function getSearchCount($keyword, $kind,$data=[])
     {   $keyword = fparam($keyword);
         $rows = Product::where(['kind' => $kind, 'status' => 1]);
+        
+        if(!empty($data['user_id'])){
+            $rows = $rows->where('user_id',$data['user_id']);
+        }
+        
         return $rows->where(function($query) use ($keyword){
             $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
         })->count();

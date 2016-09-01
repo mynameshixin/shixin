@@ -39,7 +39,7 @@ class ImageService extends ApiService
 
     public function getImageIds($url)
     {
-
+        
         //获取远程文件所采用的方法
         $ch = curl_init();
         $timeout = 15;
@@ -48,6 +48,8 @@ class ImageService extends ApiService
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $img = curl_exec($ch);
         curl_close($ch);
+        
+
         if (!empty($img)) {
             $Image = new Image();
             $destinationPath = self::$image_dir;
@@ -62,6 +64,7 @@ class ImageService extends ApiService
             $fp2=@fopen($destinationPath . $fileName,'a');
             fwrite($fp2,$img);
             fclose($fp2);
+            $ext = self::ext($destinationPath . $fileName);
             if (file_exists($destinationPath . $imageId . '_o.jpg')) {
                 $rules = $this->rules;
                 try {
@@ -100,7 +103,6 @@ class ImageService extends ApiService
             LibUtil::make_dir($destinationPath);
             $fileName = $imageId . '_o.jpg'; // renameing image
             $ext = self::extend($entry['name']);
-
             if($ext=="jpg")
             {
                 move_uploaded_file($tmp_name, $destinationPath . $fileName);
@@ -142,6 +144,12 @@ class ImageService extends ApiService
         return $extend;
     }
 
+    function ext($file_name){
+        if(function_exists('exif_imagetype')){
+            return exif_imagetype($file_name);
+        }
+        
+    }
 
 
 }

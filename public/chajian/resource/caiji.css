@@ -1,0 +1,166 @@
+html,body {background:#f2f1f1;margin:0px;padding:0px;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td
+{margin:0;padding:0;list-style: none;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset, img{border:0;}
+em, strong{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+h1, h2, h3, h4, h5, h6{font-size:100%;font-weight:normal;}
+body, input, button, textarea{font-size:12px;font-family:Arial, Helvetica, sans-serif;}
+a,a:focus,input,textarea,select{outline:none;outline-style:none;text-decoration: none;}
+th, td{vertical-align:top;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+textarea{resize: none;}
+.w1248{width: 1244px;margin:0 auto;position: relative;}
+.w1248 .mrightzero{margin-right: 0px;}
+.w990{width: 990px;margin:0 auto;position: relative;}
+.w990 .mrightzero{margin-right: 0px;}
+.w992{width: 992px;margin:0 auto;position: relative;}
+/*body样式*/
+body{background: #e6dddb;padding-top: 1px;min-width: 1244px;}
+.dtj-header { height: 46px; background: white; box-shadow: 0 0 4px rgba(0, 0, 0, .2); width: 100%; left: 0; top: 0; position: fixed;z-index: 1; }
+.header_logo {display: block; position: absolute; top: 5px; }
+.dtj-header .dtj-close { width: 60px; height: 50px; border-left: 1px solid #ddd; position: absolute; right: 0; top: 0; background: url(btn_close.png) 20px 14px no-repeat; cursor: pointer; }
+.dtj-header .dtj-close:hover { background-position: 20px -26px; }
+.dtj-header .dtj-close:active { background-position: 20px -66px; }
+.container{margin-top: 56px; position: relative;background-color: #e6e6e6;padding-bottom: 80px;}
+.dtj-waterfull{width:100%;}
+.item{width: 236px; position: absolute;  background: white; box-shadow: 0 1px 3px rgba(0,0,0,.3);  transition: left .3s ease-in-out, top .3s linear;margin: 6px 0;}
+.item .item_imgwrap{overflow: hidden; position: relative;}
+.item_imgwrap:hover{opacity: .;}
+.item_imgwrap .collected{ position: absolute; left: 0;  top: 10px; height: 24px; line-height: 24px; padding: 0 10px; background: #CE0000; background: rgba(200, 0, 0, 0.9); color: white; font-size: 12px;display: none;}
+.item_imgwrap .item-hover{display: none;}
+
+.item-hover .collect-btn{ width: 60px; height: 34px; padding: 0;  position: absolute; left: 50%;  top: 50%; margin: -18px 0 0 -31px; line-height: 34px; box-shadow: 0 0 0 2px rgba(255,255,255,.2); font-size: 16px;    text-align: center;
+    background: #D53939; color: white; cursor: pointer;  text-decoration: none; display: inline-block; border-radius: 2px;}
+.item-hover .slect-btn{width: 34px;  height: 34px; background: url(checkbox.png) 0 0 no-repeat;
+    position: absolute; right: 5px; top: 5px; cursor: pointer;}
+.item .item_info{margin: 8px 16px; font-size: 12px; color: #999; }
+.item textarea{display: block;  width: 202px;  margin: 0 6px 6px;  padding: 6px 10px; border: 0; resize: none;
+    outline: 0; border: 1px solid transparent; line-height: 18px; font-size: 13px; overflow: hidden;  word-wrap: break-word;
+    background: url(icon_edit.png) 500px center no-repeat;
+}
+.item:hover .item-hover{display: block;}
+.item-selected .item-hover{display: block;}
+.item-selected .item-hover .collect-btn{display: none;}
+.item-selected .item-hover .slect-btn{background-position:0 -40px;}
+.item:hover textarea{ background-color: #fff9e0; background-position: right top;}
+
+.dtj-multi-noti{ height: 50px; line-height: 50px; text-align: center; font-size: 16px; color: #999; font-weight: bold;display: none;}
+.footer{width: 100%; height: 84px; background-color: #848382;position: fixed;bottom: 0; left: 0;opacity: .9; display: none;}
+.footer .multi-btn{    position: absolute;  top: 25px; left: 0; }
+.multi-btn .dtj-btn{margin-right: 10px;}
+.dtj-btn{display: inline-block; border-radius: 3px; font-size: 14px;  padding: 0 12px;  height: 33px; line-height: 33px; cursor: pointer;
+    text-decoration: none;  white-space: nowrap; -moz-user-select: none;  -webkit-user-select: none; user-select: none; text-align: center;
+    background: #D53939; color: white;box-shadow: 0 1px 1px rgba(0, 0, 0, .2);}
+.dtj-btn.dtj-cancel{background: #fff; color: #535353;}
+
+.pop{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
+.img_upload{width: 570px; height: 480px; overflow: hidden;border-radius: 5px;background-color: #fff;position: absolute;top: 20%;left: 50%;margin-left: -285px;}
+.img_upload .pic_show{width: 210px;height: 100%;background-color: #d9d9d9;padding-left: 30px;}
+.img_upload h1{width: 100%; height: 60px;overflow: hidden;font-size: 21px; font-weight: bold;color: #4B4B4B;font-family: "微软雅黑";line-height: 60px;}
+.img_upload p{font-weight: normal;font-size: 14px;color: #333;line-height: 50px;margin-bottom: 10px;}
+.img_upload .pic_selected{width: 200px;}
+.pic_selected .items{width: 77px; margin-right: 23px;box-sizing: border-box;background-color: #fff;height: 77px;float: left;border-top-left-radius: 5px;position: relative;margin-bottom: 22px;}
+.pic_selected .items:first-child{font-size: 50px;border-top-left-radius: 0;}
+.items .hor{display: inline-block; width: 39px; height: 3px;background-color: #b0b0b0;position: absolute;top: 37px;left: 19px;}
+.items .ver{display: inline-block; width: 3px; height: 39px;background-color: #b0b0b0;position: absolute;top: 19px;left: 37px;}
+.pic_selected .items img{display:block;width: 100%;height: 100%;}
+.items span.title{display: block; width: 100%;height: 28px;position: absolute;left: 0;bottom: 0;background-color: #9e1e1a;z-index: 1;opacity: .8;color: #fff;font-size: 12px;overflow: hidden;}
+.items span.delete{display: block; width: 16px;height: 16px;position: absolute;right: -8px;top: -8px;background-color: #9e1e1a;z-index: 1;color: #fff;font-size: 12px;text-align: center;line-height: 16px;border-radius: 8px;}
+
+/*采集成功*/
+.sunccess{width: 472px; height: 79px;border-radius: 5px;background: rgba(0,0,0,.5);position: fixed;bottom: 30%;left: 50%;margin-left: -236px;z-index: 100;}
+.sunccess .smile{width: 80px;height: 100%;float: left;overflow: hidden;text-align: center;}
+.sunccess .smile img{margin-top: 15px;display: inline-block;float: right; border-radius: 5px;}
+.sunccess .sunccess_txt{margin: 20px 0 0 30px; font-weight: bold;font-size: 14px; color: #fff;float: left;}
+.sunccess .sunccess_txt span{font-size: 21px;}
+.sunccess .sunccess_txt span b{color: #e35f43;}
+.autocomplete-container {
+		position: relative;
+		width: 190px;
+		height: 32px;
+		margin: 0 auto;
+		display: inline-block;
+	}
+
+	.autocomplete-input {
+		width: 218px;
+	    height: 36px;
+	    background: #f0f0f0;
+	    border-radius: 3px;
+	    border: none
+	}
+
+	.autocomplete-button {
+		font-family: inherit;
+		border: none;
+		background-color: #990101;
+		color: white;
+		padding: 8px;
+		float: left;
+		cursor: pointer;
+		border-radius: 0px 3px 3px 0px;
+		transition: all 0.2s ease-out 0s;
+		margin: 0.5px 0px 0px -1px;
+	}
+
+	.autocomplete-button:HOVER {
+		background-color: #D11E1E;
+	}
+	#search_form_outer,#search_upload_outer{
+		display: inline-block;
+		position: absolute;
+	    left: 40px;
+	    top: 0;
+	    z-index: 100
+	}
+	.proposal-box {
+		position: absolute;
+		height: auto;
+		border-left: 1px solid rgba(0, 0, 0, 0.11);
+		border-right: 1px solid rgba(0, 0, 0, 0.11);
+		left: 0px;
+	}
+
+	.proposal-list {
+		list-style: none;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.44);
+		-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 0px;
+	}
+
+	.proposal-list li {
+		text-align: left;
+		padding: 5px;
+		font-size: 16px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+		height: 25px;
+		line-height: 25px;
+		background-color: rgba(255, 255, 255, 1);
+		cursor: pointer;
+	}
+
+	li.proposal.selected {
+		background-color: rgba(175, 175, 175, 1);
+		color: white;
+	}
+
+	#search-box {
+		position: relative;
+		width: 400px;
+		margin: 0 auto;
+		display: inline;
+	}
+
+	#message {
+
+	}
+	.kkkod{
+		color: red;
+		font-size:65px; 
+	}

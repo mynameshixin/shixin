@@ -68,7 +68,6 @@ class ImageService extends ApiService
             $fileName = $imageId . '_o.jpg'; // renameing image
             // dd($destinationPath);
             $ext = $this->extend($tmp_name);
-            
             if($ext=="2")
             {
                 move_uploaded_file($tmp_name, $destinationPath . $fileName);

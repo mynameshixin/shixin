@@ -26,6 +26,7 @@ class Images
             $picArr['file'] = $file;
             $picArr['path'] = $path;
             $picArr['arr']  = $rules;
+            $ext = strtolower(substr(strrchr($file,"."),1));
             if ($picArr ['arr']) {
                 foreach ( $picArr ['arr'] as $val ) {
                     $val ['name'] =$imageId.$val ['name'] . '.jpg';

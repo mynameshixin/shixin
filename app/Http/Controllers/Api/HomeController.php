@@ -11,6 +11,7 @@ use App\Services\FolderService;
 use App\Services\ProductService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Input;
+use DB;
 
 /**
  *
@@ -123,10 +124,10 @@ class HomeController extends BaseController
         parent::validator($data, $rules);
         $keyword = urldecode($data['keyword']);
         $outData = [
-            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1),
-            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2),
-            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword),
-            'user_count'=>UserService::getInstance()->getSearchCount ($keyword)
+            'good_count'=>ProductService::getInstance()->getSearchCount ($keyword,1,$data),
+            'image_count'=>ProductService::getInstance()->getSearchCount ($keyword,2,$data),
+            'folder_count'=>FolderService::getInstance()->getSearchCount ($keyword,$data),
+            'user_count'=>UserService::getInstance()->getSearchCount ($keyword,$data)
         ];
         return response()->forApi($outData , 200);
     }
@@ -211,5 +212,43 @@ class HomeController extends BaseController
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
         return response()->forApi($rs);
+    }
+
+    //获得堆图达人 10个
+    public function getHuman(){
+        $params = Input::all();
+        $rules = array(
+            'num'=>'required|integer'
+        );
+        parent::validator($params,$rules);
+        $access_token = Input::get('access_token');
+        $user_id = 0;
+        if(!empty($access_token)){
+            $rs = parent::validateAcessToken($access_token);
+            $user_id = $rs['user_id'];
+        }
+    
+        $num  = ($params['num']-1)%10;
+        $params['current_uid'] = $user_id;
+        $outData = UserService::getInstance()->getBindUserList($params,$num);
+        return response()->forApi($outData);
+    }
+
+    //发现页获得堆图达人 10个
+    public function getBindhuman(){
+
+        $params = Input::all();
+        $page = isset($params['page'])?$params['page']:1;
+        $num = isset($params['num'])?$params['num']:10;
+        $access_token = Input::get('access_token');
+        $user_id = 0;
+        if(!empty($access_token)){
+            $rs = parent::validateAcessToken($access_token);
+            $user_id = $rs['user_id'];
+        }
+
+        $params['current_uid'] = $user_id;
+        $outData = UserService::getInstance()->getBindUserList($params,$num,$page);
+        return response()->forApi($outData);
     }
 }

@@ -53,23 +53,17 @@ var _hmt = _hmt || [];
 
 <script type="text/javascript">
 	$.ajax({
-		'url':"{{url('webd/notice/index')}}",
+		'url':"{{url('webd/notice/check')}}",
 		'type':'post',
 		'data':{
 			'user_id':u_id,
-			'num':50
+			'num':10
 		},
 		'dataType':'json',
 		'success':function(json){
-			if(json.code==200){
-				$.each(json.data.list,function(index,v){
-					if(v.status == 0){
-						console.log(v.status==0)
-						$('.header_mess').css({'background-position-y':'-1075px'})
-						return false
-					}
-					
-				})				
+			if(json.code==1001){
+				$('.header_mess').css({'background-position-y':'-1075px'})
+				return false			
 			}
 		},
 	})
