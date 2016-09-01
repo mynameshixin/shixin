@@ -63,6 +63,56 @@ class LibUtil {
         $url = "{$base_url}/{$userid}/avatar/user/{$type}";
         return $url;
     }
+
+    public static function myGetImageSize($url, $type = 'curl',$fix='236'){
+        $ch = curl_init($url);  
+        // 超时设置  
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);  
+        // 取前面 168 个字符 通过四张测试图读取宽高结果都没有问题,若获取不到数据可适当加大数值  
+        curl_setopt($ch, CURLOPT_RANGE, '0-267');  
+        // 跟踪301跳转  
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);  
+        // 返回结果  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+        $dataBlock = curl_exec($ch);  
+        curl_close($ch); 
+        if (! $dataBlock) return 236;
+        $size = getimagesize('data://image/jpeg;base64,'. base64_encode($dataBlock));  
+        if (empty($size)) {  
+            return 236;  
+        }  
+        $width = $size[0];  
+        $height = $size[1]; 
+        if($width<236 && $width>0) $fix = $width;
+        $rh = ceil(($height*$fix)/$width);
+        return $rh;
+    }
+
+    public  static function getPicSize($imageId,$kind = 0,$dir='',$fix='236'){
+
+        if ($imageId == '' || $imageId == null) {
+            return 236;
+        }
+        if (empty($dir)) {
+            $dir = 'uploads/images/';
+        }
+        $path = LibUtil::getFacePath($imageId);
+        $pic = $imageId.LibUtil::getPicName($kind).'.jpg' ;
+        //检查图片是否存在，不存在返回空
+        $basepath = self::$host.$dir.$path;
+        $url = \url($basepath.$pic);
+        $file_url = public_path($dir.$path.$pic);
+
+        if(file_exists($file_url)){
+            $width = getimagesize($file_url)[0];
+            $height = getimagesize($file_url)[1];
+            if($width<236 && $width>0) $fix = $width;
+            $rh = ceil(($height*$fix)/$width);
+            return $rh;
+        }
+        return self::myGetImageSize($url,'curl',$fix);
+    }
+
     /**
      * @param $imageId
      * @param int $kind
@@ -84,7 +134,6 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = self::$host.$dir.$path;
         $url = \url($basepath.$pic);
-        
         $file_url = public_path($dir.$path.$pic);
         if(file_exists($file_url)){
             return $url;
@@ -106,13 +155,13 @@ class LibUtil {
         //检查图片是否存在，不存在返回空
         $basepath = self::$host.$dir.$path;
         $url = \url($basepath . $pic);
-        // return $url;
-        $file_url = public_path($dir.$path . $pic);
+        return $url;
+        /*$file_url = public_path($dir.$path . $pic);
         if (file_exists($file_url)) {
             $url = $url. '?' . time();
             return $url;
         }
-        return '';
+        return '';*/
     }
     //创建文件夹
     public static function make_dir($folder) {

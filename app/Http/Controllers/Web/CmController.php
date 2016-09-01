@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Websupply\UserWebsupply;
 use App\Lib\UserReg as Registrar;
 use DB;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 
 class CmController extends Controller {
     use Helpers;
