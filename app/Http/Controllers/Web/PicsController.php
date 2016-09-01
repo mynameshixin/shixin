@@ -11,6 +11,7 @@ use App\Websupply\ProductWebsupply;
 use App\Lib\LibUtil;
 use App\Services\CollectionService;
 use App\Services\ProductService;
+use App\Services\ImageService;
 use App\Models\CollectionGood;
 use DB;
 
@@ -316,6 +317,46 @@ class PicsController extends CmController{
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
+    }
+
+    //采集插件上传图片
+    public function postPluginimg(){
+        
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'img_urls'=>'required',
+            'titles'=>'required',
+            'source_urls'=>'required',
+            'fid' => 'required|exists:folders,id',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        if(!is_array($data['img_urls'])) return response()->forApi(array(), 1001, '没有选择图片');
+        // dd($data);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        
+        if (isset($data['fid'])) {
+            $row = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
+            $data['folder_name'] = $row['name'];
+            if (empty($row)) return response()->forApi(array(), 1001, '请选择正确文件夹！');
+        }
+        
+        foreach ($data['img_urls'] as $key => $url) {
+            $data['title'] = $data['titles'][$key];
+            $data['source_url'] = $data['source_urls'][$key];
+            $data['status'] = 1;
+            $data['kind'] = 2;
+            $data['folder_id'] = $data['fid'];
+            $data['image_ids'] = ImageService::getInstance()->getImageIds($url);
+            $id = ProductService::getInstance()->addProduct ($userId,$data);
+        }
+        
+        return response()->forApi(['status' => 1]);
+
     }
 
     //添加评论

@@ -133,6 +133,7 @@ class ProductService extends ApiService
             'reserve_price' => isset($data['reserve_price']) ? $data['reserve_price'] : 0,
             'is_mall' => isset($data['is_mall']) ? $data['is_mall'] : 0,
             'detail_url' => isset($data['detail_url']) ? $data['detail_url'] : '',
+            'source_url' => isset($data['source_url']) ? $data['source_url'] : '',
             'folder_id' => isset($data['folder_id']) ? $data['folder_id'] : 0,
             'status' => isset($data['status']) ? $data['status'] : 0,
             'is_recommend' => isset($data['is_recommend']) ? $data['is_recommend'] : 0,
