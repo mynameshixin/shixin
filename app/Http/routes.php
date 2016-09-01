@@ -26,7 +26,8 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'contact'=>'ContactController',
         'tlogin'=>'TloginController',
         'goodaction'=>'GoodActionController',
-        'notice'=>'NoticeController'
+        'notice'=>'NoticeController',
+        'plugin'=>'PluginController'
     ]);
     Route::resources([
         'pic'=>'PicsController',
