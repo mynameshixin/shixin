@@ -24,8 +24,9 @@ class NoticeController extends CmController{
         $user_id = self::get_user_cache($data['user_id']);
         if(empty($user_id)) return response()->forApi([],1001,'不存在的用户');
         $num = isset($data['num']) ? $data['num'] : 0;
-        $res = DB::table('system_msgs')->where('to_userid',$user_id)->where('status',0)->take($num)->orderBy('created_at', 'desc')->get();
-        if(!empty($res)) return response()->forApi([],1001,'有新通知');
+        $system_msgs = DB::table('system_msgs')->where('to_userid',$user_id)->where('status',0)->take($num)->orderBy('created_at', 'desc')->get();
+        $messages = DB::table('messages')->where('to_id',$user_id)->where('status',0)->take($num)->orderBy('created_at', 'desc')->get();
+        if(!empty($system_msgs) || !empty($messages)) return response()->forApi([],1001,'有新通知');
         return response()->forApi(['status'=>1]);
     }
 
@@ -60,6 +61,35 @@ class NoticeController extends CmController{
         return response()->forApi($outDate);
 	}
 
+     // 获取留言信息
+    public function postMsg(){
+        $data = Input::all();
+        $rules = array(
+            'num'                  => 'required|integer',
+            'user_id'=>'required',
+            'editstatus'=>'required|integer'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $editstatus = isset($data['editstatus']) ? $data['editstatus'] : 0;
+        $num = isset($data['num']) ? $data['num'] : 0;
+
+        DB::table('messages')->where();
+
+        foreach ($outDate['list'] as $key => $value) {
+            $id = $value['id'];
+            if($editstatus == 1){
+                DB::table('system_msgs')->where('id',$id)->update(['status'=>1]);
+            }
+            $innertime = time() - strtotime($value['created_at']);
+            $outDate['list'][$key]['min'] = self::cpu_time($innertime);
+        }
+        return response()->forApi($outDate);
+    }
 
     //给用户留言
     public function postMessages(){
