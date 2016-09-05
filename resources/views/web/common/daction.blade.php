@@ -468,44 +468,11 @@
 				<span class="pop_close" onclick="$('.pop_letter').hide()"></span>
 			</p>
 			<div class="letter_con">
-				<div class="letter_time">121231231</div>
+				
 				<div class="letter_content">
-					<ul class="letter_ul">
-							<?php
-							if(!empty($user_info)){
-								$id = $user_info['id'];
-								$pic_m = $user_info['pic_m']; 
-								if(!empty($user_info['message'])){
-									foreach ($user_info['message'] as $key => $v) {?>
-										<li class="clearfix letter_ulleft">
-											<div class="letter_avawrap">
-												<a href="/webd/user?oid={{$id}}" target="_blank"><img src="{{$pic_m}}" alt=""></a>
-											</div>
-											<span class="letter_rel">
-												{{$v['content']}}
-											</span>
-										</li>
-								<?php }} ?>
-							<?php } ?>
-
-							<?php
-							if(!empty($self_info)){
-								$id = $self_info['id'];
-								$pic_m = $self_info['pic_m']; 
-								if(!empty($self_info['message'])){
-									foreach ($self_info['message'] as $key => $v) {?>
-										<li class="clearfix letter_ulright">
-											<span class="letter_rel">
-												{{$v['content']}}
-											</span>
-											<div class="letter_avawrap">
-												<a href="/webd/user?oid={{$id}}" target="_blank"><img src="{{$pic_m}}" alt=""></a>
-											</div>
-											
-										</li>
-								<?php }} ?>
-							<?php } ?>	
-					</ul>
+					<div style="overflow-y: scroll; height: 260px" id="letter_content">
+						
+					</div>
 					<div class="letter_textarea">
 						<textarea name="message"></textarea>
 					</div>
