@@ -886,8 +886,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_letter .pop_con{width: 660px;border-radius: 12px;background: #fff;position: fixed;top: 50%;left: 50%;margin-left: -330px;}
 .pop_letter .pop_tit{text-align: center;width: 570px;padding:20px 10px 20px 15px;margin:0px 0px 0px 30px;}
 .pop_letter .pop_close{right: 0px;}
-.letter_time{width: 86px;height: 21px;text-align: center;margin:30px auto;background: #e7e7e7;color: #fff;font:normal 12px/21px "Microsoft YaHei";border-radius: 4px;display: none;}
-.letter_ul{padding:10px 0px 10px 30px;height: 260px;overflow-y: scroll;width: 600px;}
+.letter_time{width: 86px;height: 21px;text-align: center;margin:10px auto;background: #e7e7e7;color: #999;font:normal 12px/21px "Microsoft YaHei";border-radius: 4px;}
+.letter_ul{padding:10px 0px 10px 30px;width: 600px;}
 .letter_ul li{position: relative;min-height: 50px;margin-bottom: 15px;}
 .letter_ulleft .letter_avawrap{left: 0px;}
 .letter_ulleft .letter_rel{float: left;padding:10px 10px 10px 21px;margin:8px 0px 0px 44px;}

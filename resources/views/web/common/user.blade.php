@@ -16,7 +16,7 @@
 						</div>
 						<div class="perhome_perline">
 							<?php if($user_id!=$self_id){ ?>
-							<a href="javascript:;" class="otherhome_follow otherhome_sendmess">留言</a>
+							<a href="javascript:;" class="otherhome_follow otherhome_sendmess" onclick="getMessage(this)" to_id="{{$user_id}}">留言</a>
 							<?php } ?>
 							<?php if($user_id!=$self_id){ ?>
 							<a href="javascript:;" onclick="relation(this)" class="otherhome_follow otherhome_alfollow" user_id="{{$user_id}}" title="{{empty($user_info['nick'])?$user_info['username']:$user_info['nick']}}">

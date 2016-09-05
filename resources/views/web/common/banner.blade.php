@@ -38,10 +38,10 @@ var _hmt = _hmt || [];
 						<a href="javascript:;" class="header_add_clicka header_add_clicka_on" id="notice" style="border-radius: 6px 0px 0px 0px">通知</a>
 						<a href="javascript:;" class="header_add_clicka" id="news" style="border: none;border-radius:0px 6px 0px 0px">消息</a>
 					</div>
-					<div class="header_add_con" style="height: 360px;overflow-y: scroll;">
+					<div class="header_add_con" style="height: 360px;overflow-y: scroll;" id="n1">
 						<ul class="header_add_cul"></ul>
 					</div>
-					<div class="header_add_con" style="height: 360px;overflow-y: scroll;">
+					<div class="header_add_con" style="height: 360px;overflow-y: scroll;" id="n2">
 						<ul class="header_add_cul"></ul>
 					</div>
 					<!-- <a href="javascript:;" class="header_add_more">查看更多</a> -->
@@ -70,6 +70,117 @@ var _hmt = _hmt || [];
 	})
 </script>
 <script type="text/javascript">
+function sendMess(){
+    $('#send_new_message').click(function(){
+      var sendtextArea = $('.letter_textarea textarea').val().trim();
+      var to_id = $(this).attr('to_id')
+      var pic_m = $(this).attr('pic_m')
+      if (sendtextArea == "") {
+        $('textarea[name=message]').focus()
+      }else{
+        $.ajax({
+          'beforeSend':function(){
+            $('#send_new_message').html('发送中')
+          },
+          'url':"/webd/notice/messages",
+          'type':'post',
+          'data':{
+            'user_id':u_id,
+            'content':sendtextArea,
+            'to_id':to_id
+          },
+          'dataType':'json',
+          'success':function(json){
+            if(json.code==200){
+              var messHtml = $('<li class="clearfix letter_ulright">\
+              <span class="letter_rel">'+sendtextArea+'</span>\
+              <div class="letter_avawrap">\
+                <img src="'+pic_m+'" alt="">\
+              </div>\
+            </li>');
+            $('#letter_content .letter_ul:last').append(messHtml)
+            $('#letter_content').animate({ scrollTop: 10000}, 800);
+            $('.letter_textarea textarea').val("")
+            }else{
+              layer.msg(json.message, {icon: 5});
+              return
+            }
+          },
+          'complete':function(){
+            $('#send_new_message').html('发送留言')
+          }
+        })
+        
+      };
+    })
+  }
+// 私信弹窗
+function getMessage(obj){
+	$('.pop_letter').show();
+	var to_id = $(obj).attr('to_id')
+	$.ajax({
+		'beforeSend':function(){
+			layer.load(0, {shade: 0.5});
+		},
+		'url':"{{url('webd/notice/msginner')}}",
+		'type':'post',
+		'data':{
+			'user_id':u_id,
+			'to_id':to_id,
+		},
+		'dataType':'json',
+		'success':function(json){
+			$('#letter_content').html('')
+			var contents = ''
+			$.each(json.data,function(i,v){
+				contents += '<div class="letter_time">'+v.min+'</div>\
+					<ul class="letter_ul">'
+					$.each(v.left,function(k,val){
+						var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
+						var nick = val.user.nick!=''?val.user.nick:val.user.username
+						var uid = val.user.id
+						contents += '<li class="clearfix letter_ulleft">\
+							<div class="letter_avawrap">\
+								<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
+							</div>\
+							<span class="letter_rel">\
+								'+val.content+'\
+							</span>\
+						</li>'
+					})
+					
+					$.each(v.right,function(k,val){
+						var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
+						var nick = val.user.nick!=''?val.user.nick:val.user.username
+						var uid = val.user.id
+						contents += '<li class="clearfix letter_ulright">\
+							<span class="letter_rel">\
+								'+val.content+'\
+							</span>\
+							<div class="letter_avawrap">\
+								<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
+							</div>\
+						</li>'
+					})			
+				contents += '</ul>'
+
+			})
+			
+			$('#letter_content').append(contents)
+		},
+		'complete':function(){
+			layer.closeAll('loading');
+		}
+	})
+
+	$('#letter_content').animate({ scrollTop: 10000}, 800);
+	var poptopHei = $('.pop_letter .pop_con').height();
+	$('.pop_con').css({
+		'margin-top':-(poptopHei/2)
+	})
+	sendMess()
+} 
+
 function common_notice(){
 	$.ajax({
 		'beforeSend':function(){
@@ -100,9 +211,9 @@ function common_notice(){
 						+'</div>'
 					+'</li>'
 				})
-				$('.header_add_con').eq(1).hide()
-				$('.header_add_con').eq(0).find('ul').html(lis)
-				$('.header_add_con').eq(0).show()
+				$('#n2').hide()
+				$('#n1').find('ul').html(lis)
+				$('#n1').show()
 				
 			}
 		},
@@ -121,29 +232,28 @@ function common_message(){
 		'data':{
 			'user_id':u_id,
 			'num':50,
-			'editstatus':1
 		},
 		'dataType':'json',
 		'success':function(json){
 			if(json.code==200){
 				var lis = ''
-				$.each(json.data.list,function(index,v){
+				$.each(json.data,function(index,v){
 					var pic_m = v.user.auth_avatar!=null?v.user.auth_avatar:v.user.pic_m
 					var nick = v.user.nick!=''?v.user.nick:v.user.username
 					var uid = v.user.id
-					lis += '<li class="clearfix">'
+					lis += '<li class="clearfix" onclick="getMessage(this)" to_id='+uid+'>'
 						+'<div class="header_add_mava_wrap">'
 							+'<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>'
 						+'</div>'
 						+'<div class="header_add_font_wrap">'
 							+'<p class="header_add_font_a">'+nick+' - <span>'+v.min+'前</span></p>'
-							+'<p class="header_add_font_a">'+v.msg_content+'</p>'
+							+'<p class="header_add_font_a">'+v.content.substring(0,22)+'</p>'
 						+'</div>'
 					+'</li>'
 				})
-				$('.header_add_con').eq(1).hide()
-				$('.header_add_con').eq(0).find('ul').html(lis)
-				$('.header_add_con').eq(0).show()
+				$('#n1').hide()
+				$('#n2').find('ul').html(lis)
+				$('#n2').show()
 				
 			}
 		},
@@ -155,11 +265,11 @@ function common_message(){
 
 	// 消息
 	$('#news').click(function(){
-		$('.header_add_con').eq(0).hide();
-		if($('.header_add_con').eq(1).find('ul').html()==''){
-			// common_message()
+		$('#n1').hide();
+		if($('#n2').find('ul').html()==''){
+			common_message()
 		}
-		$('.header_add_con').eq(1).show()
+		$('#n2').show()
 	})
 	// 通知
 	$('.header_mess').click(function(){
@@ -173,8 +283,8 @@ function common_message(){
 		}
 	})
 	$('#notice').click(function(){
-		$('.header_add_con').eq(1).hide()
-		$('.header_add_con').eq(0).show()
+		$('#n2').hide()
+		$('#n1').show()
 	})
 	$('.header_moremess').click(function(){
 		event.stopPropagation();

@@ -61,13 +61,12 @@ class NoticeController extends CmController{
         return response()->forApi($outDate);
 	}
 
-     // 获取留言信息
+    // 头部获取留言信息
     public function postMsg(){
         $data = Input::all();
         $rules = array(
-            'num'                  => 'required|integer',
+            'num' => 'required|integer',
             'user_id'=>'required',
-            'editstatus'=>'required|integer'
         );
         //请求参数验证
         parent::validator($data, $rules);
@@ -75,20 +74,58 @@ class NoticeController extends CmController{
         $user = DB::table('users')->where('id',$user_id)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 
-        $editstatus = isset($data['editstatus']) ? $data['editstatus'] : 0;
+
         $num = isset($data['num']) ? $data['num'] : 0;
 
-        DB::table('messages')->where();
+        $msgs = DB::select("select * from (select * from messages where to_id = {$user_id} order by created_at desc limit {$num}) as r group by from_id");
 
-        foreach ($outDate['list'] as $key => $value) {
+        foreach ($msgs as $key => $value) {
             $id = $value['id'];
-            if($editstatus == 1){
-                DB::table('system_msgs')->where('id',$id)->update(['status'=>1]);
-            }
+            DB::table('messages')->where('to_id',$user_id)->update(['status'=>1]);
             $innertime = time() - strtotime($value['created_at']);
-            $outDate['list'][$key]['min'] = self::cpu_time($innertime);
+            $msgs[$key]['min'] = self::cpu_time($innertime);
+            $msgs[$key]['user'] = UserWebsupply::user_info($value['from_id']);
         }
-        return response()->forApi($outDate);
+        return response()->forApi($msgs);
+    }
+
+    // 具体获取留言信息(弹窗)
+    public function postMsginner(){
+        $data = Input::all();
+        $rules = array(
+            'user_id'=>'required',
+            'to_id'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $user_id = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$user_id)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        $msgs = DB::select("select created_at  from messages  GROUP BY DATE_FORMAT( created_at, \"%Y-%m-%d\" )  having datediff(curdate(), messages.created_at) < 30 ORDER BY created_at asc");
+        
+        $rmsg = [];
+        foreach ($msgs as $key => $value) {
+            $created_at = $value['created_at'];
+            
+            $innertime = time() - strtotime($created_at);
+            $rmsg[$created_at]['min'] = self::cpu_date($innertime);
+            $rmsg[$created_at]['left'] = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$user_id} and from_id={$data['to_id']}");
+            $touser = UserWebsupply::user_info($data['to_id']);
+            foreach ($rmsg[$created_at]['left'] as $k => $v) {
+                $rmsg[$created_at]['left'][$k]['user'] = $touser;
+            }
+            $rmsg[$created_at]['right'] = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$data['to_id']} and from_id={$user_id}");
+            $fromuser = UserWebsupply::user_info($user_id);
+            foreach ($rmsg[$created_at]['right'] as $k => $v) {
+                $rmsg[$created_at]['right'][$k]['user'] = $fromuser;
+            }
+            if(empty($rmsg[$created_at]['right']) && empty($rmsg[$created_at]['left'])){
+                unset($rmsg[$created_at]);
+            }
+            
+        }
+        return response()->forApi($rmsg);
     }
 
     //给用户留言
@@ -121,6 +158,12 @@ class NoticeController extends CmController{
         if($time >= 60 && $time < 3600) return floor($time/60).'分钟';
         if($time >= 3600 && $time < 3600*24) return floor($time/3600).'小时';
         if($time >= 3600*24) return floor($time/(3600*24)).'天';
+    }
+
+    public function cpu_date($time){
+
+        if( $time < 3600*24) return '今天';
+        if($time >= 3600*24) return floor($time/(3600*24)).'天前';
     }
 
 

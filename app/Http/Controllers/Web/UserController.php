@@ -54,10 +54,10 @@ class UserController extends CmController{
 			$this->self_info = UserWebsupply::user_info($this->user_id);
 		}
 		
-		if(!empty($getdata['oid']) && !empty($this->user_id) && $getdata['oid']!=$this->user_id){
+		/*if(!empty($getdata['oid']) && !empty($this->user_id) && $getdata['oid']!=$this->user_id){
 			$this->self_info['message'] = DB::table('messages')->where('from_id',$this->user_id)->where('to_id',$getdata['oid'])->get();
 			$this->user_info['message'] = DB::table('messages')->where('to_id',$this->user_id)->where('from_id',$getdata['oid'])->get();
-		}
+		}*/
 
 		if(isset($this->user_info) && !empty($this->user_info)){
 			$this->user_info['count'] = UserWebsupply::get_count(['praise_count','folder_count','follow_count','fans_count','pub_count'],$this->other_id);
