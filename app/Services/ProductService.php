@@ -183,6 +183,7 @@ class ProductService extends ApiService
         if (!empty($entry['folder_id'])) {
             //修改文件夹商品数量
             $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
+            $image_id = isset($entry['image_ids'])?$entry['image_ids']:0;
             FolderService::getInstance()->updateFolderCount($entry['folder_id'], $image_id);
         }
         return $id;

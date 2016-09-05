@@ -230,7 +230,7 @@ function common_message(){
 		},
 		'dataType':'json',
 		'success':function(json){
-			if(json.code==200){
+			if(json.code==200 && json.data!=undefined){
 				var lis = ''
 				$.each(json.data,function(index,v){
 					var pic_m = v.user.auth_avatar!=null?v.user.auth_avatar:v.user.pic_m
