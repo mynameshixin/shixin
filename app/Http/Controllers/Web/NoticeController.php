@@ -125,6 +125,7 @@ class NoticeController extends CmController{
             }
             
         }
+        // dd($rmsg);
         return response()->forApi($rmsg);
     }
 
