@@ -92,13 +92,19 @@ function sendMess(){
           'dataType':'json',
           'success':function(json){
             if(json.code==200){
-              var messHtml = $('<li class="clearfix letter_ulright">\
+              var messHtml = '<li class="clearfix letter_ulright">\
               <span class="letter_rel">'+sendtextArea+'</span>\
               <div class="letter_avawrap">\
                 <img src="'+pic_m+'" alt="">\
               </div>\
-            </li>');
-            $('#letter_content .letter_ul:last').append(messHtml)
+            </li>';
+             if($('#letter_content .letter_ul').length!=0){
+             	$('#letter_content .letter_ul:last').append(messHtml)
+             }else{
+             	var ul = '<ul class="letter_ul">'+messHtml+'</ul>'
+             	$('#letter_content').append(ul)
+             }
+            
             $('#letter_content').animate({ scrollTop: 10000}, 800);
             $('.letter_textarea textarea').val("")
             }else{
@@ -131,42 +137,30 @@ function getMessage(obj){
 		'dataType':'json',
 		'success':function(json){
 			$('#letter_content').html('')
-			var contents = ''
-			$.each(json.data,function(i,v){
-				contents += '<div class="letter_time">'+v.min+'</div>\
-					<ul class="letter_ul">'
-					$.each(v.left,function(k,val){
-						var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
-						var nick = val.user.nick!=''?val.user.nick:val.user.username
-						var uid = val.user.id
-						contents += '<li class="clearfix letter_ulleft">\
-							<div class="letter_avawrap">\
-								<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
-							</div>\
-							<span class="letter_rel">\
-								'+val.content+'\
-							</span>\
-						</li>'
-					})
-					
-					$.each(v.right,function(k,val){
-						var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
-						var nick = val.user.nick!=''?val.user.nick:val.user.username
-						var uid = val.user.id
-						contents += '<li class="clearfix letter_ulright">\
-							<span class="letter_rel">\
-								'+val.content+'\
-							</span>\
-							<div class="letter_avawrap">\
-								<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
-							</div>\
-						</li>'
-					})			
-				contents += '</ul>'
-
-			})
-			
-			$('#letter_content').append(contents)
+			if(json.code==200 && json.data!=undefined){
+				var contents = ''
+				$.each(json.data,function(i,v){
+					contents += '<div class="letter_time">'+v.min+'</div>\
+						<ul class="letter_ul">'
+						$.each(v.adata,function(k,val){
+							var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
+							var nick = val.user.nick!=''?val.user.nick:val.user.username
+							var uid = val.user.id
+							var position = val.position
+							contents += '<li class="clearfix '+position+'">\
+								<div class="letter_avawrap">\
+									<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
+								</div>\
+								<span class="letter_rel">\
+									'+val.content+'\
+								</span>\
+							</li>'
+						})
+						
+					contents += '</ul>'
+				})
+				$('#letter_content').append(contents)
+			}
 		},
 		'complete':function(){
 			layer.closeAll('loading');
@@ -174,6 +168,7 @@ function getMessage(obj){
 	})
 
 	$('#letter_content').animate({ scrollTop: 10000}, 800);
+	$('#send_new_message').attr('to_id',to_id)
 	var poptopHei = $('.pop_letter .pop_con').height();
 	$('.pop_con').css({
 		'margin-top':-(poptopHei/2)

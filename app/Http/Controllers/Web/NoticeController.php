@@ -49,12 +49,12 @@ class NoticeController extends CmController{
         $num = isset($data['num']) ? $data['num'] : 0;
         $msg_kind =  isset($data['msg_kind']) ? $data['msg_kind'] : '';
         $status = isset($data['status']) ? $data['status'] : null;
+        if($editstatus == 1){
+            DB::table('system_msgs')->where('to_userid',$user_id)->update(['status'=>1]);
+        }
         $outDate =  MessageService::getInstance()->getMessageByPage ($user_id,$status,$msg_kind,$num);
         foreach ($outDate['list'] as $key => $value) {
             $id = $value['id'];
-            if($editstatus == 1){
-                DB::table('system_msgs')->where('id',$id)->update(['status'=>1]);
-            }
         	$innertime = time() - strtotime($value['created_at']);
             $outDate['list'][$key]['min'] = self::cpu_time($innertime);
         }
@@ -103,26 +103,38 @@ class NoticeController extends CmController{
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 
         $msgs = DB::select("select created_at  from messages  GROUP BY DATE_FORMAT( created_at, \"%Y-%m-%d\" )  having datediff(curdate(), messages.created_at) < 30 ORDER BY created_at asc");
-        
+
         $rmsg = [];
         foreach ($msgs as $key => $value) {
             $created_at = $value['created_at'];
-            
             $innertime = time() - strtotime($created_at);
             $rmsg[$created_at]['min'] = self::cpu_date($innertime);
-            $rmsg[$created_at]['left'] = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$user_id} and from_id={$data['to_id']}");
+            $left = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$user_id} and from_id={$data['to_id']}");
             $touser = UserWebsupply::user_info($data['to_id']);
-            foreach ($rmsg[$created_at]['left'] as $k => $v) {
-                $rmsg[$created_at]['left'][$k]['user'] = $touser;
+            foreach ($left as $k => $v) {
+                $left[$k]['user'] = $touser;
+                $left[$k]['position'] = 'letter_ulleft';
             }
-            $rmsg[$created_at]['right'] = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$data['to_id']} and from_id={$user_id}");
+
+            $right = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$data['to_id']} and from_id={$user_id}");
+
             $fromuser = UserWebsupply::user_info($user_id);
-            foreach ($rmsg[$created_at]['right'] as $k => $v) {
-                $rmsg[$created_at]['right'][$k]['user'] = $fromuser;
+            foreach ($right as $k => $v) {
+                $right[$k]['user'] = $fromuser;
+                $right[$k]['position'] = 'letter_ulright';
             }
-            if(empty($rmsg[$created_at]['right']) && empty($rmsg[$created_at]['left'])){
+            $rmsg[$created_at]['adata'] = $adata = array_merge($left,$right);
+
+            if(empty($rmsg[$created_at]['adata'])){
                 unset($rmsg[$created_at]);
+            }else{
+                $cdate = [];
+                foreach ($rmsg[$created_at]['adata'] as $key => $value) {
+                    $cdate[$key] = $value['created_at'];
+                }
+                array_multisort($cdate,SORT_ASC,SORT_STRING,$rmsg[$created_at]['adata']);
             }
+            
             
         }
         return response()->forApi($rmsg);
