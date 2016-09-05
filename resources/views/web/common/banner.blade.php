@@ -180,6 +180,7 @@ function getMessage(obj){
 	})
 
 	$('#letter_content').animate({ scrollTop: 10000}, 800);
+	$('#send_new_message').attr('to_id',to_id)
 	var poptopHei = $('.pop_letter .pop_con').height();
 	$('.pop_con').css({
 		'margin-top':-(poptopHei/2)
