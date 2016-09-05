@@ -49,12 +49,12 @@ class NoticeController extends CmController{
         $num = isset($data['num']) ? $data['num'] : 0;
         $msg_kind =  isset($data['msg_kind']) ? $data['msg_kind'] : '';
         $status = isset($data['status']) ? $data['status'] : null;
+        if($editstatus == 1){
+            DB::table('system_msgs')->where('to_userid',$user_id)->update(['status'=>1]);
+        }
         $outDate =  MessageService::getInstance()->getMessageByPage ($user_id,$status,$msg_kind,$num);
         foreach ($outDate['list'] as $key => $value) {
             $id = $value['id'];
-            if($editstatus == 1){
-                DB::table('system_msgs')->where('id',$id)->update(['status'=>1]);
-            }
         	$innertime = time() - strtotime($value['created_at']);
             $outDate['list'][$key]['min'] = self::cpu_time($innertime);
         }
