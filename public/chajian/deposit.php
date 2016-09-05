@@ -10,6 +10,7 @@
 		var user_id=u_id;
 		</script>
 		<link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/index.css">
+		<link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/main.css">
 		<script type="text/javascript" src="http://www.duitujia.com/web/js/jquery-1.11.3.min.js"></script>
 		
 		<script type="text/javascript" src="http://www.duitujia.com/static/layer/layer.js"></script>
@@ -157,7 +158,7 @@
 			<div class="pop_col_left" style="height: 400px">
 				<div class="pop_col_ltop clearfix">
 					<div class="pop_namewrap clearfix" style="padding:0px 0px 0px 30px;">
-			        <span class="pop_labelname" style="font-size:14px;line-height:42px;width:100%;">图片展示<br>最多5张且每张大小不超过8M</span>
+			        <span class="pop_labelname" style="font-size:14px;line-height:42px;width:100%;">图片展示</span>
 			      <!--   <div class="pop_addpic_con clearfix" style="float:left ">	
 			            <div class="pop_addpic_wrap" style="position:relative;float:left;">
 			              <img src="http://www.duitujia.com/web/images/pop_upload_multi.png" alt="堆图家" class="show" />
@@ -213,7 +214,7 @@
 							
 						</ul>
 						<p class="pop_col_new">最新保存到</p>
-						<ul class="pop_col_colum pop_col_colum_new">
+						<ul class="pop_col_colum pop_col_colum_new" id="pop_cg">
 							
 						</ul>
 						<p class="pop_col_new">所有文件夹</p>
@@ -273,6 +274,7 @@
 	</body>
 	<script type="text/javascript" src="http://www.duitujia.com/chajian/upload.js"></script>
 	<script type="text/javascript">	 	
+
 			  		$.ajax({
 			  			 url: "http://www.duitujia.com/webd/pics/cgoods",
 			             dataType: "jsonp",
@@ -284,8 +286,14 @@
 
 			         	 	for (var i = 0; i < jsonp.folder.length; i++) {								
 								document.getElementById('pop_coolo').innerHTML+='<li class="pop_col_colum_on clearfix" folder_id="'+jsonp.folder[i].id+'" style="cursor:pointer; height:30px;" onclick="allimg_upload(this)"><div class="pop_col_colava"><img src="'+jsonp.folder[i].image_url+'" alt=""></div><div class="pop_col_colname">'+jsonp.folder[i].name+'</div><a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn ">上传</a></li>';
-			         	 	         	 };	 		         	 	         	   
+			         	 	 };	
+
+			         	 	for (var i = 0; i < jsonp.cg.length; i++) {								
+								document.getElementById('pop_cg').innerHTML+='<li class="pop_col_colum_on clearfix" folder_id="'+jsonp.cg[i].id+'" style="cursor:pointer; height:30px;" onclick="allimg_upload(this)"><div class="pop_col_colava"><img src="'+jsonp.cg[i].image_url+'" alt=""></div><div class="pop_col_colname">'+jsonp.cg[i].name+'</div><a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn ">上传</a></li>';
+			         	 	 };	 		         	 	         	   
 			         	 }
+
+
 			  		});
 			
 				

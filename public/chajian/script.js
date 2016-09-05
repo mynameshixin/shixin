@@ -116,6 +116,48 @@ function showImages(imgs)
 	document.body.appendChild(widE);
 }
  
+	//抓取用户所选择的图片
+function plugin(){         
+	$.ajax({         
+     url: "http://www.duitujia.com/webd/plugin",
+     dataType: "jsonp",
+     data:{},
+     jsonp:'callback', 
+ 	 type:'get',
+     success: function(jsonp){
+     	//判断登录状态
+     	if(jsonp.data.user_id){
+     		 var user_id=jsonp.data.user_id;
+     		 var imgs='';
+              var alt='';
+
+     		 numm=$('.item-selected').find("img");
+     		 for (var i =  0; i < numm.length ; i++) {
+     		 	imgs=numm[i].src+","+imgs;
+                alt=numm[i].title+","+alt;
+     		 };
+     		 window.open('http://www.duitujia.com/chajian/deposit.php?user_id='+user_id+'&src='+imgs+'&alt='+alt,'推图家',"top=0,left=0,width=655,height=475") 
+	   
+				 
+     	}else{
+             user_id=jsonp.data.user_id;
+     		 imgs='';
+     		  numm=$('.item-selected').find("img");
+             alt='';
+     		 for (var i =  0; i < numm.length ; i++) {
+     		 	imgs=numm[i].src+","+imgs;
+                alt=numm[i].title+","+alt;
+     		 };
+             console.log('1')
+     		window.open('http://www.duitujia.com/chajian/1.php?user_id='+user_id+'&src='+imgs+'&alt='+alt,'推图家',"top=0,left=0,width=495,height=544") 
+
+            }
+      
+     },
+     
+ });
+
+
 // 处理页面消息
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse){

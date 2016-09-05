@@ -129,11 +129,10 @@ function collect(obj){
 }
 
 //上传图片最后步骤
-function allimg_upload(obj){
-  
+function allimg_upload(obj){  
   var folder_id = $(obj).attr('folder_id')
- var imgs=$(".imge_eea");
- var src=new Array();
+  var imgs=$(".imge_eea");
+  var src=new Array();
   var alt=new Array();
       for (var i =0;i < imgs.length ; i++) {
         if(imgs){
@@ -145,12 +144,12 @@ function allimg_upload(obj){
         
       };
 
-    $('form[name=allimg]').ajaxSubmit({
+
+    $.ajax({
           type:"get",  //提交方式
           dataType:"jsonp", //数据类型
           url:"http://www.duitujia.com/webd/pics/pluginimg", //请求url
-          'fileTypeDesc': "Image Files",
-          'data':{'fid':folder_id,'img_urls':src,'titles':alt,'source_urls':alt},
+          'data':{'fid':folder_id,'img_urls':src,'titles':alt,'source_urls':alt,'user_id':user_id},
           success:function(json){ //提交成功的回调函数
               if(json.ids) {
                 layer.msg('成功上传',{icon: 6});
@@ -164,7 +163,6 @@ function allimg_upload(obj){
                 return
               } 
           },
-          resetForm:1
   });
   return false
 }
@@ -444,17 +442,30 @@ $('#pic_cfolder').click(function(){
     },
     'dataType':'json',
     'success':function(json){
+      var folder_id = json.folder_id;
+      var imgs=$(".imge_eea");
+      var src=new Array();
+      var alt=new Array();
+      for (var i =0;i < imgs.length ; i++) {
+        if(imgs){
+          src[i]=imgs[i].src
+           alt[i]=imgs[i].alt         
+        }else{
+          break;
+        }
+        
+      };
+
       if(json.code==200){
         folder_id = json.data.folder_id
         // 上传图片
-        $('form[name=allimg]').ajaxSubmit({
+        $.ajax({
                 type:"post",  //提交方式
-                dataType:"json", //数据类型
-                url:"/webd/pics/uimg", //请求url
-                'fileTypeDesc': "Image Files",
-                'data':{'fid':folder_id},
+                dataType:"jsonp", //数据类型
+                url:"http://www.duitujia.com/webd/pics/pluginimg", //请求url
+               'data':{'fid':folder_id,'img_urls':src,'titles':alt,'source_urls':alt,'user_id':user_id},
                 success:function(json){ //提交成功的回调函数
-                    if(json.code==200) {
+                    if(json.ids) {
                       layer.msg('成功上传',{icon: 6});
                       setTimeout(function(){
                         window.opener=null;    //创建并上传成功后关闭

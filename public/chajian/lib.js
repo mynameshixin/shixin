@@ -25,7 +25,8 @@ function fun(ele)
 	{
 		if(select_num<5){
 		
-						ele.className='item-selected HUABAN-cell item-hover';						
+						ele.className='item-selected HUABAN-cell item-hover';	
+						ele.getElementsByTagName("text")[0].innerText="已选择";					
 						ele.getElementsByTagName("div")[1].style.backgroundPosition="0 -40px";
 						select_num=$('.item-selected').size();
 						chageStatus();
@@ -48,4 +49,46 @@ function funClose()
 	var widE = document.getElementById("HUABAN_WIDGETS");
 	document.body.removeChild(widE);
 	//alert("ok");
+}
+
+//抓取用户所选择的图片
+function plugin(){         
+	$.ajax({         
+     url: "http://www.duitujia.com/webd/plugin",
+     dataType: "jsonp",
+     data:{},
+     jsonp:'callback', 
+ 	 type:'get',
+     success: function(jsonp){
+     	//判断登录状态
+     	if(jsonp.data.user_id){
+     		 var user_id=jsonp.data.user_id;
+     		 var imgs='';
+              var alt='';
+
+     		 numm=$('.item-selected').find("img");
+     		 for (var i =  0; i < numm.length ; i++) {
+     		 	imgs=numm[i].src+","+imgs;
+                alt=numm[i].title+","+alt;
+     		 };
+     		 window.open('http://www.duitujia.com/chajian/deposit.php?user_id='+user_id+'&src='+imgs+'&alt='+alt,'推图家',"top=0,left=0,width=655,height=475") 
+	   
+				 
+     	}else{
+             user_id=jsonp.data.user_id;
+     		 imgs='';
+     		  numm=$('.item-selected').find("img");
+             alt='';
+     		 for (var i =  0; i < numm.length ; i++) {
+     		 	imgs=numm[i].src+","+imgs;
+                alt=numm[i].title+","+alt;
+     		 };
+             console.log('1')
+     		window.open('http://www.duitujia.com/chajian/1.php?user_id='+user_id+'&src='+imgs+'&alt='+alt,'推图家',"top=0,left=0,width=495,height=544") 
+
+            }
+      
+     },
+     
+ });
 }
