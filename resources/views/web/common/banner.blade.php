@@ -92,13 +92,19 @@ function sendMess(){
           'dataType':'json',
           'success':function(json){
             if(json.code==200){
-              var messHtml = $('<li class="clearfix letter_ulright">\
+              var messHtml = '<li class="clearfix letter_ulright">\
               <span class="letter_rel">'+sendtextArea+'</span>\
               <div class="letter_avawrap">\
                 <img src="'+pic_m+'" alt="">\
               </div>\
-            </li>');
-            $('#letter_content .letter_ul:last').append(messHtml)
+            </li>';
+             if($('#letter_content .letter_ul').length!=0){
+             	$('#letter_content .letter_ul:last').append(messHtml)
+             }else{
+             	var ul = '<ul class="letter_ul">'+messHtml+'</ul>'
+             	$('#letter_content').append(ul)
+             }
+            
             $('#letter_content').animate({ scrollTop: 10000}, 800);
             $('.letter_textarea textarea').val("")
             }else{
