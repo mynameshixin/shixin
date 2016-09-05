@@ -145,7 +145,9 @@ class ProductService extends ApiService
             'typeid'=>isset($data['typeid']) ? (int)$data['typeid'] : 0,
             'btypeid'=>isset($data['btypeid']) ? (int)$data['btypeid'] : 0,
             'saleid'=>isset($data['saleid']) ? (int)$data['saleid'] : 0,
+            'image_ids'=>isset($data['image_id']) ? $data['image_id'] : '',
         );
+
         if (isset($data['image_ids']) && !empty($data['image_ids'])) {
             $entry['image_ids'] = $data['image_ids'];
             $data['image_ids'] = trim($data['image_ids']);
@@ -158,6 +160,7 @@ class ProductService extends ApiService
             }
         }
         $entry['folder_id'] = isset( $entry['folder_id']) ?   $entry['folder_id'] : 0;
+
         if (!empty($images_arr)) {
             if (empty($entry['title']))$fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
             foreach ($images_arr as $image_id) {
@@ -166,6 +169,7 @@ class ProductService extends ApiService
                     $entry['title']= str_replace(strrchr($entry['title'], "."),"",$entry['title']);
                 }
                 $entry['image_ids'] = $image_id;
+
                 $id = Product::insertGetId($entry);
                FolderGood::insert(['good_id' => $id, 'folder_id' => $entry['folder_id'],'kind'=>$data['kind'],'user_id'=>$userId]);
             }
