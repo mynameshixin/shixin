@@ -1006,6 +1006,43 @@ input[type="checkbox"] + label{cursor: pointer;}
 .home_title h3{height: 33px; font-weight: bold;font-size: 25px; color: #333;line-height: 33px; text-align: center;}
 .home_title h3 span{letter-spacing: 3px;}
 
+/*设计家搜索*/
+.search-vr{padding-bottom: 0;margin-top: 68px;}
+.search-vr .w1240{min-height: 65px;background: #fff;padding: 20px 0;}
+.search-option{width: 100%;}
+.search-option span{display: block; float: left;width: 65px;line-height: 22px;padding-left: 24px;color: #414141;font-size: 13px;}
+.search-option ul{display: block;width: 1146px; float: right;}
+.search-option ul li{float: left;padding: 0 8px;line-height: 22px;color: #a4a4a4;font-size: 13px;}
+.search-option ul li:hover,.search-option ul li.on{color: #e15335;cursor:pointer; }
+.search-vr .vr_home{background-color: transparent;padding: 20px 0 15px 0;}
+
+.vr_line{width: 100%; float: left;padding: 8px 0;}
+.vr-left{float: left;width: 75px;padding-left: 30px;height: 35px;line-height: 35px;}
+.vr-left span{font:normal 12.5px/22px "Microsoft YaHei";color: #514141;}
+.vr-right{float: right;width:380px;position: relative;height: 35px;line-height: 35px;}
+.vr_line_first{height: 98px;overflow: hidden;}
+.vr_line_first .vr-left,.vr_line_first .vr-right{height: auto;line-height: 20px;}
+.vr_line_first .vr-left span{display: block;height: 35px;line-height: 35px;}
+.vr_line_first .vr-right{color: #a1a1a1;}
+.vr-left .pop_addpic_wrap { width: 66px;  height: 66px;}
+.vr-left .pop_addpic_wrap img {width: 66px;height: 66px;filter: progid: DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);}
+.vr-right span.vr_label{display: block;font:normal 12.5px/35px "Microsoft YaHei";color: #a1a1a1;text-indent: 1rem;}
+.vr-right textarea{width: 340px;height: 68px;line-height: 30px;padding-left: 5px; border: none; border-radius: 6px;background-color: #f0f0f0;}
+.vr-right input{width: 340px;height: 35px; padding-left: 5px; border: none; border-radius: 6px;background-color: #f0f0f0;}
+.vr-right .drop_up{display: inline-block; width: 340px;height: 35px;line-height: 35px; padding-left: 5px; border: none;color: #a1a1a1; border-radius: 6px;background-color: #f0f0f0;}
+.vr-right .drop_up i{display: inline-block;width: 20px; height: 35px; background: url(../images/triangle.png) right center no-repeat;float: right;margin-right: 20px;}
+.vr-right .drop_list{width: 323px;height: auto; padding-left: 20px;line-height: 25px; max-height: 200px;overflow:  scroll;color: #a1a1a1;position: absolute;bottom: 32px;background-color: #fff;border: 1px solid #f1f1f1;}
+/*下拉框*/
+.m_zlxg{ width:105px; height:35px; line-height:35px;cursor:pointer;float:left;margin:0 15px 0 0;display:inline;background:url(../images/drop_down.png) no-repeat;}
+.m_zlxg p{ width:71px; padding-left:10px; overflow:hidden; line-height:35px; color:#a1a1a1; font-size:12px; font-family:"微软雅黑";text-overflow:ellipsis; white-space:nowrap;}
+.m_zlxg2{ position:absolute; top:33px; border:1px solid #f1f1f1;background:#fff; width:102px; display:none; max-height:224px;-height:224px; overflow-x:hidden; overflow-y:auto;white-space:nowrap;z-index: 10;}
+.m_zlxg2 li{line-height:28px;white-space:nowrap; padding-left:10px;font-family:"微软雅黑";color:#a1a1a1; font-size:12px;}
+.m_zlxg2 li:hover{ color:#a1a1a1;}
+/*radio标签组*/
+.select label{font-size: 12.5px; color: #a1a1a1; float:left; margin-right:10px;line-height: 18px;}
+.select i{ float:left; width:14px; height:14px; display:block; margin:2px 5px 0 0; background:url(../images/radio_btns.png) no-repeat;}
+.select .on i{  background-position:0 -14px; }
+
 
 
 
