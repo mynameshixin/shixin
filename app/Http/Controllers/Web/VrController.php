@@ -92,7 +92,7 @@ class VrController extends CmController{
 		$data = Input::all();
 		$data['num'] = 9;
 		$needData = $this->needData($data,3510);
-		dd($needData);
+		// dd($needData);
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,

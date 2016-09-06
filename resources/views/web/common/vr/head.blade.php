@@ -82,6 +82,10 @@ var _hmt = _hmt || [];
    $interpolateProvider.startSymbol('{%');
    $interpolateProvider.endSymbol('%}');
   });
+
+  myApp.controller('myCtrl', function($scope) {
+   $scope.sites = <?php echo json_encode($needData);?>
+  });
 </script>
 <body class="nolog_body" ng-app="myApp">
 <div class="nolog_header">

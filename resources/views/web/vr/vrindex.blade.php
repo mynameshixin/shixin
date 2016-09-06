@@ -1,4 +1,4 @@
-@include('web.common.vr.head',['k1'=>'VR门店——品牌门店VR全景展示','k2'=>'身临其店轻松购物'])
+@include('web.common.vr.head',['k1'=>'VR门店——品牌门店VR全景展示','k2'=>'身临其店轻松购物','k3'=>''])
 
  
 		<div class="vr_home home_design">
