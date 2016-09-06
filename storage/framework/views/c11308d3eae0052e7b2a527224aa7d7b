@@ -142,11 +142,12 @@ function getMessage(obj){
 				$.each(json.data,function(i,v){
 					contents += '<div class="letter_time">'+v.min+'</div>\
 						<ul class="letter_ul">'
-						$.each(v.left,function(k,val){
+						$.each(v.adata,function(k,val){
 							var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
 							var nick = val.user.nick!=''?val.user.nick:val.user.username
 							var uid = val.user.id
-							contents += '<li class="clearfix letter_ulleft">\
+							var position = val.position
+							contents += '<li class="clearfix '+position+'">\
 								<div class="letter_avawrap">\
 									<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
 								</div>\
@@ -156,19 +157,6 @@ function getMessage(obj){
 							</li>'
 						})
 						
-						$.each(v.right,function(k,val){
-							var pic_m = val.user.auth_avatar!=null?val.user.auth_avatar:val.user.pic_m
-							var nick = val.user.nick!=''?val.user.nick:val.user.username
-							var uid = val.user.id
-							contents += '<li class="clearfix letter_ulright">\
-								<span class="letter_rel">\
-									'+val.content+'\
-								</span>\
-								<div class="letter_avawrap">\
-									<a href="/webd/user?oid='+uid+'" target="_blank"><img src="'+pic_m+'" alt=""></a>\
-								</div>\
-							</li>'
-						})			
 					contents += '</ul>'
 				})
 				$('#letter_content').append(contents)
@@ -180,6 +168,7 @@ function getMessage(obj){
 	})
 
 	$('#letter_content').animate({ scrollTop: 10000}, 800);
+	$('#send_new_message').attr('to_id',to_id)
 	var poptopHei = $('.pop_letter .pop_con').height();
 	$('.pop_con').css({
 		'margin-top':-(poptopHei/2)
