@@ -54,6 +54,8 @@ class VrController extends CmController{
                     }
              }
              // 地区
+             $rows[$k]['countryname'] = '未知地区';
+             $rows[$k]['cityname'] = '';
              if(!empty($row['cityid'])){
                 $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
                 $rows[$k]['countryname'] = $cinfo['name'];
@@ -61,6 +63,7 @@ class VrController extends CmController{
                 $rows[$k]['cityname'] = $cpinfo['name'];
              }
 
+             $rows[$k]['viewcount'] = 0;
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }

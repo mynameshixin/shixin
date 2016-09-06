@@ -48,7 +48,7 @@ class CmController extends Controller {
     public function set_user_cache($str){
         $arr = explode('_',$str);
         $id = Crypt::decrypt($arr[1]);
-        return Cache::store('redis')->put($id, $arr[1], 60*24*7);
+        return Cache::store('redis')->put($id, $arr[1], 60*24*30);
     }
 
     public function get_user_cache($str){
