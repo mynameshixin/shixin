@@ -16,21 +16,21 @@
 			<div class="find_cater_wrap">
 				<div class="clearfix">
 					<ul class="find_cat_list">
-						<li class="find_rec_special" onclick="layer_error('正在建设中')">
+						<li class="find_rec_special" onclick="location.href='/vr/1'">
 							<img src="{{asset('web')}}/images/cat/four_rec/01.jpg" alt="梦幻家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">梦幻家</p>
 								<p class="find_rec_wrapdes">“用VR展示住宅空间”</p>
 							</div>
 						</li>
-						<li class="find_rec_special" onclick="layer_error('正在建设中')">
+						<li class="find_rec_special" onclick="location.href='/vr/2'">
 							<img src="{{asset('web')}}/images/cat/four_rec/02.jpg" alt="改造家">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">改造家</p>
 								<p class="find_rec_wrapdes">“二手房与家居改造”</p>
 							</div>
 						</li>
-						<li class="find_rec_special" onclick="layer_error('正在建设中')">
+						<li class="find_rec_special" onclick="location.href='/vr/3'">
 							<img src="{{asset('web')}}/images/cat/four_rec/03.jpg" alt="家居前线">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">家居前线</p>

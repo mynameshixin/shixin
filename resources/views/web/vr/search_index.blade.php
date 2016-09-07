@@ -1,75 +1,106 @@
-@include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>'search-vr'])
+@include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>''])
+<style type="text/css">
+	.form-inline .form-group {display: inline-block;margin-bottom: 0;}
+	.sr-only{position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;}
+	.form-inline .form-control{    display: inline-block;width: auto;vertical-align: middle;}
+	.form-control{height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+    option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+</style>
 	<div class="w1248 w1240">
+			
 			<div class="vr_line">
-				<div class="vr-left"><span>位置</span></div>
-					<div class="vr-right">
-						<div id="sjld2" style="width:100%;position:relative;">
-							<div class="m_zlxg" id="shenfen2">
-								<p title="">选择省份</p>
-								<div class="m_zlxg2">
-									<ul></ul>
-								</div>
-							</div>
-							<div class="m_zlxg" id="chengshi2">
-								<p title="">选择城市</p>
-								<div class="m_zlxg2">
-									<ul></ul>
-								</div>
-							</div>
-							<div class="m_zlxg" id="quyu2">
-								<p title="">选择区域</p>
-								<div class="m_zlxg2">
-									<ul></ul>
-								</div>
-							</div>
-							<input id="sfdq_num" type="hidden" value="" />
-							<input id="csdq_num" type="hidden" value="" />
-							<input id="sfdq_tj" type="hidden" value="" />
-							<input id="csdq_tj" type="hidden" value="" />
-							<input id="qydq_tj" type="hidden" value="" />
-						</div>
+				<div class="vr-left"><span>位&nbsp;&nbsp;&nbsp;&nbsp;置</span></div>
 
-					<script type="text/javascript">
-					$(function(){
-					
-						$("#sjld2").sjld("#shenfen2","#chengshi2","#quyu2");
-						
-					});
-					</script>
-					</div>
+				<form class="form-inline">
+			      <div id="distpicker2">
+			        <div class="form-group">
+			          <label class="sr-only" for="province5">Province</label>
+			          <select class="form-control" id="province5"></select>
+			        </div>
+			        <div class="form-group">
+			          <label class="sr-only" for="city5">City</label>
+			          <select class="form-control" id="city5"></select>
+			        </div>
+			        <div class="form-group">
+			          <label class="sr-only" for="district5">District</label>
+			          <select class="form-control" id="district5"></select>
+			        </div>
+			         <!-- <input type="hidden" name="alias" value="{{$alias}}"></input>
+			         <input type="hidden" name="keyword" value="{{$keyword}}"></input>
+			         <input type="submit" value="筛选" class="btn"> -->
+			      </div>
+
+	    		</form>
+			<script type="text/javascript">
+				$("#distpicker2").distpicker({
+				  province: "---- 不限省 ----",
+				  city: "---- 不限市 ----",
+				  district: "---- 不限区县 ----",
+				  autoSelect: false
+				});
+			</script>		
 			</div>
-			<div class="search-option clearfix">
-				<span>区&nbsp;&nbsp;&nbsp;&nbsp;域:</span>
-				<ul>
-					<li>全国</li><li>全上海</li><li class="on">黄浦</li><li>静安</li>
-					<li>徐汇</li><li>浦东</li><li>长宁</li><li>虹口</li>
-					<li>杨浦</li><li>普陀</li><li>闸北</li><li>闵行</li>
-					<li>宝山</li><li>嘉定</li><li>青浦</li><li>奉贤</li>
-					<li>南汇</li><li>崇明</li><li>金山</li><li>松江</li>
-				</ul>
-			</div>
-			<div class="search-option clearfix">
-				<span>开发商:</span>
-				<ul>
-					<li>不限</li><li class="on">世茂</li><li>万科</li><li>恒大 </li>
-					<li>绿地</li><li>保利</li><li>中国海外发展</li><li>碧桂园</li>
-					<li>融创中国</li><li>龙湖</li><li>富力</li><li>华润</li>
-					<li>华夏幸福基业</li><li>招商</li><li>金地</li><li>远洋</li>     
-					<li>绿城</li><li>荣盛</li><li>北京首都</li><li>复地</li>
-					<li>金科</li><li>其他</li>
-				</ul>
-			</div>
-			<div class="search-option clearfix">
-				<span>户&nbsp;&nbsp;&nbsp;&nbsp;型:</span>
-				<ul>
-					<li>1居</li><li>2居</li><li class="on">3居</li><li>4居</li><li>5居</li><li>5居以上</li>
-				</ul>
-			</div>
+			<?php if($alias== 2){ ?>
+				<div class="search-option clearfix">
+					<span>类&nbsp;&nbsp;&nbsp;型</span>
+					<ul ng-controller="type">
+						<li ng-repeat="v in type" onclick="addClassOntype(this)" typeid="{%v.id%}">{%v.name%}</li>
+					</ul>
+				</div>
+			<?php } ?>
+			<?php if($alias== 3){ ?>
+				<div class="search-option clearfix">
+					<span>门店类型</span>
+					<ul ng-controller="btype">
+						<li ng-repeat="v in btype" onclick="addClassOnbtype(this)" btypeid="{%v.id%}">{%v.name%}</li>
+					</ul>
+				</div>
+			<?php } ?>
+			<?php if($alias== 3){ ?>
+				<div class="search-option clearfix">
+					<span>所在卖场</span>
+					<ul ng-controller="sale">
+						<li ng-repeat="v in sale" onclick="addClassOnsale(this)" saleid="{%v.id%}">{%v.name%}</li>
+					</ul>
+				</div>
+			<?php } ?>
+			<?php if($alias==1 || $alias == 2){ ?>
+				<div class="search-option clearfix">
+					<span>开发商</span>
+					<ul ng-controller="dev">
+						<li ng-repeat="v in dev" onclick="addClassOndev(this)" devid="{%v.id%}">{%v.name%}</li>
+					</ul>
+				</div>
+				<div class="search-option clearfix">
+					<span>户&nbsp;&nbsp;&nbsp;型</span>
+					<ul ng-controller="huxing">
+						<li ng-repeat="v in huxing" onclick="addClassOnhu(this)" huid="{%v.id%}">{%v.name%}</li>
+					</ul>
+				</div>
+			<?php } ?>
 	</div>
 	<div class="vr_home">
 			<div class="w1248">
-				<div class="w990 clearfix">
-					<ul class="clearfix" id="ul" ng-controller="myCtrl">
+				<div class="w990 clearfix" ng-controller="myCtrl">
+					<ul class="clearfix" id="ul" >
 
 						<li class="vr_home_list" ng-repeat="v in sites">
 							<div class="vr_content">
@@ -85,7 +116,7 @@
 						</li>
 
 					</ul>
-					<div class="des_more" ><a href="javascript:;" id="des_more">查看更多。。。</a></div>
+					<div class="des_more" ><a href="javascript:;" id="des_more" onclick="addnew()">查看更多。。。</a></div>
 				</div>
 			</div>
 			<div class="cooperate">
@@ -100,18 +131,215 @@
 @include('web.common.foot')
 @include('web.common.login',['index'=>1])
 </body>
+
 <script type="text/javascript">
-	var postUrl = '/vrp/dream'
-	var postData = {}
+	// 公共的数据
+	var cdata = {'alias':{{$alias}},'keyword':"{{$keyword}}",'devid':0,'huid':0,'cityid':0,'page':1,'typeid':0,'btypeid':0,'saleid':0}
+
+	// 公共请求ajax
+	function reajax(cdata){
+		$.ajax({
+	      	'url':'/vrp/search',
+	      	'type':'post',
+	      	'dataType':'json',
+	      	'data':cdata,
+	      	'success':function(json){
+	      		var li = ''
+	      		$.each(json,function(i,v){
+	      			li += '<li class="vr_home_list">\
+								<div class="vr_content">\
+									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<span>'+v.title+'</span>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+								</div>\
+								<div class="vr_title">\
+									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
+									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_view">'+v.viewcount+'</span>\
+								</div>\
+							</li>'
+				})
+				$('#ul').html(li)
+	      	}
+	      })
+	}
+	// 开发商
+	function addClassOndev(obj){
+	  cdata.page = 1
+      $(obj).parent('ul').find('li').removeClass('on')
+      $(obj).addClass('on')
+      devid = $(obj).attr('devid')
+      cdata.devid = devid
+      reajax(cdata)
+    }
+    // 户型
+    function addClassOnhu(obj){
+      cdata.page = 1
+      $(obj).parent('ul').find('li').removeClass('on')
+      $(obj).addClass('on')
+      huid = $(obj).attr('huid')
+      cdata.huid = huid
+      reajax(cdata)
+    }
+    // 类型
+    function addClassOntype(obj){
+      cdata.page = 1
+      $(obj).parent('ul').find('li').removeClass('on')
+      $(obj).addClass('on')
+      typeid = $(obj).attr('typeid')
+      cdata.typeid = typeid
+      reajax(cdata)
+    }
+    // 门店类型
+    function addClassOnbtype(obj){
+      cdata.page = 1
+      $(obj).parent('ul').find('li').removeClass('on')
+      $(obj).addClass('on')
+      btypeid = $(obj).attr('btypeid')
+      cdata.btypeid = btypeid
+      reajax(cdata)
+    }
+    // 卖场类型
+    function addClassOnsale(obj){
+      cdata.page = 1
+      $(obj).parent('ul').find('li').removeClass('on')
+      $(obj).addClass('on')
+      saleid = $(obj).attr('saleid')
+      cdata.saleid = saleid
+      reajax(cdata)
+    }
+    // 加载更多
+    function addnew(){
+    	cdata.page++
+		$.ajax({
+	      	'url':'/vrp/search',
+	      	'type':'post',
+	      	'dataType':'json',
+	      	'data':cdata,
+	      	'success':function(json){
+	      		if(json==''){
+			  	  $('#des_more').html('没有更多。。。')
+				  return 	
+			  	}
+			  	
+			  	var li = ''
+	      		$.each(json,function(i,v){
+	      			li += '<li class="vr_home_list">\
+								<div class="vr_content">\
+									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<span>'+v.title+'</span>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+								</div>\
+								<div class="vr_title">\
+									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
+									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_view">'+v.viewcount+'</span>\
+								</div>\
+							</li>'
+				})
+				$('#ul').append(li)
+	      	}
+	      })
+    }
+
+	$('.form-control').change(function(){
+		cdata.page = 1
+		var s1 = $('.form-control').eq(0).find('option:selected').attr('data-code')
+		var s2 = $('.form-control').eq(1).find('option:selected').attr('data-code')
+		var s3 = $('.form-control').eq(2).find('option:selected').attr('data-code')
+		if(s1!='' && s2==''){
+			cdata.cityid = s1
+		}
+		if(s1!='' && s2!='' && s3==''){
+			cdata.cityid = s2
+		}
+		if(s1!='' && s2!='' && s3!=''){
+			cdata.cityid = s3
+		}
+		if(s1=='' && s2=='' && s3==''){
+			cdata.cityid = 0 
+		}
+
+		$.ajax({
+	      	'url':'/vrp/search',
+	      	'type':'post',
+	      	'dataType':'json',
+	      	'data':cdata,
+	      	'success':function(json){
+	      		var li = ''
+	      		$.each(json,function(i,v){
+	      			li += '<li class="vr_home_list">\
+								<div class="vr_content">\
+									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<span>'+v.title+'</span>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+								</div>\
+								<div class="vr_title">\
+									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
+									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_view">'+v.viewcount+'</span>\
+								</div>\
+							</li>'
+				})
+				$('#ul').html(li)
+	      	}
+	      })
+
+	})
 </script>
 <script type="text/javascript">
-	$('.search-option li').click(function(){
-			if(!$(this).hasClass('on')){
-				$(this).addClass('on').siblings().removeClass('on');
-				$(this).siblings('input').val($(this).attr('data-val'));
-			}
-		})
+	
+
+	myApp.controller('dev',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/dev',
+		  }).success(function(json, status) {
+		  	$scope.dev = json.data.list
+		  })
+	})
+
+	myApp.controller('huxing',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/huxing',
+		  }).success(function(json, status) {
+		  	$scope.huxing = json.data.list
+		  })
+	})
+
+	myApp.controller('type',function($scope,$http){
+		$http({
+		    method: 'post',
+		    url: '/api/vr/type',
+		  }).success(function(json, status) {
+		  	$scope.type = json.data.list
+		  })
+	})
+
+	myApp.controller('btype',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/brandtype',
+		  }).success(function(json, status) {
+		  	$scope.btype = json.data.list
+		  })
+	})
+
+	myApp.controller('sale',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/sales',
+		  }).success(function(json, status) {
+		  	$scope.sale = json.data.list
+		  })
+	})
+
+ 	myApp.controller('myCtrl', function($scope,$http) {
+	  	$scope.sites = <?php echo json_encode($needData); ?>
+	});
+
+
 </script>
-<script type="text/javascript" src="{{asset('web/js/vr/index.js')}}"></script>
 <script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
 </html>

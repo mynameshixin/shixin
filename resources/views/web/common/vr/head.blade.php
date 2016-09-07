@@ -36,6 +36,7 @@ var _hmt = _hmt || [];
     u_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
   </script>
   <link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/font-awesome.min.css">
+
   <!--[if IE]>
   <link rel="stylesheet" type="text/css" href="{{asset('public/web')}}/css/font-awesome-ie7.min.css">
   <![endif]-->
@@ -48,7 +49,8 @@ var _hmt = _hmt || [];
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
-  <script type="text/javascript" src="{{asset('web')}}/js/address.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/distpicker.data.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/distpicker.js"></script>
   <script type="text/javascript">
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
@@ -75,16 +77,13 @@ var _hmt = _hmt || [];
       }
       return url ;
     }
+
   </script>
 </head>
 <script type="text/javascript">
   var myApp = angular.module('myApp', [], function($interpolateProvider) {
    $interpolateProvider.startSymbol('{%');
    $interpolateProvider.endSymbol('%}');
-  });
-
-  myApp.controller('myCtrl', function($scope) {
-   $scope.sites = <?php echo json_encode($needData);?>
   });
 </script>
 <body class="nolog_body" ng-app="myApp">
@@ -121,8 +120,9 @@ var _hmt = _hmt || [];
           @include('web.common.banner.action')
         </div>
       </div>
-      <form action="/webd/search/goods" method="get" name='search_s'>
-        <input type="text" class="header_search header_search_s" style="width: 645px;" placeholder="搜索你喜欢的" name="keyword">
+      <form action="/vr/4/" method="get">
+        <input type="hidden" value="{{$alias or '1'}}" name="alias"></input>
+        <input type="text" class="header_search header_search_s" style="width: 645px;" placeholder="搜索你想看的" name="keyword">
       </form>
  @include('web.common.banner.my')
     </div>
@@ -134,7 +134,10 @@ var _hmt = _hmt || [];
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">{{$k1}}</p>
         <div class="header_search_wrap clearfix">
-          <input type="text" class="header_search header_search_indexnolog" placeholder="搜索你想看的">
+          <form action="/vr/4/" method="get">
+            <input type="hidden" value="{{$alias or '1'}}" name="alias"></input>
+            <input type="text" name="keyword" class="header_search header_search_indexnolog" placeholder="搜索你想看的" value="{{$keyword or ''}}">
+          </form>
         </div>
         <p class="nolog_index_subtit">搜索——<a href="javascript:;">{{$k2}}</a></p>
       </div>

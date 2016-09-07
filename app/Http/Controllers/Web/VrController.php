@@ -20,8 +20,6 @@ class VrController extends CmController{
 		if($id == 2) return $this->design();
 		if($id == 3) return $this->vrindex();
 		if($id == 4) return $this->searchdream();
-		if($id == 5) return $this->searchdesign();
-		if($id == 6) return $this->searchvrindex();
 	}
 
 	public function needData($data,$folder_id,$typeid=0,$btypeid=0){
@@ -85,7 +83,8 @@ class VrController extends CmController{
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
-			'needData'=>$needData
+			'needData'=>$needData,
+			'alias'=>1
 		];
 		return view('web.vr.index',$data);
 	}
@@ -94,25 +93,118 @@ class VrController extends CmController{
 	public function searchdream(){
 		$data = Input::all();
 		$data['num'] = 9;
-		$needData = $this->needData($data,3510);
+		$needData = $this->postSearch();
+		$alias = $data['alias'];
+		$keyword = trim($data['keyword']);
 		// dd($needData);
 		$data = [
 			'self_id'=>$this->user_id,
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
-			'needData'=>$needData
+			'needData'=>$needData,
+			'alias'=>$alias,
+			'keyword'=>$keyword
 		];
 		return view('web.vr.search_index',$data);
 	}
 
-	// 梦想家更多
-	public function postDream(){
-		$data = Input::all();
-		$data['num'] = 9;
-		$needData = $this->needData($data,3510);
-		// dd($needData);
-		return response()->forApi(['list' => $needData]);
-	}
+
+	 //获取搜索和筛选结果
+    public function postSearch(){
+    	$data = Input::all();
+    	$rules = array(
+    		'keyword'=>'required',
+            'alias'=>'required|in:1,2,3'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        switch ($data['alias']) {
+            case 1:
+                $alias = 3510;
+                break;
+            case 2:
+                $alias = 3511;
+                break;
+            case 3:
+                $alias = 3438;
+                break;
+            default:
+                break;
+        }
+    	$keyword =trim($data['keyword']);
+    	$num = isset($data['num'])?$data['num']:9;
+    	$page = isset($data['page'])?$data['page']:1;
+    	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',$alias)->select('*');
+    	$rows = $rows->where(function ($rows) use ($keyword) {
+                $rows = $rows->where('g.title', "like", "%{$keyword}%")->orWhere('g.description','like',"%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
+            });
+    	$rows = $rows->leftJoin('goods as g','fg.good_id','=','g.id')->orderBy('fg.created_at','desc');
+    	if(!empty($data['cityid'])){
+    		$ids = DB::table('citys')->where('pid',$data['cityid'])->lists('id');
+    		if(empty($ids)){
+    			$rows = $rows->where('g.cityid',$data['cityid']);
+    		}else{
+    			$n = [];
+    			foreach ($ids as $key => $value) {
+    				$next = DB::table('citys')->where('pid',$value)->lists('id');
+    				$n = array_merge($n,$next);
+    			}
+    			$ids[] = $data['cityid'];
+    			$n = array_merge($n,$ids);
+    			$rows = $rows->whereIn('g.cityid',$n);
+    		}
+    	}
+    	if(!empty($data['devid'])){
+    		$rows = $rows->where('g.devid',$data['devid']);
+    	}
+    	if(!empty($data['huid'])){
+    		$rows = $rows->where('g.huid',$data['huid']);
+    	}
+        if(!empty($data['typeid'])){
+            $rows = $rows->where('g.devid',$data['typeid']);
+        }
+        if(!empty($data['btypeid'])){
+            $rows = $rows->where('g.huid',$data['btypeid']);
+        }
+        if(!empty($data['saleid'])){
+            $rows = $rows->where('g.devid',$data['saleid']);
+        }
+        $skip = ($page-1)*$num;
+        $rows = $rows->skip($skip)->take($num)->get();
+        foreach ($rows as $k=>$row) {
+            //images
+            if (!empty($row['image_ids'])) {
+                    $image_ids = explode(',', $row['image_ids']);
+                    foreach ($image_ids as $imageId) {
+                        $image_o = LibUtil::getPicUrl($imageId, 3);
+                        if (!empty($image_o)) {
+                            $rows[$k]['images'][] = [
+                                'image_id'=>$imageId,   
+                                'img_m' => LibUtil::getPicUrl($imageId, 1),
+                                'img_o' => $image_o
+                            ];
+                        }
+                    }
+             }
+             // 地区
+             $rows[$k]['cityname'] = '未知地区';
+             $rows[$k]['countryname'] = '';
+             if(!empty($row['cityid'])){
+                $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
+                $rows[$k]['countryname'] = $cinfo['name'];
+                $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
+                $rows[$k]['cityname'] = $cpinfo['name'];
+             }
+             $rows[$k]['viewcount'] = 0;
+             if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
+                $rows[$k]['viewcount'] = $viewcount['num'];
+             }
+             $userArr = UserService::getInstance()->getUserArr([$row['user_id']]);
+             $rows[$k]['user'] = isset($userArr[$row['user_id']]) ? $userArr[$row['user_id']] : [];
+
+        }
+    	return $rows;
+    }
 
 	// 设计家首页
 	public function design(){
@@ -126,7 +218,8 @@ class VrController extends CmController{
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'needData'=>$needData,
-			'needData2'=>$needData2
+			'needData2'=>$needData2,
+			'alias'=>2
 		];
 		return view('web.vr.design',$data);
 	}
@@ -154,7 +247,8 @@ class VrController extends CmController{
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'needData'=>$needData,
 			'needData2'=>$needData2,
-			'needData3'=>$needData3
+			'needData3'=>$needData3,
+			'alias'=>3
 		];
 		return view('web.vr.vrindex',$data);
 	}
