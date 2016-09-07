@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<title>插件</title>
 		<script type="text/javascript">
-		var u_id="<?php echo $_GET['user_id'];?>";
+		var u_id="<?php echo $_POST['user_id'];?>";
 		var user_id=u_id;
 		</script>
 		<link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/index.css">
@@ -166,8 +166,9 @@
 			            </div>
 			        </div> -->
 					<?php					
-						$src=explode(',',$_GET['src']); 	
-						$alt=explode(',',$_GET['alt']); 				
+						$src=explode(',',$_POST['src']); 	
+						$alt=explode(',',$_POST['alt']); 
+						$texts=explode(',',$_POST['text']); 				
 						foreach ($src as $k => $v) {
 							if(end(array_keys($src))==$k){ 
            					 break;
@@ -177,7 +178,7 @@
 					<div class="pop_addpic_wrap oppo">	
 					 <img src="<?=$v?>" class="imge_eea"  alt="<?=$alt[$k]?>">		
 					
-					<textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]"><?=$alt[$k]?></textarea>
+					<textarea class="pop_addfont_wrap texts" name="pop_addfont_wrap[]"><?=$texts[$k]?></textarea>
 					  </div>
 					   </div>
 							<?php

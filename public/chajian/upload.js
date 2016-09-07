@@ -132,12 +132,15 @@ function collect(obj){
 function allimg_upload(obj){  
   var folder_id = $(obj).attr('folder_id')
   var imgs=$(".imge_eea");
+  var texts=$(".texts");
   var src=new Array();
   var alt=new Array();
+  var text=new Array();
       for (var i =0;i < imgs.length ; i++) {
         if(imgs){
           src[i]=imgs[i].src
-           alt[i]=imgs[i].alt         
+           alt[i]=imgs[i].alt  
+           text[i]=texts[i].value          
         }else{
           break;
         }
@@ -149,7 +152,7 @@ function allimg_upload(obj){
           type:"get",  //提交方式
           dataType:"jsonp", //数据类型
           url:"http://www.duitujia.com/webd/pics/pluginimg", //请求url
-          'data':{'fid':folder_id,'img_urls':src,'titles':alt,'source_urls':alt,'user_id':user_id},
+          'data':{'fid':folder_id,'img_urls':src,'titles':text,'source_urls':alt,'user_id':user_id},
           success:function(json){ //提交成功的回调函数
               if(json.ids) {
                 layer.msg('成功上传',{icon: 6});
