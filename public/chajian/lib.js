@@ -122,8 +122,10 @@ function funClose()
 function ever_get(){
   var eve=$('.item-selected');
   var eve_len=eve.length;
-  for (var i = 0 ; i <eve_len; i++) {   
-       eve[i].className='HUABAN-cell item-hover';     
+  for (var i = 0 ; i <eve_len; i++) {
+      select_num=0;
+       eve[i].className='HUABAN-cell item-hover';  
+       eve[i].getElementsByTagName("text")[0].innerText="未选择";   
        eve[i].getElementsByTagName("span")[0].innerText="已保存";
        eve[i].getElementsByTagName("div")[1].style.backgroundPosition="0 0";
   }

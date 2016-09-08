@@ -146,8 +146,6 @@ function allimg_upload(obj){
         }
         
       };
-
-
     $.ajax({
           type:"get",  //提交方式
           dataType:"jsonp", //数据类型
@@ -445,7 +443,8 @@ $('#pic_cfolder').click(function(){
     },
     'dataType':'json',
     'success':function(json){
-      var folder_id = json.folder_id;
+      var folder_id = json.data.folder_id;
+      alert(folder_id);
       var imgs=$(".imge_eea");
       var src=new Array();
       var alt=new Array();
