@@ -80,10 +80,11 @@ $(function (){
 					    	var ap = ''
 					    	$.each(cg,function(k,value){
 					    		var str = ''
+					    		var pic_m = value.user.auth_avatar!=null?value.user.auth_avatar:value.user.pic_m
 					    		nick = value.nick!=''?value.nick:value.username
 					    		str = '<div class="index_item_bottom clearfix">'
 									+'<a href="/webd/user/index?oid='+value.user_id+'" class="index_item_authava" target="_blank" title="'+nick+'">'
-										+'<img src="'+value.user.pic_m+'" alt="'+nick+'">'
+										+'<img src="'+pic_m+'" alt="'+nick+'">'
 									+'</a>'
 									+'<div class="index_item_authinfo">'
 										+'<a href="/webd/user/index?oid='+value.user_id+'" target="_blank" class="index_item_authname" title="'+nick+'">'+nick+'</a>'
