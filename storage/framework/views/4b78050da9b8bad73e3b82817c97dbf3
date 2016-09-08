@@ -1,4 +1,58 @@
 <script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/autocomplete.js"></script>
+<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/angular.js"></script>
+<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/distpicker.data.js"></script>
+<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/distpicker.js"></script>
+<script type="text/javascript">
+  var upvr = angular.module('upvr', [], function($interpolateProvider) {
+   $interpolateProvider.startSymbol('{%');
+   $interpolateProvider.endSymbol('%}');
+  });
+
+  upvr.controller('dev',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/dev',
+		  }).success(function(json, status) {
+		  	$scope.dev = json.data.list
+		  })
+	})
+
+	upvr.controller('huxing',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/huxing',
+		  }).success(function(json, status) {
+		  	$scope.huxing = json.data.list
+		  })
+	})
+
+	upvr.controller('type',function($scope,$http){
+		$http({
+		    method: 'post',
+		    url: '/api/vr/type',
+		  }).success(function(json, status) {
+		  	$scope.type = json.data.list
+		  })
+	})
+
+	upvr.controller('btype',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/brandtype',
+		  }).success(function(json, status) {
+		  	$scope.btype = json.data.list
+		  })
+	})
+
+	upvr.controller('sale',function($scope,$http){
+		$http({
+		    method: 'get',
+		    url: '/api/vr/sales',
+		  }).success(function(json, status) {
+		  	$scope.sale = json.data.list
+		  })
+	})
+</script>
 <style type="text/css">
 	.autocomplete-container {
 		position: relative;
@@ -308,7 +362,7 @@
 	</div>
 
 <!-- 上传VR -->
-<div class="pop_uploadvr">
+<div class="pop_uploadvr" ng-app="upvr">
 <form action="" method="post" enctype="multipart/form-data" name="uvr">
 	<div class="pop_con">
 		<p class="pop_tit">
@@ -318,25 +372,119 @@
 		<div class="pop_conwrap">
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">标题</span>
-				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="">
+				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="" style="width: 300px">
 			</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">展示图片</span>
 				<div class="pop_vrchangewrap">
-					<div class="pop_vrimgwrap">
+					<div class="pop_vrimgwrap" style="width: 100px;height: 100px">
 						<img src="<?php echo e(asset('web')); ?>/images/temp/1.png">
 					</div>
 					<input type="hidden" name='kind' value="2"></input>
 					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
 					<input class="pop_upload" type="file" name='image' id="fvr" style="display:none"></input>
-					<label for="fvr" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" style="color:#969696;float: left; cursor: pointer; margin-left: 30px">
+					<label for="fvr" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" style="color:#969696;float: left; cursor: pointer;">
 								上传VR展示图</label>
 				</div>
 			</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">地址</span>
-				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="">
+				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="" style="width: 300px">
 			</div>
+
+				<div class="vr_line">
+					<div class="vr-left"><span>位置</span></div>
+					<div class="vr-right">
+						<form class="form-inline">
+					      <div id="distpicker1">
+					        <div class="form-group">
+					          <label class="sr-only" for="province5">Province</label>
+					          <select class="form-control form-se"  id="province5"></select>
+					        </div>
+					        <div class="form-group">
+					          <label class="sr-only" for="city5">City</label>
+					          <select class="form-control form-se"  id="city5"></select>
+					        </div>
+					        <div class="form-group">
+					          <label class="sr-only" for="district5">District</label>
+					          <select class="form-control form-se"  id="district5"></select>
+					        </div>
+					        <input type="hidden" name="cityid" value="0"></input>
+					      </div>
+			    		</form>
+						<script type="text/javascript">
+							$("#distpicker1").distpicker({
+							  province: "---- 不限省 ----",
+							  city: "---- 不限市 ----",
+							  district: "---- 不限区县 ----",
+							  autoSelect: false
+							});
+
+							$('.form-se').change(function(){
+								var s1 = $('.form-se').eq(0).find('option:selected').attr('data-code')
+								var s2 = $('.form-se').eq(1).find('option:selected').attr('data-code')
+								var s3 = $('.form-se').eq(2).find('option:selected').attr('data-code')
+								if(s1!='' && s2==''){
+									$('input[name=cityid]').val(s1)
+								}
+								if(s1!='' && s2!='' && s3==''){
+									$('input[name=cityid]').val(s2)
+								}
+								if(s1!='' && s2!='' && s3!=''){
+									$('input[name=cityid]').val(s3)
+								}
+								if(s1=='' && s2=='' && s3==''){
+									$('input[name=cityid]').val("0")
+								}
+							})
+						</script>		
+					</div>
+				</div>
+
+				<div class="vr_line">
+					<div class="vr-left"><span>类型</span></div>
+					<div class="vr-right">
+						<div class="select hourse-type" ng-controller="type">
+							<label data-val="{%v.id%}" ng-repeat="v in type" onclick="changeType(this)"><i></i>{%v.name%}</label>
+							<input type="hidden" name="typeid" value="0" />
+						</div>
+					</div>
+				</div>
+				<div class="vr_line hourse">
+					<div class="vr-left"><span>开发商</span></div>
+					<div class="vr-right">
+						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid' ng-controller="dev">
+							<option ng-repeat="v in dev" value="{%v.id%}">{%v.name%}</option>
+						</select>
+					</div>
+				</div>
+				<div class="vr_line hourse">
+					<div class="vr-left"><span>户型</span></div>
+					<div class="vr-right">
+						<div class="select" ng-controller="huxing">
+							<label data-val="{%v.id%}" ng-repeat="v in huxing" onclick="changeid(this)"><i></i>{%v.name%}</label>
+							<input type="hidden" name="huid" value="0" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="vr_line shop">
+					<div class="vr-left"><span>所在卖场</span></div>
+					<div class="vr-right">
+						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid' ng-controller="sale">
+							<option ng-repeat="v in sale" value="{%v.id%}">{%v.name%}</option>
+						</select>
+					</div>
+				</div>
+				<div class="vr_line shop">
+					<div class="vr-left"><span>门店类型</span></div>
+					<div class="vr-right">
+						<div class="select" ng-controller="btype">
+							<label data-val="{%v.id%}" ng-repeat="v in btype" onclick="changeid(this)"><i></i>{%v.name%}</label>
+							<input type="hidden" name="btypeid" value="0" />
+						</div>
+					</div>
+				</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname">文件夹</span>
 				<select class="pop_labelselect" style="margin-right: 15px;width:255px;" name='fid'>
@@ -360,6 +508,43 @@
           $(this).attr('private',1)
         }
   	})
+	$('.hourse').css('display','none');
+	$('.shop').css('display','none');
+	function changeType(obj){
+		var _val=$(obj).attr('data-val');
+		if(_val=='4'){
+			
+			$('.hourse').find('input[type=hidden]').val("0")
+			$('.hourse').find('label').removeClass("on")
+			for (var i = 0; i < $('select.pop_selects').length; i++) {
+				$('select.pop_selects').eq(i).find('option').removeAttr('selected')
+			}
+
+			$('.hourse').css('display','none');
+			$('.shop').css('display','block');
+		}else{
+			
+			$('.shop').find('input[type=hidden]').val("0")
+			$('.shop').find('label').removeClass("on")
+			for (var i = 0; i < $('select.pop_selects').length; i++) {
+				$('select.pop_selects').eq(i).find('option').removeAttr('selected')
+			}
+			$('.shop').css('display','none');
+			$('.hourse').css('display','block');
+		}
+		
+		if(!$(obj).hasClass('on')){
+			$(obj).addClass('on').siblings().removeClass('on');
+			$(obj).siblings('input').val($(obj).attr('data-val'));
+		}
+	}
+	function changeid(obj){
+		
+		if(!$(obj).hasClass('on')){
+			$(obj).addClass('on').siblings().removeClass('on');
+			$(obj).siblings('input').val($(obj).attr('data-val'));
+		}
+	}
 </script>
 
 <!-- 采集时选择文件夹 -->

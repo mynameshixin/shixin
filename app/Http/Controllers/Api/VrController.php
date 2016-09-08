@@ -94,9 +94,19 @@ class VrController extends BaseController{
     //获取类型
     public function postType(){
         $data = Input::all();
-        $deves = [['id'=>0,'name'=>'不限'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造']];
-        return response()->forApi(['list' => $deves]);
+        $rules = array(
+            'alias'=>'in:1'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
 
+        if(isset($data['alias']) && $data['alias']==1){
+            $deves = [['id'=>0,'name'=>'不限'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造']];
+        }else{
+            $deves = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+        }
+        
+        return response()->forApi(['list' => $deves]);
     }
 
     //获取门店类型

@@ -1,29 +1,4 @@
 @include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>''])
-<style type="text/css">
-	.form-inline .form-group {display: inline-block;margin-bottom: 0;}
-	.sr-only{position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;}
-	.form-inline .form-control{    display: inline-block;width: auto;vertical-align: middle;}
-	.form-control{height: 34px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
-    option {
-    font-weight: normal;
-    display: block;
-    white-space: pre;
-    min-height: 1.2em;
-    padding: 0px 2px 1px;
-}
-</style>
 	<div class="w1248 w1240">
 			
 			<div class="vr_line">
@@ -33,21 +8,17 @@
 			      <div id="distpicker2">
 			        <div class="form-group">
 			          <label class="sr-only" for="province5">Province</label>
-			          <select class="form-control" id="province5"></select>
+			          <select class="form-control form-select" id="province5"></select>
 			        </div>
 			        <div class="form-group">
 			          <label class="sr-only" for="city5">City</label>
-			          <select class="form-control" id="city5"></select>
+			          <select class="form-control form-select" id="city5"></select>
 			        </div>
 			        <div class="form-group">
 			          <label class="sr-only" for="district5">District</label>
-			          <select class="form-control" id="district5"></select>
+			          <select class="form-control form-select" id="district5"></select>
 			        </div>
-			         <!-- <input type="hidden" name="alias" value="{{$alias}}"></input>
-			         <input type="hidden" name="keyword" value="{{$keyword}}"></input>
-			         <input type="submit" value="筛选" class="btn"> -->
 			      </div>
-
 	    		</form>
 			<script type="text/javascript">
 				$("#distpicker2").distpicker({
@@ -242,11 +213,11 @@
 	      })
     }
 
-	$('.form-control').change(function(){
+	$('.form-select').change(function(){
 		cdata.page = 1
-		var s1 = $('.form-control').eq(0).find('option:selected').attr('data-code')
-		var s2 = $('.form-control').eq(1).find('option:selected').attr('data-code')
-		var s3 = $('.form-control').eq(2).find('option:selected').attr('data-code')
+		var s1 = $('.form-select').eq(0).find('option:selected').attr('data-code')
+		var s2 = $('.form-select').eq(1).find('option:selected').attr('data-code')
+		var s3 = $('.form-select').eq(2).find('option:selected').attr('data-code')
 		if(s1!='' && s2==''){
 			cdata.cityid = s1
 		}

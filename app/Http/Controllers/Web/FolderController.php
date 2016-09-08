@@ -265,6 +265,7 @@ class FolderController extends CmController{
     //上传vr
     public function postUvr(){
         $data = Input::all();
+        
         $rules = array(
             'user_id' => 'required',
             'kind' => 'required|in:1,2',
@@ -273,14 +274,20 @@ class FolderController extends CmController{
             // 'image' => 'required',
             'source' => 'in:0,1',
             'title'=>'required',
-            "detail_url"=>'required'
+            "detail_url"=>'required',
+            'typeid'=>'required',
+            'cityid'=>'required'
         );
         $messages = [
             'title.required'=>'标题没有填写',
-            'detail_url.required'=>'地址没有填写'
+            'detail_url.required'=>'地址没有填写',
+            'typeid.required'=>'类型没有选择',
+            'cityid.required'=>'位置没有选择'
         ];
+
         //请求参数验证
         parent::validator($data, $rules,$messages);
+
         if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
         /*//8M大小验证
         foreach ($_FILES['image']['size'] as $key => $value) {

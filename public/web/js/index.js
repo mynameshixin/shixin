@@ -721,7 +721,7 @@ $('#pic_cfolder').click(function(){
                 return
               } 
           },
-          resetForm:1
+          //resetForm:1
         });
         return false
     })

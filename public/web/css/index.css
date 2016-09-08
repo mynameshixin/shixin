@@ -452,10 +452,10 @@ a{cursor: pointer;color: #000}
 .pop_tit{font:normal 21px/21px "Microsoft YaHei";color: #333333;padding: 20px 30px 20px 30px;border-bottom: 1px solid #f1f1f1;position: relative;}
 .pop_close{width: 24px;height: 23px;background: url(../images/pop_close.png) no-repeat;position: absolute;right: 35px;top: 20px;cursor: pointer;display: block;}
 .pop_namewrap{padding:17px 0px 17px 30px;}
-.pop_labelname{font:normal 16px/36px "Microsoft YaHei";color: #333333;display: inline-block;width: 142px;float: left;}
-.pop_iptname{height: 36px;width: 430px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 16px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
+.pop_labelname{font:normal 12.5px/36px "Microsoft YaHei";color: #333333;display: inline-block;width: 142px;float: left;}
+.pop_iptname{height: 36px;width: 430px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 12.5px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
 .pop_deswrap{padding:17px 0px 17px 30px;border-bottom:1px solid #f1f1f1;}
-.pop_iptdes{height: 90px;width: 430px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 16px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
+.pop_iptdes{height: 90px;width: 430px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 12.5px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
 .pop_iptprivacy{display: none;}
 input[type="checkbox"] + label{cursor: pointer;}
 [id^="pop_iptpr"] + label {
@@ -639,7 +639,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_imgwrap img,.pop_vrimgwrap img{width: 100%;height: 100%;border-radius: 0px;}
 .pop_iptselect{width: 284px;height: 36px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 16px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
 
-.pop_labelselect{width: 222px;height: 36px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 16px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
+.pop_labelselect,.pop_selects{width: 222px;height: 36px;border-radius: 4px;background: #f0f0f0;border:none;padding:0px 15px;font:normal 12.5px/36px "Microsoft YaHei";color: #a1a1a1;float: left;}
 
 .back_to_add{width: 40px;height: 40px;border-radius: 50%;background: #fff;color: #a8a8a8;display: block;text-align: center;font:bold 32px/40px "Microsoft YaHei";position: fixed;bottom: 200px;left: 50%;margin-left: 635px;box-shadow:0 1px 2px 0 rgba(0,0,0,0.22);-webkit-box-shadow:0 1px 2px 0 rgba(0,0,0,0.22);}
 .pop_uploadfile{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
@@ -1010,7 +1010,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .search-vr{padding-bottom: 0;margin-top: 68px;}
 .search-vr .w1240{min-height: 65px;background: #fff;padding: 20px 0;}
 .search-option{width: 100%;}
-.search-option span{display: block; float: left;width: 65px;line-height: 22px;padding-left: 24px;color: #414141;font-size: 13px;}
+.search-option span{display: block; float: left;width: 65px;line-height: 22px;padding-left: 24px;color: #333;font-size: 13px;}
 .search-option ul{display: block;width: 1146px; float: right;}
 .search-option ul li{float: left;padding: 0 8px;line-height: 22px;color: #a4a4a4;font-size: 13px;}
 .search-option ul li:hover,.search-option ul li.on{color: #e15335;cursor:pointer; }
@@ -1018,8 +1018,8 @@ input[type="checkbox"] + label{cursor: pointer;}
 
 .vr_line{width: 100%; float: left;padding: 8px 0;}
 .vr-left{float: left;width: 75px;padding-left: 30px;height: 35px;line-height: 35px;}
-.vr-left span{font:normal 12.5px/22px "Microsoft YaHei";color: #514141;}
-.vr-right{float: right;width:380px;position: relative;height: 35px;line-height: 35px;}
+.vr-left span{font:normal 12.5px/22px "Microsoft YaHei";color: #333;}
+.vr-right{float: right;width:490px;position: relative;height: 35px;line-height: 35px;}
 .vr_line_first{height: 98px;overflow: hidden;}
 .vr_line_first .vr-left,.vr_line_first .vr-right{height: auto;line-height: 20px;}
 .vr_line_first .vr-left span{display: block;height: 35px;line-height: 35px;}
@@ -1080,6 +1080,15 @@ input[type="checkbox"] + label{cursor: pointer;}
 /* radio box */
 .rb{width:13px;height:13px;margin:0 auto;padding:0;display:inline-block;*display:inline;zoom:1;vertical-align:middle;background-position:-13px 0;cursor:pointer;}
 .rb_active{background-position:-13px -13px;}
+
+/* 位置省市县样式 */
+.form-inline .form-group {display: inline-block;margin-bottom: 0;}
+.sr-only{position: absolute;width: 1px;height: 1px;padding: 0;margin: -1px;overflow: hidden;clip: rect(0,0,0,0);border: 0;}
+.form-inline .form-control{display: inline-block;width: auto;vertical-align: middle;}
+.form-control{height: 34px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc; border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; margin-right: 3px; float: left;}
+option {
+    font-weight: normal;display: block;white-space: pre;min-height: 1.2em;padding: 0px 2px 1px;
+ }
 
 
 
