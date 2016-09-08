@@ -16,6 +16,7 @@ use App\Models\FolderGood;
 use App\Models\Product;
 use App\Models\Follow;
 use Psy\Readline\Libedit;
+use DB;
 
 class FolderService extends ApiService
 {
@@ -340,6 +341,8 @@ class FolderService extends ApiService
     {
         Product::where('folder_id',$id)->delete();
         FolderGood::where('folder_id',$id)->delete();
+        CollectionFolder::where('folder_id',$id)->delete();
+        DB::table('collection_good')->where('folder_id',$id)->delete();
         CollectionFolder::where('folder_id',$id)->delete();
         Folder::where('id',$id)->delete();
         return true;
