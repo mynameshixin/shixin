@@ -17,6 +17,7 @@ use App\Models\Shop;
 use App\Models\ShopAddress;
 use App\Services\Admin\ImageService;
 use App\Services\UserService;
+use DB;
 
 class ProductService extends ApiService
 {
@@ -112,6 +113,8 @@ class ProductService extends ApiService
            // $image_id = current($images_arr);
             $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
             FolderService::getInstance()->updateFolderCount($entry['folder_id'], $image_id);
+            $d = date('Y-m-d H:i:s');
+            DB::table('collection_good')->insert(['user_id'=>$userId,'kind'=>$data['kind'],'good_id'=>$id,'created_at'=>$d,'updated_at'=>$d]);
 
         }
         return $id;
@@ -185,6 +188,8 @@ class ProductService extends ApiService
             $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
             $image_id = isset($entry['image_ids'])?$entry['image_ids']:0;
             FolderService::getInstance()->updateFolderCount($entry['folder_id'], $image_id);
+            $d = date('Y-m-d H:i:s');
+            DB::table('collection_good')->insert(['user_id'=>$userId,'kind'=>$data['kind'],'good_id'=>$id,'created_at'=>$d,'updated_at'=>$d]);
         }
         return $id;
     }
