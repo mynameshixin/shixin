@@ -1,4 +1,5 @@
 @include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>''])
+
 	<div class="w1248 w1240">
 			
 			<div class="vr_line">
@@ -261,54 +262,7 @@
 <script type="text/javascript">
 	
 
-	myApp.controller('dev',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/dev',
-		  }).success(function(json, status) {
-		  	$scope.dev = json.data.list
-		  })
-	})
-
-	myApp.controller('huxing',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/huxing',
-		  }).success(function(json, status) {
-		  	$scope.huxing = json.data.list
-		  })
-	})
-
-	myApp.controller('type',function($scope,$http){
-		$http({
-		    method: 'post',
-		    url: '/api/vr/type',
-		  }).success(function(json, status) {
-		  	$scope.type = json.data.list
-		  })
-	})
-
-	myApp.controller('btype',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/brandtype',
-		  }).success(function(json, status) {
-		  	$scope.btype = json.data.list
-		  })
-	})
-
-	myApp.controller('sale',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/sales',
-		  }).success(function(json, status) {
-		  	$scope.sale = json.data.list
-		  })
-	})
-
- 	myApp.controller('myCtrl', function($scope,$http) {
-	  	$scope.sites = <?php echo json_encode($needData); ?>
-	});
+	
 
 
 </script>

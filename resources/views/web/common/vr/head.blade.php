@@ -45,12 +45,9 @@ var _hmt = _hmt || [];
   <script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/jquery.lazyload.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/jquery.form.js"></script>
-  <script type="text/javascript" src="{{asset('web')}}/js/angular.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
-  <script type="text/javascript" src="{{asset('web')}}/js/distpicker.data.js"></script>
-  <script type="text/javascript" src="{{asset('web')}}/js/distpicker.js"></script>
   <script type="text/javascript">
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
@@ -80,12 +77,7 @@ var _hmt = _hmt || [];
 
   </script>
 </head>
-<script type="text/javascript">
-  var myApp = angular.module('myApp', [], function($interpolateProvider) {
-   $interpolateProvider.startSymbol('{%');
-   $interpolateProvider.endSymbol('%}');
-  });
-</script>
+
 <body class="nolog_body" ng-app="myApp">
 <div class="nolog_header">
     <div class="headercontainer w1248 clearfix">
@@ -128,8 +120,61 @@ var _hmt = _hmt || [];
     </div>
   </div>
  @include('web.common.daction')
+<script type="text/javascript">
+  var myApp = angular.module('myApp', [], function($interpolateProvider) {
+   $interpolateProvider.startSymbol('{%');
+   $interpolateProvider.endSymbol('%}');
+  });
+  myApp.controller('dev',function($scope,$http){
+    $http({
+        method: 'get',
+        url: '/api/vr/dev',
+      }).success(function(json, status) {
+        $scope.dev = json.data.list
+      })
+  })
 
- <div class="container nolog_index_container clearfix {{$k3}}">
+  myApp.controller('huxing',function($scope,$http){
+    $http({
+        method: 'get',
+        url: '/api/vr/huxing',
+      }).success(function(json, status) {
+        $scope.huxing = json.data.list
+      })
+  })
+
+  myApp.controller('type',function($scope,$http){
+    $http({
+        method: 'post',
+        url: '/api/vr/type',
+      }).success(function(json, status) {
+        $scope.type = json.data.list
+      })
+  })
+
+  myApp.controller('btype',function($scope,$http){
+    $http({
+        method: 'get',
+        url: '/api/vr/brandtype',
+      }).success(function(json, status) {
+        $scope.btype = json.data.list
+      })
+  })
+
+  myApp.controller('sale',function($scope,$http){
+    $http({
+        method: 'get',
+        url: '/api/vr/sales',
+      }).success(function(json, status) {
+        $scope.sale = json.data.list
+      })
+  })
+
+  myApp.controller('myCtrl', function($scope,$http) {
+      $scope.sites = <?php echo json_encode($needData); ?>
+  });
+</script>
+ <div class="container nolog_index_container clearfix {{$k3}}" >
     <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">{{$k1}}</p>
