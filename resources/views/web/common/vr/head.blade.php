@@ -82,6 +82,29 @@ var _hmt = _hmt || [];
         }
       })
     }
+
+    function like_count(obj,good_id){
+      var obj = $(obj)
+      var num = obj.html()
+      $.ajax({
+        'url':"/webd/goodaction/create",
+        'type':'post',
+        'data':{
+          'good_id':good_id,
+          'action':1,
+          'user_id':u_id
+        },
+        'dataType':'json',
+        'success':function(json){
+          if(json.code==200){
+            obj.html(++num)
+          }else{
+            layer.msg(json.message, {icon: 5});
+            return
+          }
+        }
+      })
+    }
   </script>
 </head>
 

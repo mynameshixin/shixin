@@ -82,7 +82,7 @@
 							</div>
 							<div class="vr_title">
 								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
-								<span class="vr_like">{{$v['praise_count']}}</span>
+								<span class="vr_like" style="cursor: pointer;" onclick="like_count(this,{{$v['id']}})">{{$v['praise_count']}}</span>
 								<span class="vr_view">{{$v['viewcount'] or '0'}}</span>
 							</div>
 						</li>
@@ -126,7 +126,7 @@
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
-									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_like" style="cursor: pointer;" onclick="like_count(this,'+v.id+')">'+v.praise_count+'</span>\
 									<span class="vr_view">'+v.viewcount+'</span>\
 								</div>\
 							</li>'
@@ -204,7 +204,7 @@
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
-									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_like" style="cursor: pointer;" onclick="like_count(this,'+v.id+')">'+v.praise_count+'</span>\
 									<span class="vr_view">'+v.viewcount+'</span>\
 								</div>\
 							</li>'
@@ -250,7 +250,7 @@
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
-									<span class="vr_like">'+v.praise_count+'</span>\
+									<span class="vr_like" style="cursor: pointer;" onclick="like_count(this,'+v.id+')">'+v.praise_count+'</span>\
 									<span class="vr_view">'+v.viewcount+'</span>\
 								</div>\
 							</li>'
