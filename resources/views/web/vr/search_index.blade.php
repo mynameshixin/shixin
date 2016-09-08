@@ -71,22 +71,22 @@
 	</div>
 	<div class="vr_home">
 			<div class="w1248">
-				<div class="w990 clearfix" ng-controller="myCtrl">
+				<div class="w990 clearfix">
 					<ul class="clearfix" id="ul" >
-
-						<li class="vr_home_list" ng-repeat="v in sites">
+					<?php foreach ($needData as $key => $v) { ?>
+						<li class="vr_home_list">
 							<div class="vr_content">
-								<a class="index_item_vrlogo" href="{%v.detail_url%}" target="_blank"></a>
-								<span>{%v.title%}</span>
-								<img src="{%v.images[0].img_m%}" onload="rect(this)"/>
+								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
+								<span>{{$v['title']}}</span>
+								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)"/>
 							</div>
 							<div class="vr_title">
-								<span class="vr_home_loc">{%v.cityname%} {%v.countryname%}</span>
-								<span class="vr_like">{%v.praise_count%}</span>
-								<span class="vr_view">{%v.viewcount%}</span>
+								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
+								<span class="vr_like">{{$v['praise_count']}}</span>
+								<span class="vr_view">{{$v['viewcount'] or '0'}}</span>
 							</div>
 						</li>
-
+					<?php } ?>
 					</ul>
 					<div class="des_more" ><a href="javascript:;" id="des_more" onclick="addnew()">查看更多。。。</a></div>
 				</div>
@@ -120,7 +120,7 @@
 	      		$.each(json,function(i,v){
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')"></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
@@ -198,7 +198,7 @@
 	      		$.each(json,function(i,v){
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')"></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
@@ -242,7 +242,7 @@
 	      		$.each(json,function(i,v){
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" href="'+v.detail_url+'" target="_blank"></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
@@ -258,13 +258,6 @@
 	      })
 
 	})
-</script>
-<script type="text/javascript">
-	
-
-	
-
-
 </script>
 <script type="text/javascript" src="{{asset('static/layer/layer.js')}}"></script>
 </html>

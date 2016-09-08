@@ -75,6 +75,13 @@ var _hmt = _hmt || [];
       return url ;
     }
 
+    function increaseView(obj,gid,url){
+      $.getJSON('/api/vr/viewincrease',{'gid':gid},function(json){
+        if(json.data.status==1){
+          location.href = url
+        }
+      })
+    }
   </script>
 </head>
 
@@ -170,9 +177,6 @@ var _hmt = _hmt || [];
       })
   })
 
-  myApp.controller('myCtrl', function($scope,$http) {
-      $scope.sites = <?php echo json_encode($needData); ?>
-  });
 </script>
  <div class="container nolog_index_container clearfix {{$k3}}" >
     <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">

@@ -12,7 +12,7 @@
 						<?php foreach ($needData as $key => $v) { ?>
 						<li class="vr_home_list">
 							<div class="vr_content">
-								<a class="index_item_vrlogo" href="{{$v['detail_url']}}" target="_blank"></a>
+								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
 								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)"/>
 							</div>
@@ -36,7 +36,7 @@
 						<?php foreach ($needData2 as $key => $v) { ?>
 						<li class="vr_home_list">
 							<div class="vr_content">
-								<a class="index_item_vrlogo" href="{{$v['detail_url']}}" target="_blank"></a>
+								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
 								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)"/>
 							</div>
@@ -60,7 +60,7 @@
 						<?php foreach ($needData3 as $key => $v) { ?>
 						<li class="vr_home_list">
 							<div class="vr_content">
-								<a class="index_item_vrlogo" href="{{$v['detail_url']}}" target="_blank"></a>
+								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
 								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)"/>
 							</div>
