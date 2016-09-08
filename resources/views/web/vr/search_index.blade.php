@@ -120,7 +120,7 @@
 	      		$.each(json,function(i,v){
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')"></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
@@ -198,7 +198,7 @@
 	      		$.each(json,function(i,v){
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')"></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
@@ -238,11 +238,13 @@
 	      	'dataType':'json',
 	      	'data':cdata,
 	      	'success':function(json){
+
 	      		var li = ''
 	      		$.each(json,function(i,v){
+	      			console.log(v.images[0].img_m)
 	      			li += '<li class="vr_home_list">\
 								<div class="vr_content">\
-									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+','+v.detail_url+')></a>\
+									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
 									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
 								</div>\
