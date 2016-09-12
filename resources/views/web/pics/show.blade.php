@@ -91,7 +91,11 @@
 						<?php if(!empty($goods['detail_url'])){ ?>
 							<a href="{{$goods['detail_url']}}" target="_blank" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}"><img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}"  onload="re668(this)" class="bigimg" alt="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}"></a>
 						<?php  }else{?>
+							<?php if(!empty($goods['source_url'])){ ?>
+							<a href="{{$goods['source_url']}}" target="_blank" title="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}">
+							<?php } ?>
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}" onload="re668(this)" class="bigimg">
+							<?php if(!empty($goods['source_url'])){ ?> </a><?php } ?>
 						<?php } ?>
 							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
 

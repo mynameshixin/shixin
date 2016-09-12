@@ -19,6 +19,9 @@ class VrController extends CmController{
 		if($id == 1) return $this->dream();
 		if($id == 2) return $this->design();
 		if($id == 3) return $this->vrindex();
+		if($id == 4) return $this->searchdream();
+		if($id == 5) return $this->searchdesign();
+		if($id == 6) return $this->searchvrindex();
 	}
 
 	public function needData($data,$folder_id,$typeid=0,$btypeid=0){
@@ -51,6 +54,8 @@ class VrController extends CmController{
                     }
              }
              // 地区
+             $rows[$k]['countryname'] = '未知地区';
+             $rows[$k]['cityname'] = '';
              if(!empty($row['cityid'])){
                 $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
                 $rows[$k]['countryname'] = $cinfo['name'];
@@ -58,6 +63,7 @@ class VrController extends CmController{
                 $rows[$k]['cityname'] = $cpinfo['name'];
              }
 
+             $rows[$k]['viewcount'] = 0;
              if($viewcount = DB::table('vrview')->where('gid',$row['id'])->first()){
                 $rows[$k]['viewcount'] = $viewcount['num'];
              }
@@ -82,6 +88,21 @@ class VrController extends CmController{
 			'needData'=>$needData
 		];
 		return view('web.vr.index',$data);
+	}
+
+	// 梦想家首页(搜索)
+	public function searchdream(){
+		$data = Input::all();
+		$data['num'] = 9;
+		$needData = $this->needData($data,3510);
+		// dd($needData);
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'user_info'=>!empty($user_info)?$user_info:[],
+			'needData'=>$needData
+		];
+		return view('web.vr.search_index',$data);
 	}
 
 	// 梦想家更多

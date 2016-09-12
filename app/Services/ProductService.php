@@ -306,7 +306,6 @@ class ProductService extends ApiService
         $rows = $rows->paginate($num);
         $outDate = LibUtil::pageFomate($rows);
         
-        
         //融合
        /* if(!empty($outDate_self) && isset($outDate_self['list'])){
             $outDate['list'] = array_merge($outDate_self['list'],$outDate['list']);

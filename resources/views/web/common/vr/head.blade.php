@@ -44,9 +44,11 @@ var _hmt = _hmt || [];
   <script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/jquery.lazyload.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/jquery.form.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/angular.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/plugins/Masonry/masonry-docs.min.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
+  <script type="text/javascript" src="{{asset('web')}}/js/address.js"></script>
   <script type="text/javascript">
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
@@ -75,4 +77,65 @@ var _hmt = _hmt || [];
     }
   </script>
 </head>
+<script type="text/javascript">
+  var myApp = angular.module('myApp', [], function($interpolateProvider) {
+   $interpolateProvider.startSymbol('{%');
+   $interpolateProvider.endSymbol('%}');
+  });
 
+  myApp.controller('myCtrl', function($scope) {
+   $scope.sites = <?php echo json_encode($needData);?>
+  });
+</script>
+<body class="nolog_body" ng-app="myApp">
+<div class="nolog_header">
+    <div class="headercontainer w1248 clearfix">
+      <a href="/" class="header_logo"></a>
+      <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>
+      <a href="{{url('webd/pics')}}" class="header_item" title="图集">图集</a>
+      <a href="{{url('webd/find')}}" class="header_item" title="发现">发现</a>
+      <a href="{{url('webd/app')}}" class="header_item" title="APP">APP</a>
+      <div href="javascript:;" class="header_add_btn">
+       
+        +
+        
+        <div class="header_add_item">
+          @include('web.common.banner.action')
+        </div>
+      </div>
+      @include('web.common.banner.my')
+    </div>
+  </div>
+  <div class="header slideup">
+    <div class="headercontainer w1248 clearfix">
+      <a href="/" class="header_logo"></a>
+      <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>
+      <a href="{{url('webd/pics')}}" class="header_item" title="图集">图集</a>
+      <a href="{{url('webd/find')}}" class="header_item" title="发现">发现</a>
+      <a href="{{url('webd/app')}}" class="header_item" title="APP">APP</a>
+      <div href="javascript:;" class="header_add_btn">
+        
+        +
+        
+        <div class="header_add_item">
+          @include('web.common.banner.action')
+        </div>
+      </div>
+      <form action="/webd/search/goods" method="get" name='search_s'>
+        <input type="text" class="header_search header_search_s" style="width: 645px;" placeholder="搜索你喜欢的" name="keyword">
+      </form>
+ @include('web.common.banner.my')
+    </div>
+  </div>
+ @include('web.common.daction')
+
+ <div class="container nolog_index_container clearfix {{$k3}}">
+    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
+      <div class="w1248 clearfix nolog_index_top">
+        <p class="nolog_index_title">{{$k1}}</p>
+        <div class="header_search_wrap clearfix">
+          <input type="text" class="header_search header_search_indexnolog" placeholder="搜索你想看的">
+        </div>
+        <p class="nolog_index_subtit">搜索——<a href="javascript:;">{{$k2}}</a></p>
+      </div>
+    </div>
