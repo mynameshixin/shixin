@@ -271,6 +271,66 @@
   <
   <!-- 注册和登陆的js -->
 <script type="text/javascript">
+//弹出新创口
+       /** 
+      * 以POST表单方式打开新窗口的JQUERY实现 
+      @param:url 需要打开的URL 
+      @param:args URL的参数，数据类型为object 
+      @param:name 打开URL窗口的名字，如果同一按钮需要重复地打开新窗口， 
+      而不是在第一次打开的窗口做刷新，此参数应每次不同 
+      @param:windowParam 新打开窗口的参数配置 
+      * @author: haijiang.mo 
+      */ 
+      var windowDefaultConfig = new Object; 
+      windowDefaultConfig['directories'] = 'no'; 
+      windowDefaultConfig['location'] = 'no'; 
+      windowDefaultConfig['menubar'] = 'no'; 
+      windowDefaultConfig['resizable'] = 'no'; 
+      windowDefaultConfig['scrollbars'] = 'no'; 
+      windowDefaultConfig['status'] = 'no'; 
+      windowDefaultConfig['toolbar'] = 'no'; 
+     
+      function jQueryOpenPostWindow(url,args,name,windowParam){ 
+     
+      //创建表单对象 
+      var _form = $("<form></form>",{ 
+      'id':'tempForm',  
+      'method':'post', 
+      'action':url, 
+      'target':name, 
+      'style':'display:none' 
+      }).appendTo($("body")); 
+       
+      //将隐藏域加入表单 
+      for(var i in args){ 
+      _form.append($("<input>",{'type':'hidden','name':i,'value':args[i]})); 
+      } 
+       
+      //克隆窗口参数对象 
+      var windowConfig = windowDefaultConfig; 
+       
+      //配置窗口 
+      for(var i in windowParam){ 
+      windowConfig[i] = windowParam[i]; 
+      } 
+       
+      //窗口配置字符串 
+      var windowConfigStr = ""; 
+       
+      for(var i in windowConfig){ 
+      windowConfigStr += i+"="+windowConfig[i]+","; 
+      } 
+       
+      //绑定提交触发事件 
+      _form.bind('submit',function(){ 
+      window.open("about:blank",name,windowConfigStr); 
+      }); 
+       
+      //触发提交事件 
+      _form.trigger("submit"); 
+      //表单删除 
+      _form.remove(); 
+      } 
          $(window).scroll(function(event) {
         var scrollHei = $('body').scrollTop();
         if (scrollHei <= 272) {
@@ -281,6 +341,44 @@
           $('.header').removeClass('slideup');
         };
       });
+
+
+         //登陆确定
+      $('#confirm2').click(function(){
+        $pa = $('.pop_login2') 
+        account = $('input[name=account]',$pa).val().trim()
+        password = $('input[name=password]',$pa).val().trim()
+        /*if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/i.test(account)){
+          layer.msg('不是一个有效的手机号', {icon: 5});
+          return 
+        }*/
+        $.ajax({
+          'beforeSend':function(){
+            layer.load(0, {shade: 0.5});
+          },
+          'dataType':'json',
+          'data':{'account':account,'password':password},
+          'type':'post',
+          'url':'/webd/home/login',
+          'success':function(json){
+            if(json.code==200){
+              // location.reload()    
+              var user_id=json.data.user_id;
+              var src="<?=$_POST['src']?>";
+              var alt="<?=$_POST['alt']?>";
+              var text="<?=$_POST['text']?>";
+              jQueryOpenPostWindow('http://www.duitujia.com/chajian/deposit.php',{"user_id":user_id,"src":src,'alt':alt,'text':text},'推图家',"top=0,left=0,width=495,height=544") 
+            
+            }else{
+             alert(json.message, {icon: 5});
+              return 
+            }
+          },
+          'complete':function(){
+            layer.closeAll('loading');
+          }
+        })
+      }) 
       </script>
 <script type="text/javascript" src="http://www.duitujia.com/chajian/caijidenglu.js"></script></body>
 <script type="text/javascript" src="http://www.duitujia.com/static/layer/layer.js"></script>
