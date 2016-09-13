@@ -118,8 +118,17 @@ function funClose()
 	document.body.removeChild(widE);
 	//alert("ok");
 }
-
-//抓取用户所选择的图片
+//给已经抓取过的图片注释已保存
+function ever_get(){
+  var eve=$('.item-selected');
+  var eve_len=eve.length;
+  for (var i = 0 ; i <eve_len; i++) {   
+       eve[i].className='HUABAN-cell item-hover';     
+       eve[i].getElementsByTagName("span")[0].innerText="已保存";
+       eve[i].getElementsByTagName("div")[1].style.backgroundPosition="0 0";
+  }
+}
+//<eve_len所选择++片
 function plugin(){         
 	$.ajax({         
      url: "http://www.duitujia.com/webd/plugin",
@@ -142,10 +151,9 @@ function plugin(){
      		 for (var i =  0; i < numm.length ; i++) {
      		 	imgs=numm[i].src+","+imgs;
                 alt=numm[i].title+","+alt;
-                texts=text[i+1+i].innerText+","+texts;
-               
+                texts=text[i+1+i].innerText.substr(0, 20)+","+texts                              
      		 };
-          
+          ever_get();
      		 jQueryOpenPostWindow('http://www.duitujia.com/chajian/deposit.php',{"user_id":user_id,"src":imgs,'alt':alt,'text':texts},'推图家',windowDefaultConfig) 
 	   
 				 
