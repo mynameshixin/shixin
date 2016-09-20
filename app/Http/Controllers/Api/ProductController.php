@@ -684,7 +684,11 @@ class ProductController extends BaseController
         //用户发布，先发后审
         $data['status'] = 1;
         $data['description'] = $data['title'];
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data,$_FILES);
+        }else{
+            $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        }
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{
