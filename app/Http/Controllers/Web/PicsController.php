@@ -173,7 +173,7 @@ class PicsController extends CmController{
 	//采集ajax 返回文件
 	public function postCgoods(){
 
-		$data = fparam(Input::all());
+		$data = Input::all();
         $rules = array(
             'user_id' => 'required',
         );
@@ -182,15 +182,15 @@ class PicsController extends CmController{
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-
+        $uid = $user['id'];
 		// $cg = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->where('cg.user_id',$userId)->orderBy('cg.created_at','desc')->groupBy('cg.folder_id')->select('f.name','f.id','f.image_id','f.private')->take(3)->get();
-        $cg = DB::select("select * from (select * from(select f.name,f.id,f.image_id,f.private,cg.created_at from collection_good as cg  LEFT JOIN folders as f on cg.folder_id=f.id where cg.user_id={$userId} ORDER BY cg.created_at desc ) as a GROUP BY a.id) as b ORDER BY b.created_at desc limit 3");
+        $cg = DB::select("select * from (select * from(select f.name,f.id,f.image_id,f.private,cg.created_at from collection_good as cg  LEFT JOIN folders as f on cg.folder_id=f.id where cg.user_id={$uid} ORDER BY cg.created_at desc ) as a GROUP BY a.id) as b ORDER BY b.created_at desc limit 3");
 		if(!empty($cg)){
 			foreach ($cg as $k => $v) {
 				$cg[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
 			}
 		}
-		$folder = DB::table('folders')->where('user_id',$userId)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
+		$folder = DB::table('folders')->where('user_id',$uid)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
 		$folder = array_merge($cg,$folder);
 		//去重算法
 		$rAr=array(); 
@@ -214,7 +214,7 @@ class PicsController extends CmController{
     public function getCgoods(){
         $callback = isset($_GET['callback'])?$_GET['callback'].'(':'';
         $right = isset($_GET['callback'])?')':'';
-        $data = fparam(Input::all());
+        $data = Input::all();
         $rules = array(
             'user_id' => 'required',
         );
@@ -223,16 +223,15 @@ class PicsController extends CmController{
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-
+        $uid = $user['id'];
         //$cg = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->where('cg.user_id',$userId)->orderBy('cg.created_at','desc')->groupBy('cg.folder_id')->select('f.name','f.id','f.image_id','f.private','cg.created_at')->take(3)->get();
-
-        $cg = DB::select("select * from (select * from(select f.name,f.id,f.image_id,f.private,cg.created_at from collection_good as cg  LEFT JOIN folders as f on cg.folder_id=f.id where cg.user_id={$userId} ORDER BY cg.created_at desc ) as a GROUP BY a.id) as b ORDER BY b.created_at desc limit 3");
+        $cg = DB::select("select * from (select * from(select f.name,f.id,f.image_id,f.private,cg.created_at from collection_good as cg  LEFT JOIN folders as f on cg.folder_id=f.id where cg.user_id={$uid} ORDER BY cg.created_at desc ) as a GROUP BY a.id) as b ORDER BY b.created_at desc limit 3");
         if(!empty($cg)){
             foreach ($cg as $k => $v) {
                 $cg[$k]['image_url'] = !empty(LibUtil::getPicUrl($v['image_id'], 1))?LibUtil::getPicUrl($v['image_id'], 1):url('uploads/sundry/blogo.jpg');
             }
         }
-        $folder = DB::table('folders')->where('user_id',$userId)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
+        $folder = DB::table('folders')->where('user_id',$uid)->select('name','id','image_id','private')->orderBy('created_at','desc')->get();
         $folder = array_merge($cg,$folder);
         //去重算法
         $rAr=array(); 
