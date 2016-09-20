@@ -16,6 +16,7 @@ use App\Services\CollectionService;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use DB;
 
 /**
  * @SWG\Resource(
@@ -204,18 +205,34 @@ class GoodActionController extends BaseController
         $rules = array(
             'access_token' => 'required',
             'good_id' => 'required',
-            'folder_id' => 'required',
+            'folder_id' => 'required|exists:folders,id',
         );
         //请求参数验证
         parent::validator($data, $rules);
         $rs = parent::validateAcessToken($data['access_token']);
-        self::$user_id = $rs['user_id'];
-        $folder = Folder::find($data['folder_id']);
-        if (empty($folder) || self::$user_id != $folder->user_id) {
-            return response()->forApi(array(), 1001, '文件夹不存在或无权限操作');
+        $userId = self::$user_id = $rs['user_id'];
+        $gid = $data['good_id'];
+
+        $s = DB::table('goods')->where(['id'=>$gid,'user_id'=>$userId])->first();
+        if($s){
+            DB::table('goods')->where(['id'=>$gid,'user_id'=>$userId])->delete();
         }
-        CollectionService::getInstance()->delCollection($rs['user_id'],$data['good_id'],$data['folder_id']);
-        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
+        $c = DB::table('collection_good')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->first();
+        if($c){
+            DB::table('collection_good')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->delete();
+        }
+        $fg = DB::table('folder_goods')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->first();
+        if($fg){
+            DB::table('folder_goods')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->delete();
+        }
+
+        $folder = DB::table('folders')->where('id',$data['folder_id'])->select('count')->first();
+        $count = $folder['count']-1;
+        $count = $count<0?0:$count;
+        DB::table('folders')->where('id',$data['folder_id'])->update(['count'=>$count]);
+
+        /*CollectionService::getInstance()->delCollection($rs['user_id'],$data['good_id'],$data['folder_id']);
+        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);*/
         
         return response()->forApi(['status'=>1]);
 
