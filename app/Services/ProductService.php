@@ -215,6 +215,7 @@ class ProductService extends ApiService
         if (isset($data['image_ids'])) $entry['image_ids'] = $data['image_ids'];
         if (isset($data['is_recommend'])) $entry['is_recommend'] = $data['is_recommend'];
         if (isset($data['detail_url'])) $entry['detail_url'] = $data['detail_url'];
+        if (isset($data['source_url'])) $entry['source_url'] = $data['source_url'];
         if (isset($data['description'])) $entry['description'] = $data['description'];
         if (isset($data['title'])) $entry['title'] = $data['title'];
         if (isset($data['sort'])) $entry['sort'] = $data['sort'];
