@@ -137,17 +137,18 @@ class SearchController extends CmController{
             $goods = $goods->where('fg.user_id',$user_id);
             if(isset($data['kind'])) $goods = $goods->where('g.kind','=',$data['kind']);
             $goods = $goods->skip($skip)->take($num)->get();
+
         }else{
             $goods = DB::table('goods as g')->leftJoin('role_user as ru','g.user_id','=','ru.user_id')->select('g.id', 'g.user_id', 'g.folder_id', 'g.kind', 'g.price', 'g.reserve_price', 'g.image_ids', 'g.title', 'g.tags',  'g.description', 'g.collection_count', 'g.praise_count', 'g.boo_count', 'g.detail_url', 'g.created_at','ru.role_id')->where(
             function($query) use ($keyword){
                 $query->where('g.title', "like", "%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
-            })->orderBy('ru.role_id','desc')->orderBy('g.created_at','desc');
+            })->orderBy('g.created_at','desc')->orderBy('ru.role_id','ASC');
         
             if(isset($data['kind'])) $goods = $goods->where('g.kind','=',$data['kind']);
             $goods = $goods->skip($skip)->take($num)->get();
+  
         }
         
-
         
         foreach ($goods as $key => $value) {
         	$cuser = DB::table('collection_good')->where('good_id',$value['id'])->select('user_id','folder_id')->orderBy('created_at','desc')->first();
