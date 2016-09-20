@@ -247,9 +247,9 @@ class ProductService extends ApiService
             //修改文件夹商品数量
             FolderService::getInstance()->updateFolderCount($entry['folder_id']);
             
-            if(!empty($entry['image_ids'])){
+            /*if(!empty($entry['image_ids'])){
                 DB::table('folders')->where('id',$data['folder_id'])->update(['image_id'=>$entry['image_ids']]);
-            }
+            }*/
            
             // 下降他的count
             DB::table('folders')->where('id',$good['folder_id'])->decrement('count');
