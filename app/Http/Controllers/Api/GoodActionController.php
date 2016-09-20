@@ -214,8 +214,9 @@ class GoodActionController extends BaseController
         if (empty($folder) || self::$user_id != $folder->user_id) {
             return response()->forApi(array(), 1001, '文件夹不存在或无权限操作');
         }
-        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
         CollectionService::getInstance()->delCollection($rs['user_id'],$data['good_id'],$data['folder_id']);
+        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
+        
         return response()->forApi(['status'=>1]);
 
     }

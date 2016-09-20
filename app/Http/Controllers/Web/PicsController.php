@@ -417,9 +417,10 @@ class PicsController extends CmController{
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
         
-        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
         CollectionService::getInstance()->delCollection($user['id'],$data['good_id'],$data['folder_id']);
+        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
         return response()->forApi(['status'=>1]);
 
     }
