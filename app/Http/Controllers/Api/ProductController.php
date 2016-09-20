@@ -703,7 +703,6 @@ class ProductController extends BaseController
             'access_token' => 'required',
             'kind' => 'required|in:1,2',
             'title'=>'required',
-            'detail_url'=>'required',
             'folder_id' => 'required|exists:folders,id',
             'tags'=>'required',
             'good_id'=>'required'
@@ -712,7 +711,6 @@ class ProductController extends BaseController
             'access_token.required'=>'没有传入令牌',
             'kind.required'=>'没有传入图片类型',
             'title.required'=>'没有传入标题',
-            'detail_url.required'=>'没有传入地址',
             'folder_id.required'=>'没有传入文件夹',
             'tags.required'=>'没有选择品类、空间、风格或主题色',
             'good_id.required'=>'没有传入商品'
