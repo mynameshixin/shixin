@@ -638,7 +638,7 @@ class ProductController extends BaseController
         }
     }
 
-    //上传 vr
+    //上传或编辑 vr
     public function postVr(){
         $data = Input::all();
         $rules = array(
@@ -695,6 +695,46 @@ class ProductController extends BaseController
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
+
+    //编辑 商品
+    public function postEgood(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'kind' => 'required|in:1,2',
+            'title'=>'required',
+            'detail_url'=>'required',
+            'folder_id' => 'required|exists:folders,id',
+            'tags'=>'required',
+            'good_id'=>'required'
+        );
+        $pa = [
+            'access_token.required'=>'没有传入令牌',
+            'kind.required'=>'没有传入图片类型',
+            'title.required'=>'没有传入标题',
+            'detail_url.required'=>'没有传入地址',
+            'folder_id.required'=>'没有传入文件夹',
+            'tags.required'=>'没有选择品类、空间、风格或主题色',
+            'good_id.required'=>'没有传入商品'
+        ];
+        //请求参数验证
+        parent::validator($data,$rules,$pa);
+        $rs = parent::validateAcessToken($data['access_token']);
+        self::$user_id = $rs['user_id'];
+        $userId = self::$user_id;
+
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['description'] = $data['title'];
+        $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data);
+        
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+    }
+
 
 
 
