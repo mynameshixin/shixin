@@ -410,7 +410,7 @@ class PicsController extends CmController{
         $rules = array(
             'user_id' => 'required',
             'good_id' => 'required',
-            'folder_id' => 'required',
+            'folder_id' => 'required|exists:folders,id',
         );
         //请求参数验证
         parent::validator($data, $rules);
