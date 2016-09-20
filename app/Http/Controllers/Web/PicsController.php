@@ -404,6 +404,25 @@ class PicsController extends CmController{
         die($callback.json_encode(['ids'=>$ids]).$right);
 
     }
+    // 删除图片
+    public function postDel () {
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'good_id' => 'required',
+            'folder_id' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+        
+        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
+        CollectionService::getInstance()->delCollection($user['id'],$data['good_id'],$data['folder_id']);
+        return response()->forApi(['status'=>1]);
+
+    }
 
     //添加评论
     public function postAddcomment(){

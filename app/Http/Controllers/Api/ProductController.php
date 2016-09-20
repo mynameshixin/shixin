@@ -704,8 +704,6 @@ class ProductController extends BaseController
             'kind' => 'required|in:1,2',
             'title'=>'required',
             'folder_id' => 'required|exists:folders,id',
-            'tags'=>'required',
-            'source_url'=>'required',
             'good_id'=>'required'
         );
         $pa = [
@@ -713,8 +711,6 @@ class ProductController extends BaseController
             'kind.required'=>'没有传入图片类型',
             'title.required'=>'没有传入标题',
             'folder_id.required'=>'没有传入文件夹',
-            'source_url.required'=>'没有传入来源地址',
-            'tags.required'=>'没有选择品类、空间、风格或主题色',
             'good_id.required'=>'没有传入商品'
         ];
         //请求参数验证
