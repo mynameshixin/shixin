@@ -26,6 +26,7 @@ function c_function(obj){
       'dataType':'json',
       'success':function(json){
         if(json.code==200){
+          $(obj).parents('.p_collect').hide()
           layer.msg('保存成功', {icon: 6});
         }else{
           layer.msg(json.message, {icon: 5});
@@ -689,13 +690,13 @@ $('#pic_cfolder').click(function(){
     })
     //vr change
     $("#fvr").on("change",function(){
-        var filePath=$('#fvr').val();
+        var filePath=$(this).val();
         if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
             var arr=filePath.split('\\');
             var fileName=arr[arr.length-1];
             var file = fileName.substring(0,fileName.lastIndexOf('.'))
             files = getObjectURL(this.files[0]);
-            $('.pop_vrimgwrap img').attr('src',files)
+            $(this).parents('.pop_vrchangewrap').find('.pop_vrimgwrap img').attr('src',files)
 
         }else{
             layer.msg('文件类型不正确', {icon: 5});

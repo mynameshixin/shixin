@@ -262,7 +262,7 @@ class FolderController extends CmController{
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
-    //上传vr
+    //上传或编辑vr
     public function postUvr(){
         $data = Input::all();
         
@@ -313,7 +313,12 @@ class FolderController extends CmController{
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
         $data['description'] = $data['title'];
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data,$_FILES);
+        }else{
+            $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        }
+        
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{

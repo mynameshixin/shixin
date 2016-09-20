@@ -194,21 +194,24 @@ class ProductService extends ApiService
         return $id;
     }
 
-    public function updateProduct($productId, $data = array())
+    public function updateProduct($productId, $data = array(),$files = array())
     {
+
         $good = Product::find($productId);
         if (empty($good)) return false;
         $good = $good->toArray();
-
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $entry['tags'] =  $tags.';'.$res['name'];
+        
         if (isset($data['kind'])) $entry['kind'] = $data['kind'];
         if (isset($data['title'])) $entry['title'] = trim($data['title']);
-        if (isset($data['tags'])) $entry['tags'] = trim($data['tags']);
         if (isset($data['category_id'])) $entry['category_id'] = $data['category_id'];
         if (isset($data['description'])) $entry['description'] = $data['description'];
         if (isset($data['price'])) $entry['price'] = $data['price'];
         if (isset($data['reserve_price'])) $entry['reserve_price'] = $data['reserve_price'];
         if (isset($data['category_id'])) $entry['category_id'] = $data['category_id'];
-        if (isset($data['user_id'])) $entry['user_id'] = $data['user_id'];
+        // if (isset($data['user_id'])) $entry['user_id'] = $data['user_id'];
         if (isset($data['image_ids'])) $entry['image_ids'] = $data['image_ids'];
         if (isset($data['is_recommend'])) $entry['is_recommend'] = $data['is_recommend'];
         if (isset($data['detail_url'])) $entry['detail_url'] = $data['detail_url'];
@@ -216,24 +219,40 @@ class ProductService extends ApiService
         if (isset($data['title'])) $entry['title'] = $data['title'];
         if (isset($data['sort'])) $entry['sort'] = $data['sort'];
         if (isset($data['status'])) $entry['status'] = $data['status'];
+        if (isset($data['cityid'])) $entry['cityid'] = $data['cityid'];
+        if (isset($data['devid'])) $entry['devid'] = $data['devid'];
+        if (isset($data['huid'])) $entry['huid'] = $data['huid'];
+        if (isset($data['typeid'])) $entry['typeid'] = $data['typeid'];
+        if (isset($data['btypeid'])) $entry['btypeid'] = $data['btypeid'];
+        if (isset($data['saleid'])) $entry['saleid'] = $data['saleid'];
+        if (isset($files['image']) && !empty($files['image'])) {
+            $images = ImageService::getInstance()->uploadImage($good['user_id'], $files['image']);
+            if (!empty($images)) {
+                $images_arr = array_column($images, 'image_id');
+            }
+        }
+        $entry['image_ids'] = '';
+        if (!empty($images_arr)) {
+            foreach ($images_arr as $image_id) {
+                $entry['image_ids'] = $image_id;
+            }
+        } 
+         
         if (isset($data['folder_id']) && !empty($data['folder_id']) && $data['folder_id'] !=$good['folder_id']) {
+
             $entry['folder_id'] = $data['folder_id'];
             FolderGood::where(['folder_id'=>$good['folder_id'],'good_id'=>$productId])->delete();
             FolderGood::insert(['good_id' => $productId, 'folder_id' => $entry['folder_id'],'kind'=>$good['kind'],'user_id'=>$good['user_id']]);
+            
             //修改文件夹商品数量
             FolderService::getInstance()->updateFolderCount($entry['folder_id']);
+            DB::table('folders')->where('id',$data['folder_id'])->update(['image_id'=>$entry['image_ids']]);
+            // 下降他的count
+            DB::table('folders')->where('id',$good['folder_id'])->decrement('count');
         }
-        if (isset($data['image_ids'])) {
+        
 
-            if ($good['kind']==2 && $good['image_ids']!=$data['image_ids']){
-                $images_arr = explode(',',$data['image_ids']);
-                $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
-                //if (!isset($entry['title']) && empty($entry['title'])) $fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
-		$fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
-                $entry['title']= $fileNames[$image_id];
-                $entry['title']= pathinfo($entry['title'],PATHINFO_FILENAME);
-            }
-        }
+        $entry['updated_at'] = date('Y-m-d H:i:s');
         if (isset($entry)) $id = Product::where('id', $productId)->update($entry);
 
         return isset($id) ? $id : false;

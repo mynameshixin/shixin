@@ -364,18 +364,18 @@
 <!-- 上传VR -->
 <div class="pop_uploadvr" ng-app="upvr">
 <form action="" method="post" enctype="multipart/form-data" name="uvr">
-	<div class="pop_con">
+	<div class="pop_con" style="width: 550px">
 		<p class="pop_tit">
 			上传VR
 			<span class="pop_close"></span>
 		</p>
 		<div class="pop_conwrap">
 			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">标题</span>
-				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="" style="width: 300px">
+				<span class="pop_labelname" style="width: 80px">标题</span>
+				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="" style="width: 350px">
 			</div>
 			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">展示图片</span>
+				<span class="pop_labelname" style="width: 80px">展示图片</span>
 				<div class="pop_vrchangewrap">
 					<div class="pop_vrimgwrap" style="width: 100px;height: 100px">
 						<img src="<?php echo e(asset('web')); ?>/images/temp/1.png">
@@ -388,8 +388,8 @@
 				</div>
 			</div>
 			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">地址</span>
-				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="" style="width: 300px">
+				<span class="pop_labelname" style="width: 80px">地址</span>
+				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="" style="width: 350px">
 			</div>
 
 				<div class="vr_line">
@@ -486,8 +486,8 @@
 					</div>
 				</div>
 			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">文件夹</span>
-				<select class="pop_labelselect" style="margin-right: 15px;width:255px;" name='fid'>
+				<span class="pop_labelname" style="width: 80px">文件夹</span>
+				<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
 					
 				</select>
 			</div>
@@ -508,29 +508,29 @@
           $(this).attr('private',1)
         }
   	})
-	$('.hourse').css('display','none');
-	$('.shop').css('display','none');
+	$('.hourse',$('.pop_uploadvr')).css('display','none');
+	$('.shop',$('.pop_uploadvr')).css('display','none');
 	function changeType(obj){
 		var _val=$(obj).attr('data-val');
 		if(_val=='4'){
 			
-			$('.hourse').find('input[type=hidden]').val("0")
-			$('.hourse').find('label').removeClass("on")
-			for (var i = 0; i < $('select.pop_selects').length; i++) {
-				$('select.pop_selects').eq(i).find('option').removeAttr('selected')
+			$('.hourse',$('.pop_uploadvr')).find('input[type=hidden]').val("0")
+			$('.hourse',$('.pop_uploadvr')).find('label').removeClass("on")
+			for (var i = 0; i < $('select.pop_selects',$('.pop_uploadvr')).length; i++) {
+				$('select.pop_selects',$('.pop_uploadvr')).eq(i).find('option').removeAttr('selected')
 			}
 
-			$('.hourse').css('display','none');
-			$('.shop').css('display','block');
+			$('.hourse',$('.pop_uploadvr')).css('display','none');
+			$('.shop',$('.pop_uploadvr')).css('display','block');
 		}else{
 			
-			$('.shop').find('input[type=hidden]').val("0")
-			$('.shop').find('label').removeClass("on")
-			for (var i = 0; i < $('select.pop_selects').length; i++) {
-				$('select.pop_selects').eq(i).find('option').removeAttr('selected')
+			$('.shop',$('.pop_uploadvr')).find('input[type=hidden]').val("0")
+			$('.shop',$('.pop_uploadvr')).find('label').removeClass("on")
+			for (var i = 0; i < $('select.pop_selects',$('.pop_uploadvr')).length; i++) {
+				$('select.pop_selects',$('.pop_uploadvr')).eq(i).find('option').removeAttr('selected')
 			}
-			$('.shop').css('display','none');
-			$('.hourse').css('display','block');
+			$('.shop',$('.pop_uploadvr')).css('display','none');
+			$('.hourse',$('.pop_uploadvr')).css('display','block');
 		}
 		
 		if(!$(obj).hasClass('on')){
