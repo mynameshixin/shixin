@@ -9,7 +9,7 @@ class VrController extends BaseController{
     private static $user_id;
 
     public function __construct(){
-
+        
     }
     //获取全国的区域 省市县
     public function getZone(){
