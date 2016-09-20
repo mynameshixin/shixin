@@ -207,6 +207,7 @@
 
 	</form>
 	</div>
+	
 	<script type="text/javascript">
 		$('.hourse',$('.pop_editvr')).css('display','none');
 		$('.shop',$('.pop_editvr')).css('display','none');
@@ -409,6 +410,9 @@
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding <?php if($goods['action']) echo 'detail_pop_tbtnlikeon' ?>">喜欢</div>
 							<?php if(!empty($goods['detail_url']) && $goods['kind']==2 && $self_id==$goods['user_id']): ?>
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright edit_vr">编辑VR</div>
+							<?php endif; ?>
+							<?php if(empty($goods['detail_url']) && $goods['kind']==2 && $self_id==$goods['user_id']): ?>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright edit_good">编辑</div>
 							<?php endif; ?>
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
 								<div class="detail_pop_tbtn_click detail_fileb_pr">

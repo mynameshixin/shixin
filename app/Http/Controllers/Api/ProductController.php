@@ -31,7 +31,7 @@ use DB;
  * )
  */
 
-class ProductController extends BaseController
+class ProductController extends VrController
 {
     private static $user_id;
 
@@ -195,7 +195,12 @@ class ProductController extends BaseController
      */
     public function show ($id) {
         $good = ProductService::getInstance()->getProductDetail ($id);
+
         if (!empty($good)) {
+            $good['cityname'] = '未知';
+            if($city = DB::table('citys')->where('id',$good['cityid'])->select('name')->first()) $good['cityname'] = $city['name'];
+            
+
             return response()->forApi(['good'=>$good]);
         }else{
             return response()->forApi(array(), 1001, '宝贝不存在或者已删除');

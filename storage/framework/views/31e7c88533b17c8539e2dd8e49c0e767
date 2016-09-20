@@ -411,7 +411,6 @@
 			//删除文件夹
 			$('.detail_pop_delete').click(function(){
 				fid = $(this).parents('.pop_con').attr('fid')
-
 				layer.msg('确定删除该文件夹？', {
 	    		  time:0,
 				  btn: ['确定','取消'],

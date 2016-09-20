@@ -452,8 +452,9 @@ class ProductService extends ApiService
             //模糊查询
             $rows = $rows->where(function ($rows) use ($keyword) {
 
-                $rows = $rows->where('goods.title', "like", "%{$keyword}%")
-                    ->orWhere('goods.tags', "like", "%{$keyword}%");
+                /*$rows = $rows->where('goods.title', "like", "%{$keyword}%")
+                    ->orWhere('goods.tags', "like", "%{$keyword}%");*/
+                $rows = $rows->where('goods.tags', "like", "%{$keyword}%");
 
             });
             
@@ -655,7 +656,8 @@ class ProductService extends ApiService
         }
         
         return $rows->where(function($query) use ($keyword){
-            $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+            // $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+            $query->where('tags', "like", "%{$keyword}%");
         })->count();
     }
 }
