@@ -199,6 +199,7 @@
 		</div>
 		
 		<div class="pop_btnwrap">
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding dgood" style="float: left" title="堆图家删除">删除</a>
 			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_editvr').hide()">取消</a>
 			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="efvr"  title="堆图家编辑VR">编辑</a>
 		</div>
@@ -322,6 +323,40 @@
 	            layer.msg('文件类型不正确', {icon: 5});
 	            return false 
 	        }
+	    })
+	    // 删除商品或者vr
+	    $('.dgood').click(function(){
+	    	layer.msg('确定删除该文件？', {
+	    		  time:0,
+				  btn: ['确定','取消'],
+				  yes:function(index){
+				  	layer.close(index)
+				  	$.ajax({
+						'beforeSend':function(){
+							layer.load(0, {shade: 0.5});
+						},
+						'url':"/webd/pics/del",
+						'type':'post',
+						'data':{
+							'folder_id':"<?php echo e($goods['folder_id']); ?>",'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>',
+							'good_id':"<?php echo e($goods['id']); ?>"
+						},
+						'dataType':'json',
+						'success':function(json){
+							if(json.code==200){
+								layer.msg('成功删除',{icon: 6});
+								location.href = "/webd/folder?fid=<?php echo e($goods['folder_id']); ?>"
+							}else{
+								layer.msg(json.message, {icon: 5});
+								return
+							}
+						},
+						'complete':function(){
+							layer.closeAll('loading');
+						}
+					})
+				  }
+				})
 	    })
 	</script>
 	<div class="detail_pop">

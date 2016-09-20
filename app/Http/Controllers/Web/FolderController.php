@@ -332,13 +332,11 @@ class FolderController extends CmController{
         $rules = array(
             'user_id' => 'required',
             'garr' => 'required',
-            'fid'=>'required'
+            'fid'=>'required|exists:folders,id'
         );
         //请求参数验证
         parent::validator($data, $rules);
         $userId = self::get_user_cache($data['user_id']);
-        $user = DB::table('users')->where('id',$userId)->first();
-        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
         if(!empty($data['garr'])){
             $gidarr = explode("|",$data['garr']);
             $i = 0;

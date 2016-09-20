@@ -411,16 +411,17 @@
 			//删除文件夹
 			$('.detail_pop_delete').click(function(){
 				fid = $(this).parents('.pop_con').attr('fid')
-				layer.confirm('确定删除该文件夹？', {
-				  btn: ['取消','确定'] //按钮
-				}, function(index){
-					layer.close(index)
-				}, function(){
-				  $.ajax({
+
+				layer.msg('确定删除该文件夹？', {
+	    		  time:0,
+				  btn: ['确定','取消'],
+				  yes:function(index){
+				  	layer.close(index)
+				  	$.ajax({
 						'beforeSend':function(){
 							layer.load(0, {shade: 0.5});
 						},
-						'url':"<?php echo e(url('webd/folder/dfolder')); ?>",
+						'url':"/webd/folder/dfolder",
 						'type':'post',
 						'data':{
 							'fid':fid,'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>'
@@ -439,7 +440,8 @@
 							layer.closeAll('loading');
 						}
 					})
-				});
+				  }
+				})
 				
 			})
 		});

@@ -404,7 +404,7 @@ class PicsController extends CmController{
         die($callback.json_encode(['ids'=>$ids]).$right);
 
     }
-    // 删除图片
+    // 单条删除图片
     public function postDel () {
         $data = Input::all();
         $rules = array(
@@ -417,10 +417,21 @@ class PicsController extends CmController{
         $userId = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$userId)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-
+        $gid = $data['good_id'];
+        $s = DB::table('goods')->where(['id'=>$gid,'user_id'=>$userId])->first();
+        if($s){
+            DB::table('goods')->where(['id'=>$gid,'user_id'=>$userId])->delete();
+        }
+        $c = DB::table('collection_good')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->first();
+        if($c){
+            DB::table('collection_good')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->delete();
+        }
+        $fg = DB::table('folder_goods')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->first();
+        if($fg){
+            DB::table('folder_goods')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->delete();
+        }
         
-        CollectionService::getInstance()->delCollection($user['id'],$data['good_id'],$data['folder_id']);
-        ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);
+        DB::table('folders')->where('id',$data['folder_id'])->decrement('count');
         return response()->forApi(['status'=>1]);
 
     }
