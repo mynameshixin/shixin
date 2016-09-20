@@ -225,11 +225,8 @@ class GoodActionController extends BaseController
         if($fg){
             DB::table('folder_goods')->where(['good_id'=>$gid,'user_id'=>$userId,'folder_id'=>$data['folder_id']])->delete();
         }
-
-        $folder = DB::table('folders')->where('id',$data['folder_id'])->select('count')->first();
-        $count = $folder['count']-1;
-        $count = $count<0?0:$count;
-        DB::table('folders')->where('id',$data['folder_id'])->update(['count'=>$count]);
+        
+        DB::table('folders')->where('id',$data['folder_id'])->decrement('count');
 
         /*CollectionService::getInstance()->delCollection($rs['user_id'],$data['good_id'],$data['folder_id']);
         ProductService::getInstance()->delFolderProduct($data['good_id'],$data['folder_id']);*/
