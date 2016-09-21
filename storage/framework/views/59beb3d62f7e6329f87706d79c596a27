@@ -71,7 +71,6 @@
 					        <input type="hidden" name="cityid" value="0" id="cityid"></input>
 					      </div>
 			    		</form>
-			    		<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.r1').show();$('.r2').hide()">取消设置</a>
 						<script type="text/javascript">
 							$("#distpicker3").distpicker({
 							  province: "---- 不限省 ----",
