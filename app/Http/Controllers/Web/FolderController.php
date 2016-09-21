@@ -265,7 +265,7 @@ class FolderController extends CmController{
     //上传或编辑vr
     public function postUvr(){
         $data = Input::all();
-        
+        dd($data);
         $rules = array(
             'user_id' => 'required',
             'kind' => 'required|in:1,2',

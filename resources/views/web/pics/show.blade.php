@@ -117,7 +117,7 @@
 					<div class="vr-right">
 						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid'>
 							<?php foreach ($goods['dev'] as $key => $v) {?>
-								<option value="{{$v['id']}}" <?php if($v['id']==$v['id']) echo 'selected'; ?>>{{$v['name']}}</option>
+								<option value="{{$v['id']}}" <?php if($v['id']==$goods['devid']) echo 'selected'; ?>>{{$v['name']}}</option>
 							<?php } ?>
 							
 						</select>
@@ -141,7 +141,7 @@
 					<div class="vr-right">
 						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid'>
 							<?php foreach ($goods['sales'] as $key => $v) {?>
-								<option value="{{$v['id']}}" <?php if($v['id']==$v['id']) echo 'selected'; ?>>{{$v['name']}}</option>
+								<option value="{{$v['id']}}" <?php if($v['id']==$goods['saleid']) echo 'selected'; ?>>{{$v['name']}}</option>
 							<?php } ?>
 						</select>
 					</div>
