@@ -955,7 +955,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_col_dwrap {float: left;width: 206px;background: #fff;padding:15px;background: #fff;border-radius: 0px 0px 5px 5px;}
 .pop_col_searfold_wrap{position: absolute;top: 36px;left: 0px;padding: 0px 15px;width: 250px;background: #fff;z-index: 9000000;border-left: 1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0;border-right: 1px solid #f0f0f0;max-height:200px;overflow-y: scroll;}
 
-.pop_editvr,.pop_vr_apply,.pop_con_info{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
+.pop_editvr,.pop_vr_apply,.pop_con_info,.pop_editgood{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 .pop_vr_apply .pop_namewrap{padding: 17px 0px 0px 30px}
 .pop_vr_apply .pop_tit{padding: 15px 60px 15px 30px;}
 .pop_vr_apply .pop_con{width: 472px;height: 464px;overflow: hidden; margin-left: -244px;}

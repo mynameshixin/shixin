@@ -17,165 +17,287 @@
 	
 	<!-- 编辑VR -->
 	<div class="pop_editvr"  style="display:none;" >
-		<form action="" method="post" enctype="multipart/form-data" name="evr">
+	<form action="" method="post" enctype="multipart/form-data" name="evr">
 		<div class="pop_con" style="width: 550px">
-		<p class="pop_tit">
-			编辑VR
-			<span class="pop_close" onclick="$('.pop_editvr').hide()"></span>
-		</p>
-		<div class="pop_conwrap" >
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="width: 80px">标题</span>
-				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="{{$goods['title']}}" style="width: 350px">
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="width: 80px">展示图片</span>
-				<div class="pop_vrchangewrap">
-					<div class="pop_vrimgwrap" style="width: 100px;height: 100px">
-						<img src="{{$goods['images'][0]['img_m']}}">
-					</div>
-					<input type="hidden" name='kind' value="2"></input>
-					<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
-					<input class="pop_upload" type="file" name='image' id="evr" style="display:none"></input>
-					<label for="evr" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" style="color:#969696;float: left; cursor: pointer;">
-								上传VR展示图</label>
+			<p class="pop_tit">
+				编辑VR
+				<span class="pop_close" onclick="$('.pop_editvr').hide()"></span>
+			</p>
+			<div class="pop_conwrap" >
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">标题</span>
+					<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="{{$goods['title']}}" style="width: 350px">
 				</div>
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="width: 80px">地址</span>
-				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="{{$goods['detail_url']}}" style="width: 350px">
-			</div>
-
-				<div class="vr_line">
-					<div class="vr-left"><span>位置</span></div>
-					<div class="vr-right r1">
-						<span style="font-size: 14px;color:#a1a1a1; cursor: pointer;">{{$goods['cityname']}}</span>
-						<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="margin: 0 0 0 10px" title="设置位置" onclick="$('.r2').show();$('.r1').hide()">设置位置</a>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">展示图片</span>
+					<div class="pop_vrchangewrap">
+						<div class="pop_vrimgwrap" style="width: 100px;height: 100px">
+							<img src="{{$goods['images'][0]['img_m']}}">
+						</div>
+						<input type="hidden" name='kind' value="2"></input>
+						<input type="hidden" name='user_id' value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"></input>
+						<input class="pop_upload" type="file" name='image' id="evr" style="display:none"></input>
+						<label for="evr" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" style="color:#969696;float: left; cursor: pointer;">
+									上传VR展示图</label>
 					</div>
-					<div class="vr-right r2" style="display: none">
-						
-						<form class="form-inline" >
-					      <div id="distpicker3">
-					        <div class="form-group">
-					          <label class="sr-only" for="province5">Province</label>
-					          <select class="form-control form-see"  id="province5"></select>
-					        </div>
-					        <div class="form-group">
-					          <label class="sr-only" for="city5">City</label>
-					          <select class="form-control form-see"  id="city5"></select>
-					        </div>
-					        <div class="form-group">
-					          <label class="sr-only" for="district5">District</label>
-					          <select class="form-control form-see"  id="district5"></select>
-					        </div>
-					        <input type="hidden" name="cityid" value="{{$goods['cityid']}}" id="cityid"></input>
-					      </div>
-			    		</form>
-						<script type="text/javascript">
-							$("#distpicker3").distpicker({
-							  province: "---- 省 ----",
-							  city: "---- 市 ----",
-							  district: "---- 区县 ----",
-							  autoSelect: false
-							});
-
-							$('.form-see').change(function(){
-								var s1 = $('.form-see').eq(0).find('option:selected').attr('data-code')
-								var s2 = $('.form-see').eq(1).find('option:selected').attr('data-code')
-								var s3 = $('.form-see').eq(2).find('option:selected').attr('data-code')
-								if(s1!='' && s2==''){
-									$('#cityid').val(s1)
-								}
-								if(s1!='' && s2!='' && s3==''){
-									$('#cityid').val(s2)
-								}
-								if(s1!='' && s2!='' && s3!=''){
-									$('#cityid').val(s3)
-								}
-								if(s1=='' && s2=='' && s3==''){
-									$('#cityid').val("0")
-								}
-							})
-						</script>		
-					</div>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">地址</span>
+					<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="{{$goods['detail_url']}}" style="width: 350px">
 				</div>
 
-				<div class="vr_line">
-					<div class="vr-left"><span>类型</span></div>
-					<div class="vr-right">
-						<div class="select hourse-type" ng-controller="type">
-							<?php foreach ($goods['type'] as $key => $v) {?>
-								<label data-val="{{$v['id']}}" <?php if($goods['typeid'] == $v['id']) echo "class='on'"; ?> onclick="changeeType(this)"><i></i>{{$v['name']}}</label>
-							<?php } ?>
+					<div class="vr_line">
+						<div class="vr-left"><span>位置</span></div>
+						<div class="vr-right r1">
+							<span style="font-size: 14px;color:#a1a1a1; cursor: pointer;">{{$goods['cityname']}}</span>
+							<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="margin: 0 0 0 10px" title="设置位置" onclick="$('.r2').show();$('.r1').hide()">设置位置</a>
+						</div>
+						<div class="vr-right r2" style="display: none">
 							
-							<input type="hidden" name="typeid" value="{{$goods['typeid']}}" />
+							<form class="form-inline" >
+						      <div id="distpicker3">
+						        <div class="form-group">
+						          <label class="sr-only" for="province5">Province</label>
+						          <select class="form-control form-see"  id="province5"></select>
+						        </div>
+						        <div class="form-group">
+						          <label class="sr-only" for="city5">City</label>
+						          <select class="form-control form-see"  id="city5"></select>
+						        </div>
+						        <div class="form-group">
+						          <label class="sr-only" for="district5">District</label>
+						          <select class="form-control form-see"  id="district5"></select>
+						        </div>
+						        <input type="hidden" name="cityid" value="{{$goods['cityid']}}" id="cityid"></input>
+						      </div>
+				    		</form>
+							<script type="text/javascript">
+								$("#distpicker3").distpicker({
+								  province: "---- 省 ----",
+								  city: "---- 市 ----",
+								  district: "---- 区县 ----",
+								  autoSelect: false
+								});
+
+								$('.form-see').change(function(){
+									var s1 = $('.form-see').eq(0).find('option:selected').attr('data-code')
+									var s2 = $('.form-see').eq(1).find('option:selected').attr('data-code')
+									var s3 = $('.form-see').eq(2).find('option:selected').attr('data-code')
+									if(s1!='' && s2==''){
+										$('#cityid').val(s1)
+									}
+									if(s1!='' && s2!='' && s3==''){
+										$('#cityid').val(s2)
+									}
+									if(s1!='' && s2!='' && s3!=''){
+										$('#cityid').val(s3)
+									}
+									if(s1=='' && s2=='' && s3==''){
+										$('#cityid').val("0")
+									}
+								})
+							</script>		
 						</div>
 					</div>
-				</div>
-				<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>>
-					<div class="vr-left"><span>开发商</span></div>
-					<div class="vr-right">
-						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid'>
-							<?php foreach ($goods['dev'] as $key => $v) {?>
-								<option value="{{$v['id']}}" <?php if($v['id']==$goods['devid']) echo 'selected'; ?>>{{$v['name']}}</option>
-							<?php } ?>
-							
-						</select>
-					</div>
-				</div>
-				<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>> 
-					<div class="vr-left"><span>户型</span></div>
-					<div class="vr-right">
-						<div class="select">
-							<?php foreach ($goods['huxing'] as $key => $v) {?>
-								<label data-val="{{$v['id']}}" <?php if($goods['huid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i>{{$v['name']}}</label>
-							<?php } ?>
-							
-							<input type="hidden" name="huid" value="{{$goods['huid']}}" />
+
+					<div class="vr_line">
+						<div class="vr-left"><span>类型</span></div>
+						<div class="vr-right">
+							<div class="select hourse-type" ng-controller="type">
+								<?php foreach ($goods['type'] as $key => $v) {?>
+									<label data-val="{{$v['id']}}" <?php if($goods['typeid'] == $v['id']) echo "class='on'"; ?> onclick="changeeType(this)"><i></i>{{$v['name']}}</label>
+								<?php } ?>
+								
+								<input type="hidden" name="typeid" value="{{$goods['typeid']}}" />
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
-					<div class="vr-left"><span>所在卖场</span></div>
-					<div class="vr-right">
-						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid'>
-							<?php foreach ($goods['sales'] as $key => $v) {?>
-								<option value="{{$v['id']}}" <?php if($v['id']==$goods['saleid']) echo 'selected'; ?>>{{$v['name']}}</option>
-							<?php } ?>
-						</select>
-					</div>
-				</div>
-				<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
-					<div class="vr-left"><span>门店类型</span></div>
-					<div class="vr-right">
-						<div class="select">
-							<?php foreach ($goods['btype'] as $key => $v) {?>
-								<label data-val="{{$v['id']}}" <?php if($goods['btypeid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i>{{$v['name']}}</label>
-							<?php } ?>
-							<input type="hidden" name="btypeid" value="{{$goods['btypeid']}}" />
+					<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>>
+						<div class="vr-left"><span>开发商</span></div>
+						<div class="vr-right">
+							<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid'>
+								<?php foreach ($goods['dev'] as $key => $v) {?>
+									<option value="{{$v['id']}}" <?php if($v['id']==$goods['devid']) echo 'selected'; ?>>{{$v['name']}}</option>
+								<?php } ?>
+								
+							</select>
 						</div>
 					</div>
-				</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="width: 80px">文件夹</span>
-				<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+					<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>> 
+						<div class="vr-left"><span>户型</span></div>
+						<div class="vr-right">
+							<div class="select">
+								<?php foreach ($goods['huxing'] as $key => $v) {?>
+									<label data-val="{{$v['id']}}" <?php if($goods['huid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i>{{$v['name']}}</label>
+								<?php } ?>
+								
+								<input type="hidden" name="huid" value="{{$goods['huid']}}" />
+							</div>
+						</div>
+					</div>
 					
-				</select>
+					<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
+						<div class="vr-left"><span>所在卖场</span></div>
+						<div class="vr-right">
+							<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid'>
+								<?php foreach ($goods['sales'] as $key => $v) {?>
+									<option value="{{$v['id']}}" <?php if($v['id']==$goods['saleid']) echo 'selected'; ?>>{{$v['name']}}</option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
+						<div class="vr-left"><span>门店类型</span></div>
+						<div class="vr-right">
+							<div class="select">
+								<?php foreach ($goods['btype'] as $key => $v) {?>
+									<label data-val="{{$v['id']}}" <?php if($goods['btypeid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i>{{$v['name']}}</label>
+								<?php } ?>
+								<input type="hidden" name="btypeid" value="{{$goods['btypeid']}}" />
+							</div>
+						</div>
+					</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">文件夹</span>
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+						
+					</select>
+				</div>
+				<input type="hidden" name="good_id" value="{{$goods['id']}}" />
 			</div>
-			<input type="hidden" name="good_id" value="{{$goods['id']}}" />
-		</div>
 		
-		<div class="pop_btnwrap">
-			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding dgood" style="float: left" title="堆图家删除">删除</a>
-			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_editvr').hide()">取消</a>
-			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="efvr"  title="堆图家编辑VR">编辑</a>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding dgood" style="float: left" title="堆图家删除">删除</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_editvr').hide()">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="efvr"  title="堆图家编辑VR">编辑</a>
+			</div>
 		</div>
-	</div>
-
 	</form>
 	</div>
 	
+	<!-- 编辑商品 -->
+	<div class="pop_editgood"  style="display:none;" >
+	<form action="" method="post" enctype="multipart/form-data" name="egood">
+		<div class="pop_con" style="width: 550px">
+			<p class="pop_tit">
+				编辑商品
+				<span class="pop_close" onclick="$('.pop_editgood').hide()"></span>
+			</p>
+			<div class="pop_conwrap" >
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">标题</span>
+					<input class="pop_iptname" placeholder="添加一个名称和描述" name='title' value="{{$goods['title']}}" style="width: 350px">
+				</div>
+				
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">来自</span>
+					<input class="pop_iptname" placeholder="图片来源地址" name='detail_url' value="{{$goods['source_url']}}" style="width: 350px">
+				</div>
+				
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">品类</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='pinlei'>
+						<option>沙发</option>
+						<option>桌</option>
+						<option>床</option>
+						<option>柜</option>
+						<option>架子</option>
+						<option>装饰摆设</option>
+						<option>灯饰</option>
+						<option>家纺家饰</option>
+						<option>卫生用品</option>
+						<option>花艺植物</option>
+						<option>厨房用品</option>
+					</select>
+				</div>
+
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">空间</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='kongjian'>
+						<option>客厅</option>
+						<option>玄关</option>
+						<option>餐厅</option>
+						<option>卧室</option>
+						<option>阳台</option>
+						<option>厨房</option>
+						<option>书房</option>
+						<option>阳光房</option>
+						<option>庭院</option>
+						<option>花园</option>
+						<option>衣帽间</option>
+						<option>卫生间</option>
+						<option>酒窖</option>
+						<option>阁楼</option>
+						<option>走道</option>
+						<option>楼梯过厅</option>
+						<option>儿童房</option>
+						<option>餐厅店</option>
+						<option>酒店</option>
+						<option>民宿</option>
+						<option>售楼处</option>
+						<option>样板房</option>
+						<option>办公室</option>
+						<option>商业广场</option>
+					</select>
+				</div>
+
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">风格</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='fengge'>
+						<option>现代</option>
+						<option>北欧</option>
+						<option>日式</option>
+						<option>法式</option>
+						<option>新中式</option>
+						<option>新古典</option>
+						<option>简欧</option>
+						<option>古典中式</option>
+						<option>古典</option>
+						<option>地中海</option>
+						<option>LOFT</option>
+						<option>东南亚</option>
+						<option>工业</option>
+						<option>田园</option>
+						<option>美式简约</option>
+						<option>巴洛克</option>
+						<option>意大利</option>
+						<option>混搭</option>
+					</select>
+				</div>
+
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">主题色</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='zhutise'>
+						<option>红</option>
+						<option>橙</option>
+						<option>黄</option>
+						<option>绿</option>
+						<option>青</option>
+						<option>蓝</option>
+						<option>紫</option>
+						<option>黑</option>
+						<option>白</option>
+						<option>灰</option>
+					</select>
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">文件夹</span>
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+						
+					</select>
+				</div>
+				<input type="hidden" name="good_id" value="{{$goods['id']}}" />
+			</div>
+		
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding dgood" style="float: left" title="堆图家删除">删除</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_editgood').hide()">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="egood"  title="堆图家编辑">编辑</a>
+			</div>
+		</div>
+	</form>
+	</div>
+
 	<script type="text/javascript">
 		/*$('.hourse',$('.pop_editvr')).css('display','none');
 		$('.shop',$('.pop_editvr')).css('display','none');*/
@@ -247,8 +369,48 @@
 				       'margin-top':-(poptopHei/2)
 				    })
 				})
+
+			// 点击弹出编辑图片
+			$('.edit_good').click(function(){
+				if(u_id==''){
+			      layer.msg('需要登录',{'icon':5})
+			      return
+				}
+			    $.ajax({
+			          'beforeSend':function(){
+			            layer.load(0, {shade: 0.5});
+			          },
+			          'url':"/webd/pics/cgoods",
+			          'type':'post',
+			          'data':{
+			            'user_id':u_id
+			          },
+			          'dataType':'json',
+			          'success':function(json){
+			            if(json.code==200){
+			              $('.pop_editgood .pop_labelselect').html('')
+			              strs = ''
+			              $.each(json.data.folder,function(index,v){
+			                strs += '<option value="'+v.id+'">'+v.name+'</option>';
+			              })
+			              $('.pop_editgood .pop_labelselect').html(strs)
+			            }else{
+			              layer.msg(json.message, {icon: 5});
+			              return
+			            }
+			          },
+			          'complete':function(){
+			            layer.closeAll('loading');
+			          }
+			        })
+					$('.pop_editgood').show();
+					var poptopHei = $('.pop_editgood .pop_con').height();
+				    $('.pop_editgood .pop_con').css({
+				       'margin-top':-(poptopHei/2)
+				    })
+				})
 			})
-		// 编辑保存上传
+		// vr编辑保存上传
 	    $('form[name=evr]').submit(function(){
 	        uvr = $('form[name=evr]').serialize()
 	        $(this).ajaxSubmit({
