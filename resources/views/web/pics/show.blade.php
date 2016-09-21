@@ -73,9 +73,9 @@
 			    		</form>
 						<script type="text/javascript">
 							$("#distpicker3").distpicker({
-							  province: "---- 不限省 ----",
-							  city: "---- 不限市 ----",
-							  district: "---- 不限区县 ----",
+							  province: "---- 省 ----",
+							  city: "---- 市 ----",
+							  district: "---- 区县 ----",
 							  autoSelect: false
 							});
 
