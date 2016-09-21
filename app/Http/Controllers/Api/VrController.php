@@ -153,6 +153,8 @@ class VrController extends BaseController{
                     }
              }
              // 地区
+             $rows[$k]['countryname'] = '未知地区';
+             $rows[$k]['cityname'] = '';
              if(!empty($row['cityid'])){
              	$cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
              	$rows[$k]['countryname'] = $cinfo['name'];
@@ -199,6 +201,8 @@ class VrController extends BaseController{
                     }
              }
              // 地区
+             $rows[$k]['countryname'] = '未知地区';
+             $rows[$k]['cityname'] = '';
              if(!empty($row['cityid'])){
                 $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
                 $rows[$k]['countryname'] = $cinfo['name'];
@@ -327,6 +331,8 @@ class VrController extends BaseController{
                     }
              }
              // 地区
+             $rows[$k]['countryname'] = '未知地区';
+             $rows[$k]['cityname'] = '';
              if(!empty($row['cityid'])){
                 $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
                 $rows[$k]['countryname'] = $cinfo['name'];
