@@ -68,7 +68,7 @@
 					          <label class="sr-only" for="district5">District</label>
 					          <select class="form-control form-see"  id="district5"></select>
 					        </div>
-					        <input type="hidden" name="cityid" value="0" id="cityid"></input>
+					        <input type="hidden" name="cityid" value="<?php echo e($goods['cityid']); ?>" id="cityid"></input>
 					      </div>
 			    		</form>
 						<script type="text/javascript">
@@ -105,14 +105,14 @@
 					<div class="vr-right">
 						<div class="select hourse-type" ng-controller="type">
 							<?php foreach ($goods['type'] as $key => $v) {?>
-								<label data-val="<?php echo e($v['id']); ?>" onclick="changeeType(this)"><i></i><?php echo e($v['name']); ?></label>
+								<label data-val="<?php echo e($v['id']); ?>" <?php if($goods['typeid'] == $v['id']) echo "class='on'"; ?> onclick="changeeType(this)"><i></i><?php echo e($v['name']); ?></label>
 							<?php } ?>
 							
-							<input type="hidden" name="typeid" value="0" />
+							<input type="hidden" name="typeid" value="<?php echo e($goods['typeid']); ?>" />
 						</div>
 					</div>
 				</div>
-				<div class="vr_line hourse">
+				<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>>
 					<div class="vr-left"><span>开发商</span></div>
 					<div class="vr-right">
 						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid'>
@@ -123,20 +123,20 @@
 						</select>
 					</div>
 				</div>
-				<div class="vr_line hourse">
+				<div class="vr_line hourse" <?php if($goods['typeid']==4) echo 'style=display:none' ?>> 
 					<div class="vr-left"><span>户型</span></div>
 					<div class="vr-right">
 						<div class="select">
 							<?php foreach ($goods['huxing'] as $key => $v) {?>
-								<label data-val="<?php echo e($v['id']); ?>" onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
+								<label data-val="<?php echo e($v['id']); ?>" <?php if($goods['huid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
 							<?php } ?>
 							
-							<input type="hidden" name="huid" value="0" />
+							<input type="hidden" name="huid" value="<?php echo e($goods['huid']); ?>" />
 						</div>
 					</div>
 				</div>
 				
-				<div class="vr_line shop">
+				<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
 					<div class="vr-left"><span>所在卖场</span></div>
 					<div class="vr-right">
 						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid'>
@@ -146,14 +146,14 @@
 						</select>
 					</div>
 				</div>
-				<div class="vr_line shop">
+				<div class="vr_line shop" <?php if($goods['typeid']!=4) echo 'style=display:none' ?>>
 					<div class="vr-left"><span>门店类型</span></div>
 					<div class="vr-right">
 						<div class="select">
 							<?php foreach ($goods['btype'] as $key => $v) {?>
-								<label data-val="<?php echo e($v['id']); ?>" onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
+								<label data-val="<?php echo e($v['id']); ?>" <?php if($goods['btypeid'] == $v['id']) echo "class='on'"; ?> onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
 							<?php } ?>
-							<input type="hidden" name="btypeid" value="0" />
+							<input type="hidden" name="btypeid" value="<?php echo e($goods['btypeid']); ?>" />
 						</div>
 					</div>
 				</div>
@@ -177,16 +177,16 @@
 	</div>
 	
 	<script type="text/javascript">
-		$('.hourse',$('.pop_editvr')).css('display','none');
-		$('.shop',$('.pop_editvr')).css('display','none');
+		/*$('.hourse',$('.pop_editvr')).css('display','none');
+		$('.shop',$('.pop_editvr')).css('display','none');*/
 		function changeeType(obj){
 			var _val=$(obj).attr('data-val');
 			if(_val=='4'){
 				
 				$('.hourse',$('.pop_editvr')).find('input[type=hidden]').val("0")
 				$('.hourse',$('.pop_editvr')).find('label').removeClass("on")
-				for (var i = 0; i < $('select.pop_selects',$('.pop_editvr')).length; i++) {
-					$('select.pop_selects',$('.pop_editvr')).eq(i).find('option').removeAttr('selected')
+				for (var i = 0; i < $('select.pop_selects',$('.hourse',$('.pop_editvr'))).length; i++) {
+					$('select.pop_selects',$('.hourse',$('.pop_editvr'))).eq(i).find('option').removeAttr('selected')
 				}
 
 				$('.hourse',$('.pop_editvr')).css('display','none');
@@ -195,8 +195,8 @@
 				
 				$('.shop',$('.pop_editvr')).find('input[type=hidden]').val("0")
 				$('.shop',$('.pop_editvr')).find('label').removeClass("on")
-				for (var i = 0; i < $('select.pop_selects',$('.pop_editvr')).length; i++) {
-					$('select.pop_selects',$('.pop_editvr')).eq(i).find('option').removeAttr('selected')
+				for (var i = 0; i < $('select.pop_selects',$('.shop',$('.pop_editvr'))).length; i++) {
+					$('select.pop_selects',$('.shop',$('.pop_editvr'))).eq(i).find('option').removeAttr('selected')
 				}
 				$('.shop',$('.pop_editvr')).css('display','none');
 				$('.hourse',$('.pop_editvr')).css('display','block');
