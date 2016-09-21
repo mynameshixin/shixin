@@ -271,10 +271,10 @@
 	        return false
 	    })
 	    $('#efvr').click(function(){
-	      if($('#evr').val()==''){
+	      /*if($('#evr').val()==''){
 	            layer.msg('没有选择图片', {icon: 5});
 	            return
-	      }
+	      }*/
 	      $('form[name=evr]').submit()
 	    })
 
