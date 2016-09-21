@@ -3,7 +3,7 @@
 <head>
 	<?php echo $__env->make('web.common.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head>
-<body id="ashow" ng-app="edvr">
+<body id="ashow">
 
 	<script type="text/javascript">
 		defaultPic = "<?php echo e(url('uploads/sundry/blogo.jpg')); ?>"
@@ -14,57 +14,7 @@
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/user/relation.js"></script>
 	<script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/like.js"></script>
 	<?php echo $__env->make('web.common.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-	<script type="text/javascript">
-  var edvr = angular.module('edvr', [], function($interpolateProvider) {
-   $interpolateProvider.startSymbol('{%');
-   $interpolateProvider.endSymbol('%}');
-  });
-
-  edvr.controller('dev',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/dev',
-		  }).success(function(json, status) {
-		  	$scope.dev = json.data.list
-		  })
-	})
-
-	edvr.controller('huxing',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/huxing',
-		  }).success(function(json, status) {
-		  	$scope.huxing = json.data.list
-		  })
-	})
-
-	edvr.controller('type',function($scope,$http){
-		$http({
-		    method: 'post',
-		    url: '/api/vr/type',
-		  }).success(function(json, status) {
-		  	$scope.type = json.data.list
-		  })
-	})
-
-	edvr.controller('btype',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/brandtype',
-		  }).success(function(json, status) {
-		  	$scope.btype = json.data.list
-		  })
-	})
-
-	edvr.controller('sale',function($scope,$http){
-		$http({
-		    method: 'get',
-		    url: '/api/vr/sales',
-		  }).success(function(json, status) {
-		  	$scope.sale = json.data.list
-		  })
-	})
-</script>
+	
 	<!-- 编辑VR -->
 	<div class="pop_editvr"  style="display:none;" >
 		<form action="" method="post" enctype="multipart/form-data" name="evr">
@@ -98,8 +48,13 @@
 
 				<div class="vr_line">
 					<div class="vr-left"><span>位置</span></div>
-					<div class="vr-right">
-						<form class="form-inline">
+					<div class="vr-right r1">
+						<span style="font-size: 14px;color:#a1a1a1; cursor: pointer;"><?php echo e($goods['cityname']); ?></span>
+						<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="margin: 0 0 0 10px" title="设置位置" onclick="$('.r2').show();$('.r1').hide()">设置位置</a>
+					</div>
+					<div class="vr-right r2" style="display: none">
+						
+						<form class="form-inline" >
 					      <div id="distpicker3">
 					        <div class="form-group">
 					          <label class="sr-only" for="province5">Province</label>
@@ -116,6 +71,7 @@
 					        <input type="hidden" name="cityid" value="0" id="cityid"></input>
 					      </div>
 			    		</form>
+			    		<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.r1').show();$('.r2').hide()">取消设置</a>
 						<script type="text/javascript">
 							$("#distpicker3").distpicker({
 							  province: "---- 不限省 ----",
@@ -149,7 +105,10 @@
 					<div class="vr-left"><span>类型</span></div>
 					<div class="vr-right">
 						<div class="select hourse-type" ng-controller="type">
-							<label data-val="{%v.id%}" ng-repeat="v in type" onclick="changeeType(this)"><i></i>{%v.name%}</label>
+							<?php foreach ($goods['type'] as $key => $v) {?>
+								<label data-val="<?php echo e($v['id']); ?>" onclick="changeeType(this)"><i></i><?php echo e($v['name']); ?></label>
+							<?php } ?>
+							
 							<input type="hidden" name="typeid" value="0" />
 						</div>
 					</div>
@@ -157,16 +116,22 @@
 				<div class="vr_line hourse">
 					<div class="vr-left"><span>开发商</span></div>
 					<div class="vr-right">
-						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid' ng-controller="dev">
-							<option ng-repeat="v in dev" value="{%v.id%}">{%v.name%}</option>
+						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='devid'>
+							<?php foreach ($goods['dev'] as $key => $v) {?>
+								<option value="<?php echo e($v['id']); ?>" <?php if($v['id']==$v['id']) echo 'selected'; ?>><?php echo e($v['name']); ?></option>
+							<?php } ?>
+							
 						</select>
 					</div>
 				</div>
 				<div class="vr_line hourse">
 					<div class="vr-left"><span>户型</span></div>
 					<div class="vr-right">
-						<div class="select" ng-controller="huxing">
-							<label data-val="{%v.id%}" ng-repeat="v in huxing" onclick="changeid(this)"><i></i>{%v.name%}</label>
+						<div class="select">
+							<?php foreach ($goods['huxing'] as $key => $v) {?>
+								<label data-val="<?php echo e($v['id']); ?>" onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
+							<?php } ?>
+							
 							<input type="hidden" name="huid" value="0" />
 						</div>
 					</div>
@@ -175,16 +140,20 @@
 				<div class="vr_line shop">
 					<div class="vr-left"><span>所在卖场</span></div>
 					<div class="vr-right">
-						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid' ng-controller="sale">
-							<option ng-repeat="v in sale" value="{%v.id%}">{%v.name%}</option>
+						<select class="pop_selects" style="margin-right: 15px;width:255px;" name='saleid'>
+							<?php foreach ($goods['sales'] as $key => $v) {?>
+								<option value="<?php echo e($v['id']); ?>" <?php if($v['id']==$v['id']) echo 'selected'; ?>><?php echo e($v['name']); ?></option>
+							<?php } ?>
 						</select>
 					</div>
 				</div>
 				<div class="vr_line shop">
 					<div class="vr-left"><span>门店类型</span></div>
 					<div class="vr-right">
-						<div class="select" ng-controller="btype">
-							<label data-val="{%v.id%}" ng-repeat="v in btype" onclick="changeid(this)"><i></i>{%v.name%}</label>
+						<div class="select">
+							<?php foreach ($goods['btype'] as $key => $v) {?>
+								<label data-val="<?php echo e($v['id']); ?>" onclick="changeid(this)"><i></i><?php echo e($v['name']); ?></label>
+							<?php } ?>
 							<input type="hidden" name="btypeid" value="0" />
 						</div>
 					</div>

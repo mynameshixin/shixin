@@ -64,7 +64,8 @@ class ProductService extends ApiService
             return self::addImageProduct($userId, $data , $files );
         }
         $tags = isset($data['tags']) ? trim($data['tags']) : '';
-        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $tags =  $tags.';'.$res['name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
@@ -124,7 +125,8 @@ class ProductService extends ApiService
     {
         $data['title'] = isset($data['title']) ? trim($data['title']) : '';
         $tags = isset($data['tags']) ? trim($data['tags']) : '';
-        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $tags =  $tags.';'.$res['name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],

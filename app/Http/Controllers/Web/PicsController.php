@@ -28,6 +28,7 @@ class PicsController extends CmController{
 		}else{
 			$this->other_id = $this->user_id;
 		}
+        
 	}
 
 	public function getIndex(){

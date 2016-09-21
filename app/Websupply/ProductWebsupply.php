@@ -12,6 +12,9 @@ use DB;
 class ProductWebsupply extends CmWebsupply{
 	private static $sources = ['0' => '用户发布', '1' => '淘宝网'];
 	//获取商品信息
+    
+
+
 	public static function getProductsByFids($folder_ids,$user_ids,$params,$num,$self_id){
        
 		$kind = isset($params['kind']) ? $params['kind'] : 1;
@@ -171,6 +174,48 @@ class ProductWebsupply extends CmWebsupply{
         $id = $data['img_id'];
         $goods = DB::table('goods')->where(['id'=>$id])->first();
         if($goods){
+            $goods['dev'] = $dev = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'世茂'],['id'=>2,'name'=>'万科'],['id'=>3,'name'=>'恒大'],['id'=>4,'name'=>'绿地'],['id'=>5,'name'=>'保利'],['id'=>6,'name'=>'中国海外发展'],['id'=>7,'name'=>'碧桂园'],['id'=>8,'name'=>'融创中国'],['id'=>9,'name'=>'龙湖'],['id'=>10,'name'=>'富力'],['id'=>11,'name'=>'华润'],['id'=>12,'name'=>'华夏幸福基业'],['id'=>13,'name'=>'招商'],['id'=>14,'name'=>'金地'],['id'=>15,'name'=>'远洋'],['id'=>16,'name'=>'绿城'],['id'=>17,'name'=>'荣盛'],['id'=>18,'name'=>'北京首都'],['id'=>19,'name'=>'复地'],['id'=>20,'name'=>'金科'],['id'=>21,'name'=>'其他']];
+            $goods['huxing'] = $huxing = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'1居'],['id'=>2,'name'=>'2居'],['id'=>3,'name'=>'3居'],['id'=>4,'name'=>'4居'],['id'=>5,'name'=>'5居'],['id'=>6,'name'=>'5居以上']];
+            $goods['type'] = $types = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+            $goods['btype'] = $btype = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'家具店'],['id'=>2,'name'=>'饰品店'],['id'=>3,'name'=>'卫浴店'],['id'=>4,'name'=>'其他']];
+            $goods['sales'] = $sales = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'百案居'],['id'=>2,'name'=>'红星美凯龙'],['id'=>3,'name'=>'居然之家'],['id'=>4,'name'=>'集美家居'],['id'=>5,'name'=>'吉盛伟邦'],['id'=>6,'name'=>'艺展中心'],['id'=>7,'name'=>'曹家渡花鸟市场'],['id'=>8,'name'=>'文定生活馆'],['id'=>9,'name'=>'其他']];
+            $goods['cityname'] = '未知';
+            $goods['devname'] = '不限';
+            $goods['huname'] = '不限';
+            $goods['typename'] = '不限';
+            $goods['btypename'] = '不限';
+            $goods['salename'] = '不限';
+            if($city = DB::table('citys')->where('id',$goods['cityid'])->select('name')->first()) $goods['cityname'] = $city['name'];
+            foreach ($dev as $key => $value) {
+                if($value['id'] == $goods['devid']){
+                    $goods['devname'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($huxing as $key => $value) {
+                if($value['id'] == $goods['huid']){
+                    $goods['huname'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($types as $key => $value) {
+                if($value['id'] == $goods['typeid']){
+                    $goods['typename'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($btype as $key => $value) {
+                if($value['id'] == $goods['btypeid']){
+                    $goods['btypename'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($sales as $key => $value) {
+                if($value['id'] == $goods['saleid']){
+                    $goods['salename'] = $value['name'];
+                    break;
+                }
+            }
             if (!empty($goods['image_ids'])) {
                     $image_ids = explode(',', $goods['image_ids']);
                     foreach ($image_ids as $imageId) {
