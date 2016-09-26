@@ -429,7 +429,8 @@ $('#pic_cfolder').click(function(){
     },
     'dataType':'json',
     'success':function(json){
-      if(json.code==200){
+      // if(json.code==200){
+        // 文件夹不存在
         folder_id = json.data.folder_id
         // 上传图片
         $('form[name=allimg]').ajaxSubmit({
@@ -454,10 +455,7 @@ $('#pic_cfolder').click(function(){
                 },
                 resetForm:1
           });
-      }else{
-        layer.msg(json.message, {icon: 5});
-        return
-      }
+      // }
     },
     'complete':function(){
       layer.closeAll('loading');

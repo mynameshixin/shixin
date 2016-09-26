@@ -95,7 +95,7 @@ class FolderController extends CmController{
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
         if(mb_substr($data['name'], 10)) return response()->forApi([],1001,'文件夹名称不能超过10个字');
-		if($folder) return response()->forApi([],1001,'文件夹已经创建过');
+		if($folder) return response()->forApi(['folder_id'=>$folder['id']],1001,'文件夹已经创建过');
 		$insertid = DB::table('folders')->insertGetId(['user_id'=>$user_id, 'name'=>$data['name'],'description'=>$data['description'],'private'=>$data['private']]);
 		return response()->forApi(['folder_id'=>$insertid]);
 	}
