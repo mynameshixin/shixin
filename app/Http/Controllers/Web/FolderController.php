@@ -262,6 +262,48 @@ class FolderController extends CmController{
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
+
+     //编辑商品
+    public function postEgood(){
+
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'kind' => 'required|in:1,2',
+            'fid' => 'required|exists:folders,id',
+            'good_id' => 'required|exists:goods,id',
+            'title'=>'required'
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['folder_id'] = $data['fid'];
+        $good = DB::table('goods')->where(['id'=>$data['good_id'],'folder_id'=>$data['folder_id'],'kind'=>2])->select('tags','id')->first();
+        $folder = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
+
+        $ptags = $data['ptags'];
+        if(!empty($good)){
+            $tags = $good['tags'].';'.$ptags.';'.$folder['name'];
+            $entry = [
+                'title'=>$data['title'],
+                'description'=>$data['title'],
+                'source_url'=>$data['source_url'],
+                'tags'=>$tags,
+                'updated_at'=>date('Y-m-d H:i:s')
+            ];
+            DB::table('goods')->where(['id'=>$data['good_id'],'folder_id'=>$data['folder_id'],'kind'=>2])->update($entry);
+            return response()->forApi(['status' => 1]);
+        }
+        return response()->forApi([],1001,'编辑失败');
+        
+    }
+
     //上传或编辑vr
     public function postUvr(){
         $data = Input::all();

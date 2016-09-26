@@ -287,6 +287,7 @@
 					</select>
 				</div>
 				<input type="hidden" name="good_id" value="<?php echo e($goods['id']); ?>" />
+				<input type="hidden" name="kind" value="2" />
 			</div>
 		
 			<div class="pop_btnwrap">
@@ -438,6 +439,45 @@
 	            return
 	      }*/
 	      $('form[name=evr]').submit()
+	    })
+
+	    // 图片编辑保存上传
+	    $('form[name=egood]').submit(function(){
+	    	var egood = $('form[name=egood]')
+	    	var title = $('input[name=title]',egood).val()
+	    	var detail_url = $('input[name=detail_url]',egood).val()
+	    	var fid = $('select[name=fid]',egood).val()
+	    	var good_id = $('input[name=good_id]',egood).val()
+	    	var ptags = $('select[name=pinlei]',egood).val()+';'+$('select[name=kongjian]',egood).val()+';'+$('select[name=fengge]',egood).val()+';'+$('select[name=zhutise]',egood).val()
+	        $.ajax({
+	          type:"post",  //提交方式
+	          dataType:"json", //数据类型
+	          url:"/webd/folder/egood", //请求url
+	          data:{
+	          	'kind':2,
+	          	'title':title,
+	          	'source_url':detail_url,
+	          	'fid':fid,
+	          	'ptags':ptags,
+	          	'user_id':u_id,
+	          	'good_id':good_id
+	          },
+	          success:function(json){ //提交成功的回调函数
+	              if(json.code==200) {
+	                layer.msg('成功编辑',{icon: 6});
+	                setTimeout(function(){
+	                  location.reload()
+	                },1000)
+	              }else{
+	                layer.msg(json.message, {icon: 5});
+	                return
+	              } 
+	          },
+	        });
+	        return false
+	    })
+	    $('#egood').click(function(){
+	      $('form[name=egood]').submit()
 	    })
 
 	    //vr change
