@@ -24,6 +24,9 @@ class ProductWebsupply extends CmWebsupply{
         $rows = DB::table('folder_goods')->where('folder_goods.kind', $kind);
         $rows = $rows->leftJoin('folders','folder_goods.folder_id','=','folders.id');
         $rows = $rows->where('folders.private',0);
+
+        $rows = $rows->leftJoin('goods','folder_goods.good_id','=','goods.id');
+        $rows = $rows->where('goods.status',1);
         /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
