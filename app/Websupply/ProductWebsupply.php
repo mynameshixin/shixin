@@ -334,7 +334,7 @@ class ProductWebsupply extends CmWebsupply{
 
     }   
   
-    //通过文件夹id获取文件
+    //推荐给你的采集文件
     public static function get_folder_file($folder_id,$other_id,$user_id,$data){
 
         $page = isset($data['page'])?$data['page']:1;
