@@ -356,6 +356,15 @@ class ProductWebsupply extends CmWebsupply{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
                 $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.good_id',$v['id'])->orderBy('cg.updated_at','desc')->take(3)->get();
+                // 如果没人采集，则返回发布人
+                if(empty($collection)){
+                    $arr = [];
+                    $arr[0] = DB::table('users')->where('id',$v['user_id'])->select('*','id as user_id')->first();
+                    $res = DB::table('folders')->where('id',$v['folder_id'])->select('id','name')->first();
+                    $arr[0]['folder_id']  = $res['id'];
+                    $arr[0]['name']  = $res['name'];
+                    $collection = $goods[$k]['collection_good'] = $arr;
+                }
                 foreach ($collection as $key => $value) {
                     $goods[$k]['collection_good'][$key]['user'] = UserWebsupply::user_info($value['user_id']);
                 }

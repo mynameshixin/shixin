@@ -391,7 +391,7 @@ a{cursor: pointer;color: #000}
 .detail_pop_authava{width: 46px;height: 46px;border-radius: 50%;overflow: hidden;margin:0px 20px 0px 15px;float: left;}
 .detail_pop_authava img{width: 100%;height: 100%;border-radius: 50%;}
 .detail_pop_authinfo{float: left;margin:0px;}
-.detail_pop_authname a{font:normal 19px/23px "Microsoft YaHei";color: #787171;}
+.detail_pop_authname a{font:normal 14px/23px "Microsoft YaHei";color: #787171;}
 .detail_pop_authcollect{font:normal 15px/23px "Microsoft YaHei";color: #9d9d9d;max-width: 500px;}
 .detail_pop_authcollect span{color: #504e4e;padding-left: 8px;}
 .detail_pop_authfollow{float: right;color: #000;margin:6px 0px 0px 0px;}
