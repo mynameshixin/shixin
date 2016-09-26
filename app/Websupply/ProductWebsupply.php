@@ -131,7 +131,7 @@ class ProductWebsupply extends CmWebsupply{
         $id = $data['img_id'];
         $condition = ['cg.good_id'=>$good_id];
         if($other_id!=$self_id) $condition['f.private'] = 0;
-        $collection = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->orderBy('cg.updated_at','desc')->where($condition)->skip($skip)->take($num)->select('cg.*')->get();
+        $collection = DB::table('collection_good as cg')->join('folders as f','cg.folder_id','=','f.id')->orderBy('cg.updated_at','desc')->where('f.user_id','<>',$self_id)->where($condition)->skip($skip)->take($num)->select('cg.*')->get();
         // dd($collection);
         foreach ($collection as $key => $value) {
             $collection[$key] = self::get_collection_folder($value['folder_id'],$value['user_id'],$other_id,$self_id,$data);
