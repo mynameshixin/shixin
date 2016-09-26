@@ -248,7 +248,7 @@ class ProductWebsupply extends CmWebsupply{
 
             $fid = isset($collection_folders[0]['id'])?$collection_folders[0]['id']:0;
             $goods['folders_one'] = [];
-            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$goods['user_id'],$collection_folders[0]['user_id'],$data);
+            if(!empty($fid)) $goods['folders_one'] = self::get_folder_file($fid,$collection_folders[0]['user_id'],$self_id,$data);
             $folder = [];
             $folder = DB::table('folders')->where('id',$goods['folder_id'])->first();
             
@@ -335,13 +335,13 @@ class ProductWebsupply extends CmWebsupply{
     }   
   
     //推荐给你的采集文件
-    public static function get_folder_file($folder_id,$other_id,$user_id,$data){
+    public static function get_folder_file($folder_id,$other_id,$self_id,$data){
 
         $page = isset($data['page'])?$data['page']:1;
         $num = isset($data['num'])?$data['num']:15;
         $skip = ($page-1)*$num;
         $condition =['id'=>$folder_id];
-        if($other_id!=$user_id) $condition['private'] = 0;
+        if($other_id!=$self_id) $condition['private'] = 0;
         $folder = DB::table('folders')->where($condition)->first();
         $goods = [];
         if($folder){
@@ -355,7 +355,7 @@ class ProductWebsupply extends CmWebsupply{
                 }else{
                     $goods[$k]['image_url'] = url('uploads/sundry/blogo.jpg');
                 }
-                $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.good_id',$v['id'])->orderBy('cg.updated_at','desc')->take(3)->get();
+                $goods[$k]['collection_good'] = $collection = DB::table('collection_good as cg')->join('users as u','cg.user_id','=','u.id')->join('folders as f','cg.folder_id','=','f.id')->where('cg.user_id','<>',$self_id)->where('f.private',0)->where('cg.good_id',$v['id'])->orderBy('cg.updated_at','desc')->take(3)->get();
                 // 如果没人采集，则返回发布人
                 if(empty($collection)){
                     $arr = [];
