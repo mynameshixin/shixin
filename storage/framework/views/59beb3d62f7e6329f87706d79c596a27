@@ -458,7 +458,7 @@
 	          	'title':title,
 	          	'source_url':detail_url,
 	          	'fid':fid,
-	          	'ptags':ptags,
+	          	'tags':ptags,
 	          	'user_id':u_id,
 	          	'good_id':good_id
 	          },

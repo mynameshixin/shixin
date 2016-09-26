@@ -284,23 +284,21 @@ class FolderController extends CmController{
         //用户发布，先发后审
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
-        $good = DB::table('goods')->where(['id'=>$data['good_id'],'folder_id'=>$data['folder_id'],'kind'=>2])->select('tags','id')->first();
-        $folder = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
-
-        $ptags = $data['ptags'];
-        if(!empty($good)){
-            $tags = $good['tags'].';'.$ptags.';'.$folder['name'];
-            $entry = [
-                'title'=>$data['title'],
-                'description'=>$data['title'],
-                'source_url'=>$data['source_url'],
-                'tags'=>$tags,
-                'updated_at'=>date('Y-m-d H:i:s')
-            ];
-            DB::table('goods')->where(['id'=>$data['good_id'],'folder_id'=>$data['folder_id'],'kind'=>2])->update($entry);
-            return response()->forApi(['status' => 1]);
+        $good = DB::table('goods')->where(['id'=>$data['good_id']])->select('tags','id')->first();
+        $ptags = $data['tags'];
+        $tags = $good['tags'].';'.$ptags;
+        $data['tags'] = $tags;
+        $data['description'] = $data['title'];
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data);
         }
-        return response()->forApi([],1001,'编辑失败');
+        
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+        
         
     }
 
