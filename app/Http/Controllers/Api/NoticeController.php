@@ -197,7 +197,7 @@ class NoticeController extends BaseController
         foreach ($msgs as $key => $value) {
             $created_at = $value['created_at'];
             $innertime = time() - strtotime($created_at);
-            $rmsg[$created_at]['min'] = self::cpu_date($innertime);
+            $rmsg[$key]['min'] = self::cpu_date($innertime);
             $left = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$user_id} and from_id={$data['to_id']}");
             $touser = UserWebsupply::user_info($data['to_id']);
             foreach ($left as $k => $v) {
@@ -212,16 +212,16 @@ class NoticeController extends BaseController
                 $right[$k]['user'] = $fromuser;
                 $right[$k]['position'] = 'letter_ulright';
             }
-            $rmsg[$created_at]['adata'] = $adata = array_merge($left,$right);
+            $rmsg[$key]['adata'] = $adata = array_merge($left,$right);
 
-            if(empty($rmsg[$created_at]['adata'])){
-                unset($rmsg[$created_at]);
+            if(empty($rmsg[$key]['adata'])){
+                unset($rmsg[$key]);
             }else{
                 $cdate = [];
-                foreach ($rmsg[$created_at]['adata'] as $key => $value) {
+                foreach ($rmsg[$key]['adata'] as $key => $value) {
                     $cdate[$key] = $value['created_at'];
                 }
-                array_multisort($cdate,SORT_ASC,SORT_STRING,$rmsg[$created_at]['adata']);
+                array_multisort($cdate,SORT_ASC,SORT_STRING,$rmsg[$key]['adata']);
             }
             
             
