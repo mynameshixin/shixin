@@ -193,24 +193,31 @@
 					<span class="pop_labelname" style="width: 80px">来自</span>
 					<input class="pop_iptname" placeholder="图片来源地址" name='detail_url' value="{{$goods['source_url']}}" style="width: 350px">
 				</div>
-				
+
 				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname" style="width: 80px">品类</span>
-					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='pinlei'>
-						<option>沙发</option>
-						<option>桌</option>
-						<option>床</option>
-						<option>柜</option>
-						<option>架子</option>
-						<option>装饰摆设</option>
-						<option>灯饰</option>
-						<option>家纺家饰</option>
-						<option>卫生用品</option>
-						<option>花艺植物</option>
-						<option>厨房用品</option>
+					<span class="pop_labelname" style="width: 80px">风格</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='fengge'>
+						<option>现代</option>
+						<option>北欧</option>
+						<option>日式</option>
+						<option>法式</option>
+						<option>新中式</option>
+						<option>新古典</option>
+						<option>简欧</option>
+						<option>古典中式</option>
+						<option>古典</option>
+						<option>地中海</option>
+						<option>LOFT</option>
+						<option>东南亚</option>
+						<option>工业</option>
+						<option>田园</option>
+						<option>美式简约</option>
+						<option>巴洛克</option>
+						<option>意大利</option>
+						<option>混搭</option>
 					</select>
 				</div>
-
+				
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="width: 80px">空间</span>
 					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='kongjian'>
@@ -241,45 +248,42 @@
 					</select>
 				</div>
 
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname" style="width: 80px">风格</span>
-					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='fengge'>
-						<option>现代</option>
-						<option>北欧</option>
-						<option>日式</option>
-						<option>法式</option>
-						<option>新中式</option>
-						<option>新古典</option>
-						<option>简欧</option>
-						<option>古典中式</option>
-						<option>古典</option>
-						<option>地中海</option>
-						<option>LOFT</option>
-						<option>东南亚</option>
-						<option>工业</option>
-						<option>田园</option>
-						<option>美式简约</option>
-						<option>巴洛克</option>
-						<option>意大利</option>
-						<option>混搭</option>
-					</select>
-				</div>
+
 
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="width: 80px">主题色</span>
 					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='zhutise'>
-						<option>红</option>
-						<option>橙</option>
-						<option>黄</option>
-						<option>绿</option>
-						<option>青</option>
-						<option>蓝</option>
-						<option>紫</option>
-						<option>黑</option>
-						<option>白</option>
-						<option>灰</option>
+						<option>红色</option>
+						<option>橙色</option>
+						<option>黄色</option>
+						<option>绿色</option>
+						<option>青色</option>
+						<option>蓝色</option>
+						<option>紫色</option>
+						<option>黑色</option>
+						<option>白色</option>
+						<option>灰色</option>
 					</select>
 				</div>
+
+
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">品类</span>
+					<select class="pop_selects" style="margin-right: 15px;width:200px;" name='pinlei'>
+						<option>沙发</option>
+						<option>桌</option>
+						<option>床</option>
+						<option>柜</option>
+						<option>架子</option>
+						<option>装饰摆设</option>
+						<option>灯饰</option>
+						<option>家纺家饰</option>
+						<option>卫生用品</option>
+						<option>花艺植物</option>
+						<option>厨房用品</option>
+					</select>
+				</div>
+
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="width: 80px">文件夹</span>
 					<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
@@ -448,7 +452,11 @@
 	    	var detail_url = $('input[name=detail_url]',egood).val()
 	    	var fid = $('select[name=fid]',egood).val()
 	    	var good_id = $('input[name=good_id]',egood).val()
-	    	var ptags = $('select[name=pinlei]',egood).val()+';'+$('select[name=kongjian]',egood).val()+';'+$('select[name=fengge]',egood).val()+';'+$('select[name=zhutise]',egood).val()
+	    	var fengge = $('select[name=fengge]',egood).val()
+	    	var kongjian = $('select[name=kongjian]',egood).val()
+	    	var zhutise = $('select[name=zhutise]',egood).val()
+	    	var pinlei = $('select[name=pinlei]',egood).val()
+	    	var ptags = fengge+kongjian+zhutise+pinlei+fengge+pinlei+zhutise+kongjian+fengge+kongjian+pinlei
 	        $.ajax({
 	          type:"post",  //提交方式
 	          dataType:"json", //数据类型

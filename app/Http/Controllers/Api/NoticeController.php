@@ -190,7 +190,7 @@ class NoticeController extends BaseController
         //请求参数验证
         parent::validator($data, $rules);
         $user_id = self::$user_id;
-        
+
         $msgs = DB::select("select created_at  from messages  GROUP BY DATE_FORMAT( created_at, \"%Y-%m-%d\" )  having datediff(curdate(), messages.created_at) < 30 ORDER BY created_at asc");
 
         $rmsg = $res =  [];
