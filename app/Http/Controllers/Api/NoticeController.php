@@ -19,9 +19,9 @@ class NoticeController extends BaseController
 
     public function __construct()
     {
-       /* $access_token = Input::get('access_token');
+        $access_token = Input::get('access_token');
         $rs = parent::validateAcessToken($access_token);
-        self::$user_id = $rs['user_id'];*/
+        self::$user_id = $rs['user_id'];
     }
     /**
      *
@@ -181,16 +181,16 @@ class NoticeController extends BaseController
     }
 
     // 具体获取留言信息(弹窗)
-    public function getMsginner(){
+    public function postMsginner(){
         $data = Input::all();
         $rules = array(
             'to_id'=>'required',
-            // 'access_token' => 'required',
+            'access_token' => 'required',
         );
         //请求参数验证
-        /*parent::validator($data, $rules);
-        $user_id = self::$user_id;*/
-        $user_id = 486;
+        parent::validator($data, $rules);
+        $user_id = self::$user_id;
+
         $msgs = DB::select("select created_at  from messages  GROUP BY DATE_FORMAT( created_at, \"%Y-%m-%d\" )  having datediff(curdate(), messages.created_at) < 30 ORDER BY created_at asc");
 
         $rmsg = $res =  [];
@@ -231,7 +231,12 @@ class NoticeController extends BaseController
         }
 
         foreach ($rmsg as $key => $value) {
-            $res[] = $value;
+            if(is_array($value)){
+                foreach ($value as $k => $v) {
+                   $res[] = $v;
+                }
+            }
+            
         }
 
         return response()->forApi($res);
