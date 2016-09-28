@@ -324,6 +324,9 @@ class ProductService extends ApiService
 
         $rows = FolderGood::where('folder_goods.kind', $kind);
         $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id')->where('folders.private',0);
+
+        $rows = $rows->join('goods','folder_goods.good_id','=','goods.id');
+        $rows = $rows->where('goods.status',1);
         // 打开是否关注前
         /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
