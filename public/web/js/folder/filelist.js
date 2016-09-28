@@ -250,17 +250,7 @@ $(function() {
 			})
 			//文件未找到提示效果结束
 
-			//点击移动至效果开始
-			$('.detail_select_btnmove').click(function(){
-				$('.pop_movefile').show();
-				// htmlv=20160705
-				popFilelistMove()
-				// htmlv=20160705
-				var poptopHei = $('.pop_movefile .pop_con').height();
-				$('.pop_con').css({
-				   'margin-top':-(poptopHei/2)
-				})
-			})
+			
 			$('.pop_movefile,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_movefile').hide();
 			})

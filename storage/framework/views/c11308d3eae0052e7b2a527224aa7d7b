@@ -80,6 +80,7 @@ function sendMess(){
       }else{
         $.ajax({
           'beforeSend':function(){
+          	layer.load(0, {shade: 0.5});
             $('#send_new_message').html('发送中')
           },
           'url':"/webd/notice/messages",
@@ -113,6 +114,7 @@ function sendMess(){
             }
           },
           'complete':function(){
+          	layer.closeAll('loading');
             $('#send_new_message').html('发送留言')
           }
         })

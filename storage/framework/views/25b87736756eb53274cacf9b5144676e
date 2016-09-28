@@ -179,7 +179,7 @@
 					<a href="javascript:;" class="detail_select_cbtn detail_select_cbgrey" title="完成">完成</a>
 					<a href="javascript:;" class="detail_select_cbtn detail_select_btndele" title="删除">删除</a>
 					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn " title="复制至">复制至...</a>
-					<a href="javascript:;" onclick="layer_error('该功能仍在建设中')" class="detail_select_cbtn " title="移动至">移动至...</a>
+					<a href="javascript:;" class="detail_select_cbtn detail_select_btnmove" title="移动至">移动至...</a>
 				</div>
 			</div>
 		</div>

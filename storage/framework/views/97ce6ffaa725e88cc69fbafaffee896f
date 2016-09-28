@@ -291,29 +291,19 @@
 				<span class="pop_close"></span>
 			</p>
 			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">文件夹</span>
-				<div class="pop_fakeselect">
-					<span class="pop_fakedefault">请选择一个文件夹</span>
-					<div class="pop_fakeicon"></div>
-					<div class="pop_optionwrap">
-						<div class="pop_searwrap clearfix">
-							<a href="javascript:;" class="pop_searnewbtn"></a>
-							<input type="text" class="pop_sear" placeholder="Search">
-							<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball pop_searnew">新建</a>
-						</div>
-						<ul class="pop_searul">
-							<li>椅子</li>
-							<li>桌子</li>
-							<li>电视</li>
-							<li>沙发</li>
-							<li>卧室</li>
-							<li>椅子</li>
-							<li>桌子</li>
-							<li>电视</li>
-							<li>沙发</li>
-							<li>卧室</li>
-						</ul>
-					</div>
+				<span class="pop_labelname" style="width: 100px">文件夹</span>
+				<style type="text/css">
+				  #search_folder .autocomplete-container{height: 40px; width: 200px}
+				  #search_folder input{ padding-left: 20px }
+				</style>
+				<div class="pop_col_sinput_wrap">
+					<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+					<div id="search_folder" style="padding-left: 10px"></div>
+				</div>
+
+				<div style=" float: none;margin-left: 120px; margin-top: 4px">
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px; height: 30px" name="fid">
+					</select>
 				</div>
 			</div>
 			<div class="pop_btnwrap">
@@ -322,20 +312,72 @@
 			</div>
 		</div>
 	</div>
-	<!-- 移动提示弹框 -->
-	<div class="pop_movetips" style="display: none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				提示
-				<span class="pop_close"></span>
-			</p>
-			<p class="pop_movetp"> 你还没有选择需要移动的文件  </p>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">确定</a>
-			</div>
-		</div>
-	</div>
+
+	<script type="text/javascript">
+		//点击移动至效果开始
+		var c = 0
+		$('.detail_select_btnmove').click(function(){
+			 if(u_id==''){
+		      layer.msg('需要登录',{'icon':5})
+		      return
+		    }
+
+		    $('#search_folder input').val('')
+		    var sfoldername = []
+		    
+		    $.ajax({
+		          'beforeSend':function(){
+		            layer.load(0, {shade: 0.5});
+		          },
+		          'url':"/webd/pics/cgoods",
+		          'type':'post',
+		          'data':{
+		            'user_id':u_id
+		          },
+		          'dataType':'json',
+		          'success':function(json){
+		            if(json.code==200){
+		              $('.pop_namewrap .pop_labelselect').html('')
+		              strs = ''
+		              $.each(json.data.folder,function(index,v){
+		                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
+		                sfoldername[index] = v.name
+		              })
+		              $('.pop_namewrap .pop_labelselect').html(strs)
+		              $('.pop_movefile').show();
+						var poptopHei = $('.pop_movefile .pop_con').height();
+						$('.pop_con').css({
+						   'margin-top':-(poptopHei/2)
+						})
+					  
+						
+		            }else{
+		              layer.msg(json.message, {icon: 5});
+		              return
+		            }
+		          },
+		          'complete':function(){
+		            layer.closeAll('loading');
+		          }
+		    })
+			//自动补全
+			if(c == 0){
+		        $('#search_folder').autocomplete({
+		            hints: sfoldername,
+		            width: 188,
+		            height: 30,
+		            onSubmit: function(text){
+		              if($.inArray(text,sfoldername)!=-1){
+		              	$('.pop_namewrap .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+		              }
+		            }
+		        });
+		        c = 1
+	    	}
+		})
+		
+	</script>
+
 	<!-- 复制至弹框 -->
 	<div class="pop_copyfile" style="display: none;">
 		<div class="pop_con">
