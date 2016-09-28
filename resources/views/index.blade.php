@@ -49,16 +49,6 @@ var _hmt = _hmt || [];
   <script type="text/javascript" src="{{asset('web')}}/js/nolog.js"></script>
   <script type="text/javascript" src="{{asset('web')}}/js/index.js"></script>
   <script type="text/javascript">
-    $.ajax({
-      'url':"/kgoods",
-      'type':'get',
-      'keyword':1,
-      'dataType':'jsonp',
-      'success':function(json){
-   alert(1);
-      },
-    
-    })
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
       marginTop = ($(obj).parent().height()-$(obj).height())/2
@@ -140,7 +130,7 @@ var _hmt = _hmt || [];
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">发现、采集、分享你喜欢的家居  </p>
         <div class="header_search_wrap clearfix">
-          <form action="/kgoods" method="get" name='search'>
+          <form action="/webd/search/goods" method="get" name='search'>
             <input type="text" class="header_search header_search_indexnolog" name="keyword" placeholder="搜索你喜欢的">
           </form>
           <script type="text/javascript">
