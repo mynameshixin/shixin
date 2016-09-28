@@ -183,7 +183,7 @@
 												?>
 					<div class="pop_addpic_con clearfix" style="float:left ">	
 					<div class="pop_addpic_wrap oppo">	
-					 <img src="<?=$v?>" class=""  alt="<?=$alt[$k]?>">		
+					 <img src="<?=$v?>" class="imge_eea"  alt="<?=$alt[$k]?>">		
 					
 					<textarea class="pop_addfont_wrap texts" name="pop_addfont_wrap[]"><?=$texts[$k]?></textarea>
 					  </div>

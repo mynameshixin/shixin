@@ -130,15 +130,17 @@ function collect(obj){
 
 //上传图片最后步骤
 function allimg_upload(obj){  
+
   var folder_id = $(obj).attr('folder_id')
   var imgs=$(".imge_eea");
+   alert(imgs.src);
   var texts=$(".texts");
   var src=new Array();
   var alt=new Array();
   var text=new Array();
       for (var i =0;i < imgs.length ; i++) {
         if(imgs){
-          src[i]=imgs[i].src
+          src[i]=imgs[i].src         
            alt[i]=imgs[i].alt  
            text[i]=texts[i].value          
         }else{
@@ -146,6 +148,7 @@ function allimg_upload(obj){
         }
         
       };
+
     $.ajax({
           type:"get",  //提交方式
           dataType:"jsonp", //数据类型
