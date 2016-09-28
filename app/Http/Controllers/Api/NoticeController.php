@@ -19,9 +19,9 @@ class NoticeController extends BaseController
 
     public function __construct()
     {
-        $access_token = Input::get('access_token');
+       /* $access_token = Input::get('access_token');
         $rs = parent::validateAcessToken($access_token);
-        self::$user_id = $rs['user_id'];
+        self::$user_id = $rs['user_id'];*/
     }
     /**
      *
@@ -181,28 +181,29 @@ class NoticeController extends BaseController
     }
 
     // 具体获取留言信息(弹窗)
-    public function postMsginner(){
+    public function getMsginner(){
         $data = Input::all();
         $rules = array(
             'to_id'=>'required',
-            'access_token' => 'required',
+            // 'access_token' => 'required',
         );
         //请求参数验证
-        parent::validator($data, $rules);
-        $user_id = self::$user_id;
-
+        /*parent::validator($data, $rules);
+        $user_id = self::$user_id;*/
+        $user_id = 486;
         $msgs = DB::select("select created_at  from messages  GROUP BY DATE_FORMAT( created_at, \"%Y-%m-%d\" )  having datediff(curdate(), messages.created_at) < 30 ORDER BY created_at asc");
 
-        $rmsg = [];
+        $rmsg = $res =  [];
         foreach ($msgs as $key => $value) {
             $created_at = $value['created_at'];
             $innertime = time() - strtotime($created_at);
-            $rmsg[$key]['min'] = self::cpu_date($innertime);
+            $min = self::cpu_date($innertime);
             $left = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$user_id} and from_id={$data['to_id']}");
             $touser = UserWebsupply::user_info($data['to_id']);
             foreach ($left as $k => $v) {
                 $left[$k]['user'] = $touser;
                 $left[$k]['position'] = 'letter_ulleft';
+                $left[$k]['min'] = $min;
             }
 
             $right = DB::select("select * from messages where DATE_FORMAT( created_at, \"%Y-%m-%d\") = DATE_FORMAT( \"{$created_at}\", \"%Y-%m-%d\") and to_id = {$data['to_id']} and from_id={$user_id}");
@@ -211,22 +212,29 @@ class NoticeController extends BaseController
             foreach ($right as $k => $v) {
                 $right[$k]['user'] = $fromuser;
                 $right[$k]['position'] = 'letter_ulright';
+                $right[$k]['min'] = $min;
             }
-            $rmsg[$key]['adata'] = $adata = array_merge($left,$right);
+            $adata = array_merge($left,$right);
+            $rmsg[$key] = $adata;
 
-            if(empty($rmsg[$key]['adata'])){
+            if(empty($rmsg[$key])){
                 unset($rmsg[$key]);
             }else{
                 $cdate = [];
-                foreach ($rmsg[$key]['adata'] as $key => $value) {
-                    $cdate[$key] = $value['created_at'];
+                foreach ($rmsg[$key] as $k => $value) {
+                    $cdate[$k] = $value['created_at'];
                 }
-                array_multisort($cdate,SORT_ASC,SORT_STRING,$rmsg[$key]['adata']);
+                array_multisort($cdate,SORT_ASC,SORT_STRING,$rmsg[$key]);
             }
             
             
         }
-        return response()->forApi($rmsg);
+
+        foreach ($rmsg as $key => $value) {
+            $res[] = $value;
+        }
+
+        return response()->forApi($res);
     }
 
     //给用户留言

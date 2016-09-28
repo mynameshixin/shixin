@@ -308,20 +308,19 @@
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">移动</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" onclick="move_good()">移动</a>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 		//点击移动至效果开始
-		var c = 0
+		var cfmove = 0
 		$('.detail_select_btnmove').click(function(){
 			 if(u_id==''){
 		      layer.msg('需要登录',{'icon':5})
 		      return
 		    }
-
 		    $('#search_folder input').val('')
 		    var sfoldername = []
 		    
@@ -361,7 +360,7 @@
 		          }
 		    })
 			//自动补全
-			if(c == 0){
+			if(cfmove == 0){
 		        $('#search_folder').autocomplete({
 		            hints: sfoldername,
 		            width: 188,
@@ -372,10 +371,27 @@
 		              }
 		            }
 		        });
-		        c = 1
+		        cfmove = 1
 	    	}
 		})
 		
+
+		function move_good(){
+			// 移动点击按钮
+			var garr = '';
+			var delfs = $('div[class=detail_raido_wrapred]')
+			$.each(delfs,function(i,v){
+				gid = delfs.eq(i).parents('.index_item_wrap').attr('good_id')
+				garr+= gid+'|'
+			})
+			if(garr==''){
+				layer.msg('没有选择文件', {icon: 5});
+				return 
+			}
+			console.log(garr)
+		}
+		
+
 	</script>
 
 	<!-- 复制至弹框 -->
@@ -413,7 +429,7 @@
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">移动</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" >移动</a>
 			</div>
 		</div>
 	</div>
