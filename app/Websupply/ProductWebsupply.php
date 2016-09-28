@@ -21,12 +21,15 @@ class ProductWebsupply extends CmWebsupply{
         $user_ids = array_unique($user_ids);
         $self_id  = !empty($self_id)?$self_id:0;
 
-        $rows = DB::table('folder_goods')->where('folder_goods.kind', $kind);
+        /*$rows = DB::table('folder_goods');
         $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id');
         $rows = $rows->where('folders.private',0);
 
         $rows = $rows->join('goods','folder_goods.good_id','=','goods.id');
         $rows = $rows->where('goods.status',1);
+
+        $rows = $rows->where('folder_goods.kind', $kind);*/
+        
         /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
@@ -36,12 +39,12 @@ class ProductWebsupply extends CmWebsupply{
             });
         }  */      
 
-        $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
+        /*$rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private','folders.name')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
+        $skip = ($params['page']-1)*$num;*/
+
         $skip = ($params['page']-1)*$num;
-
-        $rows = $rows->skip($skip)->take($num)->get();
-
-
+        $rows = DB::select("select fg.id,fg.good_id,fg.user_id,fg.folder_id,fg.created_at,f.private,f.name from (select * from folder_goods as fg  where kind = {$kind} ORDER BY fg.created_at desc,id desc) as fg join folders as f on fg.folder_id=f.id  join goods as g on fg.good_id = g.id where f.private=0 and g.status=1 limit {$skip},{$num}");
+        
         /*foreach ($rows as $key => $value) {
             if($value['private'] == 1 && $self_id != $value['user_id']){
                 unset($rows[$key]);
