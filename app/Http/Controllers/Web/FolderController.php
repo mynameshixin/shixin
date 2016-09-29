@@ -95,7 +95,7 @@ class FolderController extends CmController{
 		if(empty($user)) return response()->forApi([],1001,'不存在的用户');
 		$folder = DB::table('folders')->where(['name'=>$data['name'],'user_id'=>$user['id']])->first();
         if(mb_substr($data['name'], 10)) return response()->forApi([],1001,'文件夹名称不能超过10个字');
-		if($folder) return response()->forApi([],1001,'文件夹已经创建过');
+		if($folder) return response()->forApi(['folder_id'=>$folder['id']],1001,'文件夹已经创建过');
 		$insertid = DB::table('folders')->insertGetId(['user_id'=>$user_id, 'name'=>$data['name'],'description'=>$data['description'],'private'=>$data['private']]);
 		return response()->forApi(['folder_id'=>$insertid]);
 	}
@@ -262,10 +262,50 @@ class FolderController extends CmController{
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
-    //上传vr
+
+     //编辑商品
+    public function postEgood(){
+
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'kind' => 'required|in:1,2',
+            'fid' => 'required|exists:folders,id',
+            'good_id' => 'required|exists:goods,id',
+            'title'=>'required'
+        );
+
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $user = DB::table('users')->where('id',$userId)->first();
+        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
+
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['folder_id'] = $data['fid'];
+        $good = DB::table('goods')->where(['id'=>$data['good_id']])->select('tags','id')->first();
+        $ptags = $data['tags'];
+        $tags = $good['tags'].';'.$ptags;
+        $data['tags'] = $tags;
+        $data['description'] = $data['title'];
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data);
+        }
+        
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+        
+        
+    }
+
+    //上传或编辑vr
     public function postUvr(){
         $data = Input::all();
-        
+        // dd($data);
         $rules = array(
             'user_id' => 'required',
             'kind' => 'required|in:1,2',
@@ -288,7 +328,7 @@ class FolderController extends CmController{
         //请求参数验证
         parent::validator($data, $rules,$messages);
 
-        if(empty($_FILES['image'])) return response()->forApi(array(), 1001, '没有选择图片');
+        if(empty($_FILES['image']) && !isset($data['good_id'])) return response()->forApi(array(), 1001, '没有选择图片');
         /*//8M大小验证
         foreach ($_FILES['image']['size'] as $key => $value) {
             if($value>8388608) return response()->forApi(array(), 1001, '图片大小大于8M');
@@ -313,7 +353,12 @@ class FolderController extends CmController{
         $data['status'] = 1;
         $data['folder_id'] = $data['fid'];
         $data['description'] = $data['title'];
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data,$_FILES);
+        }else{
+            $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        }
+        
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{
@@ -327,13 +372,11 @@ class FolderController extends CmController{
         $rules = array(
             'user_id' => 'required',
             'garr' => 'required',
-            'fid'=>'required'
+            'fid'=>'required|exists:folders,id'
         );
         //请求参数验证
         parent::validator($data, $rules);
         $userId = self::get_user_cache($data['user_id']);
-        $user = DB::table('users')->where('id',$userId)->first();
-        if(empty($user)) return response()->forApi([],1001,'不存在的用户');
         if(!empty($data['garr'])){
             $gidarr = explode("|",$data['garr']);
             $i = 0;

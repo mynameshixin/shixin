@@ -230,7 +230,7 @@ class FolderController extends BaseController
         if(mb_substr($params['name'], 10)) return response()->forApi([],1001,'文件夹名称不能超过10个字');
         $row = Folder::where(['user_id'=>self::$user_id,'name'=>$params['name']])->first();
         if (!empty($row)) {
-            return response()->forApi(array(), 1001, '该名称文件夹已存在！');
+            return response()->forApi(['id'=>$row['id'],'name'=>$row['name']], 1001, '该名称文件夹已存在！');
         }
         $id = FolderService::getInstance()->create($user_id, $params,$_FILES);
         if ($id) {

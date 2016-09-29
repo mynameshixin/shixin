@@ -89,6 +89,15 @@ class VrController extends CmController{
 		return view('web.vr.index',$data);
 	}
 
+    // 梦想家更多
+    public function postDream(){
+        $data = Input::all();
+        $data['num'] = 9;
+        $needData = $this->needData($data,3510);
+        // dd($needData);
+        return response()->forApi(['list' => $needData]);
+    }
+
 	// 梦想家首页(搜索)
 	public function searchdream(){
 		$data = Input::all();
@@ -224,11 +233,12 @@ class VrController extends CmController{
 		return view('web.vr.design',$data);
 	}
 
+
 	// 设计家更多
 	public function postDesign(){
 		$data = Input::all();
 		$data['num'] = 9;
-		$needData = $this->needData($data,3510,$data['type']);
+		$needData = $this->needData($data,3511,$data['type']);
 		// dd($needData);
 		return response()->forApi(['list' => $needData]);
 	}

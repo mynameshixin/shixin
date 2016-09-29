@@ -189,7 +189,7 @@ class ImageService extends ApiService
             if (file_exists($destinationPath . $imageId . '_o.jpg')) {
                 $rules = $this->rules;
                 try {
-                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
+                    $this->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
                 }catch(\Exception $e){
 
                 }

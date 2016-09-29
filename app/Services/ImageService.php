@@ -9,6 +9,7 @@ namespace App\Services;
 
 use App\Models\Images;
 use App\Lib\Images as Image;
+use App\Lib\ProportionImage;
 use App\Lib\LibUtil;
 
 class ImageService extends ApiService
@@ -68,7 +69,7 @@ class ImageService extends ApiService
             if (file_exists($destinationPath . $imageId . '_o.jpg')) {
                 $rules = $this->rules;
                 try {
-                    $Image->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
+                    $this->creatThumbPi($destinationPath . $imageId . '_o.jpg', $destinationPath, $imageId, $rules);
                 }catch(\Exception $e){
 
                 }
@@ -136,6 +137,22 @@ class ImageService extends ApiService
         }
 
         return $images;
+    }
+
+    /**
+     *  生成等比例缩略图
+     * @param $file
+     * @param $path
+     * @param $imageId
+     * @param $rules 生成图片规则
+     * @return resizeimage
+     */
+    function creatThumbPi($file, $path, $imageId,array $rules) {
+        $maxwidth = '600';//生成的图的最大宽度
+        $maxheight = '800';//生成的图的最大宽度
+        $t = new ProportionImage ( $file, $maxwidth,$maxheight, $path.$imageId.'_m.jpg');
+
+        //return $t;
     }
 
     function extend($file_name){

@@ -37,7 +37,11 @@ class ProductController extends BaseController
 
     public function __construct()
     {
-
+        $this->dev = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'世茂'],['id'=>2,'name'=>'万科'],['id'=>3,'name'=>'恒大'],['id'=>4,'name'=>'绿地'],['id'=>5,'name'=>'保利'],['id'=>6,'name'=>'中国海外发展'],['id'=>7,'name'=>'碧桂园'],['id'=>8,'name'=>'融创中国'],['id'=>9,'name'=>'龙湖'],['id'=>10,'name'=>'富力'],['id'=>11,'name'=>'华润'],['id'=>12,'name'=>'华夏幸福基业'],['id'=>13,'name'=>'招商'],['id'=>14,'name'=>'金地'],['id'=>15,'name'=>'远洋'],['id'=>16,'name'=>'绿城'],['id'=>17,'name'=>'荣盛'],['id'=>18,'name'=>'北京首都'],['id'=>19,'name'=>'复地'],['id'=>20,'name'=>'金科'],['id'=>21,'name'=>'其他']];
+        $this->huxing = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'1居'],['id'=>2,'name'=>'2居'],['id'=>3,'name'=>'3居'],['id'=>4,'name'=>'4居'],['id'=>5,'name'=>'5居'],['id'=>6,'name'=>'5居以上']];
+        $this->types = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'样板房'],['id'=>2,'name'=>'新房'],['id'=>3,'name'=>'二手房改造'],['id'=>4,'name'=>'实体店']];
+        $this->btype = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'家具店'],['id'=>2,'name'=>'饰品店'],['id'=>3,'name'=>'卫浴店'],['id'=>4,'name'=>'其他']];
+        $this->sales = [['id'=>0,'name'=>'不限'],['id'=>1,'name'=>'百案居'],['id'=>2,'name'=>'红星美凯龙'],['id'=>3,'name'=>'居然之家'],['id'=>4,'name'=>'集美家居'],['id'=>5,'name'=>'吉盛伟邦'],['id'=>6,'name'=>'艺展中心'],['id'=>7,'name'=>'曹家渡花鸟市场'],['id'=>8,'name'=>'文定生活馆'],['id'=>9,'name'=>'其他']];
     }
     /**
      *
@@ -195,7 +199,46 @@ class ProductController extends BaseController
      */
     public function show ($id) {
         $good = ProductService::getInstance()->getProductDetail ($id);
+
         if (!empty($good)) {
+            $good['cityname'] = '未知';
+            $good['devname'] = '不限';
+            $good['huname'] = '不限';
+            $good['typename'] = '不限';
+            $good['btypename'] = '不限';
+            $good['salename'] = '不限';
+            if($city = DB::table('citys')->where('id',$good['cityid'])->select('name')->first()) $good['cityname'] = $city['name'];
+            foreach ($this->dev as $key => $value) {
+                if($value['id'] == $good['devid']){
+                    $good['devname'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($this->huxing as $key => $value) {
+                if($value['id'] == $good['huid']){
+                    $good['huname'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($this->types as $key => $value) {
+                if($value['id'] == $good['typeid']){
+                    $good['typename'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($this->btype as $key => $value) {
+                if($value['id'] == $good['btypeid']){
+                    $good['btypename'] = $value['name'];
+                    break;
+                }
+            }
+            foreach ($this->sales as $key => $value) {
+                if($value['id'] == $good['saleid']){
+                    $good['salename'] = $value['name'];
+                    break;
+                }
+            }
+
             return response()->forApi(['good'=>$good]);
         }else{
             return response()->forApi(array(), 1001, '宝贝不存在或者已删除');
@@ -638,7 +681,7 @@ class ProductController extends BaseController
         }
     }
 
-    //上传 vr
+    //上传或编辑 vr
     public function postVr(){
         $data = Input::all();
         $rules = array(
@@ -684,13 +727,53 @@ class ProductController extends BaseController
         //用户发布，先发后审
         $data['status'] = 1;
         $data['description'] = $data['title'];
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if(isset($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data,$_FILES);
+        }else{
+            $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        }
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
     }
+
+    //编辑 商品
+    public function postEgood(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'kind' => 'required|in:1,2',
+            'title'=>'required',
+            'folder_id' => 'required|exists:folders,id',
+            'good_id'=>'required'
+        );
+        $pa = [
+            'access_token.required'=>'没有传入令牌',
+            'kind.required'=>'没有传入图片类型',
+            'title.required'=>'没有传入标题',
+            'folder_id.required'=>'没有传入文件夹',
+            'good_id.required'=>'没有传入商品'
+        ];
+        //请求参数验证
+        parent::validator($data,$rules,$pa);
+        $rs = parent::validateAcessToken($data['access_token']);
+        self::$user_id = $rs['user_id'];
+        $userId = self::$user_id;
+
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $data['description'] = $data['title'];
+        $id = ProductService::getInstance()->updateProduct ($data['good_id'],$data);
+        
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '发布失败！');
+        }
+    }
+
 
 
 

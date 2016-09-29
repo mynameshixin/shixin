@@ -65,7 +65,8 @@ class NoticeController extends CmController{
     public function postMsg(){
         $data = Input::all();
         $rules = array(
-            'num' => 'required|integer',
+            'num' => 'integer',
+            'page'=>'integer',
             'user_id'=>'required',
         );
         //请求参数验证
@@ -73,11 +74,10 @@ class NoticeController extends CmController{
         $user_id = self::get_user_cache($data['user_id']);
         $user = DB::table('users')->where('id',$user_id)->first();
         if(empty($user)) return response()->forApi([],1001,'不存在的用户');
-
-
-        $num = isset($data['num']) ? $data['num'] : 0;
-
-        $msgs = DB::select("select * from (select * from messages where to_id = {$user_id} order by created_at desc limit {$num}) as r group by from_id");
+        $num = isset($data['num']) ? $data['num'] : 10;
+        $page = isset($data['page']) ? $data['page'] : 1;
+        $skip = ($page-1)*$num;
+        $msgs = DB::select("select * from (select * from messages where to_id = {$user_id} order by created_at desc limit {$skip},{$num}) as r group by from_id");
 
         foreach ($msgs as $key => $value) {
             $id = $value['id'];

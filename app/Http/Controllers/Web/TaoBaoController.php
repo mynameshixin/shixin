@@ -46,7 +46,7 @@ class TaoBaoController extends CmController
                 $outdata[0]['image_ids'] = implode(',', $image_ids);
 
             }
-            if($outdata){
+            if($outdata && !empty($outdata[0]['image_ids'])){
                 return response()->forApi(['x_item'=>$outdata], 200);
             }
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');
@@ -68,7 +68,7 @@ class TaoBaoController extends CmController
                 $outdata[0]['image_ids'] = implode(',', $image_ids);
 
             }
-            if($outdata){
+            if($outdata && !empty($outdata[0]['image_ids'])){
                 return response()->forApi(['x_item'=>$outdata], 200);
             }
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');
@@ -91,7 +91,7 @@ class TaoBaoController extends CmController
                 $outdata[0]['image_ids'] = implode(',', $image_ids);
 
             }
-            if($outdata){
+            if($outdata && !empty($outdata[0]['image_ids'])){
                 return response()->forApi(['x_item'=>$outdata], 200);
             }
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');
@@ -116,7 +116,7 @@ class TaoBaoController extends CmController
 
         }
 
-        if (isset($outdata) && !empty($outdata)) {
+        if (isset($outdata) && !empty($outdata) && !empty($outdata['x_item'][0]['image_ids'])) {
             return response()->forApi($outdata);
         }else{
             return response()->forApi(array(), 1001, ' 商品信息采集失败！');

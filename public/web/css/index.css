@@ -391,7 +391,7 @@ a{cursor: pointer;color: #000}
 .detail_pop_authava{width: 46px;height: 46px;border-radius: 50%;overflow: hidden;margin:0px 20px 0px 15px;float: left;}
 .detail_pop_authava img{width: 100%;height: 100%;border-radius: 50%;}
 .detail_pop_authinfo{float: left;margin:0px;}
-.detail_pop_authname a{font:normal 19px/23px "Microsoft YaHei";color: #787171;}
+.detail_pop_authname a{font:normal 14px/23px "Microsoft YaHei";color: #787171;}
 .detail_pop_authcollect{font:normal 15px/23px "Microsoft YaHei";color: #9d9d9d;max-width: 500px;}
 .detail_pop_authcollect span{color: #504e4e;padding-left: 8px;}
 .detail_pop_authfollow{float: right;color: #000;margin:6px 0px 0px 0px;}
@@ -955,7 +955,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .pop_col_dwrap {float: left;width: 206px;background: #fff;padding:15px;background: #fff;border-radius: 0px 0px 5px 5px;}
 .pop_col_searfold_wrap{position: absolute;top: 36px;left: 0px;padding: 0px 15px;width: 250px;background: #fff;z-index: 9000000;border-left: 1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0;border-right: 1px solid #f0f0f0;max-height:200px;overflow-y: scroll;}
 
-.pop_editvr,.pop_vr_apply,.pop_con_info{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
+.pop_editvr,.pop_vr_apply,.pop_con_info,.pop_editgood{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 .pop_vr_apply .pop_namewrap{padding: 17px 0px 0px 30px}
 .pop_vr_apply .pop_tit{padding: 15px 60px 15px 30px;}
 .pop_vr_apply .pop_con{width: 472px;height: 464px;overflow: hidden; margin-left: -244px;}
@@ -1019,7 +1019,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .vr_line{width: 100%; float: left;padding: 8px 0;}
 .vr-left{float: left;width: 75px;padding-left: 30px;height: 35px;line-height: 35px;}
 .vr-left span{font:normal 12.5px/22px "Microsoft YaHei";color: #333;}
-.vr-right{float: right;width:490px;position: relative;height: 35px;line-height: 35px;}
+.vr-right{float: right;width:440px;position: relative;height: 35px;line-height: 35px;}
 .vr_line_first{height: 98px;overflow: hidden;}
 .vr_line_first .vr-left,.vr_line_first .vr-right{height: auto;line-height: 20px;}
 .vr_line_first .vr-left span{display: block;height: 35px;line-height: 35px;}

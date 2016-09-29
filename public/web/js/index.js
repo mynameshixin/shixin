@@ -26,6 +26,7 @@ function c_function(obj){
       'dataType':'json',
       'success':function(json){
         if(json.code==200){
+          $(obj).parents('.p_collect').hide()
           layer.msg('保存成功', {icon: 6});
         }else{
           layer.msg(json.message, {icon: 5});
@@ -80,7 +81,7 @@ function collect(obj){
               +'<div class="pop_col_colava">'
                 +'<img src="'+v.image_url+'" alt="">'
               +'</div>'
-              +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+              +'<div class="pop_col_colname">'+v.name.substr(0,6)+'</div>'
 
             if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
               cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >保存</a>'
@@ -92,7 +93,7 @@ function collect(obj){
               +'<div class="pop_col_colava">'
                 +'<img src="'+v.image_url+'" alt="">'
               +'</div>'
-              +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+              +'<div class="pop_col_colname">'+v.name.substr(0,6)+'</div>'
               if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
               afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn" >保存</a>'
             +'</li>'
@@ -287,7 +288,7 @@ $('.header_more_a1,.pop_cona').click(function(){
                     +'<div class="pop_col_colava">'
                       +'<img src="'+v.image_url+'" alt="">'
                     +'</div>'
-                    +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+                    +'<div class="pop_col_colname">'+v.name.substr(0,6)+'</div>'
 
                   if(v.private==1) cgcontent+='<a class="pop_col_foldlock"></a>'
                     cgcontent+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn " >上传</a>'
@@ -299,7 +300,7 @@ $('.header_more_a1,.pop_cona').click(function(){
                     +'<div class="pop_col_colava">'
                       +'<img src="'+v.image_url+'" alt="">'
                     +'</div>'
-                    +'<div class="pop_col_colname">'+v.name.substr(0,8)+'</div>'
+                    +'<div class="pop_col_colname">'+v.name.substr(0,6)+'</div>'
                     if(v.private==1) afolder+='<a class="pop_col_foldlock"></a>'
                     afolder+='<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn " >上传</a>'
                   +'</li>'
@@ -428,7 +429,8 @@ $('#pic_cfolder').click(function(){
     },
     'dataType':'json',
     'success':function(json){
-      if(json.code==200){
+      // if(json.code==200){
+        // 文件夹不存在
         folder_id = json.data.folder_id
         // 上传图片
         $('form[name=allimg]').ajaxSubmit({
@@ -453,10 +455,7 @@ $('#pic_cfolder').click(function(){
                 },
                 resetForm:1
           });
-      }else{
-        layer.msg(json.message, {icon: 5});
-        return
-      }
+      // }
     },
     'complete':function(){
       layer.closeAll('loading');
@@ -689,13 +688,13 @@ $('#pic_cfolder').click(function(){
     })
     //vr change
     $("#fvr").on("change",function(){
-        var filePath=$('#fvr').val();
+        var filePath=$(this).val();
         if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1 ||filePath.indexOf("JPG")!=-1 || filePath.indexOf("gif")!=-1){
             var arr=filePath.split('\\');
             var fileName=arr[arr.length-1];
             var file = fileName.substring(0,fileName.lastIndexOf('.'))
             files = getObjectURL(this.files[0]);
-            $('.pop_vrimgwrap img').attr('src',files)
+            $(this).parents('.pop_vrchangewrap').find('.pop_vrimgwrap img').attr('src',files)
 
         }else{
             layer.msg('文件类型不正确', {icon: 5});

@@ -115,7 +115,7 @@
 					</div>
 					<div class="perhome_perlike_wrap clearfix">
 						<a href="{{url('webd/folder')}}?fid={{$folder['id']}}" class="perhome_perlike_label perhome_perlike_lon">
-							<p class="perhome_perlike_num">{{$folder['count']}}</p>
+							<p class="perhome_perlike_num">{{$folder['file_count'] or  $folder['count']}}</p>
 							<p class="perhome_perlike_la">文件</p>
 						</a>
 						<a href="{{url('webd/folder/fans')}}?fid={{$folder['id']}}" class="perhome_perlike_label">

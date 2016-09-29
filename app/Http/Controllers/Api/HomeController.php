@@ -189,26 +189,28 @@ class HomeController extends BaseController
         parent::validator($data, $rules);
         $access_token = Input::get('access_token');
         $rs = parent::getToken($access_token);
-        $user_ids = $self_id = [];
+        $user_ids = $folder_ids = [];
         $num = isset($data['num']) ? $data['num'] : 10;
-        $folder_ids = [];
+        $self_id = '';
         if (isset($rs['user_id'])){
             $self_id = $rs['user_id'];
-            $user_ids2 =  Follow::where('user_id',$rs['user_id'])->lists('userid_follow')->toArray();
+            // 打开前
+            /*$user_ids2 =  Follow::where('user_id',$rs['user_id'])->lists('userid_follow')->toArray();
             $folder_ids1 = CollectionFolder::where('user_id',$rs['user_id'])->lists('folder_id')->toArray();
-            $user_ids = $user_ids2;
+            $user_ids = $user_ids2;*/
         }
-        $adminIds = UserService::getInstance()->getAdminIds();
-        $user_ids = array_merge($user_ids,$adminIds);
+        // 打开前
+       /* $adminIds = UserService::getInstance()->getAdminIds();
+        $user_ids = array_merge($user_ids,$adminIds);*/
 //        if(empty($user_ids2)){
 //            $user_ids = UserService::getInstance()->getAdminIds();
 //        }
        if (isset($rs['user_id']) && !empty($rs['user_id']))    $user_ids[] = $rs['user_id'];
-
-        $user_ids = array_unique($user_ids);
+       // 打开前
+       /* $user_ids = array_unique($user_ids);
         $folder_ids = Folder::whereIn('user_id',$user_ids)->lists('id')->toArray();
         if(isset($folder_ids1) && !empty($folder_ids1)) $folder_ids = array_merge($folder_ids,$folder_ids1);
-        $folder_ids = array_unique($folder_ids);
+        $folder_ids = array_unique($folder_ids);*/
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
         return response()->forApi($rs);

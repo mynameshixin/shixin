@@ -64,7 +64,8 @@ class ProductService extends ApiService
             return self::addImageProduct($userId, $data , $files );
         }
         $tags = isset($data['tags']) ? trim($data['tags']) : '';
-        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $tags =  $tags.';'.$res['name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
@@ -124,7 +125,8 @@ class ProductService extends ApiService
     {
         $data['title'] = isset($data['title']) ? trim($data['title']) : '';
         $tags = isset($data['tags']) ? trim($data['tags']) : '';
-        if(isset($data['folder_name'])) $tags =  $tags.';'.$data['folder_name'];
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $tags =  $tags.';'.$res['name'];
         $entry = array(
             'user_id' => $userId,
             'kind' => $data['kind'],
@@ -194,46 +196,70 @@ class ProductService extends ApiService
         return $id;
     }
 
-    public function updateProduct($productId, $data = array())
+    public function updateProduct($productId, $data = array(),$files = array())
     {
+
         $good = Product::find($productId);
         if (empty($good)) return false;
         $good = $good->toArray();
-
+        $tags = isset($data['tags']) ? trim($data['tags']) : '';
+        $res = DB::table('folders')->where('id',$data['folder_id'])->select('name')->first();
+        if(!empty($res)) $entry['tags'] =  $tags.';'.$res['name'];
+        
         if (isset($data['kind'])) $entry['kind'] = $data['kind'];
         if (isset($data['title'])) $entry['title'] = trim($data['title']);
-        if (isset($data['tags'])) $entry['tags'] = trim($data['tags']);
         if (isset($data['category_id'])) $entry['category_id'] = $data['category_id'];
         if (isset($data['description'])) $entry['description'] = $data['description'];
         if (isset($data['price'])) $entry['price'] = $data['price'];
         if (isset($data['reserve_price'])) $entry['reserve_price'] = $data['reserve_price'];
         if (isset($data['category_id'])) $entry['category_id'] = $data['category_id'];
-        if (isset($data['user_id'])) $entry['user_id'] = $data['user_id'];
+        // if (isset($data['user_id'])) $entry['user_id'] = $data['user_id'];
         if (isset($data['image_ids'])) $entry['image_ids'] = $data['image_ids'];
         if (isset($data['is_recommend'])) $entry['is_recommend'] = $data['is_recommend'];
         if (isset($data['detail_url'])) $entry['detail_url'] = $data['detail_url'];
+        if (isset($data['source_url'])) $entry['source_url'] = $data['source_url'];
         if (isset($data['description'])) $entry['description'] = $data['description'];
         if (isset($data['title'])) $entry['title'] = $data['title'];
         if (isset($data['sort'])) $entry['sort'] = $data['sort'];
         if (isset($data['status'])) $entry['status'] = $data['status'];
+        if (isset($data['cityid'])) $entry['cityid'] = $data['cityid'];
+        if (isset($data['devid'])) $entry['devid'] = $data['devid'];
+        if (isset($data['huid'])) $entry['huid'] = $data['huid'];
+        if (isset($data['typeid'])) $entry['typeid'] = $data['typeid'];
+        if (isset($data['btypeid'])) $entry['btypeid'] = $data['btypeid'];
+        if (isset($data['saleid'])) $entry['saleid'] = $data['saleid'];
+        if (isset($files['image']) && !empty($files['image'])) {
+            $images = ImageService::getInstance()->uploadImage($good['user_id'], $files['image']);
+            if (!empty($images)) {
+                $images_arr = array_column($images, 'image_id');
+            }
+        }
+
+        if (!empty($images_arr)) {
+            foreach ($images_arr as $image_id) {
+                $entry['image_ids'] = $image_id;
+            }
+        } 
+         
         if (isset($data['folder_id']) && !empty($data['folder_id']) && $data['folder_id'] !=$good['folder_id']) {
+
             $entry['folder_id'] = $data['folder_id'];
             FolderGood::where(['folder_id'=>$good['folder_id'],'good_id'=>$productId])->delete();
             FolderGood::insert(['good_id' => $productId, 'folder_id' => $entry['folder_id'],'kind'=>$good['kind'],'user_id'=>$good['user_id']]);
+            
             //修改文件夹商品数量
             FolderService::getInstance()->updateFolderCount($entry['folder_id']);
+            
+            /*if(!empty($entry['image_ids'])){
+                DB::table('folders')->where('id',$data['folder_id'])->update(['image_id'=>$entry['image_ids']]);
+            }*/
+           
+            // 下降他的count
+            DB::table('folders')->where('id',$good['folder_id'])->decrement('count');
         }
-        if (isset($data['image_ids'])) {
+        
 
-            if ($good['kind']==2 && $good['image_ids']!=$data['image_ids']){
-                $images_arr = explode(',',$data['image_ids']);
-                $image_id = isset($images_arr[0]) ? $images_arr[0] : 0;
-                //if (!isset($entry['title']) && empty($entry['title'])) $fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
-		$fileNames = Images::whereIn('id',$images_arr)->lists('name','id')->toArray();
-                $entry['title']= $fileNames[$image_id];
-                $entry['title']= pathinfo($entry['title'],PATHINFO_FILENAME);
-            }
-        }
+        $entry['updated_at'] = date('Y-m-d H:i:s');
         if (isset($entry)) $id = Product::where('id', $productId)->update($entry);
 
         return isset($id) ? $id : false;
@@ -298,14 +324,15 @@ class ProductService extends ApiService
 
         $rows = FolderGood::where('folder_goods.kind', $kind);
         $rows = $rows->join('folders','folder_goods.folder_id','=','folders.id')->where('folders.private',0);
-        if (empty($folder_ids)) {
+        // 打开是否关注前
+        /*if (empty($folder_ids)) {
             $rows = $rows->whereIn('folder_goods.user_id',$user_ids);
         }else{
             $rows = $rows->where(function ($rows) use ($user_ids,$folder_ids,$self_id) {
                 $rows = $rows->whereIn('folder_goods.user_id',$user_ids)
                     ->orwhereIn('folder_goods.folder_id',$folder_ids);
             });
-        }        
+        }    */    
         // $rows = $rows->where('folders.private',0);
         $rows = $rows->select('folder_goods.id','folder_goods.good_id','folder_goods.user_id','folder_goods.folder_id','folder_goods.created_at','folders.private')->orderBy('folder_goods.created_at','desc')->orderBy('folder_goods.id','desc');
         $rows = $rows->paginate($num);
@@ -428,8 +455,9 @@ class ProductService extends ApiService
             //模糊查询
             $rows = $rows->where(function ($rows) use ($keyword) {
 
-                $rows = $rows->where('goods.title', "like", "%{$keyword}%")
-                    ->orWhere('goods.tags', "like", "%{$keyword}%");
+                /*$rows = $rows->where('goods.title', "like", "%{$keyword}%")
+                    ->orWhere('goods.tags', "like", "%{$keyword}%");*/
+                $rows = $rows->where('goods.tags', "like", "%{$keyword}%");
 
             });
             
@@ -631,7 +659,8 @@ class ProductService extends ApiService
         }
         
         return $rows->where(function($query) use ($keyword){
-            $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+            // $query->where('title', "like", "%{$keyword}%")->orWhere('tags','like',"%{$keyword}%");
+            $query->where('tags', "like", "%{$keyword}%");
         })->count();
     }
 }
