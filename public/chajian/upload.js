@@ -684,11 +684,13 @@ $('#pic_cfolder').click(function(){
     })
 
 // 上传vr
+
  $('.header_more_a5').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
+    
     $.ajax({
           'beforeSend':function(){
             layer.load(0, {shade: 0.5});
@@ -705,6 +707,7 @@ $('#pic_cfolder').click(function(){
               strs = ''
               $.each(json.data.folder,function(index,v){
                 strs += '<option value="'+v.id+'">'+v.name+'</option>';
+                
               })
               $('.pop_uploadvr .pop_labelselect').append(strs)
             }else{
@@ -716,6 +719,7 @@ $('#pic_cfolder').click(function(){
             layer.closeAll('loading');
           }
     })
+    
     $('.pop_uploadvr').show();
     var poptopHei = $('.pop_uploadvr .pop_con').height();
     $('.pop_uploadvr .pop_con').css({

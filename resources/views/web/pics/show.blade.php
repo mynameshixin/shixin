@@ -669,7 +669,7 @@
 							</div>
 							<div class="detail_pop_authinfo">
 								<p class="detail_pop_authname"><a href="{{url('webd/user/index')}}?oid={{$goods['user_id']}}" target="_blank" title="{{$goods['user']['nick'] or $goods['user']['username']}}">{{$goods['user']['nick'] or $goods['user']['username']}}</a></p>
-								<p class="detail_pop_authcollect">采集到<span>{{$goods['folder']['name']}}</span></p>
+								<p class="detail_pop_authcollect">发布至<span>{{$goods['folder']['name']}}</span></p>
 							</div>
 							<a class="detail_pop_authfollow detail_filebtn detail_fileball" onclick="relation(this)" user_id="{{$goods['user_id']}}" <?php if($goods['user_id'] == $self_id): ?>style="display: none"<?php endif; ?>>
 							<?php 

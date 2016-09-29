@@ -552,11 +552,14 @@ $('#pic_cfolder').click(function(){
         event.stopPropagation()
   });
   // 上传商品点击
+  var cgeturl = 0
   $('#geturl').click(function(){
         if($('#pop_ipt_goods').val().trim()==''){
           layer.msg('地址不能为空',{'icon':5})
           return 
         }
+        $('#search_fgood input').val('')
+        var sfoldername = []
         $('.pop_uploadgoods').hide();
         $.ajax({
           'beforeSend':function(){
@@ -606,7 +609,8 @@ $('#pic_cfolder').click(function(){
                         option += '<option value="'+v.id+'">'+v.name+'</option>'
                     })*/
                     $.each(json.data.folder,function(i,v){
-                        option += '<option value="'+v.id+'">'+v.name+'</option>'
+                        option += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>'
+                        sfoldername[index] = v.name
                     })
                     if(json.folder==0) option = '<option>没有文件</option>'
                         $('.pop_iptselect').html(option)
@@ -620,7 +624,21 @@ $('#pic_cfolder').click(function(){
           'complete':function(){
             layer.closeAll('loading');
           }
-        })   
+        })
+        //自动补全
+      if(cgeturl == 0){
+            $('#search_fgood').autocomplete({
+                hints: sfoldername,
+                width: 188,
+                height: 30,
+                onSubmit: function(text){
+                  if($.inArray(text,sfoldername)!=-1){
+                    $('.pop_goods_upload .pop_iptselect').find('option[name='+text+']').attr('selected',1)
+                  }
+                }
+            });
+            cgeturl = 1
+        }
   })
 
   //保存上传
@@ -649,11 +667,14 @@ $('#pic_cfolder').click(function(){
     })
 
 // 上传vr
+var cfvr_new = 0
  $('.header_more_a5').click(function(){
     if(u_id==''){
       layer.msg('需要登录',{'icon':5})
       return
     }
+    $('#search_fvr input').val('')
+    var sfoldername = []
     $.ajax({
           'beforeSend':function(){
             layer.load(0, {shade: 0.5});
@@ -669,7 +690,8 @@ $('#pic_cfolder').click(function(){
               $('.pop_uploadvr .pop_labelselect').html('')
               strs = ''
               $.each(json.data.folder,function(index,v){
-                strs += '<option value="'+v.id+'">'+v.name+'</option>';
+                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
+                sfoldername[index] = v.name
               })
               $('.pop_uploadvr .pop_labelselect').append(strs)
             }else{
@@ -681,6 +703,22 @@ $('#pic_cfolder').click(function(){
             layer.closeAll('loading');
           }
     })
+    //自动补全
+    if(cfvr_new == 0){
+          $('#search_fvr').autocomplete({
+              hints: sfoldername,
+              width: 188,
+              height: 30,
+              onSubmit: function(text){
+                console.log(text)
+
+                if($.inArray(text,sfoldername)!=-1){
+                  $('.pop_uploadvr .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+                }
+              }
+          });
+          cfvr_new = 1
+      }
     $('.pop_uploadvr').show();
     var poptopHei = $('.pop_uploadvr .pop_con').height();
     $('.pop_uploadvr .pop_con').css({

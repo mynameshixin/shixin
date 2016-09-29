@@ -288,7 +288,15 @@
 				</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="margin-top: 17px;">上传到文件夹</span>
-					<select class="pop_iptselect" style="margin-top: 17px;" name="fid">
+					<style type="text/css">
+					  #search_fgood .autocomplete-container{height: 40px; width: 200px}
+					  #search_fgood input{ padding-left: 20px }
+					</style>
+					<div class="pop_col_sinput_wrap">
+						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+						<div id="search_fgood" style="padding-left: 10px"></div>
+					</div>
+					<select class="pop_iptselect" style="margin-top: 17px; margin-left: 80px" name="fid">
 						
 					</select>
 				</div>
@@ -487,7 +495,15 @@
 				</div>
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname" style="width: 80px">文件夹</span>
-				<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+				<style type="text/css">
+				  #search_fvr .autocomplete-container{height: 40px; width: 200px}
+				  #search_fvr input{ padding-left: 20px }
+				</style>
+				<div class="pop_col_sinput_wrap">
+					<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+					<div id="search_fvr" style="padding-left: 10px"></div>
+				</div>
+				<select class="pop_labelselect" style="margin-right: 15px;width:200px; margin-left: 80px" name='fid'>
 					
 				</select>
 			</div>
