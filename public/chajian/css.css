@@ -61,3 +61,12 @@
 	cursor: pointer;} 
 #HUABAN_WIDGETS .HUABAN-cell .HUABAN-select-btn:active{background-position:0px -40px;}
 #HUABAN_WIDGETS .HUABAN-cell .HUABAN-select-btn:hover{background-position:0px -40px;}
+.masonrya{
+	float:left;
+	margin:20px;
+	width: 236px; 
+	position: relative; 
+	background: white; 
+	box-shadow: 0 1px 3px rgba(0,0,0,.3); 
+	transition: left .3s ease-in-out, top .3s linear;} 
+}

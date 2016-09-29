@@ -103,6 +103,13 @@
 	#message {
 
 	}
+	.sou_suo{	
+		width: 200px;
+		margin: 0 0 0 50px;
+		position: absolute;
+		background-color: #fff;
+		z-index: 99999;
+	}
 	</style>
 	</head>
 
@@ -176,7 +183,7 @@
 												?>
 					<div class="pop_addpic_con clearfix" style="float:left ">	
 					<div class="pop_addpic_wrap oppo">	
-					 <img src="<?=$v?>" class="imge_eea"  alt="<?=$alt[$k]?>">		
+					 <img src="<?=$v?>" class=""  alt="<?=$alt[$k]?>">		
 					
 					<textarea class="pop_addfont_wrap texts" name="pop_addfont_wrap[]"><?=$texts[$k]?></textarea>
 					  </div>
@@ -202,9 +209,17 @@
 					 
 					<div class="pop_col_sinput_wrap" style="margin-top: 20px">
 						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索'></a>
-						<input class="pop_col_sinput" placeholder="搜索">
+						<input  class="pop_col_sinput" onfocus="hanshu(this)" onblur="qk(this)" placeholder="搜索">
+						<input type="text" style="display:none">
 						<div id="search_upload_outer"></div>
+						<div class="sou_suo" id="sou_suo">
+							<!-- <tr><th>name</th><th>idn</th></tr>  -->
+						</div>
+						
 					</div>
+
+
+
 					
 				</div>
 				<div class="">
@@ -275,7 +290,6 @@
 	</body>
 	<script type="text/javascript" src="http://www.duitujia.com/chajian/upload.js"></script>
 	<script type="text/javascript">	 	
-
 			  		$.ajax({
 			  			 url: "http://www.duitujia.com/webd/pics/cgoods",
 			             dataType: "jsonp",
@@ -283,21 +297,86 @@
 			             jsonp:'callback', 
 			         	 type:'get',
 			         	 success: function(jsonp){			        		        
-			         	 	// alert(jsonp.folder[0);
-
+			         	 	// alert(jsonp.folder[0);			         	 
 			         	 	for (var i = 0; i < jsonp.folder.length; i++) {								
 								document.getElementById('pop_coolo').innerHTML+='<li class="pop_col_colum_on clearfix" folder_id="'+jsonp.folder[i].id+'" style="cursor:pointer; height:30px;" onclick="allimg_upload(this)"><div class="pop_col_colava"><img src="'+jsonp.folder[i].image_url+'" alt=""></div><div class="pop_col_colname">'+jsonp.folder[i].name+'</div><a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn ">上传</a></li>';
 			         	 	 };	
 
 			         	 	for (var i = 0; i < jsonp.cg.length; i++) {								
 								document.getElementById('pop_cg').innerHTML+='<li class="pop_col_colum_on clearfix" folder_id="'+jsonp.cg[i].id+'" style="cursor:pointer; height:30px;" onclick="allimg_upload(this)"><div class="pop_col_colava"><img src="'+jsonp.cg[i].image_url+'" alt=""></div><div class="pop_col_colname">'+jsonp.cg[i].name+'</div><a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding pop_col_cbtn ">上传</a></li>';
-			         	 	 };	 		         	 	         	   
+			         	 	 };			        	         	 	         	   
 			         	 }
 
 
 			  		});
 			
+			function hanshu(ele){
+
+				//if(ele.keyCode==13){ // enter 键
+                 
+           	
+				var val=ele.value								
+				ele.onkeyup=function(){
+				var es=$(".pop_col_sinput")[0].value;
+				$.ajax({
+				 url: "http://www.duitujia.com/webd/pics/cgoods",
+					dataType: "jsonp",
+					data:{"user_id":user_id},
+					jsonp:'callback', 	
+					type:'get',
+					success: function(jsonp){
+					document.getElementById('sou_suo').innerHTML = '';	   
+					jQuery(function($){
+               	 	var tab = $("#sou_suo");
+                	$(jsonp.folder).each(function(i,dom){   
+                	var tr = $("<tr>");                             
+                   
+                         tr.append("<td style='cursor:pointer; height:30px;' class='pop_col_colum_on clearfix' onclick='allimg_upload(this)' folder_id="+dom.folder+">"+"<div>" + dom.name +"</div>"+"</td>"); 
+                     
+                    tab.append(tr);
+                });	
+            });
+
+					
+					var tab = $("#sou_suo");  
+					 var me =$(".pop_col_sinput")[0] , v =$(".pop_col_sinput")[0].value.replace(/^\s+|\s+$/g,"");
+                  	 var trs = tab.find("tr:gt(0)");
+
+           		     if(v==""){   
+						 document.getElementById('sou_suo').innerHTML = '';	 
+						
+						}else{
+							trs.hide().filter(":contains('"+es+"')").show();	
+						}
+				}
+				});
+				}
+				}	
+						
+				function qk(ele){
+				//document.getElementById('sou_suo').innerHTML = '';	 
+				}		
 				
+
+				 // jQuery(function($){
+     //            var tab = $("#tab"), txt = $("#txt");
+     //            $(data.rows).each(function(i,dom){
+     //                var tr = $("<tr>");
+     //                for(var k in dom){
+     //                    tr.append("<td>" + dom[k] + "</td>"); 
+     //                }
+     //                tab.append(tr);
+     //            });
+     //            txt.keyup(function(){
+     //                var me = $(this), v = me.val().replace(/^\s+|\s+$/g,"");
+     //                var trs = tab.find("tr:gt(0)");
+     //                if(v==""){
+     //                    trs.filter(":hidden").show();
+     //                }else{
+     //                    trs.hide().filter(":contains('"+me.val()+"')").show();
+     //                }
+     //            });
+     //        });
 		</script>
 
 </html>
