@@ -20,10 +20,11 @@ use App\Models\Shop;
 use DB;
 
 class SearchController extends CmController{
-
 	public function __construct(){
+
 		parent::__construct();
 		if(empty(Input::get('keyword'))) die('no keyword');
+
 	}
 
 	//首页或者文件夹页
@@ -266,6 +267,6 @@ class SearchController extends CmController{
     }
 
 
-
+    
 
 }
