@@ -78,7 +78,7 @@
 							<div class="vr_content">
 								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
-								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)"/>
+								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
 							</div>
 							<div class="vr_title">
 								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
@@ -122,7 +122,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
@@ -200,7 +200,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
@@ -246,7 +246,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)"/>\
+									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
