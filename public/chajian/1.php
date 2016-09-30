@@ -9,18 +9,18 @@
   <meta name="keywords" content="堆图家,家居,室内设计,商品,美图,软装,建筑,装修,VR,设计,人物,数据"/> 
   <meta name="description" content="堆图家,带你搜集你喜欢的家居,你可以用它搜集灵感图片,发布VR,保存素材,晒晒喜欢的家居"/> 
   <link rel="shortcut icon" href="/logo.ico">
-  <link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://la.com/web/css/font-awesome.min.css">
   <!--[if IE]>
-  <link rel="stylesheet" type="text/css" href="http://www.duitujia.com/public/web/css/font-awesome-ie7.min.css">
+  <link rel="stylesheet" type="text/css" href="http://la.com/public/web/css/font-awesome-ie7.min.css">
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/main.css">
-  <link rel="stylesheet" type="text/css" href="http://www.duitujia.com/web/css/index.css">
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/jquery.lazyload.js"></script>
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/jquery.form.js"></script>
-  <script type="text/javascript" src="http://www.duitujia.com/web/plugins/Masonry/masonry-docs.min.js"></script>
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/nolog.js"></script>
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://la.com/web/css/main.css">
+  <link rel="stylesheet" type="text/css" href="http://la.com/web/css/index.css">
+  <script type="text/javascript" src="http://la.com/web/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="http://la.com/web/js/jquery.lazyload.js"></script>
+  <script type="text/javascript" src="http://la.com/web/js/jquery.form.js"></script>
+  <script type="text/javascript" src="http://la.com/web/plugins/Masonry/masonry-docs.min.js"></script>
+  <script type="text/javascript" src="http://la.com/web/js/nolog.js"></script>
+  <script type="text/javascript" src="http://la.com/web/js/index.js"></script>
   <script type="text/javascript">
     function rect(obj){
       marginLeft = ($(obj).parent().width()-$(obj).width())/2
@@ -52,7 +52,7 @@
 <body class="nolog_body">
 
  
-  <script type="text/javascript" src="http://www.duitujia.com/web/js/autocomplete.js"></script>
+  <script type="text/javascript" src="http://la.com/web/js/autocomplete.js"></script>
 <style type="text/css">
   .autocomplete-container {
     position: relative;
@@ -151,7 +151,7 @@
  <div class="pop_login pop_login1" style="display:none;" login="1">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="http://www.duitujia.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
+        <img src="http://la.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
         <!-- <span class="pop_close"></span> -->
       </p>
       <div class="pop_login_wrap clearfix">
@@ -191,7 +191,7 @@
   <div class="pop_login pop_login2" style="display:none">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="http://www.duitujia.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
+        <img src="http://la.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -229,7 +229,7 @@
   <div class="pop_login pop_login3" style="display:none" login="2">
     <div class="pop_con" style="margin-left: -250px">
       <p class="pop_tit" style="text-align:center;border:none;">
-        <img src="http://www.duitujia.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
+        <img src="http://la.com/static/web/images/index-img/pop_logo.png" height="87" width="108" alt="堆图家">
         <span class="pop_close"></span>
       </p>
       <div class="pop_login_wrap clearfix">
@@ -367,7 +367,7 @@
               var src="<?=$_POST['src']?>";
               var alt="<?=$_POST['alt']?>";
               var text="<?=$_POST['text']?>";
-              jQueryOpenPostWindow('http://www.duitujia.com/chajian/deposit.php',{"user_id":user_id,"src":src,'alt':alt,'text':text},'推图家',"top=0,left=0,width=495,height=544") 
+              jQueryOpenPostWindow('http://la.com/chajian/deposit.php',{"user_id":user_id,"src":src,'alt':alt,'text':text},'推图家',"top=0,left=0,width=495,height=544") 
             
             }else{
              alert(json.message, {icon: 5});
@@ -380,6 +380,6 @@
         })
       }) 
       </script>
-<script type="text/javascript" src="http://www.duitujia.com/chajian/caijidenglu.js"></script></body>
-<script type="text/javascript" src="http://www.duitujia.com/static/layer/layer.js"></script>
+<script type="text/javascript" src="http://la.com/chajian/caijidenglu.js"></script></body>
+<script type="text/javascript" src="http://la.com/static/layer/layer.js"></script>
 </html>
