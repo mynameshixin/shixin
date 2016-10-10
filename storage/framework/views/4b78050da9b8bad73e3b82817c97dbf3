@@ -296,16 +296,16 @@
 						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
 						<div id="search_fgood" style="padding-left: 10px"></div>
 					</div>
-					<select class="pop_iptselect" style="margin-top: 17px; margin-left: 80px" name="fid">
+					<select class="pop_iptselect" style="margin-top: 17px; margin-left: 140px" name="fid">
 						
 					</select>
 				</div>
-				<div class="pop_desimgwrap clearfix">
+				<!-- <div class="pop_desimgwrap clearfix">
 					<div class="pop_deswrap clearfix">
 						<span class="pop_labelname">评论</span>
 						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
 					</div>
-				</div>
+				</div> -->
 				
 			</div>
 			

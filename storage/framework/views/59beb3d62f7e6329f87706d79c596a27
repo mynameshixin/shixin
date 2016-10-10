@@ -159,7 +159,15 @@
 					</div>
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="width: 80px">文件夹</span>
-					<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+					<style type="text/css">
+					  #search_evr_new .autocomplete-container{height: 40px; width: 200px}
+					  #search_evr_new input{ padding-left: 20px }
+					</style>
+					<div class="pop_col_sinput_wrap">
+						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+						<div id="search_evr_new" style="padding-left: 10px"></div>
+					</div>
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px;margin-left: 80px" name='fid'>
 						
 					</select>
 				</div>
@@ -286,7 +294,15 @@
 
 				<div class="pop_namewrap clearfix">
 					<span class="pop_labelname" style="width: 80px">文件夹</span>
-					<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+					<style type="text/css">
+					  #search_egood_new .autocomplete-container{height: 40px; width: 200px}
+					  #search_egood_new input{ padding-left: 20px }
+					</style>
+					<div class="pop_col_sinput_wrap">
+						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+						<div id="search_egood_new" style="padding-left: 10px"></div>
+					</div>
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px; margin-left: 80px" name='fid'>
 						
 					</select>
 				</div>
@@ -336,11 +352,14 @@
 		}
 		$(function(){
 			// 点击弹出编辑VR
+			var editvr_new = 0
 			$('.edit_vr').click(function(){
 				if(u_id==''){
 			      layer.msg('需要登录',{'icon':5})
 			      return
 				}
+				$('#search_evr_new input').val('')
+        		var sfoldername = []
 			    $.ajax({
 			          'beforeSend':function(){
 			            layer.load(0, {shade: 0.5});
@@ -356,7 +375,8 @@
 			              $('.pop_editvr .pop_labelselect').html('')
 			              strs = ''
 			              $.each(json.data.folder,function(index,v){
-			                strs += '<option value="'+v.id+'">'+v.name+'</option>';
+			                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
+			                sfoldername[index] = v.name
 			              })
 			              $('.pop_editvr .pop_labelselect').html(strs)
 			            }else{
@@ -368,6 +388,20 @@
 			            layer.closeAll('loading');
 			          }
 			        })
+			    	//自动补全
+			        if(editvr_new == 0){
+			            $('#search_evr_new').autocomplete({
+			                hints: sfoldername,
+			                width: 188,
+			                height: 30,
+			                onSubmit: function(text){
+			                  if($.inArray(text,sfoldername)!=-1){
+			                    $('.pop_editvr .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+			                  }
+			                }
+			            });
+			            editvr_new = 1
+			        }
 					$('.pop_editvr').show();
 					var poptopHei = $('.pop_editvr .pop_con').height();
 				    $('.pop_editvr .pop_con').css({
@@ -376,11 +410,14 @@
 				})
 
 			// 点击弹出编辑图片
+			var editgood_new = 0
 			$('.edit_good').click(function(){
 				if(u_id==''){
 			      layer.msg('需要登录',{'icon':5})
 			      return
 				}
+				$('#search_egood_new input').val('')
+        		var sfoldername = []
 			    $.ajax({
 			          'beforeSend':function(){
 			            layer.load(0, {shade: 0.5});
@@ -396,7 +433,8 @@
 			              $('.pop_editgood .pop_labelselect').html('')
 			              strs = ''
 			              $.each(json.data.folder,function(index,v){
-			                strs += '<option value="'+v.id+'">'+v.name+'</option>';
+			                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
+			                sfoldername[index] = v.name
 			              })
 			              $('.pop_editgood .pop_labelselect').html(strs)
 			            }else{
@@ -408,6 +446,20 @@
 			            layer.closeAll('loading');
 			          }
 			        })
+			    	//自动补全
+			        if(editgood_new == 0){
+			            $('#search_egood_new').autocomplete({
+			                hints: sfoldername,
+			                width: 188,
+			                height: 30,
+			                onSubmit: function(text){
+			                  if($.inArray(text,sfoldername)!=-1){
+			                    $('.pop_editgood .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+			                  }
+			                }
+			            });
+			            editgood_new = 1
+			        }
 					$('.pop_editgood').show();
 					var poptopHei = $('.pop_editgood .pop_con').height();
 				    $('.pop_editgood .pop_con').css({
