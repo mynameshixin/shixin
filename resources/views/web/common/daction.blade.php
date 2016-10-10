@@ -289,7 +289,7 @@
 	<!-- 上传商品详细弹框 -->
 	<div class="pop_goods_upload" style="display:none;">
 	<form action="" method="post" enctype="multipart/form-data" name='u_b'>
-		<div class="pop_con clearfix" style="top: 30%">
+		<div class="pop_con clearfix">
 			<p class="pop_tit">
 				上传商品
 				<span class="pop_close"></span>
