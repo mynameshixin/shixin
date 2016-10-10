@@ -296,7 +296,7 @@
 						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
 						<div id="search_fgood" style="padding-left: 10px"></div>
 					</div>
-					<select class="pop_iptselect" style="margin-top: 17px;" name="fid">
+					<select class="pop_iptselect" style="margin-top: 17px; margin-left: 80px" name="fid">
 						
 					</select>
 				</div>
