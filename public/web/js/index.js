@@ -218,9 +218,7 @@ $(function(){
           'success':function(json){
             if(json.code==200){
               layer.msg('保存成功', {icon: 6});
-              setTimeout(function(){
-                location.reload()
-              },2000)
+              $('#folder_outer').hide()
             }else{
               layer.msg(json.message, {icon: 5});
               return

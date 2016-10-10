@@ -1114,7 +1114,7 @@
 				</div>
 				<div class="pop_add_foldbtn clearfix">
 					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew">+</a>
-					<p class="pop_add_addfont">新建文件夹</p>
+					<p class="pop_add_addfont">新建文件夹并保存</p>
 				</div>
 			</div>
 		</div>
