@@ -178,7 +178,7 @@ $(function(){
   $('#folder_outer .pop_collect,#folder_outer .pop_close,#folder_outer .detail_pop_cancel').click(function(){
       $('#folder_outer').hide()
   });
-  //采集创建文件夹点击按钮
+  //采集创建文件夹并保存点击按钮
   $('#cfolder_outer').click(function(){
     var pop_con = $(this).parents('.pop_con')
     var name = $('input[name=fname]',pop_con).val().trim()
@@ -201,15 +201,33 @@ $(function(){
       },
       'dataType':'json',
       'success':function(json){
-        if(json.code==200){
-          layer.msg('创建成功', {icon: 6});
-          setTimeout(function(){
-            location.reload()
-          },2000)
-        }else{
-          layer.msg(json.message, {icon: 5});
-          return
-        }
+
+        var folder_id = json.data.folder_id
+        var good_id = $('#collect_outer').attr('img_id')
+        // 采集
+        $.ajax({
+          'url':"/webd/pics/cpic",
+          'type':'post',
+          'data':{
+            'folder_id':folder_id,
+            'good_id':good_id,
+            'action':1,
+            'user_id':u_id
+          },
+          'dataType':'json',
+          'success':function(json){
+            if(json.code==200){
+              layer.msg('保存成功', {icon: 6});
+              setTimeout(function(){
+                location.reload()
+              },2000)
+            }else{
+              layer.msg(json.message, {icon: 5});
+              return
+            }
+          }
+        })
+        
       },
       'complete':function(){
         layer.closeAll('loading');

@@ -626,9 +626,9 @@
 				</div>
 				<div class="">
 					<div class="pop_col_colum_wrap">
-						<div class="pop_col_alphabet">
+						<!-- <div class="pop_col_alphabet">
 							<a href="javascript:;" class="pop_col_alpbtn">A</a><a href="javascript:;" class="pop_col_alpbtn">B</a><a href="javascript:;" class="pop_col_alpbtn">C</a><a href="javascript:;" class="pop_col_alpbtn">D</a><a href="javascript:;" class="pop_col_alpbtn">E</a><a href="javascript:;" class="pop_col_alpbtn">F</a><a href="javascript:;" class="pop_col_alpbtn">G</a><a href="javascript:;" class="pop_col_alpbtn">H</a><a href="javascript:;" class="pop_col_alpbtn">I</a><a href="javascript:;" class="pop_col_alpbtn">J</a><a href="javascript:;" class="pop_col_alpbtn">K</a><a href="javascript:;" class="pop_col_alpbtn">L</a><a href="javascript:;" class="pop_col_alpbtn">M</a><a href="javascript:;" class="pop_col_alpbtn">N</a><a href="javascript:;" class="pop_col_alpbtn">O</a><a href="javascript:;" class="pop_col_alpbtn">P</a><a href="javascript:;" class="pop_col_alpbtn">Q</a><a href="javascript:;" class="pop_col_alpbtn">R</a><a href="javascript:;" class="pop_col_alpbtn">S</a><a href="javascript:;" class="pop_col_alpbtn">T</a><a href="javascript:;" class="pop_col_alpbtn">U</a><a href="javascript:;" class="pop_col_alpbtn">V</a><a href="javascript:;" class="pop_col_alpbtn">W</a><a href="javascript:;" class="pop_col_alpbtn">X</a><a href="javascript:;" class="pop_col_alpbtn">Y</a><a href="javascript:;" class="pop_col_alpbtn">Z</a>
-						</div>
+						</div> -->
 						<ul class="pop_col_colum" id="search_outer">
 							
 						</ul>
@@ -646,12 +646,12 @@
 				</div>
 				<div class="pop_add_foldbtn clearfix">
 					<a href="javascript:;" class="pop_add_addnew" id="pop_add_addnew_outer" title="堆图家新建文件夹">+</a>
-					<p class="pop_add_addfont">新建文件夹</p>
+					<p class="pop_add_addfont">新建文件夹并保存</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 采集时新建文件夹 -->
+	<!-- 采集时新建文件夹并保存 -->
 	<div class="pop_collect p_folder" style="display: none" id="folder_outer">
 		<div class="pop_con">
 			<div class="pop_col_left" style="height: 400px">
