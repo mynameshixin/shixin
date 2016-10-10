@@ -131,12 +131,24 @@ class SearchController extends CmController{
         if(isset($data['user_id'])){
             $user_id = self::get_user_cache($data['user_id']);
             if(!DB::table('users')->where('id',$user_id)->first()) return response()->forApi([],1001,'用户不存在');
-            $goods = DB::table('goods as g')->join('folder_goods as fg','g.id','=','fg.good_id')->select('g.id', 'g.user_id', 'g.folder_id', 'g.kind', 'g.price', 'g.reserve_price', 'g.image_ids', 'g.title', 'g.tags',  'g.description', 'g.collection_count', 'g.praise_count', 'g.boo_count', 'g.detail_url', 'g.created_at')->where(
+
+            $goods = DB::table('folder_goods as fg')->where('fg.user_id',$user_id);
+
+            $goods = $goods->join('goods as g','g.id','=','fg.good_id')->select('g.id', 'g.user_id', 'g.folder_id', 'g.kind', 'g.price', 'g.reserve_price', 'g.image_ids', 'g.title', 'g.tags',  'g.description', 'g.collection_count', 'g.praise_count', 'g.boo_count', 'g.detail_url', 'g.created_at')->where(
             function($query) use ($keyword){
                 // $query->where('g.title', "like", "%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
                 $query->where('g.tags', "like", "%{$keyword}%")->where('g.status',1);
             })->orderBy('g.created_at','desc');
-            $goods = $goods->where('fg.user_id',$user_id);
+            
+
+
+            /*$goods = DB::table('goods as g')->join('folder_goods as fg','g.id','=','fg.good_id')->select('g.id', 'g.user_id', 'g.folder_id', 'g.kind', 'g.price', 'g.reserve_price', 'g.image_ids', 'g.title', 'g.tags',  'g.description', 'g.collection_count', 'g.praise_count', 'g.boo_count', 'g.detail_url', 'g.created_at')->where(
+            function($query) use ($keyword){
+                // $query->where('g.title', "like", "%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
+                $query->where('g.tags', "like", "%{$keyword}%")->where('g.status',1);
+            })->orderBy('g.created_at','desc');
+            $goods = $goods->where('fg.user_id',$user_id);*/
+            
             if(isset($data['kind'])) $goods = $goods->where('g.kind','=',$data['kind']);
             $goods = $goods->skip($skip)->take($num)->get();
 
