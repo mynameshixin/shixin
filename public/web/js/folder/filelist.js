@@ -104,14 +104,14 @@ $(function() {
 			$('.pop_uploadfile .pop_con').click(function(){
 				event.stopPropagation()
 			})
-			$('.pop_conb').click(function(){
+			/*$('.pop_conb').click(function(){
 				$('.pop_goodsupload').hide();
 				$('#pop_file').show();
 				var popconHei = $('#pop_file .pop_con').height();
 				$('.pop_con').css({
 				   'margin-top':-(popconHei/2)
 				})
-			});
+			});*/
 			$('.pop_pic_upload,.pop_close,.detail_pop_cancel').click(function(){
 				$('.pop_pic_upload').hide();
 			});

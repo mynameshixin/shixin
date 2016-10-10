@@ -232,6 +232,37 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- 上传商品时新建文件夹 -->
+	<div class="pop_collect p_folder" style="display: none" id="good_folder_outer">
+		<div class="pop_con" style="width: 500px">
+			<div class="pop_col_right" style="width: 400px">
+				<div class="pop_col_tit" style="width: 400px">
+					创建文件夹
+					<span class="pop_close" onclick="$('#good_folder_outer').hide()"></span>
+				</div>
+				<div class="pop_col_infowrap" style="width: 450px">
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">名称</p>
+						<input class="pop_col_ninput" placeholder="例如：欧式低奢亮色系风格" name="fname" value="">
+					</div>
+					<div class="pop_col_name">
+						<p class="pop_col_nlabel">描述</p>
+						<textarea class="pop_col_narea" placeholder="例如：欧式低奢亮色系风格"></textarea>
+					</div>
+					<div class="pop_col_priv">
+						<p class="pop_col_nlabel">隐私</p>
+						<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr_2" name="private" private="0">
+						<label for="pop_iptpr_2"></label>
+					</div>
+				</div>
+				<div class="pop_btnwrap" style="width: 450px">
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" onclick="$('#good_folder_outer').hide()" title="堆图家取消">取消</a>
+					<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" style="float:right;" id="pic_cgood" title="堆图家创建">创建</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- 上传图片的js -->
 	<!-- <script type="text/javascript" src="<?php echo e(asset('web')); ?>/js/backupjs.js"></script> -->
 	<!-- 获取商品网址弹框 -->
@@ -258,7 +289,7 @@
 	<!-- 上传商品详细弹框 -->
 	<div class="pop_goods_upload" style="display:none;">
 	<form action="" method="post" enctype="multipart/form-data" name='u_b'>
-		<div class="pop_con clearfix">
+		<div class="pop_con clearfix" style="top: 30%">
 			<p class="pop_tit">
 				上传商品
 				<span class="pop_close"></span>
@@ -300,12 +331,14 @@
 						
 					</select>
 				</div>
-				<!-- <div class="pop_desimgwrap clearfix">
+
+				<div class="pop_desimgwrap clearfix">
 					<div class="pop_deswrap clearfix">
-						<span class="pop_labelname">评论</span>
-						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
+						<span class="pop_labelname">新建文件夹</span>
+						<a href="javascript:;" class="pop_add_addnew" id="show_good_add" title="新建文件夹并上传">+</a>
+						<p class="pop_add_addfont">新建文件夹并上传</p>
 					</div>
-				</div> -->
+				</div>
 				
 			</div>
 			

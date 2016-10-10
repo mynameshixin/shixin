@@ -396,7 +396,22 @@ $('#show_folder_add').click(function(){
     $('#pic_folder_outer').show()
     $('#upload_outer').hide()
 })
+
+// 上传商品添加文件夹
+$('#show_good_add').click(function(){
+    $('#good_folder_outer').show()
+    $('.pop_goods_upload').hide()
+})
+
 $('#pic_folder_outer .pop_iptprivacy').click(function(){
+      if($(this).attr('checked') == 'checkbox') return
+      if($(this).attr('private') == 1){
+        $(this).attr('private',0)
+      }else{
+        $(this).attr('private',1)
+      }
+ })
+$('#good_folder_outer .pop_iptprivacy').click(function(){
       if($(this).attr('checked') == 'checkbox') return
       if($(this).attr('private') == 1){
         $(this).attr('private',0)
@@ -464,7 +479,65 @@ $('#pic_cfolder').click(function(){
   
 })
 
+//上传并创建文件夹点击按钮
+$('#pic_cgood').click(function(){
+  var pop_con = $(this).parents('.pop_con')
+  var name = $('input[name=fname]',pop_con).val().trim()
+  var description = $('textarea',pop_con).val().trim()
+  var private = $('input[name=private]',pop_con).attr('private')
+  if(name=='') {
+    layer.msg('信息没有填写完全', {icon: 5});
+    return 
+  }
+  var folder_id = ''
+  //创建
+  $.ajax({
+    'beforeSend':function(){
+      layer.load(0, {shade: 0.5});
+    },
+    'url':"/webd/folder/cfolder",
+    'type':'post',
+    'data':{
+      'name':name,
+      'description':description,'private':private,
+      'fid':10,'user_id':u_id
+    },
+    'dataType':'json',
+    'success':function(json){
 
+        folder_id = json.data.folder_id
+        // 上传商品
+        var u_b = $('form[name=u_b]')
+        var title = $('input[name=title]',u_b).val().trim()
+        var reserve_price = $('input[name=reserve_price]',u_b).val().trim()
+        var description = $('input[name=description]',u_b).val().trim()
+        var detail_url = $('input[name=detail_url]',u_b).val().trim()
+        var image_ids = $('input[name=image_ids]',u_b).val().trim()
+        $.ajax({
+          data:{'fid':folder_id,'user_id':u_id,'kind':1,'title':title,'reserve_price':reserve_price,'description':description,'detail_url':detail_url,'image_ids':image_ids},
+          type:"post",  //提交方式
+          dataType:"json", //数据类型
+          url:"/webd/folder/ugoods", //请求url
+          success:function(json){ //提交成功的回调函数
+              if(json.code==200) {
+                layer.msg('成功上传',{icon: 6});
+                setTimeout(function(){
+                  location.reload()
+                },2000)
+              }else{
+                layer.msg(json.message, {icon: 5});
+                return
+              } 
+          },
+        });
+        return false
+    },
+    'complete':function(){
+      layer.closeAll('loading');
+    }
+  })
+  
+})
 
   //添加文件夹
   $('.popc').click(function(){
@@ -535,6 +608,7 @@ $('#pic_cfolder').click(function(){
       layer.msg('需要登录',{'icon':5})
       return
     }
+    $('.pop_goodsupload').hide()
       $('.pop_uploadgoods').show();
       var popconHei = $('.pop_uploadgoods .pop_conwrap').height();
       if (popconHei > 410) {
@@ -554,12 +628,14 @@ $('#pic_cfolder').click(function(){
   // 上传商品点击
   var cgeturl = 0
   $('#geturl').click(function(){
+
         if($('#pop_ipt_goods').val().trim()==''){
           layer.msg('地址不能为空',{'icon':5})
           return 
         }
         $('#search_fgood input').val('')
         var sfoldername = []
+        //$('.pop_goods_upload').show();
         $('.pop_uploadgoods').hide();
         $.ajax({
           'beforeSend':function(){

@@ -245,7 +245,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
-	$('.pop_iptprivacy').click(function(){
+	$('.pop_editfold .pop_iptprivacy').click(function(){
 		if($(this).attr('checked') == 'checkbox') return
 		if($(this).attr('private') == 1){
 			$(this).attr('private',0)

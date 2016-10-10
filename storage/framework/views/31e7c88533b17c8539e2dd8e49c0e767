@@ -322,7 +322,7 @@
 					display:'none'
 				})
 			})
-			$('.pop_iptprivacy').click(function(){
+			$('.pop_addfold .pop_iptprivacy').click(function(){
 				if($(this).attr('checked') == 'checkbox') return
 				if($(this).attr('private') == 1){
 					$(this).attr('private',0)

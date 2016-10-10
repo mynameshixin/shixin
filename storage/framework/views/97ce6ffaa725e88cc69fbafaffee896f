@@ -501,13 +501,13 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function cg(){
 			$('#pop_file').hide()
 		}
-	</script>
+	</script> -->
 	<!-- 获取商品网址弹框 -->
-	<div class="pop_uploadgoods" style="display:none;" id="pop_file">
+	<!-- <div class="pop_uploadgoods" style="display:none;" id="pop_file">
 		<div class="pop_con">
 			<p class="pop_tit">
 				上传商品
@@ -521,7 +521,7 @@
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsget">获取</a>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<script type="text/javascript">
 		$('#delpfolder').click(function(){
@@ -740,7 +740,7 @@
 		<div class="pop_con">
 			<div class="pop_conabwrap">
 				<div class="pop_cona popa"></div>
-				<div class="pop_conb"></div>
+				<div class="pop_conb popb"></div>
 			</div>
 		</div>
 		
