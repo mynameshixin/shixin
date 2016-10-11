@@ -290,7 +290,7 @@
 				移动至...
 				<span class="pop_close"></span>
 			</p>
-			<div class="pop_namewrap clearfix">
+			<div class="pop_namewrap clearfix pop_namewrap_mv">
 				<span class="pop_labelname" style="width: 100px">文件夹</span>
 				<style type="text/css">
 				  #search_folder .autocomplete-container{height: 40px; width: 200px}
@@ -309,6 +309,36 @@
 			<div class="pop_btnwrap">
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
 				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" onclick="move_good()">移动</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 复制至弹框 -->
+	<div class="pop_copyfile" style="display: none;">
+		<div class="pop_con">
+			<p class="pop_tit">
+				复制至...
+				<span class="pop_close"></span>
+			</p>
+			<div class="pop_namewrap_cp clearfix pop_namewrap">
+				<span class="pop_labelname" style="width: 100px">文件夹</span>
+				<style type="text/css">
+				  #search_folder_cp .autocomplete-container{height: 40px; width: 200px}
+				  #search_folder_cp input{ padding-left: 20px }
+				</style>
+				<div class="pop_col_sinput_wrap">
+					<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+					<div id="search_folder_cp" style="padding-left: 10px"></div>
+				</div>
+
+				<div style=" float: none;margin-left: 120px; margin-top: 4px">
+					<select class="pop_labelselect" style="margin-right: 15px;width:200px; height: 30px" name="fid">
+					</select>
+				</div>
+			</div>
+			<div class="pop_btnwrap">
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
+				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" onclick="copy_good()">移动</a>
 			</div>
 		</div>
 	</div>
@@ -336,13 +366,13 @@
 		          'dataType':'json',
 		          'success':function(json){
 		            if(json.code==200){
-		              $('.pop_namewrap .pop_labelselect').html('')
+		              $('.pop_namewrap_mv .pop_labelselect').html('')
 		              strs = ''
 		              $.each(json.data.folder,function(index,v){
 		                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
 		                sfoldername[index] = v.name
 		              })
-		              $('.pop_namewrap .pop_labelselect').html(strs)
+		              $('.pop_namewrap_mv .pop_labelselect').html(strs)
 		              $('.pop_movefile').show();
 						var poptopHei = $('.pop_movefile .pop_con').height();
 						$('.pop_con').css({
@@ -367,7 +397,7 @@
 		            height: 30,
 		            onSubmit: function(text){
 		              if($.inArray(text,sfoldername)!=-1){
-		              	$('.pop_namewrap .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+		              	$('.pop_namewrap_mv .pop_labelselect').find('option[name='+text+']').attr('selected',1)
 		              }
 		            }
 		        });
@@ -388,51 +418,147 @@
 				layer.msg('没有选择文件', {icon: 5});
 				return 
 			}
-			console.log(garr)
+			var fid = $('.pop_movefile select[name=fid]').val();
+			$.ajax({
+				'beforeSend':function(){
+					layer.load(0, {shade: 0.5});
+				},
+				'url':"/webd/folder/movefolder",
+				'type':'post',
+				'data':{
+					'user_id':"<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>",
+					'garr':garr,
+					'fid':fid,
+					'ofid':"{{$folder['id']}}"
+				},
+				'dataType':'json',
+				'success':function(json){
+					if(json.code==200){
+						layer.msg('移动成功', {icon: 6});
+						setTimeout(function(){
+							location.reload()
+						},1000)
+					}else{
+						layer.msg(json.message, {icon: 5});
+						return
+					}
+				},
+				'complete':function(){
+					layer.closeAll('loading');
+				}
+			})
+			
 		}
 		
+		//点击复制至效果开始
+		var cfcopy = 0
+		$('.detail_select_btncopys').click(function(){
+			 if(u_id==''){
+		      layer.msg('需要登录',{'icon':5})
+		      return
+		    }
+		    $('#pop_copyfile input').val('')
+		    var sfoldername = []
+		    
+		    $.ajax({
+		          'beforeSend':function(){
+		            layer.load(0, {shade: 0.5});
+		          },
+		          'url':"/webd/pics/cgoods",
+		          'type':'post',
+		          'data':{
+		            'user_id':u_id
+		          },
+		          'dataType':'json',
+		          'success':function(json){
+		            if(json.code==200){
+		              $('.pop_namewrap_cp .pop_labelselect').html('')
+		              strs = ''
+		              $.each(json.data.folder,function(index,v){
+		                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
+		                sfoldername[index] = v.name
+		              })
+		              $('.pop_namewrap_cp .pop_labelselect').html(strs)
+		              $('.pop_copyfile').show();
+						var poptopHei = $('.pop_copyfile .pop_con').height();
+						$('.pop_con').css({
+						   'margin-top':-(poptopHei/2)
+						})
+					  
+						
+		            }else{
+		              layer.msg(json.message, {icon: 5});
+		              return
+		            }
+		          },
+		          'complete':function(){
+		            layer.closeAll('loading');
+		          }
+		    })
+			//自动补全
+			if(cfmove == 0){
+		        $('#search_folder_cp').autocomplete({
+		            hints: sfoldername,
+		            width: 188,
+		            height: 30,
+		            onSubmit: function(text){
+		              if($.inArray(text,sfoldername)!=-1){
+		              	$('.pop_namewrap_cp .pop_labelselect').find('option[name='+text+']').attr('selected',1)
+		              }
+		            }
+		        });
+		        cfmove = 1
+	    	}
+		})
+		
+
+		function copy_good(){
+			// 移动点击按钮
+			var garr = '';
+			var delfs = $('div[class=detail_raido_wrapred]')
+			$.each(delfs,function(i,v){
+				gid = delfs.eq(i).parents('.index_item_wrap').attr('good_id')
+				garr+= gid+'|'
+			})
+			if(garr==''){
+				layer.msg('没有选择文件', {icon: 5});
+				return 
+			}
+			var fid = $('.pop_copyfile select[name=fid]').val();
+			$.ajax({
+				'beforeSend':function(){
+					layer.load(0, {shade: 0.5});
+				},
+				'url':"/webd/folder/copyfolder",
+				'type':'post',
+				'data':{
+					'user_id':"<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>",
+					'garr':garr,
+					'fid':fid,
+					'ofid':"{{$folder['id']}}"
+				},
+				'dataType':'json',
+				'success':function(json){
+					if(json.code==200){
+						layer.msg('复制成功', {icon: 6});
+						setTimeout(function(){
+							location.reload()
+						},1000)
+					}else{
+						layer.msg(json.message, {icon: 5});
+						return
+					}
+				},
+				'complete':function(){
+					layer.closeAll('loading');
+				}
+			})
+			
+		}
 
 	</script>
 
-	<!-- 复制至弹框 -->
-	<div class="pop_copyfile" style="display: none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				复制至...
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">文件夹</span>
-				<div class="pop_fakeselect">
-					<span class="pop_fakedefault">请选择一个文件夹</span>
-					<div class="pop_fakeicon"></div>
-					<div class="pop_optionwrap">
-						<div class="pop_searwrap clearfix">
-							<a href="javascript:;" class="pop_searnewbtn"></a>
-							<input type="text" class="pop_sear" placeholder="Search">
-							<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball pop_searnew">新建</a>
-						</div>
-						<ul class="pop_searul">
-							<li>椅子</li>
-							<li>桌子</li>
-							<li>电视</li>
-							<li>沙发</li>
-							<li>卧室</li>
-							<li>椅子</li>
-							<li>桌子</li>
-							<li>电视</li>
-							<li>沙发</li>
-							<li>卧室</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" >移动</a>
-			</div>
-		</div>
-	</div>
+	
 	<!-- 复制提示弹框 -->
 	<div class="pop_copytips" style="display: none;">
 		<div class="pop_con">
@@ -524,6 +650,7 @@
 	</div> -->
 
 	<script type="text/javascript">
+		// 批量删除
 		$('#delpfolder').click(function(){
 			var garr = '';
 			var delfs = $('div[class=detail_raido_wrapred]')

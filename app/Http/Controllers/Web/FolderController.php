@@ -366,7 +366,7 @@ class FolderController extends CmController{
         }
     }
 
-    //删除文件夹的文件
+    //批量删除文件夹的文件
     public function postDelpfolder(){
         $data = Input::all();
         $rules = array(
@@ -405,4 +405,159 @@ class FolderController extends CmController{
         }
         return response()->forApi(['status' => 1]);
     }
+
+     //批量移动文件夹的文件
+    public function postMovefolder(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'garr' => 'required',
+            'fid'=>'required|exists:folders,id',
+            'ofid'=>'required|exists:folders,id'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $folder_id = $data['fid'];
+        $o_folder_id = $data['ofid'];
+        
+        if(!empty($data['garr']) && $folder_id!=$o_folder_id){
+            $gidarr = explode("|",$data['garr']);
+            foreach($gidarr as $k=>$v){
+                if(empty($v)) continue;
+                // 添加标签
+                $tags = DB::table('goods')->where(['id'=>$v])->select('tags')->first();
+                $fname = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
+                $newtags = $tags['tags'].';'.$fname['name'];
+                DB::table('goods')->where(['id'=>$v])->update(['tags'=>$newtags]);
+                // 修改文件夹个数
+                DB::table('folders')->where('id',$data['ofid'])->decrement('count');
+                DB::table('folders')->where('id',$data['fid'])->increment('count');
+                $s = DB::table('goods')->where(['id'=>$v,'user_id'=>$userId])->first();
+                if($s){
+                    DB::table('goods')->where(['id'=>$v,'user_id'=>$userId])->update(['folder_id'=>$folder_id]);
+                }
+                $c = DB::table('collection_good')->where(['good_id'=>$v,'user_id'=>$userId])->first();
+                if($c){
+                    DB::table('collection_good')->where(['good_id'=>$v,'user_id'=>$userId])->update(['folder_id'=>$folder_id]);
+                }
+                $fg = DB::table('folder_goods')->where(['good_id'=>$v,'user_id'=>$userId])->first();
+                if($fg){
+                    DB::table('folder_goods')->where(['good_id'=>$v,'user_id'=>$userId])->update(['folder_id'=>$folder_id]);
+                }
+            }
+            return response()->forApi(['status' => 1]);
+        }
+        
+        return response()->forApi([],1001,'所选文件夹没有改变');
+    }
+
+
+    //批量复制文件夹的文件
+    public function postCopyfolder(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'garr' => 'required',
+            'fid'=>'required|exists:folders,id',
+            'ofid'=>'required|exists:folders,id'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $folder_id = $data['fid'];
+        $o_folder_id = $data['ofid'];
+        
+        if(!empty($data['garr']) && $folder_id!=$o_folder_id){
+            $gidarr = explode("|",$data['garr']);
+            foreach($gidarr as $k=>$v){
+                if(empty($v)) continue;
+                DB::table('folders')->where('id',$data['fid'])->increment('count');
+                $fname = DB::table('folders')->where('id',$data['fid'])->select('name')->first();
+                $s = DB::table('goods')->where(['id'=>$v,'user_id'=>$userId])->first();
+                // dd($s);
+                
+                // 判断是不是自己发布的
+                if($s){
+                    $entry = [
+                      "user_id" => $s['user_id'],
+                      "category_id" => $s['category_id'],
+                      "folder_id" => $folder_id,
+                      "kind" => $s['kind'],
+                      "reserve_price" => $s['reserve_price'],
+                      "price" => $s['price'],
+                      "title" => $s['title'],
+                      "description" => $s['description'],
+                      "is_mall" => $s['is_mall'],
+                      "detail_url" => $s['detail_url'],
+                      "source_url" => $s['source_url'],
+                      "image_keys" => $s['image_keys'],
+                      "image_ids" => $s['image_ids'],
+                      "status" => $s['status'],
+                      "is_recommend" => $s['is_recommend'],
+                      "sort" => $s['sort'],
+                      "source" => $s['source'],
+                      "is_delete" => $s['is_delete'],
+                      "praise_count" => $s['praise_count'],
+                      "boo_count" => $s['boo_count'],
+                      "collection_count" => $s['collection_count'],
+                      "created_at" => $s['created_at'],
+                      "updated_at" => $s['updated_at'],
+                      "tags" => $s['tags'].';'.$fname['name'],
+                      "cityid" => $s['cityid'],
+                      "devid" => $s['devid'],
+                      "huid" => $s['huid'],
+                      "typeid" => $s['typeid'],
+                      "btypeid" => $s['btypeid'],
+                      "saleid" => $s['saleid']
+                    ];
+                    
+                    //insert goods
+                    $id = DB::table('goods')->insertGetId($entry);
+
+                    $fgentry = [
+                        "user_id" => $s['user_id'],
+                        "folder_id" => $folder_id,
+                        "good_id"=>$id,
+                        "kind"=>$s['kind'],
+                        "created_at" => $s['created_at'],
+                        "action"=>0
+                    ];
+                    // insert folder_goods
+                    DB::table('folder_goods')->insert($fgentry);
+                }else{
+                    $cginfo = DB::table('collection_good')->where(['good_id'=>$v,'user_id'=>$userId])->first();
+                    $cgentry = [
+                        "user_id" => $cginfo['user_id'],
+                        "folder_id" => $folder_id,
+                        "good_id"=>$v,
+                        "kind"=>$cginfo['kind'],
+                        "created_at" => $cginfo['created_at'],
+                        "updated_at" => $cginfo['updated_at'],
+                    ];
+                    $fgentry = [
+                        "user_id" => $cginfo['user_id'],
+                        "folder_id" => $folder_id,
+                        "good_id"=>$v,
+                        "kind"=>$cginfo['kind'],
+                        "created_at" => $cginfo['created_at'],
+                        "action"=>0
+                    ];
+                    // insert collection_good
+                    DB::table('collection_good')->insert($cgentry);
+                    // insert folder_goods
+                    DB::table('folder_goods')->insert($fgentry);
+                    // 修改标签
+                    $tags = DB::table('goods')->where(['id'=>$v])->select('tags')->first();
+                    DB::table('goods')->where(['id'=>$v])->update(['tags'=>$tags['tags'].';'.$fname['name']]);
+                }
+                
+                
+            }
+            return response()->forApi(['status' => 1]);
+        }
+        
+        return response()->forApi([],1001,'所选文件夹没有改变');
+    }
+
 }

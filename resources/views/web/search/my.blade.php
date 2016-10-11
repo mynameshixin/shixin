@@ -52,7 +52,7 @@
 			'data':{
 				'keyword':keyword,
 				'page':1,
-				'user_id':user_id
+				'user_id':u_id
 			},
 			'dataType':'json',
 			'success':function(json){

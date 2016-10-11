@@ -138,7 +138,7 @@ class SearchController extends CmController{
             function($query) use ($keyword){
                 // $query->where('g.title', "like", "%{$keyword}%")->orWhere('g.tags', "like", "%{$keyword}%");
                 $query->where('g.tags', "like", "%{$keyword}%")->where('g.status',1);
-            })->orderBy('g.created_at','desc');
+            })->orderBy('fg.created_at','desc');
             
 
 
@@ -148,7 +148,7 @@ class SearchController extends CmController{
                 $query->where('g.tags', "like", "%{$keyword}%")->where('g.status',1);
             })->orderBy('g.created_at','desc');
             $goods = $goods->where('fg.user_id',$user_id);*/
-            
+
             if(isset($data['kind'])) $goods = $goods->where('g.kind','=',$data['kind']);
             $goods = $goods->skip($skip)->take($num)->get();
 
