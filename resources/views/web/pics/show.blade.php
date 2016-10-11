@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: rgba(229,229,229,.95)">
 <head>
 	@include('web.common.head')
 </head>
