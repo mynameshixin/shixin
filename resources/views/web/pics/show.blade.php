@@ -672,6 +672,9 @@
 						<script type="text/javascript">
 							function re668(obj){
 								if($(obj).width()>668) $(obj).css('width','668px')
+								//vr logo
+								var bheight = $('.bigimg').height()/2-55.5
+								$('#vlogo').css({'top':bheight}).show()
 							}
 						</script>
 		
@@ -711,12 +714,7 @@
 							</div>
 						<?php endif; ?>
 					</div>
-					<script type="text/javascript">
-						$(function(){
-							var bheight = $('.bigimg').height()/2-55.5
-							$('#vlogo').css({'top':bheight}).show()
-						})
-					</script>
+
 					<div class="detail_pop_tlbtm">
 						<div class="detail_pop_tlbtmauth clearfix">
 							<div class="detail_pop_authava">

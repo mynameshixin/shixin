@@ -411,7 +411,7 @@
 			上传VR
 			<span class="pop_close"></span>
 		</p>
-		<div class="pop_conwrap">
+		<div class="pop_conwrap" style="height: 400px;overflow-y:scroll">
 			<div class="pop_namewrap clearfix">
 				<span class="pop_labelname" style="width: 80px">标题</span>
 				<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述" name='title' value="" style="width: 350px">

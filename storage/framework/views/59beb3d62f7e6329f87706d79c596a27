@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: rgba(229,229,229,.95)">
 <head>
 	<?php echo $__env->make('web.common.head', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </head>
