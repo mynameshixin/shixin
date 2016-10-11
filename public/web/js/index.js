@@ -799,8 +799,6 @@ var cfvr_new = 0
               width: 188,
               height: 30,
               onSubmit: function(text){
-                console.log(text)
-
                 if($.inArray(text,sfoldername)!=-1){
                   $('.pop_uploadvr .pop_labelselect').find('option[name='+text+']').attr('selected',1)
                 }

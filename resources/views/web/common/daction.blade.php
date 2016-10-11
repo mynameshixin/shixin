@@ -1,7 +1,8 @@
-<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
+
 <script type="text/javascript" src="{{asset('web')}}/js/angular.js"></script>
 <script type="text/javascript" src="{{asset('web')}}/js/distpicker.data.js"></script>
 <script type="text/javascript" src="{{asset('web')}}/js/distpicker.js"></script>
+<script type="text/javascript" src="{{asset('web')}}/js/autocomplete.js"></script>
 <script type="text/javascript">
   var upvr = angular.module('upvr', [], function($interpolateProvider) {
    $interpolateProvider.startSymbol('{%');
@@ -432,7 +433,7 @@
 				<span class="pop_labelname" style="width: 80px">地址</span>
 				<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址" name='detail_url' value="" style="width: 350px">
 			</div>
-
+			
 				<div class="vr_line">
 					<div class="vr-left"><span>位置</span></div>
 					<div class="vr-right">
@@ -526,20 +527,23 @@
 						</div>
 					</div>
 				</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname" style="width: 80px">文件夹</span>
-				<style type="text/css">
-				  #search_fvr .autocomplete-container{height: 40px; width: 200px}
-				  #search_fvr input{ padding-left: 20px }
-				</style>
-				<div class="pop_col_sinput_wrap">
-					<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
-					<div id="search_fvr" style="padding-left: 10px"></div>
+				<div class="vr_line">
+					<div class="vr-left"><span>文件夹</span></div>
+					<div class="vr-right" style="height: 90px">
+						<div class="pop_namewrap clearfix" style="padding: 0">
+							<style type="text/css">
+							  #search_fvr .autocomplete-container{height: 40px; width: 200px}
+							  #search_fvr input{ padding-left: 20px }
+							</style>
+							<div class="pop_col_sinput_wrap">
+								<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+								<div id="search_fvr" style="padding-left: 10px"></div>
+							</div>
+							<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+							</select>
+						</div>
+					</div>
 				</div>
-				<select class="pop_labelselect" style="margin-right: 15px;width:200px; margin-left: 80px" name='fid'>
-					
-				</select>
-			</div>
 		</div>
 		
 		<div class="pop_btnwrap">
