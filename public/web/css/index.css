@@ -1019,7 +1019,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .vr_line{width: 100%; float: left;padding: 8px 0;}
 .vr-left{float: left;width: 75px;padding-left: 30px;height: 35px;line-height: 35px;}
 .vr-left span{font:normal 12.5px/22px "Microsoft YaHei";color: #333;}
-.vr-right{float: right;width:440px;position: relative;height: 35px;line-height: 35px;}
+.vr-right{float: right;width:420px;position: relative;height: 35px;line-height: 35px;}
 .vr_line_first{height: 98px;overflow: hidden;}
 .vr_line_first .vr-left,.vr_line_first .vr-right{height: auto;line-height: 20px;}
 .vr_line_first .vr-left span{display: block;height: 35px;line-height: 35px;}
