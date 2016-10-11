@@ -157,19 +157,22 @@
 							</div>
 						</div>
 					</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname" style="width: 80px">文件夹</span>
-					<style type="text/css">
-					  #search_evr_new .autocomplete-container{height: 40px; width: 200px}
-					  #search_evr_new input{ padding-left: 20px }
-					</style>
-					<div class="pop_col_sinput_wrap">
-						<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
-						<div id="search_evr_new" style="padding-left: 10px"></div>
+				<div class="vr_line">
+					<div class="vr-left"><span>文件夹</span></div>
+					<div class="vr-right" style="height: 90px">
+						<div class="pop_namewrap clearfix" style="padding: 0">
+							<style type="text/css">
+							  #search_evr_new .autocomplete-container{height: 40px; width: 200px}
+							  #search_evr_new input{ padding-left: 20px }
+							</style>
+							<div class="pop_col_sinput_wrap">
+								<a href="javascript:;" class="pop_col_sinputbtn" title='堆图家搜索' style="float: left;position: unset; margin-top: 10px"></a>
+								<div id="search_evr_new" style="padding-left: 10px"></div>
+							</div>
+							<select class="pop_labelselect" style="margin-right: 15px;width:200px;" name='fid'>
+							</select>
+						</div>
 					</div>
-					<select class="pop_labelselect" style="margin-right: 15px;width:200px;margin-left: 80px" name='fid'>
-						
-					</select>
 				</div>
 				<input type="hidden" name="good_id" value="<?php echo e($goods['id']); ?>" />
 			</div>
