@@ -51,7 +51,7 @@ class PicsController extends CmController{
 		$data = fparam($data);
         $data['kind'] = 2 ;
         $data['page'] = isset($data['page'])?$data['page']:1;
-        $num = isset($data['num']) ? $data['num'] : 15;
+        $num = 20;
         $user_ids = $folder_ids = [];
         $user_id = $this->user_id;
         $user_ids[] = $user_id;
