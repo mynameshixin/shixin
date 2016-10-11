@@ -60,7 +60,11 @@ $(function (){
 		  				$(".index_item_imgwrap img",$value).css({'height':rh+'px'}).removeAttr('src').attr('src',list[index].images[0].img_m).attr('alt',description)
 		  				$(".index_item_wrap",$value).attr('good_id',list[index].id)
 		  				$(".index_item_imgwrap .index_item_blurwrap",$value).attr('href','/webd/pic/'+list[index].id).attr('title',description)
-					    $(".index_item_price",$value).html('￥'+list[index].price)
+		  				$(".index_item_price",$value).remove()
+		  				if(list[index].kind==1){
+		  					$(".index_item_imgwrap",$value).append('<div class="index_item_price">'+list[index].price+'</div>')
+		  				}
+					    
 
 					    $('.detail_raido_wrapred',$value).attr('class','detail_raido_wrap')
 					    
@@ -70,6 +74,16 @@ $(function (){
 					    $(".index_item_rel",$value).attr('good_id',list[index].id)
 					    $(".index_item_l",$value).html(list[index].praise_count)
 					    $(".index_item_c",$value).html(list[index].collection_count)
+					    $(".index_item_b",$value).remove()
+					    $(".index_item_d",$value).remove()
+
+					    if(list[index].kind==1){
+					    	$(".index_item_rel",$value).append('<a href="'+list[index].detail_url+'" class="index_item_b" target="_blank" title="保存"></a>')
+						}else if(list[index].kind==2){
+							$(".index_item_rel",$value).append('<a class="index_item_d" onclick="praise(this,2)" title="点踩">'+list[index].boo_count+'</a>')
+						}
+
+
 					    $(".index_item_b",$value).attr('href',list[index].detail_url)
 					    $(".index_item_d",$value).html(list[index].boo_count)
 					    //vr
@@ -80,7 +94,7 @@ $(function (){
 
 
 					    $('.comment',$value).remove()
-					   if(list[index].comment != 0){
+					    if(list[index].comment != 0){
 					   		comment = list[index].comment[list[index].id]
 					    	user_nick = (comment.user.nick!='')?comment.user.nick:comment.user.username
 				    		$str = '<div class="index_item_bottom clearfix comment">'

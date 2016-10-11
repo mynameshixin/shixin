@@ -35,7 +35,7 @@
 							<?php if(!empty($value['detail_url']) && $value['kind']==2): ?><a class="index_item_vrlogo" href="{{url('webd/pic')}}/{{$value['id']}}" target="_blank"></a><?php endif; ?>
 							<img src="{{$value['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" style="height: {{$value['images'][0]['rh']}}px" onload="resize_xy(this)" alt="{{!empty(trim($value['description']))?$value['description']:$value['title']}}">
 							<?php if(!empty($value['price'])): ?>
-								<div class="index_item_price">￥{{$value['price']}}</div>
+								<div class="index_item_price">{{$value['price']}}</div>
 							<?php endif; ?>
 						</div>
 						<div class="index_item_info">
