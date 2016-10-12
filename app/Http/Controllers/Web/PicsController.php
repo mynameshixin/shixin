@@ -461,7 +461,7 @@ class PicsController extends CmController{
         ];
         $good = DB::table('goods')->where('id',$data['good_id'])->first();
         if($id = DB::table('comments')->insertGetId($entry)){
-            $msg_content = "评论了你的 <a href='/webd/pic/{$good['id']}' target='_blank'>{$good['title']}</a> 商品！";
+            $msg_content = "评论了你发布的 <a href='/webd/pic/{$good['id']}' target='_blank'>{$good['title']}</a>！";
             $var = json_encode(['good_id'=>$good['id'],'folder_id'=>$good['folder_id'],'image_ids'=>$good['image_ids'],'title'=>$good['title'],'kind'=>$good['kind']]);
             MessageService::getInstance()->addMessage($userId,$good['user_id'],1,$msg_content,2,$var,$good['id']);
             return response()->forApi(['id' => $id]);

@@ -55,7 +55,7 @@ class CollectionService extends ApiService
                }
                if ($user_id!=$good['user_id']) {
                    //发送 文件夹被收藏消息
-                   $msg_content = "收藏了你的 {$good['title']} 商品！";
+                   $msg_content = "收藏了你发布的 {$good['title']}！";
                    $var = json_encode(['good_id'=>$good_id,'folder_id'=>$folder_id,'image_ids'=>$good['image_ids'],'title'=>$good['title'],'kind'=>$good['kind']]);
                    MessageService::getInstance()->addMessage($user_id,$good['user_id'],1,$msg_content,2,$var,$good_id);
                }
