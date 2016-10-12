@@ -43,9 +43,9 @@ $(function (){
 						gtitle_2 = data[index].goods[1] != undefined?data[index].goods[1].title:'堆图家'
 						gtitle_3 = data[index].goods[2] != undefined?data[index].goods[2].title:'堆图家'
 
-						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:'#'
-						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:'#'
-						glink_3 = data[index].goods[2] != undefined?'/webd/pic/'+data[index].goods[2].id:'#'
+						glink_1 = data[index].goods[0] != undefined?'/webd/pic/'+data[index].goods[0].id:'javascript:;'
+						glink_2 = data[index].goods[1] != undefined?'/webd/pic/'+data[index].goods[1].id:'javascript:;'
+						glink_3 = data[index].goods[2] != undefined?'/webd/pic/'+data[index].goods[2].id:'javascript:;'
 						$($lis[index]).attr('folder_id',data[index].id)
 						$('.find_fold_name',$lis[index]).html(data[index].name).attr('href','/webd/folder?fid='+data[index].id).attr('title',data[index].name)
 						$('.find_fold_imgwrap a',$lis[index]).attr('href','/webd/folder?fid='+data[index].id).attr('title',data[index].name)

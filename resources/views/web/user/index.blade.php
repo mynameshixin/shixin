@@ -35,15 +35,15 @@
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][0]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][0]['title'] or '堆图家'}}"><img src="{{ $value['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][0]['title'] or '堆图家'}}"></a>
+								<a <?php if(!empty($value['goods'][0]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][0]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][0]['title'] or '堆图家'}}"><img src="{{ $value['goods'][0]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][0]['title'] or '堆图家'}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][1]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][1]['title'] or '堆图家'}}"><img src="{{ $value['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][1]['title'] or '堆图家'}}"></a>
+								<a <?php if(!empty($value['goods'][1]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][1]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][1]['title'] or '堆图家'}}"><img src="{{ $value['goods'][1]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][1]['title'] or '堆图家'}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][2]['title'] or '堆图家'}}"><img src="{{ $value['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][2]['title'] or '堆图家'}}"></a>
+								<a <?php if(!empty($value['goods'][2]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][2]['title'] or '堆图家'}}"><img src="{{ $value['goods'][2]['image_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['goods'][2]['title'] or '堆图家'}}"></a>
 							</div>
 						</div>
 						<a  <?php if($user_id != $self_id){ ?>onclick="relation(this)"<?php }else{ ?>onclick="folderEdit(this)" <?php } ?> class="find_fold_authflw " style="cursor: pointer;">
@@ -89,15 +89,15 @@
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][0]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][0]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][0]['image_url'])?$value['goods'][0]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][0]['title'] or '堆图家'}}"></a>
+								<a  <?php if(!empty($value['goods'][0]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][0]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][0]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][0]['image_url'])?$value['goods'][0]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][0]['title'] or '堆图家'}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][1]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][1]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][1]['image_url'])?$value['goods'][1]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][1]['title'] or '堆图家'}}"></a>
+								<a  <?php if(!empty($value['goods'][1]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][1]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][1]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][1]['image_url'])?$value['goods'][1]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][1]['title'] or '堆图家'}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}" class="position" target="_blank" title="{{$value['goods'][2]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][2]['image_url'])?$value['goods'][2]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][2]['title'] or '堆图家'}}"></a>
+								<a  <?php if(!empty($value['goods'][2]['id'])): ?>href="{{url('webd/pic')}}/{{$value['goods'][2]['id'] or '#'}}"<?php endif; ?> class="position" target="_blank" title="{{$value['goods'][2]['title'] or '堆图家'}}"><img src="<?php  echo isset($value['goods'][2]['image_url'])?$value['goods'][2]['image_url']:url('uploads/sundry/blogo.jpg');?>" alt="{{$value['goods'][2]['title'] or '堆图家'}}"></a>
 							</div>
 						</div>
 						<a onclick="folderEdit(this)" class="find_fold_authflw">编辑</a>
