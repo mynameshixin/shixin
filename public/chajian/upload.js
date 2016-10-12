@@ -133,7 +133,6 @@ function allimg_upload(obj){
 
   var folder_id = $(obj).attr('folder_id')
   var imgs=$(".imge_eea");
-   alert(imgs.src);
   var texts=$(".texts");
   var src=new Array();
   var alt=new Array();
@@ -447,7 +446,6 @@ $('#pic_cfolder').click(function(){
     'dataType':'json',
     'success':function(json){
       var folder_id = json.data.folder_id;
-      alert(folder_id);
       var imgs=$(".imge_eea");
       var src=new Array();
       var alt=new Array();
