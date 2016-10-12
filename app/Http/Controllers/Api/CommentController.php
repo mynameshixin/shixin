@@ -14,8 +14,8 @@ use App\Services\CommentService;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Validator;
-
-
+use App\Services\MessageService;
+use DB;
 /**
  *
  * @SWG\Resource(
@@ -155,7 +155,12 @@ class CommentController extends BaseController
 //             return response()->forApi(array(), 1001, '您已评论过该商品！');
 //         }
          $id = CommentService::getInstance()->addComment ($userId,$data,$_FILES);
-
+         if($id){
+            $good = DB::table('goods')->where('id',$data['good_id'])->first();
+            $msg_content = "评论了你发布的 {$good['title']}";
+            $var = json_encode(['good_id'=>$good['id'],'folder_id'=>$good['folder_id'],'image_ids'=>$good['image_ids'],'title'=>$good['title'],'kind'=>$good['kind']]);
+            MessageService::getInstance()->addMessage($userId,$good['user_id'],1,$msg_content,2,$var,$good['id']);
+         }
          return response()->forApi(['id'=>$id] , 200);
 
      }

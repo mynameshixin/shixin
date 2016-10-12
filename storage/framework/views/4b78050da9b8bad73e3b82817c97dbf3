@@ -718,7 +718,7 @@
 			</div>
 			<div class="pop_btnwrap">
 				<a href="javascript:;" id="send_new_message" to_id="<?php if(!empty($user_id)) echo $user_id; ?>" pic_m="
-				<?php if(!empty($self_info['pic_m'])) echo $self_info['pic_m']; ?>" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">发送留言</a>
+				<?php if(!empty($self_info['pic_m'])) echo $self_info['pic_m']; ?>" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" onclick="sendMess(this)">发送留言</a>
 			</div>
 		</div>
 	</div>

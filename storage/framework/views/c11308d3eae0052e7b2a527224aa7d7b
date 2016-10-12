@@ -70,18 +70,17 @@ var _hmt = _hmt || [];
 	})
 </script>
 <script type="text/javascript">
-function sendMess(){
-    $('#send_new_message').click(function(){
+function sendMess(obj){
       var sendtextArea = $('.letter_textarea textarea').val().trim();
-      var to_id = $(this).attr('to_id')
-      var pic_m = $(this).attr('pic_m')
+      var to_id = $(obj).attr('to_id')
+      var pic_m = $(obj).attr('pic_m')
       if (sendtextArea == "") {
         $('textarea[name=message]').focus()
       }else{
         $.ajax({
           'beforeSend':function(){
           	layer.load(0, {shade: 0.5});
-            $('#send_new_message').html('发送中')
+            $(obj).html('发送中')
           },
           'url':"/webd/notice/messages",
           'type':'post',
@@ -115,12 +114,11 @@ function sendMess(){
           },
           'complete':function(){
           	layer.closeAll('loading');
-            $('#send_new_message').html('发送留言')
+            $(obj).html('发送留言')
           }
         })
         
       };
-    })
   }
 // 私信弹窗
 function getMessage(obj){
@@ -175,7 +173,7 @@ function getMessage(obj){
 	$('.pop_con').css({
 		'margin-top':-(poptopHei/2)
 	})
-	sendMess()
+	// sendMess()
 } 
 
 function common_notice(){
