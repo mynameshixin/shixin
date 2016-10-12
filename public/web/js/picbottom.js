@@ -59,7 +59,7 @@ $(function (){
 		  				$('.index_item_price',$value).remove()
 		  				
 		  				if(list[index].price!=0){
-		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
+		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">'+list[index].price+'</div>')
 		  				}
 
 					    description = list[index].description!=''?list[index].description:list[index].title

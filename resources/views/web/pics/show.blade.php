@@ -688,7 +688,7 @@
 							<img src="{{$goods['images'][0]['img_o'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($goods['description']))?$goods['description']:$goods['title']}}" onload="re668(this)" class="bigimg">
 							<?php if(!empty($goods['source_url'])){ ?> </a><?php } ?>
 						<?php } ?>
-							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php  echo strpos($goods['detail_url'],'m.fancy.com')?'$':'￥'?><?php echo $goods['price'];?></div><?php endif; ?>
+							<?php if(!empty($goods['price'])): ?><div class="index_item_price"><?php echo $goods['price'];?></div><?php endif; ?>
 
 						<?php if(!empty($goods['detail_url']) && $goods['kind']==2){?><a href="{{$goods['detail_url']}}" target="_blank" title="vr"><img src="{{asset('web')}}/images/vrlogo.png" alt="vr" style="position: absolute; display: none; left:278.5px;top:50px; z-index: 2" id="vlogo"></a> <?php } ?>
 						</div>
@@ -874,7 +874,7 @@
 						<div class="index_item_wrap">
 							<div class="index_item_imgwrap clearfix">
 								<a class="index_item_blurwrap" target="_blank" href="{{url('webd/pic')}}/{{$v['id']}}" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}"></a>
-								<?php if(!empty($v['price'])): ?><div class="index_item_price">￥{{$v['price']}}</div><?php endif; ?>
+								<?php if(!empty($v['price'])): ?><div class="index_item_price">{{$v['price']}}</div><?php endif; ?>
 								<img src="{{$v['image_url']}}" style="height: {{$v['rh']}}px" onload="resize_xy(this)" alt="{{!empty(trim($v['description']))?$v['description']:$v['title']}}">
 							</div>
 							<div class="index_item_info">
