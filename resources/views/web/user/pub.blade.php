@@ -16,7 +16,7 @@
 							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" target="_blank" img_id="{{$v['id']}}" title="{{!empty(trim($v['description']))?$v['description']:$v['title']}}"></a>
 							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($v['description']))?$v['description']:$v['title']}}" style="height: {{$v['images'][0]['rh']}}px">
 							<?php if(isset($v['price']) && !empty($v['price'])): ?>
-								<div class="index_item_price">￥{{$v['price']}}</div>
+								<div class="index_item_price">{{$v['price']}}</div>
 							<?php endif; ?>
 						</div>
 						<div class="index_item_info">

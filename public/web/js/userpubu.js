@@ -61,7 +61,7 @@ $(function (){
 		  				$('.index_item_price',$value).remove()
 		  				$('.index_item_blurwrap',$value).attr('img_id',list[index].id).attr('href','/webd/pic/'+list[index].id).attr('title',description)
 		  				if(list[index].price!=0){
-		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">￥'+list[index].price+'</div>')
+		  					$('.index_item_imgwrap',$value).append('<div class="index_item_price">'+list[index].price+'</div>')
 		  				}
 
 					    
