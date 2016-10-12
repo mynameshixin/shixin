@@ -13,6 +13,7 @@ use App\Services\CollectionService;
 use App\Services\ProductService;
 use App\Services\Admin\ImageService as ImageService;
 use App\Models\CollectionGood;
+use App\Services\MessageService;
 use DB;
 
 
@@ -458,7 +459,11 @@ class PicsController extends CmController{
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ];
+        $good = DB::table('goods')->where('id',$data['good_id'])->first();
         if($id = DB::table('comments')->insertGetId($entry)){
+            $msg_content = "评论了你的 <a href='/webd/pic/{$good['id']}' target='_blank'>{$good['title']}</a> 商品！";
+            $var = json_encode(['good_id'=>$good['id'],'folder_id'=>$good['folder_id'],'image_ids'=>$good['image_ids'],'title'=>$good['title'],'kind'=>$good['kind']]);
+            MessageService::getInstance()->addMessage($userId,$good['user_id'],1,$msg_content,2,$var,$good['id']);
             return response()->forApi(['id' => $id]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
