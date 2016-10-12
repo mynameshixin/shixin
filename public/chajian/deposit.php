@@ -330,7 +330,7 @@
                	 	var tab = $("#sou_suo");
                 	$(jsonp.folder).each(function(i,dom){   
                 	var tr = $("<tr>");                             
-                   alert(dom.folder);
+                 
                          tr.append("<td style='cursor:pointer; height:30px;' class='pop_col_colum_on clearfix' onclick='allimg_upload(this)' folder_id="+dom.id+">"+"<div>" + dom.name +"</div>"+"</td>"); 
                      
                     tab.append(tr);
