@@ -70,7 +70,7 @@ var _hmt = _hmt || [];
 	})
 </script>
 <script type="text/javascript">
-function sendMess(){
+//function sendMess(){
     $('#send_new_message').click(function(){
       var sendtextArea = $('.letter_textarea textarea').val().trim();
       var to_id = $(this).attr('to_id')
@@ -121,7 +121,7 @@ function sendMess(){
         
       };
     })
-  }
+  //}
 // 私信弹窗
 function getMessage(obj){
 	$('.pop_letter').show();
@@ -175,7 +175,7 @@ function getMessage(obj){
 	$('.pop_con').css({
 		'margin-top':-(poptopHei/2)
 	})
-	sendMess()
+	// sendMess()
 } 
 
 function common_notice(){
