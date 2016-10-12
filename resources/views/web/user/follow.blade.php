@@ -26,19 +26,19 @@
 							<ul class="find_user_limg">
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][0]['id'] or 'javascript:;'}}" class="position" target="_blank" title="{{$value['folders'][0]['name'] or '堆图家'}}"><img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][0]['name'] or '堆图家'}}"></a>
+									<a <?php if(!empty($value['folders'][0]['id'])): ?>href="{{url('webd/folder')}}?fid={{$value['folders'][0]['id'] or ''}}"<?php endif; ?> class="position" target="_blank" title="{{$value['folders'][0]['name'] or '堆图家'}}"><img src="{{$value['folders'][0]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][0]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][1]['id'] or 'javascript:;'}}" class="position" target="_blank" title="{{$value['folders'][1]['name'] or '堆图家'}}"><img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][1]['name'] or '堆图家'}}"></a>
+									<a <?php if(!empty($value['folders'][1]['id'])): ?>href="{{url('webd/folder')}}?fid={{$value['folders'][1]['id'] or ''}}"<?php endif; ?> class="position" target="_blank" title="{{$value['folders'][1]['name'] or '堆图家'}}"><img src="{{$value['folders'][1]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][1]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][2]['id'] or 'javascript:;'}}" class="position" target="_blank" title="{{$value['folders'][2]['name'] or '堆图家'}}"><img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][2]['name'] or '堆图家'}}"></a>
+									<a <?php if(!empty($value['folders'][2]['id'])): ?>href="{{url('webd/folder')}}?fid={{$value['folders'][2]['id'] or ''}}"<?php endif; ?> class="position" target="_blank" title="{{$value['folders'][2]['name'] or '堆图家'}}"><img src="{{$value['folders'][2]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][2]['name'] or '堆图家'}}"></a>
 								</li>
 								<li>
 									<div class="find_user_blur"></div>
-									<a href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or 'javascript:;'}}" class="position" target="_blank" title="{{$value['folders'][3]['name'] or '堆图家'}}"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][3]['name'] or '堆图家'}}"></a>
+									<a <?php if(!empty($value['folders'][3]['id'])): ?>href="{{url('webd/folder')}}?fid={{$value['folders'][3]['id'] or ''}}"<?php endif; ?> class="position" target="_blank" title="{{$value['folders'][3]['name'] or '堆图家'}}"><img src="{{$value['folders'][3]['img_url'] or url('uploads/sundry/blogo.jpg')}}" alt="{{$value['folders'][3]['name'] or '堆图家'}}"></a>
 								</li>
 							</ul>
 							<a onclick="relation(this)" class="find_user_authflw" <?php if($self_id==$value['id']): ?>style="display: none"<?php endif; ?>>
