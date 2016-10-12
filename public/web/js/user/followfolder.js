@@ -41,9 +41,9 @@ $(function (){
 						gtitle_2 = data[index].folder_goods[1] != undefined?data[index].folder_goods[1].title:'堆图家'
 						gtitle_3 = data[index].folder_goods[2] != undefined?data[index].folder_goods[2].title:'堆图家'
 
-						glink_1 = data[index].folder_goods[0] != undefined?'/webd/pic/'+data[index].folder_goods[0].id:'#'
-						glink_2 = data[index].folder_goods[1] != undefined?'/webd/pic/'+data[index].folder_goods[1].id:'#'
-						glink_3 = data[index].folder_goods[2] != undefined?'/webd/pic/'+data[index].folder_goods[2].id:'#'
+						glink_1 = data[index].folder_goods[0] != undefined?'/webd/pic/'+data[index].folder_goods[0].id:'javascript:;'
+						glink_2 = data[index].folder_goods[1] != undefined?'/webd/pic/'+data[index].folder_goods[1].id:'javascript:;'
+						glink_3 = data[index].folder_goods[2] != undefined?'/webd/pic/'+data[index].folder_goods[2].id:'javascript:;'
 						username = data[index].nick==''?data[index].username:data[index].nick
 						$($lis[index]).attr('folder_id',data[index].folder_id)
 						pic = data[index].user.auth_avatar!=null?data[index].user.auth_avatar:data[index].user.pic_m

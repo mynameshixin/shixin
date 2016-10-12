@@ -31,15 +31,15 @@
 						<div class="find_fold_limg clearfix">
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][0]['id'] or '#'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][0]['description']))?$value['folder_goods'][0]['description']:$value['folder_goods'][0]['title']}}"><img src="{{$value['folder_goods'][0]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][0]['description']))?$value['folder_goods'][0]['description']:$value['folder_goods'][0]['title']}}"></a>
+								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][0]['id'] or 'javascript:;'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][0]['description']))?$value['folder_goods'][0]['description']:$value['folder_goods'][0]['title']}}"><img src="{{$value['folder_goods'][0]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][0]['description']))?$value['folder_goods'][0]['description']:$value['folder_goods'][0]['title']}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][1]['id'] or '#'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][1]['description']))?$value['folder_goods'][1]['description']:$value['folder_goods'][1]['title']}}"><img src="{{$value['folder_goods'][1]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][1]['description']))?$value['folder_goods'][1]['description']:$value['folder_goods'][1]['title']}}"></a>
+								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][1]['id'] or 'javascript:;'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][1]['description']))?$value['folder_goods'][1]['description']:$value['folder_goods'][1]['title']}}"><img src="{{$value['folder_goods'][1]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][1]['description']))?$value['folder_goods'][1]['description']:$value['folder_goods'][1]['title']}}"></a>
 							</div>
 							<div class="find_fold_liwrap">
 								<div class="find_fold_liblur"></div>
-								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][2]['id'] or '#'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][2]['description']))?$value['folder_goods'][2]['description']:$value['folder_goods'][2]['title']}}"><img src="{{$value['folder_goods'][2]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][2]['description']))?$value['folder_goods'][2]['description']:$value['folder_goods'][2]['title']}}"></a>
+								<a href="{{url('webd/pic')}}/{{$value['folder_goods'][2]['id'] or 'javascript:;'}}" target="_blank" class="position" title="{{!empty(trim($value['folder_goods'][2]['description']))?$value['folder_goods'][2]['description']:$value['folder_goods'][2]['title']}}"><img src="{{$value['folder_goods'][2]['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" alt="{{!empty(trim($value['folder_goods'][2]['description']))?$value['folder_goods'][2]['description']:$value['folder_goods'][2]['title']}}"></a>
 							</div>
 						</div>
 						<a onclick="relation(this)" class="find_fold_authflw" <?php  if($value['user']['id']==$self_id):?>style="display: none"<?php endif; ?>>
