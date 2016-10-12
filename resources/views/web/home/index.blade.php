@@ -71,7 +71,7 @@
 						<div class="index_item_imgwrap clearfix">
 							<a class="index_item_blurwrap" href="{{url('webd/pic/')}}/{{$v['id']}}" target="_blank" title="{{$v['description']}}"></a>
 							<img src="{{$v['images'][0]['img_m'] or url('uploads/sundry/blogo.jpg')}}" style="height: {{$v['images'][0]['rh']}}px" onload="resize_xy(this)" alt="{{$v['description']}}">
-							<div class="index_item_price"><?php echo strpos($v['detail_url'],'m.fancy.com')?'$':'￥'; ?>{{$v['price']}}</div>
+							<div class="index_item_price">{{$v['price']}}</div>
 						</div>
 						<div class="index_item_info">
 							<div class="index_item_top">
