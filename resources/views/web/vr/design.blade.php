@@ -3,7 +3,7 @@
 
 		<div class="vr_home home_design">
 			<div class="w1248">
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3><span>——</span>优秀设计师作品<span>——</span></h3>
 					</div>
@@ -26,7 +26,7 @@
 					<div class="des_more"><a href="javascript:;" class="nolog_index_conmore1" type="2" id="des_more2">查看更多。。。</a></div>
 				</div>
 				<!--二手房改造精选-->
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3><span>——</span>二手房改造精选<span>——</span></h3>
 					</div>

@@ -71,7 +71,7 @@
 	</div>
 	<div class="vr_home">
 			<div class="w1248">
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<ul class="clearfix" id="ul" >
 					<?php foreach ($needData as $key => $v) { ?>
 						<li class="vr_home_list">

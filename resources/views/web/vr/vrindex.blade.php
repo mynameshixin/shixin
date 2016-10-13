@@ -4,7 +4,7 @@
 		<div class="vr_home home_design">
 			<div class="w1248">
 				<!--品牌家居店-->
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3><span>——</span>品牌家居店<span>——</span></h3>
 					</div>
@@ -28,7 +28,7 @@
 					<div class="des_more"><a href="javascript:;" class="nolog_index_conmore1" type="1" id="des_more1">查看更多。。。</a></div>
 				</div>
 				<!--品牌饰品店-->
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3><span>——</span>品牌饰品店<span>——</span></h3>
 					</div>
@@ -52,7 +52,7 @@
 					<div class="des_more"><a href="javascript:;" class="nolog_index_conmore1" type="2" id="des_more2">查看更多。。。</a></div>
 				</div>
 				<!--品牌卫浴店-->
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3><span>——</span>品牌卫浴店<span>——</span></h3>
 					</div>

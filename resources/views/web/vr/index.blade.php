@@ -2,7 +2,7 @@
 
 		<div class="vr_home">
 			<div class="w1248">
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
 						<h3>最新VR</h3>
 					</div>
