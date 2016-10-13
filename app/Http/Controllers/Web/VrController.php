@@ -84,6 +84,7 @@ class VrController extends CmController{
 			'self_info'=>$this->self_info,
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'needData'=>$needData,
+            'pic'=>'index_banner',
 			'alias'=>1
 		];
 		return view('web.vr.index',$data);
@@ -104,6 +105,25 @@ class VrController extends CmController{
 		$data['num'] = 9;
 		$needData = $this->postSearch();
 		$alias = $data['alias'];
+        switch ($alias) {
+            case '1':
+                $pic = 'index_banner';
+                $k1 = '梦幻家——VR展示住宅空间';
+                $k2 = '身临其境的看房体验';
+                break;
+            case '2':
+                $pic = 'design_banner';
+                $k1 = '设计家——二手房与家居改造';
+                $k2 = '优秀作品实景展示';
+                break;
+            case '3':
+                $pic = 'vr_banner';
+                $k1 = 'VR门店——品牌门店VR全景展示';
+                $k2 = '身临其店轻松购物';
+                break;
+            default:
+                break;
+        }
 		$keyword = trim($data['keyword']);
 		// dd($needData);
 		$data = [
@@ -112,6 +132,9 @@ class VrController extends CmController{
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'needData'=>$needData,
 			'alias'=>$alias,
+            'pic'=>$pic,
+            'k1'=>$k1,
+            'k2'=>$k2,
 			'keyword'=>$keyword
 		];
 		return view('web.vr.search_index',$data);
@@ -228,6 +251,7 @@ class VrController extends CmController{
 			'user_info'=>!empty($user_info)?$user_info:[],
 			'needData'=>$needData,
 			'needData2'=>$needData2,
+            'pic'=>'design_banner',
 			'alias'=>2
 		];
 		return view('web.vr.design',$data);
@@ -258,6 +282,7 @@ class VrController extends CmController{
 			'needData'=>$needData,
 			'needData2'=>$needData2,
 			'needData3'=>$needData3,
+            'pic'=>'vr_banner',
 			'alias'=>3
 		];
 		return view('web.vr.vrindex',$data);

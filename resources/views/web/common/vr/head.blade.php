@@ -30,6 +30,9 @@ var _hmt = _hmt || [];
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+function rebind(obj,size){
+    if($(obj).width()>size) $(obj).css('width',size+'px')
+}
 </script>
 <script type="text/javascript">
     user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
@@ -202,7 +205,7 @@ var _hmt = _hmt || [];
 
 </script>
  <div class="container nolog_index_container clearfix {{$k3}}" >
-    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
+    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/vr')}}/{{$pic}}.png) top center no-repeat">
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">{{$k1}}</p>
         <div class="header_search_wrap clearfix">
