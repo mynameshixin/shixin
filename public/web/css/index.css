@@ -112,7 +112,7 @@ a{cursor: pointer;color: #000}
 /*findall.html*/
 .find_cater_all{position: relative;background: #fff;padding: 25px 28px;margin-bottom: 16px;}
 .find_cater_tril{width: 0;height: 0;border-left: 20px solid transparent;border-right: 20px solid transparent;border-bottom: 20px solid #fff;position: absolute;top: -20px;right: 62px;}
-.find_cater_aeach{width: 264px;/*min-height: 220px;*/float: left;margin-right: 44px; margin-top: 40px}
+.find_cater_aeach{width: 264px;/*min-height: 220px;*/float: left;margin-right: 44px; margin-top: 10px}
 .find_cater_aeach p{color:#555;}
 .find_cater_label{font:normal 16px/36px "Microsoft YaHei";color: #000;}
 .find_cater_aeach li {width: 72px;height: 30px;float: left;margin:0px 16px 0px 0px;}
@@ -1090,7 +1090,12 @@ option {
     font-weight: normal;display: block;white-space: pre;min-height: 1.2em;padding: 0px 2px 1px;
  }
 
+/*展开更多*/
+.pos_relative{position: relative;}
 
+.pos_relative .find_cater_aeach_wrap{width: 1188px;position: absolute;right: -20px;top: -21px; background-color: #fff; border: 1px solid #606060;padding: 20px; }
+.pos_relative .d-item{width: 880px;height: 370px; left: -22px;top: -20px;}
+.h-less,.h-more{font-size: 13px;margin-left: 15px; cursor:pointer;}
 
 
 

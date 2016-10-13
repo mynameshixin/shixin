@@ -115,31 +115,280 @@
 					<div class="find_cater_tril"></div>
 					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
 						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家具</p>
-							<li><a href="/webd/search/goods?keyword=沙发" target="_blank">沙发</a></li>
-							<li><a href="/webd/search/goods?keyword=椅子" target="_blank">椅子</a></li>
-							<li><a href="/webd/search/goods?keyword=书柜" target="_blank">书柜</a></li>
-							<li><a href="/webd/search/goods?keyword=茶几" target="_blank">茶几</a></li>
-							<li><a href="/webd/search/goods?keyword=床" target="_blank">床</a></li>
-							<li><a href="/webd/search/goods?keyword=餐桌" target="_blank">餐桌</a></li>
-							<li><a href="/webd/search/goods?keyword=衣柜" target="_blank">衣柜</a></li>
-							<li><a href="/webd/search/goods?keyword=电视柜" target="_blank">电视柜</a></li>
-							<li><a href="/webd/search/goods?keyword=鞋柜" target="_blank">鞋柜</a></li>
-							<li><a href="/webd/search/goods?keyword=户外家具" target="_blank">户外家具</a></li>
-							<li><a href="/webd/search/goods?keyword=儿童家具" target="_blank">儿童家具</a></li>
-							<li><a href="/webd/search/goods?keyword=收纳箱" target="_blank">收纳箱</a></li>
+							<p class="find_cater_label">设计风格</p>
+							<li><a href="/webd/search/goods?keyword=现代" target="_blank">现代</a></li>
+							<li><a href="/webd/search/goods?keyword=北欧" target="_blank">北欧</a></li>
+							<li><a href="/webd/search/goods?keyword=日式" target="_blank">日式</a></li>
+							<li><a href="/webd/search/goods?keyword=法式" target="_blank">法式</a></li>
+							<li><a href="/webd/search/goods?keyword=新中式" target="_blank">新中式</a></li>
+							<li><a href="/webd/search/goods?keyword=新古典" target="_blank">新古典</a></li>
+							<li><a href="/webd/search/goods?keyword=简欧" target="_blank">简欧</a></li>
+							<li><a href="/webd/search/goods?keyword=古典中式" target="_blank">古典中式</a></li>
+							<li><a href="/webd/search/goods?keyword=古典" target="_blank">古典</a></li>
+							<li><a href="/webd/search/goods?keyword=地中海" target="_blank">地中海</a></li>
+							<li><a href="/webd/search/goods?keyword=LOFT" target="_blank">LOFT</a></li>
+							<li><a href="/webd/search/goods?keyword=东南亚" target="_blank">东南亚</a></li>
+							<li><a href="/webd/search/goods?keyword=美式工业" target="_blank">美式工业</a></li>
+							<li><a href="/webd/search/goods?keyword=美式田园" target="_blank">美式田园</a></li>
+							<li><a href="/webd/search/goods?keyword=美式简约" target="_blank">美式简约</a></li>
+							<li><a href="/webd/search/goods?keyword=巴洛克" target="_blank">巴洛克</a></li>
+							<li><a href="/webd/search/goods?keyword=意大利" target="_blank">意大利</a></li>
+							<li><a href="/webd/search/goods?keyword=混搭" target="_blank">混搭</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
-							<p class="find_cater_label">灯饰</p>
-							<li><a href="/webd/search/goods?keyword=台灯" target="_blank">台灯</a></li>
-							<li><a href="/webd/search/goods?keyword=吊灯" target="_blank">吊灯</a></li>
-							<li><a href="/webd/search/goods?keyword=壁灯" target="_blank">壁灯</a></li>
-							<li><a href="/webd/search/goods?keyword=户外灯" target="_blank">户外灯</a></li>
-							<li><a href="/webd/search/goods?keyword=镜前灯" target="_blank">镜前灯</a></li>
-							<li><a href="/webd/search/goods?keyword=吸顶灯" target="_blank">吸顶灯</a></li>
-							<li><a href="/webd/search/goods?keyword=创意灯" target="_blank">创意灯</a></li>
-							<li><a href="/webd/search/goods?keyword=落地灯" target="_blank">落地灯</a></li>
+							<p class="find_cater_label">居家空间</p>
+							<li><a href="/webd/search/goods?keyword=客厅" target="_blank">客厅</a></li>
+							<li><a href="/webd/search/goods?keyword=玄关" target="_blank">玄关</a></li>
+							<li><a href="/webd/search/goods?keyword=餐厅" target="_blank">餐厅</a></li>
+							<li><a href="/webd/search/goods?keyword=卧室" target="_blank">卧室</a></li>
+							<li><a href="/webd/search/goods?keyword=阳台" target="_blank">阳台</a></li>
+							<li><a href="/webd/search/goods?keyword=厨房" target="_blank">厨房</a></li>
+							<li><a href="/webd/search/goods?keyword=书房" target="_blank">书房</a></li>
+							<li><a href="/webd/search/goods?keyword=阳光房" target="_blank">阳光房</a></li>
+							<li><a href="/webd/search/goods?keyword=庭院" target="_blank">庭院</a></li>
+							<li><a href="/webd/search/goods?keyword=花园" target="_blank">花园</a></li>
+							<li><a href="/webd/search/goods?keyword=衣帽间" target="_blank">衣帽间</a></li>
+							<li><a href="/webd/search/goods?keyword=卫生间" target="_blank">卫生间</a></li>
+							<li><a href="/webd/search/goods?keyword=酒窖" target="_blank">酒窖</a></li>
+							<li><a href="/webd/search/goods?keyword=阁楼" target="_blank">阁楼</a></li>
+							<li><a href="/webd/search/goods?keyword=走道" target="_blank">走道</a></li>
+							<li><a href="/webd/search/goods?keyword=楼梯过厅" target="_blank">楼梯过厅</a></li>
+							<li><a href="/webd/search/goods?keyword=儿童房" target="_blank">儿童房</a></li>
 						</ul>
+						<ul class="find_cater_aeach">
+							<p class="find_cater_label">商业广场</p>
+							<li><a href="/webd/search/goods?keyword=餐饮店" target="_blank">餐饮店</a></li>
+							<li><a href="/webd/search/goods?keyword=酒店" target="_blank">酒店</a></li>
+							<li><a href="/webd/search/goods?keyword=民宿" target="_blank">民宿</a></li>
+							<li><a href="/webd/search/goods?keyword=售楼处" target="_blank">售楼处</a></li>
+							<li><a href="/webd/search/goods?keyword=会所" target="_blank">会所</a></li>
+							<li><a href="/webd/search/goods?keyword=茶室" target="_blank">茶室</a></li>
+							<li><a href="/webd/search/goods?keyword=样板房" target="_blank">样板房</a></li>
+							<li><a href="/webd/search/goods?keyword=办公室" target="_blank">办公室</a></li>
+							<li><a href="/webd/search/goods?keyword=商业广场" target="_blank">商业广场</a></li>
+						</ul>
+						<ul class="find_cater_aeach mrightzero pos_relative">
+							<p class="find_cater_label">红星美凯龙<span class="h-more" style="font-size: 13px; margin-left: 10px;cursor: pointer;"><<(更多)</span></p>
+							<li><a href="/webd/search/goods?keyword=左右" target="_blank">左右</a></li>
+							<li><a href="/webd/search/goods?keyword=奥卓" target="_blank">奥卓</a></li>
+							<li><a href="/webd/search/goods?keyword=双叶" target="_blank">双叶</a></li>
+							<li><a href="/webd/search/goods?keyword=多喜爱" target="_blank">多喜爱</a></li>
+							<li><a href="/webd/search/goods?keyword=法染仕" target="_blank">法染仕</a></li>
+							<li><a href="/webd/search/goods?keyword=柏逸轩" target="_blank">柏逸轩</a></li>
+							<li><a href="/webd/search/goods?keyword=大公馆" target="_blank">大公馆</a></li>
+							<li><a href="/webd/search/goods?keyword=欧意诺" target="_blank">欧意诺</a></li>
+							<li><a href="/webd/search/goods?keyword=欧亚森" target="_blank">欧亚森</a></li>
+							<li><a href="/webd/search/goods?keyword=艺尊轩" target="_blank">艺尊轩</a></li>
+							<li><a href="/webd/search/goods?keyword=印卓艺" target="_blank">印卓艺</a></li>
+							<li><a href="/webd/search/goods?keyword=御景源" target="_blank">御景源</a></li>
+							<li><a href="/webd/search/goods?keyword=罗曼迪卡" target="_blank">罗曼迪卡</a></li>
+							<li><a href="/webd/search/goods?keyword=奥克维尔" target="_blank">奥克维尔</a></li>
+							<li><a href="/webd/search/goods?keyword=优胜美地" target="_blank">优胜美地</a></li>
+							<li><a href="/webd/search/goods?keyword=laz boy" target="_blank">laz boy</a></li>
+							<li><a href="/webd/search/goods?keyword=fc" target="_blank">fc</a></li>
+							<li><a href="/webd/search/goods?keyword=m&d" target="_blank">m&d</a></li>
+							<div class="find_cater_aeach_wrap h-div clearfix" style="margin-bottom: 40px; display: none;">
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">吉盛伟邦</p>
+									<li><a href="/webd/search/goods?keyword=高点">高点</a></li>
+									<li><a href="/webd/search/goods?keyword=奢世">奢世</a></li>
+									<li><a href="/webd/search/goods?keyword=迪信">迪信</a></li>
+									<li><a href="/webd/search/goods?keyword=康宝">康宝</a></li>
+									<li><a href="/webd/search/goods?keyword=澳瑞">澳瑞</a></li>
+									<li><a href="/webd/search/goods?keyword=百强">百强</a></li>
+									<li><a href="/webd/search/goods?keyword=瑞加设计">瑞加设计</a></li>
+									<li><a href="/webd/search/goods?keyword=百合臻品">百合臻品</a></li>
+									<li><a href="/webd/search/goods?keyword=天元尚品">天元尚品</a></li>
+									<li><a href="/webd/search/goods?keyword=皇家爱菲">皇家爱菲</a></li>
+									<li><a href="/webd/search/goods?keyword=法米商居">法米商居</a></li>
+									<li><a href="/webd/search/goods?keyword=富兰帝斯">富兰帝斯</a></li>
+									<li><a href="/webd/search/goods?keyword=Bedont">Bedont</a></li>
+									<li><a href="/webd/search/goods?keyword=Reflex">Reflex</a></li>
+									<li><a href="/webd/search/goods?keyword=Sedital">Sedital</a></li>
+									<li><a href="/webd/search/goods?keyword=Bertolini">Bertolini</a></li>
+									<li><a href="/webd/search/goods?keyword=Mastella">Mastella</a></li>
+									<li><a href="/webd/search/goods?keyword=Zanaboni">Zanaboni</a></li>
+								</ul>
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">艺展空间</p>
+									<li><a href="/webd/search/goods?keyword=邸色">邸色</a></li>
+									<li><a href="/webd/search/goods?keyword=简末">简末</a></li>
+									<li><a href="/webd/search/goods?keyword=米兰诺">米兰诺</a></li>
+									<li><a href="/webd/search/goods?keyword=物本造">物本造</a></li>
+									<li><a href="/webd/search/goods?keyword=一念间">一念间</a></li>
+									<li><a href="/webd/search/goods?keyword=明艺韵">明艺韵</a></li>
+									<li><a href="/webd/search/goods?keyword=醒艺廊">醒艺廊</a></li>
+									<li><a href="/webd/search/goods?keyword=上坐">上坐</a></li>
+									<li><a href="/webd/search/goods?keyword=法诺">法诺</a></li>
+									<li><a href="/webd/search/goods?keyword=哒哒饰">哒哒饰</a></li>
+									<li><a href="/webd/search/goods?keyword=U+家具">U+家具</a></li>
+									<li><a href="/webd/search/goods?keyword=罗瓦莎">罗瓦莎</a></li>
+									<li><a href="/webd/search/goods?keyword=米立方">米立方</a></li>
+									<li><a href="/webd/search/goods?keyword=泠空间">泠空间</a></li>
+									<li><a href="/webd/search/goods?keyword=可立特">可立特</a></li>
+									<li><a href="/webd/search/goods?keyword=DOMO">DOMO</a></li>
+									<li><a href="/webd/search/goods?keyword=HOME+">HOME+</a></li>
+									<li><a href="/webd/search/goods?keyword=HAUS658">HAUS658</a></li>
+								</ul>
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">广州国际家具博览会</p>
+									<li><a href="/webd/search/goods?keyword=杨狮">杨狮</a></li>
+									<li><a href="/webd/search/goods?keyword=御品">御品</a></li>
+									<li><a href="/webd/search/goods?keyword=摩卡">摩卡</a></li>
+									<li><a href="/webd/search/goods?keyword=非凡">非凡</a></li>
+									<li><a href="/webd/search/goods?keyword=非同">非同</a></li>
+									<li><a href="/webd/search/goods?keyword=纳希">纳希</a></li>
+									<li><a href="/webd/search/goods?keyword=雅时">雅时</a></li>
+									<li><a href="/webd/search/goods?keyword=舒派">舒派</a></li>
+									<li><a href="/webd/search/goods?keyword=逸居">逸居</a></li>
+									<li><a href="/webd/search/goods?keyword=欧蒂诺">欧蒂诺</a></li>
+									<li><a href="/webd/search/goods?keyword=克里斯">克里斯</a></li>
+									<li><a href="/webd/search/goods?keyword=卡迪娅">卡迪娅</a></li>
+									<li><a href="/webd/search/goods?keyword=卡尼亚">卡尼亚</a></li>
+									<li><a href="/webd/search/goods?keyword=康耐登">康耐登</a></li>
+									<li><a href="/webd/search/goods?keyword=梦露斯">梦露斯</a></li>
+									<li><a href="/webd/search/goods?keyword=area">area</a></li>
+									<li><a href="/webd/search/goods?keyword=armoni">armoni</a></li>
+									<li><a href="/webd/search/goods?keyword=leta">leta</a></li>
+								</ul>
+								<ul class="find_cater_aeach mrightzero">
+									<p class="find_cater_label">红星美凯龙<span class="h-less">  >>(收起)</span></p>
+									<li><a href="/webd/search/goods?keyword=左右" target="_blank">左右</a></li>
+									<li><a href="/webd/search/goods?keyword=奥卓" target="_blank">奥卓</a></li>
+									<li><a href="/webd/search/goods?keyword=双叶" target="_blank">双叶</a></li>
+									<li><a href="/webd/search/goods?keyword=多喜爱" target="_blank">多喜爱</a></li>
+									<li><a href="/webd/search/goods?keyword=法染仕" target="_blank">法染仕</a></li>
+									<li><a href="/webd/search/goods?keyword=柏逸轩" target="_blank">柏逸轩</a></li>
+									<li><a href="/webd/search/goods?keyword=大公馆" target="_blank">大公馆</a></li>
+									<li><a href="/webd/search/goods?keyword=欧意诺" target="_blank">欧意诺</a></li>
+									<li><a href="/webd/search/goods?keyword=欧亚森" target="_blank">欧亚森</a></li>
+									<li><a href="/webd/search/goods?keyword=艺尊轩" target="_blank">艺尊轩</a></li>
+									<li><a href="/webd/search/goods?keyword=印卓艺" target="_blank">印卓艺</a></li>
+									<li><a href="/webd/search/goods?keyword=御景源" target="_blank">御景源</a></li>
+									<li><a href="/webd/search/goods?keyword=罗曼迪卡" target="_blank">罗曼迪卡</a></li>
+									<li><a href="/webd/search/goods?keyword=奥克维尔" target="_blank">奥克维尔</a></li>
+									<li><a href="/webd/search/goods?keyword=优胜美地" target="_blank">优胜美地</a></li>
+									<li><a href="/webd/search/goods?keyword=laz boy" target="_blank">laz boy</a></li>
+									<li><a href="/webd/search/goods?keyword=fc" target="_blank">fc</a></li>
+									<li><a href="/webd/search/goods?keyword=m&d" target="_blank">m&d</a></li>
+									
+								</ul>
+								
+							</div>
+						</ul>
+					</div>
+					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
+						<ul class="find_cater_aeach pos_relative">
+							<p class="find_cater_label">单品<span class="h-more" style="font-size: 13px; margin-left: 10px;cursor: pointer;">(更多)>></span></p>
+							<li><a href="/webd/search/goods?keyword=沙发" target="_blank">沙发</a></li>
+							<li><a href="/webd/search/goods?keyword=桌" target="_blank">桌</a></li>
+							<li><a href="/webd/search/goods?keyword=床" target="_blank">床</a></li>
+							<li><a href="/webd/search/goods?keyword=柜" target="_blank">柜</a></li>
+							<li><a href="/webd/search/goods?keyword=架" target="_blank">架</a></li>
+							<li><a href="/webd/search/goods?keyword=其他" target="_blank">其他</a></li>
+							<div class="find_cater_aeach_wrap h-div  d-item clearfix" style="margin-bottom: 40px; display: none;">
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">沙发<span class="h-less">(合上)>></span></p>
+									<li><a href="/webd/search/goods?keyword=三人沙发">三人沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=双人沙发">双人沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=单人沙发">单人沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=沙发床">沙发床</a></li>
+									<li><a href="/webd/search/goods?keyword=布艺沙发">布艺沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=皮质沙发">皮质沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=古典沙发">古典沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=现代沙发">现代沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=美式沙发">美式沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=东南亚沙发">东南亚沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=简欧沙发">简欧沙发</a></li>
+									<li><a href="/webd/search/goods?keyword=日式沙发">日式沙发</a></li>
+									
+								</ul>
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">桌</p>
+									<li><a href="/webd/search/goods?keyword=餐桌">餐桌</a></li>
+									<li><a href="/webd/search/goods?keyword=书桌">书桌</a></li>
+									<li><a href="/webd/search/goods?keyword=茶几">茶几</a></li>
+									<li><a href="/webd/search/goods?keyword=办公桌">办公桌</a></li>
+									<li><a href="/webd/search/goods?keyword=梳妆台">梳妆台</a></li>
+									<li><a href="/webd/search/goods?keyword=吧台">吧台</a></li>
+									<li><a href="/webd/search/goods?keyword=会议桌">会议桌</a></li>
+									<li><a href="/webd/search/goods?keyword=沙发桌">沙发桌</a></li>
+									<li><a href="/webd/search/goods?keyword=咖啡桌">咖啡桌</a></li>
+								</ul>
+								<ul class="find_cater_aeach mrightzero">
+									<p class="find_cater_label">床</p>
+									<li><a href="/webd/search/goods?keyword=双人床">双人床</a></li>
+									<li><a href="/webd/search/goods?keyword=儿童床">儿童床</a></li>
+									<li><a href="/webd/search/goods?keyword=单人床">单人床</a></li>
+									<li><a href="/webd/search/goods?keyword=实木床">实木床</a></li>
+									<li><a href="/webd/search/goods?keyword=板式床">板式床</a></li>
+									<li><a href="/webd/search/goods?keyword=铁艺床">铁艺床</a></li>
+									<li><a href="/webd/search/goods?keyword=水床">水床</a></li>
+									<li><a href="/webd/search/goods?keyword=吊床">吊床</a></li>
+									<li><a href="/webd/search/goods?keyword=榻榻米床">榻榻米床</a></li>
+									<li><a href="/webd/search/goods?keyword=欧式床">欧式床</a></li>
+									<li><a href="/webd/search/goods?keyword=折叠床">折叠床</a></li>
+									<li><a href="/webd/search/goods?keyword=美式床">美式床</a></li>
+									<li><a href="/webd/search/goods?keyword=地中海床">地中海床</a></li>
+									<li><a href="/webd/search/goods?keyword=高低床">高低床</a></li>
+								</ul>
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">柜</p>
+									<li><a href="/webd/search/goods?keyword=电视柜">电视柜</a></li>
+									<li><a href="/webd/search/goods?keyword=衣柜">衣柜</a></li>
+									<li><a href="/webd/search/goods?keyword=书柜">书柜</a></li>
+									<li><a href="/webd/search/goods?keyword=床头柜">床头柜</a></li>
+									<li><a href="/webd/search/goods?keyword=浴室柜">浴室柜</a></li>
+									<li><a href="/webd/search/goods?keyword=酒柜">酒柜</a></li>
+									<li><a href="/webd/search/goods?keyword=玄关柜">玄关柜</a></li>
+									<li><a href="/webd/search/goods?keyword=五斗柜">五斗柜</a></li>
+									<li><a href="/webd/search/goods?keyword=橱柜">橱柜</a></li>
+									<li><a href="/webd/search/goods?keyword=餐边柜">餐边柜</a></li>
+									<li><a href="/webd/search/goods?keyword=餐具柜">餐具柜</a></li>
+									<li><a href="/webd/search/goods?keyword=食品柜">食品柜</a></li>
+									<li><a href="/webd/search/goods?keyword=文件柜">文件柜</a></li>
+									<li><a href="/webd/search/goods?keyword=组合柜">组合柜</a></li>
+									<li><a href="/webd/search/goods?keyword=吧柜">吧柜</a></li>
+
+									
+								</ul>
+								<ul class="find_cater_aeach">
+									<p class="find_cater_label">架子</p>
+									<li><a href="/webd/search/goods?keyword=书架">书架</a></li>
+									<li><a href="/webd/search/goods?keyword=鞋架">鞋架</a></li>
+									<li><a href="/webd/search/goods?keyword=衣帽架">衣帽架</a></li>
+									<li><a href="/webd/search/goods?keyword=花架">花架</a></li>
+									<li><a href="/webd/search/goods?keyword=伞架">伞架</a></li>
+									<li><a href="/webd/search/goods?keyword=博古架">博古架</a></li>
+									<li><a href="/webd/search/goods?keyword=格架">格架</a></li>
+									
+								</ul>
+								<ul class="find_cater_aeach mrightzero">
+									<p class="find_cater_label">其他</p>
+									<li><a href="/webd/search/goods?keyword=隔断">隔断</a></li>
+									<li><a href="/webd/search/goods?keyword=窗帘">窗帘</a></li>
+									<li><a href="/webd/search/goods?keyword=淋浴">淋浴</a></li>
+									<li><a href="/webd/search/goods?keyword=浴缸">浴缸</a></li>
+									
+								</ul>
+						
+							</div>
+						</ul>
+						
+						<ul class="find_cater_aeach nolog_index_cateachcolor">
+			              <p class="find_cater_label">色系</p>
+			                <li><a href="/webd/search/goods?keyword=红色" target="_blank" class="nolog_index_cr" title="红色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=橙色" target="_blank" class="nolog_index_co" title="橙色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=黄色" target="_blank" class="nolog_index_cy" title="黄色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=绿色" target="_blank" class="nolog_index_cg" title="绿色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=青色" target="_blank" class="nolog_index_cq" title="青色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=蓝色" target="_blank" class="nolog_index_cl" title="蓝色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=紫色" target="_blank" class="nolog_index_cp" title="紫色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=黑色" target="_blank" class="nolog_index_cb" title="黑色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=白色" target="_blank" class="nolog_index_cw" title="白色"></a></li>
+			                <li><a href="/webd/search/goods?keyword=灰色" target="_blank" class="nolog_index_cc" title="灰色"></a></li>
+			            </ul>
+						
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">装饰摆设</p>
 							<li><a href="/webd/search/goods?keyword=摆件" target="_blank">摆件</a></li>
@@ -150,8 +399,27 @@
 							<li><a href="/webd/search/goods?keyword=挂钩" target="_blank">挂钩</a></li>
 							<li><a href="/webd/search/goods?keyword=收纳" target="_blank">收纳</a></li>
 							<li><a href="/webd/search/goods?keyword=相框" target="_blank">相框</a></li>
+							<li><a href="/webd/search/goods?keyword=其他" target="_blank">其他</a></li>
 						</ul>
 						<ul class="find_cater_aeach mrightzero">
+							<p class="find_cater_label">灯饰</p>
+							<li><a href="/webd/search/goods?keyword=台灯" target="_blank">台灯</a></li>
+							<li><a href="/webd/search/goods?keyword=吊灯" target="_blank">吊灯</a></li>
+							<li><a href="/webd/search/goods?keyword=壁灯" target="_blank">壁灯</a></li>
+							<li><a href="/webd/search/goods?keyword=户外灯" target="_blank">户外灯</a></li>
+							<li><a href="/webd/search/goods?keyword=镜前灯" target="_blank">镜前灯</a></li>
+							<li><a href="/webd/search/goods?keyword=吸顶灯" target="_blank">吸顶灯</a></li>
+							<li><a href="/webd/search/goods?keyword=创意灯" target="_blank">创意灯</a></li>
+							<li><a href="/webd/search/goods?keyword=落地灯" target="_blank">落地灯</a></li>
+							<li><a href="/webd/search/goods?keyword=厨卫灯" target="_blank">厨卫灯</a></li>
+							<li><a href="/webd/search/goods?keyword=水晶灯" target="_blank">水晶灯</a></li>
+							<li><a href="/webd/search/goods?keyword=铜灯" target="_blank">铜灯</a></li>
+							<li><a href="/webd/search/goods?keyword=阳台灯" target="_blank">阳台灯</a></li>
+						</ul>
+						
+					</div>
+					<div class="find_cater_aeach_wrap">
+						<ul class="find_cater_aeach ">
 							<p class="find_cater_label">家纺家饰</p>
 							<li><a href="/webd/search/goods?keyword=床品" target="_blank">床品</a></li>
 							<li><a href="/webd/search/goods?keyword=抱枕" target="_blank">抱枕</a></li>
@@ -160,15 +428,21 @@
 							<li><a href="/webd/search/goods?keyword=坐垫" target="_blank">坐垫</a></li>
 							<li><a href="/webd/search/goods?keyword=桌布" target="_blank">桌布</a></li>
 							<li><a href="/webd/search/goods?keyword=枕头" target="_blank">枕头</a></li>
+							<li><a href="/webd/search/goods?keyword=桌旗" target="_blank">桌旗</a></li>
+							<li><a href="/webd/search/goods?keyword=靠垫" target="_blank">靠垫</a></li>
+							<li><a href="/webd/search/goods?keyword=地毯" target="_blank">地毯</a></li>
 						</ul>
-					</div>
-					<div class="find_cater_aeach_wrap clearfix" style="margin-bottom: 40px;">
 						<ul class="find_cater_aeach">
-							<p class="find_cater_label">地毯</p>
-							<li><a href="/webd/search/goods?keyword=现代" target="_blank">现代</a></li>
-							<li><a href="/webd/search/goods?keyword=古典" target="_blank">古典</a></li>
-							<li><a href="/webd/search/goods?keyword=手工" target="_blank">手工</a></li>
-							<li><a href="/webd/search/goods?keyword=儿童" target="_blank">儿童</a></li>
+							<p class="find_cater_label">卫生间</p>
+							<li><a href="/webd/search/goods?keyword=浴帘" target="_blank">浴帘</a></li>
+							<li><a href="/webd/search/goods?keyword=浴巾" target="_blank">浴巾</a></li>
+							<li><a href="/webd/search/goods?keyword=衣架" target="_blank">衣架</a></li>
+							<li><a href="/webd/search/goods?keyword=洗漱套瓶" target="_blank">传世</a></li>
+							<li><a href="/webd/search/goods?keyword=杯子" target="_blank">美克美家</a></li>
+							<li><a href="/webd/search/goods?keyword=马桶垫" target="_blank">第展</a></li>
+							<li><a href="/webd/search/goods?keyword=防滑垫" target="_blank">希尔巴赫</a></li>
+							<li><a href="/webd/search/goods?keyword=毛巾架" target="_blank">梁志天</a></li>
+							<li><a href="/webd/search/goods?keyword=毛巾环" target="_blank">毛巾环</a></li>
 						</ul>
 						<ul class="find_cater_aeach">
 							<p class="find_cater_label">花艺植物</p>
@@ -177,99 +451,23 @@
 							<li><a href="/webd/search/goods?keyword=花盆" target="_blank">花盆</a></li>
 							<li><a href="/webd/search/goods?keyword=仿真花" target="_blank">仿真花</a></li>
 							<li><a href="/webd/search/goods?keyword=鲜花" target="_blank">鲜花</a></li>
-						</ul>
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">家用小电器</p>
-							<li><a href="/webd/search/goods?keyword=微波炉" target="_blank">微波炉</a></li>
-							<li><a href="/webd/search/goods?keyword=烤箱" target="_blank">烤箱</a></li>
-							<li><a href="/webd/search/goods?keyword=面包机" target="_blank">面包机</a></li>
-							<li><a href="/webd/search/goods?keyword=咖啡机" target="_blank">咖啡机</a></li>
-							<li><a href="/webd/search/goods?keyword=搅拌机" target="_blank">搅拌机</a></li>
-							<li><a href="/webd/search/goods?keyword=豆浆机" target="_blank">豆浆机</a></li>
-							<li><a href="/webd/search/goods?keyword=加湿器" target="_blank">加湿器</a></li>
-							<li><a href="/webd/search/goods?keyword=饮水机" target="_blank">饮水机</a></li>
-							<li><a href="/webd/search/goods?keyword=电风扇" target="_blank">电风扇</a></li>
-							<li><a href="/webd/search/goods?keyword=吸尘器" target="_blank">吸尘器</a></li>
-							<li><a href="/webd/search/goods?keyword=其他" target="_blank">其他</a></li>
+							<li><a href="/webd/search/goods?keyword=干花" target="_blank">干花</a></li>
+							<li><a href="/webd/search/goods?keyword=水景" target="_blank">水景</a></li>
+							<li><a href="/webd/search/goods?keyword=野兽派" target="_blank">野兽派</a></li>
+							<li><a href="/webd/search/goods?keyword=RoseOnly" target="_blank">RoseOnly</a></li>
 						</ul>
 						<ul class="find_cater_aeach mrightzero">
-							<p class="find_cater_label">文具</p>
-							<li><a href="/webd/search/goods?keyword=彩铅" target="_blank">彩铅</a></li>
-							<li><a href="/webd/search/goods?keyword=钢笔" target="_blank">钢笔</a></li>
-							<li><a href="/webd/search/goods?keyword=笔盒" target="_blank">笔盒</a></li>
-							<li><a href="/webd/search/goods?keyword=笔袋" target="_blank">笔袋</a></li>
-							<li><a href="/webd/search/goods?keyword=本子" target="_blank">本子</a></li>
-							<li><a href="/webd/search/goods?keyword=书立" target="_blank">书立</a></li>
-							<li><a href="/webd/search/goods?keyword=工具类" target="_blank">工具类</a></li>
-							<li><a href="/webd/search/goods?keyword=文房四宝" target="_blank">文房四宝</a></li>
+							<p class="find_cater_label">厨房用品</p>
+							<li><a href="/webd/search/goods?keyword=餐具" target="_blank">餐具</a></li>
+							<li><a href="/webd/search/goods?keyword=盘子" target="_blank">盘子</a></li>
+							<li><a href="/webd/search/goods?keyword=杯子" target="_blank">杯子</a></li>
+							<li><a href="/webd/search/goods?keyword=勺子" target="_blank">勺子</a></li>
+							<li><a href="/webd/search/goods?keyword=刀叉" target="_blank">刀叉</a></li>
+							<li><a href="/webd/search/goods?keyword=碟子" target="_blank">碟子</a></li>
+							<li><a href="/webd/search/goods?keyword=碗架" target="_blank">碗架</a></li>
+							
 						</ul>
-					</div>
-					<div class="find_cater_aeach_wrap clearfix">
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">品牌</p>
-							<li><a href="/webd/search/goods?keyword=MINOTTI" target="_blank">MINOTTI</a></li>
-							<li><a href="/webd/search/goods?keyword=B&B" target="_blank">B&B</a></li>
-							<li><a href="/webd/search/goods?keyword=Miniforms" target="_blank">Miniforms</a></li>
-							<li><a href="/webd/search/goods?keyword=包豪斯" target="_blank">包豪斯</a></li>
-							<li><a href="/webd/search/goods?keyword=传世" target="_blank">传世</a></li>
-							<li><a href="/webd/search/goods?keyword=美克美家" target="_blank">美克美家</a></li>
-							<li><a href="/webd/search/goods?keyword=第展" target="_blank">第展</a></li>
-							<li><a href="/webd/search/goods?keyword=希尔巴赫" target="_blank">希尔巴赫</a></li>
-							<li><a href="/webd/search/goods?keyword=梁志天" target="_blank">梁志天</a></li>
-						</ul>
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">风格</p>
-							<li><a href="/webd/search/goods?keyword=现代" target="_blank">现代</a></li>
-							<li><a href="/webd/search/goods?keyword=中式" target="_blank">中式</a></li>
-							<li><a href="/webd/search/goods?keyword=日式" target="_blank">日式</a></li>
-							<li><a href="/webd/search/goods?keyword=新古典" target="_blank">新古典</a></li>
-							<li><a href="/webd/search/goods?keyword=美式" target="_blank">美式</a></li>
-							<li><a href="/webd/search/goods?keyword=法式" target="_blank">法式</a></li>
-							<li><a href="/webd/search/goods?keyword=田园" target="_blank">田园</a></li>
-							<li><a href="/webd/search/goods?keyword=地中海" target="_blank">地中海</a></li>
-							<li><a href="/webd/search/goods?keyword=LOFT" target="_blank">LOFT</a></li>
-							<li><a href="/webd/search/goods?keyword=北欧" target="_blank">北欧</a></li>
-							<li><a href="/webd/search/goods?keyword=混搭" target="_blank">混搭</a></li>
-						</ul>
-						<ul class="find_cater_aeach">
-							<p class="find_cater_label">空间</p>
-							<li><a href="/webd/search/goods?keyword=客厅" target="_blank">客厅</a></li>
-							<li><a href="/webd/search/goods?keyword=玄关" target="_blank">玄关</a></li>
-							<li><a href="/webd/search/goods?keyword=厨房" target="_blank">厨房</a></li>
-							<li><a href="/webd/search/goods?keyword=餐厅" target="_blank">餐厅</a></li>
-							<li><a href="/webd/search/goods?keyword=卧室" target="_blank">卧室</a></li>
-							<li><a href="/webd/search/goods?keyword=衣帽间" target="_blank">衣帽间</a></li>
-							<li><a href="/webd/search/goods?keyword=书房" target="_blank">书房</a></li>
-							<li><a href="/webd/search/goods?keyword=儿童房" target="_blank">儿童房</a></li>
-							<li><a href="/webd/search/goods?keyword=阳台" target="_blank">阳台</a></li>
-							<li><a href="/webd/search/goods?keyword=卫生间" target="_blank">卫生间</a></li>
-							<li><a href="/webd/search/goods?keyword=阁楼" target="_blank">阁楼</a></li>
-							<li><a href="/webd/search/goods?keyword=庭院" target="_blank">庭院</a></li>
-							<li><a href="/webd/search/goods?keyword=酒店" target="_blank">酒店</a></li>
-							<li><a href="/webd/search/goods?keyword=楼梯" target="_blank">楼梯</a></li>
-							<li><a href="/webd/search/goods?keyword=办公室" target="_blank">办公室</a></li>
-							<li><a href="/webd/search/goods?keyword=阳光房" target="_blank">阳光房</a></li>
-							<li><a href="/webd/search/goods?keyword=商业广场" target="_blank">商业广场</a></li>
-							<li><a href="/webd/search/goods?keyword=售楼处" target="_blank">售楼处</a></li>
-						</ul>
-						<ul class="find_cater_aeach mrightzero">
-							<p class="find_cater_label">按颜色</p>
-							<div class="find_cater_aeachcolor clearfix">
-								<li><a class="find_cater_lcolor find_cater_lc1" href="/webd/search/goods?keyword=红色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc2" href="/webd/search/goods?keyword=橙色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc3" href="/webd/search/goods?keyword=黄色" target="_blank"></a></li>
-							</div>
-							<div class="find_cater_aeachcolor clearfix">
-								<li><a class="find_cater_lcolor find_cater_lc4" href="/webd/search/goods?keyword=绿色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc5" href="/webd/search/goods?keyword=青色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc6" href="/webd/search/goods?keyword=蓝色" target="_blank"></a></li>
-							</div>
-							<div class="find_cater_aeachcolor clearfix">
-								<li><a class="find_cater_lcolor find_cater_lc7" style="color:#f0f0f0" href="/webd/search/goods?keyword=紫色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc8" href="/webd/search/goods?keyword=白色" target="_blank"></a></li>
-								<li><a class="find_cater_lcolor find_cater_lc9" href="/webd/search/goods?keyword=黑色" target="_blank"></a></li>
-							</div>
-						</ul>
+						
 					</div>
 				</div>
 			</div>
@@ -440,6 +638,14 @@
 		    		aimCon.removeClass('slidedown').addClass('slideup');
 		    		$(this).find('.clickconimg').removeClass('clickconimgdown');
 		    	};
+		    })
+
+		    //展开分类
+		    $('.h-more').click(function(){
+		    		$(this).parent().siblings('.find_cater_aeach_wrap').show('1');
+		    })
+		     $('.h-less').click(function(){
+		    	$(this).parent().parent().parent('.find_cater_aeach_wrap').hide();
 		    })
 		});
 	</script>
