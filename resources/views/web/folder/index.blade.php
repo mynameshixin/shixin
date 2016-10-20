@@ -496,7 +496,7 @@
 		          }
 		    })
 			//自动补全
-			if(cfmove == 0){
+			if(cfcopy == 0){
 		        $('#search_folder_cp').autocomplete({
 		            hints: sfoldername,
 		            width: 188,
@@ -507,7 +507,7 @@
 		              }
 		            }
 		        });
-		        cfmove = 1
+		        cfcopy = 1
 	    	}
 		})
 		

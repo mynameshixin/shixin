@@ -16,7 +16,7 @@
 							<a class="index_item_blurwrap" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($v['id']); ?>" target="_blank" img_id="<?php echo e($v['id']); ?>" title="<?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?>"></a>
 							<img src="<?php echo e(isset($v['images'][0]['img_m']) ? $v['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" alt="<?php echo e(!empty(trim($v['description']))?$v['description']:$v['title']); ?>" style="height: <?php echo e($v['images'][0]['rh']); ?>px">
 							<?php if(isset($v['price']) && !empty($v['price'])): ?>
-								<div class="index_item_price">￥<?php echo e($v['price']); ?></div>
+								<div class="index_item_price"><?php echo e($v['price']); ?></div>
 							<?php endif; ?>
 						</div>
 						<div class="index_item_info">
