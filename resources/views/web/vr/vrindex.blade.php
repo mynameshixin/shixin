@@ -1,7 +1,7 @@
 @include('web.common.vr.head',['k1'=>'VR门店——品牌门店VR全景展示','k2'=>'身临其店轻松购物','k3'=>''])
 
  
-		<div class="vr_home home_design">
+		<div class="vr_home home_design" style="padding-top: 40px">
 			<div class="w1248">
 				<!--品牌家居店-->
 				<div class="w1248 clearfix">
@@ -30,7 +30,7 @@
 				<!--品牌饰品店-->
 				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>品牌饰品店<span>——</span></h3>
+						<h3>品牌饰品店</h3>
 					</div>
 					<ul class="clearfix" id="ul2">
 						<?php foreach ($needData2 as $key => $v) { ?>
@@ -54,7 +54,7 @@
 				<!--品牌卫浴店-->
 				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>品牌卫浴店<span>——</span></h3>
+						<h3>品牌卫浴店</h3>
 					</div>
 					<ul class="clearfix" id="ul3">
 						<?php foreach ($needData3 as $key => $v) { ?>

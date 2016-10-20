@@ -28,7 +28,7 @@
 				<!--二手房改造精选-->
 				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>二手房改造精选<span>——</span></h3>
+						<h3>二手房改造精选</h3>
 					</div>
 					<ul class="clearfix" id="ul3">
 						<?php foreach ($needData2 as $key => $v) { ?>

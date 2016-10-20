@@ -112,25 +112,8 @@ function rebind(obj,size){
 </head>
 
 <body class="nolog_body" ng-app="myApp">
-<div class="nolog_header">
-    <div class="headercontainer w1248 clearfix">
-      <a href="/" class="header_logo"></a>
-      <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>
-      <a href="{{url('webd/pics')}}" class="header_item" title="图集">图集</a>
-      <a href="{{url('webd/find')}}" class="header_item" title="发现">发现</a>
-      <a href="{{url('webd/app')}}" class="header_item" title="APP">APP</a>
-      <div href="javascript:;" class="header_add_btn">
-       
-        +
-        
-        <div class="header_add_item">
-          @include('web.common.banner.action')
-        </div>
-      </div>
-      @include('web.common.banner.my')
-    </div>
-  </div>
-  <div class="header slideup">
+
+  <div class="header slideup" style=" display: block;">
     <div class="headercontainer w1248 clearfix">
       <a href="/" class="header_logo"></a>
       <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>

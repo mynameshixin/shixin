@@ -1,6 +1,6 @@
 @include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>''])
 
-		<div class="vr_home">
+		<div class="vr_home" style="padding-top: 0">
 			<div class="w1248">
 				<div class="w1248 clearfix">
 					<div class="home_title">
