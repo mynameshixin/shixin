@@ -6,7 +6,7 @@
 				<!--品牌家居店-->
 				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>品牌家居店<span>——</span></h3>
+						<h3>品牌家居店</h3>
 					</div>
 					<ul class="clearfix" id="ul1">
 						<?php foreach ($needData as $key => $v) { ?>

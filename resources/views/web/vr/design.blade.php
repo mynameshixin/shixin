@@ -5,7 +5,7 @@
 			<div class="w1248">
 				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>优秀设计师作品<span>——</span></h3>
+						<h3>优秀设计师作品</h3>
 					</div>
 					<ul class="clearfix" id="ul2">
 					<?php foreach ($needData as $key => $v) { ?>

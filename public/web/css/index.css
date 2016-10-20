@@ -983,7 +983,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 .sunccess .sunccess_txt{margin: 20px 0 0 30px; font-weight: bold;font-size: 17px; color: #fff;float: left;}
 .sunccess .sunccess_txt span{font-size: 21px;}
 /*梦幻家-vr*/
-.vr_home{width: 100%; height: auto;padding-top: 60px; background-color: #e8e8e8;}
+.vr_home{width: 100%; height: auto;padding-top: 20px; background-color: #fff;}
 .vr_home .index_item_vrlogo{width: 50px;height: 50px;background: url(../images/vrimglogo.png);position: absolute;top: 50%;margin-top: -25px;left: 50%;margin-left: -25px;cursor: pointer;background-size: contain;}
 .vr_home_list{width: 394px;height: 305px; float: left;margin: 0 10px; overflow: hidden;margin-bottom: 30px; border-radius: 6px;background: #fff; border: 1px solid #eee; box-sizing: border-box;}
 .vr_home_list:hover{background: #fff;opacity: 0.9;}
