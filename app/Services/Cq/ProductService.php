@@ -49,7 +49,7 @@ class ProductService extends ApiService
             'contact' => isset($data['contact']) ? $data['contact'] : '',
             'source' => isset($data['source']) ? $data['source'] : 1,
             'cityid'=>isset($data['cityid']) ? (int)$data['cityid'] : 0,
-            'tags' => isset($data['tags']) ? (int)$data['tags'] : '',
+            'tags' => isset($data['tags']) ? $data['tags'] : '',
         );
 
         $images_arr = [];
@@ -58,6 +58,7 @@ class ProductService extends ApiService
             if (!empty($images)) {
                 $images_arr = array_column($images, 'image_id');
                 $image_ids = implode(',', $images_arr);
+                $entry['image_ids'] = $image_ids;
                 $id = DB::table('cq_goods')->insertGetId($entry);
                 return $id;
             }

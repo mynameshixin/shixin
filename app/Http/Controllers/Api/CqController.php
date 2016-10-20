@@ -44,7 +44,6 @@ class CqController extends BaseController{
         ];
         parent::validator($data, $rules,$renews);
         $rs = parent::validateAcessToken($data['access_token']);
-        if(!empty($data['good_id']))
         $userId = $rs['user_id'];
 
         //用户发布，先发后审
