@@ -76,7 +76,7 @@ class VrController extends CmController{
 	// 梦想家首页
 	public function dream(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 18;
 		$needData = $this->needData($data,3510);
 		// dd($needData);
 		$data = [
@@ -93,7 +93,7 @@ class VrController extends CmController{
     // 梦想家更多
     public function postDream(){
         $data = Input::all();
-        $data['num'] = 9;
+        $data['num'] = 18;
         $needData = $this->needData($data,3510);
         // dd($needData);
         return response()->forApi(['list' => $needData]);
@@ -102,7 +102,7 @@ class VrController extends CmController{
 	// 梦想家首页(搜索)
 	public function searchdream(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 18;
 		$needData = $this->postSearch();
 		$alias = $data['alias'];
         switch ($alias) {
@@ -164,7 +164,7 @@ class VrController extends CmController{
                 break;
         }
     	$keyword =trim($data['keyword']);
-    	$num = isset($data['num'])?$data['num']:9;
+    	$num = isset($data['num'])?$data['num']:18;
     	$page = isset($data['page'])?$data['page']:1;
     	$rows = DB::table('folder_goods as fg')->where('fg.folder_id',$alias)->select('*');
     	$rows = $rows->where(function ($rows) use ($keyword) {
@@ -241,7 +241,7 @@ class VrController extends CmController{
 	// 设计家首页
 	public function design(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 12;
 		$needData = $this->needData($data,3511,2);
 		$needData2 = $this->needData($data,3511,3);
 		// dd($needData);
@@ -261,7 +261,7 @@ class VrController extends CmController{
 	// 设计家更多
 	public function postDesign(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 12;
 		$needData = $this->needData($data,3511,$data['type']);
 		// dd($needData);
 		return response()->forApi(['list' => $needData]);
@@ -270,7 +270,7 @@ class VrController extends CmController{
 	// vr门店首页
 	public function vrindex(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 12;
 		$needData = $this->needData($data,3438,0,1);
 		$needData2 = $this->needData($data,3438,0,2);
 		$needData3 = $this->needData($data,3438,0,3);
@@ -291,7 +291,7 @@ class VrController extends CmController{
 	// vr门店首页更多
 	public function postVrindex(){
 		$data = Input::all();
-		$data['num'] = 9;
+		$data['num'] = 12;
 		$needData = $this->needData($data,3438,0,$data['type']);
 		// dd($needData);
 		return response()->forApi(['list' => $needData]);
