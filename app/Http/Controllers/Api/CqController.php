@@ -227,7 +227,7 @@ class CqController extends BaseController{
         return response()->forApi($res);
     }
 
-    // 发布改商品的人也发布了
+    // 发布该商品的人也发布了
     public function getOgoods(){
     	$data = Input::all();
         $rules = array(
