@@ -153,6 +153,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'location'=> 'LocationController',
         'notice' => 'NoticeController',
         'vr' => 'VrController',
+        'cq' => 'CqController',
     ]);
 
     Route::resources([
