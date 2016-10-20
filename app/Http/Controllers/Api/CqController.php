@@ -56,6 +56,48 @@ class CqController extends BaseController{
         }
     }
 
+    //编辑自己发布的出清商品
+    public function postEdit(){
+    	$data = Input::all();
+    	$rules = array(
+            'access_token'=>'required',
+            'title'=>'required',
+            'description'=>'required',
+            'cityid'=>'required',
+            'price'=>'required',
+            'reserve_price'=>'required',
+            'source'=>'required|in:1,2',
+            'contact'=>'required',
+            'tags'=>'required',
+            'good_id'=>'required'
+
+        );
+        $renews = [
+        	'access_token.required'=>'令牌必须填写',
+            'title.required'=>'标题必须填写',
+            'description.required'=>'描述必须填写',
+            'cityid.required'=>'地区必须填写',
+            'price.required'=>'价格必须填写',
+            'reserve_price.required'=>'一口价必须填写',
+            'source.required'=>'来源必须填写',
+            'contact.required'=>'联系方式必须填写',
+            'tags.required'=>'分类必须填写',
+            'good_id.required'=>'商品id必须填写'
+        ];
+        parent::validator($data, $rules,$renews);
+        $rs = parent::validateAcessToken($data['access_token']);
+        $userId = $rs['user_id'];
+
+        //用户发布，先发后审
+        $data['status'] = 1;
+        $id = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
+        if ($id) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '编辑失败！');
+        }
+    }
+
     // 首页展示数据
     public function getMain(){
     	$data = Input::all();

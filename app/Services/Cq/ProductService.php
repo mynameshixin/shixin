@@ -65,6 +65,38 @@ class ProductService extends ApiService
         }
         return 0;
     }
+    // 编辑自己发布的出清商品
+     public function updateProduct($userId, $data = array(), $files = array())
+    {
+
+        $entry = array(
+            'user_id' => $userId,
+            'title' => isset($data['title']) ? $data['title'] : $data['title'],
+            'description' => isset($data['description']) ? $data['description'] : '',
+            'price' => isset($data['price']) ? $data['price'] : 0,
+            'reserve_price' => isset($data['reserve_price']) ? $data['reserve_price'] : 0,
+            'detail_url' => isset($data['detail_url']) ? $data['detail_url'] : '',
+            'status' => isset($data['status']) ? $data['status'] : 1,
+            'contact' => isset($data['contact']) ? $data['contact'] : '',
+            'source' => isset($data['source']) ? $data['source'] : 1,
+            'cityid'=>isset($data['cityid']) ? (int)$data['cityid'] : 0,
+            'tags' => isset($data['tags']) ? $data['tags'] : '',
+        );
+
+        $images_arr = [];
+        if (isset($files['image']) && !empty($files['image'])) {
+            $images = ImageService::getInstance()->uploadImage($userId, $files['image']);
+            if (!empty($images)) {
+                $images_arr = array_column($images, 'image_id');
+                $image_ids = implode(',', $images_arr);
+                $entry['image_ids'] = $image_ids;
+               
+            }
+        }
+
+        $id = DB::table('cq_goods')->where('id',$data['good_id'])->update($entry);
+        return !empty($id)?1:0;
+    }
     // 获得主页商品
     public  function getProductsByFids ($data,$skip,$num,$user_id = 0){
         $rows = DB::table('cq_goods')->where('status', 1);
