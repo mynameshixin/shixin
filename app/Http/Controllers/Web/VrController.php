@@ -20,6 +20,7 @@ class VrController extends CmController{
 		if($id == 2) return $this->design();
 		if($id == 3) return $this->vrindex();
 		if($id == 4) return $this->searchdream();
+        if($id == 5) return $this->show();
 	}
 
 	public function needData($data,$folder_id,$typeid=0,$btypeid=0){
@@ -327,6 +328,12 @@ class VrController extends CmController{
 		$id = DB::table('vr_order')->insertGetId($data);
 		return response()->forApi(['id' => $id]);
 	}
+
+    // vr预约显示
+    public function show(){
+        $all['all'] = DB::table('vr_order')->get();
+        return view('web.vr.show',$all);
+    }
 
 }
 
