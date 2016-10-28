@@ -613,22 +613,22 @@
           var rs=tp.indexOf(last);
             if(rs>=0){
                 var file_url = getObjectURL(obj.files[0]);
-                var appendnewNode = '<span class="close_img_btn">×</span>\
+                var appendnewNode = '<div class="pop_addpic_wrap_capp" style="float:left;">\
+                			  <span class="close_img_btn">×</span>\
                               <img src="'+file_url+'" alt="">\
-                              <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea>';
-                $(obj).parents('.pop_addpic_wrap_cq').html(appendnewNode)
+                              <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea></div>';
+                $(obj).parents('.pop_addpic_con').append(appendnewNode)
 
                 $('.close_img_btn').click(function(){
-                  var newNode = '<img src="/web/images/pop_upload_multi.png" alt="">\
-                              <input type="file" name="image[]" onchange=change_cq_pic(this)>';
-                  $(this).parents('.pop_addpic_wrap_cq').html(newNode)
+                  $(this).parents('.pop_addpic_wrap_capp').siblings('.pop_addpic_wrap_cq').find('input').val('')
+                  $(this).parents('.pop_addpic_wrap_capp').remove()
                 })
 
-                $('.pop_addpic_wrap_cq .pop_addfont_wrap').click(function(){
+                /*$('.pop_addpic_wrap_cq .pop_addfont_wrap').click(function(){
                     $(obj).animate({height:"40px"})
                 }).blur(function(){
                     $(obj).animate({height:"20px"})
-                })
+                })*/
 
             }else{
                 layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})

@@ -942,8 +942,9 @@ input[type="checkbox"] + label{cursor: pointer;}
 
 .pop_addpic_multi{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;}
 .pop_addpic_multi .pop_con{width: 510px;margin-left: -255px;}
-.pop_addpic_con{float: left;padding-bottom: 16px;}
+.pop_addpic_con{float: left;padding-bottom: 16px; position: relative;}
 .pop_addpic_wrap,.pop_addpic_wrap2,.pop_addpic_wrap_cq,.pop_addpic_wrap_capp{width: 78px;height: 78px;float: left;margin:10px;cursor: pointer;text-align: center;position: relative;}
+.pop_addpic_wrap_capp{position: absolute; left: 0;top: 0}
 .pop_addpic_wrap2{z-index: 100; margin-left: 0}
 .detail_pop_tbtn input[type="file"]{width: 102px;height: 34px;opacity: 0;position: absolute;top: 0px;left: 0px;}
 
