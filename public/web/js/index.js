@@ -873,34 +873,6 @@ var cfvr_new = 0
       return
     }
 
-    $.ajax({
-          'beforeSend':function(){
-            layer.load(0, {shade: 0.5});
-          },
-          'url':"/webd/pics/cgoods",
-          'type':'post',
-          'data':{
-            'user_id':u_id
-          },
-          'dataType':'json',
-          'success':function(json){
-            if(json.code==200){
-              $('.pop_uploadcg .pop_labelselect').html('')
-              strs = ''
-              $.each(json.data.folder,function(index,v){
-                strs += '<option value="'+v.id+'" name="'+v.name+'">'+v.name+'</option>';
-              })
-              $('.pop_uploadcg .pop_labelselect').append(strs)
-            }else{
-              layer.msg(json.message, {icon: 5});
-              return
-            }
-          },
-          'complete':function(){
-            layer.closeAll('loading');
-          }
-    })
-
     $('.pop_uploadcg').show();
     var poptopHei = $('.pop_uploadcg .pop_con').height();
     $('.pop_uploadcg .pop_con').css({
@@ -942,7 +914,7 @@ var cfvr_new = 0
       $('input[name=tags]').val(str+f)
       
     })
-
+  });
 
     
     
@@ -971,7 +943,7 @@ var cfvr_new = 0
       $('form[name=ucq]').submit()
     })
       
-  });
+
   
 
   
