@@ -942,49 +942,9 @@ var cfvr_new = 0
       $('input[name=tags]').val(str+f)
       
     })
-    //图片上传
-    $('.pop_addpic_wrap_cq input').change(function(){
-        var obj = $(this)
-        if (this.files && this.files[0]) {
-          var filename = this.files[0].name;
-          var subfile = filename.split('.');
-          var subfilelen = subfile.length;
-          var last = subfile[subfilelen-1].toLowerCase();
-          var tp ="jpg,gif,bmp,png,jpeg";
-          var rs=tp.indexOf(last);
-            if(rs>=0){
-                var file_url = getObjectURL(this.files[0]);
-                var appendnewNode = '<div class="pop_addpic_wrap_cq app">\
-                              <span class="close_img_btn">×</span>\
-                              <img src="'+file_url+'" alt="">\
-                              <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea>\
-                            </div>';
-                obj.parents('.pop_addpic_wrap_cq').hide()
-                obj.parents('.pop_addpic_con').append(appendnewNode)
 
-                $('.close_img_btn').click(function(){
-                  var newNode = '<div class="pop_addpic_wrap_cq" style="float:left;">\
-                              <img src="/web/images/pop_upload_multi.png" alt="">\
-                              <input type="file" name="image[]">\
-                            </div>';
-                  $(this).parents('.pop_addpic_wrap_cq').siblings('.pop_addpic_wrap_cq').show().find("input").val('')
-                  $(this).parents('.pop_addpic_wrap_cq').hide();
-                })
 
-                $('.pop_addpic_wrap_cq .pop_addfont_wrap').click(function(){
-                    $(this).animate({height:"40px"})
-                }).blur(function(){
-                    $(this).animate({height:"20px"})
-                })
-
-            }else{
-                layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})
-                obj.val('')
-                return false;
-            }
-          }
-
-      });
+    
     
     // 保存上传
     $('form[name=ucq]').submit(function(){

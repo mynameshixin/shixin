@@ -600,7 +600,44 @@
 	}
 	
 </script>
+<script type="text/javascript">
+	
+	//图片上传
+    function change_cq_pic(obj){
+        if (obj.files && obj.files[0]) {
+          var filename = obj.files[0].name;
+          var subfile = filename.split('.');
+          var subfilelen = subfile.length;
+          var last = subfile[subfilelen-1].toLowerCase();
+          var tp ="jpg,gif,bmp,png,jpeg";
+          var rs=tp.indexOf(last);
+            if(rs>=0){
+                var file_url = getObjectURL(obj.files[0]);
+                var appendnewNode = '<span class="close_img_btn">×</span>\
+                              <img src="'+file_url+'" alt="">\
+                              <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea>';
+                $(obj).parents('.pop_addpic_wrap_cq').html(appendnewNode)
 
+                $('.close_img_btn').click(function(){
+                  var newNode = '<img src="/web/images/pop_upload_multi.png" alt="">\
+                              <input type="file" name="image[]" onchange=change_cq_pic(this)>';
+                  $(this).parents('.pop_addpic_wrap_cq').html(newNode)
+                })
+
+                $('.pop_addpic_wrap_cq .pop_addfont_wrap').click(function(){
+                    $(obj).animate({height:"40px"})
+                }).blur(function(){
+                    $(obj).animate({height:"20px"})
+                })
+
+            }else{
+                layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})
+                $(obj).val('')
+                return false;
+            }
+          }
+    }
+</script>
 
 
 <!-- 上传出清商品 -->
@@ -630,31 +667,31 @@
 						<div class="pop_addpic_con clearfix" style="float:left">
 						    <div class="pop_addpic_wrap_cq" style="float:left;">
 				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
-				              <input type="file" name="image[]"/>
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)" />
 				            </div>
 			            </div>
 			            <div class="pop_addpic_con clearfix" style="float:left">
 						    <div class="pop_addpic_wrap_cq" style="float:left;">
 				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
-				              <input type="file" name="image[]"/>
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
 				            </div>
 			            </div>
 			            <div class="pop_addpic_con clearfix" style="float:left">
 						    <div class="pop_addpic_wrap_cq" style="float:left;">
 				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
-				              <input type="file" name="image[]"/>
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
 				            </div>
 			            </div>
 			            <div class="pop_addpic_con clearfix" style="float:left">
 						    <div class="pop_addpic_wrap_cq" style="float:left;">
 				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
-				              <input type="file" name="image[]"/>
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
 				            </div>
 			            </div>
 			            <div class="pop_addpic_con clearfix" style="float:left">
 						    <div class="pop_addpic_wrap_cq" style="float:left;">
 				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
-				              <input type="file" name="image[]"/>
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
 				            </div>
 			            </div>
 			           
