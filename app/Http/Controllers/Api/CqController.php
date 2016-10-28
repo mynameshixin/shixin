@@ -167,7 +167,8 @@ class CqController extends BaseController{
         	'user_id'=>$rs['user_id']
         ];
         $id = DB::table('cq_cg_record')->insertGetId($entry);
-        if ($id) {
+        $c = DB::table('cq_goods')->where('id',$data['good_id'])->increment('collection_count');
+        if ($id && $c) {
             return response()->forApi(['id' => $id]);
         }else{
             return response()->forApi(array(), 1001, '采集失败！');
