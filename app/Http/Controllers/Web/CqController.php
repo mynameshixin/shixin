@@ -35,9 +35,6 @@ class CqController extends CmController{
     // 上传出清商品
     public function postUcq(){
         $data = Input::all();
-        echo '<pre>';
-        var_dump($_FILES);
-        dd($data);
         $rules = array(
             'user_id'=>'required',
             'image' => 'required',
