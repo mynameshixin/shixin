@@ -256,6 +256,26 @@ class CqController extends BaseController{
         }
     }
 
+
+    // 增加浏览量
+    public function postIview(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'good_id'=>'required',
+        );
+         //请求参数验证
+        parent::validator($data, $rules);
+        $rs = parent::validateAcessToken($data['access_token']);
+
+        $status = DB::table('cq_goods')->where('id',$data['good_id'])->increment('views');
+        if ($status) {
+            return response()->forApi(['status' => 1]);
+        }else{
+            return response()->forApi(array(), 1001, '操作失败！');
+        }
+    }
+
     // 商品详细页面
     public function getGood(){
     	$data = Input::all();
