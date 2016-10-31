@@ -23,12 +23,24 @@ class CqController extends CmController{
 	
 	public function __construct(){
 		parent::__construct();
-		
+        $getdata = Input::all();
+        if(isset($getdata['oid']) && !empty($getdata['oid'])){
+            $this->other_id = $getdata['oid'];
+        }else{
+            $this->other_id = $this->user_id;
+        }
         
 	}
 
 	public function getIndex(){
-		
+		$user_id = $this->user_id; 
+        $goods = $this->postGoods();
+        $data = [
+            'self_id'=>$user_id,
+            'self_info'=>$this->self_info,
+            'goods'=>$goods['data']['list'],
+        ];
+        return view('web.cq.index',$data);
 
 	}
 

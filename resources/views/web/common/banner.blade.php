@@ -16,7 +16,7 @@ var PageWidth = 1344;	//页面多少宽度象素下正好不出现左右滚动�
 var MinScreenW = 1024;	//显示广告的最小屏幕宽度象素
 var Borderpx = ((window.screen.width-PageWidth)/2-AdDivW)/2;
 var pleft = document.body.scrollLeft+Borderpx;
-var AdContentHtml = '<div align="center"> <img src="http://ll.com/web/images/tishi.png" width="81" height="502" border="0"></div>';
+var AdContentHtml = '<div align="center"> <img src="/web/images/tishi.png" width="81" height="502" border="0"></div>';
 document.write ('<div id="Javascript.LeftDiv" style="position: absolute;z-index:1000;width:'+AdDivW+'px;height:'+AdDivH+'px;top:160px;word-break:break-all;left:'+pleft+'px"><div>'+AdContentHtml+'</div></div>');
 </script>
 <div class="header">
