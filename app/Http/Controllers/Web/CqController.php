@@ -173,7 +173,57 @@ class CqController extends CmController{
         }
     }
 
-    
+    // 采集或收藏操作
+    public function postCol(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'good_id'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $res = DB::table('cq_cg_record')->where(['good_id'=>$data['good_id'],'user_id'=>$userId])->first();
+        if($res) return response()->forApi(array(), 1001, '您已经采集过');
+        $entry = [
+            'good_id'=>$data['good_id'],
+            'user_id'=>$userId
+        ];
+        $id = DB::table('cq_cg_record')->insertGetId($entry);
+        $c = DB::table('cq_goods')->where('id',$data['good_id'])->increment('collection_count');
+        if ($id && $c) {
+            return response()->forApi(['id' => $id]);
+        }else{
+            return response()->forApi(array(), 1001, '采集失败！');
+        }
+    }
+
+    // 商品点赞
+    public function postGlike(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'good_id'=>'required'
+        );
+         //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $res = DB::table('cq_goods_action')->where(['good_id'=>$data['good_id'],'user_id'=>$userId])->first();
+        if($res) return response()->forApi(array(), 1001, '您已经点赞过');
+        $id = DB::table('cq_goods')->where('id',$data['good_id'])->increment('praise_count');
+        if ($id) {
+            $entry = [
+                'user_id'=>$userId,
+                'good_id'=>$data['good_id'],
+                'action'=>1
+            ];
+            DB::table('cq_goods_action')->insertGetId($entry);
+            return response()->forApi(['status' => 1]);
+        }else{
+            return response()->forApi(array(), 1001, '点赞失败！');
+        }
+    }
+
     // 评论点赞
     public function postClike(){
         $data = Input::all();

@@ -26,9 +26,9 @@
 					<div class="detail_pop_tltop">
 						<div class="detail_pop_tbtnwarp">
 							<!-- htmlv?=20160718 -->
-							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection">采集</div>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection cq_collect">采集</div>
 							<!-- htmlv?=20160718 -->
-							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding">赞</div>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding cq_like">赞</div>
 							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtn_cpadding">去购买</div> -->
 							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">删除</div> -->
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
@@ -206,9 +206,66 @@
 			
 		})
 	}
+
+	// 采集出清商品
+	$('.cq_collect').click(function(){
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"/webd/cq/col",
+			'type':'post',
+			'data':{
+				'good_id':"{{$good['id']}}",
+				'user_id':u_id
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					layer.msg('采集成功', {icon: 6});
+					return
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+	})
+
+	// 商品点赞
+	$('.cq_like').click(function(){
+		$.ajax({
+			'beforeSend':function(){
+				layer.load(0, {shade: 0.5});
+			},
+			'url':"/webd/cq/glike",
+			'type':'post',
+			'data':{
+				'good_id':"{{$good['id']}}",
+				'user_id':u_id
+			},
+			'dataType':'json',
+			'success':function(json){
+				if(json.code==200){
+					layer.msg('点赞成功', {icon: 6});
+					return
+				}else{
+					layer.msg(json.message, {icon: 5});
+					return
+				}
+			},
+			'complete':function(){
+				layer.closeAll('loading');
+			}
+		})
+	})
+
 	$('.detail_pop_compub').focus(function(){
-				$('.detail_pop_addcom').show()
-			});
+		$('.detail_pop_addcom').show()
+	});
 	$('.detail_pop_compub').change(function(){
 		$('.detail_pop_authfollow').css({
 			color: '#000',

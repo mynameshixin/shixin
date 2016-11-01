@@ -205,7 +205,7 @@ class CqController extends BaseController{
          //请求参数验证
         parent::validator($data, $rules);
         $rs = parent::validateAcessToken($data['access_token']);
-        $res = DB::table('cq_good_action')->where(['good_id'=>$data['good_id'],'user_id'=>$rs['user_id']])->first();
+        $res = DB::table('cq_goods_action')->where(['good_id'=>$data['good_id'],'user_id'=>$rs['user_id']])->first();
         if($res) return response()->forApi(array(), 1001, '您已经点赞过');
         $id = DB::table('cq_goods')->where('id',$data['good_id'])->increment('praise_count');
         if ($id) {
@@ -214,7 +214,7 @@ class CqController extends BaseController{
                 'good_id'=>$data['good_id'],
                 'action'=>1
             ];
-            DB::table('cq_good_action')->insertGetId($entry);
+            DB::table('cq_goods_action')->insertGetId($entry);
             return response()->forApi(['status' => 1]);
         }else{
             return response()->forApi(array(), 1001, '点赞失败！');
