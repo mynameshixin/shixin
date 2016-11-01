@@ -60,10 +60,11 @@ class ArticleController extends CmController{
 		$id=$this->eassat($data);
 		if($id){
 			echo "<script>alert('上传成功')</script>";
+			return redirect('/Article/article/create');
 		}else{
-			echo "<script>alert('上传成功')</script>";
+			dd("上传失败");
 		}
-		return redirect('/Article/article/create');
+		//return redirect('/Article/article/create');
 
 	
 	}
@@ -158,7 +159,7 @@ class ArticleController extends CmController{
 		return $comment;
 	}	
 	public function eassat_where($c=9){	//抓取最新推荐 $c设置抓取多少个  默认9个
-		$eassat=DB::table('eassat')->where('eassat_where',1)->take($c)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title')->get();
+		$eassat=DB::table('eassat')->where('eassat_where',1)->take($c)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title')->orderBy('eassat_date','desc')->get();
 		$eassat['int']=count($eassat);
 		return $eassat;
 	}
