@@ -193,3 +193,19 @@ Route::group(['namespace' => 'Webadmin', 'prefix' => 'webadmin'], function () {
 
 });
 
+  
+//新闻文章路由
+
+  Route::group(['prefix' => 'Article','namespace'=>'Article'], function () {
+    Route::resource('article', 'ArticleController');
+});
+Route::post('/Article/article/add','Article\ArticleController@add_eassat');
+Route::any('/Article/pingx','Article\ArticleController@pingx');
+Route::any('/Article/selectpingx','Article\ArticleController@select_pingx');
+Route::any('/Article/addid/{pid}','Article\ArticleController@add_pingx');
+Route::any('/Article/aqqid/{pid}','Article\ArticleController@aqq_pingx');
+Route::any('/Article/comment/action','Article\ArticleController@add_int');
+Route::any('/Article/comment/de','Article\ArticleController@comment_delete');
+Route::any('/Article/search/{id}','Article\ArticleController@search');
+
+
