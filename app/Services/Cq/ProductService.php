@@ -131,7 +131,8 @@ class ProductService extends ApiService
                         $rows[$k]['images'][] = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
                         ];
                     }
                 }

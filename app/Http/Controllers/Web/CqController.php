@@ -29,16 +29,16 @@ class CqController extends CmController{
         }else{
             $this->other_id = $this->user_id;
         }
-        
 	}
 
 	public function getIndex(){
-		$user_id = $this->user_id; 
         $goods = $this->postGoods();
+        $user_id = $this->user_id; 
+        // dd($goods);
         $data = [
             'self_id'=>$user_id,
             'self_info'=>$this->self_info,
-            'goods'=>$goods['data']['list'],
+            'goods'=>$goods['data'],
         ];
         return view('web.cq.index',$data);
 
@@ -88,62 +88,25 @@ class CqController extends CmController{
 
 	//获取瀑布流数据
 	public function postGoods(){
-		
-		$data = Input::all();
-		$data = fparam($data);
-        $data['kind'] = 2 ;
-        $data['page'] = isset($data['page'])?$data['page']:1;
-        $num = 20;
-        $user_ids = $folder_ids = [];
-        $user_id = $this->user_id;
-        $user_ids[] = $user_id;
-        $folder_ids = [];
-       /* if (isset($user_id) && !empty($user_id)){
-            $user_follow =  DB::table('user_follow')->where('user_id',$user_id)->lists('userid_follow');
-            $folder_ids1 = DB::table('collection_folder')->where('user_id',$user_id)->lists('folder_id');
-            $user_ids = $user_follow;
-        }
-        $adminIds = UserWebsupply::getAdminIds();
-        $user_ids = array_merge($user_ids,$adminIds);
-        if (isset($user_id) && !empty($user_id))    $user_ids[] = $user_id;
-        $user_ids = array_unique($user_ids);
-        $folder_ids = DB::table('folders')->whereIn('user_id',$user_ids)->lists('id');
-        if(isset($folder_ids1) && !empty($folder_ids1)) $folder_ids = array_merge($folder_ids,$folder_ids1);
-        $folder_ids = array_unique($folder_ids);*/
-        $rs = ProductWebsupply::getProductsByFids($folder_ids,$user_ids,$data,$num,$user_id);
-        //$rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$user_id);
+        $data = Input::all();
+        $num = isset($data['num']) ? $data['num'] : 10;
+        $page = isset($data['page'])?$data['page']:1;
+        $skip = ($page-1)*$num;
+        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num);
         return response()->forApi($rs);
-
-
 	}
 
 	
 
 	public function show($id){
-        $data['img_id'] = $id;
-		$self_id = $this->user_id;
-		$folder = DB::table('goods')->where('id',$id)->select('folder_id')->first();
-		if(!$folder) die('no such pic!');
-		$private = DB::table('folders')->where('id',$folder['folder_id'])->select('private','user_id')->first();
-		$cg = DB::table('collection_good')->where(['user_id'=>$self_id,'good_id'=>$id])->first();
-		if($private['private']==1 && $self_id!=$private['user_id'] && !$cg) die('such pic is in a private folder!');
+        $good = ProductService::getInstance()->getProductsDetail(['good_id'=>$id]);
 
-
-		$goods = ProductWebsupply::get_pic_detail($self_id,$data);
-		$action = DB::table('good_action')->where(['good_id'=>$id,'kind'=>1,'user_id'=>$self_id])->first();
-		$goods['action'] = !empty($action)?1:0;
-        $title = !empty(trim($goods['description']))?$goods['description']:$goods['title'];
-		// dd($goods);
-        // dd($goods['comments']);   
-		$data = [
-			'user_id'=>$goods['user_id'],
-			'self_id'=>$self_id,
-			'self_info'=>$this->self_info,
-			'goods'=>$goods,
-            'title'=>'堆图家.'.$title,
-            'keywords'=>','.$goods['folder']['name']
-		];
-		return view('web.pics.show',$data);
+        $data = [
+            'self_id'=>$this->user_id,
+            'self_info'=>$this->self_info,
+            'good'=>$good
+        ];
+		return view('web.cq.show',$data);
 	}
     public function getMain(){
         $data = Input::all();

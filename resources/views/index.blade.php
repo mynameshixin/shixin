@@ -87,6 +87,9 @@ var Borderpx = ((window.screen.width-PageWidth)/2-AdDivW)/2;
 var pleft = document.body.scrollLeft+Borderpx;
 var AdContentHtml = '<div align="center"> <img src="/web/images/tishi.png" width="81" height="502" border="0"></div>';
 document.write ('<div id="Javascript.LeftDiv" style="position: absolute;z-index:1000;width:'+AdDivW+'px;height:'+AdDivH+'px;top:600px;word-break:break-all;left:'+pleft+'px"><div>'+AdContentHtml+'</div></div>');
+setTimeout(function(){
+  document.getElementById('Javascript.LeftDiv').style.display = "none"
+},5000)
 </script>
   <div class="nolog_header">
     <div class="headercontainer w1248 clearfix">

@@ -32,7 +32,7 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
     ]);
     Route::resources([
         'pic'=>'PicsController',
-        
+        'cqpic'=>'CqController',
     ]);
 });
 
