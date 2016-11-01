@@ -50,11 +50,11 @@ class ArticleController extends CmController{
 		}
 		if($_POST['where']){$data['eassat_where']=1;}else{$data['eassat_where']=0;}
 		if($_FILES['file1']['name']||$_FILES['file2']['name']){
-		if($_FILES['file2']['name']){$file2 = Input::file('file2');$filename = uniqid();$hz=$file2 -> getClientOriginalExtension();$file2->move('/uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
-		}else{$file1 = Input::file('file1');$filename = uniqid();$hz=$file1 -> getClientOriginalExtension();$file1->move('/uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
+		if($_FILES['file2']['name']){$file2 = Input::file('file2');$filename = uniqid();$hz=$file2 -> getClientOriginalExtension();$file2->move('http://www.duitujia.com/uploads/ueditor/show/',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
+		}else{$file1 = Input::file('file1');$filename = uniqid();$hz=$file1 -> getClientOriginalExtension();$file1->move('http://www.duitujia.com/uploads/ueditor/show/',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
 		}}else{dd("请设置推荐图片 11:8");}
-		if($_FILES['file3']['name']||$_FILES['file4']['name']){if($_FILES['file4']['name']){$file4 = Input::file('file4');$filename = uniqid();$hz2=$file4 -> getClientOriginalExtension();$file4->move('/uploads/ueditor/show',$filename.'.'.$hz2);$data['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;
-		}else{$file3 = Input::file('file3');$filename = uniqid();$hz2=$file3 -> getClientOriginalExtension();$file3->move('/uploads/ueditor/show',$filename.'.'.$hz2);$data['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;}
+		if($_FILES['file3']['name']||$_FILES['file4']['name']){if($_FILES['file4']['name']){$file4 = Input::file('file4');$filename = uniqid();$hz2=$file4 -> getClientOriginalExtension();$file4->move('http://www.duitujia.com/uploads/ueditor/show/',$filename.'.'.$hz2);$data['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;
+		}else{$file3 = Input::file('file3');$filename = uniqid();$hz2=$file3 -> getClientOriginalExtension();$file3->move('http://www.duitujia.com/uploads/ueditor/show/',$filename.'.'.$hz2);$data['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;}
 		}else{dd("请设置推荐图片 11:8");}
 		
 		$id=$this->eassat($data);
