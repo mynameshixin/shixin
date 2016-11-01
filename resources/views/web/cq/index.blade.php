@@ -39,7 +39,7 @@
 				<div class="index_item" img_id="{{$v['id']}}">
 					<div class="index_item_wrap">
 						<div class="index_item_imgwrap clearfix">
-							<a class="index_item_blurwrap" href="{{url('webd/pic')}}/{{$v['id']}}" target="_blank" title="{{$v['title']}}"></a>
+							<a class="index_item_blurwrap" href="/webd/pic/{{$v['id']}}" target="_blank" title="{{$v['title']}}"></a>
 							<img src="{{$v['images'][0]['img_m']}}" style="height: <?php echo $v['images'][0]['rh']."px";?>" onload="resize_xy(this)" alt="{{$v['title']}}">
 							<div class="index_item_price"><strong>{{$v['reserve_price']}}</strong><b>{{$v['price']}}</b></div>
 						</div>
@@ -54,7 +54,7 @@
 								<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
 									<a href="javascript:;" class="index_item_like" onclick="">{{$v['praise_count']}}</a>
 									<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
-									<a href="javascript:;" class="index_item_chat"></a>
+									<a href="/webd/pic/{{$v['id']}}" target="_blank" class="index_item_chat"></a>
 								</div>
 							</div>
 							

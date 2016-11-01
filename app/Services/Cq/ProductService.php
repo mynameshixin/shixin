@@ -168,7 +168,8 @@ class ProductService extends ApiService
                         $rows[$k]['images'][] = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
                         ];
                     }
                 }
@@ -189,12 +190,13 @@ class ProductService extends ApiService
     }
 
     // 获得发布的其他商品
-    public  function getOproducts ($data,$skip,$num,$user_id = 0){
+    public  function getOproducts ($data,$skip,$num){
         $good = DB::table('cq_goods')->where('id', $data['good_id'])->first();
-        $rows = DB::table('cq_goods')->where('id', '!=',$data['good_id'])->where('user_id',$good['user_id']);
-
+        $rows = DB::table('cq_goods')->where('user_id',$good['user_id']);
+        $rows = $rows->where('id', '!=',$data['good_id']);
         $rows = $rows->orderBy('created_at','desc');
         $rows = $rows->skip($skip)->take($num)->get();
+
         foreach ($rows as $k=>$row) {
             if (!empty($row['image_ids'])) {
                 $image_ids = explode(',', $row['image_ids']);
@@ -204,7 +206,8 @@ class ProductService extends ApiService
                         $rows[$k]['images'][] = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
                         ];
                     }
                 }
@@ -224,6 +227,7 @@ class ProductService extends ApiService
         
     }
 
+
     //获得商品详细
     public  function getProductsDetail ($data,$user_id =0){
         $row = DB::table('cq_goods')->where('id',$data['good_id'])->first();
@@ -235,7 +239,8 @@ class ProductService extends ApiService
                     $row['images'][] = [
                         'image_id'=>$imageId,
                         'img_m' => LibUtil::getPicUrl($imageId, 1),
-                        'img_o' => $image_o
+                        'img_o' => $image_o,
+                        'rh' => LibUtil::getPicSize($imageId, 1)
                     ];
                 }
             }
@@ -254,9 +259,10 @@ class ProductService extends ApiService
         $row['min'] = self::cpu_time(time() - strtotime($row['created_at']));
         $row['user'] = UserWebsupply::user_info($row['user_id']);
         // 评论
-        $comments = DB::table('cq_comments')->where('good_id',$data['good_id'])->get();
+        $comments = DB::table('cq_comments')->where('good_id',$data['good_id'])->orderBy('created_at','desc')->get();
         foreach ($comments as $key => $value) {
             $comments[$key]['user'] = UserWebsupply::user_info($value['user_id']);
+            $comments[$key]['min'] = self::cpu_time(time() - strtotime($value['created_at']));
         }
         $row['comments'] = $comments;
         return $row;

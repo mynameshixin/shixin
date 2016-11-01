@@ -379,13 +379,17 @@ a{cursor: pointer;color: #000; font-family: "Microsoft YaHei";}
 .detail_pop_tbtnlikeon{background: url(../images/detail_pop.png) 8px -757px no-repeat;padding-left: 44px;}
 .detail_pop_tbtntobuy{background: url(../images/dtj_icon.png) 7px -279px no-repeat;padding-left: 44px;}
 .pop_img_bigleft,.pop_img_bigright{width: 44px;height: 134px;background-image:url(../images/detail_pop_slide.png);position: absolute;top: 50%;margin-top: -67px;cursor: pointer;}
-.pop_img_eachwrap{width: 668px;height: 833px;float: left;}
-.pop_img_bigleft{left: 0px;background-position: 0px -284px;}
+.pop_img_eachwrap{width: 668px;float: left; text-align: center;}
+.pop_img_bigwrap{width: 10000px;position: absolute;}
+.pop_img_bigleft{left: 0px;background-position: 0px -426px;}
 .pop_img_bigleft:hover{left: 0px;background-position: 0px -426px;}
-.pop_img_bigright{right: 0px;background-position: 0px 0px;}
+.pop_img_bigright{right: 0px;background-position: 0px -141px;}
 .pop_img_bigright:hover{right: 0px;background-position: 0px -141px;}
+.pop_img_bigpointerwrap{position: absolute;bottom: 20px;left: 50%;color: #fff;}
+.pop_img_bigpointerwrap a{margin:0px 10px;width: 12px;height: 12px;background: #fff;border-radius: 50%;display: inline-block;cursor: pointer;opacity: 0.5;}
 
-.detail_pop_timgwarp{margin: 15px 0px 10px 0px;position: relative;}
+.detail_pop_timgwarp{margin: 15px 0px 10px 0px;}
+.detail_pop_timgwarp_cq{margin: 15px 0px 10px 0px;width: 668px;position: relative;overflow: hidden;}
 .detail_pop_tbtnright{float: right;margin:0px 0px 0px 15px;}
 .detail_pop_des{font:normal 15px/26px "Microsoft YaHei";color: #9b9999;padding:0px 15px;}
 .detail_pop_desmore{color: #333;}

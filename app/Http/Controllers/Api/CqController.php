@@ -162,6 +162,8 @@ class CqController extends BaseController{
         //请求参数验证
         parent::validator($data, $rules);
         $rs = parent::validateAcessToken($data['access_token']);
+        $res = DB::table('cq_cg_record')->where(['good_id'=>$data['good_id'],'user_id'=>$rs['user_id']])->first();
+        if($res) return response()->forApi(array(), 1001, '您已经采集过');
         $entry = [
         	'good_id'=>$data['good_id'],
         	'user_id'=>$rs['user_id']
@@ -222,8 +224,18 @@ class CqController extends BaseController{
          //请求参数验证
         parent::validator($data, $rules);
         $rs = parent::validateAcessToken($data['access_token']);
+
+        $res = DB::table('cq_comments_action')->where(['user_id'=>$rs['user_id'],'comment_id'=>$data['comment_id']])->first();
+        if($res) return response()->forApi(array(), 1001, '您已经点赞过');
+
         $id = DB::table('cq_comments')->where('id',$data['comment_id'])->increment('praise_count');
         if ($id) {
+            $entry = [
+                'user_id'=>$rs['user_id'],
+                'comment_id'=>$data['comment_id'],
+                'action'=>1
+            ];
+            DB::table('cq_comments_action')->insertGetId($entry);
             return response()->forApi(['status' => 1]);
         }else{
             return response()->forApi(array(), 1001, '点赞失败！');
@@ -303,7 +315,7 @@ class CqController extends BaseController{
         $num = isset($data['num']) ? $data['num'] : 10;
         $page = isset($data['page'])?$data['page']:1;
         $skip = ($page-1)*$num;
-        $res = ProductService::getInstance()->getOproducts($data,$skip,$num,$rs['user_id']);
+        $res = ProductService::getInstance()->getOproducts($data,$skip,$num);
         return response()->forApi($res);
     }
 
