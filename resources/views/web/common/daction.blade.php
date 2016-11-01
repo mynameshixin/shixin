@@ -598,7 +598,226 @@
 			$(obj).siblings('input').val($(obj).attr('data-val'));
 		}
 	}
+	
 </script>
+<script type="text/javascript">
+	
+	//图片上传
+    function change_cq_pic(obj){
+        if (obj.files && obj.files[0]) {
+          var filename = obj.files[0].name;
+          var subfile = filename.split('.');
+          var subfilelen = subfile.length;
+          var last = subfile[subfilelen-1].toLowerCase();
+          var tp ="jpg,gif,bmp,png,jpeg";
+          var rs=tp.indexOf(last);
+            if(rs>=0){
+                var file_url = getObjectURL(obj.files[0]);
+                var appendnewNode = '<div class="pop_addpic_wrap_capp" style="float:left;">\
+                			  <span class="close_img_btn">×</span>\
+                              <img src="'+file_url+'" alt="">\
+                              <textarea class="pop_addfont_wrap" name="pop_addfont_wrap[]" >'+subfile[0]+'</textarea></div>';
+                $(obj).parents('.pop_addpic_con').append(appendnewNode)
+
+                $('.close_img_btn').click(function(){
+                  $(this).parents('.pop_addpic_wrap_capp').siblings('.pop_addpic_wrap_cq').find('input').val('')
+                  $(this).parents('.pop_addpic_wrap_capp').remove()
+                })
+
+                /*$('.pop_addpic_wrap_cq .pop_addfont_wrap').click(function(){
+                    $(obj).animate({height:"40px"})
+                }).blur(function(){
+                    $(obj).animate({height:"20px"})
+                })*/
+
+            }else{
+                layer.msg('您选择的上传文件不是有效的图片文件！请重新选择',{'icon':5})
+                $(obj).val('')
+                return false;
+            }
+          }
+    }
+</script>
+
+
+<!-- 上传出清商品 -->
+<div class="pop_uploadcg" style="display: none">
+<form action="" method="post" enctype="multipart/form-data" name="ucq">
+	<div class="pop_con" style="width: 550px">
+		<p class="pop_tit">
+			上传出清商品
+			<span class="pop_close" onclick="$('.pop_uploadcg').hide()"></span>
+		</p>
+		<div class="pop_conwrap" style="height: 400px;overflow-y:scroll; background: none">
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname" style="width: 80px">标题</span>
+				<input class="pop_iptname" placeholder="为这个出清商品添加一个名称" name='title' value="" style="width: 350px">
+			</div>
+
+			<div class="pop_namewrap clearfix">
+				<span class="pop_labelname" style="width: 80px">描述</span>
+				<textarea class="pop_iptdes" placeholder="关于出清商品的描述" style="width: 350px" name="description"></textarea>
+			</div>
+			<style type="text/css">
+				.pop_namewrap .sales_pic_add .pop_addpic_wrap_cq{ margin:0 1px; }
+			</style>
+			<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">商品图片</span>
+					<div class="sales_pic_add clearfix" style="display: inline-block;">
+						<div class="pop_addpic_con clearfix" style="float:left">
+						    <div class="pop_addpic_wrap_cq" style="float:left;">
+				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)" />
+				            </div>
+			            </div>
+			            <div class="pop_addpic_con clearfix" style="float:left">
+						    <div class="pop_addpic_wrap_cq" style="float:left;">
+				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
+				            </div>
+			            </div>
+			            <div class="pop_addpic_con clearfix" style="float:left">
+						    <div class="pop_addpic_wrap_cq" style="float:left;">
+				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
+				            </div>
+			            </div>
+			            <div class="pop_addpic_con clearfix" style="float:left">
+						    <div class="pop_addpic_wrap_cq" style="float:left;">
+				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
+				            </div>
+			            </div>
+			            <div class="pop_addpic_con clearfix" style="float:left">
+						    <div class="pop_addpic_wrap_cq" style="float:left;">
+				              <img src="{{asset('web')}}/images/pop_upload_multi.png" alt="堆图家" />
+				              <input type="file" name="image[]" onchange="change_cq_pic(this)"/>
+				            </div>
+			            </div>
+			           
+					</div>
+				</div>
+			
+			
+			
+				<div class="vr_line">
+					<div class="vr-left"><span>位置</span></div>
+					<div class="vr-right">
+						<form class="form-inline">
+					      <div id="distpicker_cq">
+					        <div class="form-group">
+					          <label class="sr-only" for="province_cq">Province</label>
+					          <select class="form-control form-se-cq"  id="province_cq"></select>
+					        </div>
+					        <div class="form-group">
+					          <label class="sr-only" for="city_cq">City</label>
+					          <select class="form-control form-se-cq"  id="city_cq"></select>
+					        </div>
+					        <div class="form-group">
+					          <label class="sr-only" for="district_cq">District</label>
+					          <select class="form-control form-se-cq"  id="district_cq"></select>
+					        </div>
+					        <input type="hidden" name="cityid" value="0"></input>
+					      </div>
+			    		</form>
+						<script type="text/javascript">
+							$("#distpicker_cq").distpicker({
+							  province: "---- 省 ----",
+							  city: "---- 市 ----",
+							  district: "---- 区县 ----",
+							  autoSelect: false
+							});
+
+							$('.form-se-cq').change(function(){
+								var s1 = $('.form-se-cq').eq(0).find('option:selected').attr('data-code')
+								var s2 = $('.form-se-cq').eq(1).find('option:selected').attr('data-code')
+								var s3 = $('.form-se-cq').eq(2).find('option:selected').attr('data-code')
+								if(s1!='' && s2==''){
+									$('input[name=cityid]',$('#distpicker_cq')).val(s1)
+								}
+								if(s1!='' && s2!='' && s3==''){
+									$('input[name=cityid]',$('#distpicker_cq')).val(s2)
+								}
+								if(s1!='' && s2!='' && s3!=''){
+									$('input[name=cityid]',$('#distpicker_cq')).val(s3)
+								}
+								if(s1=='' && s2=='' && s3==''){
+									$('input[name=cityid]',$('#distpicker_cq')).val("0")
+								}
+							})
+						</script>		
+					</div>
+				</div>
+
+				<div class="pop_namewrap clearfix" style="clear: both">
+					<span class="pop_labelname" style="width: 80px">来源</span>
+	
+					<span class="pop_labelname" style="width: 30px;float: none">个人</span>
+					<input type="radio" name="source" value="1" checked="checked" />
+					
+					<span class="pop_labelname" style="width: 30px;float: none">商家</span>
+					<input type="radio" name="source" value="2"/>
+
+				</div>
+
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">价格</span>
+	
+					<span class="pop_labelname" style="width: 40px;float: none">出价</span>
+					<input type="text" class="pop_iptname"  name="reserve_price" value="" style="width: 50px;float: none" />
+						 
+					<span class="pop_labelname" style="width: 40px;float: none; margin-left: 10px">原价</span>
+					<input type="text" class="pop_iptname" name="price" value="" style="width: 50px;float: none"/>
+
+				</div>
+				<div class="pop_namewrap clearfix">
+					<span class="pop_labelname" style="width: 80px">联系方式</span>
+					<input class="pop_iptname" value="" placeholder="电话号/微信号" name="contact" style="width: 350px">
+				</div>
+				<div class="pop_namewrap fenlei clearfix">
+					<span class="pop_labelname" style="width: 80px">分类</span>
+					<select name="f_select"  class="pop_iptname" style="width: 170px">
+						<option value="1">沙发</option>
+						<option value="2">桌</option>
+						<option value="3">床</option>
+						<option value="4">柜</option>
+						<option value="5">架子</option>
+						<option value="6">装饰摆设</option>
+						<option value="7">灯饰</option>
+						<option value="8">家纺家饰</option>
+						<option value="9">卫生间</option>
+						<option value="10">花艺植物</option>
+						<option value="11">厨房用品</option>
+						<option value="12">其他</option>
+					</select>
+					<select name="s_select" class="pop_iptname" style="width: 200px;margin-left: 10px">
+						<option value="">三人沙发</option>
+						<option value="">双人沙发</option>
+						<option value="">单人沙发</option>
+						<option value="">沙发床</option>
+						<option value="">布艺沙发</option>
+						<option value="">皮质沙发</option>
+						<option value="">古典沙发</option>
+						<option value="">现代沙发</option>
+						<option value="">美式沙发</option>
+						<option value="">东南亚沙发</option>
+						<option value="">简欧沙发</option>
+						<option value="">日式沙发</option>
+					</select>
+					<input type="hidden" name="tags" value="沙发三人沙发"></input>
+				</div>
+				<input type="hidden" name="user_id" value="<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>"/>
+				
+		</div>
+		
+		<div class="pop_btnwrap">
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_uploadcg').hide()">取消</a>
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="ucq" title="堆图家上传">上传</a>
+		</div>
+	</div>
+</form>
+</div>
+
 
 <!-- 采集时选择文件夹 -->
 	<div class="pop_collect p_collect" style="display: none" img_id="" id="collect_outer">

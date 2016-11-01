@@ -1,4 +1,4 @@
-@include('web.common.vr.head',['k1'=>'梦幻家——VR展示住宅空间','k2'=>'身临其境的看房体验','k3'=>''])
+@include('web.common.vr.head',['k3'=>''])
 
 	<div class="w1248 w1240">
 			
@@ -71,14 +71,14 @@
 	</div>
 	<div class="vr_home">
 			<div class="w1248">
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<ul class="clearfix" id="ul" >
 					<?php foreach ($needData as $key => $v) { ?>
 						<li class="vr_home_list">
 							<div class="vr_content">
 								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
-								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
+								<img src="{{$v['images'][0]['img_m']}}" onload="rebind(this,394)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
 							</div>
 							<div class="vr_title">
 								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
@@ -94,7 +94,6 @@
 			<div class="cooperate">
 				<img src="{{asset('web')}}/images/app_logo.png"/>
 				<h2>成为堆图家合作开发商，获得更多样板房展示机会</h2>
-				<a href="">了解更多</a>
 			</div>
 		</div>
 		
@@ -122,7 +121,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
+									<img src="'+v.images[0].img_m+'" onload="rebind(this,394)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
@@ -200,7 +199,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
+									<img src="'+v.images[0].img_m+'" onload="rebind(this,394)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\
@@ -246,7 +245,7 @@
 								<div class="vr_content">\
 									<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,'+v.id+',\''+v.detail_url+'\')"></a>\
 									<span>'+v.title+'</span>\
-									<img src="'+v.images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
+									<img src="'+v.images[0].img_m+'" onload="rebind(this,394)" onclick="location.href=\'/webd/pic/'+v.id+'\'" style="cursor: pointer;"/>\
 								</div>\
 								<div class="vr_title">\
 									<span class="vr_home_loc">'+v.cityname+' '+v.countryname+'</span>\

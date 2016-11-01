@@ -21,6 +21,9 @@ class UserWebsupply extends CmWebsupply{
 			$users = DB::table('users')->whereIn('id', $user_id)->select('id','role','location','gender','mobile','username', 'nick','gender','auth_avatar','wechat','signature')->get();
 			if (!empty($users)) {
 				foreach ($users as $user) {
+                    $user['rolename'] = '家居迷';
+                    if($user['role']==1) $user['rolename'] = '设计师';
+                    if($user['role']==3) $user['rolename'] = '商家';
 					$user['pic_m'] = LibUtil::getUserAvatar($user['id'], 1);
 	                if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
 	                    $user['pic_m'] = $user['auth_avatar'];
@@ -35,6 +38,9 @@ class UserWebsupply extends CmWebsupply{
 		}else{
 			$user = DB::table('users')->where('id', $user_id)->select('id', 'role','location','gender','mobile','username', 'nick','gender','auth_avatar','wechat','signature')->first();
 			if (!empty($user)) {
+                $user['rolename'] = '家居迷';
+                if($user['role']==1) $user['rolename'] = '设计师';
+                if($user['role']==3) $user['rolename'] = '商家';
 				$user['pic_m'] = LibUtil::getUserAvatar($user['id'], 1);
 	                if (empty($user['pic_m']) && !empty($user['auth_avatar'])) {
 	                    $user['pic_m'] = $user['auth_avatar'];

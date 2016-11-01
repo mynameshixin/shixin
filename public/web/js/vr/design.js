@@ -38,7 +38,7 @@ $(function (){
 							+'<div class="vr_content">'
 								+'<a class="index_item_vrlogo" href="'+data[index].detail_url+'" target="_blank"></a>'
 								+'<span>'+data[index].title+'</span>'
-								+'<img src="'+data[index].images[0].img_m+'" onload="rect(this)" onclick="location.href=\'/webd/pic/'+data[index].id+'\'" style="cursor: pointer;"/>'
+								+'<img src="'+data[index].images[0].img_m+'" onload="rebind(this,394)" onclick="location.href=\'/webd/pic/'+data[index].id+'\'" style="cursor: pointer;"/>'
 							+'</div>'
 							+'<div class="vr_title">'
 								+'<span class="vr_home_loc">'+cityname+' '+countryname+'</span>'

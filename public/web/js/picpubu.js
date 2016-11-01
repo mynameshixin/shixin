@@ -69,8 +69,9 @@ $(function (){
 					    $(".index_item_rel a",$value).eq(1).html(list[index].collection_count)
 					    $(".index_item_rel a",$value).eq(2).html(list[index].boo_count)
 					    pic_m = list[index].user.auth_avatar!=null?list[index].user.auth_avatar:list[index].user.pic_m
-					    $(".index_item_bottom img",$value).attr('src',pic_m).attr('title',description)
+					    
 					    user_nick = (list[index].user.nick!=0)?list[index].user.nick:list[index].user.username
+					    $(".index_item_bottom img",$value).attr('src',pic_m).attr('title',user_nick)
 					    $(".index_item_authname",$value).html(user_nick).attr('href','/webd/user?oid='+list[index].user.id).attr('title',user_nick)
 
 						$(".authava",$value).attr('href','/webd/user?oid='+list[index].user.id).attr('title',user_nick)
@@ -81,9 +82,10 @@ $(function (){
 
 					    if(list[index].comment != undefined){
 					    	user_nick = (list[index].comment.user.nick!=0)?list[index].comment.user.nick:list[index].comment.user.username
+					    	pics = list[index].comment.user.auth_avatar!=null?list[index].comment.user.auth_avatar:list[index].comment.user.pic_m
 				    		$str = '<div class="index_item_bottom clearfix comment">'
 								+'<a href="/webd/user?oid='+list[index].comment.user.id+'" class="index_item_authava" target="_blank" title="'+user_nick+'">'
-									+'<img src="'+list[index].comment.user.pic_m+'" alt="'+user_nick+'">'
+									+'<img src="'+pics+'" alt="'+user_nick+'">'
 								+'</a>'
 								+'<div class="index_item_authinfo index_item_authtalk">'
 									+'<a href="/webd/user?oid='+list[index].comment.user.id+'" class="index_item_talkname" target="_blank" title="'+user_nick+'">'+user_nick+'：</a>'

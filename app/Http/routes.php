@@ -27,11 +27,12 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'tlogin'=>'TloginController',
         'goodaction'=>'GoodActionController',
         'notice'=>'NoticeController',
-        'plugin'=>'PluginController'
+        'plugin'=>'PluginController',
+        'cq'=>'CqController',
     ]);
     Route::resources([
         'pic'=>'PicsController',
-        
+        'cqpic'=>'CqController',
     ]);
 });
 
@@ -153,6 +154,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'location'=> 'LocationController',
         'notice' => 'NoticeController',
         'vr' => 'VrController',
+        'cq' => 'CqController',
     ]);
 
     Route::resources([

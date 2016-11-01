@@ -35,7 +35,7 @@
 							<?php if(!empty($value['detail_url']) && $value['kind']==2): ?><a class="index_item_vrlogo" href="<?php echo e(url('webd/pic')); ?>/<?php echo e($value['id']); ?>" target="_blank"></a><?php endif; ?>
 							<img src="<?php echo e(isset($value['images'][0]['img_m']) ? $value['images'][0]['img_m'] : url('uploads/sundry/blogo.jpg')); ?>" style="height: <?php echo e($value['images'][0]['rh']); ?>px" onload="resize_xy(this)" alt="<?php echo e(!empty(trim($value['description']))?$value['description']:$value['title']); ?>">
 							<?php if(!empty($value['price'])): ?>
-								<div class="index_item_price">￥<?php echo e($value['price']); ?></div>
+								<div class="index_item_price"><?php echo e($value['price']); ?></div>
 							<?php endif; ?>
 						</div>
 						<div class="index_item_info">
@@ -496,7 +496,7 @@
 		          }
 		    })
 			//自动补全
-			if(cfmove == 0){
+			if(cfcopy == 0){
 		        $('#search_folder_cp').autocomplete({
 		            hints: sfoldername,
 		            width: 188,
@@ -507,7 +507,7 @@
 		              }
 		            }
 		        });
-		        cfmove = 1
+		        cfcopy = 1
 	    	}
 		})
 		

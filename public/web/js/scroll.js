@@ -30,6 +30,8 @@ function autoScroll(){
 				$show.animate({left:'-='+ $show_ewth},$scrlls);
 				$page++;
 			}
+			var detail_pop_timgwarp_cq_h = $('.detail_pop_timgwarp_cq img').eq($page-1).height()
+			$('.detail_pop_timgwarp_cq').animate({'height':detail_pop_timgwarp_cq_h})
 			$('.pop_img_bigpointerwrap a').css({
 				opacity: 0.5
 			});
@@ -45,6 +47,8 @@ function autoScroll(){
 				$show.animate({left:'+='+ $show_ewth},$scrlls);
 				$page--;
 			}
+			var detail_pop_timgwarp_cq_h = $('.detail_pop_timgwarp_cq img').eq($page-1).height()
+			$('.detail_pop_timgwarp_cq').animate({'height':detail_pop_timgwarp_cq_h})
 			$('.pop_img_bigpointerwrap a').css({
 				opacity: 0.5
 			});
@@ -61,6 +65,7 @@ function autoScroll(){
 		$('.pop_img_bigpointerwrap a').eq(0).css({opacity:1});
 		$('.pop_img_bigpointerwrap a').click(function(){
 			var $index = $(this).index();
+			$('.detail_pop_timgwarp_cq').animate({'height':$('.detail_pop_timgwarp_cq img').eq($index).height()})
 			$('.pop_img_bigpointerwrap a').css({
 				opacity: 0.5
 			});

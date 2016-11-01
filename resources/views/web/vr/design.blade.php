@@ -3,9 +3,9 @@
 
 		<div class="vr_home home_design">
 			<div class="w1248">
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>优秀设计师作品<span>——</span></h3>
+						<h3>优秀设计师作品</h3>
 					</div>
 					<ul class="clearfix" id="ul2">
 					<?php foreach ($needData as $key => $v) { ?>
@@ -13,7 +13,7 @@
 							<div class="vr_content">
 								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
-								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
+								<img src="{{$v['images'][0]['img_m']}}" onload="rebind(this,394)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
 							</div>
 							<div class="vr_title">
 								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
@@ -26,9 +26,9 @@
 					<div class="des_more"><a href="javascript:;" class="nolog_index_conmore1" type="2" id="des_more2">查看更多。。。</a></div>
 				</div>
 				<!--二手房改造精选-->
-				<div class="w990 clearfix">
+				<div class="w1248 clearfix">
 					<div class="home_title">
-						<h3><span>——</span>二手房改造精选<span>——</span></h3>
+						<h3>二手房改造精选</h3>
 					</div>
 					<ul class="clearfix" id="ul3">
 						<?php foreach ($needData2 as $key => $v) { ?>
@@ -36,7 +36,7 @@
 							<div class="vr_content">
 								<a class="index_item_vrlogo" style="cursor: pointer;" target="_blank" onclick="increaseView(this,{{$v['id']}},'{{$v['detail_url']}}')"></a>
 								<span>{{$v['title']}}</span>
-								<img src="{{$v['images'][0]['img_m']}}" onload="rect(this)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
+								<img src="{{$v['images'][0]['img_m']}}" onload="rebind(this,394)" onclick="location.href='/webd/pic/{{$v['id']}}'" style="cursor: pointer;"/>
 							</div>
 							<div class="vr_title">
 								<span class="vr_home_loc">{{$v['cityname'] or '未知地区'}} {{$v['countryname'] or ''}}</span>
@@ -54,7 +54,6 @@
 			<div class="cooperate">
 				<img src="{{asset('web')}}/images/app_logo.png"/>
 				<h2>成为堆图家合作开发商，获得更多样板房展示机会</h2>
-				<a href="">了解更多</a>
 			</div>
 		</div>
 		

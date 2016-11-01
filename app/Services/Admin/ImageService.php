@@ -57,6 +57,7 @@ class ImageService extends ApiService
         if (is_string($files["name"])) $files["name"] = array($files["name"]);
         // dd($files);
         foreach ($files["tmp_name"] as $key => $tmp_name) {
+            if(empty($tmp_name)) continue;
             $entry = [
                 'user_id'=> $userId,
                 'name'=>isset($files['name'][$key]) ? $files['name'][$key] : ''

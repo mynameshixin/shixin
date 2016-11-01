@@ -30,6 +30,9 @@ var _hmt = _hmt || [];
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+function rebind(obj,size){
+    if($(obj).width()>size) $(obj).css('width',size+'px')
+}
 </script>
 <script type="text/javascript">
     user_id = "<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id']; ?>"
@@ -109,25 +112,8 @@ var _hmt = _hmt || [];
 </head>
 
 <body class="nolog_body" ng-app="myApp">
-<div class="nolog_header">
-    <div class="headercontainer w1248 clearfix">
-      <a href="/" class="header_logo"></a>
-      <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>
-      <a href="{{url('webd/pics')}}" class="header_item" title="图集">图集</a>
-      <a href="{{url('webd/find')}}" class="header_item" title="发现">发现</a>
-      <a href="{{url('webd/app')}}" class="header_item" title="APP">APP</a>
-      <div href="javascript:;" class="header_add_btn">
-       
-        +
-        
-        <div class="header_add_item">
-          @include('web.common.banner.action')
-        </div>
-      </div>
-      @include('web.common.banner.my')
-    </div>
-  </div>
-  <div class="header slideup">
+
+  <div class="header slideup" style=" display: block;">
     <div class="headercontainer w1248 clearfix">
       <a href="/" class="header_logo"></a>
       <a href="{{url('webd/home')}}" class="header_item" title="商品">商品</a>
@@ -202,7 +188,7 @@ var _hmt = _hmt || [];
 
 </script>
  <div class="container nolog_index_container clearfix {{$k3}}" >
-    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/index-img/index-banner.jpg')}}) top center no-repeat">
+    <div class="nolog_index_banner" style="background: url({{ asset('/static/web/images/vr')}}/{{$pic}}.png) top center no-repeat">
       <div class="w1248 clearfix nolog_index_top">
         <p class="nolog_index_title">{{$k1}}</p>
         <div class="header_search_wrap clearfix">
