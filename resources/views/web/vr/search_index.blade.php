@@ -1,5 +1,4 @@
 @include('web.common.vr.head',['k3'=>''])
-
 	<div class="w1248 w1240">
 			
 			<div class="vr_line">

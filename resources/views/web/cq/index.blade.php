@@ -74,13 +74,59 @@
 		$page = 1
 		return false
 	}
-
+	var tags = [
+    {"name":"三人沙发","pid":1},{"name":"双人沙发","pid":1},{"name":"单人沙发","pid":1},{"name":"沙发床","pid":1},{"name":"布艺沙发","pid":1},{"name":"皮质沙发","pid":1},{"name":"古典沙发","pid":1},{"name":"现代沙发","pid":1},{"name":"美式沙发","pid":1},{"name":"东南亚沙发","pid":1},{"name":"简欧沙发","pid":1},{"name":"日式沙发","pid":1},
+    {"name":"餐桌","pid":2},{"name":"书桌","pid":2},{"name":"茶几","pid":2},{"name":"办公桌","pid":2},{"name":"梳妆台","pid":2},{"name":"吧台","pid":2},{"name":"会议桌","pid":2},{"name":"沙发桌","pid":2},{"name":"咖啡桌","pid":2},
+    {"name":"双人床","pid":3},{"name":"儿童床","pid":3},{"name":"单人床","pid":3},{"name":"实木床","pid":3},{"name":"板式床","pid":3},{"name":"铁艺床","pid":3},{"name":"水床","pid":3},{"name":"吊床","pid":3},{"name":"榻榻米床","pid":3},{"name":"欧式床","pid":3},{"name":"折叠床","pid":3},{"name":"美式床","pid":3},{"name":"地中海床","pid":3},{"name":"高低床","pid":3},
+    {"name":"电视柜","pid":4},{"name":"衣柜","pid":4},{"name":"书柜","pid":4},{"name":"床头柜","pid":4},{"name":"浴室柜","pid":4},{"name":"酒柜","pid":4},{"name":"玄关柜","pid":4},{"name":"五斗柜","pid":4},{"name":"厨柜","pid":4},{"name":"餐边柜","pid":4},{"name":"餐具柜","pid":4},{"name":"食品柜","pid":4},{"name":"文件柜","pid":4},{"name":"组合柜","pid":4},{"name":"吧柜","pid":4},
+    {"name":"书架","pid":5},{"name":"鞋架","pid":5},{"name":"衣帽架","pid":5},{"name":"花架","pid":5},{"name":"伞架","pid":5},{"name":"博古架","pid":5},{"name":"格架","pid":5},
+    {"name":"摆件","pid":6},{"name":"镜子","pid":6},{"name":"钟","pid":6},{"name":"装置画","pid":6},{"name":"香薰","pid":6},{"name":"挂钩","pid":6},{"name":"收纳","pid":6},{"name":"相框","pid":6},
+    {"name":"台灯","pid":7},{"name":"吊灯","pid":7},{"name":"壁灯","pid":7},{"name":"户外灯","pid":7},{"name":"镜前灯","pid":7},{"name":"吸顶灯","pid":7},{"name":"创意","pid":7},{"name":"落地灯","pid":7},{"name":"厨卫灯","pid":7},{"name":"水晶灯","pid":7},{"name":"铜灯","pid":7},
+    {"name":"阳台灯","pid":7},
+    {"name":"床品","pid":8},{"name":"抱枕","pid":8},{"name":"布料","pid":8},{"name":"窗帘","pid":8},{"name":"坐垫","pid":8},{"name":"桌布","pid":8},{"name":"枕头","pid":8},{"name":"桌旗","pid":8},{"name":"靠垫","pid":8},{"name":"地毯","pid":8},
+    {"name":"浴帘","pid":9},{"name":"浴巾","pid":9},{"name":"衣架","pid":9},{"name":"洗漱套瓶","pid":9},{"name":"杯子","pid":9},{"name":"马桶垫","pid":9},{"name":"防滑垫","pid":9},{"name":"毛巾架","pid":9},{"name":"毛巾环","pid":9},
+    {"name":"多肉植物","pid":10},{"name":"花瓶","pid":10},{"name":"花盆","pid":10},{"name":"仿真花","pid":10},{"name":"鲜花","pid":10},{"name":"干花","pid":10},{"name":"水景","pid":10},{"name":"野兽派","pid":10},{"name":"RoseOnly","pid":10},
+    {"name":"餐具","pid":11},{"name":"盘子","pid":11},{"name":"杯子","pid":11},{"name":"勺子","pid":11},{"name":"刀叉","pid":11},{"name":"碟子","pid":11},{"name":"碗架","pid":11},
+    {"name":"隔断","pid":12},{"name":"窗帘","pid":12},{"name":"沐浴","pid":12},{"name":"浴缸","pid":12}
+    ];
 	// 分类搜索
 	function search_cate(obj){
-		var v = $(obj).find('input').val()
+		var v = $('#cq_search_word input[name=keyword]').val()
+		var value = $(obj).attr('value')
+		var html = $(obj).html()
+		var si = ''
+
+		if(value!=0){
+			$.each(tags,function(i,v){
+		        if(v.pid==value){
+		          si+= '<li><a href="javascript:;" onclick="search_lcate(this)">'+v.name+'</a></li>'
+		        }
+		    })
+		    $('#lcate').html(si)
+		}else{
+			 html = ''
+			 $('#lcate').html(html)
+		}
+		cdata.tags = html
 		seajax(cdata,v)
 		postUrl = '/webd/cq/search'
 		postData.user_id = 0
+		postData.tags = html
+		$page = 1
+		return false
+	}
+
+	// 小分类搜索
+	function search_lcate(obj){
+		var v = $('#cq_search_word input[name=keyword]').val()
+		$('#lcate a').removeClass('red')
+		$(obj).addClass('red')
+		var html = $(obj).html()
+		cdata.tags = html
+		seajax(cdata,v)
+		postUrl = '/webd/cq/search'
+		postData.user_id = 0
+		postData.tags = html
 		$page = 1
 		return false
 	}
@@ -95,6 +141,8 @@
 		seajax(cdata,v)
 		postUrl = '/webd/cq/search'
 		postData.user_id = 0
+		postData.price1 = price1
+		postData.price2 = price2
 		$page = 1
 		return false
 	}
@@ -107,6 +155,7 @@
 		seajax(cdata,v)
 		postUrl = '/webd/cq/search'
 		postData.user_id = 0
+		postData.source = dv
 		$page = 1
 		return false
 	}
@@ -131,6 +180,7 @@
 			.w1248 .o2 a{ width: auto; }
 			#main .index_item_price strong{ color: #f00; font-size: 18px;padding: 10px }
 			#main .index_item_price b{ text-decoration: line-through; }
+			.index_item_price{ width: 100% }
 	    </style>
 		<div class="w1248 w1240" style="padding-bottom: 20px">
 		    <div class="search-option clearfix">
@@ -144,20 +194,28 @@
 			</div>
 			<div class="search-option o2 clearfix" style="margin-top: 20px">
 				<span>类&nbsp;&nbsp;&nbsp;&nbsp;别:</span>
-				<ul>
-					<li><a href="javascript:;" class="red">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
+				<ul id="ocate">
+					<li><a href="javascript:;" class="red" onclick="search_cate(this)" value="0">全部</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="1">沙发</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="2">桌</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="3">床</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="4">柜</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="5">架子</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="6">装饰摆设</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="7">灯饰</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="8">家纺家饰</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="9">卫生间</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="10">花艺植物</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="11">厨房用品</a></li>
+					<li><a href="javascript:;" onclick="search_cate(this)" value="12">其他</a></li>
 				</ul>
 			</div>
 			<div class="search-option o2 clearfix">
 				<span>小&nbsp;&nbsp;&nbsp;&nbsp;类:</span>
 				<ul>
-					<li><a href="javascript:;" class="red">全部</a></li><li><a href="javascript:;">现代</a></li><li class="on"><a href="javascript:;">北欧</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
-					<li><a href="javascript:;">全部</a></li><li><a href="javascript:;">设计风格</a></li><li class="on"><a href="javascript:;">居家空间</a></li><li><a href="javascript:;">商业空间</a></li>
+					<div id="lcate">
+						
+					</div>
 				</ul>
 			</div>
 			<div class="search-option o2 clearfix">

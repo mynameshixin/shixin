@@ -673,8 +673,9 @@
 							function re668(obj){
 								if($(obj).width()>668) $(obj).css('width','668px')
 								//vr logo
-								var bheight = $('.bigimg').height()/2-55.5
-								$('#vlogo').css({'top':bheight}).show()
+								var bheight = ($('.bigimg').height()/2)
+								alert(bheight)
+								$('#vlogo').css({'top':bheight+'px'}).show()
 							}
 						</script>
 		

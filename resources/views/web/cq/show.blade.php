@@ -17,9 +17,7 @@
 				autoScroll()
 			}
 		}
-		$(function(){
-			
-		})
+	
 	</script>
 	<div class="container nolog_container">
 		<a href="/webd/cqpic/{{$good['pre']}}" class="detail_pop_loadbtn detail_pop_loadleft" title="上一个"></a>
@@ -33,9 +31,11 @@
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtnbuy detail_pop_tbtn_cpadding detail_pop_collection cq_collect">采集</div>
 							<!-- htmlv?=20160718 -->
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding cq_like">赞</div>
-							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtn_cpadding">去购买</div> -->
-							<!-- <div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">删除</div> -->
+							<?php if($self_id == $good['user_id']){?>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright edit_cq_good">编辑</div>
+							<?php }?>
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
+
 								<div class="detail_pop_tbtn_click detail_fileb_pr">
 									分享
 									<var class="detail_pop_tbtntril"></var>
@@ -134,6 +134,7 @@
 			<style type="text/css">
 			.index_item_price strong{ color: #f00; font-size: 18px;padding: 10px }
 			.index_item_price b{ text-decoration: line-through; }
+			.index_item_price{ width: 250px }
 			</style>
 			<?php if(!empty($ogood)): ?>
 			<div class="detail_pop_bottom">
