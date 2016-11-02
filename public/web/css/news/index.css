@@ -1,4 +1,4 @@
-
+﻿
 /*文章详情*/
 .w942{width: 942px;margin: 0 auto; position: relative;border: 1px solid #848484;margin-top: 93px;background-color: #FFF;}
 .w944{width: 944px;margin: 0 auto;}
@@ -195,7 +195,7 @@
 .pop_img_bigwrap{width: 10000px;position: absolute;}
 .pop_img_bigleft,.pop_img_bigright{width: 44px;height: 134px;background-image:url(/web/images/detail_pop_slide.png);position: absolute;top: 50%;margin-top: -67px;cursor: pointer;}
 .pop_img_bigleft{left: 0px;background-position: 0px -284px;}
-.pop_img_bigleft:hover{left: 0px;background-position: 0px -426px;}
+.pop_img_bigleft:hover{margin-left:-50px;left: 0px;background-position: 0px -426px;}
 .pop_img_bigright{right: 0px;background-position: 0px 0px;}
 .pop_img_bigright:hover{right: 0px;background-position: 0px -141px;}
 .pop_img_bigpointerwrap{position: absolute;bottom: 20px;left: 50%;color: #fff;}

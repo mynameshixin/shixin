@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #fff;">
 <head>
+@include('web.common.head')
+
 	<meta charset="UTF-8">
-	<title>Document</title>
-		@include('web.common.head')	
-		
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>堆图家</title>
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/font-awesome.min.css">
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/font-awesome-ie7.min.css">
+	<![endif]-->
+	
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/index.css">
+	<!-- <link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/main.css"> -->
+	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="{{asset('web')}}/js/news/Masonry/masonry-docs.min.js"></script>
+	 <script type="text/javascript" src="{{asset('web')}}/js/news/index.js"></script>
+	 <script src="{{asset('web')}}/js/news/foucs.js" type="text/javascript"></script>
 </head>
-<body>
+<!-- htmlv?=20160718 -->
+<body ondragstart="return false" class="know-home">
 @include('web.common.banner')
-<div class="container">
+	<div class="container">
 		 <div id="main">
 
 	        <div id="index_b_hero">
@@ -23,7 +35,7 @@
 	                    <li class="hero" >
 
 	                        <a href="/Article/article/<?php echo $where[$i]['eassat_id']?>" >
-	                            <img src="<?php echo $where[$i]['eassat_timg']?>" class="thumb" />
+	                            <img src="http://www.duitujia.com<?php echo $where[$i]['eassat_timg']?>" class="thumb" />
 	                        </a>
 	                    </li>
 	                @endfor
@@ -133,5 +145,175 @@
 	    	</div>
     </div>
 </div>
+	
+
+	
+	<!-- 上传商品详细弹框 -->
+	
+	<!-- htmlv?=20160718 -->
+	<!-- htmlv?=20160718 -->
+	<!-- 创建文件夹 -->
+	
+	
+	<!-- htmlv?=20160718 -->
+	<div class="pop_changefold">
+		<div class="pop_con">
+		
+			<div class="pop_change_pic clearfix">
+				<!-- htmlv?=20160718 -->
+				<div class="pop_change_wrap">
+					<div class="pop_change_imgwrap">
+					</div>
+					<div class="pop_change_imgwrap" id="pop_change_fengmian">
+						<!-- <img src="/web/images/temp/2.png" alt=""> -->
+					</div>
+					<div class="pop_change_imgwrap">
+					</div>
+				</div>
+				<!-- htmlv?=20160718 -->
+			
+			</div>
+			
+		</div>
+	</div>
+	
 </body>
+<script type="text/javascript">
+		$(function() {
+			// <!-- htmlv=20160710 -->
+			$('#edit_fold_btn').click(function(){
+				$('.pop_editfold').show()
+			  	var poptopHei = $('.pop_editfold .pop_con').height();
+					$('.pop_con').css({
+					   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_con').click(function(){
+				event.stopPropagation();
+			})
+			$('.pop_editfold,.pop_editfold .pop_close,.pop_editfold .detail_pop_cancel').click(function(){
+				$('.pop_editfold').hide()
+			})
+			$('#about_your_file').change(function(event) {
+				var newVal = $(this).val();
+				$("#new_fold_descri").html(newVal)
+			});
+			// <!-- htmlv=20160710 -->
+		    var $container = $('.index_con');
+		    $container.imagesLoaded(function() {
+		        $container.masonry({
+	                itemSelector: '.index_item',
+	                gutter: 15,
+	                isAnimated: true,
+	            });
+	            // <!-- htmlv=20160710 -->
+	            // var text = $('.index_item_intro');
+	            //   str = text.html(),
+	            //   textLeng = 27;
+	            //   if(str.length > textLeng ){
+	            //         text.html( str.substring(0,textLeng )+"...");
+	            //   }
+	            // <!-- htmlv=20160710 -->
+		     });
+		    
+		    $('.detail_filebtn_click').click(function(){
+		    	event.stopPropagation();
+		    	if ($(this).siblings('.detail_fileb_select').hasClass('slideup')) {
+		    		$('.detail_fileb_select').addClass('slideup');
+		    		$(this).siblings('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+		    		var isOut = true;
+		    	}else{
+		    		$('.detail_fileb_select').addClass('slideup');
+		    		$(this).siblings('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+		    	};
+		    	window.document.onclick = function(){
+			    	if(isOut){
+			            $('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+			        }else{
+			        	$('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+			        }
+			    }
+		    });
+		     $(window).scroll(function(event) {
+				var scrollHei = $('body').scrollTop();
+				if (scrollHei <= 130) {
+					$('.perhome_scroll_info,.perhome_scroll_wrap').css({
+						transform:'translate(0px, -50px)',
+						transition:'transform 200ms ease'
+					});
+					$('.perhome_scroll_wrap').removeClass('shadow');
+				}else{
+					$('.perhome_scroll_wrap').addClass('shadow');
+					$('.perhome_scroll_wrap').css({
+						display:'block',
+						position: 'fixed',
+						transform:'translate(0px, -0px)',
+						transition:'transform 200ms ease'
+					});
+					$('.perhome_scroll_info').css({
+						transform:'translate(0px, -0px)',
+						transition:'transform 200ms ease'
+					})
+				};
+			});
+		      // <!-- htmlv?=20160718 -->
+		     $('.detail_filechange').click(function(){
+				$('.pop_editfold').hide()
+				$('.pop_changefold').show();
+				// <!-- htmlv?=20160718 -->
+				// autoScroll()
+			  	var poptopHei = $('.pop_changefold .pop_con').height();
+					$('.pop_con').css({
+					   'margin-top':-(poptopHei/2)
+				})
+			})
+			$('.pop_changefold,.pop_changefold .detail_pop_cancel').click(function(){
+				$('.pop_changefold').hide();
+			});
+			$('.pop_changefold .pop_con').click(function(){
+				event.stopPropagation()
+			})
+			$("#pop_change_fengmian").append('<img id="dragimg" src="/web/images/temp/2.png" alt="">')
+	        var odiv = document.getElementById("dragimg");
+	        var conheight = $('#pop_change_fengmian').height();
+	        dragimgFun(odiv)
+	        function dragimgFun(odiv){
+	        	odiv.onmousedown = function (ev) {
+	                    var oEvent = ev || event;
+	                    var gapX = oEvent.clientX - odiv.offsetLeft;
+	                    var gapY = oEvent.clientY - odiv.offsetTop;
+	                    document.onmousemove = function (ev) {
+	                        var oEvent = ev || event;
+	                        //限制在可视区域内运动
+	                        var l = oEvent.clientX - gapX;
+	                        var t = oEvent.clientY - gapY;
+	                        var r = document.documentElement.clientWidth - odiv.offsetWidth;
+	                        var b = document.documentElement.clientHeight - odiv.offsetHeight;
+	                        var tb = odiv.height-conheight;
+	                        // console.info(-tb)
+	                        odiv.style.left = 0 + "px";
+	                        if (t <= -tb) {
+	                        	odiv.style.top = -tb + "px";
+	                        }else if (t > 0) {
+	                            odiv.style.top = 0 + "px";
+	                        }
+	                        else if (t > b) {
+	                            odiv.style.top = b + "px";
+	                        } else {
+	                            odiv.style.top = t + "px";
+	                        }
+	                    }
+	            }
+	            odiv.onmouseup = function () {
+	                document.onmousemove = null;
+	                document.onmouseup = null;
+	            }
+	        }
+	        // <!-- htmlv?=20160718 -->
+	        //轮播
+       		 $.foucs({ direction: 'right' });
+
+		});
+	</script>
 </html>
+

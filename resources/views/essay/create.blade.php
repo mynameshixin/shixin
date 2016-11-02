@@ -263,7 +263,7 @@
 			</div>
 		</div>
 		<div class="edit-tiem">
-			<div class="edit-tit">推荐文章展示大图（含文案）（长高比11:5）</div>
+			<div class="edit-tit">推荐文章展示大图（含文案）（长高比750:350）</div>
 			<div class="edit-con ec-info clearfix">
 				<div class="pic-show-box pop_pic_wrap">
 				</div>
@@ -276,7 +276,7 @@
 		</div>
 		<div class="edit-tiem">
 		
-			<div class="edit-tit">类瀑布流展示图（长高比8:5）</div>
+			<div class="edit-tit">九宫格展示图（长高比390:245）</div>
 			<div class="edit-con ec-info clearfix">
 				<div class="pic-show-box pic-show-box2">
 				</div>

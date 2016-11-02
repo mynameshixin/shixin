@@ -89,13 +89,35 @@ class ArticleController extends CmController{
 		$id=DB::table('eassat')->insert($data);
 		return $id;
 	}
+	public function indexx(){
+		$where=$this->eassat_where(4);
+		$index=$this->eassat_index();
+		$user_id = $this->user_id; 
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'where'=>$where,
+			'index'=>$index
+		];
+		return View('essay.indexx',$data);
+	}
 	public function show($id){	
-		$data=$this->cont_id($id);
+		$dataa=$this->cont_id($id);
 		$commentw=$this->comment_eassat_id_int($id);
 		$comment=$this->comment_eassat_id($id);	
 		if(empty($_COOKIE['user_id'])){$user=0;}else{$user=$this->user();}
 		$where=$this->eassat_where();
-		return View ('essay.show',['ok'=>$data,'new'=>$commentw,'comment'=>$comment,'us'=>$user,'where'=>$where]);
+
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'ok'=>$dataa,
+			'new'=>$commentw,
+			'comment'=>$comment,
+			'us'=>$user,
+			'where'=>$where
+		];
+		return View ('essay.show',$data);
 	}
 	public function pingx(){  //添加评论
 		$cm=new CmController;
@@ -269,18 +291,7 @@ class ArticleController extends CmController{
 		return $data;
 
 	}
-	public function indexx(){
-		$where=$this->eassat_where(4);
-		$index=$this->eassat_index();
-		$user_id = $this->user_id; 
-		$data = [
-			'self_id'=>$this->user_id,
-			'self_info'=>$this->self_info,
-			'where'=>$where,
-			'index'=>$index
-		];
-		return View('essay.indexx',$data);
-	}
+
 
 }
 

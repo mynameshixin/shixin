@@ -7,17 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/font-awesome.min.css">
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="public/css/font-awesome-ie7.min.css">
-	<![endif]-->
-	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/main.css">
-	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/index.css">
-	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/news/Masonry/masonry-docs.min.js"></script>
-	<script type="text/javascript" src="{{asset('web')}}/js/news/index.js"></script>
+	
 	<script type="text/javascript" src="{{asset('web')}}/js/news/nolog.js"></script>
+<script type="text/javascript" src="{{asset('web')}}/js/news/index.js"></script>
+	
+		<script type="text/javascript" src="{{asset('web')}}/js/news/detail_find.js"></script>
+			<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/main.css">
+	<![endif]-->
+
 	<script type="text/javascript" src="{{asset('web')}}/js/news/scroll.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{asset('web')}}/css/news/index.css">
+
 	
 	<!-- htmlv=20160710 -->
-	<script type="text/javascript" src="{{asset('web')}}/js/news/detail_find.js"></script>
+
 	<!-- htmlv=20160710 -->
 	@include('web.common.head')	
 </head>
@@ -176,80 +181,6 @@
 		
 		
 	</div>
-	<div class="pop_editpic" style="display:none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				编辑图片
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_conwrap">
-				<div class="pop_desimgwrap">
-					<div class="pop_imgwrap">
-						<img src="public/images/temp/1.png" alt="">
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<div class="pop_labelwrap">
-						<span class="pop_labelname">名称</span>
-						<textarea class="pop_iptdes"  placeholder="这是一把欧洲进口的沙发椅，来自品牌"></textarea>
-					</div>
-					<div class="pop_foldwrap clearfix">
-						<span class="pop_labelname" style="margin-top: 17px;">移动到</span>
-						<select class="pop_iptselect" style="margin-top: 17px;">
-							<option value="">椅子</option>
-							<option value="">桌子</option>
-							<option value="">电视柜</option>
-							<option value="">沙发</option>
-							<option value="">卧室</option>
-							<option value="">卫生间</option>
-						</select>
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">标签</span>
-					<select class="pop_labelselect" style="margin-right: 15px;">
-						<option value="">该采集的风格是...</option>
-						<option value="">现代</option>
-						<option value="">中式</option>
-						<option value="">日式</option>
-						<option value="">新古典</option>
-						<option value="">美式</option>
-						<option value="">现代</option>
-						<option value="">中式</option>
-						<option value="">日式</option>
-						<option value="">新古典</option>
-						<option value="">美式</option>
-					</select>
-					<select class="pop_labelselect">
-						<option value="">该采集的颜色是...</option>
-						<option value="">红</option>
-						<option value="">橙</option>
-						<option value="">黄</option>
-						<option value="">绿</option>
-						<option value="">青</option>
-						<option value="">蓝</option>
-						<option value="">紫</option>
-						<option value="">黑</option>
-						<option value="">白</option>
-						<option value="">灰</option>
-					</select>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">来自</span>
-					<input class="pop_iptname" placeholder="www.thden.com">
-				</div>
-			</div>
-			
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
-			</div>
-		</div>
-	</div>
-	
-	
-	
 </body>
 <script type="text/javascript">
 		$(function() {

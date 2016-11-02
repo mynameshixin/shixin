@@ -382,10 +382,10 @@ a{cursor: pointer;color: #000; font-family: "Microsoft YaHei";}
 .pop_img_bigleft,.pop_img_bigright{width: 44px;height: 134px;background-image:url(../images/detail_pop_slide.png);position: absolute;top: 50%;margin-top: -67px;cursor: pointer;}
 .pop_img_eachwrap{width: 668px;float: left; text-align: center;}
 .pop_img_bigwrap{width: 10000px;position: absolute;}
-.pop_img_bigleft{left: 0px;background-position: 0px -426px;}
+.pop_img_bigleft{margin-left:-20px;left: 0px;background-position: 0px -426px;}
 .pop_img_bigleft:hover{left: 0px;background-position: 0px -426px;}
 .pop_img_bigright{right: 0px;background-position: 0px -141px;}
-.pop_img_bigright:hover{right: 0px;background-position: 0px -141px;}
+.pop_img_bigright:hover{margin-right:-50px;right: 0px;background-position: 0px -141px;}
 .pop_img_bigpointerwrap{position: absolute;bottom: 20px;left: 50%;color: #fff;}
 .pop_img_bigpointerwrap a{margin:0px 10px;width: 12px;height: 12px;background: #fff;border-radius: 50%;display: inline-block;cursor: pointer;opacity: 0.5;}
 
