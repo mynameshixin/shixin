@@ -92,14 +92,58 @@ class CqController extends CmController{
         $num = isset($data['num']) ? $data['num'] : 10;
         $page = isset($data['page'])?$data['page']:1;
         $skip = ($page-1)*$num;
-        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num);
+        $userId = 0;
+        if(isset($data['user_id'])){
+            $userId = self::get_user_cache($data['user_id']);
+        }
+        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num,$userId);
         return response()->forApi($rs);
 	}
 
+    //我的采集或收藏数据
+    public function postMycol(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $num = isset($data['num']) ? $data['num'] : 10;
+        $page = isset($data['page'])?$data['page']:1;
+        $skip = ($page-1)*$num;
+        $rs = ProductService::getInstance()->getProductsByCol ($data,$skip,$num,$userId);
+        return response()->forApi($rs);
+    }
 	
+    // 筛选展示数据
+    public function postSearch(){
+        $data = Input::all();
+        $rules = array(
+            'keyword'=>'required'
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $num = isset($data['num']) ? $data['num'] : 10;
+        $page = isset($data['page'])?$data['page']:1;
+        $skip = ($page-1)*$num;
+        $entry = [];
+        if(isset($data['keyword'])) $entry['keyword'] = $data['keyword'];
+        if(isset($data['cityid'])) $entry['cityid'] = $data['cityid'];
+        if(isset($data['tags'])) $entry['tags'] = $data['tags'];
+        if(isset($data['price1'])) $entry['price1'] = $data['price1'];
+        if(isset($data['price2'])) $entry['price2'] = $data['price2'];
+        if(isset($data['source'])) $entry['source'] = $data['source'];
+        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num,0,$entry);
+        return response()->forApi($rs);
+
+    }
+
     // 展示数据
 	public function show($id){
         $good = ProductService::getInstance()->getProductsDetail(['good_id'=>$id]);
+        if(empty($good)) die('no such pic!');
+        DB::table('cq_goods')->where('id',$good['id'])->increment('views');
         $ogood = $this->getOgoods($good['id']);
         $ogood = $ogood['data']['list'];
         // dd($ogood);

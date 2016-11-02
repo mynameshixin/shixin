@@ -6,15 +6,19 @@
 
 <body style="background: #ddd">
 	@include('web.common.banner')
+	<script type="text/javascript" src="{{asset('web')}}/js/cq/function.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/scroll.js"></script>
 	<script type="text/javascript">
-		function re668(obj){
+		function re668(obj,k){
 			if($(obj).width()>668) $(obj).css('width','668px')
+			if(k==0){
+				var detail_pop_timgwarp_cq_img = $(obj).height()
+				$('.detail_pop_timgwarp_cq').css({'height':detail_pop_timgwarp_cq_img+'px'})
+				autoScroll()
+			}
 		}
 		$(function(){
-			var detail_pop_timgwarp_cq_img = $('.detail_pop_timgwarp_cq img').eq(0).height()
-			$('.detail_pop_timgwarp_cq').css({'height':detail_pop_timgwarp_cq_img+'px'})
-			autoScroll()
+			
 		})
 	</script>
 	<div class="container nolog_container">
@@ -56,7 +60,7 @@
 							<div class="pop_img_bigwrap clearfix">
 								<?php foreach($good['images'] as $k=>$v){?>
 								<div class="pop_img_eachwrap">
-									<img src="{{$v['img_o']}}" alt="" onload="re668(this)">
+									<img src="{{$v['img_o']}}" alt="" onload="re668(this,{{$k}})">
 								</div>
 								<?php }?>
 							</div>
@@ -64,7 +68,7 @@
 							<div class="pop_img_bigleft"></div>
 							<div class="pop_img_bigright"></div>
 							
-							<div class="index_item_price"><b style="padding:0 10px">600</b><del>980</del></div>
+							<div class="index_item_price"><strong>600</strong><b style="color: #999">980</b></div>
 						</div>
 						<p class="detail_pop_des" title="{{$good['title']}}">
 							{{$good['title']}}
@@ -128,8 +132,8 @@
 				</div>
 			</div>
 			<style type="text/css">
-			#main_show .index_item_price strong{ color: #f00; font-size: 18px;padding: 10px }
-			#main_show .index_item_price b{ text-decoration: line-through; }
+			.index_item_price strong{ color: #f00; font-size: 18px;padding: 10px }
+			.index_item_price b{ text-decoration: line-through; }
 			</style>
 			<?php if(!empty($ogood)): ?>
 			<div class="detail_pop_bottom">
@@ -153,8 +157,8 @@
 													<span class="vr_home_fb">{{$v['min']}}发表</span>
 											</div>
 											<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
-												<a href="javascript:;" class="index_item_like" onclick="">{{$v['praise_count']}}</a>
-												<a href="javascript:;" class="index_item_c">{{$v['collection_count']}}</a>
+												<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">{{$v['praise_count']}}</a>
+												<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">{{$v['collection_count']}}</a>
 												<a href="/webd/cqpic/{{$v['id']}}" target="_blank" class="index_item_chat"></a>
 											</div>
 										</div>
@@ -176,6 +180,25 @@
 	postData_show = {'num':10,'good_id':{{$good['id']}}}
 </script>
 <script type="text/javascript">
+	// 分享js
+	$('.detail_pop_tbtn_click').click(function(){
+    	event.stopPropagation();
+    	if ($(this).siblings('.detail_fileb_select').hasClass('slideup')) {
+    		$('.detail_fileb_select').addClass('slideup');
+    		$(this).siblings('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+    		var isOut = true;
+    	}else{
+    		$('.detail_fileb_select').addClass('slideup');
+    		$(this).siblings('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+    	};
+    	window.document.onclick = function(){
+	    	if(isOut){
+	            $('.detail_fileb_select').removeClass('slidedown').addClass('slideup');
+	        }else{
+	        	$('.detail_fileb_select').removeClass('slideup').addClass('slidedown');
+	        }
+	    }
+    });
 	//评论赞添加
 	function comment_parise(obj){
 		if(u_id==''){

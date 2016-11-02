@@ -32,6 +32,7 @@ a{cursor: pointer;color: #000; font-family: "Microsoft YaHei";}
 .index_item_c{background: url(../images/dtj_icon.png) -9px -253px no-repeat;padding-left: 24px;width: 68px;}
 .index_item_b{background: url(../images/dtj_icon.png) -9px -289px no-repeat;padding-left: 24px;height: 15px;float: right;width: 0px;}
 .index_item_chat{background: url(../images/chat.png)  no-repeat;padding-left: 24px;height: 15px;float: right;width: 0px;}
+.index_item_edit{background: url(../images/edite.png)  no-repeat;padding-left: 24px;height: 15px;float: right;width: 0px;}
 .index_item_bottom{border-top: 1px solid #e3e3e3;padding:12px; padding-bottom: 10px}
 .index_item_authava{width: 30px;height: 30px;border-radius: 50%;float: left; padding-top: 5px;}
 .index_item_authava img{width: 30px;height: 30px;border-radius: 50%;}

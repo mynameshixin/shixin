@@ -98,27 +98,41 @@ class ProductService extends ApiService
         return !empty($id)?1:0;
     }
     // 获得主页商品
-    public  function getProductsByFids ($data,$skip,$num,$user_id = 0){
+    public  function getProductsByFids ($data,$skip,$num,$user_id = 0,$entry=[]){
         $rows = DB::table('cq_goods')->where('status', 1);
         if(!empty($user_id)) $rows = $rows->where('user_id',$user_id);
-        if(!empty($data['keyword'])){
-            $keyword = $data['keyword'];
+        if(!empty($entry['keyword'])){
+            $keyword = $entry['keyword'];
             $rows = $rows->where(function ($rows) use ($keyword) {
                 $rows = $rows->where('title', "like", "%{$keyword}%")
                     ->orWhere('tags', "like", "%{$keyword}%");
 
             });
         }
-        if(!empty($data['cityid'])) $rows = $rows->where('cityid',$data['cityid']);
-        if(!empty($data['tags'])) $rows = $rows->where('tags','like',"%{$data['tags']}%");
-        if(!empty($data['price1'])){
-            if(!empty($data['price2'])){
-                $rows = $rows->where('reserve_price','>',$data['price1'])->where('price','<',$data['price2']);
+        if(!empty($entry['cityid'])){
+            $ids = DB::table('citys')->where('pid',$data['cityid'])->lists('id');
+            if(empty($ids)){
+                $rows = $rows->where('cityid',$data['cityid']);
             }else{
-                $rows = $rows->where('reserve_price','<',$data['price1']);
+                $n = [];
+                foreach ($ids as $key => $value) {
+                    $next = DB::table('citys')->where('pid',$value)->lists('id');
+                    $n = array_merge($n,$next);
+                }
+                $ids[] = $data['cityid'];
+                $n = array_merge($n,$ids);
+                $rows = $rows->whereIn('cityid',$n);
             }
         }
-        if(!empty($data['source'])) $rows = $rows->where('source',$data['source']);
+        if(!empty($entry['tags'])) $rows = $rows->where('tags','like',"%{$entry['tags']}%");
+        if(!empty($entry['price1'])){
+            if(!empty($entry['price2'])){
+                $rows = $rows->where('reserve_price','>=',$entry['price1'])->where('reserve_price','<',$entry['price2']);
+            }else{
+                $rows = $rows->where('reserve_price','<=',$entry['price1']);
+            }
+        }
+        if(!empty($entry['source'])) $rows = $rows->where('source',$entry['source']);
 
         $rows = $rows->orderBy('created_at','desc');
         $rows = $rows->skip($skip)->take($num)->get();

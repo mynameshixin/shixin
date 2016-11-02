@@ -146,7 +146,14 @@ class CqController extends BaseController{
         $num = isset($data['num']) ? $data['num'] : 10;
         $page = isset($data['page'])?$data['page']:1;
         $skip = ($page-1)*$num;
-        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num);
+        $entry = [];
+        if(isset($data['keyword'])) $entry['keyword'] = $data['keyword'];
+        if(isset($data['cityid'])) $entry['cityid'] = $data['cityid'];
+        if(isset($data['tags'])) $entry['tags'] = $data['tags'];
+        if(isset($data['price1'])) $entry['price1'] = $data['price1'];
+        if(isset($data['price2'])) $entry['price2'] = $data['price2'];
+        if(isset($data['source'])) $entry['source'] = $data['source'];
+        $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num,0,$entry);
         return response()->forApi($rs);
 
     }
