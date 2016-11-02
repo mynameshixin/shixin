@@ -35,6 +35,7 @@ class ArticleController extends CmController{
 	}
 	public function add_eassat(){  //写入数据库前判定
 		$us=$this->user();
+
 		if($_POST['eassat_user']){$use=$this->user_name($_POST['eassat_user']);$data['eassat_guide_id']=$use['id'];$data['eassat_guide_user']=$use['nick'];$data['eassat_guide_src']=$use['src'];}
 		if($_POST['eassat_describe']){$data['eassat_describe']=$_POST['eassat_describe'];}else{dd('请写入文章描述');};
 		if($_POST['eassat_title']){$data['eassat_title']=$_POST['eassat_title'];}else{dd('请写入文章标题');};
@@ -72,8 +73,9 @@ class ArticleController extends CmController{
 	public function user($user=null){  //查询用户信息 不传递user查询当前用户信息
 		$cm=new CmController;
 		$a=new LibUtil;
-		if(!$user){$user=$cm->get_user_cache($_COOKIE['user_id']);}		
-		if(!($user==1214)){dd('非管理员用户禁止上传');}else{$us=DB::table('users')->where('id',$user)->first();$us['src']=$a->getUserAvatar($user,1);}
+		if(!$user){$user=$cm->get_user_cache($_COOKIE['user_id']);}
+		//if(!($user==1214)){dd('非管理员用户禁止上传');}else{	}	
+		$us=DB::table('users')->where('id',$user)->first();$us['src']=$a->getUserAvatar($user,1);
 		return $us;
 	}
 	public function user_name($name){  //根据昵称查询用户详细信息
@@ -171,7 +173,7 @@ class ArticleController extends CmController{
 		$user=$cm->get_user_cache($_COOKIE['user_id']);
 		if($user){
 
-			if($user==$us||$user=1214){
+			if($user==$us){//||$user=1214
 
 				$del=DB::table('eassat_comment')->where('comment_id', $id)->update(array('comment_delete' => 2));
 				if($del){return 1;}else{return 0;}
