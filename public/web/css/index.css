@@ -943,7 +943,7 @@ input[type="checkbox"] + label{cursor: pointer;}
 
 .perhome_longacroll_info .perhome_perlike_wrap{width: 694px;margin:0px 0px 0px 165px;}
 .pop_col_alpwrap{position: relative;}
-.pop_uploadvr,.pop_uploadcg{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
+.pop_uploadvr,.pop_uploadcg,.pop_editcq{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 .pop_editvr{background: rgba(0,0,0,.5);width: 100%;min-height: 100%;overflow: auto;position: fixed;top: 0px;left: 0px;bottom: 0px;color: #000;z-index: 10001;display: none;}
 
 .pop_img_vrlogo{width: 111px;height: 113px;background: url(../images/vrlogo.png);position: absolute;top: 50%;margin-top: -57px;left: 50%;margin-left: -56px;}

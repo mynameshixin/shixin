@@ -41,9 +41,15 @@
 										</div>\
 										<div class="index_item_rel clearfix" good_id="'+v.id+'">\
 											<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">'+v.praise_count+'</a>\
-											<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">'+v.collection_count+'</a>\
-											<a href="/webd/pic/'+v.id+'" target="_blank" class="index_item_chat"></a>\
-										</div>\
+											<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">'+v.collection_count+'</a>'
+
+									if(v.is_user==1){
+										str+='<a href="javascript:;" target="_blank" onclick="edit_cq_good(this)" good_id='+v.id+' class="index_item_edit"></a>';
+									}else{
+										str+='<a href="/webd/pic/'+v.id+'" target="_blank" class="index_item_chat"></a>';
+									}
+											
+										str+='</div>\
 									</div>\
 								</div>\
 							</div>\

@@ -32,7 +32,7 @@
 							<!-- htmlv?=20160718 -->
 							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtnlike detail_pop_tbtn_cpadding cq_like">赞</div>
 							<?php if($self_id == $good['user_id']){?>
-							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright edit_cq_good">编辑</div>
+							<div href="javascript:;" class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright" good_id="{{$good['id']}}" onclick="edit_cq_good(this)">编辑</div>
 							<?php }?>
 							<div class="detail_pop_tbtn detail_pop_tbtnright">
 

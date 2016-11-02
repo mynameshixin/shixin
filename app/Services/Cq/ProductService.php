@@ -82,7 +82,10 @@ class ProductService extends ApiService
             'cityid'=>isset($data['cityid']) ? (int)$data['cityid'] : 0,
             'tags' => isset($data['tags']) ? $data['tags'] : '',
         );
-
+        if(!empty($data['good_id'])){
+            $tags = DB::table('cq_goods')->where('id',$data['good_id'])->select('tags')->first();
+            $entry['tags'] = $tags['tags'].$entry['tags'];
+        }
         $images_arr = [];
         if (isset($files['image']) && !empty($files['image'])) {
             $images = ImageService::getInstance()->uploadImage($userId, $files['image']);
@@ -161,6 +164,7 @@ class ProductService extends ApiService
                 $rows[$k]['cityname'] = $cpinfo['name'];
              }
             $rows[$k]['min'] = self::cpu_time(time() - strtotime($row['created_at']));
+            $rows[$k]['is_user'] = !empty($user_id)?1:0;
         }
         return $rows;
         

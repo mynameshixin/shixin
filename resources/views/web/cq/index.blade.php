@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/cq/function.js"></script>
 	<script type="text/javascript">
 	var cdata = {'page':1,'num':10}
+	var is_edit = 0
 	var nodata = '<div style="font-size: 18px;margin: 20px 100px;">暂无数据</div>'
 	// 公共请求ajax
 	function seajax(cdata,v){
@@ -41,7 +42,7 @@
 										<div class="index_item_rel clearfix" good_id="'+v.id+'">\
 											<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">'+v.praise_count+'</a>\
 											<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">'+v.collection_count+'</a>\
-											<a href="javascript:;" target="_blank" onclick="cq_good_edit(this)" class="index_item_edit"></a>\
+											<a href="/webd/pic/'+v.id+'" target="_blank" class="index_item_chat"></a>\
 										</div>\
 									</div>\
 								</div>\
@@ -406,7 +407,7 @@
 										<div class="index_item_rel clearfix" good_id="'+v.id+'">\
 											<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">'+v.praise_count+'</a>\
 											<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">'+v.collection_count+'</a>\
-											<a href="javascript:;" target="_blank" onclick="cq_good_edit(this)" class="index_item_edit"></a>\
+											<a href="javascript:;" target="_blank" onclick="edit_cq_good(this)" good_id='+v.id+' class="index_item_edit"></a>\
 										</div>\
 									</div>\
 								</div>\

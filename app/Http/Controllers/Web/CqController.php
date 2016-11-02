@@ -47,6 +47,7 @@ class CqController extends CmController{
     // 上传出清商品
     public function postUcq(){
         $data = Input::all();
+
         $rules = array(
             'user_id'=>'required',
             'image' => 'required',
@@ -77,11 +78,16 @@ class CqController extends CmController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if(!empty($data['good_id'])){
+            $id = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
+        }else{
+            $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        }
+        
         if ($id) {
             return response()->forApi(['id' => $id]);
         }else{
-            return response()->forApi(array(), 1001, '发布失败！');
+            return response()->forApi(array(), 1001, '操作失败！');
         }
     }
 
@@ -295,5 +301,20 @@ class CqController extends CmController{
         }
     }
 
+    // 编辑出清商品时获取的信息
+    public function postEditgoodinfo(){
+        $data = Input::all();
+        $row = DB::table('cq_goods')->where('id',$data['good_id'])->first();
 
+        $row['countryname'] = '未知地区';
+        $row['cityname'] = '';
+        if(!empty($row['cityid'])){
+            $cinfo = DB::table('citys')->select('id','name','pid')->where('id',$row['cityid'])->first();
+            $row['countryname'] = $cinfo['name'];
+            $cpinfo = DB::table('citys')->select('id','name','pid')->where('id',$cinfo['pid'])->first();
+            $row['cityname'] = $cpinfo['name'];
+        }
+
+        return response()->forApi($row);
+    }
 }
