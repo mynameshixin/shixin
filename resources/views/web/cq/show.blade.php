@@ -158,8 +158,8 @@
 													<span class="vr_home_fb">{{$v['min']}}发表</span>
 											</div>
 											<div class="index_item_rel clearfix" good_id="{{$v['id']}}">
-												<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">{{$v['praise_count']}}</a>
-												<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">{{$v['collection_count']}}</a>
+												<a href="javascript:;" class="index_item_like" onclick="cq_good_like(this)">{{$v['praise_count']}}</a>
+												<a href="javascript:;" class="index_item_c" onclick="cq_good_col(this)">{{$v['collection_count']}}</a>
 												<a href="/webd/cqpic/{{$v['id']}}" target="_blank" class="index_item_chat"></a>
 											</div>
 										</div>

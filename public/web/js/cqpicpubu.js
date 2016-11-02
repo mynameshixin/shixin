@@ -40,8 +40,8 @@
 												<span class="vr_home_fb">'+v.min+'发表</span>\
 										</div>\
 										<div class="index_item_rel clearfix" good_id="'+v.id+'">\
-											<a href="javascript:;" class="index_item_like" onclick="cq_good_col(this)">'+v.praise_count+'</a>\
-											<a href="javascript:;" class="index_item_c" onclick="cq_good_like(this)">'+v.collection_count+'</a>'
+											<a href="javascript:;" class="index_item_like" onclick="cq_good_like(this)">'+v.praise_count+'</a>\
+											<a href="javascript:;" class="index_item_c" onclick="cq_good_col(this)">'+v.collection_count+'</a>'
 
 									if(v.is_user==1){
 										str+='<a href="javascript:;" target="_blank" onclick="edit_cq_good(this)" good_id='+v.id+' class="index_item_edit"></a>';
