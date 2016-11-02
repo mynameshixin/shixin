@@ -48,7 +48,8 @@ class ArticleController extends CmController{
 		for ($i=1; $i < 13 ; $i++) { 
 			if($_POST['classfy'.$i]){$data['eassat_classfy']=';'.$_POST['classfy'.$i].';'.$data['eassat_classfy'];};
 		}
-		if(empty($_POST['where'])){$data['eassat_where']=1;}else{$data['eassat_where']=0;}
+		if(empty($_POST['where'])){$data['eassat_where']=0;}else{$data['eassat_where']=1;}
+
 		if($_FILES['file1']['name']||$_FILES['file2']['name']){
 		if($_FILES['file2']['name']){$file2 = Input::file('file2');$filename = uniqid();$hz=$file2 -> getClientOriginalExtension();$file2->move('uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
 		}else{$file1 = Input::file('file1');$filename = uniqid();$hz=$file1 -> getClientOriginalExtension();$file1->move('uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
@@ -60,10 +61,11 @@ class ArticleController extends CmController{
 		$id=$this->eassat($data);
 		if($id){
 			echo "<script>alert('上传成功')</script>";
+			return redirect('/Article/article/create');
 		}else{
-			echo "<script>alert('上传成功')</script>";
+			dd("上传失败");
 		}
-		return redirect('/Article/article/create');
+		//return redirect('/Article/article/create');
 
 	
 	}
@@ -158,7 +160,7 @@ class ArticleController extends CmController{
 		return $comment;
 	}	
 	public function eassat_where($c=9){	//抓取最新推荐 $c设置抓取多少个  默认9个
-		$eassat=DB::table('eassat')->where('eassat_where',1)->take($c)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title')->get();
+		$eassat=DB::table('eassat')->where('eassat_where',1)->take($c)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title')->orderBy('eassat_date','desc')->get();
 		$eassat['int']=count($eassat);
 		return $eassat;
 	}
