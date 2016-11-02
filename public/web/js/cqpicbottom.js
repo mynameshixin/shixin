@@ -55,7 +55,7 @@ $(function (){
 			  			str +=  '<div class="index_item" img_id="'+v.id+'">\
 								<div class="index_item_wrap">\
 									<div class="index_item_imgwrap clearfix">\
-										<a class="index_item_blurwrap" href="/webd/pic/'+v.id+'" target="_blank" title="'+v.title+'"></a>\
+										<a class="index_item_blurwrap" href="/webd/cqpic/'+v.id+'" target="_blank" title="'+v.title+'"></a>\
 										<img src="'+v.images[0].img_m+'" style="height: '+v.images[0].rh+'px" onload="resize_xy(this)" alt="'+v.title+'">\
 										<div class="index_item_price"><strong>'+v.reserve_price+'</strong><b>'+v.price+'</b></div>\
 									</div>\
@@ -70,7 +70,7 @@ $(function (){
 											<div class="index_item_rel clearfix" good_id="'+v.id+'">\
 												<a href="javascript:;" class="index_item_like" onclick="cq_good_like(this)">'+v.praise_count+'</a>\
 												<a href="javascript:;" class="index_item_c" onclick="cq_good_col(this)">'+v.collection_count+'</a>\
-												<a href="/webd/pic/'+v.id+'" target="_blank" class="index_item_chat"></a>\
+												<a href="/webd/cqpic/'+v.id+'" target="_blank" class="index_item_chat"></a>\
 											</div>\
 										</div>\
 									</div>\

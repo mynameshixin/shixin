@@ -46,7 +46,7 @@
 									if(v.is_user==1){
 										str+='<a href="javascript:;" target="_blank" onclick="edit_cq_good(this)" good_id='+v.id+' class="index_item_edit"></a>';
 									}else{
-										str+='<a href="/webd/pic/'+v.id+'" target="_blank" class="index_item_chat"></a>';
+										str+='<a href="/webd/cqpic/'+v.id+'" target="_blank" class="index_item_chat"></a>';
 									}
 											
 										str+='</div>\
