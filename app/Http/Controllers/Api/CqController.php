@@ -101,12 +101,12 @@ class CqController extends BaseController{
     // 首页展示数据
     public function getMain(){
     	$data = Input::all();
-        $rules = array(
-            'access_token' => 'required',
-        );
+        // $rules = array(
+        //     'access_token' => 'required',
+        // );
         //请求参数验证
-        parent::validator($data, $rules);
-        $rs = parent::validateAcessToken($data['access_token']);
+       // parent::validator($data, $rules);
+       // $rs = parent::validateAcessToken($data['access_token']);
 
         $num = isset($data['num']) ? $data['num'] : 10;
         $page = isset($data['page'])?$data['page']:1;
