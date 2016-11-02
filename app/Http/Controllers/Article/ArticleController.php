@@ -269,6 +269,18 @@ class ArticleController extends CmController{
 		return $data;
 
 	}
+	public function indexx(){
+		$where=$this->eassat_where(4);
+		$index=$this->eassat_index();
+		$user_id = $this->user_id; 
+		$data = [
+			'self_id'=>$this->user_id,
+			'self_info'=>$this->self_info,
+			'where'=>$where,
+			'index'=>$index
+		];
+		return View('essay.indexx',$data);
+	}
 
 }
 
