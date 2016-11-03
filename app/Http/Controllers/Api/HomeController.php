@@ -213,6 +213,9 @@ class HomeController extends BaseController
         $folder_ids = array_unique($folder_ids);*/
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
+        for ($i=0; $i < $num; $i++) { 
+            $rs['list'][$i]['images']['c']=1;
+        }
         return response()->forApi($rs);
     }
 
