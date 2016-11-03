@@ -118,8 +118,10 @@ class ArticleController extends CmController{
 	}
 	public function show($id){	
 		$dataa=$this->cont_id($id);
+
 		$commentw=$this->comment_eassat_id_int($id);
 		$comment=$this->comment_eassat_id($id);	
+
 		if(empty($_COOKIE['user_id'])){$user=0;}else{$user=$this->user();}
 		$where=$this->eassat_where();
 
@@ -132,6 +134,7 @@ class ArticleController extends CmController{
 			'us'=>$user,
 			'where'=>$where
 		];
+	
 		return View ('essay.show',$data);
 	}
 	public function pingx(){  //添加评论

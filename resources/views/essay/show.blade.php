@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			@endif	
-	
+
 		</div>
 
 		</div>
@@ -70,7 +70,7 @@
 		<div class="detail_pop_wrap w942 artical mtop15 clearfix">
 			<div class="detail_pop_tlbtm">
 				<ul class="detail_pop_tlcomlist">
-			
+				
 					@for ($i = 0; $i < $new['int']; $i++)
 					<li class="clearfix">
 						<div class="detail_pop_authava">
@@ -90,6 +90,7 @@
 						<div class="detail_pop_favor"  name="<?php echo $new[$i]['comment_id']?>" onclick="add_int(this)"><?php echo $new[$i]['comment_int']?></div>
 					</li>
 					@endfor
+
 					<li class="add_pingx"><hr width="100%" style="border:none;border-top:1px solid #DADADA;"/></li>
 					@for ($i = 0; $i < $comment['int']; $i++)
 					<li class="clearfix">
@@ -110,9 +111,11 @@
 					</li>
 					@endfor					
 				</ul>
+
 				@if($comment['int'] >= 10)
 				<a href="javascript:;" class="detail_pop_loadmore" name="10" onclick="add_pingx(this)">显示更多评论</a>
 				@endif
+
 				@if($us)
 				<div class="detail_pop_compublish clearfix">
 					<div class="detail_pop_authava">
@@ -121,6 +124,7 @@
 					<textarea name="caption" id="<?php echo $us['id']?>" placeholder="添加评论或把采集@给好友" class="detail_pop_compub" autocomplete="off"></textarea>
 				</div>
 				@else
+
 				<div class="detail_pop_compublish clearfix">
 					<div class="detail_pop_authava">
 						<a href="#"><img src="{{asset('web')}}/images/temp_avatar.JPG" alt=""></a>
@@ -128,6 +132,7 @@
 					<textarea name="caption" placeholder="添加评论或把采集@给好友" class="detail_pop_compub" autocomplete="off"></textarea>
 				</div>
 				@endif
+
 				<div class="detail_pop_addcom clearfix" >
 					<a class="detail_pop_authfollow detail_filebtn detail_fileball" >添加评论</a>
 				</div>
@@ -144,6 +149,7 @@
 				<div class="detail_pop_timgwarp">
 					<div class="pop_img_bigwrap clearfix">
 						<div class="pop_img_eachwrap">
+
 						@for ($i=0;$i<$where['int'];$i++)
 							<div class="art-list">
 								<a href="/Article/article/<?php echo $where[$i]['eassat_id']?>"></a>
@@ -151,6 +157,7 @@
 								<p><?php echo $where[$i]['eassat_title']?></p>			
 							</div>
 						@endfor
+
 						</div>
 						<div class="pop_img_eachwrap">
 						@if($where['int']>3)
@@ -161,7 +168,9 @@
 								<p><?php echo $where[$i]['eassat_title']?></p>			
 							</div>
 						@endfor	
-						@endif						
+
+						@endif	
+
 						</div>
 						@if($where['int']>6)
 						<div class="pop_img_eachwrap">
@@ -176,6 +185,7 @@
 					
 						</div>
 						@endif
+
 					</div>
 				</div>
 			</div>
@@ -184,8 +194,9 @@
 		
 	</div>
 	
-	@if ($self_id==5||$self_id==6)
-	<a href="/Article/modify/<?php echo $eassat_id ?>"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/修改文章.png" alt=""></div></a>
+	@if ($self_id == 5 || $self_id == 6)
+	<a href="/Article/modify/<?php echo $ok['eassat_id'] ?>"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/修改文章.png" alt=""></div></a>
+	
 	@endif	
 
 </body>
