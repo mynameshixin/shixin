@@ -171,7 +171,8 @@ class ProductController extends BaseController
         //先搜索folders 查询到结果后返回id
 
         $rs = ProductService::getInstance()->getProductList ($data,$num,$self_id,$uid);
-          for ($i=0; $i < $num; $i++) { 
+          $numm=count($rs['list']);
+          for ($i=0; $i < $numm; $i++) { 
 
              $addds=getimagesize($rs['list'][$i]['images'][0]['img_m']);
              $rs['list'][$i]['images'][0]['img_m_width']=$addds['0'];
