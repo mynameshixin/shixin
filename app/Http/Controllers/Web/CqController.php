@@ -153,6 +153,7 @@ class CqController extends CmController{
         $ogood = $this->getOgoods($good['id']);
         $ogood = $ogood['data']['list'];
         // dd($ogood);
+        // dd($good);
         // gmore
         $gmore = DB::table('cq_goods')->where('user_id',$good['user_id'])->orderBy('created_at','desc')->select('id')->take(100)->get();
         $last = count($gmore)-1;
@@ -171,7 +172,7 @@ class CqController extends CmController{
                 }
             }
         }
-        // dd($good);
+        
         $data = [
             'self_id'=>$this->user_id,
             'self_info'=>$this->self_info,

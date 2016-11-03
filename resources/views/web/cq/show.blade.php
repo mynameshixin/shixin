@@ -68,7 +68,7 @@
 							<div class="pop_img_bigleft"></div>
 							<div class="pop_img_bigright"></div>
 							
-							<div class="index_item_price"><strong>600</strong><b style="color: #999">980</b></div>
+							<div class="index_item_price"><strong>{{$good['reserve_price']}}</strong><b style="color: #999">{{$good['price']}}</b></div>
 						</div>
 						<p class="detail_pop_des" title="{{$good['title']}}">
 							{{$good['title']}}
