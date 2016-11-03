@@ -1108,7 +1108,7 @@
 	<div class="pop_letter" style="display:none;">
 		<div class="pop_con">
 			<p class="pop_tit">
-				<span class="pop_tit_center">给他留言</span>
+				<span class="pop_tit_center">给他留言(只保留30天内的记录)</span>
 				<span class="pop_close" onclick="$('.pop_letter').hide()"></span>
 			</p>
 			<div class="letter_con">
