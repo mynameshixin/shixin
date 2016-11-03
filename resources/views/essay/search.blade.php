@@ -34,8 +34,10 @@
 	    	
 	    	<div class="pic-list-title">
 	    		最新图文
+	    		
+	    		
 	    	</div>
-	    	
+	    	<br>
 	    	<div class="pic-list clearfix">	
 	    		@foreach ($rel as $rel)
 	    		<div class="rows">

@@ -214,11 +214,17 @@ class HomeController extends BaseController
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
         for ($i=0; $i < $num; $i++) { 
-            $rs['list'][$i]['images']['c']=1;
+
+             $addds=getimagesize($rs['list'][$i]['images'][0]['img_m']);
+             $rs['list'][$i]['images'][0]['img_m_width']=$addds['0'];
+             $rs['list'][$i]['images'][0]['img_m_height']=$addds['1'];
+             $adddb=getimagesize($rs['list'][$i]['images'][0]['img_o']);
+             $rs['list'][$i]['images'][0]['img_o_width']=$adddb['0'];
+             $rs['list'][$i]['images'][0]['img_o_height']=$adddb['1'];
         }
+     
         return response()->forApi($rs);
     }
-
     //获得堆图达人 10个
     public function getHuman(){
         $params = Input::all();

@@ -25,6 +25,12 @@
 
 	<!-- htmlv=20160710 -->
 	@include('web.common.head')	
+	<style>
+	#cont img {
+	max-width: 100%; /*图片自适应宽度*/
+	min-width:100%;
+	}
+	</style>
 </head>
 <body>
 @include('web.common.banner')
@@ -44,9 +50,11 @@
 				<a href="/Article/addid/<?php echo $ok['eassat_id']?>" class="nex"><b><</b>下一个</a>
 			</div>
 			<div class="art_content">
+			<div id="cont">
 			<?php
 			echo $ok['eassat_cont'];
 			?>
+			</div>
 			@if($ok['eassat_guide_user'])
 			<div class="share">
 				<p style="color:#9d9d9d">本期专业内容指导来自 <a style="color:#E15335" href="/webd/user?oid=<?php echo $ok['eassat_guide_id']?>"><?php echo $ok['eassat_guide_user'];?></a></p>
