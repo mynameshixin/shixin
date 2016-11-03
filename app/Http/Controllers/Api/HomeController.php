@@ -213,7 +213,9 @@ class HomeController extends BaseController
         $folder_ids = array_unique($folder_ids);*/
         $rs = ProductService::getInstance()->getProductsByFids ($folder_ids,$user_ids,$data,$num,$self_id);
         //$rs = ProductService::getInstance()->getUserProducts ($user_ids,$data,$num);
-        for ($i=0; $i < $num; $i++) { 
+        $numm=count($rs['list']);
+
+        for ($i=0; $i < $numm; $i++) { 
 
              $addds=getimagesize($rs['list'][$i]['images'][0]['img_m']);
              $rs['list'][$i]['images'][0]['img_m_width']=$addds['0'];
@@ -222,7 +224,7 @@ class HomeController extends BaseController
              $rs['list'][$i]['images'][0]['img_o_width']=$adddb['0'];
              $rs['list'][$i]['images'][0]['img_o_height']=$adddb['1'];
         }
-     
+    
         return response()->forApi($rs);
     }
     //获得堆图达人 10个
