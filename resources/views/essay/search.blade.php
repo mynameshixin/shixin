@@ -21,9 +21,10 @@
     		<div>
     		<ul style="list-style:none;">
     		@for($i=0;$i < $class['int'] ; $i++)
-    		<li  style="width:50px; float:left;  margin: 10px 70px 10px 0; color:#<?php if($class[$i]['name']==$class['b']['name']){echo'e15335';}else{echo'868686';}?>;">
+    		<a href="/Article/search/<?php 	echo $class[$i]['id'] ?>"><li  style="width:50px; float:left;  margin: 10px 70px 10px 0; color:#<?php if($class[$i]['name']==$class['b']['name']){echo'e15335';}else{echo'868686';}?>;">
 				<p><?=$class[$i]['name']?></p>
     		</li>
+    		</a>
     		@endfor
     		</ul>
     		</div> 	
@@ -126,228 +127,13 @@
 	    	</div>
     </div>
 </div>
-	<!-- 私信 -->
-	<div class="pop_letter" style="display:none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				<span class="pop_tit_center">给他留言</span>
-				<span class="pop_close"></span>
-			</p>
-			<div class="letter_con">
-				<div class="letter_time">
-					今天 16:57
-				</div>
-				<div class="letter_content">
-					<ul class="letter_ul">
-						<li class="clearfix letter_ulleft">
-							<div class="letter_avawrap">
-								<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-							</div>
-							<span class="letter_rel">
-								哈喽，你好。在干嘛
-							</span>
-						</li>
-						<li class="clearfix letter_ulright">
-							<span class="letter_rel">
-								哈喽，你好。在干嘛哈喽，你好。在干嘛
-							</span>
-							<div class="letter_avawrap">
-								<img src="{{asset('web')}}/images/temp_avatar.JPG" alt="">
-							</div>
-							
-						</li>
-					</ul>
-					<div class="letter_textarea">
-						<textarea name=""></textarea>
-					</div>
-				</div>
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">发送私信</a>
-			</div>
-		</div>
-	</div>
-	<!-- 本地上传采集弹框 -->
-	<div class="pop_uploadfile" style="display: none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				上传采集
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_upload_wrap">
-				<a class="pop_upload_a">
-					<input class="pop_upload" type="file"></input>
-					<span>请选择文件</span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<!-- 获取商品网址弹框 -->
-	<div class="pop_uploadgoods" style="display:none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				上传商品
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_namewrap clearfix">
-				<input class="pop_iptgoods" placeholder="粘贴商品网站">
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsget">获取</a>
-			</div>
-		</div>
-	</div>
-	<!-- 上传商品详细弹框 -->
-	<div class="pop_goods_upload" style="display:none;">
-		<div class="pop_con clearfix">
-			<p class="pop_tit">
-				上传商品
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_conwrap">
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">名称</span>
-					<input class="pop_iptname" placeholder="北欧纯木沙发椅">
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">价格</span>
-					<p class="pop_iptprice">￥45</p>
-				</div>
-				<div class="pop_goodsimgwrap clearfix">
-					<p class="pop_goodsimgtit">商品图片</p>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="{{asset('web')}}/images/temp/temp (1).png" height="127" width="127" alt="">
-						<div class="pop_good_toppne">主图</div>
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="{{asset('web')}}/images/temp/temp (2).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="{{asset('web')}}/images/temp/temp (3).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg">
-						<a href="javascript:;" class="pop_gooddelete"></a>
-						<img src="{{asset('web')}}/images/temp/temp (1).png" height="127" width="127" alt="">
-					</div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-					<div class="pop_goodseachimg pop_goodseachadd"></div>
-				</div>
-				<div class="pop_desimgwrap clearfix">
-					<div class="pop_deswrap clearfix">
-						<span class="pop_labelname">评论</span>
-						<textarea class="pop_iptdes"  placeholder="说说你对这件商品的看法吧"></textarea>
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname" style="margin-top: 17px;">文件夹</span>
-					<select class="pop_iptselect" style="margin-top: 17px;">
-						<option value="">椅子</option>
-						<option value="">桌子</option>
-						<option value="">电视柜</option>
-						<option value="">沙发</option>
-						<option value="">卧室</option>
-						<option value="">卫生间</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="pop_btnwrap pop_goods_share">
-				<div class="pop_col_lbtm">
-					<span class="pop_col_lbshare">
-						分享到 :
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio_on"></a>
-						<a class="pop_col_lbswc"></a>
-						<a class="jiathis_button_weixin jiathis_button jiathis_button_on"></a>
-					</span>
-					
-					<span class="pop_col_lbshare">
-						微信朋友圈
-					</span>
-					&nbsp;
-					<span class="pop_col_bwrap">
-						<a href="javascript:;" class="pop_col_r pop_col_radio"></a>
-						<a class="pop_col_lbsqq"></a>
-						<a class="jiathis_button_qzone jiathis_button"></a>
-					</span>
-					<span class="pop_col_lbshare">
-						QQ空间
-					</span>
-					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-				</div>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_goodsave">保存</a>
-			</div>
-		</div>
-	</div>
-	<!-- htmlv?=20160718 -->
-	<!-- htmlv?=20160718 -->
-	<!-- 创建文件夹 -->
-	<div class="pop_addfold">
-		<div class="pop_con">
-			<p class="pop_tit">
-				创建文件夹
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
-			</div>
-			<div class="pop_deswrap clearfix">
-				<span class="pop_labelname">描述</span>
-				<textarea class="pop_iptdes"  placeholder="关于你的文件夹"></textarea>
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr">
-				<label for="pop_iptpr"></label>
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">创建</a>
-			</div>
-		</div>
-	</div>
-	<div class="pop_addprivfold">
-		<div class="pop_con">
-			<p class="pop_tit">
-				创建隐私文件夹
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
-			</div>
-			<div class="pop_deswrap clearfix">
-				<span class="pop_labelname">描述</span>
-				<textarea class="pop_iptdes"  placeholder="关于你的文件夹"></textarea>
-				<!-- <input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它"> -->
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" checked="checkbox">
-				<label for="pop_iptpr"></label>
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">创建</a>
-			</div>
-		</div>
-	</div>
+	
+	
+
 	<!-- htmlv?=20160718 -->
 	<div class="pop_changefold">
 		<div class="pop_con">
-			<p class="pop_tit">
-				更改文件夹封面
-			</p>
+			
 			<div class="pop_change_pic clearfix">
 				<!-- htmlv?=20160718 -->
 				<div class="pop_change_wrap">
@@ -359,18 +145,8 @@
 					<div class="pop_change_imgwrap">
 					</div>
 				</div>
-				<!-- htmlv?=20160718 -->
-				<div class="pop_change_imgblur pop_change_imgbleft"></div>
-				<div class="pop_change_imgblur pop_change_imgbright"></div>
-				<div class="pop_change_imgblurtb pop_change_imgblurt"></div>
-				<div class="pop_change_imgblurtb pop_change_imgblurb"></div>
-				<a href="javascript:;" class="pop_change_imgbtn pop_change_imgleft"></a>
-				<a href="javascript:;" class="pop_change_imgbtn pop_change_imgrigt"></a>
-			</div>
-			<div class="pop_btnwrap" style="border-top: 1px solid #f1f1f1;">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
-			</div>
+				<!-- htmlv?=20160718 -->			
+			</div>	
 		</div>
 	</div>
 	<!-- htmlv?=20160718 -->

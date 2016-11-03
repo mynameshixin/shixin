@@ -35,7 +35,7 @@
 	                    <li class="hero" >
 
 	                        <a href="/Article/article/<?php echo $where[$i]['eassat_id']?>" >
-	                            <img src="http://www.duitujia.com<?php echo $where[$i]['eassat_timg']?>" class="thumb" />
+	                            <img src="<?php echo $where[$i]['eassat_timg']?>" class="thumb" />
 	                        </a>
 	                    </li>
 	                @endfor
@@ -176,7 +176,9 @@
 			
 		</div>
 	</div>
-	
+	@if ($self_id==5||$self_id==6)
+	<a href="/Article/article/create"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/添加文章.png" alt=""></div></a>
+	@endif	
 </body>
 <script type="text/javascript">
 		$(function() {

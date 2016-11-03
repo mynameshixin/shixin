@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Web', 'prefix' => 'webd'], function () {
         'notice'=>'NoticeController',
         'plugin'=>'PluginController',
         'cq'=>'CqController',
+
     ]);
     Route::resources([
         'pic'=>'PicsController',
@@ -155,6 +156,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'notice' => 'NoticeController',
         'vr' => 'VrController',
         'cq' => 'CqController',
+        'wz' => 'WzController',
     ]);
 
     Route::resources([
@@ -209,5 +211,7 @@ Route::any('/Article/aqqid/{pid}','Article\ArticleController@aqq_pingx');
 Route::any('/Article/comment/action','Article\ArticleController@add_int');
 Route::any('/Article/comment/de','Article\ArticleController@comment_delete');
 Route::any('/Article/search/{id}','Article\ArticleController@search');
+Route::any('/Article/modify/{id}','Article\ArticleController@modify');
+Route::any('/Article/mod/mod','Article\ArticleController@mod');
 
 

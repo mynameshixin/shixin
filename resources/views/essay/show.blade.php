@@ -28,7 +28,7 @@
 </head>
 <body>
 @include('web.common.banner')
-	
+	<?php dump($ok); ?>
 	<div class="container nolog_container">
 		<div class="detail_pop_wrap w942 clearfix">
 			<div class="art_title">
@@ -163,17 +163,19 @@
 						@endfor	
 						@endif						
 						</div>
+						@if($where['int']>6)
 						<div class="pop_img_eachwrap">
+						
+						@for ($i=6;$i<$where['int'];$i++)
 							<div class="art-list">
-								<img src="public/images/temp/pop_img.png"  alt="">
+								<a href="/Article/article/<?php echo $where[$i]['eassat_id']?>"></a>
+								<img src="<?php echo $where[$i]['eassat_ximg']?>"  alt="">
+								<p><?php echo $where[$i]['eassat_title']?></p>			
 							</div>
-							<div class="art-list">
-								<img src="public/images/temp/pop_img.png"  alt="">
-							</div>
-							<div class="art-list">
-								<img src="public/images/temp/pop_img.png"  alt="">
-							</div>
+						@endfor	
+					
 						</div>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -181,6 +183,10 @@
 		
 		
 	</div>
+	
+	<a href="/Article/article/create"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/修改文章.png" alt=""></div></a>
+	@if ($self_id==5||$self_id==6)@endif	
+
 </body>
 <script type="text/javascript">
 		$(function() {

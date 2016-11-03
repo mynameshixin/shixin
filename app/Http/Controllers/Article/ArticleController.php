@@ -31,11 +31,22 @@ class ArticleController extends CmController{
 	
 	public function create(){
 		$cm=new CmController;
-		return View('essay.create');
+		$us=$this->user();
+		if($us){
+			if ($us['id']==5||$us['id']==6) {
+				return View('essay.create');
+			}else{
+				return View('essay.create');
+				//echo "<script>alert('你是谁！快走开')</script>";
+			}
+			
+		}else{
+			echo "<script>alert('请先登陆')</script>";
+		}
+		
 	}
 	public function add_eassat(){  //写入数据库前判定
 		$us=$this->user();
-
 		if($_POST['eassat_user']){$use=$this->user_name($_POST['eassat_user']);$data['eassat_guide_id']=$use['id'];$data['eassat_guide_user']=$use['nick'];$data['eassat_guide_src']=$use['src'];}
 		if($_POST['eassat_describe']){$data['eassat_describe']=$_POST['eassat_describe'];}else{dd('请写入文章描述');};
 		if($_POST['eassat_title']){$data['eassat_title']=$_POST['eassat_title'];}else{dd('请写入文章标题');};
@@ -245,7 +256,7 @@ class ArticleController extends CmController{
 			'where'=>$where,
 			'index'=>$index
 		];
-
+		
 		return View('essay.index',$data);
 	}
 	public function eassat_index($c=12){	//抓取最新发布的文章 $c设置抓取多少个  默认12个
@@ -291,7 +302,67 @@ class ArticleController extends CmController{
 		return $data;
 
 	}
-
-
+	public function modify($id){
+		$cont=$this->cont_id($id);
+		//dump($cont);
+		return View('essay.modify',$cont);
+	}
+	public function mod(){		
+		$data=input::All();
+	
+		if(empty($data['eassat_id'])){
+			dd('服务器繁忙!');
+			
+		}else{
+			$da['eassat_id']=$data['eassat_id'];
+		}
+		if(empty($data['eassat_describe'])){
+				dd('服务器繁忙.');
+		}else{
+			$da['eassat_describe']=$data['eassat_describe'];
+		}
+		if(empty($data['eassat_title'])){
+			dd('服务器繁忙?');	
+		}else{
+			$da['eassat_title']=$data['eassat_title'];
+		}
+		if(empty($data['cont'])){
+			dd('服务器繁忙!!');
+		}else{	
+			$da['eassat_cont']=$data['cont'];
+		}
+		if(!empty($data['eassat_user'])){
+			$use=$this->user_name($_POST['eassat_user']);
+			$da['eassat_guide_id']=$use['id'];
+			$da['eassat_guide_user']=$use['nick'];
+			$da['eassat_guide_src']=$use['src'];
+		}
+		if(empty($data['where'])){$da['eassat_where']=0;}else{$da['eassat_where']=1;}
+		$ea=DB::table('eassat')->where('eassat_id',$data['eassat_id'])->select('eassat_timg','eassat_ximg')->first();
+		
+		if($_FILES['file1']['name']||$_FILES['file2']['name']){
+		if($_FILES['file2']['name']){$file2 = Input::file('file2');$filename = uniqid();$hz=$file2 -> getClientOriginalExtension();$file2->move('uploads/ueditor/show',$filename.'.'.$hz);$da['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
+		}else{$file1 = Input::file('file1');$filename = uniqid();$hz=$file1 -> getClientOriginalExtension();$file1->move('uploads/ueditor/show',$filename.'.'.$hz);$da['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
+		}}
+		if($_FILES['file3']['name']||$_FILES['file4']['name']){if($_FILES['file4']['name']){$file4 = Input::file('file4');$filename = uniqid();$hz2=$file4 -> getClientOriginalExtension();$file4->move('uploads/ueditor/show',$filename.'.'.$hz2);$da['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;
+		}else{$file3 = Input::file('file3');$filename = uniqid();$hz2=$file3 -> getClientOriginalExtension();$file3->move('uploads/ueditor/show',$filename.'.'.$hz2);$da['eassat_ximg']='/uploads/ueditor/show/'.$filename.'.'.$hz2;}
+		}
+		
+		if($ea){
+			DB::beginTransaction();
+		    try {   
+		        DB::table('eassat')->where('eassat_id',$data['eassat_id'])->update($da);
+		        DB::commit();
+		        $p=unlink(substr($ea['eassat_timg'],1));
+		        $o=unlink(substr($ea['eassat_ximg'],1));
+		    } catch (Exception $e){
+		       DB::rollback();
+		       throw $e;
+		    }
+		    return redirect('/Article/article/'.$da['eassat_id']);
+		}else{
+			dd('系统繁忙@');
+		}
+	}
 }
 
