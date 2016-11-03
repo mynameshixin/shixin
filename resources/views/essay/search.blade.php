@@ -20,6 +20,7 @@
     		<hr style="color: #868686;font-size: 12px;"/>
     		<div>
     		<ul style="list-style:none;">
+    		
     		@for($i=0;$i < $class['int'] ; $i++)
     		<a href="/Article/search/<?php 	echo $class[$i]['id'] ?>"><li  style="width:50px; float:left;  margin: 10px 70px 10px 0; color:#<?php if($class[$i]['name']==$class['b']['name']){echo'e15335';}else{echo'868686';}?>;">
 				<p><?=$class[$i]['name']?></p>
@@ -34,276 +35,29 @@
 	    	<div class="pic-list-title">
 	    		最新图文
 	    	</div>
+	    	
 	    	<div class="pic-list clearfix">	
 	    		@foreach ($rel as $rel)
 	    		<div class="rows">
 	    			<img style="height:248px" src="{{$rel['eassat_ximg']}}"/>
 	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
+	    				<span class="time">{{$rel['eassat_title']}}</span>
+	    				<span class="time">{{$rel['eassat_date']}}</span>
 	    			</p>
 	    		</div>
-	    		     	
-    			@endforeach
-    			 
-	    	
-	    		<!-- <div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows mrightzero">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows mrightzero">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows mrightzero">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div>
-	    		<div class="rows mrightzero">
-	    			<img src="{{asset('web')}}/images/vr_pic1.png"/>
-	    			<p class="row-info">
-	    				<span class="title">卧室清理小技巧</span>
-	    				<span class="time">2016/8/15</span>
-	    			</p>
-	    		</div> -->
+    			@endforeach   			    		
 	    	</div>
+	    	<script type="text/javascript" src="{{asset('web')}}/js/news/scarch.js"></script>
+
+	    	
     </div>
 </div>
 	
 	
 
-	<!-- htmlv?=20160718 -->
-	<div class="pop_changefold">
-		<div class="pop_con">
-			
-			<div class="pop_change_pic clearfix">
-				<!-- htmlv?=20160718 -->
-				<div class="pop_change_wrap">
-					<div class="pop_change_imgwrap">
-					</div>
-					<div class="pop_change_imgwrap" id="pop_change_fengmian">
-						<!-- <img src="{{asset('web')}}/images/temp/2.png" alt=""> -->
-					</div>
-					<div class="pop_change_imgwrap">
-					</div>
-				</div>
-				<!-- htmlv?=20160718 -->			
-			</div>	
-		</div>
-	</div>
-	<!-- htmlv?=20160718 -->
-	<!-- 上传VR -->
-	<div class="pop_uploadvr">
-		<div class="pop_con">
-			<p class="pop_tit">
-				上传VR
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_conwrap">
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">标题</span>
-					<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述">
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">展示图片</span>
-					<div class="pop_vrchangewrap">
-						<div class="pop_vrimgwrap">
-							<img src="{{asset('web')}}/images/temp/1.png">
-						</div>
-						<div class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">
-							更改封面
-						</div>
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">地址</span>
-					<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址">
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">文件夹</span>
-					<select class="pop_labelselect" style="margin-right: 15px;width:255px;">
-						<option value="">椅子</option>
-						<option value="">桌子</option>
-						<option value="">电视柜</option>
-						<option value="">沙发</option>
-						<option value="">卧室</option>
-						<option value="">卫生间</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">上传</a>
-			</div>
-		</div>
-	</div>
-	<!-- 编辑VR -->
-	<div class="pop_editvr"  style="display:none;">
-		<div class="pop_con">
-			<p class="pop_tit">
-				编辑VR
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_conwrap">
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">标题</span>
-					<input class="pop_iptname" placeholder="为这个VR场景添加一个名称和描述">
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">展示图片</span>
-					<div class="pop_vrchangewrap">
-						<div class="pop_vrimgwrap">
-							<img src="{{asset('web')}}/images/temp/1.png">
-						</div>
-						<div class="detail_pop_tbtn detail_pop_tbtngrey detail_pop_tbtn_cpadding detail_pop_tbtnright">
-							更改封面
-						</div>
-					</div>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">标签</span>
-					<select class="pop_labelselect" style="margin-right: 15px;">
-						<option value="">该采集的风格是...</option>
-						<option value="">现代</option>
-						<option value="">中式</option>
-						<option value="">日式</option>
-						<option value="">新古典</option>
-						<option value="">美式</option>
-						<option value="">现代</option>
-						<option value="">中式</option>
-						<option value="">日式</option>
-						<option value="">新古典</option>
-						<option value="">美式</option>
-					</select>
-					<select class="pop_labelselect">
-						<option value="">该采集的颜色是...</option>
-						<option value="">红</option>
-						<option value="">橙</option>
-						<option value="">黄</option>
-						<option value="">绿</option>
-						<option value="">青</option>
-						<option value="">蓝</option>
-						<option value="">紫</option>
-						<option value="">黑</option>
-						<option value="">白</option>
-						<option value="">灰</option>
-					</select>
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">地址</span>
-					<input class="pop_iptname" placeholder="粘贴这个VR场景的链接地址">
-				</div>
-				<div class="pop_namewrap clearfix">
-					<span class="pop_labelname">文件夹</span>
-					<select class="pop_labelselect" style="margin-right: 15px;width:255px;">
-						<option value="">椅子</option>
-						<option value="">桌子</option>
-						<option value="">电视柜</option>
-						<option value="">沙发</option>
-						<option value="">卧室</option>
-						<option value="">卫生间</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除采集</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
-			</div>
-		</div>
-	</div>
-	<!-- htmlv=20160710 -->
-	<div class="pop_editfold">
-		<div class="pop_con">
-			<p class="pop_tit">
-				编辑文件夹
-				<span class="pop_close"></span>
-			</p>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">名称</span>
-				<input class="pop_iptname" placeholder="取一个好名字，让更多人精准地搜到它">
-			</div>
-			<div class="pop_deswrap clearfix">
-				<span class="pop_labelname">描述</span>
-				<textarea class="pop_iptdes" id="about_your_file"  placeholder="关于你的文件夹"></textarea>
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">封面</span>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_filechange">更改</a>
-			</div>
-			<div class="pop_namewrap clearfix">
-				<span class="pop_labelname">隐私</span>
-				<input class="pop_iptprivacy" type="checkbox" id="pop_iptpr" checked="checked">
-				<label for="pop_iptpr"></label>
-			</div>
-			<div class="pop_btnwrap">
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding detail_pop_delete">删除文件夹</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel">取消</a>
-				<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding">保存</a>
-			</div>
-		</div>
-	</div>
-	<!-- htmlv=20160710 -->
+<div>
+    <img style="margin-left: 650px;" src="{{asset('web/images/查看更多2.png')}}" name="6" nema="<?=$class['b']['name']?>" onclick="readd(this)" alt="查看更多">
+</div> 
 </body>
 <script type="text/javascript">
 		$(function() {

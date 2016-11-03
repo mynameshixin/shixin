@@ -35,18 +35,22 @@ class ArticleController extends CmController{
 		if($us){
 			if ($us['id']==5||$us['id']==6) {
 				return View('essay.create');
-			}else{
-				return View('essay.create');
-				//echo "<script>alert('你是谁！快走开')</script>";
+			}else{				
+				echo "<script>alert('你是谁！快走开')</script>";
+				return redirect('/Article/article');
 			}
 			
 		}else{
 			echo "<script>alert('请先登陆')</script>";
+			return redirect('/Article/article');
 		}
 		
 	}
 	public function add_eassat(){  //写入数据库前判定
 		$us=$this->user();
+		if (!($us['id']==5||$us['id']==6)) {
+			dd('你是谁！快走开');
+		}
 		if($_POST['eassat_user']){$use=$this->user_name($_POST['eassat_user']);$data['eassat_guide_id']=$use['id'];$data['eassat_guide_user']=$use['nick'];$data['eassat_guide_src']=$use['src'];}
 		if($_POST['eassat_describe']){$data['eassat_describe']=$_POST['eassat_describe'];}else{dd('请写入文章描述');};
 		if($_POST['eassat_title']){$data['eassat_title']=$_POST['eassat_title'];}else{dd('请写入文章标题');};
@@ -302,12 +306,40 @@ class ArticleController extends CmController{
 		return $data;
 
 	}
+	public function search_re_add(){ //搜索页更多选项 返回2 分类id错误 返回3 页码错误 返回1 查询错误
+		$data=Input::all();
+		if(!$data['classfy']){
+			return 2;
+		}
+		if(!$data['c']){
+			return 3;
+		}
+		$classfy=$data['classfy'];
+		$c=$data['c'];
+
+		$da= DB::table('eassat')->select('eassat_id','eassat_timg','eassat_ximg','eassat_title','eassat_date')->where('eassat_classfy', 'like', '%'.$classfy.'%')->skip($c)->take(6)->get();
+		$da['int']=count($da);
+		$da['c']=$c;
+		if($da){
+			return $da;
+		}else{
+			return 1;
+		}
+	}
 	public function modify($id){
 		$cont=$this->cont_id($id);
-		//dump($cont);
+		$us=$this->user();
+		if ($us['id']==5||$us['id']==6) {
 		return View('essay.modify',$cont);
+		}else{
+			echo "<script>alert('这篇文章说不认识你！不想理你')</script>";
+		}
 	}
-	public function mod(){		
+	public function mod(){	
+		$us=$this->user();
+		if (!($us['id']==5||$us['id']==6)) {
+			dd("这篇文章说不认识你！不想理你");
+		}	
 		$data=input::All();
 	
 		if(empty($data['eassat_id'])){

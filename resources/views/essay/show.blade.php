@@ -28,7 +28,7 @@
 </head>
 <body>
 @include('web.common.banner')
-	<?php dump($ok); ?>
+
 	<div class="container nolog_container">
 		<div class="detail_pop_wrap w942 clearfix">
 			<div class="art_title">
@@ -184,8 +184,9 @@
 		
 	</div>
 	
-	<a href="/Article/article/create"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/修改文章.png" alt=""></div></a>
-	@if ($self_id==5||$self_id==6)@endif	
+	@if ($self_id==5||$self_id==6)
+	<a href="/Article/modify/<?php echo $eassat_id ?>"><div style="position:fixed;left:0px;top:90%;background:#E15335;"><img src="{{asset('web')}}/images/修改文章.png" alt=""></div></a>
+	@endif	
 
 </body>
 <script type="text/javascript">
