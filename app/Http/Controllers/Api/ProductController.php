@@ -179,7 +179,7 @@ class ProductController extends BaseController
              $adddb=getimagesize($rs['list'][$i]['images'][0]['img_o']);
              $rs['list'][$i]['images'][0]['img_o_width']=$adddb['0'];
              $rs['list'][$i]['images'][0]['img_o_height']=$adddb['1'];
-        }dd($rs);
+        }
         return response()->forApi($rs);
     }
     /**
