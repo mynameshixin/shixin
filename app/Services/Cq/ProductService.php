@@ -173,7 +173,7 @@ class ProductService extends ApiService
     public  function getProductsByCol ($data,$skip,$num,$user_id =0){
         $rows = DB::table('cq_cg_record as ccr')->where('ccr.user_id',$user_id);
         
-        $rows = $rows->join('cq_goods as cg','ccr.good_id','=','cg.id');
+        $rows = $rows->join('cq_goods as cg','ccr.good_id','=','cg.id')->where('cg.status',1);
         $rows = $rows->orderBy('ccr.created_at','desc');
         $rows = $rows->select('cg.*')->skip($skip)->take($num)->get();
         
@@ -210,7 +210,7 @@ class ProductService extends ApiService
     // 获得发布的其他商品
     public  function getOproducts ($data,$skip,$num){
         $good = DB::table('cq_goods')->where('id', $data['good_id'])->first();
-        $rows = DB::table('cq_goods')->where('user_id',$good['user_id']);
+        $rows = DB::table('cq_goods')->where('user_id',$good['user_id'])->where('status',1);
         $rows = $rows->where('id', '!=',$data['good_id']);
         $rows = $rows->orderBy('created_at','desc');
         $rows = $rows->skip($skip)->take($num)->get();

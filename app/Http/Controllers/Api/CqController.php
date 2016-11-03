@@ -341,4 +341,26 @@ str;
 echo $tags;
     }
 
+
+    // 删除出清商品
+    public function postDcqgood(){
+        $data = Input::all();
+        $rules = array(
+            'access_token' => 'required',
+            'good_id'=>'required',
+        );
+        //请求参数验证
+        parent::validator($data, $rules);
+        $rs = parent::validateAcessToken($data['access_token']);
+        $res = DB::table('cq_goods')->where(['user_id'=>$rs['user_id'],'id'=>$data['good_id']])->first();
+        if($res){
+            DB::table('cq_goods')->where(['user_id'=>$rs['user_id'],'id'=>$data['good_id']])->delete();
+            DB::table('cq_goods_action')->where(['good_id'=>$data['good_id']])->delete();
+            DB::table('cq_comments')->where(['good_id'=>$data['good_id']])->delete();
+            DB::table('cq_cg_record')->where(['good_id'=>$data['good_id']])->delete();
+            return response()->forApi(['status' => 1]);
+        }else{
+            return response()->forApi(array(), 1001, '删除失败！');
+        }
+    }
 }

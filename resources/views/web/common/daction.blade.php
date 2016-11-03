@@ -998,6 +998,7 @@
 		</div>
 		
 		<div class="pop_btnwrap">
+			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding dcqgood" style="float: left" title="堆图家删除">删除</a>
 			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_fileball detail_pop_cancel" title="堆图家取消" onclick="$('.pop_editcq').hide()">取消</a>
 			<a href="javascript:;" class="pop_buildbtn detail_filebtn detail_filebtn_cpadding" id="ecq" title="堆图家上传">编辑</a>
 		</div>

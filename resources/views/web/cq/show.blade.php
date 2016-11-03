@@ -349,6 +349,41 @@
 		})
 		
 	})
+	// 删除商品或者vr
+    $('.dcqgood').click(function(){
+    	layer.msg('确定删除该商品？', {
+    		  time:0,
+			  btn: ['确定','取消'],
+			  yes:function(index){
+			  	layer.close(index)
+			  	$.ajax({
+					'beforeSend':function(){
+						layer.load(0, {shade: 0.5});
+					},
+					'url':"/webd/cq/dcqgood",
+					'type':'post',
+					'data':{
+						'user_id':'<?php if(!empty($_COOKIE['user_id'])) echo $_COOKIE['user_id'];?>',
+						'good_id':"{{$good['id']}}"
+					},
+					'dataType':'json',
+					'success':function(json){
+
+						if(json.code==200){
+							layer.msg('成功删除',{icon: 6});
+							location.href = "/webd/cq"
+						}else{
+							layer.msg(json.message, {icon: 5});
+							return
+						}
+					},
+					'complete':function(){
+						layer.closeAll('loading');
+					}
+				})
+			  }
+			})
+    })
 </script>
 <script type="text/javascript" src="{{asset('web')}}/js/cqpicbottom.js"></script>
 </body>

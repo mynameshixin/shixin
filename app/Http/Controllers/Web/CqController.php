@@ -317,4 +317,26 @@ class CqController extends CmController{
 
         return response()->forApi($row);
     }
+
+    // 删除出清商品
+    public function postDcqgood(){
+        $data = Input::all();
+        $rules = array(
+            'user_id' => 'required',
+            'good_id'=>'required'
+        );
+         //请求参数验证
+        parent::validator($data, $rules);
+        $userId = self::get_user_cache($data['user_id']);
+        $res = DB::table('cq_goods')->where(['user_id'=>$userId,'id'=>$data['good_id']])->first();
+        if($res){
+            DB::table('cq_goods')->where(['user_id'=>$userId,'id'=>$data['good_id']])->delete();
+            DB::table('cq_goods_action')->where(['good_id'=>$data['good_id']])->delete();
+            DB::table('cq_comments')->where(['good_id'=>$data['good_id']])->delete();
+            DB::table('cq_cg_record')->where(['good_id'=>$data['good_id']])->delete();
+            return response()->forApi(['status' => 1]);
+        }else{
+            return response()->forApi(array(), 1001, '删除失败！');
+        }
+    }
 }
