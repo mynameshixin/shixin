@@ -25,9 +25,7 @@ use DB;
  */
 class HomeController extends BaseController
 {
-   public function getGoodsa(){
-        phpinfo();
-   }
+
     
     public function index () {
     }
