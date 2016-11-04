@@ -536,6 +536,17 @@ class ProductController extends BaseController
         $userId = isset($data['user_id']) ? $data['user_id'] : self::$user_id;
         $num = isset($data['num']) ? $data['num'] : 10;
         $rs = ProductService::getInstance()->getPraiseProductList ($userId,$data,$num);
+        $numm=count($rs['list']);
+
+        for ($i=0; $i < $numm; $i++) { 
+
+             $addds=getimagesize($rs['list'][$i]['images'][0]['img_m']);
+             $rs['list'][$i]['images'][0]['img_m_width']=$addds['0'];
+             $rs['list'][$i]['images'][0]['img_m_height']=$addds['1'];
+             $adddb=getimagesize($rs['list'][$i]['images'][0]['img_o']);
+             $rs['list'][$i]['images'][0]['img_o_width']=$adddb['0'];
+             $rs['list'][$i]['images'][0]['img_o_height']=$adddb['1'];
+        }
         return response()->forApi($rs);
 
     }
