@@ -26,10 +26,10 @@
 	<!-- htmlv=20160710 -->
 	@include('web.common.head')	
 	<style>
-	#cont img {
-	max-width: 100%; /*图片自适应宽度*/
+	/*#cont img {
+	max-width: 100%; 图片自适应宽度
 	min-width:100%;
-	}
+	}*/
 	</style>
 </head>
 <body>
