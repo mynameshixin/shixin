@@ -37,7 +37,7 @@
 								<p class="find_rec_wrapdes">“品牌门店VR全景展示”</p>
 							</div>
 						</li>
-						<li class="find_rec_special mrightzero" onclick="layer_error('正在建设中')" style="cursor: pointer;">
+						<li class="find_rec_special mrightzero" onclick="location.href='/webd/cq'" style="cursor: pointer;">
 							<img src="{{asset('web')}}/images/cat/four_rec/04.jpg" alt="二手商品">
 							<div class="find_rec_wrap">
 								<p class="find_rec_wraptit">出清商品</p>

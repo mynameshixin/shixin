@@ -674,7 +674,6 @@
 								if($(obj).width()>668) $(obj).css('width','668px')
 								//vr logo
 								var bheight = ($('.bigimg').height()/2)
-								alert(bheight)
 								$('#vlogo').css({'top':bheight+'px'}).show()
 							}
 						</script>
