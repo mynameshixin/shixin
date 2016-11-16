@@ -31,11 +31,12 @@ dd($rs);
            	'num' => 'required',
        		);
 		   	$renews = [
-        	'sike.required'=>'写入从第几个开始',
+        	'skip.required'=>'写入从第几个开始',
         	'num.required'=>'需要多少篇',       
         	];
         	parent::validator($data, $rules,$renews);
-        	$rs=WzService::getInstance()->newwz($skip,$num);
+
+        	$rs=WzService::getInstance()->newwz($data['skip'],$data['num']);
 
 		 return response()->forApi($rs);
 	}
