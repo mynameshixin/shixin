@@ -373,6 +373,7 @@ class ArticleController extends CmController{
 			$da['eassat_guide_src']=$use['src'];
 		}
 		if(empty($data['where'])){$da['eassat_where']=0;}else{$da['eassat_where']=1;}
+		if(empty($data['adapt'])){$da['adapt']=0;}else{$da['adapt']=1;}
 		$ea=DB::table('eassat')->where('eassat_id',$data['eassat_id'])->select('eassat_timg','eassat_ximg')->first();
 		
 		if($_FILES['file1']['name']||$_FILES['file2']['name']){

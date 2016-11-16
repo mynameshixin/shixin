@@ -33,7 +33,14 @@
 
 		</div>
 		
-<div>
+<div> 
+ <div><h1>自适应边框</h1>
+			<label class="switch-btn">
+			                <input class="checked-switch" type="checkbox" name="adapt" value="1" />
+			                <span class="text-switch" data-yes="适应" data-no="no"></span> 
+			                <span class="toggle-btn"></span> 
+			</label>
+		</div>
     
      <script id="editor" type="text/plain" name="cont" style="width:944px;height:500px;">
      <?php echo $eassat_cont ?>
