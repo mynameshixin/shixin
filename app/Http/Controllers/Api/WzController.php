@@ -4,12 +4,41 @@ namespace App\Http\Controllers\Api;
 use App\Lib\LibUtil;
 use Illuminate\Support\Facades\Input;
 use DB;
-use App\Services\Cq\ProductService;
+use App\Services\Wz\WzService;
 
 class WzController extends BaseController{
 	// 测试传入数据
 	public function getIndex(){
+		$data = Input::all();
+			
+		   	// $rules = array(
+		   	// 'sike' => 'required',
+      //      	'num' => 'required',
+      //  		);
+		   	// $renews = [
+      //   	'sike.required'=>'写入从第几个开始',
+      //   	'num.required'=>'需要多少篇',       
+      //   	];
+        	//parent::validator($data, $rules,$renews);
+        	$rs=WzService::getInstance()->newwz(1,2);
+dd($rs);
 		return view('cq.index');
+	}
+	public function getWz(){
+		$data = Input::all();
+			
+		   	// $rules = array(
+		   	// 'sike' => 'required',
+      //      	'num' => 'required',
+      //  		);
+		   	// $renews = [
+      //   	'sike.required'=>'写入从第几个开始',
+      //   	'num.required'=>'需要多少篇',       
+      //   	];
+        	//parent::validator($data, $rules,$renews);
+        	$rs=WzService::getInstance()->newwz(1,2);
+
+		 return response()->forApi($rs);
 	}
 
 	
