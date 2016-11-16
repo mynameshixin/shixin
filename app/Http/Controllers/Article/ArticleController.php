@@ -65,7 +65,7 @@ class ArticleController extends CmController{
 			if($_POST['classfy'.$i]){$data['eassat_classfy']=';'.$_POST['classfy'.$i].';'.$data['eassat_classfy'];};
 		}
 		if(empty($_POST['where'])){$data['eassat_where']=0;}else{$data['eassat_where']=1;}
-
+		if(empty($_POST['adapt'])){$data['adapt']=0;}else{$data['adapt']=1;}
 		if($_FILES['file1']['name']||$_FILES['file2']['name']){
 		if($_FILES['file2']['name']){$file2 = Input::file('file2');$filename = uniqid();$hz=$file2 -> getClientOriginalExtension();$file2->move('uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;
 		}else{$file1 = Input::file('file1');$filename = uniqid();$hz=$file1 -> getClientOriginalExtension();$file1->move('uploads/ueditor/show',$filename.'.'.$hz);$data['eassat_timg']='/uploads/ueditor/show/'.$filename.'.'.$hz;

@@ -25,12 +25,15 @@
 
 	<!-- htmlv=20160710 -->
 	@include('web.common.head')	
+
+	@if($ok['adapt'])
 	<style>
-	/*#cont img {
-	max-width: 100%; 图片自适应宽度
+	#cont img {
+	max-width: 100%; 
 	min-width:100%;
-	}*/
+	}
 	</style>
+	@endif
 </head>
 <body>
 @include('web.common.banner')
