@@ -48,9 +48,23 @@ class CqController extends BaseController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        $asd = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        if (!empty($asd['image'])) {
+                $image_ids = explode(',', $row['image_ids']);
+                foreach ($image_ids as $imageId) {
+                    $image_o = LibUtil::getPicUrl($imageId, 3);
+                    if (!empty($image_o)) {
+                        $imagee[] = [
+                            'image_id'=>$imageId,
+                            'img_m' => LibUtil::getPicUrl($imageId, 1),
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
+                        ];
+                    }
+                }
+            }
         if ($id) {
-            return response()->forApi(['id' => $id,'image'=>$data['image'],'title'=>$data['title']]);
+            return response()->forApi(['id' => $asd['id'],'image'=>$imagee,'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }

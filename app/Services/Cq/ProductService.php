@@ -60,7 +60,9 @@ class ProductService extends ApiService
                 $image_ids = implode(',', $images_arr);
                 $entry['image_ids'] = $image_ids;
                 $id = DB::table('cq_goods')->insertGetId($entry);
-                return $id;
+              	$asd=['id']=$id;
+		$asd['image']=$image_ids;
+		 return $asd;
             }
         }
         return 0;
