@@ -50,7 +50,7 @@ class CqController extends BaseController{
         $data['status'] = 1;
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
         if ($id) {
-            return response()->forApi(['id' => $id]);
+            return response()->forApi(['id' => $id,'image'=>$data['image'],'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
