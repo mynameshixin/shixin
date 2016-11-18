@@ -28,6 +28,11 @@ class WzService extends ApiService
         $data=DB::table('eassat_search')->where('pid',$pid)->get();
         return $data;
     }
+     public function fenleichaxun($id,$skip,$num){ 
+            $classfy=DB::table('eassat_search')->select('name')->where('id',$id)->first();  
+            $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->where('eassat_classfy', 'like', '%'.$classfy['name'].'%')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
+        return $data;
+    }
 }
 // class WzService extends ApiService
 // {
