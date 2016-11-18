@@ -74,19 +74,32 @@ class WzController extends BaseController{
 	public function getFeng(){
 		$data = Input::all();
 			$rules = array(
-			'id' =>'required',
+			'fid' =>'required',
 		   	'skip' => 'required',
            	'num' => 'required',
        		);
 		   	$renews = [
-		   	'id.required' =>'必须选择分类',
+		   	'fid.required' =>'必须选择分类',
         	'skip.required'=>'写入从第几个开始',
         	'num.required'=>'需要多少篇',       
         	];
         	parent::validator($data, $rules,$renews);
-		$rs=WzService::getInstance()->fenleichaxun($data['id'],$data['skip'],$data['num']);
+		$rs=WzService::getInstance()->fenleichaxun($data['fid'],$data['skip'],$data['num']);
 		return response()->forApi($rs);
 	}
+	public function getDetail(){
+		$data = Input::all();
+		$rules = array(
+			'id' =>'required',
+		   	
+       		);
+		   	$renews = [
+		   	'id.required' =>'必须选择文章',      
+        	];
+        $rs=WzService::getInstance()->wenzhangxiangqing($data['id']);
+        dd($rs);
+	}
+
 	
 }
 

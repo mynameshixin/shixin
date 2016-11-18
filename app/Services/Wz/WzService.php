@@ -19,19 +19,28 @@ class WzService extends ApiService
         return parent::getInstance();
     
     } 
+    //最新文章查询
     public function newwz($skip,$num){     
         $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
 
         return $data;
     }
+    //文章分类
     public function fenlei($pid=0){     
         $data=DB::table('eassat_search')->where('pid',$pid)->get();
         return $data;
     }
+    //按分类查询文章
      public function fenleichaxun($id,$skip,$num){ 
             $classfy=DB::table('eassat_search')->select('name')->where('id',$id)->first();  
             $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->where('eassat_classfy', 'like', '%'.$classfy['name'].'%')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
         return $data;
+    }
+    //文章详情查询
+    public function wenzhangxiangqing($id){
+        $data=DB::table('eassat')->where('eassat_id',$id)->first();
+        return $data;
+
     }
 }
 // class WzService extends ApiService
