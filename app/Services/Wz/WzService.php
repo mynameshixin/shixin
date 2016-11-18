@@ -23,7 +23,7 @@ class WzService extends ApiService
         $data=DB::table('eassat')->orderBy('eassat_data','desc')->skip($skip)->take($num)->get();
         return $data;
     }
-    public function fenlei($pid){     
+    public function fenlei($pid=0){     
         $data=DB::table('eassat_search')->where('pid',$pid)->get();
         return $data;
     }
