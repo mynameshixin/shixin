@@ -55,7 +55,7 @@ class CqController extends BaseController{
                 foreach ($image_ids as $imageId) {
                     $image_o = LibUtil::getPicUrl($imageId, 3);
                     if (!empty($image_o)) {
-                        $rows = [
+                        $rows[$i] = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
                             'img_o' => $image_o,
