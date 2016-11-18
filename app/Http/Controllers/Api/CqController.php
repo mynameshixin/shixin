@@ -48,28 +48,45 @@ class CqController extends BaseController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $poi = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
-         if (!empty($poi['imgid'])) {
-                $image_ids = explode(',', $asd);
+        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',115)->first();      
+        if (!empty($imgid)) {
+                $image_ids = explode(',', $imgid['image_ids']);
                 foreach ($image_ids as $imageId) {
                     $image_o = LibUtil::getPicUrl($imageId, 3);
                     if (!empty($image_o)) {
-                        $id=$poi['id'];
-                        $title=>$data['title'];
-                        $poo = [
+                        $rows = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
                             'img_o' => $image_o,
                             'rh' => LibUtil::getPicSize($imageId, 1)
-                        ];            
+                        ];
                     }
                 }
             }
         if ($id) {
-            return response()->forApi($id,$poo,$title);
+            return response()->forApi(['id' => $id,$rows,'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
+    }
+    public function getPoi(){
+        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',115)->first();      
+        if (!empty($imgid)) {
+                $image_ids = explode(',', $imgid['image_ids']);
+                foreach ($image_ids as $imageId) {
+                    $image_o = LibUtil::getPicUrl($imageId, 3);
+                    if (!empty($image_o)) {
+                        $rows = [
+                            'image_id'=>$imageId,
+                            'img_m' => LibUtil::getPicUrl($imageId, 1),
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
+                        ];
+                      return $rows;
+                    }
+                }
+            }
     }
 
     //编辑自己发布的出清商品
@@ -148,7 +165,7 @@ class CqController extends BaseController{
         return response()->forApi($rs);
 
     }
-
+ 
 
     // 筛选展示数据
     public function getSearch(){
