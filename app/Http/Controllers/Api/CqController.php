@@ -48,9 +48,23 @@ class CqController extends BaseController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+        $poi = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
+         if (!empty($poi['imgid'])) {
+                $image_ids = explode(',', $asd);
+                foreach ($image_ids as $imageId) {
+                    $image_o = LibUtil::getPicUrl($imageId, 3);
+                    if (!empty($image_o)) {
+                        $poo = [
+                            'image_id'=>$imageId,
+                            'img_m' => LibUtil::getPicUrl($imageId, 1),
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
+                        ];            
+                    }
+                }
+            }
         if ($id) {
-            return response()->forApi(['id' => $id,'title'=>$data['title']]);
+            return response()->forApi(['id' => $poi['id'],$poo,'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
@@ -90,23 +104,9 @@ class CqController extends BaseController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $poi = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
-         if (!empty($poi['imgid'])) {
-                $image_ids = explode(',', $asd);
-                foreach ($image_ids as $imageId) {
-                    $image_o = LibUtil::getPicUrl($imageId, 3);
-                    if (!empty($image_o)) {
-                        $poo = [
-                            'image_id'=>$imageId,
-                            'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o,
-                            'rh' => LibUtil::getPicSize($imageId, 1)
-                        ];            
-                    }
-                }
-            }
+        $id = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
         if ($id) {
-            return response()->forApi($poi['id'],$poo);
+            return response()->forApi(['id' => $id]);
         }else{
             return response()->forApi(array(), 1001, '编辑失败！');
         }
@@ -146,9 +146,7 @@ class CqController extends BaseController{
         return response()->forApi($rs);
 
     }
-    public function getPoi(){      
-       
-    }
+
 
     // 筛选展示数据
     public function getSearch(){
