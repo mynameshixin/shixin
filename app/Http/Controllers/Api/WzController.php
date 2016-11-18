@@ -42,9 +42,9 @@ class WzController extends BaseController{
         	for ($i=0; $i < $num; $i++) { 
         		$pos= stripos($rs[$i]['eassat_classfy'], '问答社区');
         		if($pos){
-        			$rs[$i]['questions']=1;
+        			$rs[$i]['questions']='1';
         		}else{
-        			$rs[$i]['questions']=0;
+        			$rs[$i]['questions']='0';
         		}
         	}
 		 return response()->forApi($rs);
