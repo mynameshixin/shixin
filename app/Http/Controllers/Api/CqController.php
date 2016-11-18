@@ -65,7 +65,7 @@ class CqController extends BaseController{
                 }
             }
         if ($id) {
-            return response()->forApi(['id' => $id,$rows,'title'=>$data['title']]);
+            return response()->forApi(['id' => $id,'rows'=>$rows,'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
