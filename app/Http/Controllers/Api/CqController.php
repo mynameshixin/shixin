@@ -70,17 +70,7 @@ class CqController extends BaseController{
         }
     }
     public function getPoi(){
-        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',115)->first();      
-        if (!empty($imgid)) {
-                $image_ids = explode(',', $imgid['image_ids']);
-
-                foreach ($image_ids as $imageId) {
-
-                    $image_o[] = LibUtil::getPicUrl($imageId, 3);
-                    $image_m[]=LibUtil::getPicUrl($imageId, 1);
-                   
-                }
-            }
+  
     }
 
     //编辑自己发布的出清商品

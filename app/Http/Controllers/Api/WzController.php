@@ -46,9 +46,6 @@ class WzController extends BaseController{
         		}else{
         			$rs[$i]['questions']='0';
         		}
-        		$timg=getimagesize('http://www.duitujia.com'.$rs[$i]['eassat_timg']);
-        		$rs[$i]['eassat_timg_width']=$timg[0];
-        		$rs[$i]['eassat_timg_height']=$timg[1];
         		$ximg=getimagesize('http://www.duitujia.com'.$rs[$i]['eassat_ximg']);
         		$rs[$i]['eassat_ximg_width']=$ximg[0];
         		$rs[$i]['eassat_ximg_height']=$ximg[1];
