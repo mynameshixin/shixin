@@ -90,9 +90,23 @@ class CqController extends BaseController{
 
         //用户发布，先发后审
         $data['status'] = 1;
-        $id = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
+        $poi = ProductService::getInstance()->updateProduct ($userId,$data,$_FILES);
+         if (!empty($poi['imgid'])) {
+                $image_ids = explode(',', $asd);
+                foreach ($image_ids as $imageId) {
+                    $image_o = LibUtil::getPicUrl($imageId, 3);
+                    if (!empty($image_o)) {
+                        $poo = [
+                            'image_id'=>$imageId,
+                            'img_m' => LibUtil::getPicUrl($imageId, 1),
+                            'img_o' => $image_o,
+                            'rh' => LibUtil::getPicSize($imageId, 1)
+                        ];            
+                    }
+                }
+            }
         if ($id) {
-            return response()->forApi(['id' => $id]);
+            return response()->forApi($poi['id'],$poo);
         }else{
             return response()->forApi(array(), 1001, '编辑失败！');
         }
@@ -131,6 +145,9 @@ class CqController extends BaseController{
         $rs = ProductService::getInstance()->getProductsByFids ($data,$skip,$num,$rs['user_id']);
         return response()->forApi($rs);
 
+    }
+    public function getPoi(){      
+       
     }
 
     // 筛选展示数据
