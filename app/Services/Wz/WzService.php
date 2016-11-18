@@ -20,7 +20,7 @@ class WzService extends ApiService
     
     } 
     public function newwz($skip,$num){     
-        $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','questions','eassat_classfy')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
+        $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
 
         return $data;
     }

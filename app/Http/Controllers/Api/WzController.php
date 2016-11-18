@@ -49,8 +49,9 @@ class WzController extends BaseController{
         		$ximg=getimagesize('http://www.duitujia.com'.$rs[$i]['eassat_ximg']);
         		$rs[$i]['eassat_ximg_width']=$ximg[0];
         		$rs[$i]['eassat_ximg_height']=$ximg[1];
-        		$rs[$i]['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs[$i]['eassat_cont'];
+        		//$rs[$i]['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs[$i]['eassat_cont'];
         	}
+       
         	
 		 return response()->forApi($rs);
 	}
