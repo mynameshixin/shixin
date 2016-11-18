@@ -32,7 +32,7 @@ class CqController extends BaseController{
         );
         $renews = [
         	'access_token.required'=>'令牌必须填写',
-            '.required' => '图片必须填写',
+            'image.required' => '图片必须填写',
             'title.required'=>'标题必须填写',
             'description.required'=>'描述必须填写',
             'cityid.required'=>'地区必须填写',
@@ -49,13 +49,8 @@ class CqController extends BaseController{
         //用户发布，先发后审
         $data['status'] = 1;
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
-        $da=array(
-            'id'=>$id,
-            'image'=>$data['image'],
-            'title'=>$data['title']
-            )
         if ($id) {
-            return response()->forApi($da);
+            return response()->forApi(['id' => $id]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
