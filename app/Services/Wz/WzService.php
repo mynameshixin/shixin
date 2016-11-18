@@ -20,9 +20,14 @@ class WzService extends ApiService
     
     } 
     //最新文章查询
-    public function newwz($skip,$num){     
-        $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
-
+    public function newwz($skip,$num,$fid){ 
+        if($fid){
+            $classfy=DB::table('eassat_search')->select('name')->where('id',$fid)->first();  
+            $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->where('eassat_classfy', 'like', '%'.$classfy['name'].'%')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
+        }else{
+            $data=DB::table('eassat')->select('eassat_id','eassat_time','eassat_ximg','eassat_title','eassat_classfy')->orderBy('eassat_date','desc')->skip($skip)->take($num)->get();
+        }
+       
         return $data;
     }
     //文章分类

@@ -24,19 +24,21 @@ class WzController extends BaseController{
 
 		return view('cq.index');
 	}
+	//文章查询
 	public function getWz(){
 		$data = Input::all();			
 		   	$rules = array(
 		   	'skip' => 'required',
            	'num' => 'required',
+           	'fid'=>'required',
        		);
 		   	$renews = [
         	'skip.required'=>'写入从第几个开始',
-        	'num.required'=>'需要多少篇',       
+        	'num.required'=>'需要多少篇',  
+        	'fid.required'=>'需要多少篇',     
         	];
         	parent::validator($data, $rules,$renews);
-
-        	$rs=WzService::getInstance()->newwz($data['skip'],$data['num']);
+        	$rs=WzService::getInstance()->newwz($data['skip'],$data['num'],$data['fid']);
         		
         	$num=count($rs);
         	for ($i=0; $i < $num; $i++) { 
@@ -50,9 +52,11 @@ class WzController extends BaseController{
         		$rs[$i]['eassat_ximg_width']=$ximg[0];
         		$rs[$i]['eassat_ximg_height']=$ximg[1];
         		//$rs[$i]['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs[$i]['eassat_cont'];
-        	}       	
+        	} 
+        	dd($rs);      	
 		 return response()->forApi($rs);
 	}
+//分类查询
 	public function getFen(){
 		// $data = Input::all();			
 		   	// $rules = array(
@@ -71,22 +75,23 @@ class WzController extends BaseController{
         	}
 		 return response()->forApi($data);
 	}
-	public function getFeng(){
-		$data = Input::all();
-			$rules = array(
-			'fid' =>'required',
-		   	'skip' => 'required',
-           	'num' => 'required',
-       		);
-		   	$renews = [
-		   	'fid.required' =>'必须选择分类',
-        	'skip.required'=>'写入从第几个开始',
-        	'num.required'=>'需要多少篇',       
-        	];
-        	parent::validator($data, $rules,$renews);
-		$rs=WzService::getInstance()->fenleichaxun($data['fid'],$data['skip'],$data['num']);
-		return response()->forApi($rs);
-	}
+	//按分类查询备用
+	// public function getFeng(){
+	// 	$data = Input::all();
+	// 		$rules = array(
+	// 		'fid' =>'required',
+	// 	   	'skip' => 'required',
+ //           	'num' => 'required',
+ //       		);
+	// 	   	$renews = [
+	// 	   	'fid.required' =>'必须选择分类',
+ //        	'skip.required'=>'写入从第几个开始',
+ //        	'num.required'=>'需要多少篇',       
+ //        	];
+ //        	parent::validator($data, $rules,$renews);
+	// 	$rs=WzService::getInstance()->fenleichaxun($data['fid'],$data['skip'],$data['num']);
+	// 	return response()->forApi($rs);
+	// }
 	public function getDetail(){
 		$data = Input::all();
 		$rules = array(
