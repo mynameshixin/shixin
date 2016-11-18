@@ -49,7 +49,7 @@ class CqController extends BaseController{
         //用户发布，先发后审
         $data['status'] = 1;
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
-        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',115)->first();      
+        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',$id)->first();      
         if (!empty($imgid)) {
                 $image_ids = explode(',', $imgid['image_ids']);
                 foreach ($image_ids as $imageId) {
