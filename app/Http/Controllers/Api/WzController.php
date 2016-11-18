@@ -37,7 +37,16 @@ class WzController extends BaseController{
         	parent::validator($data, $rules,$renews);
 
         	$rs=WzService::getInstance()->newwz($data['skip'],$data['num']);
-
+        		
+        	$num=count($rs);
+        	for ($i=0; $i < $num; $i++) { 
+        		$pos= stripos($rs[$i]['eassat_classfy'], '问答社区');
+        		if($pos){
+        			$rs[$i]['questions']=1;
+        		}else{
+        			$rs[$i]['questions']=0;
+        		}
+        	}
 		 return response()->forApi($rs);
 	}
 	public function getFen(){
