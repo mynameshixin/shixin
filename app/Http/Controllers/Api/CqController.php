@@ -55,6 +55,7 @@ class CqController extends BaseController{
                     $image_o = LibUtil::getPicUrl($imageId, 3);
                     if (!empty($image_o)) {
                         $id=$poi['id'];
+                        $title=>$data['title'];
                         $poo = [
                             'image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
@@ -65,7 +66,7 @@ class CqController extends BaseController{
                 }
             }
         if ($id) {
-            return response()->forApi($id,$poo,'title'=>$data['title']]);
+            return response()->forApi($id,$poo,$title);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
