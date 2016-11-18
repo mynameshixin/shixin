@@ -52,20 +52,13 @@ class CqController extends BaseController{
         $imgid=DB::table('cq_goods')->select('image_ids')->where('id',$id)->first();      
         if (!empty($imgid)) {
                 $image_ids = explode(',', $imgid['image_ids']);
-                foreach ($image_ids as $imageId) {
-                    $image_o = LibUtil::getPicUrl($imageId, 3);
-                    if (!empty($image_o)) {
-                        $rows[$i] = [
-                            'image_id'=>$imageId,
-                            'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o,
-                            'rh' => LibUtil::getPicSize($imageId, 1)
-                        ];
-                    }
+                foreach ($image_ids as $imageId) {    
+                    $image_o[] = LibUtil::getPicUrl($imageId, 3);
+                    $image_m[]=LibUtil::getPicUrl($imageId, 1);            
                 }
             }
         if ($id) {
-            return response()->forApi(['id' => $id,'rows'=>$rows,'title'=>$data['title']]);
+            return response()->forApi(['id' => $id,'image_o'=> $image_o,'image_m'=>$image_m,'title'=>$data['title']]);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
@@ -74,17 +67,12 @@ class CqController extends BaseController{
         $imgid=DB::table('cq_goods')->select('image_ids')->where('id',115)->first();      
         if (!empty($imgid)) {
                 $image_ids = explode(',', $imgid['image_ids']);
+
                 foreach ($image_ids as $imageId) {
-                    $image_o = LibUtil::getPicUrl($imageId, 3);
-                    if (!empty($image_o)) {
-                        $rows = [
-                            'image_id'=>$imageId,
-                            'img_m' => LibUtil::getPicUrl($imageId, 1),
-                            'img_o' => $image_o,
-                            'rh' => LibUtil::getPicSize($imageId, 1)
-                        ];
-                      return $rows;
-                    }
+
+                    $image_o[] = LibUtil::getPicUrl($imageId, 3);
+                    $image_m[]=LibUtil::getPicUrl($imageId, 1);
+                   
                 }
             }
     }
