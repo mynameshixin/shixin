@@ -54,7 +54,7 @@ class WzController extends BaseController{
         	$num=count($rs);
         	for ($i=0; $i < $num; $i++) { 
         		$data[$i]=$rs[$i];
-        		$data[$i]['z']=WzService::getInstance()->fenlei($rs[$i]['id']);
+        		$data[$i]['children']=WzService::getInstance()->fenlei($rs[$i]['id']);
         	}
 		 return response()->forApi($data);
 	}
