@@ -49,9 +49,9 @@ class CqController extends BaseController{
         //用户发布，先发后审
         $data['status'] = 1;
         $id = ProductService::getInstance()->addProduct ($userId,$data,$_FILES);
-        $imgid=DB::table('cq_goods')->select('image_ids')->where('id',$id['id'])->first();      
-        if (!empty($imgid)) {
-                $image_ids = explode(',', $imgid['image_ids']);
+        //$imgid=DB::table('cq_goods')->select('image_ids')->where('id',$id['id'])->first();      
+        if (!empty($id['imgid'])) {
+                $image_ids = explode(',', $id['imgid']);
                 foreach ($image_ids as $imageId) {    
                     $image_o[] = LibUtil::getPicUrl($imageId, 3);
                     $image_m[]=LibUtil::getPicUrl($imageId, 1);            
