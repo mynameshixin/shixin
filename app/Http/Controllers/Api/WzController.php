@@ -41,17 +41,17 @@ class WzController extends BaseController{
 		 return response()->forApi($rs);
 	}
 	public function getFen(){
-		$data = Input::all();			
-		   	$rules = array(
-		   	'pid' => 'required',
+		// $data = Input::all();			
+		   	// $rules = array(
+		   	// 'pid' => 'required',
            	
-       		);
-		   	$renews = [
-        	'pid.required'=>'写入从第几个开始',      	     
-        	];
-        	parent::validator($data, $rules,$renews);
+      //  		);
+		   	// $renews = [
+      //   	'pid.required'=>'写入从第几个开始',      	     
+      //   	];
+        	//parent::validator($data, $rules,$renews);
 
-        	$rs=WzService::getInstance()->fenlei($data['pid']);
+        	$rs=WzService::getInstance()->fenlei();
 
 		 return response()->forApi($rs);
 	}
