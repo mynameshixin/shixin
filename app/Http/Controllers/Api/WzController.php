@@ -21,7 +21,7 @@ class WzController extends BaseController{
       //   	];
         	//parent::validator($data, $rules,$renews);
         	$rs=WzService::getInstance()->newwz(1,2);
-dd($rs);
+
 		return view('cq.index');
 	}
 	public function getWz(){
@@ -40,9 +40,25 @@ dd($rs);
 
 		 return response()->forApi($rs);
 	}
+	public function getFen(){
+		$data = Input::all();			
+		   	$rules = array(
+		   	'pid' => 'required',
+           	
+       		);
+		   	$renews = [
+        	'pid.required'=>'写入从第几个开始',      	     
+        	];
+        	parent::validator($data, $rules,$renews);
+
+        	$rs=WzService::getInstance()->fenlei($data['pid']);
+
+		 return response()->forApi($rs);
+	}
 
 	
 }
+
 // 	 //发布出清商品
 //     public function postPub(){
 //     	$data = Input::all();

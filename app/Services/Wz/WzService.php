@@ -20,7 +20,11 @@ class WzService extends ApiService
     
     } 
     public function newwz($skip,$num){     
-        $data=DB::table('eassat')->skip($skip)->take($num)->get();
+        $data=DB::table('eassat')->orderBy('eassat_data','desc')->skip($skip)->take($num)->get();
+        return $data;
+    }
+    public function fenlei($pid){     
+        $data=DB::table('eassat_search')->where('pid',$pid)->get();
         return $data;
     }
 }
