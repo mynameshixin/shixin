@@ -50,10 +50,13 @@ class WzController extends BaseController{
       //   	'pid.required'=>'写入从第几个开始',      	     
       //   	];
         	//parent::validator($data, $rules,$renews);
-
         	$rs=WzService::getInstance()->fenlei();
-
-		 return response()->forApi($rs);
+        	$num=count($rs);
+        	for ($i=0; $i < $num; $i++) { 
+        		$data[$i]=$rs[$i];
+        		$data[$i]['z']=WzService::getInstance()->fenlei($rs[$i]['id']);
+        	}
+		 return response()->forApi($data);
 	}
 
 	

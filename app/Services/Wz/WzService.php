@@ -24,7 +24,7 @@ class WzService extends ApiService
         return $data;
     }
     public function fenlei($pid=0){     
-        $data=DB::table('eassat_search')->get();
+        $data=DB::table('eassat_search')->where('pid',$pid)->get();
         return $data;
     }
 }
