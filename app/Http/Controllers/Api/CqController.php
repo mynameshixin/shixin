@@ -54,12 +54,10 @@ class CqController extends BaseController{
                 foreach ($image_ids as $imageId) {
                     $image_o = LibUtil::getPicUrl($imageId, 3);
                     if (!empty($image_o)) {
-                        $imagee[] = [
-                            'image_id'=>$imageId,
+                        $imagee=array('image_id'=>$imageId,
                             'img_m' => LibUtil::getPicUrl($imageId, 1),
                             'img_o' => $image_o,
-                            'rh' => LibUtil::getPicSize($imageId, 1)
-                        ];
+                            'rh' => LibUtil::getPicSize($imageId, 1))   
                     }
                 }
             }
