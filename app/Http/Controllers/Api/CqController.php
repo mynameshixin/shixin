@@ -57,8 +57,14 @@ class CqController extends BaseController{
                     $image_m[]=LibUtil::getPicUrl($imageId, 1);            
                 }
             }
+            $dat=[
+                'id' => $id,
+                'image_o'=> $image_o,
+                'image_m'=>$image_m,
+                'title'=>$data['title']
+            ];
         if ($id) {
-            return response()->forApi(['id' => $id,'image_o'=> $image_o,'image_m'=>$image_m,'title'=>$data['title']]);
+            return response()->forApi($dat);
         }else{
             return response()->forApi(array(), 1001, '发布失败！');
         }
