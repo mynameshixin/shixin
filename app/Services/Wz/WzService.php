@@ -44,6 +44,7 @@ class WzService extends ApiService
     //文章详情查询
     public function wenzhangxiangqing($id){
         $data=DB::table('eassat')->where('eassat_id',$id)->first();
+       
         return $data;
 
     }

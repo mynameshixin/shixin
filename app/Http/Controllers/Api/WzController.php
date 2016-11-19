@@ -102,7 +102,7 @@ class WzController extends BaseController{
 		   	'id.required' =>'必须选择文章',      
         	];
         $rs=WzService::getInstance()->wenzhangxiangqing($data['id']);
-        dd($rs);
+        return response()->forApi($rs);
 	}
 
 	
