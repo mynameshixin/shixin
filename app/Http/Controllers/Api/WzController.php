@@ -95,13 +95,13 @@ class WzController extends BaseController{
 	public function getDetail(){
 		$data = Input::all();
 		$rules = array(
-			'id' =>'required',
+			'eassat_id' =>'required',
 		   	
        		);
 		   	$renews = [
-		   	'id.required' =>'必须选择文章',      
+		   	'eassat_id.required' =>'必须选择文章',      
         	];
-        $rs=WzService::getInstance()->wenzhangxiangqing($data['id']);
+        $rs=WzService::getInstance()->wenzhangxiangqing($data['eassat_id']);
         return response()->forApi($rs);
 	}
 
