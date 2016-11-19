@@ -389,8 +389,8 @@ class ArticleController extends CmController{
 		    try {   
 		        DB::table('eassat')->where('eassat_id',$data['eassat_id'])->update($da);
 		        DB::commit();
-		        $p=unlink(substr($ea['eassat_timg'],1));
-		        $o=unlink(substr($ea['eassat_ximg'],1));
+		        $p=unlink('http://www.duitujia.com/'.substr($ea['eassat_timg'],1));
+		        $o=unlink('http://www.duitujia.com/'.substr($ea['eassat_ximg'],1));
 		    } catch (Exception $e){
 		       DB::rollback();
 		       throw $e;
