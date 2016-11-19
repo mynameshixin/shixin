@@ -132,7 +132,7 @@
 	    	<div class="pic-list clearfix">
 
 	    	@for($i=0;$i<$index['int'];$i++)
-	    		<div class="rows">
+	    		<div class="rows" style="margin-top:50px;height:330px">
 	    		<a href="/Article/article/<?php echo $index[$i]['eassat_id']?>">
 	    			<img style="width:390px;height:247px;" src="<?php echo $index[$i]['eassat_ximg']?>"/>
 	    			<p class="row-info">

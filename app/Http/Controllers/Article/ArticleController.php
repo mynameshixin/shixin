@@ -386,11 +386,10 @@ class ArticleController extends CmController{
 		
 		if($ea){
 			DB::beginTransaction();
-		    try {   
+		    try { 
+		    DB::commit();  
 		        DB::table('eassat')->where('eassat_id',$data['eassat_id'])->update($da);
-		        DB::commit();
-		        $p=unlink('http://www.duitujia.com/'.substr($ea['eassat_timg'],1));
-		        $o=unlink('http://www.duitujia.com/'.substr($ea['eassat_ximg'],1));
+		        
 		    } catch (Exception $e){
 		       DB::rollback();
 		       throw $e;
