@@ -68,11 +68,23 @@ class WzService extends ApiService
         $id=DB::table('eassat_comment')->insert($data);
         return $id;
      }
-     public function commentaction($eassat_id,$comment_id,$user_id){
-        
+     public function commentaction($comment_id,$user_id){     
         $user=DB::table('users')->where('id',$user_id)->first();
-        
-        return $user;
+        $data=DB::table('eassat_comment_action')->where(['eassat_comment_id'=>$comment_id,'eassat_comment_user_id'=>$user_id])->first();
+        if ($data) {
+            return 0;
+        }else{
+            $da['eassat_comment_id']=$comment_id;
+            $da['eassat_comment_user_id']=$user_id;
+            $da['eassat_comment_date']=date('y-m-d h:i:s',time()); 
+            $da['eassat_comment_time']=date('y-m-d h:i:s',time()); 
+        }
+        $rs=DB::table('eassat_comment_action')->insert($da);
+        if($rs){
+            $res=DB::table('eassat_comment')->where('comment_id',$comment_id)->increment('comment_int');
+        }
+        return $res;
+       
      }
 }
 // class WzService extends ApiService
