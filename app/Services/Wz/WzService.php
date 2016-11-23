@@ -68,6 +68,12 @@ class WzService extends ApiService
         $id=DB::table('eassat_comment')->insert($data);
         return $id;
      }
+     public function commentaction($eassat_id,$comment_id,$user_id){
+        
+        $user=DB::table('users')->where('id',$user_id)->first();
+        
+        return $user;
+     }
 }
 // class WzService extends ApiService
 // {

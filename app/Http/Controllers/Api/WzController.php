@@ -125,18 +125,35 @@ class WzController extends BaseController{
 	public function getCommentadd(){
 		$data = Input::all();
 			$rules = array(
-		   	'token'=>'required',
+		   	'access_token'=>'required',
            	'eassat_id'=>'required',
            	'comment_cont' => 'required',
        		);
 		   	$renews = [
-        	'token.required'=>'用户token必传',
+        	'access_token.required'=>'用户token必传',
         	'eassat_id.required'=>'文章eassat_id必传', 
         	'comment_cont.required' => '评论内容必传',        	    
         	];
         	parent::validator($data, $rules,$renews);
-        	$user = parent::validateAcessToken($data['token']);
+        	$user = parent::validateAcessToken($data['access_token']);
         	$rs=WzService::getInstance()->commentadd($data['eassat_id'],$data['comment_cont'],$user['user_id']);
+        	return response()->forApi($rs);
+	}
+	public function getCommentaction(){
+		$data = Input::all();
+			$rules = array(
+		   	'access_token'=>'required',
+           	'eassat_id'=>'required',
+           	'comment_id' => 'required',
+       		);
+		   	$renews = [
+        	'access_token.required'=>'用户token必传',
+        	'eassat_id.required'=>'文章eassat_id必传', 
+        	'comment_id.required' => '评论ID必传',        	    
+        	];
+        	parent::validator($data, $rules,$renews);
+        	$user = parent::validateAcessToken($data['token']);
+        	$rs=WzService::getInstance()->commentaction($data['eassat_id'],$data['comment_id'],$user['user_id']);
         	return response()->forApi($rs);
 	}
 
