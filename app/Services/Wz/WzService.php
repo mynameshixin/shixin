@@ -49,8 +49,9 @@ class WzService extends ApiService
     }
     //文章评论
     public function comment($id,$skip,$num){
-         $data=DB::table('eassat_comment')->where(['comment_eassat_id'=>$id,'comment_delete'=>1])->skip($skip)->take($num)->get(); 
         $data['new']=DB::table('eassat_comment')->where(['comment_eassat_id'=>$id,'comment_delete'=>1])->orderBy('comment_int','desc')->take(3)->get(); 
+         $data['list']=DB::table('eassat_comment')->where(['comment_eassat_id'=>$id,'comment_delete'=>1])->skip($skip)->take($num)->get(); 
+        
         return $data; 
     }
 }
