@@ -43,10 +43,13 @@ class WzService extends ApiService
     }
     //文章详情查询
     public function wenzhangxiangqing($id){
-        $data=DB::table('eassat')->where('eassat_id',$id)->first();
-       
+        $data=DB::table('eassat')->where('eassat_id',$id)->first();   
         return $data;
 
+    }
+    public function comment($id,$skip,$num){
+         $data=DB::table('eassat_comment')->where(['comment_eassat_id'=>$id,'comment_delete'=>1])->skip($skip)->take($num)->get(); 
+         return $data; 
     }
 }
 // class WzService extends ApiService

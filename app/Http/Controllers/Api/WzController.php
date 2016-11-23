@@ -101,9 +101,26 @@ class WzController extends BaseController{
 		   	$renews = [
 		   	'eassat_id.required' =>'必须选择文章',      
         	];
+        	parent::validator($data, $rules,$renews);
         $rs=WzService::getInstance()->wenzhangxiangqing($data['eassat_id']);
         $rs['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'. $rs['eassat_cont'];
         return response()->forApi($rs);
+	}
+	public function getComment(){
+		$data = Input::all();
+			$rules = array(
+		   	'skip' => 'required',
+           	'num' => 'required',
+           	'eassat_id' => 'required',
+       		);
+		   	$renews = [
+        	'skip.required'=>'写入从第几个评论开始',
+        	'num.required'=>'需要多少评论', 
+        	'eassat_id.required' => '必传文章ID',        	    
+        	];
+        	parent::validator($data, $rules,$renews);
+        	$rs=WzService::getInstance()->comment($data['eassat_id'],$data['skip'],$data['num']);
+ 			return response()->forApi($rs);
 	}
 
 	
