@@ -13,6 +13,7 @@ use App\Services\UserService;
 use App\Websupply\UserWebsupply;
 use App\Services\ApiService;
 use DB;
+use App\Http\Controllers\Web\CmController;
 class WzService extends ApiService
 {
     public static function getInstance(){
@@ -54,6 +55,19 @@ class WzService extends ApiService
         
         return $data; 
     }
+     public function commentadd($eassat_id,$cont,$user_id){
+        $cm=new LibUtil;;
+        $user=DB::table('users')->where('id',$user_id)->first();
+        $data['comment_user_id']=$user_id;
+        $data['comment_user_name']=$user['nick'];
+        $data['comment_user_src']=$cm->getUserAvatar($user_id,1);
+        $data['comment_cont']=$cont;
+        $data['comment_eassat_id']=$eassat_id;
+        $data['comment_date']=date('y-m-d h:i:s',time());       
+        $data['comment_int']=0;
+        $id=DB::table('eassat_comment')->insert($data);
+        return $id;
+     }
 }
 // class WzService extends ApiService
 // {

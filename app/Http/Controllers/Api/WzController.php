@@ -126,17 +126,18 @@ class WzController extends BaseController{
 		$data = Input::all();
 			$rules = array(
 		   	'token'=>'required',
-           //	'eassat_id'=>'required',
-           //	'comment_cont' => 'required',
+           	'eassat_id'=>'required',
+           	'comment_cont' => 'required',
        		);
 		   	$renews = [
         	'token.required'=>'用户token必传',
-        	//'eassat_id.required'=>'文章eassat_id必传', 
-        	//'comment_cont.required' => '评论内容必传',        	    
+        	'eassat_id.required'=>'文章eassat_id必传', 
+        	'comment_cont.required' => '评论内容必传',        	    
         	];
         	parent::validator($data, $rules,$renews);
         	$user = parent::validateAcessToken($data['token']);
-        	return response()->forApi($user);
+        	$rs=WzService::getInstance()->commentadd($data['eassat_id'],$data['comment_cont'],$user['user_id']);
+        	return response()->forApi($rs);
 	}
 
 	
