@@ -118,8 +118,8 @@ class WzController extends BaseController{
         	parent::validator($data, $rules,$renews);
         $rs=WzService::getInstance()->wenzhangxiangqing($data['eassat_id']);
         $rs['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'. $rs['eassat_cont'];
-        
-        return response()->forApi($rs['eassat_id']);
+        $dd['eassat_id']=$rs['eassat_id'];
+        return response()->forApi($dd);
 	}
 	public function getComment(){
 		$data = Input::all();
