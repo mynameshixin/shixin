@@ -120,8 +120,6 @@ class WzController extends BaseController{
         $rs['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs['eassat_cont'];
        
        $rs['eassat_connt']='<style>img {max-width: 100%; min-width:100%;}</style><p><img src="http://www.duitujia.com/uploads/ueditor/image/20161122/1479804056859010.png" title="1479804056859010.png" alt="22.png"/></p>';
-      	var_dump($rs);
-
         return response()->forApi($rs);
 	}
 	public function getComment(){
