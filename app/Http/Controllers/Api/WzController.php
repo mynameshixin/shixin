@@ -119,7 +119,7 @@ class WzController extends BaseController{
         $rs=WzService::getInstance()->wenzhangxiangqing($data['eassat_id']);
         //$rs['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs['eassat_cont'];
        
-       $dd['eassat_connt']='<style>img {max-width: 100%; min-width:100%;}</style><p><img src=\"http://www.duitujia.com/uploads/ueditor/image/20161122/1479804056859010.png\" title=\"1479804056859010.png\" alt=\"22.png\"/></p>';
+       $dd['eassat_connt']=$rs['eassat_cont'];
         $dd['eassat_id']=$rs['eassat_id'];
         return response()->forApi($dd);
 	}
