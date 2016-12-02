@@ -124,6 +124,7 @@ class WzController extends BaseController{
      	$rs['eassat_cont']=preg_replace($s,$sd, $rs['eassat_cont']);  	
         return response()->forApi($rs);
 	}
+	//评论
 	public function getComment(){
 		$data = Input::all();
 			$rules = array(
@@ -140,6 +141,7 @@ class WzController extends BaseController{
         	$rs=WzService::getInstance()->comment($data['eassat_id'],$data['skip'],$data['num']);
  			return response()->forApi($rs);
 	}
+	//评论添加
 	public function getCommentadd(){
 		$data = Input::all();
 			$rules = array(
@@ -157,6 +159,7 @@ class WzController extends BaseController{
         	$rs=WzService::getInstance()->commentadd($data['eassat_id'],$data['comment_cont'],$user['user_id']);
         	return response()->forApi($rs);
 	}
+	//评论点赞
 	public function getCommentaction(){
 		$data = Input::all();
 			$rules = array(
@@ -169,7 +172,7 @@ class WzController extends BaseController{
         	];
         	parent::validator($data, $rules,$renews);
         	$user = parent::validateAcessToken($data['access_token']);
-        	$rs=WzService::getInstance()->commentaction($data['comment_id'],$user['user_id']);
+        	$rs['status']=WzService::getInstance()->commentaction($data['comment_id'],$user['user_id']);
         	return response()->forApi($rs);
 	}
 
