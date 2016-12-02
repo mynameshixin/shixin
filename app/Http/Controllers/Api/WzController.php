@@ -53,7 +53,9 @@ class WzController extends BaseController{
         		$rs[$i]['eassat_ximg_height']=$ximg[1];
         		//$rs[$i]['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs[$i]['eassat_cont'];
         	} 
-        	      	
+        	   if(!$rs){
+        	   	$rs='false';
+        	   }   	
 		 return response()->forApi($rs);
 	}
 //分类查询
@@ -124,7 +126,7 @@ class WzController extends BaseController{
      	$rs['eassat_cont']=preg_replace($s,$sd, $rs['eassat_cont']);  	
         return response()->forApi($rs);
 	}
-	//评论
+	//调取评论
 	public function getComment(){
 		$data = Input::all();
 			$rules = array(
