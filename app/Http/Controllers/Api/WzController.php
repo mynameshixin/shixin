@@ -54,7 +54,7 @@ class WzController extends BaseController{
         		//$rs[$i]['eassat_cont']='<style>img {max-width: 100%; min-width:100%;}</style>'.$rs[$i]['eassat_cont'];
         	} 
         	   if(!$rs){
-        	   	$rs='false';
+        	   	$rs[]=null;
         	   }   	
 		 return response()->forApi($rs);
 	}
