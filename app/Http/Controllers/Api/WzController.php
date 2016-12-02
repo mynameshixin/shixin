@@ -92,6 +92,7 @@ class WzController extends BaseController{
 	// 	$rs=WzService::getInstance()->fenleichaxun($data['fid'],$data['skip'],$data['num']);
 	// 	return response()->forApi($rs);
 	// }
+	//文章详情
 	public function getDetail(){
 		$data = Input::all();
 		$rules = array(
