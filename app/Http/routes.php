@@ -214,6 +214,7 @@ Route::any('/Article/search/{id}','Article\ArticleController@search');
 Route::any('/Article/se/add','Article\ArticleController@search_re_add');
 Route::any('/Article/modify/{id}','Article\ArticleController@modify');
 Route::any('/Article/mod/mod','Article\ArticleController@mod');
+Route::any('/Ar/nh','Article\NhController@index');
 
 
 
