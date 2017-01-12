@@ -338,7 +338,8 @@ class ArticleController extends CmController{
 			echo "<script>alert('这篇文章说不认识你！不想理你')</script>";
 		}
 	}
-	public function mod(){	
+	public function mod(){
+			
 		$us=$this->user();
 		if (!($us['id']==5||$us['id']==6)) {
 			dd("这篇文章说不认识你！不想理你");
@@ -352,17 +353,17 @@ class ArticleController extends CmController{
 			$da['eassat_id']=$data['eassat_id'];
 		}
 		if(empty($data['eassat_describe'])){
-				dd('服务器繁忙.');
+				dd('描述未传.');
 		}else{
 			$da['eassat_describe']=$data['eassat_describe'];
 		}
 		if(empty($data['eassat_title'])){
-			dd('服务器繁忙?');	
+			dd('标题呢?');	
 		}else{
 			$da['eassat_title']=$data['eassat_title'];
 		}
 		if(empty($data['cont'])){
-			dd('服务器繁忙!!');
+			dd('内容了!!你吃了！！！');
 		}else{	
 			$da['eassat_cont']=$data['cont'];
 		}
@@ -372,6 +373,15 @@ class ArticleController extends CmController{
 			$da['eassat_guide_user']=$use['nick'];
 			$da['eassat_guide_src']=$use['src'];
 		}
+		$classfy='';
+		for ($i=1; $i < 13 ; $i++) { 
+			if($_POST['classfy'.$i]){$classfy=';'.$_POST['classfy'.$i].';'.$classfy;};
+		}
+		if($classfy){
+			$da['eassat_classfy']=$classfy;
+			
+		}
+
 		if(empty($data['where'])){$da['eassat_where']=0;}else{$da['eassat_where']=1;}
 		if(empty($data['adapt'])){$da['adapt']=0;}else{$da['adapt']=1;}
 		$ea=DB::table('eassat')->where('eassat_id',$data['eassat_id'])->select('eassat_timg','eassat_ximg')->first();

@@ -40,6 +40,7 @@
 	    	<br>
 	    	<div class="pic-list clearfix">	
 	    		@foreach ($rel as $rel)
+	    		<a href="/Article/article/{{$rel['eassat_id']}}">
 	    		<div class="rows">
 	    			<img style="height:248px" src="{{$rel['eassat_ximg']}}"/>
 	    			<p class="row-info">
@@ -47,6 +48,8 @@
 	    				<span class="time">{{$rel['eassat_date']}}</span>
 	    			</p>
 	    		</div>
+	    		</a>
+	    		
     			@endforeach   			    		
 	    	</div>
 	    	<script type="text/javascript" src="{{asset('web')}}/js/news/scarch.js"></script>
