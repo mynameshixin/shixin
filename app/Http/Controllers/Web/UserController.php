@@ -78,9 +78,18 @@ class UserController extends CmController{
 			'user_id'=>$this->other_id,
 			'self_id'=>$this->user_id
 		];
+		//第二页 'user_id'=>$data['user_info']['id'], 
+		$da=DB::table('goods')->where('detail_url', '!=' , '')->Where(array('kind'=>'2','user_id'=>$data['user_info']['id']))->select('detail_url')->first();
+	
+		if($da){
+			$data['user_info']['vr']=$da;
+		}else{
+			$data['user_info']['vr']=0;
+		}
 		return view('web.user.index',$data);
 
 	}
+	
 
 	//获取用户喜欢的数据
 	public function getPraise(){

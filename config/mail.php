@@ -54,7 +54,8 @@ return [
     |
     */
 
-    'from' => ['address' =>env('MAIL_ADDRESS'), 'name' => env('MAIL_NAME')],
+     'from' => ['address' =>env('MAIL_ADDRESS'), 'name' => env('MAIL_NAME')],
+     //'from' => ['address' =>'zhengzhiyang_002@163.com', 'name' => '堆图家'],
 
     /*
     |--------------------------------------------------------------------------
