@@ -453,7 +453,7 @@ background: url(/web/images/btm.png) left center no-repeat;background-position:0
 	function mdis(iso){
 		var dis=iso.alt;
 		if(diss==1){
-			alert(1);
+			
 			$('#div1').css({
 				'margin-top':'-60px',
 				'display':'none'
@@ -464,7 +464,7 @@ background: url(/web/images/btm.png) left center no-repeat;background-position:0
 			diss=2;
 
 		}else{
-			alert(2);
+			
 			$('#div2').css({			
 				'margin-top':'-60px',
 				'display':'none'
