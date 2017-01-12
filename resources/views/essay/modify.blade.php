@@ -24,14 +24,7 @@
 <body style="background: #fff;padding-bottom: 100px;">
 <form id="form1" method="post" action="/Article/mod/mod" enctype= "multipart/form-data">
 <div class="w944 edit">
-		<div class="edit-btns clearfix">
-			<button onclick="clearLocalData ()" class="btn">清空草稿</button>
-			<!-- <a href="#" class="btn right">上传</a> -->
-			<!-- <button onclick="getContent()" class="btn right">保存</button> -->
-			<input type="submit" class="btn right" value="提交">
-			<input type="hidden" name="eassat_id" value="<?php echo $eassat_id ?>">
-
-		</div>
+		
 		
 <div> 
  <div><h1>自适应边框</h1>
@@ -338,6 +331,14 @@
 			}
 		})
 </script>
+<div class="edit-btns clearfix">
+			<button onclick="clearLocalData ()" class="btn">清空草稿</button>
+			<!-- <a href="#" class="btn right">上传</a> -->
+			<!-- <button onclick="getContent()" class="btn right">保存</button> -->
+			<input type="submit" class="btn right" value="提交">
+			<input type="hidden" name="eassat_id" value="<?php echo $eassat_id ?>">
+
+		</div>
 </form>
 </body>
 </html>
