@@ -1,29 +1,14 @@
 <?php 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;;
 
 use Jpush\Model as M;
 use Jpush\JpushClient;
 use Jpush\Exception\APIConnectionException;
 use Jpush\Exception\APIRequestExcetion;
+use Illuminate\Support\Facades\Input;
 use DB;
-class JpushController extends BaseController {
-	public function getIndex(){
-		$data = Input::all();
-			
-		   	// $rules = array(
-		   	// 'sike' => 'required',
-      //      	'num' => 'required',
-      //  		);
-		   	// $renews = [
-      //   	'sike.required'=>'写入从第几个开始',
-      //   	'num.required'=>'需要多少篇',       
-      //   	];
-        	//parent::validator($data, $rules,$renews);
-        	$rs=WzService::getInstance()->newwz(1,2);
-
-		return view('cq.index');
-	}
-	public function getJpusha(){	
+class JhController extends BaseController {	
+	public function getIndex(){	
 		 $data = Input::all();
 		 $rules = array(
 		    	'alias'=>'required',
@@ -38,8 +23,12 @@ class JpushController extends BaseController {
          parent::validator($data, $rules,$renews);
 		//$alias=array("堆图家");
 		//$content="你是，SB";
-		//$app_key='0b457b7ce996c2f0e1654b27';
-		$masrter_secret='c3e132e459b68e7de26582af';
+
+		$app_key='0b457b7ce996c2f0e1654b27';//极光给的
+		if(!$data['app_key']==$app_key){
+			return response()->forApi("app_key不正确");
+		}
+		$masrter_secret='c3e132e459b68e7de26582af';//极光给的
 		$client = new JpushClient($app_key,$masrter_secret);
 		$result = $client->push()
 				->setPlatform(M\platform('ios','android'))
@@ -49,13 +38,15 @@ class JpushController extends BaseController {
 				->setNotification(M\notification($content))
 				->send();
 
-				echo "push success".'<br>';
-				echo 'sendno:'.$result->sendno.'<br>';
-				echo "msg_id:".$result->msg_id.'<br>';
-				echo 'response json'.$result->json.'<br>';
+				//echo "push success".'<br>';
+				//echo 'sendno:'.$result->sendno.'<br>';
+				//echo "msg_id:".$result->msg_id.'<br>';
+				//echo 'response json'.$result->json.'<br>';
+				$rs=$result->json;
+		return response()->forApi($rs);
 
 	}
-	public function iospush(){
+	public function getIospush(){
 		// 这里是我们上面得到的deviceToken，直接复制过来（记得去掉空格）
 		$deviceToken = '740f4707bebcf74f 9b7c25d4 8e3358945f6aa01da5ddb387462c7eaf 61bb78ad';
 
