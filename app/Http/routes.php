@@ -157,6 +157,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api'], function () {
         'vr' => 'VrController',
         'cq' => 'CqController',
         'wz' => 'WzController',
+        'jh' => 'JhController',
     ]);
 
     Route::resources([
@@ -209,15 +210,16 @@ Route::any('/Article/selectpingx','Article\ArticleController@select_pingx');
 Route::any('/Article/addid/{pid}','Article\ArticleController@add_pingx');
 Route::any('/Article/aqqid/{pid}','Article\ArticleController@aqq_pingx');
 Route::any('/Article/comment/action','Article\ArticleController@add_int');
+Route::any('/Article/indexadd','Article\ArticleController@index_a_dd');
 Route::any('/Article/comment/de','Article\ArticleController@comment_delete');
 Route::any('/Article/search/{id}','Article\ArticleController@search');
 Route::any('/Article/se/add','Article\ArticleController@search_re_add');
 Route::any('/Article/modify/{id}','Article\ArticleController@modify');
 Route::any('/Article/mod/mod','Article\ArticleController@mod');
-Route::get('mail/send','MailController@send');
-Route::get('mail/test','MailController@test');
-Route::get('mail/testt','MailController@testt');
-Route::get('jpush/index','JpushController@index');
+Route::get('/mail/send','MailController@send');
+Route::get('/mail/test','MailController@test');
+Route::get('/mail/testt','MailController@testt');
+
 
 
 
