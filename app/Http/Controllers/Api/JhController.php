@@ -14,13 +14,13 @@ class JhController extends BaseController {
 		    	'alias'=>'required',
             	'content'=>'required',
             	'app_key' => 'required',
-            	'type' => 'required',
+            	'tip' => 'required',
         	);
 		    	$renews = [
          	'alias.required'=>'alias必传',
          	'content.required'=>'没内容调用什么接口', 
          	'app_key.required' => 'app_key你知道是什么不',
-         	'type.required'  => '告诉我是通知还是消息 1 or 2',   	    
+         	'tip.required'  => '告诉我是通知还是消息 1 or 2',   	    
          	];
          parent::validator($data, $rules,$renews);
 		//$alias=array("堆图家");
@@ -30,22 +30,23 @@ class JhController extends BaseController {
 		if(!$data['app_key']==$app_key){
 			return response()->forApi("app_key不正确");
 		}
+		
 		$masrter_secret='c3e132e459b68e7de26582af';//极光给的
 		$client = new JpushClient($app_key,$masrter_secret);
 		$result = $client->push()
 				->setPlatform(M\platform('ios','android'))
 				->setAudience(M\audience(
-					M\alias($alias)
+					M\alias(array($data['alias']))
 					))
-				->setNotification(M\notification($content))
+				->setNotification(M\notification($data['content']))
 				->send();
 
 				//echo "push success".'<br>';
 				//echo 'sendno:'.$result->sendno.'<br>';
 				//echo "msg_id:".$result->msg_id.'<br>';
 				//echo 'response json'.$result->json.'<br>';
-				$rs=$result->json;
-				$rs['type']=$date['type'];
+				//$rs=$result->json;
+				$rs['tip']=$data['tip'];
 		return response()->forApi($rs);
 
 	}
