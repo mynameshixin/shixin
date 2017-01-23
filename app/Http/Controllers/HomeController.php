@@ -40,7 +40,8 @@ class HomeController extends CmController {
 	        $user[$key]['fans_count'] =  DB::table('user_follow')->where('userid_follow',$value['id'])->count();
 		}
 		// dd($user);
-		$recommend = FolderWebsupply::get_recommend(15,0,0,1);
+		//$recommend = FolderWebsupply::get_recommend(15,0,0,1);//首页文件夹推荐
+		$recommend = FolderWebsupply::get_eassat(); //文章推荐首页
 		// dd($recommend);
 		$data = [
 			'self_id'=>$this->user_id,
@@ -50,6 +51,7 @@ class HomeController extends CmController {
 			'recommend'=>$recommend,
 			'title'=>'堆图家，链接全球家居资源(家居、室内设计、商品、美图、VR)'
 		];
+		//dump($data);
 		return view('index',$data);
 
 	}

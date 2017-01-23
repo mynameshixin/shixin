@@ -181,12 +181,12 @@ setTimeout(function(){
           <?php endforeach; ?>
         </div>
         <div class="nolog_index_contit">
-          文件夹推荐
+          文章推荐
         </div>
-        <!-- 1 -->
+           <!-- 1 -->
         <div class="nolog_index_conreco clearfix">
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[0]['id']}}" target="_blank" title="堆图家卧室"><img src="{{$recommend[0]['img_url']}}" alt="堆图家卧室"></a>
+            <a href="/Article/article/{{$recommend[0]['eassat_id']}}" target="_blank" title="堆图家卧室"><img src="{{$recommend[0]['eassat_ximg']}}" alt="堆图家卧室"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -195,57 +195,67 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[0]['id']}}" target="_blank" title="{{$recommend[0]['name']}}">{{$recommend[0]['name']}}</a>
+                <a href="/Article/article/{{$recommend[0]['eassat_id']}}" target="_blank" title="{{$recommend[0]['eassat_title']}}">{{$recommend[0]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[0]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[0]['count']['fans_count']}}粉丝
+
+              {{$recommend[0]['eassat_date']}}
+
+               
               </p>
+              
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[0]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[0]['user']['nick']))?$recommend[0]['user']['nick']:$recommend[0]['user']['username']}}">{{!empty(trim($recommend[0]['user']['nick']))?$recommend[0]['user']['nick']:$recommend[0]['user']['username']}}</a>
+                来自<a href="/webd/user?oid={{$recommend[0]['eassat_user_id']}}" target="_blank" title="{{$recommend[0]['eassat_user_name']}}">{{$recommend[0]['eassat_user_name']}}</a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                
+             
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[1]['id']}}" target="_blank" title="{{$recommend[1]['name']}}">{{$recommend[1]['name']}}</a>
+                <a href="/Article/article/{{$recommend[1]['eassat_id']}}" target="_blank" title="{{$recommend[1]['eassat_title']}}">{{$recommend[1]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[1]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[1]['count']['fans_count']}}粉丝
+              {{$recommend[1]['eassat_date']}}
+               
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[1]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[1]['user']['nick']))?$recommend[1]['user']['nick']:$recommend[1]['user']['username']}}">{{!empty(trim($recommend[1]['user']['nick']))?$recommend[1]['user']['nick']:$recommend[1]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[1]['eassat_user_id']}}" target="_blank" title="{{$recommend[1]['eassat_user_name']}}">{{$recommend[1]['eassat_user_name']}}
               </p>
+
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[1]['id']}}" target="_blank" title="装置艺术"><img src="{{$recommend[1]['img_url']}}" alt="装置艺术"></a>
+            <a href="/Article/article/{{$recommend[1]['eassat_id']}}" target="_blank" title="装置艺术"><img src="{{$recommend[1]['eassat_ximg']}}" alt="装置艺术"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[2]['id']}}" target="_blank" title="庭院"><img src="{{$recommend[2]['img_url']}}" alt="庭院"></a>
+            <a href="/Article/article/{{$recommend[2]['eassat_id']}}" target="_blank" title="庭院"><img src="{{$recommend[2]['eassat_ximg']}}" alt="庭院"></a>
           </div>
+
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
               <div class="nolog_index_conrecivonleft"></div>
               <a class="nolog_index_conrecfold">
-                
+                  
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[2]['id']}}" target="_blank" title="{{$recommend[2]['name']}}">{{$recommend[2]['name']}}</a>
+                <a href="/Article/article/{{$recommend[2]['eassat_id']}}" target="_blank" title="{{$recommend[2]['eassat_title']}}">{{$recommend[2]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[2]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[2]['count']['fans_count']}}粉丝
+              {{$recommend[2]['eassat_date']}}
+             
+               
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[2]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[2]['user']['nick']))?$recommend[2]['user']['nick']:$recommend[2]['user']['username']}}">{{!empty(trim($recommend[2]['user']['nick']))?$recommend[2]['user']['nick']:$recommend[2]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[2]['eassat_user_id']}}" target="_blank" title="{{$recommend[2]['eassat_user_id']}}">{{$recommend[2]['eassat_user_name']}}</a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
-              
+             
             </div>
           </div>
+          
         <!-- 2 -->
           <div class="nolog_index_conrecbox nolog_index_conrecone">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -253,24 +263,26 @@ setTimeout(function(){
             <div class="nolog_index_conrecinfobox textright">
               <div class="nolog_index_conrecivonright"></div>
               <a class="nolog_index_conrecfold">
-                
+               
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[3]['id']}}" target="_blank" title="{{$recommend[3]['name']}}">{{$recommend[3]['name']}}</a>
+                <a href="/Article/article/{{$recommend[3]['eassat_id']}}" target="_blank" title="{{$recommend[3]['eassat_user_name']}}">{{$recommend[3]['eassat_title']}}</a>
               </p>
+                
               <p class="nolog_index_conrecfans">
-                {{$recommend[3]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[3]['count']['fans_count']}}粉丝
+                {{$recommend[3]['eassat_date']}}
               </p>
+              
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[3]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[3]['user']['nick']))?$recommend[3]['user']['nick']:$recommend[3]['user']['username']}}">{{!empty(trim($recommend[3]['user']['nick']))?$recommend[3]['user']['nick']:$recommend[3]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[3]['eassat_user_id']}}" target="_blank" title="{{$recommend[3]['eassat_user_name']}}">{{$recommend[3]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[3]['id']}}" target="_blank" title="边柜"><img src="{{$recommend[3]['img_url']}}" alt="边柜"></a>
+            <a href="/Article/article/{{$recommend[3]['eassat_id']}}" target="_blank" title="边柜"><img src="{{$recommend[3]['eassat_ximg']}}" alt="边柜"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[4]['id']}}" target="_blank" title="J酒店"><img src="{{$recommend[4]['img_url']}}" alt="J酒店"></a>
+            <a href="/Article/article/{{$recommend[4]['eassat_id']}}" target="_blank" title="J酒店"><img src="{{$recommend[4]['eassat_ximg']}}" alt="J酒店"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -279,13 +291,13 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[4]['id']}}" target="_blank" title="{{$recommend[4]['name']}}">{{$recommend[4]['name']}}</a>
+                <a href="/Article/article/{{$recommend[4]['eassat_id']}}" target="_blank" title="{{$recommend[4]['eassat_title']}}">{{$recommend[4]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[4]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[4]['count']['fans_count']}}粉丝
+                {{$recommend[4]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[4]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[4]['user']['nick']))?$recommend[4]['user']['nick']:$recommend[4]['user']['username']}}">{{!empty(trim($recommend[4]['user']['nick']))?$recommend[4]['user']['nick']:$recommend[4]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[4]['eassat_user_id']}}" target="_blank" title="{{$recommend[4]['eassat_user_name']}}">{{$recommend[4]['eassat_user_name']}}
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -294,23 +306,24 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[5]['id']}}" target="_blank" title="{{$recommend[5]['name']}}">{{$recommend[5]['name']}}</a>
+                <a href="/Article/article/{{$recommend[5]['eassat_id']}}" target="_blank" title="{{$recommend[5]['eassat_title']}}">{{$recommend[5]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[5]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[5]['count']['fans_count']}}粉丝
+                {{$recommend[5]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[5]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[5]['user']['nick']))?$recommend[5]['user']['nick']:$recommend[5]['user']['username']}}">{{!empty(trim($recommend[5]['user']['nick']))?$recommend[5]['user']['nick']:$recommend[5]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[5]['eassat_user_id']}}" target="_blank" title="{{$recommend[5]['eassat_user_name']}}">{{$recommend[5]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox mrightzero">
-            <a href="/webd/folder?fid={{$recommend[5]['id']}}" target="_blank" title="【配色】早安色彩"><img src="{{$recommend[5]['img_url']}}" alt="【配色】早安色彩"></a>
+            <a href="/Article/article/{{$recommend[5]['eassat_id']}}" target="_blank" title="【配色】早安色彩"><img src="{{$recommend[5]['eassat_ximg']}}" alt="【配色】早安色彩"></a>
           </div>
+          
 
           <!-- 3 -->
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[6]['id']}}" target="_blank" title="方案排版"><img src="{{$recommend[6]['img_url']}}" alt="方案排版"></a>
+            <a href="/Article/article/{{$recommend[6]['eassat_id']}}" target="_blank" title="方案排版"><img src="{{$recommend[6]['eassat_ximg']}}" alt="方案排版"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -319,13 +332,13 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[6]['id']}}" target="_blank" title="{{$recommend[6]['name']}}">{{$recommend[6]['name']}}</a>
+                <a href="/Article/article/{{$recommend[6]['eassat_id']}}" target="_blank" title="{{$recommend[6]['eassat_title']}}">{{$recommend[6]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[6]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[6]['count']['fans_count']}}粉丝
+                {{$recommend[6]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[6]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']}}">{{!empty(trim($recommend[6]['user']['nick']))?$recommend[6]['user']['nick']:$recommend[6]['user']['username']}}</a>
+                来自<a href="/webd/user?oid={{$recommend[6]['eassat_user_id']}}" target="_blank" title="{{$recommend[6]['eassat_user_name']}}">{{$recommend[6]['eassat_user_name']}}</a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -334,21 +347,21 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[7]['id']}}" target="_blank" title="{{$recommend[7]['name']}}">{{$recommend[7]['name']}}</a>
+                <a href="/Article/article/{{$recommend[7]['eassat_id']}}" target="_blank" title="{{$recommend[7]['eassat_title']}}">{{$recommend[7]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[7]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[7]['count']['fans_count']}}粉丝
+                {{$recommend[7]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[7]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']}}">{{!empty(trim($recommend[7]['user']['nick']))?$recommend[7]['user']['nick']:$recommend[7]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[7]['eassat_user_id']}}" target="_blank" title="{{$recommend[7]['eassat_user_name']}}">{{$recommend[7]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[7]['id']}}" target="_blank" title="衣帽间"><img src="{{$recommend[7]['img_url']}}" alt="衣帽间"></a>
+            <a href="/Article/article/{{$recommend[7]['eassat_id']}}" target="_blank" title="衣帽间"><img src="{{$recommend[7]['eassat_ximg']}}" alt="衣帽间"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[8]['id']}}" target="_blank" title="椅子"><img src="{{$recommend[8]['img_url']}}" alt="椅子"></a>
+            <a href="/Article/article/{{$recommend[8]['eassat_id']}}" target="_blank" title="椅子"><img src="{{$recommend[8]['eassat_ximg']}}" alt="椅子"></a>
           </div>
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -357,19 +370,20 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[8]['id']}}" target="_blank" title="{{$recommend[8]['name']}}">{{$recommend[8]['name']}}</a>
+                <a href="/Article/article/{{$recommend[8]['eassat_id']}}" target="_blank" title="{{$recommend[8]['eassat_title']}}">{{$recommend[8]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[8]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[8]['count']['fans_count']}}粉丝
+                {{$recommend[8]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[8]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']}}">{{!empty(trim($recommend[8]['user']['nick']))?$recommend[8]['user']['nick']:$recommend[8]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[8]['eassat_user_id']}}" target="_blank" title="{{$recommend[8]['eassat_user_name']}}">{{$recommend[8]['eassat_user_name']}}
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
               
             </div>
           </div>
+          
 
         <!-- 4 -->
          <div class="nolog_index_conrecbox nolog_index_conrecone">
@@ -381,21 +395,21 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[9]['id']}}" target="_blank" title="{{$recommend[9]['name']}}">{{$recommend[9]['name']}}</a>
+                <a href="/Article/article/{{$recommend[9]['eassat_id']}}" target="_blank" title="{{$recommend[9]['eassat_title']}}">{{$recommend[9]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[9]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[9]['count']['fans_count']}}粉丝
+                {{$recommend[9]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[9]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']}}">{{!empty(trim($recommend[9]['user']['nick']))?$recommend[9]['user']['nick']:$recommend[9]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[9]['eassat_user_id']}}" target="_blank" title="{{$recommend[9]['eassat_user_name']}}">{{$recommend[9]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[9]['id']}}" target="_blank" title="coconordic"><img src="{{$recommend[9]['img_url']}}" alt="coconordic"></a>
+            <a href="/Article/article/{{$recommend[9]['eassat_id']}}" target="_blank" title="coconordic"><img src="{{$recommend[9]['eassat_ximg']}}" alt="coconordic"></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[10]['id']}}" target="_blank" title="厨房"><img src="{{$recommend[10]['img_url']}}" alt="厨房"></a>
+            <a href="/Article/article/{{$recommend[10]['eassat_id']}}" target="_blank" title="厨房"><img src="{{$recommend[10]['eassat_ximg']}}" alt="厨房"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -404,13 +418,13 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[10]['id']}}" target="_blank" title="{{$recommend[10]['name']}}">{{$recommend[10]['name']}}</a>
+                <a href="/Article/article/{{$recommend[10]['eassat_id']}}" target="_blank" title="{{$recommend[10]['eassat_title']}}">{{$recommend[10]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[10]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[10]['count']['fans_count']}}粉丝
+                {{$recommend[10]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[10]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[10]['user']['nick']))?$recommend[10]['user']['nick']:$recommend[10]['user']['username']}}">{{!empty(trim($recommend[10]['user']['nick']))?$recommend[10]['user']['nick']:$recommend[10]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[10]['eassat_user_id']}}" target="_blank" title="{{$recommend[10]['eassat_user_name']}}">{{$recommend[10]['eassat_user_name']}}
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -419,23 +433,24 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[11]['id']}}" target="_blank" title="{{$recommend[11]['name']}}">{{$recommend[11]['name']}}</a>
+                <a href="/Article/article/{{$recommend[11]['eassat_id']}}" target="_blank" title="{{$recommend[11]['eassat_title']}}">{{$recommend[11]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[11]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[11]['count']['fans_count']}}粉丝
+                {{$recommend[11]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[11]['user']['id']}}" target="_blank"  title="{{!empty(trim($recommend[11]['user']['nick']))?$recommend[11]['user']['nick']:$recommend[11]['user']['username']}}">{{!empty(trim($recommend[11]['user']['nick']))?$recommend[11]['user']['nick']:$recommend[11]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[11]['eassat_user_id']}}" target="_blank"  title="{{$recommend[11]['eassat_user_name']}}">{{$recommend[11]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox mrightzero">
-            <a href="/webd/folder?fid={{$recommend[11]['id']}}" target="_blank" title="【Horchow】"><img src="{{$recommend[11]['img_url']}}" alt="【Horchow】"></a>
+            <a href="/Article/article/{{$recommend[11]['eassat_id']}}" target="_blank" title="【Horchow】"><img src="{{$recommend[11]['eassat_ximg']}}" alt="【Horchow】"></a>
           </div>
 
+         
         <!-- 5 -->
          <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[12]['id']}}" target="_blank" title="花艺"><img src="{{$recommend[12]['img_url']}}" alt="花艺"></a>
+            <a href="/Article/article/{{$recommend[12]['eassat_id']}}" target="_blank" title="花艺"><img src="{{$recommend[12]['eassat_ximg']}}" alt="花艺"></a>
           </div>
           <div class="nolog_index_conrecbox">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -444,13 +459,13 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[12]['id']}}" target="_blank" title="{{$recommend[12]['name']}}">{{$recommend[12]['name']}}</a>
+                <a href="/Article/article/{{$recommend[12]['eassat_id']}}" target="_blank" title="{{$recommend[12]['eassat_title']}}">{{$recommend[12]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[12]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[12]['count']['fans_count']}}粉丝
+                {{$recommend[12]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[12]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[12]['user']['nick']))?$recommend[12]['user']['nick']:$recommend[12]['user']['username']}}">{{!empty(trim($recommend[12]['user']['nick']))?$recommend[12]['user']['nick']:$recommend[12]['user']['username']}}</a>
+                来自<a href="/webd/user?oid={{$recommend[12]['eassat_user_id']}}" target="_blank" title="{{$recommend[12]['eassat_user_name']}}">{{$recommend[12]['eassat_user_name']}}</a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">
@@ -459,21 +474,21 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[13]['id']}}" target="_blank" title="{{$recommend[13]['name']}}">{{$recommend[13]['name']}}</a>
+                <a href="/Article/article/{{$recommend[13]['eassat_id']}}" target="_blank" title="{{$recommend[13]['eassat_title']}}">{{$recommend[13]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[13]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[13]['count']['fans_count']}}粉丝
+                {{$recommend[13]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[13]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[13]['user']['nick']))?$recommend[13]['user']['nick']:$recommend[13]['user']['username']}}">{{!empty(trim($recommend[13]['user']['nick']))?$recommend[13]['user']['nick']:$recommend[13]['user']['username']}}
+                来自<a href="/webd/user?oid={{$recommend[13]['eassat_user_id']}}" target="_blank" title="{{$recommend[13]['eassat_user_name']}}">{{$recommend[13]['eassat_user_name']}}
               </p>
             </div>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[13]['id']}}" target="_blank" title="灯具"><img src="{{$recommend[13]['img_url']}}" alt=""></a>
+            <a href="/Article/article/{{$recommend[13]['eassat_id']}}" target="_blank" title="灯具"><img src="{{$recommend[13]['eassat_ximg']}}" alt=""></a>
           </div>
           <div class="nolog_index_conrecbox">
-            <a href="/webd/folder?fid={{$recommend[14]['id']}}" target="_blank" title="灯具"><img src="{{$recommend[14]['img_url']}}" alt=""></a>
+            <a href="/Article/article/{{$recommend[14]['eassat_id']}}" target="_blank" title="灯具"><img src="{{$recommend[14]['eassat_ximg']}}" alt=""></a>
           </div>
           <div class="nolog_index_conrecbox nolog_index_conrecone mrightzero">
             <div class="nolog_index_conrecinfobox textleft marbtm">
@@ -482,13 +497,13 @@ setTimeout(function(){
                 
               </a>
               <p class="nolog_index_conrecauto">
-                <a href="/webd/folder?fid={{$recommend[14]['id']}}" target="_blank" title="{{$recommend[14]['name']}}">{{$recommend[14]['name']}}</a>
+                <a href="/Article/article/{{$recommend[14]['eassat_id']}}" target="_blank" title="{{$recommend[14]['eassat_title']}}">{{$recommend[14]['eassat_title']}}</a>
               </p>
               <p class="nolog_index_conrecfans">
-                {{$recommend[14]['count']['folder_count']}}文件&nbsp;&nbsp;{{$recommend[14]['count']['fans_count']}}粉丝
+                {{$recommend[14]['eassat_date']}}
               </p>
               <p class="nolog_index_conrecfrom">
-                来自<a href="/webd/user?oid={{$recommend[14]['user']['id']}}" target="_blank" title="{{!empty(trim($recommend[14]['user']['nick']))?$recommend[14]['user']['nick']:$recommend[14]['user']['username']}}">{{!empty(trim($recommend[14]['user']['nick']))?$recommend[14]['user']['nick']:$recommend[14]['user']['username']}}</a>
+                来自<a href="/webd/user?oid={{$recommend[14]['eassat_user_id']}}" target="_blank" title="{{$recommend[14]['eassat_user_name']}}">{{$recommend[14]['eassat_user_name']}}</a>
               </p>
             </div>
             <div class="nolog_index_conrecinfobox textright">

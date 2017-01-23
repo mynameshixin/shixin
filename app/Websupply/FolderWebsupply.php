@@ -60,7 +60,14 @@ class FolderWebsupply extends CmWebsupply {
 		 	$folders[$key]['img_url'] = LibUtil::getPicUrl($imageId, 1);
 		 }
 		 return $folders;
-	}	
+	}
+	//首页推荐文章模块 参数num为需要多少个  默认为15 
+	public static function get_eassat($num=15){
+
+		$res=DB::table('eassat')->where('eassat_where','1')->take($num)->orderBy('eassat_id', 'desc')->select('eassat_id','eassat_user_name','eassat_ximg','eassat_date','eassat_title','eassat_user_id')->get();
+	
+		return $res;
+	}
 
 	//获取用户文件夹 含文件夹图片
 	public static function get_user_folder($user_id,$fnum = 4,$gnum = 0){
