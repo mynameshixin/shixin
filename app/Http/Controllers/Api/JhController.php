@@ -14,11 +14,13 @@ class JhController extends BaseController {
 		    	'alias'=>'required',
             	'content'=>'required',
             	'app_key' => 'required',
+            	'type' => 'required',
         	);
 		    	$renews = [
          	'alias.required'=>'alias必传',
          	'content.required'=>'没内容调用什么接口', 
-         	'app_key.required' => 'app_key你知道是什么不',        	    
+         	'app_key.required' => 'app_key你知道是什么不',
+         	'type.required'  => '告诉我是通知还是消息 1 or 2',   	    
          	];
          parent::validator($data, $rules,$renews);
 		//$alias=array("堆图家");
@@ -43,6 +45,7 @@ class JhController extends BaseController {
 				//echo "msg_id:".$result->msg_id.'<br>';
 				//echo 'response json'.$result->json.'<br>';
 				$rs=$result->json;
+				$rs['type']=$date['type'];
 		return response()->forApi($rs);
 
 	}
@@ -66,7 +69,7 @@ class JhController extends BaseController {
 		//这个为正是的发布地址
 		 //$fp = stream_socket_client(“ssl://gateway.push.apple.com:2195“, $err, $errstr, 60, //STREAM_CLIENT_CONNECT, $ctx);
 		//这个是沙盒测试地址，发布到appstore后记得修改哦
-		$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+		//$fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err,$errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 
 		//此处有两个服务器需要选择，如果是开发测试用，选择第二名sandbox的服务器并使用Dev的pem证书，如果是正是发布，使用Product的pem并选用正式的服务器
 		// $fp = stream_socket_client("ssl://gateway.push.apple.com:2195", $err, $errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
@@ -74,31 +77,31 @@ class JhController extends BaseController {
 
 		
 		if (!$fp)
-		exit("Failed to connect: $err $errstr" . PHP_EOL);
+		exit("无法连接: $err $errstr" . PHP_EOL);
 
-		echo 'Connected to APNS' . PHP_EOL;
+		echo '连接 的 APNS' . PHP_EOL;
 
-		// Create the payload body
+		// Create the payload body 创建有效载荷体
 		$body['aps'] = array(
 		'alert' => $message,
 		'sound' => 'default'
 		);
 
-		// Encode the payload as JSON
+		// Encode the payload as JSON 有效载荷为JSON编码
 		$payload = json_encode($body);
 
-		// Build the binary notification
+		// Build the binary notification 建立二进制通知
 		$msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
 
-		// Send it to the server
+		// Send it to the server 将它发送到服务器
 		$result = fwrite($fp, $msg, strlen($msg));
 
 		if (!$result)
-		echo 'Message not delivered' . PHP_EOL;
+		echo 'Message not delivered 消息未交付' . PHP_EOL;
 		else
-		echo 'Message successfully delivered' . PHP_EOL;
+		echo 'Message successfully delivered 消息发送成功' . PHP_EOL;
 
-		// Close the connection to the server
+		// Close the connection to the server 关闭服务器的连接
 		fclose($fp);
 	}
 }
