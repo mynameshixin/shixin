@@ -305,10 +305,8 @@ background: url(/web/images/btm.png) left center no-repeat;background-position:0
 											<p>{{$user_info['signature']}}  </p>
 								<p style="padding-left: 40px;background: url(images/dw.png) left center no-repeat; line-height: 35px;margin-top: 18px;">{{$user_info['location']}}</p>
 										</div>
-
-										<?php if($user_info['vr']['detail_url']){ ?>
-											<a href="{{$user_info['vr']['detail_url']}}"><img src="/web/images/vr_t.png" style="position: absolute;top: 0px;left: 884px;"></a>			
-										<?php }; ?>
+											
+									
 										</div>
 										<div class="perhome_perlike_wrap clearfix" style="width: 100%;">
 						<div class="w1248 w1240 clearfix">
@@ -371,12 +369,12 @@ background: url(/web/images/btm.png) left center no-repeat;background-position:0
 
 							
 
-						</div>
+									</div>
 
 						
 
-					</div>
-		</div>
+									</div>
+									</div>
 									</div>
 									</div>
 								    </div>
@@ -385,6 +383,7 @@ background: url(/web/images/btm.png) left center no-repeat;background-position:0
 								</div>
 					</div>
 					
+		</div>
 		</div>
 
 
