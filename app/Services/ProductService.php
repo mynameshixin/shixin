@@ -366,6 +366,7 @@ class ProductService extends ApiService
             foreach ($outDate['list'] as $v) {
                 if (isset($list[$v['good_id']])) {
                     $good = $list[$v['good_id']];
+                    $good['folder_name'] = self::getProductListByIdss($v['folder_id']);
                     if (isset($userArr[$v['user_id']])) $good['user'] = $userArr[$v['user_id']] ;
                     //$good['c_id'] = $v['id'];
                     $good['folder_id'] = $v['folder_id'];
@@ -376,6 +377,12 @@ class ProductService extends ApiService
             $outDate['list'] = $arr;
         }
         return $outDate;
+    }
+      //备用
+    public function getProductListByIdss($folder_id)
+    {
+        $data=DB::table('folders')->where('id',$folder_id)->select('name')->get();
+        return $data['0']['name'];
     }
 
     public function getRelationProducts($good_id, $num = 10,$kind=0)
