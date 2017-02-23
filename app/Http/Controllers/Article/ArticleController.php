@@ -252,7 +252,9 @@ class ArticleController extends CmController{
 
 	//首页显示
 	public function index(){
+		
 		$where=$this->eassat_where(4);
+
 		$index=$this->eassat_index();
 
 		//头部
@@ -261,15 +263,30 @@ class ArticleController extends CmController{
 			'self_id'=>$user_id,
 			'self_info'=>$this->self_info,
 			'where'=>$where,
-			'index'=>$index
+			'posts'=>$index
 		];
-		
+		//dd($data);
 		return View('essay.index',$data);
 	}
-	public function eassat_index($c=12){	//抓取最新发布的文章 $c设置抓取多少个  默认12个
-		$eassat=DB::table('eassat')->take($c)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title','eassat_date')->orderBy('eassat_date','desc')->get();
-		$eassat['int']=count($eassat);
-		return $eassat;
+	//首页下拉显示更多
+	// public function index_a_dd(){
+	// $data = Input::all();
+	// $id=$data['eassat_id'];
+	// if($id){
+	// 	$eassat=DB::table('eassat')->take(12)->select('eassat_id','eassat_timg','eassat_ximg','eassat_title','eassat_date')->where('eassat_id','<',$id)->orderBy('eassat_date','desc')->get();	
+	// 	$eassat['int']=count($eassat);
+	// }else{
+	// 	return 0;
+	// }
+	// return $eassat;
+	// }
+	public function eassat_index($c=12){	//抓取最新发布的文章 $c设置抓取多少个  默认12个$c=12 
+		//$eassat=DB::table('eassat')->select('eassat_id','eassat_timg','eassat_ximg','eassat_title','eassat_date')->take($c)->orderBy('eassat_date','desc')->get();
+		//$eassat['int']=count($eassat);
+		
+		$data=DB::table('eassat')->select('eassat_id','eassat_timg','eassat_ximg','eassat_title','eassat_date')->orderBy('eassat_date','desc')->paginate(12);
+		
+		return $data;
 	}
 	public function search($id){ //搜索页显示	
 

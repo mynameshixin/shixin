@@ -16,6 +16,9 @@
 	<script type="text/javascript" src="{{asset('web')}}/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="{{asset('web')}}/js/news/Masonry/masonry-docs.min.js"></script>
 	 <script type="text/javascript" src="{{asset('web')}}/js/news/index.js"></script>
+	 <script type="text/javascript" src="{{asset('web')}}/js/news/jquery-lazyload-js.js"></script>
+
+	 
 	 <script src="{{asset('web')}}/js/news/foucs.js" type="text/javascript"></script>
 </head>
 <!-- htmlv?=20160718 -->
@@ -129,20 +132,45 @@
 	    	<div class="pic-list-title">
 	    		最新图文
 	    	</div>
+	    	<div id="theme">
 	    	<div class="pic-list clearfix">
-
-	    	@for($i=0;$i<$index['int'];$i++)
+	    	@foreach ($posts as $post)
 	    		<div class="rows" style="margin-top:50px;height:330px">
-	    		<a href="/Article/article/<?php echo $index[$i]['eassat_id']?>">
-	    			<img style="width:390px;height:247px;" src="<?php echo $index[$i]['eassat_ximg']?>"/>
+	    		<a href="/Article/article/<?php echo $post['eassat_id']?>">
+	    			<img style="width:390px;height:247px;" src="http://www.duitujia.com<?php echo $post['eassat_ximg']?>"/>
 	    			<p class="row-info">
-	    				<span class="title"><?php echo $index[$i]['eassat_title']?></span>
-	    				<span class="time"><?php echo $index[$i]['eassat_date']?></span>
+	    				<span class="title"><?php echo $post['eassat_title']?></span>
+	    				<span class="time"><?php echo $post['eassat_date']?></span>
 	    			</p>
 	    		</a>
 	    		</div>
-	    	@endfor
+	    	@endforeach
 	    	</div>
+	    	<style>
+			#render ul li{
+				list-style: none;
+				float: left;
+				width: 30px;
+				height: 30px;
+				line-height:30px;
+				font-size: 18px;
+				text-align:center;
+			}
+			#render ul li a{
+				
+				color: blue;
+				
+			}
+
+			
+	    	</style>
+	    	<div id="render" style="margin:0 auto; width:400px; height:100px;">
+	    	<div>{!! $posts->render() !!}</div>
+	    	
+	    	</div>
+
+	    	</div>
+
     </div>
 </div>
 	
@@ -316,6 +344,59 @@
        		 $.foucs({ direction: 'right' });
 
 		});
+		
+		// var wh=$(window).height();
+		// var indexa=true;
+		// $(window).scroll(function(){
+		// var s=wh-$(window).scrollTop();
+		// if(s>1){
+
+		// 	 //document.getElementById("theme").innerHTML+="<p>1</p>";;
+		// 	index_add(131);
+		// }
+		// });
+		
+	//function index_add(ele){   	
+		//var flag = false;  
+	    // $.ajax({  
+	    //     type: "POST",  
+	    //     url: "/Article/indexadd", //orderModifyStatus  
+	    //     data: {
+	    //     	'eassat_id':ele
+	    //     },  
+	    //     dataType:"json",  
+	    //     async:false,  
+	    //     cache:false,  
+	    //     success: function(data){  
+
+	        	//alert(1);
+	            // var member = eval("("+data+")"); //包数据解析为json 格式                                                            
+	            // if(member.success=="true"){  
+	            //     flag = true;  
+	            // }else if(member.success=="false") {  
+	            //     alert(member.info);  
+	            // }  
+	       // },  
+	        //error: function(json){  
+	           // layer.alert("服务器错误！请稍候刷新网页");
+	        //}  
+	   // }); 		    
+     // 	var a=document.getElementById("theme").innerHTML;
+	    // $.ajax({
+	    //  type:"post",  //提交方式
+	    //  dataType:"jsonp", //数据类型
+	    //  url:"/Article/indexadd", //请求url
+	    //  'data':{
+	    //      'eassat_id':ele          
+	    //  },
+	    //    success:function(json){ //提交成功的回调函数 
+	      
+	    //  	alert(1);
+	    //     document.getElementById("theme").innerHTML+="<p>新来的(innerHTML)</p>";
+	    //    },
+	    //  });
+
+    }
 	</script>
 </html>
 
