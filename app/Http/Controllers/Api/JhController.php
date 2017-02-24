@@ -8,6 +8,8 @@ use Jpush\Exception\APIRequestExcetion;
 use Illuminate\Support\Facades\Input;
 use DB;
 class JhController extends BaseController {	
+
+//android测试用
 	public function getIndex(){	
 		 $data = Input::all();
 		 $rules = array(
@@ -32,6 +34,50 @@ class JhController extends BaseController {
 		}
 		
 		$masrter_secret='c3e132e459b68e7de26582af';//极光给的
+		$client = new JpushClient($app_key,$masrter_secret);
+		$result = $client->push()
+				->setPlatform(M\platform('ios','android'))
+				->setAudience(M\audience(
+					M\alias(array($data['alias']))
+					))
+				->setNotification(M\notification($data['content']))
+				->send();
+
+				//echo "push success".'<br>';
+				//echo 'sendno:'.$result->sendno.'<br>';
+				//echo "msg_id:".$result->msg_id.'<br>';
+				//echo 'response json'.$result->json.'<br>';
+				//$rs=$result->json;
+				$rs['tip']=$data['tip'];
+		return response()->forApi($rs);
+
+	}
+
+//IOS测试用
+	public function getIndexx(){	
+		 $data = Input::all();
+		 $rules = array(
+		    	'alias'=>'required',
+            	'content'=>'required',
+            	'app_key' => 'required',
+            	'tip' => 'required',
+        	);
+		    	$renews = [
+         	'alias.required'=>'alias必传',
+         	'content.required'=>'没内容调用什么接口', 
+         	'app_key.required' => 'app_key你知道是什么不',
+         	'tip.required'  => '告诉我是通知还是消息 1 or 2',   	    
+         	];
+         parent::validator($data, $rules,$renews);
+		//$alias=array("堆图家");
+		//$content="你是，SB";
+
+		$app_key='44075587dd74f5ad4b88d782';//极光给的
+		if(!$data['app_key']==$app_key){
+			return response()->forApi("app_key不正确");
+		}
+		
+		$masrter_secret='af9ef3ef1d2fa4a9e991d3c5';//极光给的
 		$client = new JpushClient($app_key,$masrter_secret);
 		$result = $client->push()
 				->setPlatform(M\platform('ios','android'))
