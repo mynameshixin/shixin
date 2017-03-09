@@ -164,7 +164,7 @@
 
 			
 	    	</style>
-	    	<div id="render" style="margin:0 auto; width:400px; height:100px;">
+	    	<div id="render" style="height:50px;text-align:center;">
 	    	<div>{!! $posts->render() !!}</div>
 	    	
 	    	</div>

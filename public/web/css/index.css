@@ -754,11 +754,11 @@ input[type="checkbox"] + label{cursor: pointer;}
 .nolog_index_conrecivonright{width: 0px;height: 0px;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:16px solid #fafafa;position: absolute;right: -16px;bottom: 48px;z-index: 1;}
 
 .nolog_index_conrecfold{font:normal 28px/28px "";color: #d4d4d4;border-bottom: 1px solid #d4d4d4;margin:10px 0px 8px 0px;display: inline-block;padding-bottom: 6px;}
-.nolog_index_conrecauto a{color: #333;font:normal 16px/16px "Microsoft YaHei";display: inline-block;height: 16px;overflow: hidden;}
+.nolog_index_conrecauto a{color: #333;font:normal 14px/16px "Microsoft YaHei";display: inline-block;height: 16px;overflow: hidden;}
 .textleft{text-align: left;}
 .textright{text-align: right;}
-.nolog_index_conrecfans{font:normal 13px/13px "Microsoft YaHei";color: #878787;margin:5px 0px 10px 0px;}
-.nolog_index_conrecfrom{font:normal 14px/14px "Microsoft YaHei";color: #878787;}
+.nolog_index_conrecfans{font:normal 12px/13px "Microsoft YaHei";color: #878787;margin:5px 0px 10px 0px;}
+.nolog_index_conrecfrom{font:normal 5px/14px "Microsoft YaHei";color: #878787;}
 .nolog_index_conrecfrom a{color: #b27e67;}
 .nolog_index_conrecone{background: #fafafa;}
 .nolog_index_conrecone:hover{background: #f5f5f5;}
